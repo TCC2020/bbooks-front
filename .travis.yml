@@ -5,6 +5,7 @@ node_js:
 cache:
   directories:
   - "$HOME/google-cloud-sdk/"
+  - node_modules
 services:
 - docker
 env:
