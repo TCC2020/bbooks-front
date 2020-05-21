@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+.nav-bar{
+    background-color: #a6c !important;
+}
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
