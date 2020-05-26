@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
 
 
   public getToken(): string {
-    return localStorage.getItem('token');
+    return localStorage.getItem('token') ? localStorage.getItem('token') : sessionStorage.getItem('token');
   }
 
   public setToken(token) {
@@ -31,19 +31,32 @@ export class AuthGuard implements CanActivate {
   }
 
   public getUser(): JSON {
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : JSON.parse(sessionStorage.getItem('user'));
   }
 
   public setUser(user): void {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  public login(res) {
-    this.setToken(res['token']);
-    this.setUser(res);
+  public setSessionToken(token){
+    sessionStorage.setItem('token', token);
   }
 
-  logout(){
+  public setSessionUser(user){
+    sessionStorage.setItem('user', JSON.stringify(user));
+  }
+
+  public login(res, keepLogin: boolean) {
+    if (keepLogin) {
+      this.setToken(res['token']);
+      this.setUser(res);
+    } else {
+      this.setSessionToken(res['token']);
+      this.setSessionUser(res);
+    }
+  }
+
+  logout() {
     localStorage.clear();
   }
 }

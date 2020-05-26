@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthGuard } from 'src/app/guards/auth-guard';
 import { Router } from '@angular/router';
@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginControl = this.fb.group({
       email: '',
-      password: ''
+      password: '',
+      keepLogin: [false]
     });
   }
 
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.loginControl.value.password = Md5.hashStr(this.loginControl.value.password);
     this.authService.login(this.loginControl.value).subscribe(res => {
-      this.authGuard.login(res);
+      this.authGuard.login(res, this.loginControl.value.keepLogin);
       this.activeModal.close()
       this.router.navigateByUrl('/')
     },
