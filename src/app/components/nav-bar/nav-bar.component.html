@@ -5,6 +5,7 @@
     <links fxLayout="row" *ngIf="auth.getToken() === null">
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item" fxLayoutAlign="center center">
+
                 <a class="nav-link">
                     <mdb-icon fab icon="google-plus"></mdb-icon>
                 </a>
@@ -15,17 +16,17 @@
                 </a>
             </li>
             <li>
-                <button mdbBtn type="button" color="secondary" rounded="true" mdbWavesEffect (click)="openLoginDialog()">Login</button>
+                <button mdbBtn type="button" color="secondary" rounded="true" mdbWavesEffect
+                    (click)="openLoginDialog()">Login</button>
             </li>
         </ul>
     </links>
     <links fxLayout="row" *ngIf="auth.getToken() != null">
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <li>
-                <button mdbBtn type="button" color="secondary" rounded="true" mdbWavesEffect (click)="logout()">Sair</button>
+                <button mdbBtn type="button" color="secondary" rounded="true" mdbWavesEffect
+                    (click)="logout()">Sair</button>
             </li>
         </ul>
     </links>
-    
 </mdb-navbar>
-<!--/.Navbar-->

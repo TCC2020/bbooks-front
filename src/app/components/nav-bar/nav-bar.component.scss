@@ -1,3 +1,13 @@
 mdb-icon {
-    font-size: large;
+    font-size: larger;
+}
+label{ 
+    color: white;
+}
+input:focus + label{
+    color: white !important;
+    border-color: white !important;
+}
+.md-form{
+    padding-bottom: 0px !important;
 }
