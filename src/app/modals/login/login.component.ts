@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginControl.value).subscribe(res => {
       this.authGuard.login(res, this.loginControl.value.keepLogin);
       this.activeModal.close()
-      this.router.navigateByUrl('/')
+      this.router.navigateByUrl('/');
     },
       (err) => {
         alert(err.error.message);

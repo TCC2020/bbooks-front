@@ -14,13 +14,15 @@ import { AuthGuard } from './guards/auth-guard';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BookComponent } from './modals/book/book.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
