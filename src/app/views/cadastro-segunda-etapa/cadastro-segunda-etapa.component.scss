@@ -1,0 +1,31 @@
+form {
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    padding: 30px 40px 35px;
+    width: 800px;
+    height: auto;
+    min-height: 500px;
+    margin: 50px auto 0px;
+    box-sizing: border-box;
+}
+
+div#cabecalho-cadastro h1 {
+    padding: 0px;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 600px){
+    form {
+        border: none;
+        width: 100%;
+        margin: auto 0px;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+}

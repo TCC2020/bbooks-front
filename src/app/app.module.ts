@@ -16,6 +16,7 @@ import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookComponent } from './modals/book/book.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CadastroComponent } from './views/cadastro/cadastro.component';
     NavBarComponent,
     LoginComponent,
     BookComponent,
-    CadastroComponent
+    CadastroComponent,
+    CadastroSegundaEtapaComponent
   ],
   imports: [
     BrowserModule,
