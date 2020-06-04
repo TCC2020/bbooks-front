@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookComponent } from './modals/book/book.component';
+import { CadastroComponent } from './views/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BookComponent } from './modals/book/book.component';
     MainPageComponent,
     NavBarComponent,
     LoginComponent,
-    BookComponent
+    BookComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
