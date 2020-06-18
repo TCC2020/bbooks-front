@@ -6,7 +6,7 @@ import { AuthConfirmComponent } from './auth-confirm/auth-confirm.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
-  { path: '/confirm/:token', component: AuthConfirmComponent }
+  { path: 'confirm', component: AuthConfirmComponent }
 ];
 
 @NgModule({

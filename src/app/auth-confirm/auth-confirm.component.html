@@ -1,1 +1,37 @@
-<p>auth-confirm works!</p>
+<!-- Material form login -->
+<mdb-card>
+
+    <mdb-card-header class="secondary-color white-text text-center py-4">
+      <h5>
+        <strong>Confirmar cadastro</strong>
+      </h5>
+    </mdb-card-header>
+    <!--Card content-->
+    <mdb-card-body class="px-lg-5 pt-0">
+      <p><br>Faça login para confirmar seu cadastro</p>
+      <!-- Form -->
+      <form [formGroup]="confirmControl" class="text-center" style="color: #757575;">
+  
+        <!-- Email -->
+        <div class="md-form">
+          <input type="email" id="materialLoginFormEmail" class="form-control" mdbInput formControlName="email">
+          <label for="materialLoginFormEmail">E-mail</label>
+        </div>
+  
+        <!-- Password -->
+        <div class="md-form">
+          <input type="password" id="materialLoginFormPassword" class="form-control" mdbInput formControlName="password">
+          <label for="materialLoginFormPassword">Senha</label>
+        </div>
+  
+        <!-- Confirm button -->
+        <button mdbBtn color="secondary" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+        (click)="confirm()">Login</button>
+  
+      </form>
+      <!-- Form -->
+  
+    </mdb-card-body>
+  
+  </mdb-card>
+  <!-- Material form login -->
