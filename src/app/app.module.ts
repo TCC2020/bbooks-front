@@ -16,6 +16,8 @@ import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookComponent } from './modals/book/book.component';
 import { AuthConfirmComponent } from './auth-confirm/auth-confirm.component';
+import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { AuthConfirmComponent } from './auth-confirm/auth-confirm.component';
     LoginComponent,
     BookComponent,
     AuthConfirmComponent
+    CadastroComponent,
+    CadastroSegundaEtapaComponent
   ],
   imports: [
     BrowserModule,
