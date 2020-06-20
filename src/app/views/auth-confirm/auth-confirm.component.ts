@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { AuthConfirmService } from '../services/auth-confirm.service';
+import { AuthConfirmService} from '../../services/auth-confirm.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { AuthGuard } from 'src/app/guards/auth-guard';
 import { Router } from '@angular/router';

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CadastroService } from '../../services/cadastro-service.service';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-cadastro',
@@ -6,10 +10,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
+  cadastroControl: FormGroup;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private cadastroService: CadastroService
+  ) { 
+    this.cadastroControl = this.fb.group({
+      email: '',
+      userName: '',
+      password: '',
+      confirmarSenha: ''
+    });
+  }
 
   ngOnInit(): void {
   }
+
+  cadastrar(){
+    
+    if(this.cadastroControl.value.password != this.cadastroControl.value.confirmarSenha){
+      alert("Senhas não são iguais");
+    }else{
+      this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
+      this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
+      
+        this.router.navigateByUrl('cadastro/detalhes');
+      },
+          (err) => {
+            alert(err.error.message);
+          }
+        );
+      }
+    }
 
 }

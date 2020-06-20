@@ -15,7 +15,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookComponent } from './modals/book/book.component';
-import { AuthConfirmComponent } from './auth-confirm/auth-confirm.component';
+import { AuthConfirmComponent } from './views/auth-confirm/auth-confirm.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
 
@@ -26,7 +26,7 @@ import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/ca
     NavBarComponent,
     LoginComponent,
     BookComponent,
-    AuthConfirmComponent
+    AuthConfirmComponent,
     CadastroComponent,
     CadastroSegundaEtapaComponent
   ],
