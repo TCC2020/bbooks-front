@@ -18,10 +18,11 @@ export class CadastroComponent implements OnInit {
     private cadastroService: CadastroService
   ) { 
     this.cadastroControl = this.fb.group({
+      name: '',
+      lastName: '',
       email: '',
       userName: '',
-      password: '',
-      confirmarSenha: ''
+      password: ''
     });
   }
 
@@ -30,19 +31,16 @@ export class CadastroComponent implements OnInit {
 
   cadastrar(){
     
-    if(this.cadastroControl.value.password != this.cadastroControl.value.confirmarSenha){
-      alert("Senhas não são iguais");
-    }else{
-      this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
-      this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
-      
-        this.router.navigateByUrl('cadastro/detalhes');
-      },
-          (err) => {
-            alert(err.error.message);
-          }
-        );
-      }
+  this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
+  this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
+  
+  this.router.navigateByUrl('cadastro/detalhes');
+    },
+        (err) => {
+          alert(err.error.message);
+        }
+      );
     }
+
 
 }

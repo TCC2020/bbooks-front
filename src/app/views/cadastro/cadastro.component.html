@@ -10,10 +10,10 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-4">
-            <input type="text" class="form-control" id="inputNome" placeholder="Nome" >
+            <input type="text" class="form-control" id="inputNome" placeholder="Nome" formControlName="name" >
           </div>
           <div class="form-group col-md-8">
-            <input type="text" class="form-control" id="inputSobrenome" placeholder="Sobrenome" >
+            <input type="text" class="form-control" id="inputSobrenome" placeholder="Sobrenome" formControlName="lastName" >
           </div>
       <div class="form-group col-md-12">
         <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email">
@@ -34,7 +34,7 @@
           </small>
       </div>
       <div class="form-group col-md-6">
-        <input type="password" class="form-control" id="inputConfirmarSenha" placeholder="Confirmar Senha" formControlName="confirmarSenha">
+        <input type="password" class="form-control" id="inputConfirmarSenha" placeholder="Confirmar Senha">
       </div>
     </div>
     <button type="submit" class="btn btn-primary" (click)="cadastrar()">Próximo</button>
