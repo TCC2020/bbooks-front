@@ -15,6 +15,11 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookComponent } from './modals/book/book.component';
+import { BookPageComponent } from './views/book-page/book-page.component';
+import { BookFormComponent } from './views/book-page/book-form/book-form.component';
+import { BookViewComponent } from './views/book-page/book-view/book-view.component';
+import { BookMenuComponent } from './views/book-page/book-menu/book-menu.component';
+import {BookService} from './shared/book.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,11 @@ import { BookComponent } from './modals/book/book.component';
     MainPageComponent,
     NavBarComponent,
     LoginComponent,
-    BookComponent
+    BookComponent,
+    BookPageComponent,
+    BookFormComponent,
+    BookViewComponent,
+    BookMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +44,10 @@ import { BookComponent } from './modals/book/book.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     NgbModule
   ],
-  providers: [AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },],
+  entryComponents: [
+      BookViewComponent
+  ],
+  providers: [AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

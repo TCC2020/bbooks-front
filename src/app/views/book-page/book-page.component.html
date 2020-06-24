@@ -1,0 +1,41 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container">
+    <div class="row justify-content-start">
+        <div class="col-md-3" >
+            <br>
+            <!--Card-->
+            <div class="card testimonial-card">
+                <!--Background color-->
+                <div class="card-up teal lighten-1">
+                </div>
+                <div class="avatar mx-auto white">
+                    <br>
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img(31).jpg"
+                         class="img-fluid z-depth-1 rounded-circle"
+                         alt="Responsive image">
+                </div>
+                <div class="card-body">
+                    <!--Name-->
+                    <h4 class="card-title mt-1">John Doe</h4>
+                    <hr>
+                    <!--Quotation-->
+                    <p>
+                        <mdb-icon fas icon="quote-left"></mdb-icon>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos,
+                        adipisci.
+                    </p>
+                </div>
+
+            </div>
+            <!--Card-->
+
+            <br>
+            <app-book-menu></app-book-menu>
+        </div>
+
+        <div class="col-md-8">
+            <app-book-form *ngIf="getOptionMenu() === optionMenu.criar"></app-book-form>
+        </div>
+    </div>
+</div>
