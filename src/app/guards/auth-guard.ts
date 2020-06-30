@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate {
   }
 
 
-
   public getToken(): string {
     return localStorage.getItem('token') ? localStorage.getItem('token') : sessionStorage.getItem('token');
   }
@@ -58,5 +57,6 @@ export class AuthGuard implements CanActivate {
 
   logout() {
     localStorage.clear();
+    sessionStorage.clear()
   }
 }
