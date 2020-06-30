@@ -14,40 +14,31 @@ import { AuthGuard } from './guards/auth-guard';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BookComponent } from './modals/book/book.component';
-import { BookPageComponent } from './views/book-page/book-page.component';
-import { BookFormComponent } from './views/book-page/book-form/book-form.component';
-import { BookViewComponent } from './views/book-page/book-view/book-view.component';
-import { BookMenuComponent } from './views/book-page/book-menu/book-menu.component';
-import {BookService} from './shared/book.service';
+import {BookModule} from './views/book-page/book.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     NavBarComponent,
-    LoginComponent,
-    BookComponent,
-    BookPageComponent,
-    BookFormComponent,
-    BookViewComponent,
-    BookMenuComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
+    BookModule,
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     NgbModule
   ],
-  entryComponents: [
-      BookViewComponent
+  entryComponents: [],
+  providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}],
+  exports: [
   ],
-  providers: [AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

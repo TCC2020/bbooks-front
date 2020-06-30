@@ -1,0 +1,54 @@
+<div class="row justify-content-md-center">
+    <div class="col-md">
+        <form [formGroup]="searchControl">
+            <div class="form-row">
+                <div class="col-md">
+                    <div class="md-form">
+                        <input mdbInput mdbValidate type="text" id="search" class="form-control"
+                               formControlName="search"  [(ngModel)]="search">
+                        <label for="search">Procure um livro</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="md-form">
+                        <button type="button" mdbBtn color="secondary" mdbWavesEffect routerLink="/book/new">
+                            Adicionar um livro novo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <div class="container-fluid">
+                <div class="row justify-content-start">
+                    <div class="col-md-3" *ngFor="let book of filterBooks()">
+                        <!-- Card -->
+
+                        <div class="card"
+                             [style.background-image]="'url('+ book.volumeInfo.imageLinks.thumbnail + ') '">
+                            <!-- Card content -->
+                            <div class="card-body" style="height: 230px">
+
+                            </div>
+                        </div>
+                        <div class="card">
+                            <!-- Card content -->
+                            <div class="card-body">
+                                <!-- Title -->
+                                <h5 class="card-title">{{book.volumeInfo.title}}</h5>
+                                <!-- Text -->
+                                <!--                    <p fxLayoutAlign="center center"class="card-text block-with-text">{{book.volumeInfo.description}}</p>&ndash;&gt;-->
+                                <!-- Button -->
+                                <button type="button" class="btn btn-secondary btn-sm">
+                                    visualizar
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

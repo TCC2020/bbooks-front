@@ -35,9 +35,9 @@ export class BookFormComponent implements OnInit {
       pageCount: new FormControl(null, Validators.required),
       publishedDate: new FormControl(null, Validators.required),
       averageRating: new FormControl(null, Validators.required),
-      image: new FormControl(null, Validators.required),
-      searchInfo: new FormControl(null, Validators.required),
-      authors: this.formBuilder.array([], Validators.required)
+      // image: new FormControl(null, Validators.required),
+      // searchInfo: new FormControl(null, Validators.required),
+      authors: this.formBuilder.array([])
     });
   }
   private createAuthorsForm(name: string): FormGroup {
@@ -64,5 +64,4 @@ export class BookFormComponent implements OnInit {
       this.authors.insert(0, this.createAuthorsForm(' '));
     }
   }
-
 }

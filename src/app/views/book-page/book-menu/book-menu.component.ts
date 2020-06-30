@@ -1,26 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import {BookService} from '../../../shared/book.service';
+import {Component, OnInit} from '@angular/core';
 import {mapOptionMenu, OptionMenu} from '../../../models/enums/optionMenu.enum';
+import {Router} from '@angular/router';
+
 
 @Component({
-  selector: 'app-book-menu',
-  templateUrl: './book-menu.component.html',
-  styleUrls: ['./book-menu.component.scss']
+    selector: 'app-book-menu',
+    templateUrl: './book-menu.component.html',
+    styleUrls: ['./book-menu.component.scss']
 })
 export class BookMenuComponent implements OnInit {
-  optionMenu = OptionMenu;
+    optionMenu = OptionMenu;
 
-  constructor(private bookService: BookService) { }
+    opened: boolean = false;
 
-  ngOnInit(): void {
-    this.bookService.setOptionMenu(this.optionMenu.meusLivros);
-  }
+    constructor(
+        private router: Router
+    ) {
+    }
 
-  setOption(option: number): void {
-    this.bookService.setOptionMenu(option);
-  }
-  getOptionMenu(): number {
-    return this.bookService.getOptionMenu();
-  }
+    ngOnInit(): void {
+        console.log(this.router.url);
+    }
 
+    getOptionMenu(): number {
+        if (this.router.url.toString().includes('list')) {
+            return this.optionMenu.meusLivros;
+        }
+        if (this.router.url.toString().includes('criar')) {
+            return this.optionMenu.criar;
+        }
+    }
+
+    toggleSidebar() {
+        this.opened = !this.opened;
+    }
 }

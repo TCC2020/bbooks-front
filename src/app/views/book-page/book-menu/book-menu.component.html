@@ -1,23 +1,114 @@
+        <!--Card-->
+        <div class="row justify-content-start">
+            <!--Background color-->
+            <div class="card-up teal lighten-1">
+            </div>
+            <div class="avatar mx-auto secondary">
+                <br>
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img(31).jpg"
+                     class="img-fluid z-depth-1 rounded-circle"
+                     alt="Responsive image">
+            </div>
 
+        </div>
+        <!--Card-->
 <div class="list-group">
-    <a (click)="setOption(optionMenu.meusLivros)"
-       [ngClass]="{
-        'btn-outline-secondary': getOptionMenu() != optionMenu.meusLivros
-       }"
-       mdbBtn type="button" color="secondary"  mdbWavesEffect>
+<!--    <a (click)="setOption(optionMenu.meusLivros)"-->
+<!--       [ngClass]="{-->
+<!--        'btn-outline-secondary': getOptionMenu() != optionMenu.meusLivros-->
+<!--       }"-->
+<!--       mdbBtn type="button" color="secondary"  mdbWavesEffect>-->
+<!--        Meus Livros-->
+<!--    </a>-->
+<!--    <a *ngIf="getOptionMenu()== optionMenu.meusLivros" (click)="setOption(optionMenu.meusLivros)"-->
+<!--       mdbBtn type="button" color="light-blue"  mdbWavesEffect>-->
+<!--        Vestibular-->
+<!--    </a>-->
+<!--    <a *ngIf="getOptionMenu()== optionMenu.meusLivros" (click)="setOption(optionMenu.meusLivros)"-->
+<!--       mdbBtn type="button" color="light-blue"  mdbWavesEffect>-->
+<!--       Romance-->
+<!--    </a>-->
+<!--    <a *ngIf="getOptionMenu()== optionMenu.meusLivros" (click)="setOption(optionMenu.meusLivros)"-->
+<!--       mdbBtn type="button" color="light-blue"  mdbWavesEffect>-->
+<!--        Lidos-->
+<!--    </a>-->
+
+<!--    <a (click)="setOption(optionMenu.criar)"-->
+<!--       [ngClass]="{-->
+<!--        'btn-outline-secondary': getOptionMenu() != optionMenu.criar-->
+<!--       }"-->
+<!--       mdbBtn type="button" class="btn-secondary"-->
+<!--    >Criar</a>-->
+
+<!--     novo menu com rotas -->
+
+    <a mdbBtn type="button" color="secondary"  mdbWavesEffect routerLinkActive="btn-outline-secondary" routerLink="/book/list">
         Meus Livros
     </a>
-    <a (click)="setOption(optionMenu.criar)"
-       [ngClass]="{
-        'btn-outline-secondary': getOptionMenu() != optionMenu.criar
-       }"
-       mdbBtn type="button" class="btn-secondary"
-    >Criar</a>
-<!--    <a  mdbBtn color="light">biografias</a>-->
-<!--    <a href="#" mdbBtn color="light" mdbWavesEffect>Porta ac consectetur ac</a>-->
-<!--    <a href="#" mdbBtn color="light" mdbWavesEffect>Vestibulum at-->
-<!--        eros</a>-->
+    <a *ngIf="getOptionMenu()== optionMenu.meusLivros"
+       mdbBtn type="button" color="light-blue"  mdbWavesEffect>
+        Vestibular
+    </a>
+    <a *ngIf="getOptionMenu()== optionMenu.meusLivros"
+       mdbBtn type="button" color="light-blue"  mdbWavesEffect>
+        Romance
+    </a>
+    <a *ngIf="getOptionMenu()== optionMenu.meusLivros"
+       mdbBtn type="button" color="light-blue"  mdbWavesEffect>
+        Lidos
+    </a>
+
+<!--    <a  mdbBtn type="button" class="btn-secondary" routerLinkActive="btn-outline-secondary" routerLink="/book/new">Criar</a>-->
+    <a  mdbBtn type="button" class="btn-secondary" routerLinkActive="btn-outline-secondary" routerLink="/book/new">Criar estante</a>
+
+
+
 </div>
 
+<!--<ng-sidebar-container>-->
 
+<!--    &lt;!&ndash; A sidebar &ndash;&gt;-->
+<!--    <ng-sidebar [(opened)]="opened">-->
+<!--        &lt;!&ndash;Card&ndash;&gt;-->
+<!--        <div class="row justify-content-start">-->
+<!--            &lt;!&ndash;Background color&ndash;&gt;-->
+<!--            <div class="card-up teal lighten-1">-->
+<!--            </div>-->
+<!--            <div class="avatar mx-auto secondary">-->
+<!--                <br>-->
+<!--                <img src="https://mdbootstrap.com/img/Photos/Avatars/img(31).jpg"-->
+<!--                     class="img-fluid z-depth-1 rounded-circle"-->
+<!--                     alt="Responsive image">-->
+<!--            </div>-->
 
+<!--        </div>-->
+<!--        &lt;!&ndash;Card&ndash;&gt;-->
+<!--        <p>Sidebar contents</p>-->
+<!--        <button (click)="toggleSidebar()"> close bar</button>-->
+<!--        <div class="list-group">-->
+<!--            <a mdbBtn type="button" color="secondary" mdbWavesEffect routerLink="/book/list">-->
+<!--                Meus Livros-->
+<!--            </a>-->
+<!--            <a *ngIf="getOptionMenu()== optionMenu.meusLivros" (click)="setOption(optionMenu.meusLivros)"-->
+<!--               mdbBtn type="button" color="light-blue" mdbWavesEffect>-->
+<!--                Vestibular-->
+<!--            </a>-->
+<!--            <a *ngIf="getOptionMenu()== optionMenu.meusLivros" (click)="setOption(optionMenu.meusLivros)"-->
+<!--               mdbBtn type="button" color="light-blue" mdbWavesEffect>-->
+<!--                Romance-->
+<!--            </a>-->
+<!--            <a *ngIf="getOptionMenu()== optionMenu.meusLivros" (click)="setOption(optionMenu.meusLivros)"-->
+<!--               mdbBtn type="button" color="light-blue" mdbWavesEffect>-->
+<!--                Lidos-->
+<!--            </a>-->
+
+<!--            <a mdbBtn type="button" class="btn-secondary" routerLink="/book/new">Criar</a>-->
+<!--        </div>-->
+<!--    </ng-sidebar>-->
+
+<!--    &lt;!&ndash; Page content &ndash;&gt;-->
+<!--    <div ng-sidebar-content>-->
+<!--        <button (click)="toggleSidebar()">Toggle sidebar</button>-->
+<!--    </div>-->
+
+<!--</ng-sidebar-container>-->
