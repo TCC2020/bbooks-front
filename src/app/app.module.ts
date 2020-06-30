@@ -14,7 +14,6 @@ import { AuthGuard } from './guards/auth-guard';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {BookModule} from './views/book-page/book.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import {BookModule} from './views/book-page/book.module';
   ],
   imports: [
     BrowserModule,
-    BookModule,
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
@@ -35,7 +33,6 @@ import {BookModule} from './views/book-page/book.module';
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     NgbModule
   ],
-  entryComponents: [],
   providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}],
   exports: [
   ],

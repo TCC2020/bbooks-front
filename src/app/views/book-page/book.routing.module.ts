@@ -8,11 +8,11 @@ import {BookEstanteComponent} from './book-estante/book-estante.component';
 
 const bookRoutes: Routes = [
     {
-        path: 'book', component: BookPageComponent, children: [
+        path: '', component: BookPageComponent, children: [
             {path: 'list', component: BookEstanteComponent},
             {path: ':id', component: BookFormComponent},
             {path: ':id/edit', component: BookFormComponent},
-            {path: 'book/bookcase', component: BookEstanteComponent}
+            {path: 'bookcase', component: BookEstanteComponent}
         ]
     },
 

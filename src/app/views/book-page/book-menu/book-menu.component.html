@@ -45,21 +45,13 @@
     <a mdbBtn type="button" color="secondary"  mdbWavesEffect routerLinkActive="btn-outline-secondary" routerLink="/book/list">
         Meus Livros
     </a>
-    <a *ngIf="getOptionMenu()== optionMenu.meusLivros"
-       mdbBtn type="button" color="light-blue"  mdbWavesEffect>
-        Vestibular
-    </a>
-    <a *ngIf="getOptionMenu()== optionMenu.meusLivros"
-       mdbBtn type="button" color="light-blue"  mdbWavesEffect>
-        Romance
-    </a>
-    <a *ngIf="getOptionMenu()== optionMenu.meusLivros"
-       mdbBtn type="button" color="light-blue"  mdbWavesEffect>
-        Lidos
+
+    <a *ngFor="let bookcase of bookcases" mdbBtn type="button" color="light-blue"  mdbWavesEffect>
+        {{bookcase}}
     </a>
 
 <!--    <a  mdbBtn type="button" class="btn-secondary" routerLinkActive="btn-outline-secondary" routerLink="/book/new">Criar</a>-->
-    <a  mdbBtn type="button" class="btn-secondary" routerLinkActive="btn-outline-secondary" routerLink="/book/new">Criar estante</a>
+    <a  mdbBtn type="button" class="btn-secondary" (click)="openModal()" >Criar estante</a>
 
 
 

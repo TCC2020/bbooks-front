@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">×</span>
+    </button>
+    <h4 class="modal-title w-100" id="myModalLabel">Criar uma nova estante</h4>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formBookCase">
+        <div class="form-row">
+            <div class="col-md">
+                <div class="md-form">
+                    <input mdbInput mdbValidate type="text" id="bookcase" class="form-control"
+                           formControlName="bookcase">
+                    <label for="bookcase">Estante</label>
+                    <mdb-error *ngIf="formBookCase.get('bookcase').hasError('required')">Input invalid</mdb-error>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="modalRef.hide()" mdbWavesEffect>Close</button>
+    <button type="submit" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect (click)="saveBookCase()">Save</button>
+</div>

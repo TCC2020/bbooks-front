@@ -13,9 +13,9 @@ import { SidebarModule} from 'ng-sidebar';
 import {BookMenuComponent} from './book-menu/book-menu.component';
 import {BookFormComponent} from './book-form/book-form.component';
 import {BookEstanteComponent} from './book-estante/book-estante.component';
-import {BookViewComponent} from './book-view/book-view.component';
 import {BookPageComponent} from './book-page.component';
 import {BookComponent} from '../../modals/book/book.component';
+import {BookcaseModalComponent} from './bookcase-modal/bookcase-modal.component';
 
 
 @NgModule({
@@ -34,12 +34,16 @@ import {BookComponent} from '../../modals/book/book.component';
         BookComponent,
         BookPageComponent,
         BookFormComponent,
-        BookViewComponent,
         BookMenuComponent,
-        BookEstanteComponent
+        BookEstanteComponent,
+        BookcaseModalComponent
+
+    ],
+    entryComponents: [
+        // BookcaseModalComponent
     ],
     providers: [AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
-    bootstrap: [BookPageComponent]
+    bootstrap: [BookPageComponent],
 })
 export class BookModule {
 }
