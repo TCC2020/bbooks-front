@@ -12,7 +12,6 @@ import {BookService} from '../../../services/book.service';
     styleUrls: ['./book-menu.component.scss']
 })
 export class BookMenuComponent implements OnInit {
-    optionMenu = OptionMenu;
     modalRef: MDBModalRef;
     bookcases: string[];
 

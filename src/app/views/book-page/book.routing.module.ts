@@ -10,7 +10,7 @@ const bookRoutes: Routes = [
     {
         path: '', component: BookPageComponent, children: [
             {path: 'list', component: BookEstanteComponent},
-            {path: ':id', component: BookFormComponent},
+            {path: 'new', component: BookFormComponent},
             {path: ':id/edit', component: BookFormComponent},
             {path: 'bookcase', component: BookEstanteComponent}
         ]
