@@ -4,45 +4,20 @@
     <!-- Card content -->
     <div class="card-body">
 
+                <i class="fas fa-search prefix purple-text"></i>
+                <input mdbInput mdbValidate type="text" id="search" class="form-control"
+                       formControlName="search">
+                <label for="search">Procure um livro</label>
+
         <!-- Title -->
-        <h4 class="card-title"><a>Gênero literários</a></h4>
+        <h4 class="card-title"><a>Gênero</a></h4>
         <!-- Text -->
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
             content.</p>
-        <!-- Button -->
-        <a href="#" class="btn btn-primary">Button</a>
-
         <!-- Default unchecked -->
     </div>
 </div>
 <div class="list-group">
-<!--    <a (click)="setOption(optionMenu.meusLivros)"-->
-<!--       [ngClass]="{-->
-<!--        'btn-outline-secondary': getOptionMenu() != optionMenu.meusLivros-->
-<!--       }"-->
-<!--       mdbBtn type="button" color="secondary"  mdbWavesEffect>-->
-<!--        Meus Livros-->
-<!--    </a>-->
-<!--    <a *ngIf="getOptionMenu()== optionMenu.meusLivros" (click)="setOption(optionMenu.meusLivros)"-->
-<!--       mdbBtn type="button" color="light-blue"  mdbWavesEffect>-->
-<!--        Vestibular-->
-<!--    </a>-->
-<!--    <a *ngIf="getOptionMenu()== optionMenu.meusLivros" (click)="setOption(optionMenu.meusLivros)"-->
-<!--       mdbBtn type="button" color="light-blue"  mdbWavesEffect>-->
-<!--       Romance-->
-<!--    </a>-->
-<!--    <a *ngIf="getOptionMenu()== optionMenu.meusLivros" (click)="setOption(optionMenu.meusLivros)"-->
-<!--       mdbBtn type="button" color="light-blue"  mdbWavesEffect>-->
-<!--        Lidos-->
-<!--    </a>-->
-
-<!--    <a (click)="setOption(optionMenu.criar)"-->
-<!--       [ngClass]="{-->
-<!--        'btn-outline-secondary': getOptionMenu() != optionMenu.criar-->
-<!--       }"-->
-<!--       mdbBtn type="button" class="btn-secondary"-->
-<!--    >Criar</a>-->
-
 <!--     novo menu com rotas -->
 
     <a mdbBtn type="button" color="secondary"  mdbWavesEffect routerLinkActive="btn-outline-secondary" routerLink="/book/list">
