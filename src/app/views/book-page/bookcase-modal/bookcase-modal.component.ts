@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MDBModalRef} from 'angular-bootstrap-md';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BookService} from '../../../services/book.service';
 
@@ -11,7 +10,6 @@ import {BookService} from '../../../services/book.service';
 export class BookcaseModalComponent implements OnInit {
   public formBookCase: FormGroup
   constructor(
-      public modalRef: MDBModalRef,
       private formBuilder: FormBuilder,
       private bookService: BookService
   ) {
@@ -28,7 +26,6 @@ export class BookcaseModalComponent implements OnInit {
   }
   saveBookCase() {
     this.bookService.addBookCases(this.formBookCase.get('bookcase').value);
-    this.modalRef.hide();
   }
 
 

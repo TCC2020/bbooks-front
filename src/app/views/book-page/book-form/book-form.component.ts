@@ -1,7 +1,6 @@
 import {Component, Inject, OnChanges, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Book} from '../../../models/book.model';
-import {MDBModalRef} from 'angular-bootstrap-md';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
