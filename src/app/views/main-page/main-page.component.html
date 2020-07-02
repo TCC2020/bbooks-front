@@ -1,8 +1,10 @@
 <app-nav-bar></app-nav-bar>
 <form [formGroup]="searchControl" class="form-inline mr-auto" fxLayout="row" (ngSubmit)="searchBook()">
-    <div class="md-form" fxFlex="100" fxLayoutAlign="center center">
-        <input formControlName="book" mdbInput class="form-control mr-sm-2" type="text" placeholder="Procure um livro"
-            aria-label="Search" fxFlex="40">
+    <div fxFlex="100" fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40">
+            <mat-label>Procure um livro</mat-label>
+            <input matInput formControlName="book" matInput type="text" fxFlex="40">
+        </mat-form-field>
         <button class="btn purple-gradient btn-rounded btn-sm my-0" type="submit">Buscar</button>
     </div>
 </form>
@@ -14,10 +16,10 @@
                 alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{book.volumeInfo.title}}</h5>
-                <p fxLayoutAlign="center center"class="card-text block-with-text">{{book.volumeInfo.description}}</p>
+                <p fxLayoutAlign="center center" class="card-text block-with-text">{{book.volumeInfo.description}}</p>
             </div>
             <div>
-                <a fxLayoutAlign="center bottom" href="#" class="btn btn-primary">Vizualizar</a>
+                <a fxLayoutAlign="center bottom" href="#" class="primary">Vizualizar</a>
             </div>
         </div>
     </div>

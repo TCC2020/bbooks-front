@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/modals/login/login.component';
 import { AuthGuard } from 'src/app/guards/auth-guard';
 import { Router } from '@angular/router';
@@ -12,7 +11,6 @@ import { Router } from '@angular/router';
 export class NavBarComponent implements OnInit {
 
   constructor(
-    private modalService: NgbModal,
     public auth: AuthGuard,
     private router: Router) { }
 
@@ -20,7 +18,6 @@ export class NavBarComponent implements OnInit {
   }
 
   openLoginDialog() {
-    this.modalService.open(LoginComponent);
   }
 
   logout() {

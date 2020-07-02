@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AuthGuard } from 'src/app/guards/auth-guard';
 import { Router } from '@angular/router';
 import { Md5 } from 'ts-md5/dist/md5';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private authGuard: AuthGuard,
     private router: Router,
-    public activeModal: NgbActiveModal
   ) {
     this.loginControl = this.fb.group({
       email: '',
@@ -35,7 +33,6 @@ export class LoginComponent implements OnInit {
     this.loginControl.value.password = Md5.hashStr(this.loginControl.value.password);
     this.authService.login(this.loginControl.value).subscribe(res => {
       this.authGuard.login(res, this.loginControl.value.keepLogin);
-      this.activeModal.close()
       this.router.navigateByUrl('/');
     },
       (err) => {

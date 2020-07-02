@@ -1,26 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import {BookService} from '../../../shared/book.service';
-import {mapOptionMenu, OptionMenu} from '../../../models/enums/optionMenu.enum';
+import { Router } from '@angular/router';
+import { BookcaseModalComponent } from '../bookcase-modal/bookcase-modal.component';
+import { BookService } from '../../../services/book.service';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
-  selector: 'app-book-menu',
-  templateUrl: './book-menu.component.html',
-  styleUrls: ['./book-menu.component.scss']
+    selector: 'app-book-menu',
+    templateUrl: './book-menu.component.html',
+    styleUrls: ['./book-menu.component.scss']
 })
 export class BookMenuComponent implements OnInit {
-  optionMenu = OptionMenu;
+    bookcases: string[];
 
-  constructor(private bookService: BookService) { }
+    opened: boolean = false;
 
-  ngOnInit(): void {
-    this.bookService.setOptionMenu(this.optionMenu.meusLivros);
-  }
+    constructor(
+        private router: Router,
+        private bookService: BookService
+    ) {
+    }
 
-  setOption(option: number): void {
-    this.bookService.setOptionMenu(option);
-  }
-  getOptionMenu(): number {
-    return this.bookService.getOptionMenu();
-  }
+    ngOnInit(): void {
+        this.bookcases = this.bookService.getBookCase();
+    }
+    openModal() {
+        // let modalRef = this.modalService.open(BookcaseModalComponent, {
+ 
+        // });
+    }
 
+    toggleSidebar() {
+        this.opened = !this.opened;
+    }
 }
