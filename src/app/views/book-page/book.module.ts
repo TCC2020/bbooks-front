@@ -11,11 +11,8 @@ import {BookEstanteComponent} from './book-estante/book-estante.component';
 import {BookPageComponent} from './book-page.component';
 import {BookComponent} from '../../modals/book/book.component';
 import {BookcaseModalComponent} from './bookcase-modal/bookcase-modal.component';
-import {MatCard, MatCardModule} from '@angular/material/card';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MaterialModule} from "../../material/material.module";
+import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -25,13 +22,9 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
         ReactiveFormsModule,
         HttpClientModule,
         BookRoutingModule,
-        //BOOTSTRAP
-        MatCardModule,
-        MatInputModule,
-        MatDialogModule,
-        MatAutocompleteModule,
-        MatFormFieldModule,
-        // SidebarModule.forRoot(),
+        MaterialModule,
+        FlexModule,
+        FlexLayoutModule
 
     ],
     exports: [],

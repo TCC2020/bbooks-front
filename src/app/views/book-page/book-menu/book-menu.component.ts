@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { BookcaseModalComponent } from '../bookcase-modal/bookcase-modal.component';
 import { BookService } from '../../../services/book.service';
 import { MatDialog } from '@angular/material/dialog';
-
+import {Input} from "@angular/core";
 
 @Component({
     selector: 'app-book-menu',
@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class BookMenuComponent implements OnInit {
     bookcases: string[];
 
-    opened: boolean = false;
+    @Input() deviceXs: boolean;
 
     constructor(
         private router: Router,
@@ -30,7 +30,4 @@ export class BookMenuComponent implements OnInit {
         // });
     }
 
-    toggleSidebar() {
-        this.opened = !this.opened;
-    }
 }
