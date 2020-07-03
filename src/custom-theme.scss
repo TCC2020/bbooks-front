@@ -1,0 +1,131 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+
+//----------------------------PRIMARY
+$bbooks-primary-pallete: (
+    50 : #e7e9eb,
+    100 : #c4c9cd,
+    200 : #9ca5ac,
+    300 : #74808b,
+    400 : #576572,
+    500 : #394a59,
+    600 : #334351,
+    700 : #2c3a48,
+    800 : #24323e,
+    900 : #17222e,
+    A100 : #71b4ff,
+    A200 : #3e99ff,
+    A400 : #0b7fff,
+    A700 : #0072f1,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$bbooks-seccond-pallete: (
+    50 : #e7f7f0,
+    100 : #c3ecd9,
+    200 : #9bdfbf,
+    300 : #72d2a5,
+    400 : #54c992,
+    500 : #36bf7f,
+    600 : #30b977,
+    700 : #29b16c,
+    800 : #22a962,
+    900 : #169b4f,
+    A100 : #cfffe2,
+    A200 : #9cffc3,
+    A400 : #69ffa4,
+    A700 : #50ff95,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$bbooks-warn-pallete: (
+    50 : #faeded,
+    100 : #f4d1d1,
+    200 : #ecb3b3,
+    300 : #e49494,
+    400 : #df7d7d,
+    500 : #d96666,
+    600 : #d55e5e,
+    700 : #cf5353,
+    800 : #ca4949,
+    900 : #c03838,
+    A100 : #ffffff,
+    A200 : #ffd8d8,
+    A400 : #ffa5a5,
+    A700 : #ff8b8b,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$bbooks-primary: mat-palette($bbooks-primary-pallete);
+$bbooks-accent: mat-palette($bbooks-seccond-pallete);
+
+// The warn palette is optional (defaults to red).
+$bbooks-warn: mat-palette($bbooks-warn-pallete);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$bbooks-theme: mat-light-theme($bbooks-primary, $bbooks-accent, $bbooks-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($bbooks-theme);
+
