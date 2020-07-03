@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainPageComponent} from './views/main-page/main-page.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,9 @@ const routes: Routes = [
     },
     {
       path: 'cadastro', component: CadastroComponent,
+    },
+    {
+        path: 'recuperar-senha', component: RecuperarSenhaComponent,
     },
     {
         path: 'book',
