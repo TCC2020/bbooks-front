@@ -1,15 +1,31 @@
 <app-nav-bar></app-nav-bar>
 <form [formGroup]="searchControl" class="form-inline mr-auto" fxLayout="row" (ngSubmit)="searchBook()">
     <div fxFlex="100" fxLayoutAlign="center center">
-        <mat-form-field fxFlex="40">
+        <mat-form-field fxFlex="40" style="margin: 25px;">
             <mat-label>Procure um livro</mat-label>
             <input matInput formControlName="book" matInput type="text" fxFlex="40">
         </mat-form-field>
-        <button class="btn purple-gradient btn-rounded btn-sm my-0" type="submit">Buscar</button>
+        <button mat-raised-button color="accent" id="search-bt" type="submit">Buscar</button>
     </div>
 </form>
 <div fxLayout="row wrap" fxFLex="100" fxLayoutAlign="center">
     <div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center">
+        <mat-card *ngFor="let book of books" class="example-card" fxFlex="20">
+            <mat-card-header>
+                <mat-card-title>{{book.volumeInfo.title}}</mat-card-title>
+                <mat-card-subtitle>{{book?.volumeInfo?.authors?.toString()}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <img class="card-img-top"
+                    [src]="book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : ''">
+                <p class="card-text block-with-text">{{book.volumeInfo.description}}</p>
+            </mat-card-content>
+
+            <div id="card-footer" fxLayoutAlign="center center">
+                <button mat-raised-button color="primary">Vizualizar</button>
+            </div>
+        </mat-card>
+
         <div class="card" *ngFor="let book of books" fxFlex="20" style="margin: 30px;">
             <img class="card-img-top"
                 [src]="book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : ''"
