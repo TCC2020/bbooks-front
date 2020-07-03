@@ -1,0 +1,35 @@
+.inputNovaSenha {
+    width: 100%;
+}
+
+form {
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    padding: 30px 40px 35px;
+    width: 600px;
+    height: auto;
+    min-height: 350px;
+    margin: 50px auto 0px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+button#confirmarNovaSenha {
+    color: #FFFFFF;
+    background-color: #394A59;
+}
+
+button#confirmarNovaSenha:hover {
+    opacity: 80%;
+}
+
+@media screen and (max-width: 600px){
+    form {
+        border: none;
+        width: 100%;
+        margin: auto 0px;
+    }
+    div {
+        padding: 7px;
+    }
+}

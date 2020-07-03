@@ -14,13 +14,15 @@ import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    NovaSenhaComponent
   ],
   imports: [
     BrowserModule,
