@@ -18,7 +18,6 @@ export class BookEstanteComponent implements OnInit {
     busca: string = 'o menino';
     @Input() deviceXs: boolean;
     topVal = 0;
-
     constructor(
         private fb: FormBuilder,
         private gBooksService: GoogleBooksService,
@@ -77,6 +76,7 @@ export class BookEstanteComponent implements OnInit {
         //     console.log(`Dialog result: ${result}`);
         // });
     }
+
     openDialogForm() {
         const dialogRef = this.dialog.open(BookFormComponent, {
             width: '550px',

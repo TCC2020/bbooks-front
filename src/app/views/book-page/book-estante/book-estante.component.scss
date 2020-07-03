@@ -18,19 +18,17 @@
 
 }
 
-.example-card {
-  width: 250px;
-  max-width: 250px;
-  margin: 0px 5px 5px 0px;
+.card {
+  max-width: 150px;
+  margin: 0.5em;
+  border-radius: 2px;
+}
+.cardImage{
+
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
 
 mat-drawer {
-
   position: fixed;
   background-color: rgb(236, 236, 236);
 }
@@ -40,11 +38,22 @@ mat-drawer {
 }
 
 .list-width {
-  width: 200px;
+  width: 225px;
+}
+.list-item{
+  color: #f4f4f9;
+  background-color: #415566;
+  border-bottom: 2px solid #394A59;
+  padding: 20px;
+  transition: all .2s linear;
 
 }
 
 .list-item:hover {
-  background-color: rgba(83, 83, 83, 0.178);
+  background-color: #36BF7F;
   cursor: pointer;
+}
+.sidenav{
+  background-color:  #394A59;
+  border-radius: 3px;
 }
