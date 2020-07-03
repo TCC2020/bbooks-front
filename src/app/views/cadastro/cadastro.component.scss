@@ -9,10 +9,6 @@
     gap: 10px;
 }
 
-#senha, #confirmarSenha {
-    width: 50%;
-}
-
 #nome {
     width: 35%;
 }
@@ -63,14 +59,10 @@ form {
 
     div#nomeSobrenome, div#senhaConfirmarSenha {
         display: block;
+        gap: 0px;
     }
 
     div#nomeSobrenome mat-form-field, div#senhaConfirmarSenha mat-form-field{
         width: 100%;
-    }
-
-    #nomeSobrenome, #senhaConfirmarSenha  {
-        gap: 0px;
-    }
-    
+    }    
 }

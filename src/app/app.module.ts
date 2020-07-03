@@ -18,6 +18,7 @@ import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MatInputModule } from '@angular/material/input';
     MainPageComponent,
     NavBarComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    CadastroSegundaEtapaComponent
   ],
   imports: [
     BrowserModule,
