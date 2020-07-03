@@ -1,3 +1,43 @@
+.inputCadastrar {
+    width: 100%;
+}
+
+
+#nomeSobrenome, #senhaConfirmarSenha {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+#senha, #confirmarSenha {
+    width: 50%;
+}
+
+#nome {
+    width: 35%;
+}
+
+#sobrenome {
+    width: 65%;
+}
+
+button#proximoCadastrar {
+    color: #FFFFFF;
+    background-color: #394A59;
+}
+
+button#proximoCadastrar:hover {
+    opacity: 80%;
+}
+
+div {
+    padding: 3px;
+}
+
+#divBotao {
+    text-align: right;
+}
+
 form {
     border: 1px solid #dadce0;
     border-radius: 10px;
@@ -7,15 +47,7 @@ form {
     min-height: 500px;
     margin: 50px auto 0px;
     box-sizing: border-box;
-}
-
-div#cabecalho-cadastro h1 {
-    padding: 0px;
-    margin-bottom: 2rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 600px){
@@ -25,7 +57,20 @@ div#cabecalho-cadastro h1 {
         margin: auto 0px;
     }
 
-    .form-group {
-        margin-bottom: 1rem;
+    div {
+        padding: 7px;
     }
+
+    div#nomeSobrenome, div#senhaConfirmarSenha {
+        display: block;
+    }
+
+    div#nomeSobrenome mat-form-field, div#senhaConfirmarSenha mat-form-field{
+        width: 100%;
+    }
+
+    #nomeSobrenome, #senhaConfirmarSenha  {
+        gap: 0px;
+    }
+    
 }
