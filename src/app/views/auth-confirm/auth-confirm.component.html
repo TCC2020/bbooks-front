@@ -1,4 +1,4 @@
-<form class="example-form" [formGroup]="confirmControl">
+<form [formGroup]="confirmControl">
 
   <div>
     <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
@@ -8,14 +8,14 @@
   </div>
 
   <div>
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="inputConfirmarCadastro">
       <mat-label>Email</mat-label>
       <input matInput id="emailConfirmarCadastro" formControlName="email">
     </mat-form-field>
   </div>
 
   <div>
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="inputConfirmarCadastro">
       <mat-label>Senha</mat-label>
       <input type="password" matInput id="senhaConfirmarCadastro" formControlName="password">
     </mat-form-field>
