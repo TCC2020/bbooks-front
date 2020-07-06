@@ -6,11 +6,15 @@ import { AuthConfirmComponent } from './views/auth-confirm/auth-confirm.componen
 import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
 import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha.component';
 import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
+import { LoginComponent } from './modals/login/login.component';
 
 
 const routes: Routes = [
     {
         path: '', component: MainPageComponent,
+    },
+    {
+        path: 'login', component: LoginComponent
     },
     {
         path: 'cadastrar', component: CadastroComponent,
