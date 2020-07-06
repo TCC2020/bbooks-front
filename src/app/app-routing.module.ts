@@ -1,9 +1,10 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {MainPageComponent} from './views/main-page/main-page.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { MainPageComponent } from './views/main-page/main-page.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { AuthConfirmComponent } from './views/auth-confirm/auth-confirm.component';
 import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
+import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha.component';
 
 
 const routes: Routes = [
@@ -11,13 +12,16 @@ const routes: Routes = [
         path: '', component: MainPageComponent,
     },
     {
-      path: 'cadastrar', component: CadastroComponent,
+        path: 'cadastrar', component: CadastroComponent,
     },
     {
         path: 'confirm', component: AuthConfirmComponent,
     },
     {
         path: 'continuar-cadastro', component: CadastroSegundaEtapaComponent,
+    },
+    {
+        path: 'recuperar-senha', component: RecuperarSenhaComponent,
     },
     {
         path: 'book',
