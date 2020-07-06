@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {MainPageComponent} from './views/main-page/main-page.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { AuthConfirmComponent } from './views/auth-confirm/auth-confirm.component';
 
 
 const routes: Routes = [
@@ -9,7 +10,10 @@ const routes: Routes = [
         path: '', component: MainPageComponent,
     },
     {
-      path: 'cadastro', component: CadastroComponent,
+      path: 'cadastrar', component: CadastroComponent,
+    },
+    {
+        path: 'confirm', component: AuthConfirmComponent,
     },
     {
         path: 'book',

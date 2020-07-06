@@ -14,13 +14,19 @@ import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { AuthConfirmComponent } from './views/auth-confirm/auth-confirm.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    AuthConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +37,14 @@ import { MaterialModule } from './material/material.module';
     ReactiveFormsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}],
+  providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}, 
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ],
   exports: [
   ],
   bootstrap: [AppComponent]

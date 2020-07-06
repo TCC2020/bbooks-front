@@ -1,37 +1,27 @@
-<!-- Material form login -->
-<mdb-card>
+<form [formGroup]="confirmControl">
 
-    <mdb-card-header class="secondary-color white-text text-center py-4">
-      <h5>
-        <strong>Confirmar cadastro</strong>
-      </h5>
-    </mdb-card-header>
-    <!--Card content-->
-    <mdb-card-body class="px-lg-5 pt-0">
-      <p><br>Faça login para confirmar seu cadastro</p>
-      <!-- Form -->
-      <form [formGroup]="confirmControl" class="text-center" style="color: #757575;">
-  
-        <!-- Email -->
-        <div class="md-form">
-          <input type="email" id="materialLoginFormEmail" class="form-control" mdbInput formControlName="email">
-          <label for="materialLoginFormEmail">E-mail</label>
-        </div>
-  
-        <!-- Password -->
-        <div class="md-form">
-          <input type="password" id="materialLoginFormPassword" class="form-control" mdbInput formControlName="password">
-          <label for="materialLoginFormPassword">Senha</label>
-        </div>
-  
-        <!-- Confirm button -->
-        <button mdbBtn color="secondary" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
-        (click)="confirm()">Login</button>
-  
-      </form>
-      <!-- Form -->
-  
-    </mdb-card-body>
-  
-  </mdb-card>
-  <!-- Material form login -->
+  <div>
+    <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
+  </div>
+  <div>
+    <span>Faça login para confirmar seu cadastro</span>
+  </div>
+
+  <div>
+    <mat-form-field class="inputConfirmarCadastro">
+      <mat-label>Email</mat-label>
+      <input matInput id="emailConfirmarCadastro" formControlName="email">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="inputConfirmarCadastro">
+      <mat-label>Senha</mat-label>
+      <input type="password" matInput id="senhaConfirmarCadastro" formControlName="password">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button id="entrarConfirmarCadastro" (click)="confirm()">Entrar</button>
+  </div>
+</form>
