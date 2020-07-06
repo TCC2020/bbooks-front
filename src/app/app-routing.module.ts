@@ -5,6 +5,7 @@ import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { AuthConfirmComponent } from './views/auth-confirm/auth-confirm.component';
 import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
 import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha.component';
+import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,9 @@ const routes: Routes = [
     },
     {
         path: 'recuperar-senha', component: RecuperarSenhaComponent,
+    },
+    {
+        path: 'nova-senha', component: NovaSenhaComponent,
     },
     {
         path: 'book',
