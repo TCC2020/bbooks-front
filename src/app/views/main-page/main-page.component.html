@@ -21,22 +21,20 @@
                 <p class="card-text block-with-text">{{book.volumeInfo.description}}</p>
             </mat-card-content>
 
-            <div id="card-footer" fxLayoutAlign="center center">
-                <button mat-raised-button color="primary">Vizualizar</button>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <div id="card-footer" fxLayoutAlign="center center">
+                    <button mat-raised-button color="primary">Vizualizar</button>
+                </div>
+                <div id="card-footer" fxLayoutAlign="center center">
+                    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Adicionar</button>
+                </div>
             </div>
-        </mat-card>
 
-        <div class="card" *ngFor="let book of books" fxFlex="20" style="margin: 30px;">
-            <img class="card-img-top"
-                [src]="book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : ''"
-                alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">{{book.volumeInfo.title}}</h5>
-                <p fxLayoutAlign="center center" class="card-text block-with-text">{{book.volumeInfo.description}}</p>
-            </div>
-            <div>
-                <a fxLayoutAlign="center bottom" href="#" class="primary">Vizualizar</a>
-            </div>
-        </div>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Quero ler</button>
+                <button mat-menu-item>Lendo</button>
+                <button mat-menu-item>Lido</button>
+            </mat-menu>
+        </mat-card>
     </div>
 </div>
