@@ -15,10 +15,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { AuthConfirmComponent } from './views/auth-confirm/auth-confirm.component';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     MainPageComponent,
     NavBarComponent,
     LoginComponent,
-    AuthConfirmComponent
+    AuthConfirmComponent,
+    CadastroComponent,
+    CadastroSegundaEtapaComponent
   ],
   imports: [
     BrowserModule,
