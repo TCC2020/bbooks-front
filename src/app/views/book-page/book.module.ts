@@ -13,6 +13,8 @@ import {BookComponent} from '../../modals/book/book.component';
 import {BookcaseModalComponent} from './bookcase-modal/bookcase-modal.component';
 import {MaterialModule} from "../../material/material.module";
 import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
+import {MatInputModule} from "@angular/material/input";
+import {CarouselModule} from "ngx-owl-carousel-o";
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
         BookRoutingModule,
         MaterialModule,
         FlexModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        MatInputModule,
+        CarouselModule
 
     ],
     exports: [],

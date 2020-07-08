@@ -4,11 +4,13 @@ import {Routes, RouterModule} from '@angular/router';
 import {BookPageComponent} from './book-page.component';
 import {BookFormComponent} from './book-form/book-form.component';
 import {BookEstanteComponent} from './book-estante/book-estante.component';
+import {BookLibraryComponent} from "./book-library/book-library.component";
 
 
 const bookRoutes: Routes = [
     {
         path: '', component: BookPageComponent, children: [
+            {path: '', component: BookLibraryComponent},
             {path: 'list', component: BookEstanteComponent},
             {path: 'new', component: BookFormComponent},
             {path: ':id/edit', component: BookFormComponent},

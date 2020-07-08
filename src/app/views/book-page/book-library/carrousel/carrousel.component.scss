@@ -1,0 +1,28 @@
+
+
+.card {
+  max-width: 150px;
+  //width: 200px;
+  margin: 0.5em;
+  border-radius: 2px;
+}
+.cardImage{
+
+}
+
+.buttonCarousel{
+  transition: all .2s linear;
+  border-radius: 3px;
+}
+.buttonCarousel:hover {
+  //background-color: #899e9c;
+  cursor: pointer;
+}
+.textButtonCarrousel{
+  color: #394A59;
+  font-max-size: 30px;
+  font-size: 20px;
+}
+.iconColor{
+  color: #36BF7F;
+}

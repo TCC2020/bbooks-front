@@ -14,13 +14,18 @@ import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { BookLibraryComponent } from './views/book-page/book-library/book-library.component';
+import {CarouselModule} from "ngx-owl-carousel-o";
+import { CarrouselComponent } from './views/book-page/book-library/carrousel/carrousel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    BookLibraryComponent,
+    CarrouselComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import { MaterialModule } from './material/material.module';
     ReactiveFormsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CarouselModule
   ],
   providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}],
   exports: [

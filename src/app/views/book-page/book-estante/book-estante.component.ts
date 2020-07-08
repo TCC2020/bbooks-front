@@ -1,10 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormControl} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {GoogleBooksService} from '../../../services/google-books.service';
-import {BookFormComponent} from '../book-form/book-form.component';
-import {MatDialog} from '@angular/material/dialog';
-import {BookService} from "../../../services/book.service";
-import {BookcaseModalComponent} from "../bookcase-modal/bookcase-modal.component";
 
 @Component({
     selector: 'app-book-estante',
@@ -12,41 +8,21 @@ import {BookcaseModalComponent} from "../bookcase-modal/bookcase-modal.component
     styleUrls: ['./book-estante.component.scss']
 })
 export class BookEstanteComponent implements OnInit {
-    bookcases: string[];
     books;
     search;
     busca: string = 'o menino';
-    @Input() deviceXs: boolean;
-    topVal = 0;
+    bookStatusFilter: string[] = ['lidos', 'lendo', 'a ler'];
     constructor(
         private fb: FormBuilder,
-        private gBooksService: GoogleBooksService,
-        private bookService: BookService,
-        public dialog: MatDialog
+        private gBooksService: GoogleBooksService
     ) {
     }
 
     ngOnInit(): void {
-        this.bookcases = this.bookService.getBookCase();
         this.searchBook();
     }
 
-    onScroll(e) {
-        let scrollXs = this.deviceXs ? 55 : 73;
-        if (e.srcElement.scrollTop < scrollXs) {
-            this.topVal = e.srcElement.scrollTop;
-        } else {
-            this.topVal = scrollXs;
-        }
-    }
-
-    sideBarScroll() {
-        let e = this.deviceXs ? 160 : 130;
-        return e - this.topVal;
-    }
-
     searchBook() {
-        // this.searchControl.value.book?
         this.busca.split(' ').join('+');
         this.gBooksService.searchByName(this.busca.split(' ').join('+')).subscribe(books => {
             this.books = books['items'];
@@ -66,26 +42,5 @@ export class BookEstanteComponent implements OnInit {
         });
     }
 
-    openDialogBookCase(): void {
-        const dialogRef = this.dialog.open(BookcaseModalComponent, {
-            width: '300px',
-            height: '200px'
-        });
-
-        // dialogRef.afterClosed().subscribe(result => {
-        //     console.log(`Dialog result: ${result}`);
-        // });
-    }
-
-    openDialogForm() {
-        const dialogRef = this.dialog.open(BookFormComponent, {
-            width: '550px',
-            height: '700px'
-        });
-
-        // dialogRef.afterClosed().subscribe(result => {
-        //     console.log(`Dialog result: ${result}`);
-        // });
-    }
 
 }

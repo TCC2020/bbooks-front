@@ -1,9 +1,59 @@
-.ng-sidebar-content{
-}
-::ng-deep .ng-sidebar{
-  background: #aa66cc;
-  //width: 300px;
-  //padding: 2em 3em;
-  //box-shadow: 0 0 2.5em rgba(85,85, 85, 0.5);
+.content {
+  position: absolute;
+  top: 65px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
 }
 
+.content-mob {
+  position: absolute;
+  top: 113px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+
+}
+
+
+mat-drawer {
+  position: fixed;
+  background-color: rgb(236, 236, 236);
+}
+
+.example-sidenav-content:first-child {
+  margin: 10px 5px 5px 5px;
+}
+
+.list-width {
+  width: 225px;
+}
+.list-item{
+  color: #9bbccb;
+  //background-color: #415566;
+  //border-bottom: 2px solid #394A59;
+  //padding: 20px;
+  transition: all .2s linear;
+
+}
+
+.list-item:hover {
+  background-color: #36BF7F;
+  color: white;
+  cursor: pointer;
+}
+.sidenav{
+  background-color:  #394A59;
+  border-radius: 3px;
+}
+.activedList{
+  color: white;
+}
+.subItemPadding{
+  margin-left:30px;
+}
+.itemPadding{
+  margin-left:6px;
+}

@@ -1,0 +1,27 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+    <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px">
+        <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{genre}}</span>
+        <mat-icon class="iconColor" fxFlexOffset="10">arrow_forward</mat-icon>
+    </div>
+</div>
+<owl-carousel-o [options]="customOptions">
+    <ng-template carouselSlide *ngFor="let book of books">
+
+        <mat-card class="card">
+            <div class="cardImage">
+                <img src="{{book.volumeInfo.imageLinks.thumbnail}}">
+            </div>
+            <hr
+                    style="height:2px;border-width:0;background-color:#36BF7F">
+            <mat-card-actions>
+                <!--                    <button mat-button>LIKE</button>-->
+                <button mat-button>SHARE</button>
+                <button mat-button>
+                    <mat-icon>visibility</mat-icon>
+                </button>
+
+            </mat-card-actions>
+        </mat-card>
+
+    </ng-template>
+</owl-carousel-o>

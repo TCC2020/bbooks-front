@@ -1,22 +1,4 @@
-.content {
-  position: absolute;
-  top: 65px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  overflow-y: scroll;
 
-}
-
-.content-mob {
-  position: absolute;
-  top: 113px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  overflow-y: scroll;
-
-}
 
 .card {
   max-width: 150px;
@@ -31,29 +13,4 @@
 mat-drawer {
   position: fixed;
   background-color: rgb(236, 236, 236);
-}
-
-.example-sidenav-content:first-child {
-  margin: 10px 5px 5px 5px;
-}
-
-.list-width {
-  width: 225px;
-}
-.list-item{
-  color: #f4f4f9;
-  background-color: #415566;
-  border-bottom: 2px solid #394A59;
-  padding: 20px;
-  transition: all .2s linear;
-
-}
-
-.list-item:hover {
-  background-color: #36BF7F;
-  cursor: pointer;
-}
-.sidenav{
-  background-color:  #394A59;
-  border-radius: 3px;
 }

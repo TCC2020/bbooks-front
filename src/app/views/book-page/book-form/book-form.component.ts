@@ -4,6 +4,7 @@ import {Book} from '../../../models/book.model';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
+
 @Component({
     selector: 'app-book-form',
     templateUrl: './book-form.component.html',
@@ -11,11 +12,11 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class BookFormComponent implements OnInit {
 
-    myControl = new FormControl();
     options: string[] = ['One', 'Two', 'Three'];
-    filteredOptions: Observable<string[]>;
+    filteredOptions: Observable<string[]>[] = [];
     public formBook: FormGroup;
     public book: Book = new Book();
+    filteredOptions2: Observable<string[]>[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -26,13 +27,14 @@ export class BookFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.createForm();
-        this.getAuthors();
         this.initAuthors();
-        console.log(this.authors.controls[0].value);
+        console.log('form', this.authors);
+        console.log(this.authors.controls[0].valueChanges);
     }
 
     private createForm(): void {
         this.formBook = this.formBuilder.group({
+            image: new FormControl(null, Validators.required),
             isbn: new FormControl(null, Validators.required),
             title: new FormControl(null, Validators.required),
             publisher: new FormControl(null, Validators.required),
@@ -55,15 +57,24 @@ export class BookFormComponent implements OnInit {
     }
 
     private initAuthors(): void {
-        for (const s of this.book.authors) {
-            console.log(s);
-            this.authors.push(this.createAuthorsForm(s));
-        }
+        this.book.authors.forEach((author, i) => {
+           this.authors.push(this.createAuthorsForm(author));
+           this.getAuthors(i);
+        });
+        // for (const s of this.book.authors) {
+        //     this.authors.push(this.createAuthorsForm(s));
+        //     this.getAuthors(0);
+        // }
+
     }
 
     get authors(): FormArray {
         return this.formBook.get('authors') as FormArray;
     }
+    get users(): FormArray {
+        return this.formBook.get('items') as FormArray;
+    }
+
 
     public removeAuthors(i: number): void {
         this.authors.removeAt(i);
@@ -72,20 +83,32 @@ export class BookFormComponent implements OnInit {
     public addAuthors(): void {
         if (this.authors.length < 3) {
             this.authors.insert(0, this.createAuthorsForm(' '));
+            this.getAuthors(this.authors.length - 1);
         }
     }
 
     private _filterAuthors(value: string): string[] {
         const filterValue = value.toLowerCase();
-
         return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
     }
 
-    getAuthors() {
+    getAuthors(index: number) {
         this.options = ['Monteiro Lobato', 'Gabriel García Márquez', 'Test teste teste'];
-        this.filteredOptions = this.myControl.valueChanges.pipe(
+
+        this.filteredOptions[index] = this.authors.at(index).get('nameAuthor').valueChanges
+        .pipe(
             startWith(''),
-            map(value => this._filterAuthors(value))
+            map(value => value ? this._filterAuthors(value) : this.options.slice())
         );
     }
+    onFileChanged(event) {
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+            console.log(file);
+            const formData = new FormData();
+            formData.append('foto', file);
+        }
+
+    }
+
 }
