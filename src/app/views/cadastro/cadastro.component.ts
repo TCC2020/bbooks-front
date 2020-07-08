@@ -38,6 +38,7 @@ export class CadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
   //Validação automática de e-mail
   emailFormControl = new FormControl('', [
     Validators.required,
