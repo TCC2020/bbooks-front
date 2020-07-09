@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {OwlOptions} from "ngx-owl-carousel-o";
-import {GoogleBooksService} from "../../../../services/google-books.service";
+import {OwlOptions} from 'ngx-owl-carousel-o';
+import {GoogleBooksService} from '../../../../services/google-books.service';
 
 @Component({
     selector: 'app-carrousel',
@@ -10,9 +10,6 @@ import {GoogleBooksService} from "../../../../services/google-books.service";
 export class CarrouselComponent implements OnInit {
 
     customOptions: OwlOptions = {
-        autoHeight: true,
-        autoWidth: true,
-        center: true,
         loop: true,
         mouseDrag: true,
         touchDrag: true,
@@ -35,7 +32,8 @@ export class CarrouselComponent implements OnInit {
             }
         },
         nav: true
-    }
+    };
+
     books: any[] = [];
 
     @Input() genre: string;
@@ -46,7 +44,7 @@ export class CarrouselComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getBooks()
+        this.getBooks();
     }
 
     getBooks() {

@@ -5,23 +5,25 @@
     </div>
 </div>
 <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide *ngFor="let book of books">
+    <ng-container *ngFor="let book of books">
+        <ng-template carouselSlide >
 
-        <mat-card class="card">
-            <div class="cardImage">
-                <img src="{{book.volumeInfo.imageLinks.thumbnail}}">
-            </div>
-            <hr
-                    style="height:2px;border-width:0;background-color:#36BF7F">
-            <mat-card-actions>
-                <!--                    <button mat-button>LIKE</button>-->
-                <button mat-button>SHARE</button>
-                <button mat-button>
-                    <mat-icon>visibility</mat-icon>
-                </button>
+            <mat-card class="card">
+                <div class="cardImage">
+                    <img src="{{book.volumeInfo.imageLinks.thumbnail}}">
+                </div>
+                <hr
+                        style="height:2px;border-width:0;background-color:#36BF7F">
+                <mat-card-actions>
+                    <!--                    <button mat-button>LIKE</button>-->
+                    <button mat-button>SHARE</button>
+                    <button mat-button>
+                        <mat-icon>visibility</mat-icon>
+                    </button>
 
-            </mat-card-actions>
-        </mat-card>
+                </mat-card-actions>
+            </mat-card>
 
-    </ng-template>
+        </ng-template>
+    </ng-container>
 </owl-carousel-o>

@@ -15,6 +15,8 @@ import {MaterialModule} from "../../material/material.module";
 import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
 import {MatInputModule} from "@angular/material/input";
 import {CarouselModule} from "ngx-owl-carousel-o";
+import {BookLibraryComponent} from "./book-library/book-library.component";
+import {CarrouselComponent} from "./book-library/carrousel/carrousel.component";
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import {CarouselModule} from "ngx-owl-carousel-o";
         BookFormComponent,
         BookMenuComponent,
         BookEstanteComponent,
-        BookcaseModalComponent
+        BookcaseModalComponent,
+        BookLibraryComponent,
+        CarrouselComponent
 
     ],
     entryComponents: [

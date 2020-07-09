@@ -33,13 +33,13 @@
                     </mat-list>
                 </div>
 
-                <mat-list-item role="listitem" class="list-item" matRipple (click)="openDialogBookCase()">
+                <mat-list-item *ngIf="verifyRouterLink('/book/list')" role="listitem" class="list-item" matRipple (click)="openDialogBookCase()">
                     <span class="subItemPadding">Criar estante</span>
                 </mat-list-item>
             </mat-list>
 
         </mat-drawer>
-        <mat-drawer-content style="background-color: white">
+        <mat-drawer-content>
             <router-outlet></router-outlet>
         </mat-drawer-content>
     </mat-drawer-container>

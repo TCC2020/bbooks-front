@@ -23,9 +23,7 @@ import { CarrouselComponent } from './views/book-page/book-library/carrousel/car
     AppComponent,
     MainPageComponent,
     NavBarComponent,
-    LoginComponent,
-    BookLibraryComponent,
-    CarrouselComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +34,7 @@ import { CarrouselComponent } from './views/book-page/book-library/carrousel/car
     ReactiveFormsModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    BrowserAnimationsModule,
-    CarouselModule
+    BrowserAnimationsModule
   ],
   providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}],
   exports: [
