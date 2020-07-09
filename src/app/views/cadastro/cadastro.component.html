@@ -83,7 +83,16 @@
     <div>
       <mat-form-field class="inputCadastrar">
         <mat-label>Nome de Usuário</mat-label>
-        <input matInput id="nomeUsuarioCadastrar">
+        <input matInput 
+        type="text"
+        id="nomeUsuarioCadastrar"
+        [formControl]="userFormControl">
+        <mat-error *ngIf="userFormControl.hasError('pattern') && !userFormControl.hasError('required')">
+          O primeiro caractere deve ser uma letra
+        </mat-error>
+        <mat-error *ngIf="userFormControl.hasError('required')">
+          Nome de Usuário é <strong>obrigatório</strong>
+        </mat-error>
         <mat-hint>Seu nome de usuário pode ter letras, números e pontos finais.</mat-hint>
       </mat-form-field>
     </div>

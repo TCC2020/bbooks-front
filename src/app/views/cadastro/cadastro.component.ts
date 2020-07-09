@@ -38,7 +38,7 @@ export class CadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+
   //Validação automática de e-mail
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -54,6 +54,12 @@ export class CadastroComponent implements OnInit {
     Validators.pattern(/^(?=\D*\d)(?=[^A-Za-z]*[A-Za-z]).{8,20}$/)
   ])
   matcherPwd = new MyErrorStateMatcher();
+
+  //Validação automática de usuário
+  userFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern("^([A-Z]|[a-z])[A-Za-z0-9.]*$")
+  ])
 
 
   cadastrar(){
