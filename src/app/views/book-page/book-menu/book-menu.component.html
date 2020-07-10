@@ -1,12 +1,12 @@
 <article [class.content]="!deviceXs" [class.content-mob]="deviceXs" (scroll)="onScroll($event)">
-    <mat-toolbar class="navMenu" >
+    <mat-toolbar class="navMenu">
         <button *ngIf="deviceXs" type="button" mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
         Estantes
 
     </mat-toolbar>
-    <mat-drawer-container style="background-color: white" >
+    <mat-drawer-container style="background-color: white">
         <mat-drawer #drawer [mode]="deviceXs?'over':'side'" [opened]="deviceXs?false:true" position="start"
                     fxFlex
                     fxLayoutGap
@@ -21,25 +21,26 @@
                     </mat-list-item>
                 </mat-list>
                 <mat-list-item routerLinkActive="activedList" role="listitem" class="list-item" matRipple
-                               routerLink="/book/list">
+                               [routerLink]="['/book/my', 'all']">
                     <mat-icon>menu_book</mat-icon>
                     <span class="itemPadding">Meus Livros</span>
                 </mat-list-item>
-                <div *ngIf="verifyRouterLink('/book/list')">
+                <div>
                     <mat-list role="list" class="list-width" *ngFor="let bookcase of bookcases ">
-                        <mat-list-item role="listitem" class="list-item" matRipple>
-                            <span class="subItemPadding">{{bookcase}} </span>
+                        <mat-list-item role="listitem" class="list-item" matRipple [routerLink]="['/book/my', bookcase.description]">
+                            <span class="subItemPadding">{{bookcase.description | titlecase }} </span>
                         </mat-list-item>
                     </mat-list>
                 </div>
 
-                <mat-list-item *ngIf="verifyRouterLink('/book/list')" role="listitem" class="list-item" matRipple (click)="openDialogBookCase()">
+                <mat-list-item *ngIf="verifyRouterLink('/book/list')" role="listitem" class="list-item" matRipple
+                               (click)="openDialogBookCase()">
                     <span class="subItemPadding">Criar estante</span>
                 </mat-list-item>
             </mat-list>
 
         </mat-drawer>
-        <mat-drawer-content>
+        <mat-drawer-content fxFlex>
             <router-outlet></router-outlet>
         </mat-drawer-content>
     </mat-drawer-container>

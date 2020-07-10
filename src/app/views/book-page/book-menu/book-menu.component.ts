@@ -4,6 +4,7 @@ import {BookcaseModalComponent} from '../bookcase-modal/bookcase-modal.component
 import {BookService} from '../../../services/book.service';
 import {MatDialog} from '@angular/material/dialog';
 import {Input} from '@angular/core';
+import {BookCase} from "../../../models/bookCase.model";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {Input} from '@angular/core';
     styleUrls: ['./book-menu.component.scss']
 })
 export class BookMenuComponent implements OnInit {
-    bookcases: string[];
+    bookcases: BookCase[];
 
     @Input() deviceXs: boolean;
     topVal = 0;

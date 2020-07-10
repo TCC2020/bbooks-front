@@ -19,16 +19,16 @@ export class CarrouselComponent implements OnInit {
         navText: ['', ''],
         responsive: {
             0: {
-                items: 1
-            },
-            400: {
                 items: 2
             },
-            740: {
+            400: {
                 items: 3
             },
-            940: {
+            740: {
                 items: 4
+            },
+            940: {
+                items: 8
             }
         },
         nav: true

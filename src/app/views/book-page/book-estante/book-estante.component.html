@@ -1,7 +1,6 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly">
-    <div fxLayout="row wrap" fxLayoutAlign="space-evenly end" fxLayoutGap="20px" fxLayout.xs="column">
 
-        <mat-form-field>
+    <div  class="example-sidenav-content" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" fxLayout.xs="column"  >
+        <mat-form-field >
             <mat-label>Pesquise um livro</mat-label>
             <input matInput type="text" [(ngModel)]="search">
             <mat-icon matSuffix mat-icon-button>search</mat-icon>
@@ -16,9 +15,9 @@
             </mat-select>
         </mat-form-field>
     </div>
-</div>
-<div fxLayout="row" fxLayoutAlign="start center">
-    <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+
+<!--<div fxLayout="row" fxLayoutAlign="start center">-->
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
         <mat-card class="card" *ngFor="let book of filterBooks()">
             <!--                    <mat-card-header>-->
             <!--                        <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>-->
@@ -26,7 +25,7 @@
             <!--                        <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
             <!--                    </mat-card-header>-->
             <div class="cardImage" fxLayout="row" fxLayoutAlign="space-around center">
-                <img src="{{book.volumeInfo.imageLinks.thumbnail}}">
+                <img src="{{book.image}}">
             </div>
             <hr fxLayout="row" fxLayoutAlign="space-around center"
                 style="height:2px;border-width:0;background-color:#36BF7F">
@@ -40,5 +39,4 @@
             </mat-card-actions>
         </mat-card>
     </div>
-</div>
-
+<!--</div>-->

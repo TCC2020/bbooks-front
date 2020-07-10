@@ -17,6 +17,7 @@ import { MaterialModule } from './material/material.module';
 import { BookLibraryComponent } from './views/book-page/book-library/book-library.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import { CarrouselComponent } from './views/book-page/book-library/carrousel/carrousel.component';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [

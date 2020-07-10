@@ -1,14 +1,16 @@
 
 
 .card {
-  max-width: 150px;
+  max-width: 200px;
   margin: 0.5em;
   border-radius: 2px;
 }
 .cardImage{
 
 }
-
+.example-sidenav-content:first-child {
+  margin: 10px 5px 5px 5px;
+}
 
 mat-drawer {
   position: fixed;

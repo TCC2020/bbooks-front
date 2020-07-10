@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BookService} from '../../../services/book.service';
+import {BookCase} from "../../../models/bookCase.model";
 
 @Component({
     selector: 'app-bookcase-modal',
@@ -28,7 +29,9 @@ export class BookcaseModalComponent implements OnInit {
     }
 
     saveBookCase() {
-        this.bookService.addBookCases(this.formBookCase.get('bookcase').value);
+        const bc = new BookCase();
+        bc.description = this.formBookCase.get('bookcase').value
+        this.bookService.addBookCases(bc);
     }
 
 
