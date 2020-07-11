@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {GoogleBooksService} from '../../../../services/google-books.service';
+import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs";
+import {BookService} from "../../../../services/book.service";
 
 @Component({
     selector: 'app-carrousel',
@@ -36,21 +39,31 @@ export class CarrouselComponent implements OnInit {
 
     books: any[] = [];
 
+
     @Input() genre: string;
 
+
     constructor(
-        private gBooksService: GoogleBooksService
+        private gBooksService: GoogleBooksService,
+        private router: Router,
+        private bookService: BookService
     ) {
     }
 
     ngOnInit(): void {
+
         this.getBooks();
     }
 
     getBooks() {
-        this.gBooksService.searchByName(this.genre).subscribe(books => {
-            this.books = books['items'];
-        });
+        if (this.router.url.includes('my')) {
+            this.books = this.bookService.getBookCase().find(value => value.description === this.genre).books;
+        } else {
+            this.gBooksService.searchByName(this.genre).subscribe(books => {
+                this.books = this.bookService.convertBookToBookList(books['items']);
+            });
+        }
+
     }
 
 }

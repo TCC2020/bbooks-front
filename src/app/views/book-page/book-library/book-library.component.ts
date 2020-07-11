@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {GoogleBooksService} from "../../../services/google-books.service";
+import {BookService} from "../../../services/book.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-book-library',
@@ -8,47 +10,31 @@ import {GoogleBooksService} from "../../../services/google-books.service";
     styleUrls: ['./book-library.component.scss']
 })
 export class BookLibraryComponent implements OnInit {
-    customOptions: OwlOptions = {
-        loop: true,
-        mouseDrag: true,
-        touchDrag: true,
-        pullDrag: false,
-        dots: false,
-        navSpeed: 700,
-        navText: ['', ''],
-        responsive: {
-            0: {
-                items: 1
-            },
-            400: {
-                items: 2
-            },
-            740: {
-                items: 3
-            },
-            940: {
-                items: 4
-            }
-        },
-        nav: true
-    }
     books: any[] = [];
-    genres: string[] = ['ficção', 'classicos', 'romance', 'literatura'];
+    genres: string[] = [];
     search;
+
     constructor(
-        private gBooksService: GoogleBooksService
+        private gBooksService: GoogleBooksService,
+        private bookService: BookService,
+        private router: Router
     ) {
     }
 
     ngOnInit(): void {
-        // this.searchBook();
+        if (this.router.url.includes('my')) {
+            this.genres = this.bookService.getBookCase().map(value => value.description);
+        } else {
+            this.genres = ['ficção', 'classicos', 'romance', 'literatura'];
+        }
     }
+
     filterBooks() {
         if (this.search === undefined || this.search.trim() === null) {
             return this.books;
         }
         return this.books.filter((book) => {
-            if (book.volumeInfo.title.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) !== -1) {
+            if (book.title.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) !== -1) {
                 return true;
             } else {
                 return false;

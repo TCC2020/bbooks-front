@@ -21,7 +21,6 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
 
     constructor(
         private fb: FormBuilder,
-        private gBooksService: GoogleBooksService,
         private route: ActivatedRoute,
         private bookService: BookService
     ) {
@@ -41,13 +40,6 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
                 }
             }
         });
-    }
-
-    searchBook() {
-        // this.busca.split(' ').join('+');
-        // this.gBooksService.searchByName(this.busca.split(' ').join('+')).subscribe(books => {
-        //     this.books = books['items'];
-        // });
     }
 
     filterBooks() {

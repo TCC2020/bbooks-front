@@ -65,4 +65,8 @@ export class BookService {
         b.authors = book.volumeInfo.authors;
         return b;
     }
+
+    convertBookToBookList(books: any[]): Book[] {
+        return books.map(value => this.convertBookToModel(value));
+    }
 }
