@@ -30,11 +30,17 @@
             <hr fxLayout="row" fxLayoutAlign="space-around center"
                 style="height:2px;border-width:0;background-color:#36BF7F">
             <mat-card-actions>
-                <!--                    <button mat-button>LIKE</button>-->
-                <button mat-button>SHARE</button>
-                <button mat-button>
-                    <mat-icon>visibility</mat-icon>
-                </button>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-icon-button  (click)="openDialogAddBook(book,  this.bookCase.description)">
+                        <mat-icon>reply</mat-icon>
+                    </button>
+                    <button mat-icon-button >
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon>visibility</mat-icon>
+                    </button>
+                </div>
 
             </mat-card-actions>
         </mat-card>

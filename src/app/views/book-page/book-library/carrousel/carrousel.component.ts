@@ -4,6 +4,9 @@ import {GoogleBooksService} from '../../../../services/google-books.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {BookService} from "../../../../services/book.service";
+import {MatDialog} from "@angular/material/dialog";
+import {Book} from "../../../../models/book.model";
+import {BookAddDialogComponent} from "../../book-add-dialog/book-add-dialog.component";
 
 @Component({
     selector: 'app-carrousel',
@@ -30,7 +33,7 @@ export class CarrouselComponent implements OnInit {
             740: {
                 items: 4
             },
-            940: {
+            1100: {
                 items: 8
             }
         },
@@ -46,7 +49,8 @@ export class CarrouselComponent implements OnInit {
     constructor(
         private gBooksService: GoogleBooksService,
         private router: Router,
-        private bookService: BookService
+        private bookService: BookService,
+        public dialog: MatDialog
     ) {
     }
 
@@ -57,13 +61,35 @@ export class CarrouselComponent implements OnInit {
 
     getBooks() {
         if (this.router.url.includes('my')) {
-            this.books = this.bookService.getBookCase().find(value => value.description === this.genre).books;
+            this.getAllBooks();
         } else {
             this.gBooksService.searchByName(this.genre).subscribe(books => {
                 this.books = this.bookService.convertBookToBookList(books['items']);
             });
         }
 
+    }
+
+    openDialogAddBook(book: Book, bookcase: string) {
+        const dialogRef = this.dialog.open(BookAddDialogComponent, {
+            height: '450px',
+            width: '400px',
+            data: {
+                book,
+                bookcase
+            }
+        });
+        dialogRef.afterClosed().subscribe( () => {
+            this.getAllBooks();
+        });
+    }
+
+    getAllBooks() {
+        this.books = this.bookService.getBookCase().find(value => value.description === this.genre).books;
+    }
+
+    verifyrouter(): boolean {
+        return this.router.url.includes('my');
     }
 
 }

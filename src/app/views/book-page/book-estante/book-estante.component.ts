@@ -5,6 +5,9 @@ import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
 import {BookService} from "../../../services/book.service";
 import {BookCase} from "../../../models/bookCase.model";
+import {Book} from "../../../models/book.model";
+import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
     selector: 'app-book-estante',
@@ -22,7 +25,8 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
     constructor(
         private fb: FormBuilder,
         private route: ActivatedRoute,
-        private bookService: BookService
+        private bookService: BookService,
+        public dialog: MatDialog
     ) {
     }
 
@@ -31,7 +35,6 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         this.inscricao = this.route.params.subscribe(params => {
             let bookcase = params['bookcase'];
             if (bookcase === 'all') {
-
 
             } else {
                 this.bookCase = this.bookService.getBookCaseByDescription(bookcase);
@@ -57,6 +60,19 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.inscricao.unsubscribe();
+    }
+    openDialogAddBook(book: Book, bookcase: string) {
+        const dialogRef = this.dialog.open(BookAddDialogComponent, {
+            height: '450px',
+            width: '400px',
+            data: {
+                book,
+                bookcase
+            }
+        });
+        dialogRef.afterClosed().subscribe( () => {
+            this.books = this.bookCase.books;
+        });
     }
 
 

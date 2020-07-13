@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {OwlOptions} from "ngx-owl-carousel-o";
 import {GoogleBooksService} from "../../../services/google-books.service";
 import {BookService} from "../../../services/book.service";
 import {Router} from "@angular/router";

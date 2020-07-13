@@ -17,8 +17,7 @@ import {MatInputModule} from "@angular/material/input";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {BookLibraryComponent} from "./book-library/book-library.component";
 import {CarrouselComponent} from "./book-library/carrousel/carrousel.component";
-import {LoaderComponent} from "../../loader/loader.component";
-import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
+import {BookAddDialogComponent} from "./book-add-dialog/book-add-dialog.component";
 
 
 @NgModule({
@@ -44,7 +43,8 @@ import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
         BookEstanteComponent,
         BookcaseModalComponent,
         BookLibraryComponent,
-        CarrouselComponent
+        CarrouselComponent,
+        BookAddDialogComponent
 
     ],
     entryComponents: [

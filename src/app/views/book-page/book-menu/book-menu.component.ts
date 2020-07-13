@@ -48,7 +48,7 @@ export class BookMenuComponent implements OnInit {
         });
     }
     verifyRouterLink(route: string) {
-        return this.router.url === route;
+        return this.router.url.includes(route);
     }
 
 }

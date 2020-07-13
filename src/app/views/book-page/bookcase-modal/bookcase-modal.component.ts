@@ -31,6 +31,8 @@ export class BookcaseModalComponent implements OnInit {
     saveBookCase() {
         const bc = new BookCase();
         bc.description = this.formBookCase.get('bookcase').value
+        bc.description.toLowerCase();
+        bc.books = [];
         this.bookService.addBookCases(bc);
     }
 

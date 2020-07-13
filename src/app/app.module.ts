@@ -14,10 +14,7 @@ import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { BookLibraryComponent } from './views/book-page/book-library/book-library.component';
-import {CarouselModule} from "ngx-owl-carousel-o";
-import { CarrouselComponent } from './views/book-page/book-library/carrousel/carrousel.component';
-import {CommonModule} from "@angular/common";
+import { BookAddDialogComponent } from './views/book-page/book-add-dialog/book-add-dialog.component';
 
 @NgModule({
   declarations: [

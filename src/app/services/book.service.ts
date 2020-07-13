@@ -11,7 +11,7 @@ export class BookService {
     bookcases: BookCase[] = [];
     bookCase1: BookCase = new BookCase();
     bookCase2: BookCase = new BookCase();
-    books: any[] = [];
+    books: any[];
 
     constructor(
         private gBooksService: GoogleBooksService
@@ -37,16 +37,25 @@ export class BookService {
         return this.bookcases;
     }
 
-    getBookCaseByDescription(descripiton: string): BookCase {
-        return this.bookcases.find(value => value.description === descripiton);
+    getBookCaseDescritption() {
+        return this.bookcases.map(value => value.description.toLowerCase());
+    }
+
+    getBookCaseByDescription(description: string): BookCase {
+        return this.bookcases.find(value => value.description.toLowerCase() === description.toLowerCase());
     }
 
     addBookCases(bookcase: BookCase) {
         this.bookcases.push(bookcase);
     }
 
-    addBookToBookCase(idBook: string) {
+    addBookToBookCase(book: Book, description: string) {
+        this.getBookCaseByDescription(description.toLowerCase()).books.push(book);
+    }
 
+    removeBookOfBookCase(book: Book, description: string) {
+        const books = this.getBookCaseByDescription(description.toLowerCase()).books.filter( value => value.id !== book.id);
+        this.getBookCaseByDescription(description.toLowerCase()).books = books;
     }
 
     convertBookToModel(book: any): Book {
