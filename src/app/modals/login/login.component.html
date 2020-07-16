@@ -1,4 +1,4 @@
-<form (submit)="login()">
+<form [formGroup]="loginControl" (submit)="login()">
 
     <div>
       <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
@@ -10,20 +10,26 @@
     <div>
       <mat-form-field class="input-style">
         <mat-label>Email</mat-label>
-        <input matInput>
+        <input matInput formControlName="email">
       </mat-form-field>
     </div>
   
     <div>
       <mat-form-field class="input-style">
         <mat-label>Senha</mat-label>
-        <input type="password" matInput>
+        <input type="password" matInput formControlName="password">
       </mat-form-field>
     </div>
   
     <div>
       <button mat-raised-button id="entrar">Confirmar</button>
     </div>
+    <a [routerLink]="['/recuperar-senha']" style="margin-top: 15px;">
+      Esqueceu sua senha?
+    </a><br>
+    <a [routerLink]="['/cadastrar']" style="margin-top: 15px;">
+      Cadastro
+    </a>
   </form>
 <!-- <mdb-card>
 

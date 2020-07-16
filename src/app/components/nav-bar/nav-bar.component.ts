@@ -9,23 +9,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-
+  isLogged: boolean;
   constructor(
     public auth: AuthGuard,
     private router: Router) { }
 
   ngOnInit(): void {
-  }
-
-  openLoginDialog() {
+    this.isLogged = this.auth.isLogged();
   }
 
   logout() {
     this.auth.logout();
+    document.location.reload();
     this.router.navigateByUrl('/');
   }
 
-  isAuth(): boolean {
-    return false ;
-  }
 }

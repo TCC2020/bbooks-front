@@ -53,19 +53,19 @@
     <div id="nomeSobrenome">
       <mat-form-field id="nome" class="inputCadastrar">
         <mat-label>Nome</mat-label>
-        <input matInput id="nomeCadastrar">
+        <input matInput id="nomeCadastrar" formControlName="name">
       </mat-form-field>
 
       <mat-form-field id="sobrenome" class="inputCadastrar">
         <mat-label>Sobrenome</mat-label>
-        <input matInput id="sobrenomeCadastrar">
+        <input matInput id="sobrenomeCadastrar" formControlName="lastName">
       </mat-form-field>
     </div>
   
     <div>
       <mat-form-field class="inputCadastrar">
         <mat-label>Email</mat-label>
-        <input type="email" matInput id="emailCadastrar">
+        <input type="email" matInput id="emailCadastrar" formControlName="email">
         <mat-hint>Informe um endereço de e-mail válido, pois você receberá um e-mail de confirmação.</mat-hint>
       </mat-form-field>
     </div>
@@ -73,7 +73,7 @@
     <div>
       <mat-form-field class="inputCadastrar">
         <mat-label>Nome de Usuário</mat-label>
-        <input matInput id="nomeUsuarioCadastrar">
+        <input matInput id="nomeUsuarioCadastrar" formControlName="userName">
         <mat-hint>Seu nome de usuário pode ter letras, números e pontos finais.</mat-hint>
       </mat-form-field>
     </div>
@@ -81,7 +81,7 @@
     <div>
       <mat-form-field class="inputCadastrar">
         <mat-label>Senha</mat-label>
-        <input type="password" matInput id="senhaCadastrar">
+        <input type="password" matInput id="senhaCadastrar" formControlName="password">
         <mat-hint>Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras e números.</mat-hint>
       </mat-form-field>
     </div>
@@ -99,7 +99,7 @@
     </div>
   
     <div id="divBotao">
-      <button mat-raised-button id="proximoCadastrar">Próximo</button>
+      <button mat-raised-button id="proximoCadastrar" (click)="cadastrar()">Próximo</button>
     </div>
   </form>
   

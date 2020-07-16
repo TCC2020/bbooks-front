@@ -28,7 +28,6 @@ export class BookFormComponent implements OnInit {
     this.createForm();
     this.getAuthors();
     this.initAuthors();
-    console.log(this.authors.controls[0].value);
   }
   private createForm(): void {
     this.formBook = this.formBuilder.group({
@@ -53,7 +52,6 @@ export class BookFormComponent implements OnInit {
   }
   private initAuthors(): void {
     for (const s of this.book.authors) {
-      console.log(s);
       this.authors.push(this.createAuthorsForm(s));
     }
   }

@@ -34,7 +34,7 @@ export class CadastroComponent implements OnInit {
   this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
   this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
   
-  this.router.navigateByUrl('cadastro/detalhes');
+  this.router.navigateByUrl('continuar-cadastro');
     },
         (err) => {
           alert(err.error.message);

@@ -13,7 +13,6 @@ export class UserService {
 
   updateUserInfo(){
     this.http.get(this.api + 'info/').subscribe(response => {
-      console.log(response)
       this.auth.setUser(response);
     })
   }

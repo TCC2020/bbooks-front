@@ -33,6 +33,14 @@ export class AuthGuard implements CanActivate {
     return JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : JSON.parse(sessionStorage.getItem('user'));
   }
 
+  public isLogged(): boolean {
+    let user = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : JSON.parse(sessionStorage.getItem('user'));
+    if(user !== null)
+      return true;
+    else
+      return false;
+  }
+
   public setUser(user): void {
     localStorage.setItem('user', JSON.stringify(user));
   }
@@ -57,6 +65,6 @@ export class AuthGuard implements CanActivate {
 
   logout() {
     localStorage.clear();
-    sessionStorage.clear()
+    sessionStorage.clear();
   }
 }
