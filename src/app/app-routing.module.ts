@@ -17,7 +17,7 @@ const routes: Routes = [
         path: 'login', component: LoginComponent
     },
     {
-        path: 'cadastrar', component: CadastroComponent,
+        path: 'cadastro', component: CadastroComponent,
     },
     {
         path: 'confirm', component: AuthConfirmComponent,
