@@ -3,6 +3,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {Book} from '../../../models/book.model';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {BookService} from "../../../services/book.service";
+import {Author} from "../../../models/author.model";
 
 
 @Component({
@@ -20,16 +22,16 @@ export class BookFormComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
+        private bookService: BookService
         // public modalRef: MDBModalRef
     ) {
-        this.book.authors = ['lucas', 'pedro'];
+        this.book.authors = [];
     }
 
     ngOnInit(): void {
         this.createForm();
         this.initAuthors();
         console.log('form', this.authors);
-        console.log(this.authors.controls[0].valueChanges);
     }
 
     private createForm(): void {
@@ -49,17 +51,18 @@ export class BookFormComponent implements OnInit {
         });
     }
 
-    private createAuthorsForm(name: string): FormGroup {
+    private createAuthorsForm(id: number, name: string): FormGroup {
         return new FormGroup({
-                nameAuthor: new FormControl(name, Validators.required),
+                id: new FormControl(id),
+                name: new FormControl(name, Validators.required),
             }
         );
     }
 
     private initAuthors(): void {
         this.book.authors.forEach((author, i) => {
-           this.authors.push(this.createAuthorsForm(author));
-           this.getAuthors(i);
+            this.authors.push(this.createAuthorsForm(author.id, author.name));
+            this.getAuthors(i);
         });
         // for (const s of this.book.authors) {
         //     this.authors.push(this.createAuthorsForm(s));
@@ -71,6 +74,7 @@ export class BookFormComponent implements OnInit {
     get authors(): FormArray {
         return this.formBook.get('authors') as FormArray;
     }
+
     get users(): FormArray {
         return this.formBook.get('items') as FormArray;
     }
@@ -82,7 +86,7 @@ export class BookFormComponent implements OnInit {
 
     public addAuthors(): void {
         if (this.authors.length < 3) {
-            this.authors.insert(0, this.createAuthorsForm(' '));
+            this.authors.insert(0, this.createAuthorsForm(null, ''));
             this.getAuthors(this.authors.length - 1);
         }
     }
@@ -93,14 +97,16 @@ export class BookFormComponent implements OnInit {
     }
 
     getAuthors(index: number) {
+
         this.options = ['Monteiro Lobato', 'Gabriel García Márquez', 'Test teste teste'];
 
-        this.filteredOptions[index] = this.authors.at(index).get('nameAuthor').valueChanges
-        .pipe(
-            startWith(''),
-            map(value => value ? this._filterAuthors(value) : this.options.slice())
-        );
+        this.filteredOptions[index] = this.authors.at(index).get('name').valueChanges
+            .pipe(
+                startWith(''),
+                map(value => value ? this._filterAuthors(value) : this.options.slice())
+            );
     }
+
     onFileChanged(event) {
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
@@ -109,6 +115,23 @@ export class BookFormComponent implements OnInit {
             formData.append('foto', file);
         }
 
+    }
+    convertToBook() {
+        this.book.isbn10 = this.formBook.get('isbn').value;
+        this.book.authors = [];
+        this.book.title = this.formBook.get('title').value;
+        this.book.language = this.formBook.get('language').value;
+        this.book.numberPage = this.formBook.get('pageCount').value;
+        this.book.publishedDate = this.formBook.get('publishedDate').value;
+        this.book.publisher = this.formBook.get('publisher').value;
+        this.book.authors = this.authors.value;
+        this.book.description = 'dsfasdfsafadsf';
+    }
+    saveBook() {
+        this.convertToBook();
+        this.bookService.save(this.book).subscribe( book => {
+            console.log(book);
+        });
     }
 
 }

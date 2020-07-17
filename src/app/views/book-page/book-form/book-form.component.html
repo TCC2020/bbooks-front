@@ -23,10 +23,10 @@
             </div>
             <!--        Linha form-->
             <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutGap="10px" fxLayoutAlign="space-between center">
-                <mat-form-field fxFlex>
-                    <mat-label>País</mat-label>
-                    <input formControlName="country" matInput placeholder="Ex. Brasil">
-                </mat-form-field>
+<!--                <mat-form-field fxFlex>-->
+<!--                    <mat-label>País</mat-label>-->
+<!--                    <input formControlName="country" matInput placeholder="Ex. Brasil">-->
+<!--                </mat-form-field>-->
                 <mat-form-field fxFlex>
                     <mat-label>Linguagem</mat-label>
                     <input formControlName="language" matInput placeholder="Ex. Português">
@@ -62,7 +62,7 @@
                  fxLayout.xs="column"
                  fxLayoutGap="30px" fxLayoutAlign="start center">
                 <mat-form-field  fxFlex="50" [formGroupName]="i">
-                    <input type="text" placeholder="Authors" matInput formControlName="nameAuthor"
+                    <input type="text" placeholder="Authors" matInput formControlName="name"
                            [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
                         <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option">
@@ -80,8 +80,8 @@
 
         </form>
 
-        <button type="button" mat-raised-button color="primary">
-            <!--            [disabled]="formBook.invalid">-->
+        <button type="button" mat-raised-button color="primary" (click)="saveBook()"
+                        [disabled]="formBook.invalid">
             Criar
         </button>
     </div>

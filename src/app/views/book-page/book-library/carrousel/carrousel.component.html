@@ -1,37 +1,28 @@
-<div fxLayout="row" fxLayoutAlign="start center" *ngIf="books.length > 0">
-    <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px">
-        <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{genre}}</span>
+<div fxLayout="row" fxLayoutAlign="start center" *ngIf="books.length > 0"  [routerLink]="[genre]">
+    <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px" >
+        <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{genre | titlecase}}</span>
         <mat-icon class="iconColor" fxFlexOffset="10">arrow_forward</mat-icon>
     </div>
 </div>
 <owl-carousel-o [options]="customOptions">
     <ng-container *ngFor="let book of books">
         <ng-template carouselSlide>
-
-            <mat-card class="card">
-                <div class="cardImage">
-                    <img src="{{book.image}}">
+            <div class="card">
+                <img class="cardImage"  [src]=book.image [routerLink]="['/book/view', book.id]">
+                <p class="textImage" fxLayout="row" fxLayoutAlign="start end">{{book.title}}</p>
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <button mat-icon-button *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  null)">
+                        <mat-icon>playlist_add</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.genre)">
+                        <mat-icon>reply</mat-icon>
+                    </button>
+                    <button mat-icon-button *ngIf="verifyrouter()">
+                        <mat-icon>delete</mat-icon>
+                    </button>
                 </div>
-                <hr
-                        style="height:2px;border-width:0;background-color:#36BF7F">
 
-                <mat-card-actions>
-                    <div fxLayout="row" fxLayoutAlign="end center">
-                        <button mat-icon-button *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  null)">
-                            <mat-icon>playlist_add</mat-icon>
-                        </button>
-                        <button mat-icon-button *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.genre)">
-                            <mat-icon>reply</mat-icon>
-                        </button>
-                        <button mat-icon-button *ngIf="verifyrouter()">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                            <mat-icon>visibility</mat-icon>
-                        </button>
-                    </div>
-                </mat-card-actions>
-            </mat-card>
+            </div>
         </ng-template>
     </ng-container>
 </owl-carousel-o>

@@ -15,6 +15,8 @@ import {BookCase} from "../../../models/bookCase.model";
 export class BookMenuComponent implements OnInit {
     bookcases: BookCase[];
 
+    bookcasesGbooks: BookCase[];
+
     @Input() deviceXs: boolean;
     topVal = 0;
     constructor(
@@ -26,7 +28,6 @@ export class BookMenuComponent implements OnInit {
 
     ngOnInit(): void {
         this.bookcases = this.bookService.getBookCase();
-
     }
     onScroll(e) {
         let scrollXs = this.deviceXs ? 55 : 73;

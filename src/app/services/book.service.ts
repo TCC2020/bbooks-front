@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {BookCase} from "../models/bookCase.model";
 import {Book} from "../models/book.model";
 import {GoogleBooksService} from "./google-books.service";
+import {environment} from "../../environments/environment";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +16,11 @@ export class BookService {
     bookCase2: BookCase = new BookCase();
     books: any[];
 
+    api = environment.api + 'books';
+
     constructor(
-        private gBooksService: GoogleBooksService
+        private gBooksService: GoogleBooksService,
+        private http: HttpClient
     ) {
         this.bookCase1.books = [];
         this.bookCase2.books = [];
@@ -54,28 +60,37 @@ export class BookService {
     }
 
     removeBookOfBookCase(book: Book, description: string) {
-        const books = this.getBookCaseByDescription(description.toLowerCase()).books.filter( value => value.id !== book.id);
+        const books = this.getBookCaseByDescription(description.toLowerCase()).books.filter(value => value.id !== book.id);
         this.getBookCaseByDescription(description.toLowerCase()).books = books;
     }
 
     convertBookToModel(book: any): Book {
         const b = new Book();
         b.id = book.id;
-        b.isbn = null;
+        b.isbn10 = null;
         b.title = book.volumeInfo.title;
         b.publisher = book.volumeInfo.publisher;
-        b.country = book.saleInfo.country;
+        // b.country = book.saleInfo.country;
         b.language = book.volumeInfo.language;
-        b.pageCount = book.volumeInfo.pageCount;
+        b.numberPage = book.volumeInfo.pageCount;
         b.publishedDate = book.volumeInfo.publishedDate;
         b.averageRating = book.volumeInfo.averageRating;
         b.image = book.volumeInfo.imageLinks.thumbnail;
-        b.searchInfo = book?.searchInfo?.textSnippet;
+        b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
+        b.description = book.volumeInfo.description;
         b.authors = book.volumeInfo.authors;
         return b;
     }
 
     convertBookToBookList(books: any[]): Book[] {
         return books.map(value => this.convertBookToModel(value));
+    }
+
+    save(book: Book): Observable<any> {
+        return this.http.post(this.api, book);
+    }
+
+    getBookById(id: string) {
+
     }
 }

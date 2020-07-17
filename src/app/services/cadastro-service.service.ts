@@ -9,7 +9,9 @@ export class CadastroService {
 
   api = environment.api + 'users';
   
-  constructor(private http: HttpClient) { }
+  constructor(
+      private http: HttpClient,
+  ) { }
 
   cadastrar(UserTO) { 
     return this.http.post(this.api , UserTO); 

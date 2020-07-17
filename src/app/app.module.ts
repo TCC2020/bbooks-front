@@ -14,7 +14,6 @@ import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { BookAddDialogComponent } from './views/book-page/book-add-dialog/book-add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,8 @@ import { BookAddDialogComponent } from './views/book-page/book-add-dialog/book-a
     BrowserAnimationsModule
   ],
   providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}],
-  exports: [
-  ],
+    exports: [
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,7 +21,7 @@
                     </mat-list-item>
                 </mat-list>
                 <mat-list-item routerLinkActive="activedList" role="listitem" class="list-item" matRipple
-                               [routerLink]="['/book/my', 'all']">
+                               [routerLink]="['/book/my']">
                     <mat-icon>menu_book</mat-icon>
                     <span class="itemPadding">Meus Livros</span>
                 </mat-list-item>
@@ -41,6 +41,7 @@
 
         </mat-drawer>
         <mat-drawer-content fxFlex>
+            <br>
             <router-outlet></router-outlet>
         </mat-drawer-content>
     </mat-drawer-container>

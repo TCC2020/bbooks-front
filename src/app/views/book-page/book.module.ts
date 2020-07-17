@@ -18,6 +18,9 @@ import {CarouselModule} from "ngx-owl-carousel-o";
 import {BookLibraryComponent} from "./book-library/book-library.component";
 import {CarrouselComponent} from "./book-library/carrousel/carrousel.component";
 import {BookAddDialogComponent} from "./book-add-dialog/book-add-dialog.component";
+import {BookViewComponent} from "./book-view/book-view.component";
+import {RatingComponent} from "../../components/rating/rating.component";
+
 
 
 @NgModule({
@@ -44,7 +47,9 @@ import {BookAddDialogComponent} from "./book-add-dialog/book-add-dialog.componen
         BookcaseModalComponent,
         BookLibraryComponent,
         CarrouselComponent,
-        BookAddDialogComponent
+        BookAddDialogComponent,
+        BookViewComponent,
+        RatingComponent
 
     ],
     entryComponents: [
