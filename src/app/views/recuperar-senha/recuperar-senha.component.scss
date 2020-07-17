@@ -1,4 +1,4 @@
-.input-style {
+.inputRecuperarSenha {
     width: 100%;
 }
 
@@ -14,12 +14,16 @@ form {
     text-align: center;
 }
 
-button#entrar {
+button#enviarRecuperarSenha {
     color: #FFFFFF;
     background-color: #394A59;
 }
 
-button#entrar:hover {
+div {
+    padding: 7px;
+}
+
+button#enviarRecuperarSenha:hover {
     opacity: 80%;
 }
 

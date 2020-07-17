@@ -14,13 +14,27 @@ import { Interceptor } from './guards/interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { AuthConfirmComponent } from './views/auth-confirm/auth-confirm.component';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
+import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSliderModule } from '@angular/material/slider';
+import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    AuthConfirmComponent,
+    CadastroComponent,
+    CadastroSegundaEtapaComponent,
+    RecuperarSenhaComponent,
+    NovaSenhaComponent
   ],
   imports: [
     BrowserModule,
@@ -30,12 +44,16 @@ import { MaterialModule } from './material/material.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
-    BrowserAnimationsModule
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}],
-    exports: [
-    ],
+  providers: [AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

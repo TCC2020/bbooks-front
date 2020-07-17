@@ -1,22 +1,42 @@
+.inputSegundaEtapa {
+    width: 100%;
+}
+
 form {
     border: 1px solid #dadce0;
     border-radius: 10px;
     padding: 30px 40px 35px;
     width: 800px;
     height: auto;
-    min-height: 500px;
+    min-height: 400px;
     margin: 50px auto 0px;
     box-sizing: border-box;
+    text-align: center;
 }
 
-div#cabecalho-cadastro h1 {
-    padding: 0px;
-    margin-bottom: 2rem;
+#paisEstadoCidade, #fotoNascimento {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
+button#botaoSegundaEtapa {
+    color: #FFFFFF;
+    background-color: #394A59;
 }
+
+button#botaoSegundaEtapa:hover {
+    opacity: 80%;
+}
+
+#divBotao {
+    text-align: right;
+}
+
+div {
+    padding: 3px;
+}
+
 
 @media screen and (max-width: 600px){
     form {
@@ -25,7 +45,17 @@ div#cabecalho-cadastro h1 {
         margin: auto 0px;
     }
 
-    .form-group {
-        margin-bottom: 1rem;
+    div {
+        padding: 7px;
     }
+
+    div#paisEstadoCidade, div#fotoNascimento {
+        display: block;
+        gap: 0px;
+    }
+
+    div#paisEstadoCidade mat-form-field, div#fotoNascimento mat-form-field{
+        width: 100%;
+    } 
+
 }
