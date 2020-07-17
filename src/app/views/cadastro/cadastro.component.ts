@@ -25,11 +25,11 @@ export class CadastroComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private cadastroService: CadastroService
-  ) { 
+  ) {
     this.cadastroControl = this.fb.group({
       name: '',
       lastName: '',
-      email: '',
+      email: ['', Validators.required, Validators.email],
       userName: '',
       password: ''
     });
@@ -61,19 +61,15 @@ export class CadastroComponent implements OnInit {
     Validators.pattern("^([A-Z]|[a-z])[A-Za-z0-9.]*$")
   ])
 
+  cadastrar() {
+    this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
+    this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
 
-  cadastrar(){
-    
-  this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
-  this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
-  
-  this.router.navigateByUrl('cadastro/detalhes');
+      this.router.navigateByUrl('continuar-cadastro');
     },
-        (err) => {
-          alert(err.error.message);
-        }
-      );
-    }
-
-
+      (err) => {
+        alert(err.error.message);
+      }
+    );
+  }
 }

@@ -30,9 +30,7 @@ export class AuthConfirmComponent implements OnInit {
   }
 
   confirm(): void {
-    console.log(this.confirmControl.value.password)
     this.confirmControl.value.password = Md5.hashStr(this.confirmControl.value.password);
-    console.log(this.confirmControl.value.password)
     this.AuthConfirmService.confirm(this.confirmControl.value).subscribe(res => {
       this.authGuard.login(res, this.confirmControl.value.keepLogin);
       this.router.navigateByUrl('/');

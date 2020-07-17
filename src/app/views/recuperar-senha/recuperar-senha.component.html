@@ -1,24 +1,25 @@
 <form>
 
-    <div>
-      <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
-    </div>
-    <div>
-      <span>Recuperação de senha</span>
-    </div>
-  
-    <div>
-      <mat-form-field class="inputRecuperarSenha">
-        <mat-label>Email</mat-label>
-        <input matInput id="emailRecuperarSenha">
-        <mat-hint>Informe o email cadastrado para recuperar sua senha.</mat-hint>
-      </mat-form-field>
-    </div>
-  
-    <div>
-      <button mat-raised-button id="enviarRecuperarSenha">Enviar</button>
-    </div>
-    <div>
-        <span><i class="fas fa-check" style="color:#36BF7F"></i> Você receberá em instantes um link na sua caixa de email para recuperação da senha!</span>
-    </div>
-  </form>
+  <div>
+    <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
+  </div>
+  <div>
+    <span>Recuperação de senha</span>
+  </div>
+
+  <div>
+    <mat-form-field class="inputRecuperarSenha">
+      <mat-label>Email</mat-label>
+      <input matInput id="emailRecuperarSenha" [(ngModel)]="form.value.email"  [ngModelOptions]="{standalone: true}">
+      <mat-hint>Informe o email cadastrado para recuperar sua senha.</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <button mat-raised-button id="enviarRecuperarSenha" (click)="sendResetPassRequest()">Enviar</button>
+  </div>
+  <div>
+    <span><i class="fas fa-check" style="color:#36BF7F"></i> Você receberá em instantes um link na sua caixa de email
+      para recuperação da senha!</span>
+  </div>
+</form>
