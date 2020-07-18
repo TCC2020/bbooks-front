@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutAlign="space-around center">
+    <mat-card class="card" fxLayout.xs="column" fxFlex="80">
+        <mat-card-content>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+                <div fxFlex>
+                    <img class="cardImage" src="{{book.image}}">
+                </div>
+                <div fxFlex="60" fxFlexOffset="1">
+                    <h2>{{book.title}}</h2>
+                    <p *ngFor="let author of book.authors"> {{author}}</p>
+                    <p class="description">{{book.description}}</p>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <div *ngFor="let star  of stars;">
+        <app-rating [idStar]="star" [rating]="book.averageRating"></app-rating>
+    </div>
+</div>

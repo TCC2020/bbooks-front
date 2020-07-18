@@ -1,73 +1,79 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl} from '@angular/forms';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 import {GoogleBooksService} from '../../../services/google-books.service';
-import {BookFormComponent} from '../book-form/book-form.component';
-import {MatDialog} from '@angular/material/dialog';
+import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs";
+import {BookService} from "../../../services/book.service";
+import {BookCase} from "../../../models/bookCase.model";
+import {Book} from "../../../models/book.model";
+import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
     selector: 'app-book-estante',
     templateUrl: './book-estante.component.html',
     styleUrls: ['./book-estante.component.scss']
 })
-export class BookEstanteComponent implements OnInit {
-    // books;
-    // searchControl;
-    // search;
-    // busca: string = 'o menino';
+export class BookEstanteComponent implements OnInit, OnDestroy {
+    books;
+    bookCase: BookCase = new BookCase();
+    search;
+    busca: string = 'o menino';
+    bookStatusFilter: string[] = ['lidos', 'lendo', 'a ler'];
+    inscricao: Subscription;
 
-    // constructor(
-    //     private fb: FormBuilder,
-    //     private gBooksService: GoogleBooksService,
-    //     public dialog: MatDialog
-    // ) {
-    //     this.searchControl = this.fb.group({
-    //         search: ['']
-    //     });
-    // }
-
-    ngOnInit(): void {
-       // this.searchBook();
+    constructor(
+        private fb: FormBuilder,
+        private route: ActivatedRoute,
+        private bookService: BookService,
+        public dialog: MatDialog
+    ) {
     }
 
-    // searchBook() {
-    //     // this.searchControl.value.book?
-    //     this.busca.split(' ').join('+');
-    //     this.gBooksService.searchByName(this.busca.split(' ').join('+')).subscribe(books => {
-    //         this.books = books['items'];
-    //     });
-    // }
+    ngOnInit(): void {
 
-    // filterBooks() {
-    //     if (this.search === undefined || this.search.trim() === null) {
-    //         return this.books;
-    //     }
-    //     return this.books.filter((book) => {
-    //         if (book.volumeInfo.title.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) !== -1) {
-    //             return true;
-    //         } else {
-    //             return false;
-    //         }
-    //     });
-    // }
+        this.inscricao = this.route.params.subscribe(params => {
+            let bookcase = params['bookcase'];
+            if (bookcase === 'all') {
 
-    // openModal() {
-    //     // this.modalRef = this.modalRef = this.modalService.show(BookFormComponent, {
-    //     //     backdrop: true,
-    //     //     keyboard: true,
-    //     //     focus: true,
-    //     //     show: false,
-    //     //     ignoreBackdropClick: false,
-    //     //     class: 'modal-dialog modal-dialog-scrollable',
-    //     //     animated: true,
-    //     // });
-    //     const dialogRef = this.dialog.open(BookFormComponent, {
-    //         width: '550px',
-    //         height: '700px'
-    //     });
+            } else {
+                this.bookCase = this.bookService.getBookCaseByDescription(bookcase);
+                if (this.bookCase) {
+                    this.books = this.bookCase.books;
+                }
+            }
+        });
+    }
 
-    //     // dialogRef.afterClosed().subscribe(result => {
-    //     //     console.log(`Dialog result: ${result}`);
-    //     // });
-    // }
+    filterBooks() {
+        if (this.search === undefined || this.search.trim() === null) {
+            return this.books;
+        }
+        return this.books.filter((book) => {
+            if (book.title.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) !== -1) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.inscricao.unsubscribe();
+    }
+    openDialogAddBook(book: Book, bookcase: string) {
+        const dialogRef = this.dialog.open(BookAddDialogComponent, {
+            height: '450px',
+            width: '400px',
+            data: {
+                book,
+                bookcase
+            }
+        });
+        dialogRef.afterClosed().subscribe( () => {
+            this.books = this.bookCase.books;
+        });
+    }
+
 
 }

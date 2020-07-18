@@ -53,8 +53,7 @@ import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
   providers: [AuthGuard, { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
-  exports: [
-  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

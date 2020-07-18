@@ -1,0 +1,42 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+
+        <h2 mat-dialog-title>{{title}}</h2>
+        <!-- Form -->
+        <mat-card class="card">
+            <div class="cardImage">
+                <img async src="{{Book.image}}">
+            </div>
+            <hr
+                    style="height:2px;border-width:0;background-color:#36BF7F">
+            <mat-card-actions fxLayout>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <form [formGroup]="formBook">
+        <!--Linha form-->
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+            <mat-form-field appearance="fill">
+                <mat-label>Estante</mat-label>
+                <mat-select formControlName="bookcase">
+                    <mat-option *ngFor="let bookcase of bookCases" [value]="bookcase">
+                        {{bookcase | titlecase}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button type="button" mat-raised-button color="primary"
+                    [disabled]="formBook.invalid"
+                    (click)="saveBook()"
+                    mat-button [mat-dialog-close]>
+                {{this.buttonText}}
+            </button>
+        </div>
+        <mat-error *ngIf="formBook.controls['bookcase'].hasError('required')">
+            Escolha uma estante
+        </mat-error>
+
+    </form>
+</mat-dialog-actions>

@@ -1,13 +1,16 @@
+import {Author} from "./author.model";
+
 export class Book {
-    isbn: string;
+    id: string;
+    isbn10: string;
     title: string;
+    authors: Author[];
+    numberPage: number;
+    language: string;
     publisher: string;
-    country: number;
-    language: number;
-    pageCount: number;
+    // country: number;
     publishedDate: number;
     averageRating: number;
     image: string;
-    searchInfo: string;
-    authors: string[];
+    description: string;
 }
