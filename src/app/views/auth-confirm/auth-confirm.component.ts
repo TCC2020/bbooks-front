@@ -40,4 +40,5 @@ export class AuthConfirmComponent implements OnInit {
       }
     );
   }
+
 }
