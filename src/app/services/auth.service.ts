@@ -7,11 +7,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
   api = environment.api + 'auth/';
-  
+
   constructor(private http: HttpClient) { }
 
-  login(loginTO) { 
-    return this.http.post(this.api + 'login', loginTO); 
+  login(loginTO) {
+    return this.http.post(this.api + 'login', loginTO);
   }
 
+  sendResetPassEmail(dto) {
+    return this.http.post(this.api + 'reset-pass', dto)
+  }
 }

@@ -133,5 +133,4 @@ export class BookFormComponent implements OnInit {
             console.log(book);
         });
     }
-
 }

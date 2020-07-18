@@ -35,7 +35,6 @@ export class MainPageComponent implements OnInit {
   searchBook() {
     this.searchControl.value.book?.split(' ').join('+');
     this.gBooksService.searchByName(this.searchControl.value.book.split(' ').join('+')).subscribe(books => {
-      console.log(books['items'])
       this.books = books['items'];
     });
   }
