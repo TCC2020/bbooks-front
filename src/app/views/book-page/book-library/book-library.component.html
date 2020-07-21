@@ -1,3 +1,13 @@
+<div fxLayout="row" fxLayoutAlign="end center" >
+    <div fxLayout="row"  fxLayoutGap="1px">
+        <span>Lendo</span>
+        <mat-icon class="iconColor">turned_in</mat-icon>
+    </div>
+    <div fxLayout="row"  fxLayoutGap="2px">
+        <span>Lidos</span>
+        <mat-icon  class="iconColor">verified</mat-icon>
+    </div>
+</div>
 <div *ngFor="let genre of genres">
     <app-carrousel [genre]="genre"></app-carrousel>
 </div>

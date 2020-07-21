@@ -1,4 +1,5 @@
 import {Author} from "./author.model";
+import {BookStatus} from "./enums/BookStatus.enum";
 
 export class Book {
     id: string;
@@ -13,4 +14,5 @@ export class Book {
     averageRating: number;
     image: string;
     description: string;
+    status: BookStatus;
 }

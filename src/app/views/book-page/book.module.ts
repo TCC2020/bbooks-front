@@ -20,6 +20,7 @@ import {CarrouselComponent} from "./book-library/carrousel/carrousel.component";
 import {BookAddDialogComponent} from "./book-add-dialog/book-add-dialog.component";
 import {BookViewComponent} from "./book-view/book-view.component";
 import {RatingComponent} from "../../components/rating/rating.component";
+import {MatIconModule} from "@angular/material/icon";
 
 
 

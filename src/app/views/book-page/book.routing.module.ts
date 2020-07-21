@@ -17,7 +17,7 @@ const bookRoutes: Routes = [
             {path: 'view/:id', component: BookViewComponent},
             {path: 'new', component: BookFormComponent},
             {path: ':id/edit', component: BookFormComponent},
-            {path: 'bookcase', component: BookEstanteComponent}
+            {path: ':bookcase', component: BookEstanteComponent}
         ]
     },
 

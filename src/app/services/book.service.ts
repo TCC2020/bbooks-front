@@ -5,6 +5,8 @@ import {GoogleBooksService} from "./google-books.service";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Author} from "../models/author.model";
+import {BookStatus} from "../models/enums/BookStatus.enum";
 
 @Injectable({
     providedIn: 'root'
@@ -78,7 +80,8 @@ export class BookService {
         b.image = book.volumeInfo.imageLinks.thumbnail;
         b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
         b.description = book.volumeInfo.description;
-        b.authors = book.volumeInfo.authors;
+        b.authors = this.convertAuthorToModel(book.volumeInfo.authors);
+        b.status = BookStatus.LENDO;
         return b;
     }
 
@@ -88,6 +91,19 @@ export class BookService {
 
     save(book: Book): Observable<any> {
         return this.http.post(this.api, book);
+    }
+
+    convertAuthorToModel(authors: any[]): Author[] {
+        const result = new Array<Author>();
+        if (authors) {
+            authors.map((name) => {
+                const a = new Author();
+                a.name = name;
+                result.push(a);
+            });
+        }
+
+        return result;
     }
 
     getBookById(id: string) {

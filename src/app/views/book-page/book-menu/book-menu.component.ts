@@ -15,7 +15,7 @@ import {BookCase} from "../../../models/bookCase.model";
 export class BookMenuComponent implements OnInit {
     bookcases: BookCase[];
 
-    bookcasesGbooks: BookCase[];
+    bookcasesGbooks: string[] = ['ficção', 'classicos', 'romance', 'literatura'];
 
     @Input() deviceXs: boolean;
     topVal = 0;

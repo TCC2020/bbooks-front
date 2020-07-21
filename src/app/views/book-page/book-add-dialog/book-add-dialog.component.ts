@@ -32,7 +32,6 @@ export class BookAddDialogComponent implements OnInit {
         this.modeDialog();
         this.createForm();
         this.bookCases = this.bookService.getBookCaseDescritption().filter(value => value !== this.bookcase);
-        console.log(this.bookCases.indexOf(this.bookcase.toLowerCase()));
     }
 
     modeDialog() {

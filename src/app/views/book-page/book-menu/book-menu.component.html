@@ -3,7 +3,7 @@
         <button *ngIf="deviceXs" type="button" mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        Estantes
+        Estante Virtual
 
     </mat-toolbar>
     <mat-drawer-container style="background-color: white">
@@ -19,15 +19,25 @@
                         <mat-icon>library_books</mat-icon>
                         <span class="itemPadding">Livros</span>
                     </mat-list-item>
+                    <div  *ngIf="!verifyRouterLink('my')">
+                        <mat-list role="list" class="list-width" *ngFor="let bookcase of bookcasesGbooks ">
+                            <mat-list-item routerLinkActive="activedList" role="listitem"
+                                           class="list-item" matRipple [routerLink]="['/book/', bookcase]">
+                                <span class="subItemPadding">{{bookcase | titlecase }} </span>
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+
                 </mat-list>
                 <mat-list-item routerLinkActive="activedList" role="listitem" class="list-item" matRipple
                                [routerLink]="['/book/my']">
                     <mat-icon>menu_book</mat-icon>
                     <span class="itemPadding">Meus Livros</span>
                 </mat-list-item>
-                <div>
+                <div *ngIf="verifyRouterLink('my')">
                     <mat-list role="list" class="list-width" *ngFor="let bookcase of bookcases ">
-                        <mat-list-item *ngIf="verifyRouterLink('my')" routerLinkActive="activedList" role="listitem" class="list-item" matRipple [routerLink]="['/book/my', bookcase.description]">
+                        <mat-list-item  routerLinkActive="activedList" role="listitem"
+                                       class="list-item" matRipple [routerLink]="['/book/my', bookcase.description]">
                             <span class="subItemPadding">{{bookcase.description | titlecase }} </span>
                         </mat-list-item>
                     </mat-list>
