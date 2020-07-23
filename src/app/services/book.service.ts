@@ -110,7 +110,6 @@ export class BookService {
     save(book: Book): Observable<any> {
         return this.http.post(this.api, book);
     }
-
     convertAuthorToModel(authors: any[]): Author[] {
         const result = new Array<Author>();
         if (authors) {

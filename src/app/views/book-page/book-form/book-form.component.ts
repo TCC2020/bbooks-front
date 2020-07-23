@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {BookService} from "../../../services/book.service";
 import {Author} from "../../../models/author.model";
+import {AuthorService} from "../../../services/author.service";
 
 
 @Component({
@@ -14,15 +15,16 @@ import {Author} from "../../../models/author.model";
 })
 export class BookFormComponent implements OnInit {
 
-    options: string[] = ['One', 'Two', 'Three'];
-    filteredOptions: Observable<string[]>[] = [];
+    options: any[] = [];
+    filteredOptions: Observable<Author[]>[] = [];
     public formBook: FormGroup;
     public book: Book = new Book();
     filteredOptions2: Observable<string[]>[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
-        private bookService: BookService
+        private bookService: BookService,
+        private authorService: AuthorService
         // public modalRef: MDBModalRef
     ) {
         this.book.authors = [];
@@ -31,20 +33,20 @@ export class BookFormComponent implements OnInit {
     ngOnInit(): void {
         this.createForm();
         this.initAuthors();
-        console.log('form', this.authors);
     }
 
     private createForm(): void {
         this.formBook = this.formBuilder.group({
-            image: new FormControl(null, Validators.required),
-            isbn: new FormControl(null, Validators.required),
+            // image: new FormControl(null, Validators.required),
+            isbn10: new FormControl(null, Validators.required),
             title: new FormControl(null, Validators.required),
             publisher: new FormControl(null, Validators.required),
-            country: new FormControl(null, Validators.required),
+            // country: new FormControl(null, Validators.required),
             language: new FormControl(null, Validators.required),
-            pageCount: new FormControl(null, Validators.required),
+            numberPage: new FormControl(null, Validators.required),
             publishedDate: new FormControl(null, Validators.required),
-            averageRating: new FormControl(null, Validators.required),
+            description: new FormControl(null, Validators.required),
+            // averageRating: new FormControl(null, Validators.required),
             // image: new FormControl(null, Validators.required),
             // searchInfo: new FormControl(null, Validators.required),
             authors: this.formBuilder.array([])
@@ -91,20 +93,37 @@ export class BookFormComponent implements OnInit {
         }
     }
 
-    private _filterAuthors(value: string): string[] {
+    private _filterAuthors(value: string): Author[] {
         const filterValue = value.toLowerCase();
-        return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+        return this.options.filter(option => option.name?.toLowerCase().indexOf(filterValue) === 0);
     }
 
     getAuthors(index: number) {
+        this.authorService.getAll().subscribe(authors => {
+            this.options = authors;
+            this.filteredOptions[index] = this.authors.at(index).get('name').valueChanges
+                .pipe(
+                    startWith(''),
+                    map((value) => {
+                        if (this._filterAuthors(value).length <= 0) {
+                            this.authors.at(index).get('id').setValue('');
+                        }
+                        return this._filterAuthors(value);
+                    })
+                );
+        });
 
-        this.options = ['Monteiro Lobato', 'Gabriel García Márquez', 'Test teste teste'];
 
-        this.filteredOptions[index] = this.authors.at(index).get('name').valueChanges
-            .pipe(
-                startWith(''),
-                map(value => value ? this._filterAuthors(value) : this.options.slice())
-            );
+    }
+
+    resetOption(index: number): void {
+        this.authors.at(index).get('id').setValue('');
+        this.authors.at(index).get('name').setValue('');
+    }
+
+    selectOption(index: number, option) {
+        console.log(option);
+        this.authors.at(index).get('id').setValue(option.id);
     }
 
     onFileChanged(event) {
@@ -116,20 +135,23 @@ export class BookFormComponent implements OnInit {
         }
 
     }
+
     convertToBook() {
-        this.book.isbn10 = this.formBook.get('isbn').value;
+        this.book.isbn10 = this.formBook.get('isbn10').value;
         this.book.authors = [];
         this.book.title = this.formBook.get('title').value;
         this.book.language = this.formBook.get('language').value;
-        this.book.numberPage = this.formBook.get('pageCount').value;
+        this.book.numberPage = this.formBook.get('numberPage').value;
         this.book.publishedDate = this.formBook.get('publishedDate').value;
         this.book.publisher = this.formBook.get('publisher').value;
         this.book.authors = this.authors.value;
         this.book.description = 'dsfasdfsafadsf';
     }
+
     saveBook() {
-        this.convertToBook();
-        this.bookService.save(this.book).subscribe( book => {
+        console.log(this.book)
+        console.log(this.formBook.value)
+        this.bookService.save(this.formBook.value).subscribe(book => {
             console.log(book);
         });
     }
