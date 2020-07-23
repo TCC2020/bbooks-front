@@ -42,7 +42,7 @@ export class CarrouselComponent implements OnInit, OnDestroy {
         nav: true
     };
 
-    books: any[] = [];
+    books: Book[] = [];
 
     @Input() genre: string;
 

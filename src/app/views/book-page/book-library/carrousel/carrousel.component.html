@@ -12,8 +12,10 @@
                     <img [src]=book.image alt="Avatar" class="image" style="width:100%"
                          [routerLink]="['/book/view', book.id]">
                     <div class="faixa" *ngIf="this.userBook">
-                        <mat-icon *ngIf="book.status === bookStatus.LENDO">turned_in</mat-icon>
-                        <mat-icon *ngIf="book.status === bookStatus.LIDOS">verified</mat-icon>
+                        <mat-icon *ngIf="book.status === bookStatus.LIDOS" class="iconStatusLidos">turned_in</mat-icon>
+                        <mat-icon *ngIf="book.status === bookStatus.LENDO" class="iconStatusLendo">turned_in</mat-icon>
+                        <mat-icon *ngIf="book.status === bookStatus.ABANDONADO" class="iconStatusAbandonado">turned_in</mat-icon>
+                        <mat-icon *ngIf="book.status === bookStatus.PARA_LER" class="iconStatusAler">turned_in</mat-icon>
                     </div>
                     <div class="middle">
                         <div fxLayout="row" fxLayoutAlign="end center">

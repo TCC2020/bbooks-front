@@ -1,11 +1,13 @@
 export enum BookStatus {
     LENDO = 0,
     LIDOS = 1,
-    A_lER = 2
+    PARA_LER = 2,
+    ABANDONADO = 3
 }
 
-export const mapOptionMenu = new Map<BookStatus, string>([
+export const mapBookStatus = new Map<BookStatus, string>([
     [BookStatus.LENDO, 'lendo'],
     [BookStatus.LIDOS, 'lidos'],
-    [BookStatus.A_lER, 'aler']
+    [BookStatus.PARA_LER, 'para ler'],
+    [BookStatus.ABANDONADO, 'abandonado']
 ]);

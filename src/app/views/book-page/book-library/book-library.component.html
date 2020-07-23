@@ -1,12 +1,25 @@
-<div fxLayout="row" fxLayoutAlign="end center" >
-    <div fxLayout="row"  fxLayoutGap="1px">
-        <span>Lendo</span>
-        <mat-icon class="iconColor">turned_in</mat-icon>
-    </div>
-    <div fxLayout="row"  fxLayoutGap="2px">
-        <span>Lidos</span>
-        <mat-icon  class="iconColor">verified</mat-icon>
-    </div>
+<div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>help_outline</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <div mat-menu-item disabled >
+            <mat-icon class="iconStatusLidos">turned_in</mat-icon>
+            <span>Lidos</span>
+        </div>
+        <div mat-menu-item disabled >
+            <mat-icon class="iconStatusLendo" >turned_in</mat-icon>
+            <span>Lendo</span>
+        </div>
+        <div mat-menu-item disabled >
+            <mat-icon class="iconStatusAler">turned_in</mat-icon>
+            <span>Para ler</span>
+        </div>
+        <div mat-menu-item disabled >
+            <mat-icon class="iconStatusAbandonado">turned_in</mat-icon>
+            <span>Abandonado</span>
+        </div>
+    </mat-menu>
 </div>
 <div *ngFor="let genre of genres">
     <app-carrousel [genre]="genre"></app-carrousel>

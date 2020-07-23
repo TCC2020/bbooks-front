@@ -56,10 +56,22 @@
   color: #757575;
 }
 .faixa{
-  color: #36BF7F;
   transition: .5s ease;
   opacity: 1;
   position: absolute;
   top: 0%;
   left: 0%;
 }
+.iconStatusLendo {
+  color: darkorange;
+}
+.iconStatusLidos{
+  color: #36BF7F;
+}
+.iconStatusAler{
+  color: bisque;
+}
+.iconStatusAbandonado{
+  color: darkred;
+}
+

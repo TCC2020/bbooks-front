@@ -31,14 +31,11 @@
   left: 75%;
 }
 .faixa{
-  //background-color: #36BF7F;
-  color: #36BF7F;
   transition: .5s ease;
   opacity: 1;
   position: absolute;
   top: 0%;
   left: 0%;
-  //border-radius: 0px 2px 3px 3px;
 }
 .container:hover .image {
   opacity: 0.3;
@@ -84,4 +81,17 @@
 
 .iconColor {
   color: #36BF7F;
+}
+
+.iconStatusLendo {
+  color: darkorange;
+}
+.iconStatusLidos{
+  color: #36BF7F;
+}
+.iconStatusAler{
+  color: bisque;
+}
+.iconStatusAbandonado{
+  color: darkred;
 }

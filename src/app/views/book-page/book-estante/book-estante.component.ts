@@ -1,15 +1,19 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl} from '@angular/forms';
 import {GoogleBooksService} from '../../../services/google-books.service';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {BookService} from "../../../services/book.service";
 import {BookCase} from "../../../models/bookCase.model";
 import {Book} from "../../../models/book.model";
 import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {BookStatus} from "../../../models/enums/BookStatus.enum";
+import {BookStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
+import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {map, startWith} from "rxjs/operators";
+import {MatChipInputEvent} from "@angular/material/chips";
 
 @Component({
     selector: 'app-book-estante',
@@ -20,12 +24,23 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
     books;
     bookCase: BookCase = new BookCase();
     search;
-    bookStatusFilter: string[] = ['lidos', 'lendo', 'a ler'];
     inscricao: Subscription;
     deviceXs;
     mediaSub: Subscription;
     userBook: boolean;
     bookStatus = BookStatus;
+
+    visible = true;
+    selectable = true;
+    removable = true;
+    separatorKeysCodes: number[] = [ENTER, COMMA];
+    filterCtrl = new FormControl();
+    filteredElements: Observable<BookStatus[]>;
+    filter: BookStatus[] = [];
+    allStatus: BookStatus[] = [BookStatus.LENDO, BookStatus.PARA_LER, BookStatus.ABANDONADO, BookStatus.LIDOS];
+
+    @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+    @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
     constructor(
         private fb: FormBuilder,
@@ -36,6 +51,8 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         private router: Router,
         private gBooksService: GoogleBooksService,
     ) {
+        this.filteredElements = this.filterCtrl.valueChanges.pipe(
+            map((status: string | null) => status ? this._filter(status) : this.allStatus));
     }
 
     ngOnInit(): void {
@@ -61,18 +78,6 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
 
     }
 
-    filterBooks() {
-        if (this.search === undefined || this.search.trim() === null) {
-            return this.books;
-        }
-        return this.books.filter((book) => {
-            if (book.title.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) !== -1) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-    }
 
     ngOnDestroy(): void {
         this.inscricao.unsubscribe();
@@ -92,9 +97,98 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
             this.books = this.bookCase.books;
         });
     }
+
     verifyrouter(): boolean {
         return this.router.url.includes('my');
     }
 
+    add(event: MatChipInputEvent): void {
+        const input = event.input;
+        const value = event.value;
 
+        // Add our fruit
+        if ((value || '')) {
+            this.filter.push();
+        }
+
+        // Reset the input value
+        if (input) {
+            input.value = '';
+        }
+
+        this.filterCtrl.setValue(null);
+    }
+
+    remove(status: BookStatus): void {
+        const index = this.filter.indexOf(status);
+        this.allStatus.push(status);
+        if (index >= 0) {
+            this.filter.splice(index, 1);
+        }
+    }
+
+    selected(event: MatAutocompleteSelectedEvent): void {
+        this.filter.push(event.option.value);
+        this.allStatus = this.allStatus.filter(status => status !== event.option.value)
+        this.fruitInput.nativeElement.value = '';
+        this.filterCtrl.setValue(null);
+    }
+
+    private _filter(value: string): BookStatus[] {
+        return this.allStatus.filter(status => this.getStatusText(status).toLowerCase().indexOf(value) === 0);
+    }
+
+    private statusFilter(): BookStatus[] {
+        if (this.filter.length <= 0) {
+            return this.allStatus;
+        }
+        let result = [];
+        for (let s of this.filter) {
+            result =  this.allStatus.filter((status) => {
+                if (status === s) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+        }
+
+        return result;
+    }
+    filterBooks(): Book[] {
+        if (this.search === undefined || this.search.trim() === null) {
+            return this.filterStatus();
+        }
+        let books = this.filterStatus().filter((book) => {
+            if (book.title.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) !== -1) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        return books;
+    }
+
+    filterStatus(): Book[] {
+        if (this.filter.length <= 0) {
+            return this.books;
+        }
+        let books = [];
+        this.books.filter((book) => {
+            for (const status of this.filter) {
+                if (status === book.status) {
+                    books.push(book);
+                }
+            }
+        });
+        return books;
+    }
+
+    private getKeys(): BookStatus[] {
+        return Array.from(mapBookStatus.keys());
+    }
+
+    public getStatusText(id: BookStatus): string {
+        return mapBookStatus.get(id);
+    }
 }

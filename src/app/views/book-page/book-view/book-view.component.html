@@ -1,61 +1,61 @@
-<div fxLayout="row" fxLayoutAlign="space-around center">
-    <mat-card class="card" fxLayout.xs="column"  fxLayout.xs ="fxFlex">
-        <mat-card-content>
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
-                <div  fxFlex="35">
-                    <img class="cardImage" src="{{book.image}}">
-                </div>
-                <div fxFlex fxFlexOffset="1">
-                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                        <h2>{{book.title}}</h2>
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayout.xs="column">
+    <div>
+        <mat-card class="card">
+            <mat-card-content>
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+                    <div>
+                        <img class="cardImage" src="{{book.image}}">
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxFlex="30">
-                             {{stringAuthors}}
+                    <div fxFlexOffset="1" fxLayout.xs="column">
+                        <div fxLayout="row" fxLayoutAlign="space-around center">
+                            <h2>{{book.title}}</h2>
                         </div>
-                        <div>
-                            <app-rating *ngFor="let star  of stars;" [idStar]="star"
-                                        [rating]="this.book.averageRating"></app-rating>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxFlex="40">
+                                {{stringAuthors}}
+                            </div>
+                            <div>
+                                <app-rating *ngFor="let star  of stars;" [idStar]="star"
+                                            [rating]="this.book.averageRating"></app-rating>
+                            </div>
                         </div>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="end center">
-                        <button type="button" mat-flat-button color="accent" (click)="openDialogAddBook(book,  null)">
-                            Adicionar a Estante
-                        </button>
-                    </div>
+                        <div fxLayout="row" fxLayoutAlign="end center">
+                            <button type="button" mat-flat-button color="accent"
+                                    (click)="openDialogAddBook(book,  null)">
+                                Adicionar a Estante
+                            </button>
+                        </div>
 
-                </div>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="space-around center">
-                <p class="description">{{book.description}}</p>
-            </div>
-            <mat-list>
-                <mat-divider></mat-divider>
-                <mat-list-item>OUTRAS INFORMAÇÕES</mat-list-item>
-                <div fxLayout="row" fxLayoutAlign="space-around center">
-                    <div fxFlex="20"> <strong>Editora</strong></div>
-                    <div fxFlex="20"> <strong>Publicado em</strong> </div>
-                    <div fxFlex="20"> <strong>Páginas</strong> </div>
+                    </div>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-around center">
-                    <div fxFlex="20">  <p> {{book.publisher}}</p></div>
-                    <div fxFlex="20"> <p> {{book.publishedDate}}</p></div>
-                    <div fxFlex="20">  <p> {{book.numberPage}}</p> </div>
+                    <p class="description">{{book.description}}</p>
                 </div>
-                <div fxLayout="row" fxLayoutAlign="space-around center">
-                    <div fxFlex="20"> <strong>Idioma</strong></div>
-                    <div fxFlex="20"> <strong>Avaliação</strong> </div>
-                    <div fxFlex="20"> </div>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="space-around center">
-                    <div fxFlex="20">  <p> {{book.language}}</p></div>
-                    <div fxFlex="20"> <p> {{book.averageRating}}</p></div>
-                    <div fxFlex="20">  </div>
-                </div>
-            </mat-list>
-        </mat-card-content>
-    </mat-card>
-</div>
-<div fxLayout="column" fxLayoutAlign="space-around center">
-    <div></div>
+                <mat-list>
+                    <mat-divider></mat-divider>
+                    <mat-list-item>OUTRAS INFORMAÇÕES</mat-list-item>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div fxFlex="20"><strong>Editora</strong></div>
+                        <div fxFlex="20"><strong>Publicado em</strong></div>
+                        <div fxFlex="20"><strong>Páginas</strong></div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div fxFlex="20"><p> {{book.publisher}}</p></div>
+                        <div fxFlex="20"><p> {{book.publishedDate}}</p></div>
+                        <div fxFlex="20"><p> {{book.numberPage}}</p></div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div fxFlex="20"><strong>Idioma</strong></div>
+                        <div fxFlex="20"><strong>Avaliação</strong></div>
+                        <div fxFlex="20"></div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div fxFlex="20"><p> {{book.language}}</p></div>
+                        <div fxFlex="20"><p> {{book.averageRating}}</p></div>
+                        <div fxFlex="20"></div>
+                    </div>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

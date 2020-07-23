@@ -66,6 +66,8 @@ export class BookService {
         this.getBookCaseByDescription(description.toLowerCase()).books = books;
     }
 
+    i = 0;
+
     convertBookToModel(book: any): Book {
         const b = new Book();
         b.id = book.id;
@@ -81,7 +83,23 @@ export class BookService {
         b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
         b.description = book.volumeInfo.description;
         b.authors = this.convertAuthorToModel(book.volumeInfo.authors);
-        b.status = BookStatus.LENDO;
+        if (this.i === 0) {
+            b.status = BookStatus.LIDOS;
+        }
+        if (this.i === 1) {
+            b.status = BookStatus.ABANDONADO;
+        }
+        if (this.i === 2) {
+            b.status = BookStatus.PARA_LER;
+        }
+        if (this.i === 3) {
+            b.status = BookStatus.LENDO;
+        }
+        if (this.i === 4) {
+            b.status = null;
+            this.i = 0;
+        }
+        this.i ++;
         return b;
     }
 
