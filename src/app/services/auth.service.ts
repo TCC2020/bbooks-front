@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SocialAuthService } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
+import {UserTO} from "../models/userTO.model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,9 @@ export class AuthService {
 
   login(loginTO) {
     return this.http.post(this.api + 'login', loginTO);
+  }
+  saveByGoogle(userTO: UserTO) {
+    return this.http.post(this.api + 'login/google', userTO);
   }
 
   sendResetPassEmail(dto) {
