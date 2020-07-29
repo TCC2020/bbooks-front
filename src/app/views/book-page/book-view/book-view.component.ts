@@ -23,23 +23,16 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        private bookService: BookService,
-        private gBookService: GoogleBooksService,
         public dialog: MatDialog
     ) {
     }
 
     ngOnInit(): void {
-
-        this.inscricao = this.route.params.subscribe(params => {
-            const id = params['id'];
-            this.gBookService.getById(id).subscribe(value => {
-                this.book = this.bookService.convertBookToModel(value);
+        this.inscricao = this.route.data.subscribe((book) => {
+            if (book) {
+                this.book = book.book;
                 this.stringAuthors = this.convertAuthorsToString();
-                // this.book.image = this.book.image.slice(0, this.book.image.length - 1);
-                // this.book.image = this.book.image + '2';
-                // console.log(this.book.image)
-            });
+            }
         });
     }
 
@@ -51,6 +44,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
         const namesAuthors = this.book.authors.map(value => value.name);
         return namesAuthors.toString();
     }
+
     openDialogAddBook(book: Book, bookcase: string) {
         const dialogRef = this.dialog.open(BookAddDialogComponent, {
             height: '450px',

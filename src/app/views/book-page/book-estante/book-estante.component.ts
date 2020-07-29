@@ -61,19 +61,10 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         });
         this.userBook = this.router.url.includes('my');
 
-        this.inscricao = this.route.params.subscribe(params => {
-            let bookcase = params['bookcase'];
-            if (this.userBook) {
-                this.bookCase = this.bookService.getBookCaseByDescription(bookcase);
-                if (this.bookCase) {
-                    this.books = this.bookCase.books;
-                }
-            } else {
-                this.gBooksService.searchByName(bookcase).subscribe(books => {
-                    this.books = this.bookService.convertBookToBookList(books['items']);
-                });
-            }
-
+        this.inscricao = this.route.data.subscribe((data: {bookcase: BookCase}) => {
+            this.bookCase = data.bookcase;
+            this.books = data.bookcase.books;
+            console.log(data.bookcase);
         });
 
     }
