@@ -23,7 +23,7 @@ const bookRoutes: Routes = [
                 resolve: {bookcase: BookEstanteResolve}
             },
             {
-                path: 'view/:id', component: BookViewComponent,
+                path: ':id', component: BookViewComponent,
                 resolve: {book: BookViewResolve}
             },
             {path: 'new', component: BookFormComponent},

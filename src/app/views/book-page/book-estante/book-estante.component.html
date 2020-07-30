@@ -12,7 +12,7 @@
                     [selectable]="selectable"
                     [removable]="removable"
                     (removed)="remove(element)">
-                {{getStatusText(element) | titlecase}}
+                {{element | titlecase}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
             <input
@@ -26,7 +26,7 @@
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
             <mat-option *ngFor="let status of filteredElements | async" [value]="status">
-                {{getStatusText(status) | titlecase}}
+                {{status | titlecase}}
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
@@ -37,11 +37,11 @@
         <div class="container">
             <img [src]=book.image alt="Avatar" class="image" style="width:100%" [routerLink]="['/book/view', book.id]">
             <div class="faixa" *ngIf="this.userBook">
-                <mat-icon *ngIf="book.status === bookStatus.LIDOS" class="iconStatusLidos">turned_in</mat-icon>
-                <mat-icon *ngIf="book.status === bookStatus.LENDO" class="iconStatusLendo">turned_in</mat-icon>
-                <mat-icon *ngIf="book.status === bookStatus.ABANDONADO" class="iconStatusAbandonado">turned_in
+                <mat-icon *ngIf="book.status === bookStatus.LENDO" class="iconStatusLidos">turned_in</mat-icon>
+                <mat-icon *ngIf="book.status === bookStatus.QUERO_LER" class="iconStatusLendo">turned_in</mat-icon>
+                <mat-icon *ngIf="book.status === bookStatus.EMPRESTADO" class="iconStatusAbandonado">turned_in
                 </mat-icon>
-                <mat-icon *ngIf="book.status === bookStatus.PARA_LER" class="iconStatusAler">turned_in</mat-icon>
+                <mat-icon *ngIf="book.status === bookStatus.LIDO" class="iconStatusAler">turned_in</mat-icon>
             </div>
             <div class="middle">
                 <div fxLayout="row" fxLayoutAlign="end center">

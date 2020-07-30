@@ -5,11 +5,12 @@ import { AuthGuard } from './auth-guard';
 import { tap } from 'rxjs/operators';
 import { LoaderService } from '../services/loader.service';
 import { environment } from 'src/environments/environment';
+import {AuthService} from "../services/auth.service";
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
 
-  constructor(private auth: AuthGuard, private loader: LoaderService) { }
+  constructor(private auth: AuthService, private loader: LoaderService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.includes(environment.api)) {

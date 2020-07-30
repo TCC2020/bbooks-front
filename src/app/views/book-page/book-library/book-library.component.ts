@@ -22,7 +22,7 @@ export class BookLibraryComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.router.url.includes('my')) {
-            this.genres = this.bookService.getBookCase().map(value => value.description);
+            this.genres = ['lendo'];
         } else {
             this.genres = ['ficção', 'classicos', 'romance', 'literatura'];
         }

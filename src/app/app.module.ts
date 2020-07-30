@@ -36,7 +36,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
         CadastroComponent,
         CadastroSegundaEtapaComponent,
         RecuperarSenhaComponent,
-        NovaSenhaComponent
+        NovaSenhaComponent,
     ],
     imports: [
         BrowserModule,
@@ -53,7 +53,8 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
         MatInputModule,
         SocialLoginModule
     ],
-    providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
+    providers: [
+        AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
         {
             provide: ErrorStateMatcher,
             useClass: ShowOnDirtyErrorStateMatcher,

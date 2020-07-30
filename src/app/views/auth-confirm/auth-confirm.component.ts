@@ -4,6 +4,7 @@ import { AuthConfirmService} from '../../services/auth-confirm.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { AuthGuard } from 'src/app/guards/auth-guard';
 import { Router } from '@angular/router';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-auth-confirm',
@@ -16,7 +17,7 @@ export class AuthConfirmComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private AuthConfirmService: AuthConfirmService,
-    private authGuard: AuthGuard,
+    private authService: AuthService,
     private router: Router
   ) {
     this.confirmControl = this.fb.group({
@@ -32,7 +33,7 @@ export class AuthConfirmComponent implements OnInit {
   confirm(): void {
     this.confirmControl.value.password = Md5.hashStr(this.confirmControl.value.password);
     this.AuthConfirmService.confirm(this.confirmControl.value).subscribe(res => {
-      this.authGuard.login(res, this.confirmControl.value.keepLogin);
+      this.authService.authenticate(res, this.confirmControl.value.keepLogin);
       this.router.navigateByUrl('/');
     },
       (err) => {

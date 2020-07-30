@@ -8,7 +8,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {Book} from "../../../../models/book.model";
 import {BookAddDialogComponent} from "../../book-add-dialog/book-add-dialog.component";
 import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {BookStatus} from "../../../../models/enums/BookStatus.enum";
+import {BookStatus, mapBookStatus} from "../../../../models/enums/BookStatus.enum";
+import {UserbookService} from "../../../../services/userbook.service";
 
 @Component({
     selector: 'app-carrousel',
@@ -56,8 +57,9 @@ export class CarrouselComponent implements OnInit, OnDestroy {
         private gBooksService: GoogleBooksService,
         private router: Router,
         private bookService: BookService,
+        private userbookService: UserbookService,
         public dialog: MatDialog,
-        public mediaObserver: MediaObserver
+        public mediaObserver: MediaObserver,
     ) {
     }
 
@@ -99,7 +101,25 @@ export class CarrouselComponent implements OnInit, OnDestroy {
     }
 
     getAllBooks() {
-        this.books = this.bookService.getBookCase().find(value => value.description === this.genre).books;
+        this.bookService.getAllBooks().subscribe(value => {
+            this.books = value;
+        });
+
+    }
+
+    changeStatusBook(bookStatus: BookStatus, id: number, book: Book) {
+        let userBookUpdateStatusTO = {
+            'id': id,
+            status: mapBookStatus.get(bookStatus)
+        };
+        console.log(userBookUpdateStatusTO);
+        this.userbookService.changeStatus(userBookUpdateStatusTO).subscribe(value => {
+                console.log(value);
+                this.books[this.books.indexOf(book)].status = value.status;
+            },
+            error => {
+                console.log(error);
+            });
     }
 
     verifyrouter(): boolean {

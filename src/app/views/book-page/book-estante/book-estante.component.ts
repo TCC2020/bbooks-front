@@ -9,7 +9,7 @@ import {Book} from "../../../models/book.model";
 import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {BookStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
+import {BookStatus, getArrayStatus} from "../../../models/enums/BookStatus.enum";
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map, startWith} from "rxjs/operators";
@@ -37,7 +37,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
     filterCtrl = new FormControl();
     filteredElements: Observable<BookStatus[]>;
     filter: BookStatus[] = [];
-    allStatus: BookStatus[] = [BookStatus.LENDO, BookStatus.PARA_LER, BookStatus.ABANDONADO, BookStatus.LIDOS];
+    allStatus: BookStatus[] = getArrayStatus()
 
     @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
     @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -126,7 +126,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
     }
 
     private _filter(value: string): BookStatus[] {
-        return this.allStatus.filter(status => this.getStatusText(status).toLowerCase().indexOf(value) === 0);
+        return this.allStatus.filter(status => status.toLowerCase().indexOf(value) === 0);
     }
 
     private statusFilter(): BookStatus[] {
@@ -175,11 +175,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         return books;
     }
 
-    private getKeys(): BookStatus[] {
-        return Array.from(mapBookStatus.keys());
-    }
-
-    public getStatusText(id: BookStatus): string {
-        return mapBookStatus.get(id);
-    }
+    // public getStatusText(id: BookStatus): string {
+    //     return mapBookStatus.get(id);
+    // }
 }

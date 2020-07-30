@@ -19,8 +19,6 @@ export class BookViewResolve implements Resolve<Book> {
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
         const id = route.params['id'];
-        this.gBookService.getById(id).subscribe(value => {
-            return this.bookService.convertBookToModel(value);
-        });
+        return this.gBookService.getById(id);
     }
 }

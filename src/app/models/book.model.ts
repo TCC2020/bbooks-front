@@ -15,4 +15,5 @@ export class Book {
     image: string;
     description: string;
     status: BookStatus;
+    idUserBook: number;
 }

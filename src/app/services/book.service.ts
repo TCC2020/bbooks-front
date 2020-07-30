@@ -7,6 +7,10 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Author} from "../models/author.model";
 import {BookStatus} from "../models/enums/BookStatus.enum";
+import {UserbookService} from "./userbook.service";
+import {AuthGuard} from "../guards/auth-guard";
+import { of } from "rxjs";
+import {AuthService} from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -14,35 +18,37 @@ import {BookStatus} from "../models/enums/BookStatus.enum";
 export class BookService {
 
     bookcases: BookCase[] = [];
-    bookCase1: BookCase = new BookCase();
-    bookCase2: BookCase = new BookCase();
+
     books: any[];
 
     api = environment.api + 'books';
 
     constructor(
         private gBooksService: GoogleBooksService,
-        private http: HttpClient
+        private http: HttpClient,
+        private userbookService: UserbookService,
+        private authGuard: AuthService
     ) {
-        this.bookCase1.books = [];
-        this.bookCase2.books = [];
-        this.bookCase1.description = 'romance';
-        this.gBooksService.searchByName(this.bookCase1.description).subscribe(books => {
-            this.books = books['items'];
-            this.bookCase1.books = this.books.map(value => this.convertBookToModel(value));
-            this.bookcases.push(this.bookCase1);
-        });
-
-        this.bookCase2.description = 'literatura';
-        this.gBooksService.searchByName(this.bookCase2.description).subscribe(books => {
-            this.books = books['items'];
-            this.bookCase2.books = this.books.map(value => this.convertBookToModel(value));
-            this.bookcases.push(this.bookCase2);
-        });
     }
 
-    getBookCase() {
-        return this.bookcases;
+    getAllUserBooks() {
+        return this.userbookService.getAllByProfile(this.authGuard.getUser().profile.id);
+    }
+
+    getAllBooks(): Observable<any> {
+        const result = [];
+        this.getAllUserBooks().subscribe(userBook => {
+            userBook.books.forEach(realation => {
+                this.gBooksService.getById(realation.idBook).subscribe(book => {
+                    const b = this.convertBookToModel(book);
+                    b.idUserBook = realation.id;
+                    b.status = realation.status;
+                    result.push(b);
+                });
+            });
+
+        });
+        return of(result);
     }
 
     getBookCaseDescritption() {
@@ -66,8 +72,6 @@ export class BookService {
         this.getBookCaseByDescription(description.toLowerCase()).books = books;
     }
 
-    i = 0;
-
     convertBookToModel(book: any): Book {
         const b = new Book();
         b.id = book.id;
@@ -83,23 +87,6 @@ export class BookService {
         b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
         b.description = book.volumeInfo.description;
         b.authors = this.convertAuthorToModel(book.volumeInfo.authors);
-        if (this.i === 0) {
-            b.status = BookStatus.LIDOS;
-        }
-        if (this.i === 1) {
-            b.status = BookStatus.ABANDONADO;
-        }
-        if (this.i === 2) {
-            b.status = BookStatus.PARA_LER;
-        }
-        if (this.i === 3) {
-            b.status = BookStatus.LENDO;
-        }
-        if (this.i === 4) {
-            b.status = null;
-            this.i = 0;
-        }
-        this.i ++;
         return b;
     }
 
@@ -110,6 +97,7 @@ export class BookService {
     save(book: Book): Observable<any> {
         return this.http.post(this.api, book);
     }
+
     convertAuthorToModel(authors: any[]): Author[] {
         const result = new Array<Author>();
         if (authors) {
@@ -123,7 +111,7 @@ export class BookService {
         return result;
     }
 
-    getBookById(id: string) {
+    getBookById(id: string): any {
 
     }
 }

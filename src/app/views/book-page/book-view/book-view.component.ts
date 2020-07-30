@@ -6,7 +6,6 @@ import {BookService} from "../../../services/book.service";
 import {MatDialog} from "@angular/material/dialog";
 import {GoogleBooksService} from "../../../services/google-books.service";
 import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
-import {BookStatus} from "../../../models/enums/BookStatus.enum";
 
 @Component({
     selector: 'app-book-view',
@@ -23,16 +22,19 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
     constructor(
         private route: ActivatedRoute,
-        public dialog: MatDialog
+        public dialog: MatDialog,
+        private gBookService: GoogleBooksService,
+        private bookService: BookService
     ) {
     }
 
     ngOnInit(): void {
-        this.inscricao = this.route.data.subscribe((book) => {
-            if (book) {
-                this.book = book.book;
+        this.inscricao = this.route.params.subscribe(params => {
+            const id = params['id'];
+            this.gBookService.getById(id).subscribe(value => {
+                this.book = this.bookService.convertBookToModel(value);
                 this.stringAuthors = this.convertAuthorsToString();
-            }
+            });
         });
     }
 

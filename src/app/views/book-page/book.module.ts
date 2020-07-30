@@ -20,9 +20,9 @@ import {CarrouselComponent} from "./book-library/carrousel/carrousel.component";
 import {BookAddDialogComponent} from "./book-add-dialog/book-add-dialog.component";
 import {BookViewComponent} from "./book-view/book-view.component";
 import {RatingComponent} from "../../components/rating/rating.component";
-import {MatIconModule} from "@angular/material/icon";
 import {BookEstanteResolve} from "./guards/book-estante.resolve";
 import {BookViewResolve} from "./guards/book-view.resolve";
+import {CarrouselResolve} from "./guards/carrousel.resolve";
 
 
 @NgModule({
@@ -58,9 +58,8 @@ import {BookViewResolve} from "./guards/book-view.resolve";
         // BookcaseModalComponent
     ],
     providers: [
-        AuthGuard,
-        {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
         BookEstanteResolve,
+        CarrouselResolve,
         BookViewResolve
     ],
     bootstrap: [BookPageComponent],
