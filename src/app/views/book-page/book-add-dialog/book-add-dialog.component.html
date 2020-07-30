@@ -21,20 +21,20 @@
         <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
             <mat-form-field appearance="fill">
                 <mat-label>Estante</mat-label>
-                <mat-select formControlName="bookcase">
+                <mat-select formControlName="statusBook">
                     <mat-option *ngFor="let bookcase of bookCases" [value]="bookcase">
-                        {{bookcase | titlecase}}
+                        {{mapStatus.get(bookcase) | titlecase}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <button type="button" mat-raised-button color="primary"
+            <button type="button" mat-flat-button color="accent"
                     [disabled]="formBook.invalid"
                     (click)="saveBook()"
                     mat-button [mat-dialog-close]>
                 {{this.buttonText}}
             </button>
         </div>
-        <mat-error *ngIf="formBook.controls['bookcase'].hasError('required')">
+        <mat-error *ngIf="formBook.controls['statusBook'].hasError('required')">
             Escolha uma estante
         </mat-error>
 

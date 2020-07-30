@@ -5,6 +5,12 @@ import {GoogleBooksService} from "./google-books.service";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Author} from "../models/author.model";
+import {BookStatus} from "../models/enums/BookStatus.enum";
+import {UserbookService} from "./userbook.service";
+import {AuthGuard} from "../guards/auth-guard";
+import { of } from "rxjs";
+import {AuthService} from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -12,35 +18,37 @@ import {Observable} from "rxjs";
 export class BookService {
 
     bookcases: BookCase[] = [];
-    bookCase1: BookCase = new BookCase();
-    bookCase2: BookCase = new BookCase();
+
     books: any[];
 
     api = environment.api + 'books';
 
     constructor(
         private gBooksService: GoogleBooksService,
-        private http: HttpClient
+        private http: HttpClient,
+        private userbookService: UserbookService,
+        private authGuard: AuthService
     ) {
-        this.bookCase1.books = [];
-        this.bookCase2.books = [];
-        this.bookCase1.description = 'romance';
-        this.gBooksService.searchByName(this.bookCase1.description).subscribe(books => {
-            this.books = books['items'];
-            this.bookCase1.books = this.books.map(value => this.convertBookToModel(value));
-            this.bookcases.push(this.bookCase1);
-        });
-
-        this.bookCase2.description = 'literatura';
-        this.gBooksService.searchByName(this.bookCase2.description).subscribe(books => {
-            this.books = books['items'];
-            this.bookCase2.books = this.books.map(value => this.convertBookToModel(value));
-            this.bookcases.push(this.bookCase2);
-        });
     }
 
-    getBookCase() {
-        return this.bookcases;
+    getAllUserBooks() {
+        return this.userbookService.getAllByProfile(this.authGuard.getUser().profile.id);
+    }
+
+    getAllBooks(): Observable<any> {
+        const result = [];
+        this.getAllUserBooks().subscribe(userBook => {
+            userBook.books.forEach(realation => {
+                this.gBooksService.getById(realation.idBook).subscribe(book => {
+                    const b = this.convertBookToModel(book);
+                    b.idUserBook = realation.id;
+                    b.status = realation.status;
+                    result.push(b);
+                });
+            });
+
+        });
+        return of(result);
     }
 
     getBookCaseDescritption() {
@@ -78,7 +86,7 @@ export class BookService {
         b.image = book.volumeInfo.imageLinks.thumbnail;
         b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
         b.description = book.volumeInfo.description;
-        b.authors = book.volumeInfo.authors;
+        b.authors = this.convertAuthorToModel(book.volumeInfo.authors);
         return b;
     }
 
@@ -90,7 +98,20 @@ export class BookService {
         return this.http.post(this.api, book);
     }
 
-    getBookById(id: string) {
+    convertAuthorToModel(authors: any[]): Author[] {
+        const result = new Array<Author>();
+        if (authors) {
+            authors.map((name) => {
+                const a = new Author();
+                a.name = name;
+                result.push(a);
+            });
+        }
+
+        return result;
+    }
+
+    getBookById(id: string): any {
 
     }
 }

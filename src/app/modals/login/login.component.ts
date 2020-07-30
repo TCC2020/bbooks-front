@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
                 userTO.password = this.user.id;
 
                 this.authService.saveByGoogle(userTO).subscribe(res => {
-                    this.authGuard.login(res, this.loginControl.value.keepLogin);
+                    this.authService.authenticate(res, this.loginControl.value.keepLogin);
                     this.router.navigateByUrl('/');
                 });
             }
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     login(): void {
         this.loginControl.value.password = Md5.hashStr(this.loginControl.value.password);
         this.authService.login(this.loginControl.value).subscribe(res => {
-                this.authGuard.login(res, this.loginControl.value.keepLogin);
+                this.authService.authenticate(res, this.loginControl.value.keepLogin);
                 this.router.navigateByUrl('/');
             },
             (err) => {

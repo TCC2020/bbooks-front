@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {BookService} from "../../../services/book.service";
 import {MatDialog} from "@angular/material/dialog";
 import {GoogleBooksService} from "../../../services/google-books.service";
+import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
 
 @Component({
     selector: 'app-book-view',
@@ -16,31 +17,45 @@ export class BookViewComponent implements OnInit, OnDestroy {
     inscricao: Subscription;
     book: Book = new Book();
     stars: number[] = [1, 2, 3, 4, 5];
-    hoverState = 0;
+    rating = 1;
+    stringAuthors: string;
 
     constructor(
         private route: ActivatedRoute,
-        private bookService: BookService,
+        public dialog: MatDialog,
         private gBookService: GoogleBooksService,
-        public dialog: MatDialog
+        private bookService: BookService
     ) {
     }
 
     ngOnInit(): void {
-
         this.inscricao = this.route.params.subscribe(params => {
             const id = params['id'];
             this.gBookService.getById(id).subscribe(value => {
                 this.book = this.bookService.convertBookToModel(value);
-                this.book.image = this.book.image.slice(0, this.book.image.length - 1);
-                this.book.image = this.book.image + '2';
-
+                this.stringAuthors = this.convertAuthorsToString();
             });
         });
     }
 
     ngOnDestroy(): void {
         this.inscricao.unsubscribe();
+    }
+
+    convertAuthorsToString(): string {
+        const namesAuthors = this.book.authors.map(value => value.name);
+        return namesAuthors.toString();
+    }
+
+    openDialogAddBook(book: Book, bookcase: string) {
+        const dialogRef = this.dialog.open(BookAddDialogComponent, {
+            height: '450px',
+            width: '400px',
+            data: {
+                book,
+                bookcase
+            }
+        });
     }
 
 }

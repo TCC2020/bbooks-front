@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
 import {AuthGuard} from '../guards/auth-guard';
 import {UserTO} from "../models/userTO.model";
+import {AuthService} from "./auth.service";
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,7 @@ import {UserTO} from "../models/userTO.model";
 export class UserService {
     api: string = environment.api + 'users/';
 
-    constructor(private http: HttpClient, private auth: AuthGuard) {
+    constructor(private http: HttpClient, private auth: AuthService) {
     }
 
     updateUserInfo() {

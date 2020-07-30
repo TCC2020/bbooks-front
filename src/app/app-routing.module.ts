@@ -7,6 +7,7 @@ import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/ca
 import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha.component';
 import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 import { LoginComponent } from './modals/login/login.component';
+import {AuthGuard} from "./guards/auth-guard";
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
     },
     {
         path: 'book',
+        canActivate: [AuthGuard],
         loadChildren: () => import('./views/book-page/book.module').then(m => m.BookModule)
     }
 ];

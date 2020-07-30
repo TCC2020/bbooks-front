@@ -13,7 +13,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     let err = new Error('Not Found');
-    err.status = 404;
+    err.filter = 404;
     next(err);
 });
 

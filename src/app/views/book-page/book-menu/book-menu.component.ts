@@ -5,7 +5,7 @@ import {BookService} from '../../../services/book.service';
 import {MatDialog} from '@angular/material/dialog';
 import {Input} from '@angular/core';
 import {BookCase} from "../../../models/bookCase.model";
-
+import {getArrayStatus} from "../../../models/enums/BookStatus.enum";
 
 @Component({
     selector: 'app-book-menu',
@@ -13,9 +13,9 @@ import {BookCase} from "../../../models/bookCase.model";
     styleUrls: ['./book-menu.component.scss']
 })
 export class BookMenuComponent implements OnInit {
-    bookcases: BookCase[];
+    bookcases = getArrayStatus();
 
-    bookcasesGbooks: BookCase[];
+    bookcasesGbooks: string[] = ['ficção', 'classicos', 'romance', 'literatura'];
 
     @Input() deviceXs: boolean;
     topVal = 0;
@@ -27,7 +27,7 @@ export class BookMenuComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.bookcases = this.bookService.getBookCase();
+
     }
     onScroll(e) {
         let scrollXs = this.deviceXs ? 55 : 73;

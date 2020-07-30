@@ -1,48 +1,81 @@
+<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="20px"
+     fxLayoutAlign.xs="space-around center">
+    <mat-form-field>
+        <mat-label>Pesquise um livro</mat-label>
+        <input matInput type="text" [(ngModel)]="search">
+        <mat-icon matSuffix mat-icon-button>search</mat-icon>
+    </mat-form-field>
+    <mat-form-field fxFlex="40" fxFlex.xs>
+        <mat-chip-list #chipList aria-label="filter selection">
+            <mat-chip
+                    *ngFor="let element of filter"
+                    [selectable]="selectable"
+                    [removable]="removable"
+                    (removed)="remove(element)">
+                {{element | titlecase}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+                    placeholder="Filtro"
+                    #fruitInput
+                    [formControl]="filterCtrl"
+                    [matAutocomplete]="auto"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let status of filteredElements | async" [value]="status">
+                {{status | titlecase}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
 
-    <div  class="example-sidenav-content" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px" fxLayout.xs="column"  >
-        <mat-form-field >
-            <mat-label>Pesquise um livro</mat-label>
-            <input matInput type="text" [(ngModel)]="search">
-            <mat-icon matSuffix mat-icon-button>search</mat-icon>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Filtro</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let optionStatus of bookStatusFilter" [value]="optionStatus">
-                    {{optionStatus}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-
-<!--<div fxLayout="row" fxLayoutAlign="start center">-->
-    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
-        <mat-card class="card" *ngFor="let book of filterBooks()">
-            <!--                    <mat-card-header>-->
-            <!--                        <div mat-card-avatar class="example-header-image" fxLayoutAlign.xs="center center"></div>-->
-            <!--                        <mat-card-title>Shiba Inu</mat-card-title>-->
-            <!--                        <mat-card-subtitle>Dog Breed</mat-card-subtitle>-->
-            <!--                    </mat-card-header>-->
-            <div class="cardImage" fxLayout="row" fxLayoutAlign="space-around center">
-                <img src="{{book.image}}">
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+    <div class="card" *ngFor="let book of filterBooks()">
+        <div class="container">
+            <img [src]=book.image alt="Avatar" class="image" style="width:100%" [routerLink]="['/book/view', book.id]">
+            <div class="faixa" *ngIf="this.userBook">
+                <mat-icon *ngIf="book.status === bookStatus.LENDO" class="iconStatusLidos">turned_in</mat-icon>
+                <mat-icon *ngIf="book.status === bookStatus.QUERO_LER" class="iconStatusLendo">turned_in</mat-icon>
+                <mat-icon *ngIf="book.status === bookStatus.EMPRESTADO" class="iconStatusAbandonado">turned_in
+                </mat-icon>
+                <mat-icon *ngIf="book.status === bookStatus.LIDO" class="iconStatusAler">turned_in</mat-icon>
             </div>
-            <hr fxLayout="row" fxLayoutAlign="space-around center"
-                style="height:2px;border-width:0;background-color:#36BF7F">
-            <mat-card-actions>
+            <div class="middle">
                 <div fxLayout="row" fxLayoutAlign="end center">
-                    <button mat-icon-button  (click)="openDialogAddBook(book,  this.bookCase.description)">
+                    <button mat-icon-button (click)="openDialogAddBook(book,  this.bookCase.description)"
+                            *ngIf="verifyrouter()">
                         <mat-icon>reply</mat-icon>
                     </button>
-                    <button mat-icon-button >
+                    <button mat-icon-button *ngIf="verifyrouter()">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <button mat-icon-button>
-                        <mat-icon>visibility</mat-icon>
-                    </button>
                 </div>
-
-            </mat-card-actions>
-        </mat-card>
+            </div>
+            <div class="middleXs" *ngIf="deviceXs">
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  null)">
+                        <mat-icon>playlist_add</mat-icon>
+                        <span>Adicionar</span>
+                    </button>
+                    <button mat-menu-item *ngIf="verifyrouter()"
+                            (click)="openDialogAddBook(book,  this.bookCase.description)">
+                        <mat-icon>reply</mat-icon>
+                        <span>Mover</span>
+                    </button>
+                    <button mat-menu-item *ngIf="verifyrouter()">
+                        <mat-icon>delete</mat-icon>
+                        <span>Apagar</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+        <p class="textImage" fxLayout="row" fxLayoutAlign="start end">{{book.title}}</p>
     </div>
-<!--</div>-->
+</div>
+

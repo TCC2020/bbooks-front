@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="start center" *ngIf="books.length > 0"  [routerLink]="[genre]">
-    <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px" >
+<div fxLayout="row" fxLayoutAlign="start center" *ngIf="books.length > 0" [routerLink]="[ routerlink ,genre]">
+    <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px">
         <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{genre | titlecase}}</span>
         <mat-icon class="iconColor" fxFlexOffset="10">arrow_forward</mat-icon>
     </div>
@@ -8,20 +8,80 @@
     <ng-container *ngFor="let book of books">
         <ng-template carouselSlide>
             <div class="card">
-                <img class="cardImage"  [src]=book.image [routerLink]="['/book/view', book.id]">
-                <p class="textImage" fxLayout="row" fxLayoutAlign="start end">{{book.title}}</p>
-                <div fxLayout="row" fxLayoutAlign="end center">
-                    <button mat-icon-button *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  null)">
-                        <mat-icon>playlist_add</mat-icon>
-                    </button>
-                    <button mat-icon-button *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.genre)">
-                        <mat-icon>reply</mat-icon>
-                    </button>
-                    <button mat-icon-button *ngIf="verifyrouter()">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </div>
+                <div class="container">
+                    <img [src]=book.image alt="Avatar" class="image" style="width:100%"
+                         [routerLink]="['/book', book.id]">
+                    <div class="faixa" *ngIf="this.userBook">
+                        <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LIDO" class="iconStatusLidos">turned_in</mat-icon>
+                        <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LENDO" class="iconStatusLendo">turned_in</mat-icon>
+                        <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.INTERROMPIDO" class="iconStatusInterrompido">turned_in</mat-icon>
+                        <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.QUERO_LER" class="iconStatusQueroLer">turned_in</mat-icon>
+                        <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.EMPRESTADO" class="iconStatusEmprestado">turned_in</mat-icon>
+                        <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.RELENDO" class="iconStatusRelendo">turned_in</mat-icon>
 
+                        <mat-menu #menu="matMenu">
+                            <div mat-menu-item (click)="changeStatusBook(bookStatus.LIDO, book.idUserBook, book)">
+                                <mat-icon class="iconStatusLidos">turned_in</mat-icon>
+                                <span>Lidos</span>
+                            </div>
+                            <div mat-menu-item (click)="changeStatusBook(bookStatus.LENDO, book.idUserBook, book)">
+                                <mat-icon class="iconStatusLendo" >turned_in</mat-icon>
+                                <span>Lendo</span>
+                            </div>
+                            <div mat-menu-item (click)="changeStatusBook(bookStatus.QUERO_LER, book.idUserBook, book)">
+                                <mat-icon class="iconStatusQueroLer">turned_in</mat-icon>
+                                <span>Quero ler</span>
+                            </div>
+                            <div mat-menu-item (click)="changeStatusBook(bookStatus.EMPRESTADO, book.idUserBook, book)">
+                                <mat-icon class="iconStatusEmprestado">turned_in</mat-icon>
+                                <span>Emprestado</span>
+                            </div>
+                            <div mat-menu-item (click)="changeStatusBook(bookStatus.RELENDO, book.idUserBook, book)">
+                                <mat-icon class="iconStatusRelendo">turned_in</mat-icon>
+                                <span>Relendo</span>
+                            </div>
+                            <div mat-menu-item (click)="changeStatusBook(bookStatus.INTERROMPIDO, book.idUserBook, book)">
+                                <mat-icon class="iconStatusInterrompido">turned_in</mat-icon>
+                                <span>Interrompido</span>
+                            </div>
+                        </mat-menu>
+                    </div>
+                    <div class="middle">
+                        <div fxLayout="row" fxLayoutAlign="end center">
+                            <button mat-icon-button *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  null)">
+                                <mat-icon>playlist_add</mat-icon>
+                            </button>
+                            <button mat-icon-button *ngIf="verifyrouter()"
+                                    (click)="openDialogAddBook(book,  this.genre)">
+                                <mat-icon>reply</mat-icon>
+                            </button>
+                            <button mat-icon-button *ngIf="verifyrouter()">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="middleXs" *ngIf="deviceXs">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  null)">
+                                <mat-icon>playlist_add</mat-icon>
+                                <span>Adicionar</span>
+                            </button>
+                            <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.genre)">
+                                <mat-icon>reply</mat-icon>
+                                <span>Mover</span>
+                            </button>
+                            <button mat-menu-item *ngIf="verifyrouter()">
+                                <mat-icon>delete</mat-icon>
+                                <span>Apagar</span>
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+                <p class="textImage" fxLayout="row" fxLayoutAlign="start end">{{book.title}}</p>
+                <p>{{book.status}}</p>
             </div>
         </ng-template>
     </ng-container>

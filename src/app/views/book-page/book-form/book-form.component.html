@@ -3,18 +3,18 @@
         <h2 mat-dialog-title>Insira um livro</h2>
         <!-- Form -->
         <form [formGroup]="formBook">
-            <div>
-                <div class="image" fxLayout="row" fxLayoutAlign="space-around center">
-                    <img src="">
-                </div>
-                <input type="file" formControlName="image" mat-raised-button color="primary"
-                       (change)="onFileChanged($event)">
-            </div>
+<!--            <div>-->
+<!--                <div class="image" fxLayout="row" fxLayoutAlign="space-around center">-->
+<!--                    <img src="">-->
+<!--                </div>-->
+<!--                <input type="file" formControlName="image" mat-raised-button color="primary"-->
+<!--                       (change)="onFileChanged($event)">-->
+<!--            </div>-->
             <!--Linha form-->
             <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                 <mat-form-field fxFlex="30">
                     <mat-label>ISBN</mat-label>
-                    <input formControlName="isbn" matInput placeholder="Ex. 10101010101">
+                    <input formControlName="isbn10" matInput placeholder="Ex. 10101010101">
                 </mat-form-field>
                 <mat-form-field fxFlex>
                     <mat-label>Título</mat-label>
@@ -33,7 +33,7 @@
                 </mat-form-field>
                 <mat-form-field fxFlex>
                     <mat-label>Número de páginas</mat-label>
-                    <input formControlName="pageCount" matInput placeholder="Ex. 500">
+                    <input formControlName="numberPage" matInput placeholder="Ex. 500">
                 </mat-form-field>
                 <mat-form-field fxFlex>
                     <mat-label>Ano da puplicação</mat-label>
@@ -46,10 +46,10 @@
                     <mat-label>Editora</mat-label>
                     <input formControlName="publisher" matInput placeholder="Ex. Brasil">
                 </mat-form-field>
-                <mat-form-field fxFlex>
-                    <mat-label>Editora</mat-label>
-                    <input formControlName="publisher" matInput placeholder="Ex. Brasil">
-                </mat-form-field>
+<!--                <mat-form-field fxFlex>-->
+<!--                    <mat-label>Editora</mat-label>-->
+<!--                    <input formControlName="publisher" matInput placeholder="Ex. Brasil">-->
+<!--                </mat-form-field>-->
             </div>
             <div fxLayout="row wrap" fxLayout.xs="column"fxLayoutGap="20px" fxLayoutAlign="start center">
                 <h2 fxFlex="50" mat-dialog-title>Autores: </h2>
@@ -65,8 +65,8 @@
                     <input type="text" placeholder="Authors" matInput formControlName="name"
                            [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option">
-                            {{option}}
+                        <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option.name" (onSelectionChange)="selectOption(i,option)">
+                            {{option.name}}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
@@ -77,8 +77,22 @@
             </div>
 
             <!--        linha form-->
+            <div fxLayout="row wrap" fxLayout.xs="column"fxLayoutGap="20px" fxLayoutAlign="start center">
+                <mat-form-field fxFlex>
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput
+                              formControlName="description"
+                              cdkTextareaAutosize
+                              #autosize="cdkTextareaAutosize"
+                              cdkAutosizeMinRows="1"
+                              cdkAutosizeMaxRows="5"></textarea>
+                </mat-form-field>
+            </div>
+
 
         </form>
+        <div>{{this.formBook.value |json}}</div>
+        <div>{{this.formBook.valid}}</div>
 
         <button type="button" mat-raised-button color="primary" (click)="saveBook()"
                         [disabled]="formBook.invalid">

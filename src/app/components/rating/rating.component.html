@@ -1,2 +1,1 @@
-<p>{{rating}}</p>
-<span class="material-icons">star_rate</span>
+<span [ngClass]="{'star-rating-filled': rating>=idStar, 'star-rating-blank': rating < idStar}"  (mouseenter)="OnStarEnter()" (mouseleave)="onStarLeave()" (click)="onStarClicked()"  class="material-icons">star_rate</span>
