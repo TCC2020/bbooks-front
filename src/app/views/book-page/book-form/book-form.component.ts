@@ -122,7 +122,6 @@ export class BookFormComponent implements OnInit {
     }
 
     selectOption(index: number, option) {
-        console.log(option);
         this.authors.at(index).get('id').setValue(option.id);
     }
 

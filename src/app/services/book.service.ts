@@ -9,8 +9,9 @@ import {Author} from "../models/author.model";
 import {BookStatus} from "../models/enums/BookStatus.enum";
 import {UserbookService} from "./userbook.service";
 import {AuthGuard} from "../guards/auth-guard";
-import { of } from "rxjs";
+import {of} from "rxjs";
 import {AuthService} from "./auth.service";
+import {Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +28,7 @@ export class BookService {
         private gBooksService: GoogleBooksService,
         private http: HttpClient,
         private userbookService: UserbookService,
-        private authGuard: AuthService
+        private authGuard: AuthService,
     ) {
     }
 
@@ -75,18 +76,23 @@ export class BookService {
     convertBookToModel(book: any): Book {
         const b = new Book();
         b.id = book.id;
-        b.isbn10 = null;
-        b.title = book.volumeInfo.title;
-        b.publisher = book.volumeInfo.publisher;
-        // b.country = book.saleInfo.country;
-        b.language = book.volumeInfo.language;
-        b.numberPage = book.volumeInfo.pageCount;
-        b.publishedDate = book.volumeInfo.publishedDate;
-        b.averageRating = book.volumeInfo.averageRating;
-        b.image = book.volumeInfo.imageLinks.thumbnail;
-        b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
-        b.description = book.volumeInfo.description;
-        b.authors = this.convertAuthorToModel(book.volumeInfo.authors);
+        if (book.volumeInfo) {
+            if (book.volumeInfo.industryIdentifiers) {
+                b.isbn10 = book.volumeInfo.industryIdentifiers[0]?.identifier;
+                b.isbn13 = book.volumeInfo.industryIdentifiers[1]?.identifier;
+            }
+            b.title = book.volumeInfo.title;
+            b.publisher = book.volumeInfo.publisher;
+            // b.country = book.saleInfo.country;
+            b.language = book.volumeInfo.language;
+            b.numberPage = book.volumeInfo.pageCount;
+            b.publishedDate = book.volumeInfo.publishedDate;
+            b.averageRating = book.volumeInfo.averageRating;
+            b.image = book.volumeInfo.imageLinks.thumbnail;
+            b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
+            b.description = book.volumeInfo.description;
+            b.authors = this.convertAuthorToModel(book.volumeInfo.authors);
+        }
         return b;
     }
 

@@ -5,6 +5,7 @@ import {Book} from "../../../models/book.model";
 import {Observable} from "rxjs";
 import {GoogleBooksService} from "../../../services/google-books.service";
 import {BookCase} from "../../../models/bookCase.model";
+import {of} from "rxjs";
 
 @Injectable()
 export class BookEstanteResolve implements Resolve<Book[]> {
@@ -22,6 +23,8 @@ export class BookEstanteResolve implements Resolve<Book[]> {
         const myBook = route.url.toString().includes('my');
         const bookcaseDescripton = route.params['bookcase'];
         let bookCase = new BookCase();
+        bookCase.books = [];
+        bookCase.description = bookcaseDescripton;
         if (myBook) {
             bookCase = this.bookService.getBookCaseByDescription(bookcaseDescripton);
             if (bookCase) {
@@ -29,8 +32,9 @@ export class BookEstanteResolve implements Resolve<Book[]> {
             }
         } else {
             this.gBooksService.searchByName(bookcaseDescripton).subscribe(books => {
-                return  this.bookService.convertBookToBookList(books['items']);
+                bookCase.books = this.bookService.convertBookToBookList(books['items']);
             });
+            return of(bookCase);
         }
     }
 }

@@ -1,15 +1,15 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {OwlOptions} from 'ngx-owl-carousel-o';
-import {GoogleBooksService} from '../../../../services/google-books.service';
+import {GoogleBooksService} from '../../../services/google-books.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
-import {BookService} from "../../../../services/book.service";
+import {BookService} from "../../../services/book.service";
 import {MatDialog} from "@angular/material/dialog";
-import {Book} from "../../../../models/book.model";
-import {BookAddDialogComponent} from "../../book-add-dialog/book-add-dialog.component";
+import {Book} from "../../../models/book.model";
+import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
 import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {BookStatus, mapBookStatus} from "../../../../models/enums/BookStatus.enum";
-import {UserbookService} from "../../../../services/userbook.service";
+import {BookStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
+import {UserbookService} from "../../../services/userbook.service";
 
 @Component({
     selector: 'app-carrousel',
@@ -43,10 +43,10 @@ export class CarrouselComponent implements OnInit, OnDestroy {
         nav: true
     };
 
-    books: Book[] = [];
+    bbbbb: Book[] = [];
 
+    @Input() books: Book[];
     @Input() genre: string;
-
     mediaSub: Subscription;
     deviceXs;
     userBook: boolean;
@@ -67,22 +67,9 @@ export class CarrouselComponent implements OnInit, OnDestroy {
         this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
             this.deviceXs = result.mqAlias === 'xs' ? true : false;
         });
-        this.getBooks();
         this.userBook = this.router.url.includes('my');
     }
 
-    getBooks() {
-        if (this.router.url.includes('my')) {
-            this.routerlink = '/book/my/';
-            this.getAllBooks();
-        } else {
-            this.gBooksService.searchByName(this.genre).subscribe(books => {
-                this.routerlink = '/book/';
-                this.books = this.bookService.convertBookToBookList(books['items']);
-            });
-        }
-
-    }
 
     openDialogAddBook(book: Book, bookcase: string) {
         const dialogRef = this.dialog.open(BookAddDialogComponent, {
@@ -102,7 +89,7 @@ export class CarrouselComponent implements OnInit, OnDestroy {
 
     getAllBooks() {
         this.bookService.getAllBooks().subscribe(value => {
-            this.books = value;
+            this.bbbbb = value;
         });
 
     }
@@ -112,13 +99,11 @@ export class CarrouselComponent implements OnInit, OnDestroy {
             'id': id,
             status: mapBookStatus.get(bookStatus)
         };
-        console.log(userBookUpdateStatusTO);
         this.userbookService.changeStatus(userBookUpdateStatusTO).subscribe(value => {
-                console.log(value);
-                this.books[this.books.indexOf(book)].status = value.status;
+                this.bbbbb[this.bbbbb.indexOf(book)].status = value.status;
             },
             error => {
-                console.log(error);
+                console.log('Error', error);
             });
     }
 

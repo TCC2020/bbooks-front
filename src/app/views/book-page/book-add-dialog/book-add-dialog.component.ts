@@ -65,9 +65,9 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.idBook = this.Book.id;
         this.userBookTo.profileId = this.authService.getUser().profile.id;
         this.userBookTo.status =  this.formBook.get('statusBook').value;
-        console.log(this.userBookTo);
+        this.userBookTo.isbn10 = this.Book.isbn10;
+        this.userBookTo.isbn13 = this.Book.isbn13;
         this.userbookService.save(this.userBookTo).subscribe(value => {
-            console.log(value);
         });
     }
 

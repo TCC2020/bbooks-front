@@ -8,27 +8,30 @@ import {BookLibraryComponent} from "./book-library/book-library.component";
 import {BookViewComponent} from "./book-view/book-view.component";
 import {BookEstanteResolve} from "./guards/book-estante.resolve";
 import {BookViewResolve} from "./guards/book-view.resolve";
+import {BooksComponent} from "./books/books.component";
 
 
 const bookRoutes: Routes = [
     {
         path: '', component: BookPageComponent, children: [
             {
-                path: '', component: BookLibraryComponent,
-                resolve: {bookcase: BookEstanteResolve}
-            },
-            {path: 'my', component: BookLibraryComponent},
-            {
-                path: 'my/:bookcase', component: BookEstanteComponent,
-                resolve: {bookcase: BookEstanteResolve}
+                path: 'books', component: BooksComponent
             },
             {
-                path: ':id', component: BookViewComponent,
+                path: 'books/:id', component: BookViewComponent,
                 resolve: {book: BookViewResolve}
             },
             {path: 'new', component: BookFormComponent},
-            {path: ':id/edit', component: BookFormComponent},
-            {path: ':bookcase', component: BookEstanteComponent}
+            {path: 'books/:id/edit', component: BookFormComponent},
+            {path: 'mybooks', component: BookLibraryComponent},
+            {
+                path: 'mybooks/bookcase/:bookcase', component: BookEstanteComponent,
+                resolve: {bookcase: BookEstanteResolve}
+            },
+            {
+                path: 'bookcase/:bookcase', component: BookEstanteComponent,
+                resolve: {bookcase: BookEstanteResolve}
+            }
         ]
     },
 

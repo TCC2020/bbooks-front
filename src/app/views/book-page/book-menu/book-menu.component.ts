@@ -27,6 +27,7 @@ export class BookMenuComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.router.navigate(['/book/books']);
 
     }
     onScroll(e) {
@@ -39,7 +40,7 @@ export class BookMenuComponent implements OnInit {
     }
 
     sideBarScroll() {
-        let e = this.deviceXs ? 160 : 130;
+        let e = this.deviceXs ? 140 : 65;
         return e - this.topVal;
     }
     openDialogBookCase(): void {

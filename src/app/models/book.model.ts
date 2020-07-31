@@ -4,6 +4,7 @@ import {BookStatus} from "./enums/BookStatus.enum";
 export class Book {
     id: string;
     isbn10: string;
+    isbn13: string;
     title: string;
     authors: Author[];
     numberPage: number;

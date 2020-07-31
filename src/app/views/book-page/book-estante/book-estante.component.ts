@@ -63,8 +63,6 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
 
         this.inscricao = this.route.data.subscribe((data: {bookcase: BookCase}) => {
             this.bookCase = data.bookcase;
-            this.books = data.bookcase.books;
-            console.log(data.bookcase);
         });
 
     }
@@ -162,10 +160,10 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
 
     filterStatus(): Book[] {
         if (this.filter.length <= 0) {
-            return this.books;
+            return this.bookCase.books;
         }
         let books = [];
-        this.books.filter((book) => {
+        this.bookCase.books.filter((book) => {
             for (const status of this.filter) {
                 if (status === book.status) {
                     books.push(book);

@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="start center" *ngIf="books.length > 0" [routerLink]="[ routerlink ,genre]">
+<div fxLayout="row" fxLayoutAlign="start center" *ngIf="genre" [routerLink]="[ routerlink ,genre]">
     <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px">
         <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{genre | titlecase}}</span>
         <mat-icon class="iconColor" fxFlexOffset="10">arrow_forward</mat-icon>
@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="container">
                     <img [src]=book.image alt="Avatar" class="image" style="width:100%"
-                         [routerLink]="['/book', book.id]">
+                         [routerLink]="['/book/books', book.id]">
                     <div class="faixa" *ngIf="this.userBook">
                         <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LIDO" class="iconStatusLidos">turned_in</mat-icon>
                         <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LENDO" class="iconStatusLendo">turned_in</mat-icon>
@@ -81,7 +81,6 @@
                     </div>
                 </div>
                 <p class="textImage" fxLayout="row" fxLayoutAlign="start end">{{book.title}}</p>
-                <p>{{book.status}}</p>
             </div>
         </ng-template>
     </ng-container>

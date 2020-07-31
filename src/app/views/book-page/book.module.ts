@@ -16,13 +16,14 @@ import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
 import {MatInputModule} from "@angular/material/input";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {BookLibraryComponent} from "./book-library/book-library.component";
-import {CarrouselComponent} from "./book-library/carrousel/carrousel.component";
+import {CarrouselComponent} from "./carrousel/carrousel.component";
 import {BookAddDialogComponent} from "./book-add-dialog/book-add-dialog.component";
 import {BookViewComponent} from "./book-view/book-view.component";
 import {RatingComponent} from "../../components/rating/rating.component";
 import {BookEstanteResolve} from "./guards/book-estante.resolve";
 import {BookViewResolve} from "./guards/book-view.resolve";
 import {CarrouselResolve} from "./guards/carrousel.resolve";
+import {BooksComponent} from "./books/books.component";
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {CarrouselResolve} from "./guards/carrousel.resolve";
         CarrouselComponent,
         BookAddDialogComponent,
         BookViewComponent,
-        RatingComponent
+        RatingComponent,
+        BooksComponent
 
     ],
     entryComponents: [
