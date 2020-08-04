@@ -23,13 +23,13 @@ export class BookAddDialogComponent implements OnInit {
     mapStatus = mapBookStatus;
     public formBook: FormGroup;
     public Book: Book;
-    public bookcase: string;
+    private tagId: any;
     public title: string;
     public buttonText: string;
     private userBookTo = new UserBookTO();
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: { book: Book, bookcase: string },
+        @Inject(MAT_DIALOG_DATA) public data: { book: Book, tagId: any },
         public dialogRef: MatDialogRef<BookAddDialogComponent>,
         private formBuilder: FormBuilder,
         private bookService: BookService,
@@ -38,6 +38,7 @@ export class BookAddDialogComponent implements OnInit {
         private tagService: TagService
     ) {
         this.Book = data.book;
+        this.tagId = data.tagId;
         // this.bookcase = data.name;
     }
 
@@ -54,11 +55,11 @@ export class BookAddDialogComponent implements OnInit {
     }
 
     modeDialog() {
-        if (true) {
-            this.title = 'Mover livro para outra estante';
+        if (this.tagId) {
+            this.title = 'Mover livro para outra tag';
             this.buttonText = "Mover";
         } else {
-            this.title = 'Adicionar livro a minha estante';
+            this.title = 'Adicionar livro a uma tag';
             this.buttonText = 'Adicionar';
         }
     }
@@ -80,7 +81,6 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.tagId = this.formBook.get('tag').value.id;
         console.log(this.userBookTo);
         this.userbookService.save(this.userBookTo).subscribe(value => {
-            console.log(value);
         });
     }
 

@@ -9,11 +9,12 @@ import {Book} from "../../../models/book.model";
 import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {BookStatus, getArrayStatus} from "../../../models/enums/BookStatus.enum";
+import {BookStatus, getArrayStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map, startWith} from "rxjs/operators";
 import {MatChipInputEvent} from "@angular/material/chips";
+import {UserbookService} from "../../../services/userbook.service";
 
 @Component({
     selector: 'app-book-estante',
@@ -21,7 +22,6 @@ import {MatChipInputEvent} from "@angular/material/chips";
     styleUrls: ['./book-estante.component.scss']
 })
 export class BookEstanteComponent implements OnInit, OnDestroy {
-    books;
     bookCase: BookCase = new BookCase();
     search;
     inscricao: Subscription;
@@ -49,6 +49,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         public dialog: MatDialog,
         public mediaObserver: MediaObserver,
         private router: Router,
+        private userbookService: UserbookService,
         private gBooksService: GoogleBooksService,
     ) {
         this.filteredElements = this.filterCtrl.valueChanges.pipe(
@@ -80,17 +81,17 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         this.mediaSub.unsubscribe();
     }
 
-    openDialogAddBook(book: Book, bookcase: string) {
+    openDialogAddBook(book: Book, tagId: any) {
         const dialogRef = this.dialog.open(BookAddDialogComponent, {
-            height: '450px',
+            height: '550px',
             width: '400px',
             data: {
                 book,
-                // bookcase: name
+                tagId
             }
         });
         dialogRef.afterClosed().subscribe(() => {
-            this.books = this.bookCase.books;
+            // this.books = this.bookCase.books;
         });
     }
 
@@ -181,7 +182,17 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         return books;
     }
 
-    // public getStatusText(id: BookStatus): string {
-    //     return mapBookStatus.get(id);
-    // }
+    changeStatusBook(bookStatus: BookStatus, id: number, book: Book) {
+        let userBookUpdateStatusTO = {
+            'id': id,
+            status: mapBookStatus.get(bookStatus)
+        };
+        this.userbookService.changeStatus(userBookUpdateStatusTO).subscribe(value => {
+                this.bookCase.books[this.bookCase.books.indexOf(book)].status = value.status;
+            },
+            error => {
+                console.log('Error', error);
+            });
+    }
+
 }

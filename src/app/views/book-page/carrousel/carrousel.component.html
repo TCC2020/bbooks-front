@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="start center" *ngIf="nameTag" [routerLink]="[ routerlink ,idTag]">
+<div fxLayout="row" fxLayoutAlign="start center" *ngIf="nameTag && books.length > 0" [routerLink]="[ routerlink ,idTag]">
     <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px">
         <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{nameTag | titlecase}}</span>
         <mat-icon class="iconColor" fxFlexOffset="10">arrow_forward</mat-icon>
@@ -52,7 +52,7 @@
                                 <mat-icon>playlist_add</mat-icon>
                             </button>
                             <button mat-icon-button *ngIf="verifyrouter()"
-                                    (click)="openDialogAddBook(book,  this.nameTag)">
+                                    (click)="openDialogAddBook(book,  this.idTag)">
                                 <mat-icon>reply</mat-icon>
                             </button>
                             <button mat-icon-button *ngIf="verifyrouter()">
@@ -69,7 +69,7 @@
                                 <mat-icon>playlist_add</mat-icon>
                                 <span>Adicionar</span>
                             </button>
-                            <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.nameTag)">
+                            <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.idTag)">
                                 <mat-icon>reply</mat-icon>
                                 <span>Mover</span>
                             </button>

@@ -77,27 +77,20 @@ export class CarrouselComponent implements OnInit, OnDestroy {
     }
 
 
-    openDialogAddBook(book: Book, bookcase: string) {
+    openDialogAddBook(book: Book, tagId: any) {
         const dialogRef = this.dialog.open(BookAddDialogComponent, {
-            height: '450px',
+            height: '550px',
             width: '400px',
             data: {
                 book,
-                bookcase: name
+                tagId
             }
         });
         dialogRef.afterClosed().subscribe(() => {
             if (this.router.url.includes('my')) {
-                this.getAllBooks();
+                // this.getAllBooks();
             }
         });
-    }
-
-    getAllBooks() {
-        this.bookService.getAllBooks().subscribe(value => {
-            this.bbbbb = value;
-        });
-
     }
 
     changeStatusBook(bookStatus: BookStatus, id: number, book: Book) {
@@ -106,7 +99,7 @@ export class CarrouselComponent implements OnInit, OnDestroy {
             status: mapBookStatus.get(bookStatus)
         };
         this.userbookService.changeStatus(userBookUpdateStatusTO).subscribe(value => {
-                this.bbbbb[this.bbbbb.indexOf(book)].status = value.status;
+                this.books[this.books.indexOf(book)].status = value.status;
             },
             error => {
                 console.log('Error', error);

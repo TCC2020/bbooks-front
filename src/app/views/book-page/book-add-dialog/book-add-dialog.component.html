@@ -20,13 +20,15 @@
         <!--Linha form-->
         <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
             <mat-form-field appearance="fill">
-                <mat-label>Estante</mat-label>
+                <mat-label>Status</mat-label>
                 <mat-select formControlName="statusBook">
                     <mat-option *ngFor="let bookcase of bookCases" [value]="bookcase">
                         {{mapStatus.get(bookcase) | titlecase}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+        </div>
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
             <mat-form-field appearance="fill">
                 <mat-label>Tag</mat-label>
                 <mat-select formControlName="tag">
@@ -35,7 +37,6 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-
         </div>
         <button type="button" mat-flat-button color="accent"
                 [disabled]="formBook.invalid"
@@ -44,7 +45,7 @@
             {{this.buttonText}}
         </button>
         <mat-error *ngIf="formBook.controls['statusBook'].hasError('required')">
-            Estante é obrigatório
+            Status é obrigatório
         </mat-error>
         <mat-error *ngIf="formBook.controls['tag'].hasError('required')">
             Tag é obrigatório

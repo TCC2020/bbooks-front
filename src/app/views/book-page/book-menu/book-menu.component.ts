@@ -59,6 +59,9 @@ export class BookMenuComponent implements OnInit {
             width: '300px',
             height: '200px'
         });
+        dialogRef.afterClosed().subscribe(result => {
+           this.tags.push(result);
+        });
     }
 
     verifyRouterLink(route: string) {

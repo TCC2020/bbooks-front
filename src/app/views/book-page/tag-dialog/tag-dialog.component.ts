@@ -5,6 +5,7 @@ import {BookCase} from "../../../models/bookCase.model";
 import {Tag} from "../../../models/tag";
 import {AuthService} from "../../../services/auth.service";
 import {TagService} from "../../../services/tag.service";
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
     selector: 'app-tag-dialog',
@@ -18,7 +19,8 @@ export class TagDialogComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private authService: AuthService,
-        private tagService: TagService
+        private tagService: TagService,
+        public dialogRef: MatDialogRef<Tag>
     ) {
 
     }
@@ -39,7 +41,9 @@ export class TagDialogComponent implements OnInit {
         tag.profileId = this.authService.getUser().profile.id;
         tag.books = [];
         this.tagService.save(tag).subscribe(response => {
+            this.dialogRef.close(response);
         });
+
     }
 
 }

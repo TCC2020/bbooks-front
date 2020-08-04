@@ -33,7 +33,6 @@ export class BookEstanteResolve implements Resolve<Book[]> {
                 bookCase = bookcase;
             });
         } else {
-            console.log(route.url.toString());
             this.gBooksService.searchByName(tag).subscribe(books => {
                 bookCase.books = this.bookService.convertBookToBookList(books['items']);
             });
