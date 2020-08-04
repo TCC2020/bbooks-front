@@ -9,5 +9,6 @@ export class UserBookTO {
     status: BookStatus;
     addDate: Date;
     book: Book;
+    tagId: number;
     profileId: number;
 }

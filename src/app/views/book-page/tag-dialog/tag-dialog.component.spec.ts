@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookcaseModalComponent } from './bookcase-modal.component';
+import { TagDialogComponent } from './tag-dialog.component';
 
-describe('BookcaseModalComponent', () => {
-  let component: BookcaseModalComponent;
-  let fixture: ComponentFixture<BookcaseModalComponent>;
+describe('TagDialogComponent', () => {
+  let component: TagDialogComponent;
+  let fixture: ComponentFixture<TagDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookcaseModalComponent ]
+      declarations: [ TagDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BookcaseModalComponent);
+    fixture = TestBed.createComponent(TagDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

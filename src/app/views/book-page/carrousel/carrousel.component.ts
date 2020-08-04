@@ -46,7 +46,8 @@ export class CarrouselComponent implements OnInit, OnDestroy {
     bbbbb: Book[] = [];
 
     @Input() books: Book[];
-    @Input() genre: string;
+    @Input() nameTag: string;
+    @Input() idTag: number;
     mediaSub: Subscription;
     deviceXs;
     userBook: boolean;
@@ -67,7 +68,12 @@ export class CarrouselComponent implements OnInit, OnDestroy {
         this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
             this.deviceXs = result.mqAlias === 'xs' ? true : false;
         });
-        this.userBook = this.router.url.includes('my');
+        this.userBook = this.router.url.includes('mybooks');
+        if (!this.userBook) {
+            this.routerlink = '/book/';
+        } else {
+           this.routerlink = '/mybooks/';
+        }
     }
 
 
@@ -77,7 +83,7 @@ export class CarrouselComponent implements OnInit, OnDestroy {
             width: '400px',
             data: {
                 book,
-                bookcase
+                bookcase: name
             }
         });
         dialogRef.afterClosed().subscribe(() => {

@@ -13,9 +13,9 @@
                     fxLayout="column" fxLayoutAlign="start space-between" [style.marginTop.px]="0"
                     [style.top.px]="sideBarScroll()" class="sidenav">
             <mat-list role="listitem">
-                <h2 align="center">Estante Virtual</h2>
+                <h2 align="center" *ngIf="!deviceXs">Estante Virtual</h2>
                 <mat-list role="list" class="list-width">
-                    <mat-list-item role="listitem" class="list-item" matRipple routerLink="/book/books"
+                    <mat-list-item role="listitem" class="list-item" matRipple routerLink="/book"
                                    routerLinkActive="activedList">
                         <button mat-mini-fab color="primary" >
                             <mat-icon>library_books</mat-icon>
@@ -25,24 +25,24 @@
                     <div  *ngIf="!verifyRouterLink('my')">
                         <mat-list role="list" class="list-width" *ngFor="let bookcase of bookcasesGbooks ">
                             <mat-list-item routerLinkActive="activedList" role="listitem"
-                                           class="list-item" matRipple [routerLink]="['/book/bookcase', bookcase]">
+                                           class="list-item" matRipple [routerLink]="['/book/', bookcase]">
                                 <span class="subItemPadding">{{bookcase | titlecase }} </span>
                             </mat-list-item>
                         </mat-list>
                     </div>
 
                     <mat-list-item routerLinkActive="activedList"  role="listitem" class="list-item" matRipple
-                                   [routerLink]="['/book/mybooks']">
+                                   routerLink="/mybooks">
                         <button mat-mini-fab color="primary">
                             <mat-icon>menu_book</mat-icon>
                         </button>
                         <span class="itemPadding">Meus Livros</span>
                     </mat-list-item>
                     <div *ngIf="verifyRouterLink('my')">
-                        <mat-list role="list" class="list-width" *ngFor="let bookcase of bookcases ">
+                        <mat-list role="list" class="list-width" *ngFor="let tag of tags ">
                             <mat-list-item  routerLinkActive="activedList" role="listitem"
-                                            class="list-item" matRipple [routerLink]="['/book/my', bookcase]">
-                                <span class="subItemPadding">{{bookcase | titlecase }} </span>
+                                            class="list-item" matRipple [routerLink]="['/mybooks', tag.id]">
+                                <span class="subItemPadding">{{tag.name | titlecase }} </span>
                             </mat-list-item>
                         </mat-list>
                     </div>

@@ -1,6 +1,6 @@
-<div fxLayout="row" fxLayoutAlign="start center" *ngIf="genre" [routerLink]="[ routerlink ,genre]">
+<div fxLayout="row" fxLayoutAlign="start center" *ngIf="nameTag" [routerLink]="[ routerlink ,idTag]">
     <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px">
-        <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{genre | titlecase}}</span>
+        <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{nameTag | titlecase}}</span>
         <mat-icon class="iconColor" fxFlexOffset="10">arrow_forward</mat-icon>
     </div>
 </div>
@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="container">
                     <img [src]=book.image alt="Avatar" class="image" style="width:100%"
-                         [routerLink]="['/book/books', book.id]">
+                         [routerLink]="[routerlink + idTag, book.id]">
                     <div class="faixa" *ngIf="this.userBook">
                         <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LIDO" class="iconStatusLidos">turned_in</mat-icon>
                         <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LENDO" class="iconStatusLendo">turned_in</mat-icon>
@@ -52,7 +52,7 @@
                                 <mat-icon>playlist_add</mat-icon>
                             </button>
                             <button mat-icon-button *ngIf="verifyrouter()"
-                                    (click)="openDialogAddBook(book,  this.genre)">
+                                    (click)="openDialogAddBook(book,  this.nameTag)">
                                 <mat-icon>reply</mat-icon>
                             </button>
                             <button mat-icon-button *ngIf="verifyrouter()">
@@ -69,7 +69,7 @@
                                 <mat-icon>playlist_add</mat-icon>
                                 <span>Adicionar</span>
                             </button>
-                            <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.genre)">
+                            <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.nameTag)">
                                 <mat-icon>reply</mat-icon>
                                 <span>Mover</span>
                             </button>

@@ -29,8 +29,8 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
     mediaSub: Subscription;
     userBook: boolean;
     bookStatus = BookStatus;
+    routerlink: string;
 
-    visible = true;
     selectable = true;
     removable = true;
     separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -59,11 +59,18 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
             this.deviceXs = result.mqAlias === 'xs' ? true : false;
         });
-        this.userBook = this.router.url.includes('my');
+        this.userBook = this.verifyrouter()
 
-        this.inscricao = this.route.data.subscribe((data: {bookcase: BookCase}) => {
+        this.inscricao = this.route.data.subscribe((data: { bookcase: BookCase }) => {
             this.bookCase = data.bookcase;
         });
+
+        if (!this.userBook) {
+            this.routerlink = '/book/';
+        } else {
+            this.routerlink = '/mybooks/';
+        }
+
 
     }
 
@@ -79,7 +86,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
             width: '400px',
             data: {
                 book,
-                bookcase
+                // bookcase: name
             }
         });
         dialogRef.afterClosed().subscribe(() => {
@@ -133,7 +140,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         }
         let result = [];
         for (let s of this.filter) {
-            result =  this.allStatus.filter((status) => {
+            result = this.allStatus.filter((status) => {
                 if (status === s) {
                     return false;
                 } else {
@@ -144,6 +151,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
 
         return result;
     }
+
     filterBooks(): Book[] {
         if (this.search === undefined || this.search.trim() === null) {
             return this.filterStatus();
@@ -162,7 +170,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         if (this.filter.length <= 0) {
             return this.bookCase.books;
         }
-        let books = [];
+        const books = [];
         this.bookCase.books.filter((book) => {
             for (const status of this.filter) {
                 if (status === book.status) {

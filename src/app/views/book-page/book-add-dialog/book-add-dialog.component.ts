@@ -8,6 +8,8 @@ import {UserbookService} from "../../../services/userbook.service";
 import {UserBookTO} from "../../../models/userBookTO";
 import {AuthService} from "../../../services/auth.service";
 import {AuthGuard} from "../../../guards/auth-guard";
+import {Tag} from "../../../models/tag";
+import {TagService} from "../../../services/tag.service";
 
 @Component({
     selector: 'app-book-add-dialog',
@@ -17,6 +19,7 @@ import {AuthGuard} from "../../../guards/auth-guard";
 export class BookAddDialogComponent implements OnInit {
 
     bookCases: BookStatus[] = getArrayStatus();
+    tags: Tag[];
     mapStatus = mapBookStatus;
     public formBook: FormGroup;
     public Book: Book;
@@ -24,25 +27,34 @@ export class BookAddDialogComponent implements OnInit {
     public title: string;
     public buttonText: string;
     private userBookTo = new UserBookTO();
+
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: { book: Book, bookcase: string },
         public dialogRef: MatDialogRef<BookAddDialogComponent>,
         private formBuilder: FormBuilder,
         private bookService: BookService,
         private userbookService: UserbookService,
-        private authService: AuthService
+        private authService: AuthService,
+        private tagService: TagService
     ) {
         this.Book = data.book;
-        this.bookcase = data.bookcase;
+        // this.bookcase = data.name;
     }
 
     ngOnInit(): void {
         this.modeDialog();
         this.createForm();
+        this.getTags();
+    }
+
+    getTags(): void {
+        this.tagService.getAllByProfile(this.authService.getUser().profile.id).subscribe((response: Tag[]) => {
+            this.tags = response;
+        });
     }
 
     modeDialog() {
-        if (this.bookcase) {
+        if (true) {
             this.title = 'Mover livro para outra estante';
             this.buttonText = "Mover";
         } else {
@@ -53,21 +65,22 @@ export class BookAddDialogComponent implements OnInit {
 
     private createForm(): void {
         this.formBook = this.formBuilder.group({
-            statusBook: new FormControl(null, Validators.required)
+            statusBook: new FormControl(null, Validators.required),
+            tag: new FormControl(null, Validators.required)
         });
     }
 
     saveBook() {
 
-        if (this.bookcase) {
-            this.bookService.removeBookOfBookCase(this.Book, this.bookcase);
-        }
         this.userBookTo.idBook = this.Book.id;
         this.userBookTo.profileId = this.authService.getUser().profile.id;
-        this.userBookTo.status =  this.formBook.get('statusBook').value;
+        this.userBookTo.status = this.formBook.get('statusBook').value;
         this.userBookTo.isbn10 = this.Book.isbn10;
         this.userBookTo.isbn13 = this.Book.isbn13;
+        this.userBookTo.tagId = this.formBook.get('tag').value.id;
+        console.log(this.userBookTo);
         this.userbookService.save(this.userBookTo).subscribe(value => {
+            console.log(value);
         });
     }
 

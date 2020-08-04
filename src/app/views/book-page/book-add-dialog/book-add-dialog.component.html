@@ -27,15 +27,27 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <button type="button" mat-flat-button color="accent"
-                    [disabled]="formBook.invalid"
-                    (click)="saveBook()"
-                    mat-button [mat-dialog-close]>
-                {{this.buttonText}}
-            </button>
+            <mat-form-field appearance="fill">
+                <mat-label>Tag</mat-label>
+                <mat-select formControlName="tag">
+                    <mat-option *ngFor="let tag of tags" [value]="tag">
+                        {{tag.name | titlecase}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
         </div>
+        <button type="button" mat-flat-button color="accent"
+                [disabled]="formBook.invalid"
+                (click)="saveBook()"
+                mat-button [mat-dialog-close]>
+            {{this.buttonText}}
+        </button>
         <mat-error *ngIf="formBook.controls['statusBook'].hasError('required')">
-            Escolha uma estante
+            Estante é obrigatório
+        </mat-error>
+        <mat-error *ngIf="formBook.controls['tag'].hasError('required')">
+            Tag é obrigatório
         </mat-error>
 
     </form>

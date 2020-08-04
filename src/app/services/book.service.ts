@@ -6,19 +6,18 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Author} from "../models/author.model";
-import {BookStatus} from "../models/enums/BookStatus.enum";
 import {UserbookService} from "./userbook.service";
-import {AuthGuard} from "../guards/auth-guard";
 import {of} from "rxjs";
 import {AuthService} from "./auth.service";
-import {Router} from "@angular/router";
+import {TagService} from "./tag.service";
+import {UserBookTO} from "../models/userBookTO";
 
 @Injectable({
     providedIn: 'root'
 })
 export class BookService {
 
-    bookcases: BookCase[] = [];
+    genres: string[] = ['ficção', 'classicos', 'romance', 'literatura'];
 
     books: any[];
 
@@ -29,7 +28,31 @@ export class BookService {
         private http: HttpClient,
         private userbookService: UserbookService,
         private authGuard: AuthService,
+        private tagService: TagService
     ) {
+    }
+
+    getAllTags() {
+        return this.tagService.getAllByProfile(this.authGuard.getUser().profile.id);
+    }
+
+    getAllBooksTags() {
+        const result = [];
+        this.getAllTags().subscribe(tags => {
+            tags.forEach(tag => {
+                const bc = new BookCase();
+                bc.id = tag.id;
+                bc.description = tag.name;
+                bc.books = [];
+                if (tag.books) {
+                    this.getBooksByUserBooks(tag.books).subscribe(books => {
+                        bc.books = books;
+                    });
+                    result.push(bc);
+                }
+            });
+        });
+        return of(result);
     }
 
     getAllUserBooks() {
@@ -51,30 +74,34 @@ export class BookService {
         });
         return of(result);
     }
-
-    getBookCaseDescritption() {
-        return this.bookcases.map(value => value.description.toLowerCase());
+    getBookCaseByTag(tagId: number): Observable<BookCase> {
+        const result = new BookCase();
+        result.books = [];
+        this.tagService.getById(tagId).subscribe(tag => {
+            result.description = tag.name
+            result.id = tag.id;
+            this.getBooksByUserBooks(tag.books).subscribe(books => {
+                result.books = books;
+            });
+        });
+        return of(result);
     }
-
-    getBookCaseByDescription(description: string): BookCase {
-        return this.bookcases.find(value => value.description.toLowerCase() === description.toLowerCase());
-    }
-
-    addBookCases(bookcase: BookCase) {
-        this.bookcases.push(bookcase);
-    }
-
-    addBookToBookCase(book: Book, description: string) {
-        this.getBookCaseByDescription(description.toLowerCase()).books.push(book);
-    }
-
-    removeBookOfBookCase(book: Book, description: string) {
-        const books = this.getBookCaseByDescription(description.toLowerCase()).books.filter(value => value.id !== book.id);
-        this.getBookCaseByDescription(description.toLowerCase()).books = books;
+    getBooksByUserBooks(userBook: UserBookTO[]): Observable<Book[]> {
+        const result = [];
+        userBook.forEach(realation => {
+            this.gBooksService.getById(realation.idBook).subscribe(book => {
+                const b = this.convertBookToModel(book);
+                b.idUserBook = realation.id;
+                b.status = realation.status;
+                result.push(b);
+            });
+        });
+        return of(result);
     }
 
     convertBookToModel(book: any): Book {
         const b = new Book();
+        b.authors = [];
         b.id = book.id;
         if (book.volumeInfo) {
             if (book.volumeInfo.industryIdentifiers) {
@@ -117,7 +144,19 @@ export class BookService {
         return result;
     }
 
-    getBookById(id: string): any {
-
+    getAllBookGoogle() {
+        const result = [];
+        this.genres.forEach(genre => {
+            const bc = new BookCase();
+            bc.books = [];
+            bc.description = genre;
+            bc.id = genre;
+            this.gBooksService.searchByName(genre).subscribe(books => {
+                this.books = books['items'];
+                bc.books = this.books.map(value => this.convertBookToModel(value));
+                result.push(bc);
+            });
+        });
+        return of(result);
     }
 }

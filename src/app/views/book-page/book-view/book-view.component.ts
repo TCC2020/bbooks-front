@@ -23,18 +23,13 @@ export class BookViewComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         public dialog: MatDialog,
-        private gBookService: GoogleBooksService,
-        private bookService: BookService
     ) {
     }
 
     ngOnInit(): void {
-        this.inscricao = this.route.params.subscribe(params => {
-            const id = params['id'];
-            this.gBookService.getById(id).subscribe(value => {
-                this.book = this.bookService.convertBookToModel(value);
-                this.stringAuthors = this.convertAuthorsToString();
-            });
+        this.inscricao = this.route.data.subscribe((data: {book: Book}) => {
+            this.book = data.book;
+            this.stringAuthors = this.convertAuthorsToString();
         });
     }
 
@@ -53,7 +48,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
             width: '400px',
             data: {
                 book,
-                bookcase
+                bookcase: name
             }
         });
     }

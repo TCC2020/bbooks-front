@@ -30,6 +30,6 @@
     </mat-menu>
 </div>
 
-<div *ngFor="let genre of bookCases">
-    <app-carrousel [books]="genre.books" [genre]="genre.description"></app-carrousel>
+<div *ngFor="let bookcase of bookCases">
+    <app-carrousel [books]="bookcase.books" [nameTag]="bookcase.description" [idTag]="bookcase.id"></app-carrousel>
 </div>

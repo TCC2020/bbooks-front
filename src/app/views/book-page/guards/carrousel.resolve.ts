@@ -23,7 +23,7 @@ export class CarrouselResolve implements Resolve<Book[]> {
         const bookcaseDescripton = route.params['bookcase'];
         let bookCase = new BookCase();
         if (myBook) {
-            bookCase = this.bookService.getBookCaseByDescription(bookcaseDescripton);
+            // bookCase = this.bookService.getBookCaseByDescription(bookcaseDescripton);
             if (bookCase) {
                 return bookCase;
             }

@@ -35,13 +35,14 @@
 <div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
     <div class="card" *ngFor="let book of filterBooks()">
         <div class="container">
-            <img [src]=book.image alt="Avatar" class="image" style="width:100%" [routerLink]="['/book/view', book.id]">
+            <img [src]=book.image alt="Avatar" class="image" style="width:100%" [routerLink]="[routerlink + bookCase.id, book.id]">
             <div class="faixa" *ngIf="this.userBook">
-                <mat-icon *ngIf="book.status === bookStatus.LENDO" class="iconStatusLidos">turned_in</mat-icon>
-                <mat-icon *ngIf="book.status === bookStatus.QUERO_LER" class="iconStatusLendo">turned_in</mat-icon>
-                <mat-icon *ngIf="book.status === bookStatus.EMPRESTADO" class="iconStatusAbandonado">turned_in
-                </mat-icon>
-                <mat-icon *ngIf="book.status === bookStatus.LIDO" class="iconStatusAler">turned_in</mat-icon>
+                <mat-icon mat-icon-button  *ngIf="book.status === bookStatus.LIDO" class="iconStatusLidos">turned_in</mat-icon>
+                <mat-icon mat-icon-button  *ngIf="book.status === bookStatus.LENDO" class="iconStatusLendo">turned_in</mat-icon>
+                <mat-icon mat-icon-button  *ngIf="book.status === bookStatus.INTERROMPIDO" class="iconStatusInterrompido">turned_in</mat-icon>
+                <mat-icon mat-icon-button  *ngIf="book.status === bookStatus.QUERO_LER" class="iconStatusQueroLer">turned_in</mat-icon>
+                <mat-icon mat-icon-button  *ngIf="book.status === bookStatus.EMPRESTADO" class="iconStatusEmprestado">turned_in</mat-icon>
+                <mat-icon mat-icon-button  *ngIf="book.status === bookStatus.RELENDO" class="iconStatusRelendo">turned_in</mat-icon>
             </div>
             <div class="middle">
                 <div fxLayout="row" fxLayoutAlign="end center">
