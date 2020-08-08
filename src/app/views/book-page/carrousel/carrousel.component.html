@@ -48,11 +48,11 @@
                     </div>
                     <div class="middle">
                         <div fxLayout="row" fxLayoutAlign="end center">
-                            <button mat-icon-button *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  null)">
+                            <button mat-icon-button *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  [])">
                                 <mat-icon>playlist_add</mat-icon>
                             </button>
                             <button mat-icon-button *ngIf="verifyrouter()"
-                                    (click)="openDialogAddBook(book,  this.idTag)">
+                                    (click)="openDialogAddBook(book,  book.tags)">
                                 <mat-icon>reply</mat-icon>
                             </button>
                             <button mat-icon-button *ngIf="verifyrouter()">
@@ -65,13 +65,13 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #menu="matMenu">
-                            <button mat-menu-item *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  null)">
+                            <button mat-menu-item *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  [])">
                                 <mat-icon>playlist_add</mat-icon>
                                 <span>Adicionar</span>
                             </button>
-                            <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.idTag)">
+                            <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.book.tags)">
                                 <mat-icon>reply</mat-icon>
-                                <span>Mover</span>
+                                <span>Editar</span>
                             </button>
                             <button mat-menu-item *ngIf="verifyrouter()">
                                 <mat-icon>delete</mat-icon>

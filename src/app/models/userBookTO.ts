@@ -1,5 +1,6 @@
 import {BookStatus} from "./enums/BookStatus.enum";
 import {Book} from "./book.model";
+import {Tag} from "./tag";
 
 export class UserBookTO {
     id: number;
@@ -9,6 +10,6 @@ export class UserBookTO {
     status: BookStatus;
     addDate: Date;
     book: Book;
-    tagId: number;
+    tags: Tag[];
     profileId: number;
 }

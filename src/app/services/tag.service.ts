@@ -21,6 +21,9 @@ export class TagService {
     getAllByProfile(profileId: number): Observable<Tag[]> {
         return this.http.get<Tag[]>(this.api + 'profile/' + profileId);
     }
+    getAllByUserBook(idUserBook: number): Observable<Tag[]> {
+        return this.http.get<Tag[]>(this.api + 'book/' + idUserBook);
+    }
     getById(idTag: number): Observable<Tag> {
         return this.http.get<Tag>(`${this.api}tag/${idTag}`);
     }

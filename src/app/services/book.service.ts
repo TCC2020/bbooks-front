@@ -83,19 +83,30 @@ export class BookService {
             this.getBooksByUserBooks(tag.books).subscribe(books => {
                 result.books = books;
             });
-        });
+        },
+         error => {
+            console.log('BookService - error, getBookCaseByTag', error);
+         });
         return of(result);
     }
     getBooksByUserBooks(userBook: UserBookTO[]): Observable<Book[]> {
         const result = [];
-        userBook.forEach(realation => {
-            this.gBooksService.getById(realation.idBook).subscribe(book => {
-                const b = this.convertBookToModel(book);
-                b.idUserBook = realation.id;
-                b.status = realation.status;
-                result.push(b);
+        if (userBook) {
+            userBook.forEach(realation => {
+                this.tagService.getAllByUserBook(realation.id).subscribe(tags => {
+                    this.gBooksService.getById(realation.idBook).subscribe(book => {
+                        const b = this.convertBookToModel(book);
+                        b.tags = tags;
+                        b.idUserBook = realation.id;
+                        b.status = realation.status;
+                        b.tags = tags;
+                        result.push(b);
+                    });
+
+                });
             });
-        });
+        }
+
         return of(result);
     }
 

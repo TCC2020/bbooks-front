@@ -77,13 +77,13 @@ export class CarrouselComponent implements OnInit, OnDestroy {
     }
 
 
-    openDialogAddBook(book: Book, tagId: any) {
+    openDialogAddBook(book: Book, tags: any) {
         const dialogRef = this.dialog.open(BookAddDialogComponent, {
             height: '550px',
             width: '400px',
             data: {
                 book,
-                tagId
+                tags
             }
         });
         dialogRef.afterClosed().subscribe(() => {

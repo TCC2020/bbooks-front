@@ -73,7 +73,7 @@
             </div>
             <div class="middle">
                 <div fxLayout="row" fxLayoutAlign="end center">
-                    <button mat-icon-button (click)="openDialogAddBook(book,  this.bookCase.description)"
+                    <button mat-icon-button (click)="openDialogAddBook(book,  book.tags)"
                             *ngIf="verifyrouter()">
                         <mat-icon>reply</mat-icon>
                     </button>
@@ -92,9 +92,9 @@
                         <span>Adicionar</span>
                     </button>
                     <button mat-menu-item *ngIf="verifyrouter()"
-                            (click)="openDialogAddBook(book,  this.bookCase.id)">
+                            (click)="openDialogAddBook(book,  book.tags)">
                         <mat-icon>reply</mat-icon>
-                        <span>Mover</span>
+                        <span>Editar</span>
                     </button>
                     <button mat-menu-item *ngIf="verifyrouter()">
                         <mat-icon>delete</mat-icon>
