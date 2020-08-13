@@ -23,7 +23,7 @@
                         <span class="itemPadding">Livros</span>
                     </mat-list-item>
                     <div  *ngIf="!verifyRouterLink('my')">
-                        <mat-list role="list" class="list-width" *ngFor="let bookcase of bookcasesGbooks ">
+                        <mat-list role="list" *ngFor="let bookcase of bookcasesGbooks ">
                             <mat-list-item routerLinkActive="activedList" role="listitem"
                                            class="list-item" matRipple [routerLink]="['/book/', bookcase]">
                                 <span class="subItemPadding">{{bookcase | titlecase }} </span>
@@ -39,7 +39,7 @@
                         <span class="itemPadding">Meus Livros</span>
                     </mat-list-item>
                     <div *ngIf="verifyRouterLink('my')">
-                        <mat-list role="list" class="list-width" *ngFor="let tag of tags ">
+                        <mat-list role="list" *ngFor="let tag of tags ">
                             <mat-list-item  routerLinkActive="activedList" role="listitem"
                                             class="list-item" matRipple [routerLink]="['/mybooks', tag.id]">
                                 <span class="subItemPadding">{{tag.name | titlecase }} </span>

@@ -25,8 +25,6 @@ import {MatSliderModule} from '@angular/material/slider';
 import {NovaSenhaComponent} from './views/nova-senha/nova-senha.component';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { BooksComponent } from './views/book-page/books/books.component';
-import { TagDialogComponent } from './views/book-page/tag-dialog/tag-dialog.component';
 
 @NgModule({
     declarations: [

@@ -113,6 +113,7 @@ export class BookAddDialogComponent implements OnInit {
         if (this.tagsBook.length > 0) {
             this.userbookService.update(this.userBookTo).subscribe(
                 value => {
+                    this.dialogRef.close(this.userBookTo);
                 },
                 error => {
                     console.log('TagDialog Error', error);
@@ -122,6 +123,7 @@ export class BookAddDialogComponent implements OnInit {
         } else {
             this.userbookService.save(this.userBookTo).subscribe(
                 value => {
+                    this.dialogRef.close(this.userBookTo);
                 },
                 error => {
                     console.log('TagDialog Error', error);

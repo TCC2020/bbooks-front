@@ -6,16 +6,15 @@ import {Observable, Subscription} from "rxjs";
 import {BookService} from "../../../services/book.service";
 import {BookCase} from "../../../models/bookCase.model";
 import {Book} from "../../../models/book.model";
-import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {MediaChange, MediaObserver} from "@angular/flex-layout";
 import {BookStatus, getArrayStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {map, startWith} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {UserbookService} from "../../../services/userbook.service";
-import {Tag} from "../../../models/tag";
+
 
 @Component({
     selector: 'app-book-estante',
@@ -29,7 +28,6 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
     deviceXs;
     mediaSub: Subscription;
     userBook: boolean;
-    bookStatus = BookStatus;
     routerlink: string;
 
     selectable = true;
@@ -80,20 +78,6 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.inscricao.unsubscribe();
         this.mediaSub.unsubscribe();
-    }
-
-    openDialogAddBook(book: Book, tags: any) {
-        const dialogRef = this.dialog.open(BookAddDialogComponent, {
-            height: '550px',
-            width: '400px',
-            data: {
-                book,
-                tags
-            }
-        });
-        dialogRef.afterClosed().subscribe(() => {
-            // this.books = this.bookCase.books;
-        });
     }
 
     verifyrouter(): boolean {
@@ -183,17 +167,8 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         return books;
     }
 
-    changeStatusBook(bookStatus: BookStatus, id: number, book: Book) {
-        let userBookUpdateStatusTO = {
-            'id': id,
-            status: mapBookStatus.get(bookStatus)
-        };
-        this.userbookService.changeStatus(userBookUpdateStatusTO).subscribe(value => {
-                this.bookCase.books[this.bookCase.books.indexOf(book)].status = value.status;
-            },
-            error => {
-                console.log('Error', error);
-            });
+    bookReturn(event) {
+        this.bookCase.books[this.bookCase.books.indexOf((event.book))].status = event.status;
     }
 
 }

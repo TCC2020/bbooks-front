@@ -4,7 +4,6 @@ import {Routes, RouterModule} from '@angular/router';
 import {BookPageComponent} from './book-page.component';
 import {BookFormComponent} from './book-form/book-form.component';
 import {BookEstanteComponent} from './book-estante/book-estante.component';
-import {BookLibraryComponent} from "./book-library/book-library.component";
 import {BookViewComponent} from "./book-view/book-view.component";
 import {BookEstanteResolve} from "./guards/book-estante.resolve";
 import {BookViewResolve} from "./guards/book-view.resolve";

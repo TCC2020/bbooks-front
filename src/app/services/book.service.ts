@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {BookCase} from "../models/bookCase.model";
 import {Book} from "../models/book.model";
 import {GoogleBooksService} from "./google-books.service";
@@ -19,7 +19,7 @@ export class BookService {
 
     genres: string[] = ['ficção', 'classicos', 'romance', 'literatura'];
 
-    books: any[];
+    @Output() updateListCarrousel = new EventEmitter<any>();
 
     api = environment.api + 'books';
 
@@ -162,9 +162,10 @@ export class BookService {
             bc.books = [];
             bc.description = genre;
             bc.id = genre;
-            this.gBooksService.searchByName(genre).subscribe(books => {
-                this.books = books['items'];
-                bc.books = this.books.map(value => this.convertBookToModel(value));
+            this.gBooksService.searchByName(genre).subscribe(response => {
+                let books = [];
+                books = response['items'];
+                bc.books = books.map(value => this.convertBookToModel(value));
                 result.push(bc);
             });
         });
