@@ -66,6 +66,12 @@
       <mat-form-field class="inputCadastrar">
         <mat-label>Email</mat-label>
         <input type="email" matInput id="emailCadastrar" formControlName="email">
+        <mat-error *ngIf="cadastroControl.get('email').hasError('email') && !cadastroControl.get('email').hasError('required')">
+          Por favor, insira um endereço de e-mail válido
+        </mat-error>
+        <mat-error *ngIf="cadastroControl.get('email').hasError('required')">
+          E-mail é <strong>obrigatório</strong>
+        </mat-error>
         <mat-hint>Informe um endereço de e-mail válido, pois você receberá um e-mail de confirmação.</mat-hint>
       </mat-form-field>
     </div>
@@ -74,6 +80,12 @@
       <mat-form-field class="inputCadastrar">
         <mat-label>Nome de Usuário</mat-label>
         <input matInput id="nomeUsuarioCadastrar" formControlName="userName">
+        <mat-error *ngIf="cadastroControl.get('userName').hasError('pattern') && !cadastroControl.get('userName').hasError('required')">
+          O primeiro caractere deve ser uma letra
+        </mat-error>
+        <mat-error *ngIf="cadastroControl.get('userName').hasError('required')">
+          Nome de Usuário é <strong>obrigatório</strong>
+        </mat-error>
         <mat-hint>Seu nome de usuário pode ter letras, números e pontos finais.</mat-hint>
       </mat-form-field>
     </div>
@@ -85,18 +97,17 @@
         <input type="password"
         matInput
         formControlName="password"
-        [errorStateMatcher]="matcherPwd"
         id="senhaCadastrar">
-        <mat-error *ngIf="pwdFormControl.hasError('minlength') && !pwdFormControl.hasError('required')">
+        <mat-error *ngIf="cadastroControl.get('password').hasError('minlength') && !cadastroControl.get('password').hasError('required')">
           A senha deve conter, no mínimo, 8 caracteres
         </mat-error>
-        <mat-error *ngIf="pwdFormControl.hasError('maxlength') && !pwdFormControl.hasError('required')">
+        <mat-error *ngIf="cadastroControl.get('password').hasError('maxlength') && !cadastroControl.get('password').hasError('required')">
           A senha deve conter, no máximo, 20 caracteres
         </mat-error>
-        <mat-error *ngIf="pwdFormControl.hasError('pattern') && !pwdFormControl.hasError('required')">
-          A senha deve conter apenas letras e números
+        <mat-error *ngIf="cadastroControl.get('password').hasError('pattern') && !cadastroControl.get('password').hasError('required')">
+          A senha deve conter letras e números
         </mat-error>
-        <mat-error *ngIf="pwdFormControl.hasError('required')">
+        <mat-error *ngIf="cadastroControl.get('password').hasError('required')">
           Senha é <strong>obrigatório</strong>
         </mat-error>
         <mat-hint>Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras e números.</mat-hint>
@@ -104,7 +115,14 @@
 
       <mat-form-field class="inputCadastrar">
         <mat-label>Confirmar Senha</mat-label>
-        <input type="password" matInput id="confirmarSenhaCadastrar">
+        <input type="password"
+        matInput
+        formControlName="confirmPassword"
+        [errorStateMatcher]="matcher"
+        id="confirmarSenhaCadastrar">
+        <mat-error *ngIf="cadastroControl.hasError('notSame')">
+          Senhas diferentes
+        </mat-error>
       </mat-form-field>
     </div>
   
