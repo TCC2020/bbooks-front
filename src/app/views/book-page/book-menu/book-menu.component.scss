@@ -41,6 +41,10 @@ mat-drawer {
   //color: white;
   cursor: pointer;
 }
+.list-item:hover #iconSubItem{
+  transition: all .2s linear;
+  opacity: 1;
+}
 .sidenav{
   //background-color:  white;
   width: 301px;
@@ -52,7 +56,11 @@ mat-drawer {
   background-color: rgba(65, 85, 102, 0.11);
 }
 .subItemPadding{
-  margin-left:50px;
+  margin-left:55px;
+}
+.iconSubItem{
+  opacity: 0;
+  margin-left:140px;
 }
 .itemPadding{
   margin-left:15px;

@@ -25,7 +25,7 @@ export class TagService {
         return this.http.get<Tag[]>(this.api + 'book/' + idUserBook);
     }
     getById(idTag: number): Observable<Tag> {
-        return this.http.get<Tag>(`${this.api}tag/${idTag}`);
+        return this.http.get<Tag>(`${this.api}${idTag}`);
     }
 
     put(tagId: number, userBookId: number): Observable<Tag> {

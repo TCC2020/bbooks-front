@@ -107,8 +107,6 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.idBook = this.Book.id;
         this.userBookTo.profileId = this.authService.getUser().profile.id;
         this.userBookTo.status = this.formBook.get('statusBook').value;
-        this.userBookTo.isbn10 = this.Book.isbn10;
-        this.userBookTo.isbn13 = this.Book.isbn13;
         this.userBookTo.tags = this.getSelectedTags();
         if (this.tagsBook.length > 0) {
             this.userbookService.update(this.userBookTo).subscribe(

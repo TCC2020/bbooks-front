@@ -4,8 +4,6 @@ import {Tag} from "./tag";
 
 export class UserBookTO {
     id: number;
-    isbn10: string
-    isbn13: string;
     idBook: string;
     status: BookStatus;
     addDate: Date;

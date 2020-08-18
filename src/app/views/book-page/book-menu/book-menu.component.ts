@@ -32,8 +32,8 @@ export class BookMenuComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.tagService.getAllByProfile(this.authService.getUser().profile.id).subscribe((response: Tag[] ) => {
-           this.tags = response;
+        this.tagService.getAllByProfile(this.authService.getUser().profile.id).subscribe((response: Tag[]) => {
+            this.tags = response;
         });
     }
 
@@ -53,14 +53,16 @@ export class BookMenuComponent implements OnInit {
         let e = this.deviceXs ? 140 : 65;
         return e - this.topVal;
     }
-
-    openDialogBookCase(): void {
+    openDialogTag(tag: Tag): void {
         const dialogRef = this.dialog.open(TagDialogComponent, {
             width: '300px',
-            height: '200px'
+            height: '200px',
+            data: tag
         });
         dialogRef.afterClosed().subscribe(result => {
-           this.tags.push(result);
+            if (result) {
+                this.tags.push(result);
+            }
         });
     }
 
