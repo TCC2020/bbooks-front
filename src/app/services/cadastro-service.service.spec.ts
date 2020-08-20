@@ -1,16 +1,21 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
+import {CadastroService} from "./cadastro-service.service";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
 
-import { CadastroServiceService } from './cadastro-service.service';
 
-describe('CadastroServiceService', () => {
-  let service: CadastroServiceService;
+describe('CadastroService', () => {
+    let service: CadastroService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CadastroServiceService);
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                HttpClientTestingModule,
+            ]
+        });
+        service = TestBed.inject(CadastroService);
+    });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(service).toBeTruthy();
+    });
 });

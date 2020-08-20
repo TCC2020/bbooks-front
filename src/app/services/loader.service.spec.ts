@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { LoaderService } from './loader.service';
+import {LoaderService} from './loader.service';
 
 describe('LoaderService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+    beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: LoaderService = TestBed.get(LoaderService);
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        const service: LoaderService = TestBed.get(LoaderService);
+        expect(service).toBeTruthy();
+    });
 });
