@@ -5,11 +5,12 @@ import { CadastroService } from '../../services/cadastro-service.service';
 import { Md5 } from 'ts-md5/dist/md5';
 import { ErrorStateMatcher } from '@angular/material/core';
 
-/** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.hasError('notSame') && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
   }
 }
 
@@ -21,6 +22,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class CadastroComponent implements OnInit {
   cadastroControl: FormGroup;
 
+  matcher = new MyErrorStateMatcher();
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -29,37 +32,33 @@ export class CadastroComponent implements OnInit {
     this.cadastroControl = this.fb.group({
       name: '',
       lastName: '',
-      email: ['', Validators.required, Validators.email],
-      userName: '',
-      password: ''
-    });
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.email
+      ])],
+      userName: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern("^([A-Z]|[a-z])[A-Za-z0-9.]*$")
+      ])],
+      password: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        Validators.pattern(/^(?=\D*\d)(?=[^A-Za-z]*[A-Za-z]).{8,20}$/)
+      ])],
+      confirmPassword: ['']
+    }, { validator: this.checkPasswords });
   }
 
   ngOnInit(): void {
   }
 
+  checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+    let pass = group.controls.password.value;
+    let confirmPass = group.controls.confirmPassword.value;
 
-  //Validação automática de e-mail
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]);
-  matcherEmail = new MyErrorStateMatcher();
-
-  //Validação automática de senha
-  pwdFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(8),
-    Validators.maxLength(20),
-    Validators.pattern(/^(?=\D*\d)(?=[^A-Za-z]*[A-Za-z]).{8,20}$/)
-  ])
-  matcherPwd = new MyErrorStateMatcher();
-
-  //Validação automática de usuário
-  userFormControl = new FormControl('', [
-    Validators.required,
-    Validators.pattern("^([A-Z]|[a-z])[A-Za-z0-9.]*$")
-  ])
+    return pass === confirmPass ? null : { notSame: true }
+  }
 
   cadastrar() {
     this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
