@@ -97,7 +97,8 @@
           "options": {
             "no-cache": true,
             "reporters": "jest-junit"
-          },
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
