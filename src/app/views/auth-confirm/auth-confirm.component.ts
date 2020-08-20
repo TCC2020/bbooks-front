@@ -16,7 +16,7 @@ export class AuthConfirmComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private AuthConfirmService: AuthConfirmService,
+    private authConfirmService: AuthConfirmService,
     private authService: AuthService,
     private router: Router
   ) {
@@ -32,7 +32,7 @@ export class AuthConfirmComponent implements OnInit {
 
   confirm(): void {
     this.confirmControl.value.password = Md5.hashStr(this.confirmControl.value.password);
-    this.AuthConfirmService.confirm(this.confirmControl.value).subscribe(res => {
+    this.authConfirmService.confirm(this.confirmControl.value).subscribe(res => {
       this.authService.authenticate(res, this.confirmControl.value.keepLogin);
       this.router.navigateByUrl('/');
     },
