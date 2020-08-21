@@ -4,6 +4,6 @@ export class Tag {
     id: number;
     name: string;
     color: string;
-    profileId: number;
+    profile: any;
     books: UserBookTO[];
 }

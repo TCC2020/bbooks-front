@@ -48,7 +48,7 @@ export class TagDialogComponent implements OnInit {
         } else {
             const tag = new Tag();
             tag.name = this.formTag.get('name').value;
-            tag.profileId = this.authService.getUser().profile.id;
+            tag.profile = this.authService.getUser().profile
             tag.books = [];
             this.tagService.save(tag).subscribe(response => {
                 this.dialogRef.close(response);
