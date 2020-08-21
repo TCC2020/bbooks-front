@@ -20,40 +20,48 @@
 
 mat-drawer {
   position: fixed;
-  background-color: rgb(236, 236, 236);
-}
-
-.example-sidenav-content:first-child {
-  margin: 10px 5px 5px 5px;
+  background-color: white;
 }
 
 .list-width {
-  width: 225px;
+  width: 290px;
+  margin-left: 5px;
 }
 .list-item{
-  color: #9bbccb;
+  //color: #9bbccb;
   //background-color: #415566;
   //border-bottom: 2px solid #394A59;
   //padding: 20px;
   transition: all .2s linear;
-
+  border-radius: 10px;
 }
 
 .list-item:hover {
-  background-color: #36BF7F;
-  color: white;
+  background-color: rgba(196, 201, 205, 0.3);
+  //color: white;
   cursor: pointer;
 }
+.list-item:hover #iconSubItem{
+  transition: all .2s linear;
+  opacity: 1;
+}
 .sidenav{
-  background-color:  #394A59;
+  //background-color:  white;
+  width: 301px;
   border-radius: 3px;
+  box-shadow: 1px 5px 5px rgba(128, 128, 128, 0.39);
+
 }
 .activedList{
-  color: white;
+  background-color: rgba(65, 85, 102, 0.11);
 }
 .subItemPadding{
-  margin-left:30px;
+  margin-left:55px;
+}
+.iconSubItem{
+  opacity: 0;
+  margin-left:140px;
 }
 .itemPadding{
-  margin-left:6px;
+  margin-left:15px;
 }

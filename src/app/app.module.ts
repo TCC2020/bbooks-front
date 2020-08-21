@@ -36,7 +36,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
         CadastroComponent,
         CadastroSegundaEtapaComponent,
         RecuperarSenhaComponent,
-        NovaSenhaComponent,
+        NovaSenhaComponent
     ],
     imports: [
         BrowserModule,
@@ -67,7 +67,8 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
                     {
                         id: GoogleLoginProvider.PROVIDER_ID,
                         provider: new GoogleLoginProvider(
-                            environment.gauth
+                            '637875920121-701qaprve1b7a1v9a1qsm27kjp8vjb1d.apps.googleusercontent.com'
+                            // environment.gauth
                         ),
                     }
                 ],

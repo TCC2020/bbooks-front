@@ -14,7 +14,7 @@
                             <div fxFlex="40">
                                 {{stringAuthors}}
                             </div>
-                            <div>
+                            <div *ngIf="book.averageRating">
                                 <app-rating *ngFor="let star  of stars;" [idStar]="star"
                                             [rating]="this.book.averageRating"></app-rating>
                             </div>

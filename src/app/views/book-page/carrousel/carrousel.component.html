@@ -1,0 +1,13 @@
+<div fxLayout="row" fxLayoutAlign="start center" *ngIf="nameTag && books.length > 0" [routerLink]="[ routerlink ,idTag]">
+    <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px">
+        <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{nameTag | titlecase}}</span>
+        <mat-icon class="iconColor" fxFlexOffset="10">arrow_forward</mat-icon>
+    </div>
+</div>
+<owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let book of books">
+        <ng-template carouselSlide>
+            <app-book-card [idTag]="idTag" [book]="book" [deviceXs]="deviceXs" (bookReturn)="bookReturn($event)"></app-book-card>
+        </ng-template>
+    </ng-container>
+</owl-carousel-o>

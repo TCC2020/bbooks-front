@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {AuthGuard} from "../guards/auth-guard";
 import {Observable} from "rxjs";
 import {UserBookTO} from "../models/userBookTO";
+import {Tag} from "../models/tag";
 
 @Injectable({
     providedIn: 'root'
@@ -22,8 +23,11 @@ export class UserbookService {
         return this.http.put(this.api + 'status', userBookUpdateStatusTO);
     }
 
-    save(profileTO): Observable<any> {
-        return this.http.post(this.api, profileTO);
+    save(userBookTo): Observable<any> {
+        return this.http.post(this.api, userBookTo);
+    }
+    update(userBookTo: UserBookTO): Observable<any> {
+        return this.http.put(this.api , userBookTo);
     }
 
 }

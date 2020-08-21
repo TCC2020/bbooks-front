@@ -12,6 +12,7 @@
   width: 100%;
   height: auto;
   transition: .5s ease;
+  max-width: 150px;
   backface-visibility: hidden;
 }
 
@@ -29,7 +30,13 @@
   top: 0.5%;
   left: 75%;
 }
-
+.faixa{
+  transition: .5s ease;
+  opacity: 1;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
 .container:hover .image {
   opacity: 0.3;
 }
@@ -55,12 +62,9 @@
   text-align: left;
   color: #757575;
 }
-.faixa{
-  transition: .5s ease;
-  opacity: 1;
-  position: absolute;
-  top: 0%;
-  left: 0%;
+
+.iconColor {
+  color: #36BF7F;
 }
 
 .iconStatusLendo {

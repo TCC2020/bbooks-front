@@ -33,49 +33,12 @@
 </div>
 
 <div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
-    <div class="card" *ngFor="let book of filterBooks()">
-        <div class="container">
-            <img [src]=book.image alt="Avatar" class="image" style="width:100%" [routerLink]="['/book/view', book.id]">
-            <div class="faixa" *ngIf="this.userBook">
-                <mat-icon *ngIf="book.status === bookStatus.LENDO" class="iconStatusLidos">turned_in</mat-icon>
-                <mat-icon *ngIf="book.status === bookStatus.QUERO_LER" class="iconStatusLendo">turned_in</mat-icon>
-                <mat-icon *ngIf="book.status === bookStatus.EMPRESTADO" class="iconStatusAbandonado">turned_in
-                </mat-icon>
-                <mat-icon *ngIf="book.status === bookStatus.LIDO" class="iconStatusAler">turned_in</mat-icon>
-            </div>
-            <div class="middle">
-                <div fxLayout="row" fxLayoutAlign="end center">
-                    <button mat-icon-button (click)="openDialogAddBook(book,  this.bookCase.description)"
-                            *ngIf="verifyrouter()">
-                        <mat-icon>reply</mat-icon>
-                    </button>
-                    <button mat-icon-button *ngIf="verifyrouter()">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </div>
-            </div>
-            <div class="middleXs" *ngIf="deviceXs">
-                <button mat-icon-button [matMenuTriggerFor]="menu">
-                    <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
-                    <button mat-menu-item *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  null)">
-                        <mat-icon>playlist_add</mat-icon>
-                        <span>Adicionar</span>
-                    </button>
-                    <button mat-menu-item *ngIf="verifyrouter()"
-                            (click)="openDialogAddBook(book,  this.bookCase.description)">
-                        <mat-icon>reply</mat-icon>
-                        <span>Mover</span>
-                    </button>
-                    <button mat-menu-item *ngIf="verifyrouter()">
-                        <mat-icon>delete</mat-icon>
-                        <span>Apagar</span>
-                    </button>
-                </mat-menu>
-            </div>
-        </div>
-        <p class="textImage" fxLayout="row" fxLayoutAlign="start end">{{book.title}}</p>
-    </div>
+   <app-book-card
+           *ngFor="let book of filterBooks()"
+           [idTag]="book.idUserBook"
+           [book]="book"
+           [deviceXs]="deviceXs"
+           (bookReturn)="bookReturn($event)">
+   </app-book-card>
 </div>
 

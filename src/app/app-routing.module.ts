@@ -33,7 +33,7 @@ const routes: Routes = [
         path: 'nova-senha', component: NovaSenhaComponent,
     },
     {
-        path: 'book',
+        path: '',
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/book-page/book.module').then(m => m.BookModule)
     }

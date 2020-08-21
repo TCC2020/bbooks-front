@@ -4,6 +4,8 @@ import {BookService} from "../../../services/book.service";
 import {Book} from "../../../models/book.model";
 import {Observable} from "rxjs";
 import {GoogleBooksService} from "../../../services/google-books.service";
+import {of} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Injectable()
 export class BookViewResolve implements Resolve<Book> {
@@ -19,6 +21,8 @@ export class BookViewResolve implements Resolve<Book> {
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
         const id = route.params['id'];
-        return this.gBookService.getById(id);
+        return this.gBookService.getById(id).pipe(map(b => {
+          return this.bookService.convertBookToModel(b);
+        }));
     }
 }

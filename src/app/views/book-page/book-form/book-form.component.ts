@@ -66,10 +66,6 @@ export class BookFormComponent implements OnInit {
             this.authors.push(this.createAuthorsForm(author.id, author.name));
             this.getAuthors(i);
         });
-        // for (const s of this.book.authors) {
-        //     this.authors.push(this.createAuthorsForm(s));
-        //     this.getAuthors(0);
-        // }
 
     }
 
@@ -112,8 +108,6 @@ export class BookFormComponent implements OnInit {
                     })
                 );
         });
-
-
     }
 
     resetOption(index: number): void {
@@ -122,7 +116,6 @@ export class BookFormComponent implements OnInit {
     }
 
     selectOption(index: number, option) {
-        console.log(option);
         this.authors.at(index).get('id').setValue(option.id);
     }
 

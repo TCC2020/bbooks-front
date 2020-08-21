@@ -4,31 +4,43 @@ import {Routes, RouterModule} from '@angular/router';
 import {BookPageComponent} from './book-page.component';
 import {BookFormComponent} from './book-form/book-form.component';
 import {BookEstanteComponent} from './book-estante/book-estante.component';
-import {BookLibraryComponent} from "./book-library/book-library.component";
 import {BookViewComponent} from "./book-view/book-view.component";
 import {BookEstanteResolve} from "./guards/book-estante.resolve";
 import {BookViewResolve} from "./guards/book-view.resolve";
+import {BooksComponent} from "./books/books.component";
+import {BooksResolve} from "./guards/books.resolve";
 
 
 const bookRoutes: Routes = [
     {
         path: '', component: BookPageComponent, children: [
             {
-                path: '', component: BookLibraryComponent,
-                resolve: {bookcase: BookEstanteResolve}
-            },
-            {path: 'my', component: BookLibraryComponent},
-            {
-                path: 'my/:bookcase', component: BookEstanteComponent,
-                resolve: {bookcase: BookEstanteResolve}
+                path: 'book', component: BooksComponent,
+                resolve: {bookcases: BooksResolve }
             },
             {
-                path: ':id', component: BookViewComponent,
+                path: 'book/:tag/:id', component: BookViewComponent,
                 resolve: {book: BookViewResolve}
             },
             {path: 'new', component: BookFormComponent},
-            {path: ':id/edit', component: BookFormComponent},
-            {path: ':bookcase', component: BookEstanteComponent}
+            {path: 'books/:id/edit', component: BookFormComponent},
+            {
+                path: 'book/:tag', component: BookEstanteComponent,
+                resolve: {bookcase: BookEstanteResolve}
+            },
+            // mybooks router
+            {
+                path: 'mybooks', component: BooksComponent,
+                resolve: {bookcases: BooksResolve }
+            },
+            {
+                path: 'mybooks/:tag', component: BookEstanteComponent,
+                resolve: {bookcase: BookEstanteResolve}
+            },
+            {
+                path: 'mybooks/:tag/:id', component: BookViewComponent,
+                resolve: {book: BookViewResolve}
+            },
         ]
     },
 
