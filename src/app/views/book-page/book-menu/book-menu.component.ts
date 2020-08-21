@@ -32,6 +32,10 @@ export class BookMenuComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.getTags();
+    }
+
+    getTags(): void {
         this.tagService.getAllByProfile(this.authService.getUser().profile.id).subscribe((response: Tag[]) => {
             this.tags = response;
         });
@@ -53,6 +57,7 @@ export class BookMenuComponent implements OnInit {
         let e = this.deviceXs ? 140 : 65;
         return e - this.topVal;
     }
+
     openDialogTag(tag: Tag): void {
         const dialogRef = this.dialog.open(TagDialogComponent, {
             width: '300px',
@@ -68,6 +73,15 @@ export class BookMenuComponent implements OnInit {
 
     verifyRouterLink(route: string) {
         return this.router.url.includes(route);
+    }
+
+    deleteTag(tagId: number): void {
+        this.tagService.delete(tagId).subscribe(
+            value => {this.getTags()},
+            error => {
+                console.log('erro bookmenu tag delete', error);
+            }
+        );
     }
 
 }

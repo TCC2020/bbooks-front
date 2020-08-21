@@ -25,10 +25,10 @@ export class TagService {
         return this.http.get<Tag[]>(this.api + 'book/' + idUserBook);
     }
     getById(idTag: number): Observable<Tag> {
-        return this.http.get<Tag>(`${this.api}${idTag}`);
+        return this.http.get<Tag>(`${this.api} ${idTag}`);
     }
 
-    put(tagId: number, userBookId: number): Observable<Tag> {
-        return this.http.put<Tag>(this.api,  `${tagId} /ta`);
+    delete(tagId: number): Observable<any> {
+        return this.http.delete(this.api + tagId );
     }
 }

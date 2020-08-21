@@ -51,7 +51,6 @@ export class BookAddDialogComponent implements OnInit {
 
     getTags(): void {
         this.tagService.getAllByProfile(this.authService.getUser().profile.id).subscribe((response: Tag[]) => {
-            console.log(this.authService.getUser());
             this.tags = response;
             this.initTags();
         });

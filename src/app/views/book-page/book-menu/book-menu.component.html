@@ -51,7 +51,7 @@
                                         <mat-icon>create</mat-icon>
                                         <span>Editar</span>
                                     </div>
-                                    <div mat-menu-item>
+                                    <div mat-menu-item (click)="deleteTag(tag.id)">
                                         <mat-icon>delete</mat-icon>
                                         <span>Remover</span>
                                     </div>
@@ -62,7 +62,7 @@
 
                     <mat-list-item *ngIf="verifyRouterLink('my')" role="listitem" class="list-item" matRipple
                                    (click)="openDialogTag(null)">
-                        <span class="subItemPadding">Criar estante</span>
+                        <span class="subItemPadding">Criar Tag</span>
                     </mat-list-item>
 
                 </mat-list>
