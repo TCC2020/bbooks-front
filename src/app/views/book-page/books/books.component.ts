@@ -2,10 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {BookCase} from "../../../models/bookCase.model";
 import {GoogleBooksService} from "../../../services/google-books.service";
 import {BookService} from "../../../services/book.service";
-import {TagService} from "../../../services/tag.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {BehaviorSubject, Subscription} from "rxjs";
-import {BooksResolve} from "../guards/books.resolve";
+import { Subscription} from "rxjs";
 
 @Component({
     selector: 'app-books',
@@ -21,7 +19,6 @@ export class BooksComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute,
         private bookService: BookService,
         private router: Router,
-        private booksResolve: BooksResolve
     ) {
     }
 
