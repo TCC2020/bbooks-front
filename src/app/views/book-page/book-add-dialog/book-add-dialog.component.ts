@@ -7,7 +7,6 @@ import {BookStatus, getArrayStatus, mapBookStatus} from "../../../models/enums/B
 import {UserbookService} from "../../../services/userbook.service";
 import {UserBookTO} from "../../../models/userBookTO";
 import {AuthService} from "../../../services/auth.service";
-import {AuthGuard} from "../../../guards/auth-guard";
 import {Tag} from "../../../models/tag";
 import {TagService} from "../../../services/tag.service";
 

@@ -2,7 +2,7 @@ import {fakeAsync, TestBed} from '@angular/core/testing';
 
 import {TagService} from './tag.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {first} from "rxjs/operators";
+
 
 describe('TagService', () => {
     let service: TagService;
@@ -37,12 +37,12 @@ describe('TagService', () => {
     });
     it('save', async () => {
         service.save(Tag)
-            .pipe(
-                first(),
-            )
             .subscribe((data) => {
-                expect(data).toMatchObject(Tag);
-            });
+                expect(true).toBeFalsy();
+            },
+                error => {
+                expect(true).toEqual(false);
+                });
         const req = httpMock.expectOne(service.api);
         expect(req.cancelled).toBeFalsy();
         expect(req.request.responseType).toEqual('json');
@@ -50,7 +50,7 @@ describe('TagService', () => {
 
     it('getAllByProfile', async () => {
         service.getAllByProfile(4).subscribe(res => {
-
+            expect(res.length).toBe(3);
         });
         const req = httpMock.expectOne(service.api + 'profile/4');
         expect(req.cancelled).toBeFalsy();

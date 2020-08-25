@@ -44,7 +44,6 @@ describe('BooksComponent', () => {
                 SocialLoginModule,
                 BrowserAnimationsModule,
                 NoopAnimationsModule,
-                MaterialModule,
                 RouterTestingModule,
                 HttpClientTestingModule
             ]

@@ -33,9 +33,11 @@ describe('BookMenuComponent', () => {
         getAllByProfile: jest.fn( () => of(tagsMock)),
         delete: jest.fn( () => of(null))
     };
-    const mockMatDialog = { open: jest.fn( () =>  {
-            return {afterClosed: jest.fn(() => of([])) };
-        })};
+    const mockMatDialog = {
+        open: jest.fn(() => {
+            return {afterClosed: jest.fn(() => of([]))};
+        })
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

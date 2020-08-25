@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';
-import {GoogleBooksService} from '../../../services/google-books.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable, Subscription} from "rxjs";
 import {BookService} from "../../../services/book.service";
@@ -13,7 +12,6 @@ import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/a
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map} from "rxjs/operators";
 import {MatChipInputEvent} from "@angular/material/chips";
-import {UserbookService} from "../../../services/userbook.service";
 
 
 @Component({
@@ -48,8 +46,6 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         public dialog: MatDialog,
         public mediaObserver: MediaObserver,
         private router: Router,
-        private userbookService: UserbookService,
-        private gBooksService: GoogleBooksService,
     ) {
         this.filteredElements = this.filterCtrl.valueChanges.pipe(
             map((status: string | null) => status ? this._filter(status) : this.allStatus));
@@ -116,8 +112,8 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         this.filterCtrl.setValue(null);
     }
 
-    private _filter(value: string): BookStatus[] {
-        return this.allStatus.filter(status => status.toLowerCase().indexOf(value) === 0);
+    _filter(value: string): BookStatus[] {
+        return this.allStatus.filter(status => status.toLowerCase().indexOf(value.toLowerCase()) === 0);
     }
 
     private statusFilter(): BookStatus[] {
