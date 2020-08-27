@@ -112,8 +112,8 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         this.filterCtrl.setValue(null);
     }
 
-    private _filter(value: string): BookStatus[] {
-        return this.allStatus.filter(status => status.toLowerCase().indexOf(value) === 0);
+    _filter(value: string): BookStatus[] {
+        return this.allStatus.filter(status => status.toLowerCase().indexOf(value.toLowerCase()) === 0);
     }
 
     private statusFilter(): BookStatus[] {
