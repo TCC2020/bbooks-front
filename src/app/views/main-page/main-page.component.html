@@ -9,31 +9,37 @@
 </form>
 <div fxLayout="row wrap" fxFLex="100" fxLayoutAlign="center">
     <div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center">
-        <mat-card *ngFor="let book of books" class="example-card" fxFlex="20">
-            <mat-card-header>
-                <mat-card-title>{{book.volumeInfo.title}}</mat-card-title>
-                <mat-card-subtitle>{{book?.volumeInfo?.authors?.toString()}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <img class="card-img-top"
-                    [src]="book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : ''">
-                <p class="card-text block-with-text">{{book.volumeInfo.description}}</p>
-            </mat-card-content>
+<!--        <mat-card *ngFor="let book of books" class="example-card" fxFlex="20">-->
+<!--            <mat-card-header>-->
+<!--                <mat-card-title>{{book.volumeInfo.title}}</mat-card-title>-->
+<!--                <mat-card-subtitle>{{book?.volumeInfo?.authors?.toString()}}</mat-card-subtitle>-->
+<!--            </mat-card-header>-->
+<!--            <mat-card-content>-->
+<!--                <img class="card-img-top"-->
+<!--                    [src]="book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : ''">-->
+<!--                <p class="card-text block-with-text">{{book.volumeInfo.description}}</p>-->
+<!--            </mat-card-content>-->
 
-            <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                <div id="card-footer" fxLayoutAlign="center center">
-                    <button mat-raised-button color="primary">Vizualizar</button>
-                </div>
-                <div id="card-footer" fxLayoutAlign="center center">
-                    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Adicionar</button>
-                </div>
-            </div>
+<!--            <div fxLayout="row" fxLayoutAlign="space-evenly center">-->
+<!--                <div id="card-footer" fxLayoutAlign="center center">-->
+<!--                    <button mat-raised-button color="primary">Vizualizar</button>-->
+<!--                </div>-->
+<!--                <div id="card-footer" fxLayoutAlign="center center">-->
+<!--                    <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Adicionar</button>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item>Quero ler</button>
-                <button mat-menu-item>Lendo</button>
-                <button mat-menu-item>Lido</button>
-            </mat-menu>
-        </mat-card>
+<!--            <mat-menu #menu="matMenu">-->
+<!--                <button mat-menu-item>Quero ler</button>-->
+<!--                <button mat-menu-item>Lendo</button>-->
+<!--                <button mat-menu-item>Lido</button>-->
+<!--            </mat-menu>-->
+<!--        </mat-card>-->
+        <app-book-card
+                *ngFor="let book of books"
+                [idTag]="book.idUserBook"
+                [book]="book"
+                [deviceXs]="false">
+        </app-book-card>
     </div>
 </div>

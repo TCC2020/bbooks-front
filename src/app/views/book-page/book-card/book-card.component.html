@@ -1,6 +1,6 @@
 <div class="card">
     <div class="container">
-        <img [src]=book.image alt="Avatar" class="image" style="width:100%"
+        <img [src]="book.image ? book.image : 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg'" alt="Avatar" class="image" style="width:100%"
              [routerLink]="[routerlink + idTag, book.id]">
         <div class="faixa" *ngIf="this.userBook">
             <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LIDO" class="iconStatusLidos">turned_in</mat-icon>

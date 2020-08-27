@@ -4,6 +4,9 @@ import {UserService} from 'src/app/services/user.service';
 import {FormBuilder} from '@angular/forms';
 import {GoogleBooksService} from 'src/app/services/google-books.service';
 import {AuthService} from "../../services/auth.service";
+import {Book} from "../../models/book.model";
+import {BooksResolve} from "../book-page/guards/books.resolve";
+import {BookService} from "../../services/book.service";
 
 @Component({
     selector: 'app-main-page',
@@ -13,13 +16,14 @@ import {AuthService} from "../../services/auth.service";
 export class MainPageComponent implements OnInit {
     public user;
     searchControl;
-    books;
+    books: Book[];
 
     constructor(
         public auth: AuthService,
         private userService: UserService,
         private fb: FormBuilder,
-        private gBooksService: GoogleBooksService
+        private gBooksService: GoogleBooksService,
+        private bookService: BookService
     ) {
         this.searchControl = this.fb.group({
             book: ['']
@@ -36,7 +40,9 @@ export class MainPageComponent implements OnInit {
     searchBook() {
         this.searchControl.value.book?.split(' ').join('+');
         this.gBooksService.searchByName(this.searchControl.value.book.split(' ').join('+')).subscribe(books => {
-            this.books = books['items'];
+            let booksConvert = [];
+            booksConvert = books['items'];
+            this.books = booksConvert.map(value => this.bookService.convertBookToModel(value));
         });
     }
 }

@@ -126,8 +126,10 @@ export class BookService {
             b.numberPage = book.volumeInfo.pageCount;
             b.publishedDate = book.volumeInfo.publishedDate;
             b.averageRating = book.volumeInfo.averageRating;
-            b.image = book.volumeInfo.imageLinks.thumbnail;
-            b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
+            if (book.volumeInfo.imageLinks) {
+                b.image = book.volumeInfo.imageLinks.thumbnail;
+                b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
+            }
             b.description = book.volumeInfo.description;
             b.authors = this.convertAuthorToModel(book.volumeInfo.authors);
         }
