@@ -20,9 +20,13 @@
                             </div>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="end center">
-                            <button type="button" mat-flat-button color="accent"
-                                    (click)="openDialogAddBook(book,  null)">
-                                Adicionar a Estante
+                            <button type="button" *ngIf="book.idUserBook? false : true" mat-flat-button color="accent"
+                                    (click)="openDialogAddBook(book)">
+                                Adicionar a uma Tag
+                            </button>
+                            <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
+                                    (click)="openDialogAddBook(book)">
+                                Editar livro
                             </button>
                         </div>
 

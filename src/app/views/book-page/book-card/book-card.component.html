@@ -1,8 +1,8 @@
 <div class="card">
     <div class="container">
-        <img [src]="book.image ? book.image : 'https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg'" alt="Avatar" class="image" style="width:100%"
+        <img [src]="book.image ? book.image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'" alt="Avatar" class="image" style="width:100%"
              [routerLink]="[routerlink + idTag, book.id]">
-        <div class="faixa" *ngIf="this.userBook">
+        <div class="faixa" *ngIf="this.book.idUserBook">
             <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LIDO" class="iconStatusLidos">turned_in</mat-icon>
             <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LENDO" class="iconStatusLendo">turned_in</mat-icon>
             <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.INTERROMPIDO" class="iconStatusInterrompido">turned_in</mat-icon>
@@ -37,13 +37,13 @@
                 </div>
             </mat-menu>
         </div>
-        <div class="middle">
+        <div class="middle" *ngIf="logged">
             <div fxLayout="row" fxLayoutAlign="end center">
-                <button mat-icon-button *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  [])">
+                <button mat-icon-button *ngIf="book.idUserBook ? false : true" (click)="openDialogAddBook(book)">
                     <mat-icon>playlist_add</mat-icon>
                 </button>
-                <button mat-icon-button *ngIf="verifyrouter()"
-                        (click)="openDialogAddBook(book,  book.tags)">
+                <button mat-icon-button *ngIf="book.idUserBook"
+                        (click)="openDialogAddBook(book)">
                     <mat-icon>create</mat-icon>
                 </button>
             </div>
@@ -53,11 +53,11 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item *ngIf="!verifyrouter()" (click)="openDialogAddBook(book,  [])">
+                <button mat-menu-item *ngIf="!verifyrouter()" (click)="openDialogAddBook(book)">
                     <mat-icon>playlist_add</mat-icon>
                     <span>Adicionar</span>
                 </button>
-                <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book,  this.book.tags)">
+                <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book)">
                     <mat-icon>create</mat-icon>
                     <span>Editar</span>
                 </button>

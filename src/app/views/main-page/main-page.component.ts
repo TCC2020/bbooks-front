@@ -42,7 +42,18 @@ export class MainPageComponent implements OnInit {
         this.gBooksService.searchByName(this.searchControl.value.book.split(' ').join('+')).subscribe(books => {
             let booksConvert = [];
             booksConvert = books['items'];
-            this.books = booksConvert.map(value => this.bookService.convertBookToModel(value));
+            this.books = booksConvert.map(value => {
+                const book = this.bookService.convertBookToModel(value);
+                this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                    userbooks.books.forEach(userbook => {
+                        if (userbook.idBook === book.id) {
+                            book.status = userbook.status;
+                            book.idUserBook = userbook.id;
+                        }
+                    });
+                });
+                return book;
+            });
         });
     }
 }

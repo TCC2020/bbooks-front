@@ -30,8 +30,8 @@ const bookRoutes: Routes = [
             },
             // mybooks router
             {
-                path: 'mybooks', component: BooksComponent,
-                resolve: {bookcases: BooksResolve }
+                path: 'mybooks', component: BookEstanteComponent,
+                resolve: {bookcase: BookEstanteResolve }
             },
             {
                 path: 'mybooks/:tag', component: BookEstanteComponent,

@@ -11,6 +11,7 @@ import {of} from "rxjs";
 import {AuthService} from "./auth.service";
 import {TagService} from "./tag.service";
 import {UserBookTO} from "../models/userBookTO";
+import {take} from "rxjs/operators";
 
 @Injectable({
     providedIn: 'root'
@@ -74,35 +75,32 @@ export class BookService {
         });
         return of(result);
     }
+
     getBookCaseByTag(tagId: number): Observable<BookCase> {
         const result = new BookCase();
         result.books = [];
         this.tagService.getById(tagId).subscribe(tag => {
-            result.description = tag.name
-            result.id = tag.id;
-            this.getBooksByUserBooks(tag.books).subscribe(books => {
-                result.books = books;
+                result.description = tag.name;
+                result.id = tag.id;
+                this.getBooksByUserBooks(tag.books).subscribe(books => {
+                    result.books = books;
+                });
+            },
+            error => {
+                console.log('BookService - error, getBookCaseByTag', error);
             });
-        },
-         error => {
-            console.log('BookService - error, getBookCaseByTag', error);
-         });
         return of(result);
     }
+
     getBooksByUserBooks(userBook: UserBookTO[]): Observable<Book[]> {
         const result = [];
         if (userBook) {
             userBook.forEach(realation => {
-                this.tagService.getAllByUserBook(realation.id).subscribe(tags => {
-                    this.gBooksService.getById(realation.idBook).subscribe(book => {
-                        const b = this.convertBookToModel(book);
-                        b.tags = tags;
-                        b.idUserBook = realation.id;
-                        b.status = realation.status;
-                        b.tags = tags;
-                        result.push(b);
-                    });
-
+                this.gBooksService.getById(realation.idBook).subscribe(book => {
+                    const b = this.convertBookToModel(book);
+                    b.idUserBook = realation.id;
+                    b.status = realation.status;
+                    result.push(b);
                 });
             });
         }
@@ -159,6 +157,7 @@ export class BookService {
 
     getAllBookGoogle() {
         const result = [];
+
         this.genres.forEach(genre => {
             const bc = new BookCase();
             bc.books = [];
@@ -167,7 +166,19 @@ export class BookService {
             this.gBooksService.searchByName(genre).subscribe(response => {
                 let books = [];
                 books = response['items'];
-                bc.books = books.map(value => this.convertBookToModel(value));
+
+                bc.books = books.map(value => {
+                    const b = this.convertBookToModel(value);
+                    this.getAllUserBooks().subscribe((userbooks) => {
+                        userbooks.books.forEach(userbook => {
+                            if (userbook.idBook === b.id) {
+                                b.status = userbook.status;
+                                b.idUserBook = userbook.id;
+                            }
+                        });
+                    });
+                    return b;
+                });
                 result.push(bc);
             });
         });

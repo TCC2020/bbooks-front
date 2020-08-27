@@ -29,12 +29,29 @@ export class BookEstanteResolve implements Resolve<Book[]> {
         bookCase.description = tag;
         bookCase.id = tag;
         if (myBook) {
-            this.bookService.getBookCaseByTag(tag).subscribe(bookcase => {
-                bookCase = bookcase;
-            });
+            if (tag) {
+                this.bookService.getBookCaseByTag(tag).subscribe(bookcase => {
+                    bookCase = bookcase;
+                });
+            } else {
+                this.bookService.getAllBooks().subscribe(books => {
+                    bookCase.books = books;
+                });
+            }
         } else {
             this.gBooksService.searchByName(tag).subscribe(books => {
-                bookCase.books = this.bookService.convertBookToBookList(books['items']);
+                bookCase.books = this.bookService.convertBookToBookList(books['items']).map(book => {
+                    this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                        userbooks.books.forEach(userbook => {
+                            if (userbook.idBook === book.id) {
+                                book.status = userbook.status;
+                                book.idUserBook = userbook.id;
+                            }
+                        });
+                    });
+                    return book;
+                });
+
             });
         }
         return of(bookCase);

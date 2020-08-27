@@ -35,10 +35,11 @@
 <div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
    <app-book-card
            *ngFor="let book of filterBooks()"
-           [idTag]="book.idUserBook"
+           [idTag]="bookCase.id"
            [book]="book"
            [deviceXs]="deviceXs"
-           (bookReturn)="bookReturn($event)">
+           (bookReturn)="bookReturn($event)"
+            [logged]="true">
    </app-book-card>
 </div>
 
