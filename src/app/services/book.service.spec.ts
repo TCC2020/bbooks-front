@@ -7,6 +7,7 @@ import {AuthService} from "./auth.service";
 import {UserbookService} from "./userbook.service";
 import {GoogleBooksService} from "./google-books.service";
 import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "angularx-social-login";
+import {SocialAuthServiceConfigMock} from "../mocks/google.provide.mock";
 
 describe('BookService', () => {
     let service: BookService;
@@ -22,20 +23,7 @@ describe('BookService', () => {
                 AuthService,
                 UserbookService,
                 GoogleBooksService,
-                {
-                    provide: 'SocialAuthServiceConfig',
-                    useValue: {
-                        autoLogin: false,
-                        providers: [
-                            {
-                                id: GoogleLoginProvider.PROVIDER_ID,
-                                provider: new GoogleLoginProvider(
-                                    '637875920121-2l5ibvruevm5ldf5gdc78erdno23pd2b.apps.googleusercontent.com'
-                                ),
-                            }
-                        ],
-                    } as SocialAuthServiceConfig
-                }
+                SocialAuthServiceConfigMock
             ]
         });
         service = TestBed.inject(BookService);
