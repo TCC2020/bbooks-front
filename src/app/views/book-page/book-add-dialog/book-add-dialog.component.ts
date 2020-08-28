@@ -40,6 +40,7 @@ export class BookAddDialogComponent implements OnInit {
         this.Book = data.book;
         this.tagsBook = [];
         if (this.Book.idUserBook) {
+
             this.tagService.getAllByUserBook(this.Book.idUserBook).subscribe(tags => {
                 this.tagsBook = tags;
                 this.modeDialog();
@@ -47,7 +48,6 @@ export class BookAddDialogComponent implements OnInit {
         } else {
             this.modeDialog();
         }
-
     }
 
     ngOnInit(): void {

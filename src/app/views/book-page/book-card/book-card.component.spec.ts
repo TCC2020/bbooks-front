@@ -55,7 +55,7 @@ describe('BookCardComponent', () => {
 
     it('verify open Dialog', () => {
         const spy = jest.spyOn(mockMatDialog, 'open');
-        component.openDialogAddBook(component.book, null);
+        component.openDialogAddBook(component.book);
         expect(spy).toHaveBeenCalled();
     });
 });
