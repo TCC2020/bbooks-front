@@ -25,6 +25,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import {NovaSenhaComponent} from './views/nova-senha/nova-senha.component';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {BookModule} from "./views/book-page/book.module";
 
 @NgModule({
     declarations: [
@@ -51,7 +52,8 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
         MatSliderModule,
         MatFormFieldModule,
         MatInputModule,
-        SocialLoginModule
+        SocialLoginModule,
+        BookModule
     ],
     providers: [
         AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},

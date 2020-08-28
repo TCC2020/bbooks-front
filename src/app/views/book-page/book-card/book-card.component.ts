@@ -20,7 +20,9 @@ export class BookCardComponent implements OnInit {
 
     @Input() deviceXs: boolean;
 
-    @Input() idTag: number;
+    @Input() idTag: any;
+
+    @Input() logged: boolean;
 
     bookStatus = BookStatus;
 
@@ -52,6 +54,7 @@ export class BookCardComponent implements OnInit {
             status: mapBookStatus.get(bookStatus)
         };
         this.userbookService.changeStatus(userBookUpdateStatusTO).subscribe(value => {
+                this.book.status = value.status;
                 this.bookReturn.emit({status: value.status, book});
             },
             error => {
@@ -59,17 +62,20 @@ export class BookCardComponent implements OnInit {
             });
     }
 
-    openDialogAddBook(book: Book, tags: any) {
+    openDialogAddBook(book: Book) {
         const dialogRef = this.dialog.open(BookAddDialogComponent, {
-            height: '550px',
+            height: '450px',
             width: '400px',
             data: {
-                book,
-                tags
+                book
             }
         });
         dialogRef.afterClosed().subscribe((result) => {
-            this.bookService.updateListCarrousel.emit(true);
+            if (result) {
+                this.book.idUserBook = result.id;
+                this.book.status = result.status;
+                this.bookService.updateListCarrousel.emit(true);
+            }
         });
     }
 

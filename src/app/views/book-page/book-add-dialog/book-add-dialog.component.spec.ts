@@ -33,8 +33,7 @@ describe('BookAddDialogComponent', () => {
     };
 
     const data = {
-        book: bookMock,
-        tags: tagsMock
+        book: bookMock
     };
 
     const userMock = {
@@ -48,6 +47,7 @@ describe('BookAddDialogComponent', () => {
 
     const tagServiceMock = {
         getAllByProfile: jest.fn(() => of(tagsMock)),
+        getAllByUserBook: jest.fn(() => of(tagsMock)),
         delete: jest.fn(() => of(null))
     };
 
@@ -117,7 +117,7 @@ describe('BookAddDialogComponent', () => {
     });
 
     it('form invalid when input statusBook is empty', () => {
-        component.Book = null;
+        component.Book.status = null;
         component.tagsBook = [];
         component.ngOnInit();
         const tagInput = component.formBook.controls['statusBook'];
@@ -126,6 +126,7 @@ describe('BookAddDialogComponent', () => {
     });
 
     it('should call save and call userbookservice update', () => {
+        component.tagsBook = tagsMock;
         const spyComponent = jest.spyOn(component, 'saveBook');
         const spyUserBookService = jest.spyOn(userbookServiceMock, 'update');
         component.saveBook();
@@ -144,17 +145,17 @@ describe('BookAddDialogComponent', () => {
     });
 
     it('test text on edit mode  ', () => {
+        component.tagsBook = [];
+        component.Book.idUserBook = null;
+        component.ngOnInit();
         expect(component.title).toEqual('Editar tags do livro');
         expect(component.buttonText).toEqual('Editar');
-        expect(component.formBook.get('statusBook').value).toEqual(bookMock.status);
     });
 
     it('test text on create mode  ', () => {
-        component.tagsBook = [];
-        component.ngOnInit();
         expect(component.title).toEqual('Adicionar livro em tags');
         expect(component.buttonText).toEqual('Adicionar');
+        expect(component.formBook.get('statusBook').value).toEqual(bookMock.status);
     });
-
 
 });

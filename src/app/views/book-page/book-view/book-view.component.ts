@@ -2,9 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from "../../../models/book.model";
 import {Subscription} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {BookService} from "../../../services/book.service";
 import {MatDialog} from "@angular/material/dialog";
-import {GoogleBooksService} from "../../../services/google-books.service";
 import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
 
 @Component({
@@ -27,10 +25,12 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.inscricao = this.route.data.subscribe((data: {book: Book}) => {
+        this.inscricao = this.route.data.subscribe((data: { book: Book }) => {
             this.book = data.book;
             this.stringAuthors = this.convertAuthorsToString();
         });
+
+
     }
 
     ngOnDestroy(): void {
@@ -42,13 +42,17 @@ export class BookViewComponent implements OnInit, OnDestroy {
         return namesAuthors.toString();
     }
 
-    openDialogAddBook(book: Book, bookcase: string) {
+    openDialogAddBook(book: Book) {
         const dialogRef = this.dialog.open(BookAddDialogComponent, {
             height: '450px',
             width: '400px',
             data: {
-                book,
-                bookcase: name
+                book
+            }
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.book.idUserBook = result.id;
             }
         });
     }

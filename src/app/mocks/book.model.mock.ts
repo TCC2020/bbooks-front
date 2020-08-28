@@ -21,6 +21,7 @@ bookMock.image = 'http://books.google.com/books/content?id=aakP7e1p8soC&printsec
 bookMock.description = 'Este é um livro que pode interessar a qualquer leitor e, graças à maneira sistemática por que foi organizado...';
 bookMock.authors = authors;
 bookMock.status = BookStatus.RELENDO;
+bookMock.idUserBook = 101011
 const books = [];
 books.push(bookMock);
 let i = 0;
@@ -39,6 +40,7 @@ while (i < 15) {
     book.description = 'Este é um livro que pode interessar a qualquer leitor e, graças à maneira sistemática por que foi organizado...';
     book.authors = authors;
     book.status = BookStatus.QUERO_LER;
+    book.idUserBook = 2020;
     const random = Math.floor(Math.random() * 100)
     book.id = random.toString();
     if (!books.includes(book)) {

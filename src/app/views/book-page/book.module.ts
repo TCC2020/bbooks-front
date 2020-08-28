@@ -39,7 +39,9 @@ import {BookCardComponent} from "./book-card/book-card.component";
         CarouselModule
 
     ],
-    exports: [],
+    exports: [
+        BookCardComponent
+    ],
     declarations: [
         BookComponent,
         BookPageComponent,

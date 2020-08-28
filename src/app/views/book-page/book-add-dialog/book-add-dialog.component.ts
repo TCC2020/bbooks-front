@@ -9,6 +9,7 @@ import {UserBookTO} from "../../../models/userBookTO";
 import {AuthService} from "../../../services/auth.service";
 import {Tag} from "../../../models/tag";
 import {TagService} from "../../../services/tag.service";
+import {take} from "rxjs/operators";
 
 @Component({
     selector: 'app-book-add-dialog',
@@ -28,7 +29,7 @@ export class BookAddDialogComponent implements OnInit {
     private userBookTo = new UserBookTO();
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: { book: Book, tags: Tag[] },
+        @Inject(MAT_DIALOG_DATA) public data: { book: Book },
         public dialogRef: MatDialogRef<BookAddDialogComponent>,
         private formBuilder: FormBuilder,
         private bookService: BookService,
@@ -37,13 +38,20 @@ export class BookAddDialogComponent implements OnInit {
         private tagService: TagService
     ) {
         this.Book = data.book;
-        this.tagsBook = data.tags;
-        // this.bookcase = data.name;
+        this.tagsBook = [];
+        if (this.Book.idUserBook) {
+
+            this.tagService.getAllByUserBook(this.Book.idUserBook).subscribe(tags => {
+                this.tagsBook = tags;
+                this.modeDialog();
+            });
+        } else {
+            this.modeDialog();
+        }
     }
 
     ngOnInit(): void {
         this.createForm();
-        this.modeDialog();
         this.getTags();
 
     }
@@ -59,7 +67,6 @@ export class BookAddDialogComponent implements OnInit {
         if (this.tagsBook.length > 0) {
             this.title = 'Editar tags do livro';
             this.buttonText = "Editar";
-            this.formBook.get('statusBook').setValue(this.Book.status);
         } else {
             this.title = 'Adicionar livro em tags';
             this.buttonText = 'Adicionar';
@@ -68,7 +75,7 @@ export class BookAddDialogComponent implements OnInit {
 
     private createForm(): void {
         this.formBook = this.formBuilder.group({
-            statusBook: new FormControl(null, Validators.required),
+            statusBook: new FormControl(this.Book.status ? this.Book.status : null, Validators.required),
             tags: this.formBuilder.array([])
         });
     }
@@ -108,9 +115,9 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.status = this.formBook.get('statusBook').value;
         this.userBookTo.tags = this.getSelectedTags();
         if (this.tagsBook.length > 0) {
-            this.userbookService.update(this.userBookTo).subscribe(
+            this.userbookService.update(this.userBookTo).pipe(take(1)).subscribe(
                 value => {
-                    this.dialogRef.close(this.userBookTo);
+                        this.dialogRef.close(value);
                 },
                 error => {
                     console.log('TagDialog Error', error);
@@ -118,9 +125,9 @@ export class BookAddDialogComponent implements OnInit {
             );
 
         } else {
-            this.userbookService.save(this.userBookTo).subscribe(
+            this.userbookService.save(this.userBookTo).pipe(take(1)).subscribe(
                 value => {
-                    this.dialogRef.close(this.userBookTo);
+                        this.dialogRef.close(value);
                 },
                 error => {
                     console.log('TagDialog Error', error);
