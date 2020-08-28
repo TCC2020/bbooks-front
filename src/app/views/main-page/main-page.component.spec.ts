@@ -8,6 +8,8 @@ import {MaterialModule} from "../../material/material.module";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "angularx-social-login";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {RouterTestingModule} from "@angular/router/testing";
+import {SocialAuthServiceConfigMock} from "../../mocks/google.provide.mock";
 
 describe('MainPageComponent', () => {
     let component: MainPageComponent;
@@ -24,23 +26,11 @@ describe('MainPageComponent', () => {
                 HttpClientTestingModule,
                 SocialLoginModule,
                 BrowserAnimationsModule,
-                NoopAnimationsModule
+                NoopAnimationsModule,
+                RouterTestingModule
             ],
             providers: [
-                {
-                    provide: 'SocialAuthServiceConfig',
-                    useValue: {
-                        autoLogin: false,
-                        providers: [
-                            {
-                                id: GoogleLoginProvider.PROVIDER_ID,
-                                provider: new GoogleLoginProvider(
-                                    '637875920121-2l5ibvruevm5ldf5gdc78erdno23pd2b.apps.googleusercontent.com'
-                                ),
-                            }
-                        ],
-                    } as SocialAuthServiceConfig
-                }
+                SocialAuthServiceConfigMock
             ],
             declarations: [MainPageComponent]
         }).compileComponents();
