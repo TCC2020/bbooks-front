@@ -22,19 +22,24 @@
             </mat-form-field>
         </div>
 
-        <div>
-            <button mat-raised-button id="entrar">Confirmar</button>
-        </div>
-        <a [routerLink]="['/recuperar-senha']" style="margin-top: 15px;">
-            Esqueceu sua senha?
-        </a><br>
-        <a [routerLink]="['/cadastro']" style="margin-top: 15px;">
-            Cadastro
-        </a>
-    </form>
-    <div>
-        <button mat-raised-button (click)="loginGoogle()">Login google</button>
+        <div id="botaoLogar"><button mat-raised-button id="entrar">Entrar</button></div>
+
+        <div id="entrarGoogle">
+          <button mat-raised-button (click)="loginGoogle()"><i class="fab fa-google"></i> Continuar com o Google</button>
+      </div>
+
+      <div id="recuperarSenha" >
+      <a [routerLink]="['/recuperar-senha']" style="margin-top: 15px;">
+        Esqueceu sua senha?
+      </a>
     </div>
+    <div id="criarConta" >
+      <a [routerLink]="['/cadastro']" style="margin-top: 15px;">
+        Criar uma conta
+      </a>
+    </div>
+    </form>
+    
 </div>
 <!-- <mdb-card>
 

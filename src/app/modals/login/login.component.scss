@@ -23,6 +23,10 @@ button#entrar:hover {
     opacity: 80%;
 }
 
+#recuperarSenha, #criarConta, #entrarGoogle {
+    margin-top: 10px;
+}
+
 @media screen and (max-width: 600px){
     .form {
         border: none;
