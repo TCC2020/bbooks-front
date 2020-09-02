@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RecuperarSenhaComponent implements OnInit {
   form = this.fb.group({
-    url: ['http://localhost:4200/redefinir-senha/'],
+    url: ['http://bbooks-ifsp.herokuapp.com/redefinir-senha/'],
     email: ['', Validators.required]
   })
 

@@ -40,7 +40,6 @@ export class BookAddDialogComponent implements OnInit {
         this.Book = data.book;
         this.tagsBook = [];
         if (this.Book.idUserBook) {
-
             this.tagService.getAllByUserBook(this.Book.idUserBook).subscribe(tags => {
                 this.tagsBook = tags;
                 this.modeDialog();
@@ -64,7 +63,7 @@ export class BookAddDialogComponent implements OnInit {
     }
 
     modeDialog() {
-        if (this.tagsBook.length > 0) {
+        if (this.Book.idUserBook) {
             this.title = 'Editar tags do livro';
             this.buttonText = "Editar";
         } else {

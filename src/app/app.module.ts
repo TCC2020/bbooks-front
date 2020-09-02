@@ -26,6 +26,7 @@ import {NovaSenhaComponent} from './views/nova-senha/nova-senha.component';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {BookModule} from "./views/book-page/book.module";
+import {AuthVerifyLogin} from "./guards/auth-verify-login";
 
 @NgModule({
     declarations: [
@@ -56,6 +57,7 @@ import {BookModule} from "./views/book-page/book.module";
         BookModule
     ],
     providers: [
+        AuthVerifyLogin,
         AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
         {
             provide: ErrorStateMatcher,

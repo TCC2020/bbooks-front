@@ -21,7 +21,6 @@ bookMock.image = 'http://books.google.com/books/content?id=aakP7e1p8soC&printsec
 bookMock.description = 'Este é um livro que pode interessar a qualquer leitor e, graças à maneira sistemática por que foi organizado...';
 bookMock.authors = authors;
 bookMock.status = BookStatus.RELENDO;
-bookMock.idUserBook = 101011
 const books = [];
 books.push(bookMock);
 let i = 0;

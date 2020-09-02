@@ -19,4 +19,7 @@ export class UserService {
             this.auth.setUser(response);
         });
     }
+    verifyEmail(email: string) {
+        return this.http.get(this.api + 'email/' + email);
+    }
 }

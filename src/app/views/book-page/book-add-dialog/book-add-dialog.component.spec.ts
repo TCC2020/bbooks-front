@@ -144,15 +144,9 @@ describe('BookAddDialogComponent', () => {
         expect(spyUserBookService).toHaveBeenCalled();
     });
 
-    it('test text on edit mode  ', () => {
+    it('test text on create mode  ', () => {
         component.tagsBook = [];
         component.Book.idUserBook = null;
-        component.ngOnInit();
-        expect(component.title).toEqual('Editar tags do livro');
-        expect(component.buttonText).toEqual('Editar');
-    });
-
-    it('test text on create mode  ', () => {
         expect(component.title).toEqual('Adicionar livro em tags');
         expect(component.buttonText).toEqual('Adicionar');
         expect(component.formBook.get('statusBook').value).toEqual(bookMock.status);
