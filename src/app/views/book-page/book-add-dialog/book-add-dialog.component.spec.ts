@@ -144,12 +144,6 @@ describe('BookAddDialogComponent', () => {
         expect(spyUserBookService).toHaveBeenCalled();
     });
 
-    it('test text on edit mode  ', () => {
-        component.Book.idUserBook = 0;
-        expect(component.title).toEqual('Editar tags do livro');
-        expect(component.buttonText).toEqual('Editar');
-    });
-
     it('test text on create mode  ', () => {
         component.tagsBook = [];
         component.Book.idUserBook = null;
