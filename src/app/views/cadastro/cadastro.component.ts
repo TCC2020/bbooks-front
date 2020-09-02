@@ -42,9 +42,9 @@ export class CadastroComponent implements OnInit {
 
     createForm() {
         this.cadastroControl = this.fb.group({
-            name: [this.userTo.name ? this.userTo.name : ''],
-            lastName: [this.userTo.lastName ? this.userTo.lastName : ''],
-            email: [this.userTo.email ? this.userTo.email : '', Validators.compose([
+            name: [this.userTo?.name ? this.userTo.name : ''],
+            lastName: [this.userTo?.lastName ? this.userTo.lastName : ''],
+            email: [this.userTo?.email ? this.userTo.email : '', Validators.compose([
                 Validators.required,
                 Validators.email
             ])],
@@ -59,7 +59,7 @@ export class CadastroComponent implements OnInit {
                 Validators.pattern(/^(?=\D*\d)(?=[^A-Za-z]*[A-Za-z]).{8,20}$/)
             ])],
             confirmPassword: [''],
-            idSocial: [this.userTo.idSocial ? this.userTo.idSocial : '']
+            idSocial: [this.userTo?.idSocial ? this.userTo.idSocial : '']
         }, {validator: this.checkPasswords});
     }
 
