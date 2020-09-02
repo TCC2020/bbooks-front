@@ -12,6 +12,8 @@ export class AuthService {
     api = environment.api + 'auth/';
     logged = new EventEmitter<boolean>();
 
+    userToRegister = new EventEmitter<UserTO>();
+
     constructor(
         private http: HttpClient,
         private authServiceSocial: SocialAuthService
@@ -33,7 +35,6 @@ export class AuthService {
     logout() {
         localStorage.clear();
         sessionStorage.clear();
-        this.signOutGoogle();
     }
 
     public isLogged(): boolean {
@@ -91,4 +92,12 @@ export class AuthService {
     signOutGoogle(): void {
         this.authServiceSocial.signOut();
     }
+
+    public setUserGoogle(userTO) {
+         localStorage.setItem('userRegister', JSON.stringify(userTO));
+    }
+    public getUserGoogle(): any {
+        return JSON.parse(localStorage.getItem('userRegister'));
+    }
+
 }

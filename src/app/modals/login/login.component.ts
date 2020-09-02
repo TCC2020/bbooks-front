@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
         private authGuard: AuthGuard,
         private router: Router,
         private authServiceSocial: SocialAuthService,
+        private userService: UserService
     ) {
         this.loginControl = this.fb.group({
             email: '',
@@ -49,12 +50,25 @@ export class LoginComponent implements OnInit {
                 userTO.token = this.user.authToken;
                 userTO.idToken = this.user.idToken;
                 userTO.idSocial = this.user.id;
-                userTO.password = this.user.id;
+                this.userService.verifyEmail(userTO.email).subscribe(
+                    (result: UserTO) => {
+                        if (result) {
+                            const userLogin = {
+                                email: result.email,
+                                password: result.password
+                            }
+                            this.loginFinalize(userLogin);
+                        }
+                    }, error => {
+                        if (error.error.message === 'User not found') {
+                            this.authService.setUserGoogle(userTO);
+                            this.router.navigateByUrl('/cadastro');
+                        } else {
+                            console.log('error login google', error);
+                        }
 
-                this.authService.saveByGoogle(userTO).subscribe(res => {
-                    this.authService.authenticate(res, this.loginControl.value.keepLogin);
-                    this.router.navigateByUrl('/');
-                });
+                    }
+                );
             }
 
         });
@@ -62,7 +76,11 @@ export class LoginComponent implements OnInit {
 
     login(): void {
         this.loginControl.value.password = Md5.hashStr(this.loginControl.value.password);
-        this.authService.login(this.loginControl.value).subscribe(res => {
+        this.loginFinalize(this.loginControl.value);
+    }
+
+    loginFinalize(userLogin): void {
+        this.authService.login(userLogin).subscribe(res => {
                 this.authService.authenticate(res, this.loginControl.value.keepLogin);
                 this.router.navigateByUrl('/');
             },
