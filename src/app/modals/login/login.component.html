@@ -1,5 +1,5 @@
 <div class="form">
-    <form [formGroup]="loginControl" (submit)="login()">
+    <form [formGroup]="loginControl">
 
         <div>
             <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
@@ -27,7 +27,7 @@
             </mat-form-field>
         </div>
 
-        <div id="botaoLogar"><button mat-raised-button id="entrar">Entrar</button></div>
+        <div id="botaoLogar"><button mat-raised-button id="entrar" (click)="login()">Entrar</button></div>
 
         <div id="botaoLogarGoogle">
           <button mat-raised-button (click)="loginGoogle()" id="entrarGoogle"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> Continuar com o Google</button>
