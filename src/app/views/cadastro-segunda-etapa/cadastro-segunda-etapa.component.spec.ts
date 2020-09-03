@@ -9,6 +9,8 @@ import {AuthService} from "../../services/auth.service";
 import {ConsultaCepService} from "../../services/consulta-cep.service";
 import {ProfileService} from "../../services/profile.service";
 import {RouterTestingModule} from "@angular/router/testing";
+import {SocialAuthServiceConfigMock} from "../../mocks/google.provide.mock";
+import {SocialLoginModule} from "angularx-social-login";
 
 describe('CadastroSegundaEtapaComponent', () => {
     let component: CadastroSegundaEtapaComponent;
@@ -24,13 +26,15 @@ describe('CadastroSegundaEtapaComponent', () => {
                 BrowserAnimationsModule,
                 NoopAnimationsModule,
                 HttpClientTestingModule,
-                RouterTestingModule
+                RouterTestingModule,
+                SocialLoginModule
             ],
             providers: [
                 AuthService,
                 FormBuilder,
                 ConsultaCepService,
-                ProfileService
+                ProfileService,
+                SocialAuthServiceConfigMock
             ]
         }).compileComponents();
     }));
