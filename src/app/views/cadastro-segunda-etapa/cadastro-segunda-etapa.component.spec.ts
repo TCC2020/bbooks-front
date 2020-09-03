@@ -8,6 +8,7 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {AuthService} from "../../services/auth.service";
 import {ConsultaCepService} from "../../services/consulta-cep.service";
 import {ProfileService} from "../../services/profile.service";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('CadastroSegundaEtapaComponent', () => {
     let component: CadastroSegundaEtapaComponent;
@@ -22,7 +23,8 @@ describe('CadastroSegundaEtapaComponent', () => {
                 MaterialModule,
                 BrowserAnimationsModule,
                 NoopAnimationsModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                RouterTestingModule
             ],
             providers: [
                 AuthService,
