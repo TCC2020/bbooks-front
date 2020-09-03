@@ -54,11 +54,17 @@
       <mat-form-field id="nome" class="inputCadastrar">
         <mat-label>Nome</mat-label>
         <input matInput id="nomeCadastrar" formControlName="name">
+        <mat-error *ngIf="cadastroControl.get('name').hasError('required')">
+          Nome é <strong>obrigatório</strong>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field id="sobrenome" class="inputCadastrar">
         <mat-label>Sobrenome</mat-label>
         <input matInput id="sobrenomeCadastrar" formControlName="lastName">
+        <mat-error *ngIf="cadastroControl.get('lastName').hasError('required')">
+          Sobrenome é <strong>obrigatório</strong>
+        </mat-error>
       </mat-form-field>
     </div>
   
@@ -127,7 +133,6 @@
     </div>
   
     <div id="divBotao">
-      <button mat-raised-button id="proximoCadastrar" (click)="cadastrar()">Próximo</button>
+      <button type="button" mat-raised-button color="primary" (click)="cadastrar()" [disabled]="cadastroControl.invalid">Próximo</button>
     </div>
   </form>
-  

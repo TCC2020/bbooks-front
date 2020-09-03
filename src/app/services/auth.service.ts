@@ -93,10 +93,10 @@ export class AuthService {
         this.authServiceSocial.signOut();
     }
 
-    public setUserGoogle(userTO) {
+    public setUserRegister(userTO) {
          localStorage.setItem('userRegister', JSON.stringify(userTO));
     }
-    public getUserGoogle(): any {
+    public getUserRegister(): any {
         return JSON.parse(localStorage.getItem('userRegister'));
     }
 

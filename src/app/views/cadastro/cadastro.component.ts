@@ -36,14 +36,14 @@ export class CadastroComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.userTo = this.auth.getUserGoogle();
+        this.userTo = this.auth.getUserRegister();
         this.createForm();
     }
 
     createForm() {
         this.cadastroControl = this.fb.group({
-            name: [this.userTo?.name ? this.userTo.name : ''],
-            lastName: [this.userTo?.lastName ? this.userTo.lastName : ''],
+            name: [this.userTo?.name ? this.userTo.name : '', Validators.required],
+            lastName: [this.userTo?.lastName ? this.userTo.lastName : '', Validators.required],
             email: [this.userTo?.email ? this.userTo.email : '', Validators.compose([
                 Validators.required,
                 Validators.email
@@ -73,7 +73,7 @@ export class CadastroComponent implements OnInit {
     cadastrar() {
         this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
         this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
-                this.auth.setUserGoogle(res);
+                this.auth.setUserRegister(res);
                 this.router.navigateByUrl('continuar-cadastro');
             },
             (err) => {
