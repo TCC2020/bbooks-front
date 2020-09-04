@@ -1,140 +1,70 @@
-<!-- <div id="espaco"></div>
-<form>
-    <div id="cabecalho-cadastro" class="form-rows">
-        <div>
-            <h1 class="form-group col-md-12">BBooks</h1>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <select id="inputEstado" class="form-control">
-                <option selected>País...</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div class="form-group col-md-4">
-            <select id="inputEstado" class="form-control">
-                <option selected>Estado...</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div class="form-group col-md-4">
-            <select id="inputEstado" class="form-control">
-                <option selected>Cidade...</option>
-                <option>...</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6 custom-file">
-            <input type="file" class="custom-file-input" id="customFile">
-            <label class="custom-file-label" for="customFile">Escolher foto de perfil...</label>
-            <small id="passwordHelpBlock" class="form-text text-muted">
-                Tamanho máximo de 10MB.
-              </small>
-          </div>
-          <div class="form-group col-md-6">
-            <input class="form-control" type="date" id="example-date-input">
-            <small id="passwordHelpBlock" class="form-text text-muted">
-                Informe sua data de nascimento.
-              </small>
-          </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-</form>
--->
-
-
-<!-- 
-<div id="espaco">
-
-</div>
-<form [formGroup]="cadastroControl">
-    <div id="cabecalho-cadastro" class="form-rows">
-        <div>
-            <h1 class="form-group col-md-12">BBooks</h1>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <input type="text" class="form-control" id="inputNome" placeholder="Nome" formControlName="name" >
-          </div>
-          <div class="form-group col-md-8">
-            <input type="text" class="form-control" id="inputSobrenome" placeholder="Sobrenome" formControlName="lastName" >
-          </div>
-      <div class="form-group col-md-12">
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email">
-        <small id="passwordHelpBlock" class="form-text text-muted">
-            Informe um endereço de e-mail válido, pois você receberá um e-mail de confirmação.
-          </small>
-      </div>
-      <div class="form-group col-md-12">
-        <input type="text" class="form-control" id="inputNomeUsuario" placeholder="Nome de Usuário" formControlName="userName">
-        <small id="nomeUsuarioHelpBlock" class="form-text text-muted">
-            Seu nome de usuário pode ter letras, números e pontos finais.
-          </small>
-      </div>
-      <div class="form-group col-md-6">
-        <input type="password" class="form-control" id="inputSenha" placeholder="Senha" formControlName="password">
-        <small id="passwordHelpBlock" class="form-text text-muted">
-            Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras e números.
-          </small>
-      </div>
-      <div class="form-group col-md-6">
-        <input type="password" class="form-control" id="inputConfirmarSenha" placeholder="Confirmar Senha">
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary" (click)="cadastrar()">Próximo</button>
-  </form> -->
-
-
-  <form>
+<form [formGroup]="formCadastro2">
 
     <div>
-      <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
+        <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
     </div>
     <div>
-      <span>Preencha o formulário para finalizar seu cadastro</span>
+        <span>Preencha o formulário para finalizar seu cadastro</span>
     </div>
 
     <div id="paisEstadoCidade">
-        <mat-form-field class="inputSegundaEtapa">
+        <mat-form-field>
             <mat-label>País</mat-label>
-            <mat-select>
-                <mat-option>Escolher...</mat-option>
-              <mat-option value="option">Brasil</mat-option>
+            <mat-select formControlName="country">
+                <mat-option [value]="country.name" *ngFor="let country of countrys"  (blur)="getStates(country)">{{country.name}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="verificaValidToTouched('country')">
+                País é <strong>obrigatório</strong>
+            </mat-error>
         </mat-form-field>
+
         <mat-form-field class="inputSegundaEtapa">
             <mat-label>Estado</mat-label>
-            <mat-select>
-                <mat-option>Escolher...</mat-option>
-              <mat-option value="option">São Paulo</mat-option>
+            <mat-select  formControlName="state">
+                <mat-option [value]="state.name" *ngFor="let state of states" (blur)="getCitys(state)">{{state.name}}</mat-option>
             </mat-select>
-          </mat-form-field>
-          <mat-form-field class="inputSegundaEtapa">
-            <mat-label>Cidade</mat-label>
-            <mat-select>
-                <mat-option>Escolher...</mat-option>
-              <mat-option value="option">São Paulo</mat-option>
-            </mat-select>
-          </mat-form-field>
+            <mat-error *ngIf="verificaValidToTouched('state')">
+                Estado é <strong>obrigatório</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="inputSegundaEtapa" >
+            <input type="text"
+                   placeholder="Cidade"
+                   aria-label="Number"
+                   matInput
+                   formControlName="city"
+                   [matAutocomplete]="autoCity" class="example-full-width">
+            <mat-autocomplete autoActiveFirstOption #autoCity="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptionsCity | async" [value]="option.name">
+                    {{option.name}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="verificaValidToTouched('city')">
+                Cidade é <strong>obrigatório</strong>
+            </mat-error>
+        </mat-form-field>
+
     </div>
 
-    <div id="fotoNascimento" >
-      <mat-form-field class="inputSegundaEtapa">
-        <mat-label>Escolher foto de perfil...</mat-label>
-        <input type="text" matInput id="fotoSegundaEtapa">
-      </mat-form-field>
+    <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
+        <mat-form-field class="inputSegundaEtapa">
+            <mat-label>Escolher foto de perfil...</mat-label>
+            <input type="text" matInput id="fotoSegundaEtapa" formControlName="image">
+        </mat-form-field>
 
-      <mat-form-field class="inputSegundaEtapa">
-        <mat-label>Data de Nascimento</mat-label>
-        <input type="date" matInput id="dataNascimentoSegundaEtapa">
-      </mat-form-field>
+        <mat-form-field class="inputSegundaEtapa">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthDate">
+            <mat-error *ngIf="verificaValidToTouched('birthDate')">
+                Data de Nascimento é <strong>obrigatório</strong>
+            </mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
     </div>
-  
+
     <div id="divBotao">
-      <button mat-raised-button id="botaoSegundaEtapa">Cadastrar</button>
+        <button type="button" mat-raised-button color="primary" (click)="loginRegister()" [disabled]="formCadastro2.invalid">Cadastrar</button>
     </div>
-  </form>
-  
+</form>

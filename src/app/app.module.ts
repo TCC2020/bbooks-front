@@ -15,7 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {AuthConfirmComponent} from './views/auth-confirm/auth-confirm.component';
-import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
+import {ErrorStateMatcher, MAT_DATE_LOCALE, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
 import {CadastroComponent} from './views/cadastro/cadastro.component';
 import {CadastroSegundaEtapaComponent} from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
 import {RecuperarSenhaComponent} from './views/recuperar-senha/recuperar-senha.component';
@@ -57,6 +57,7 @@ import {AuthVerifyLogin} from "./guards/auth-verify-login";
         BookModule
     ],
     providers: [
+        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
         AuthVerifyLogin,
         AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
         {

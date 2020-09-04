@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
                         }
                     }, error => {
                         if (error.error.message === 'User not found') {
-                            this.authService.setUserGoogle(userTO);
+                            this.authService.setUserRegister(userTO);
                             this.router.navigateByUrl('/cadastro');
                         } else {
                             console.log('error login google', error);
