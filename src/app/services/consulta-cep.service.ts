@@ -5,6 +5,7 @@ import {Country} from "../models/country.model";
 import {State} from "../models/state.model";
 import {City} from "../models/city.model";
 import {map} from "rxjs/operators";
+import {environment} from "../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -42,7 +43,7 @@ export class ConsultaCepService {
     }
 
     getStates(idCountry: string): Observable<State[]> {
-        return this.http.get<any>('http://www.geonames.org/childrenJSON?geonameId=' + idCountry)
+        return this.http.get<any>('https://secure.geonames.org/childrenJSON?geonameId=' + idCountry + '&' + environment.apicep)
             .pipe(
                 map(response => {
                     const t = response.geonames.map(result => {
@@ -58,7 +59,7 @@ export class ConsultaCepService {
     }
 
     getCitys(idState: string): Observable<City[]> {
-        return this.http.get<any>('http://www.geonames.org/childrenJSON?geonameId=' + idState)
+        return this.http.get<any>('https://secure.geonames.org/childrenJSON?geonameId=' + idState + '&' + environment.apicep)
             .pipe(
                 map(response => {
                     const t = response.geonames.map(result => {
@@ -74,7 +75,7 @@ export class ConsultaCepService {
     }
 
     getCountry(): Observable<Country[]> {
-        return this.http.get<any>('http://api.geonames.org/countryInfoJSON?lang=pt&username=bulls2020')
+        return this.http.get<any>('https://secure.geonames.org/countryInfoJSON?lang=pt&' + environment.apicep)
             .pipe(
                 map(response => {
                     const t = response.geonames.map(result => {
