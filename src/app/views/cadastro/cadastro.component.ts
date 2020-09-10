@@ -22,6 +22,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
+
+    hide = true;
     cadastroControl: FormGroup;
     userTo: UserTO;
 
