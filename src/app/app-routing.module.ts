@@ -7,7 +7,8 @@ import { CadastroSegundaEtapaComponent } from './views/cadastro-segunda-etapa/ca
 import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha.component';
 import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 import { LoginComponent } from './modals/login/login.component';
-import {AuthGuard} from "./guards/auth-guard";
+import {AuthGuard} from './guards/auth-guard';
+import {AuthVerifyLogin} from "./guards/auth-verify-login";
 
 
 const routes: Routes = [
@@ -15,13 +16,15 @@ const routes: Routes = [
         path: '', component: MainPageComponent,
     },
     {
-        path: 'login', component: LoginComponent
+        path: 'login', component: LoginComponent,
+        canActivate: [AuthVerifyLogin]
     },
     {
         path: 'cadastro', component: CadastroComponent,
+        canActivate: [AuthVerifyLogin]
     },
     {
-        path: 'confirm', component: AuthConfirmComponent,
+        path: 'confirm', component: AuthConfirmComponent
     },
     {
         path: 'continuar-cadastro', component: CadastroSegundaEtapaComponent,

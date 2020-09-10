@@ -38,7 +38,7 @@
             </mat-menu>
         </div>
         <div class="middle" *ngIf="logged">
-            <div fxLayout="row" fxLayoutAlign="end center">
+            <div fxLayout="row" fxLayoutAlign="end center" *ngIf="!deviceXs">
                 <button mat-icon-button *ngIf="book.idUserBook ? false : true" (click)="openDialogAddBook(book)">
                     <mat-icon>playlist_add</mat-icon>
                 </button>
@@ -53,11 +53,11 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item *ngIf="!verifyrouter()" (click)="openDialogAddBook(book)">
+                <button mat-menu-item *ngIf="book.idUserBook ? false : true" (click)="openDialogAddBook(book)">
                     <mat-icon>playlist_add</mat-icon>
                     <span>Adicionar</span>
                 </button>
-                <button mat-menu-item *ngIf="verifyrouter()" (click)="openDialogAddBook(book)">
+                <button mat-menu-item *ngIf="book.idUserBook" (click)="openDialogAddBook(book)">
                     <mat-icon>create</mat-icon>
                     <span>Editar</span>
                 </button>

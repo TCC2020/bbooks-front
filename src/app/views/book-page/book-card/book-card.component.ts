@@ -72,8 +72,8 @@ export class BookCardComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
-                this.book.idUserBook = result.id;
-                this.book.status = result.status;
+                this.book.idUserBook = result?.id;
+                this.book.status = result?.status;
                 this.bookService.updateListCarrousel.emit(true);
             }
         });

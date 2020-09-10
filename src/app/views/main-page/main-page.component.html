@@ -13,7 +13,7 @@
                 *ngFor="let book of books"
                 [idTag]="book.idUserBook"
                 [book]="book"
-                [deviceXs]="false"
+                [deviceXs]="deviceXs"
                 [logged]="this.user ? true : false">
         </app-book-card>
     </div>
