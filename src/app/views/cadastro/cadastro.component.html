@@ -101,9 +101,13 @@
       <mat-form-field class="inputCadastrar">
         <mat-label>Senha</mat-label>
         <input type="password"
-        matInput
+        matInput 
+        [type]="hide ? 'password' : 'text'"
         formControlName="password"
         id="senhaCadastrar">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
         <mat-error *ngIf="cadastroControl.get('password').hasError('minlength') && !cadastroControl.get('password').hasError('required')">
           A senha deve conter, no mínimo, 8 caracteres
         </mat-error>
@@ -125,7 +129,7 @@
         matInput
         formControlName="confirmPassword"
         [errorStateMatcher]="matcher"
-        id="confirmarSenhaCadastrar">
+        id="confirmarSenhaCadastrar" onpaste="return false" ondrop="return false">
         <mat-error *ngIf="cadastroControl.hasError('notSame')">
           Senhas diferentes
         </mat-error>
