@@ -109,8 +109,4 @@ $RECYCLE.BIN/
 # Ignore all local history of files
 .history
 
-<<<<<<< HEAD
 # End of https://www.toptal.com/developers/gitignore/api/linux,visualstudiocode
-=======
-# End of https://www.toptal.com/developers/gitignore/api/linux,visualstudiocode
->>>>>>> a08e4eb8fe6e3a3d64d37f4e936faae1a5c566fe
