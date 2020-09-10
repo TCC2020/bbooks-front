@@ -47,7 +47,19 @@
 
     </div>
 
-    <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
+    <div id="fotoNascimento">
+        <mat-form-field>
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthDate">
+            <mat-error *ngIf="verificaValidToTouched('birthDate')">
+                Data de Nascimento é <strong>obrigatório</strong>
+            </mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <!--<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
         <mat-form-field class="inputSegundaEtapa">
             <mat-label>Escolher foto de perfil...</mat-label>
             <input type="text" matInput id="fotoSegundaEtapa" formControlName="image">
@@ -62,7 +74,7 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-    </div>
+    </div>-->
 
     <div id="divBotao">
         <button type="button" mat-raised-button color="primary" (click)="loginRegister()" [disabled]="formCadastro2.invalid">Cadastrar</button>

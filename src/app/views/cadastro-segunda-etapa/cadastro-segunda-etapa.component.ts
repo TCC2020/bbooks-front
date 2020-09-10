@@ -9,6 +9,7 @@ import {Country} from "../../models/country.model";
 import {State} from "../../models/state.model";
 import {City} from "../../models/city.model";
 import {ProfileService} from "../../services/profile.service";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-cadastro-segunda-etapa',
@@ -28,7 +29,8 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         private auth: AuthService,
         private formBuilder: FormBuilder,
         private consultaCepService: ConsultaCepService,
-        private profileService: ProfileService
+        private profileService: ProfileService,
+        private http: HttpClient
     ) {
     }
 
@@ -144,5 +146,4 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     verificaValidToTouched(campo: string) {
         return this.formCadastro2.get(campo).invalid || this.formCadastro2.get(campo).touched;
     }
-
 }
