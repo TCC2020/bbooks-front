@@ -1,12 +1,15 @@
 .input-style {
     width: 100%;
 }
+.texto {
+    color: #2a2b2d;
+}
 
 .form {
     border: 1px solid #dadce0;
     border-radius: 10px;
     padding: 30px 40px 35px;
-    width: 600px;
+    width: 400px;
     height: auto;
     min-height: 350px;
     margin: 50px auto 0px;
@@ -19,8 +22,25 @@ button#entrar {
     background-color: #394A59;
 }
 
-button#entrar:hover {
+button#entrar, #entrarGoogle {
+    width: 100%;
+}
+
+button#entrar:hover, #entrarGoogle:hover{
     opacity: 80%;
+}
+
+#entrarGoogle {
+    color: #394A59;
+}
+
+#recuperarSenha, #criarConta, #botaoLogarGoogle {
+    margin-top: 10px;
+}
+
+#divisor {
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
 
 @media screen and (max-width: 600px){
@@ -31,5 +51,9 @@ button#entrar:hover {
     }
     div {
         padding: 7px;
+    }
+
+    #recuperarSenha, #criarConta, #botaoLogarGoogle, #botaoLogar {
+        padding: 0px;
     }
 }

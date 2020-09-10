@@ -1,40 +1,52 @@
 <div class="form">
-    <form [formGroup]="loginControl" (submit)="login()">
+    <form [formGroup]="loginControl">
 
         <div>
             <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
         </div>
         <div>
-            <span>Informe seus dados</span>
+            <span class="texto">Informe seus dados</span>
         </div>
 
         <div>
             <mat-form-field class="input-style">
                 <mat-label>Email</mat-label>
-                <input matInput formControlName="email">
+                <input matInput type="text" formControlName="email">
+                <!--onpaste="return false" ondrop="return false" -->
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="input-style">
                 <mat-label>Senha</mat-label>
-                <input type="password" matInput formControlName="password">
+                <!--<input type="password" matInput formControlName="password">-->
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
             </mat-form-field>
         </div>
 
-        <div>
-            <button mat-raised-button id="entrar">Confirmar</button>
-        </div>
-        <a [routerLink]="['/recuperar-senha']" style="margin-top: 15px;">
-            Esqueceu sua senha?
-        </a><br>
-        <a [routerLink]="['/cadastro']" style="margin-top: 15px;">
-            Cadastro
-        </a>
-    </form>
-    <div>
-        <button mat-raised-button (click)="loginGoogle()">Login google</button>
+        <div id="botaoLogar"><button mat-raised-button id="entrar" (click)="login()">Entrar</button></div>
+
+        <div id="botaoLogarGoogle">
+          <button mat-raised-button (click)="loginGoogle()" id="entrarGoogle"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> Continuar com o Google</button>
+      </div>
+
+      <mat-divider id="divisor"></mat-divider>
+
+      <div id="recuperarSenha" >
+      <a [routerLink]="['/recuperar-senha']" style="margin-top: 15px;">
+        Esqueceu sua senha?
+      </a>
     </div>
+    <div id="criarConta" >
+      <a [routerLink]="['/cadastro']" style="margin-top: 15px;">
+        Criar uma conta
+      </a>
+    </div>
+    </form>
+    
 </div>
 <!-- <mdb-card>
 
