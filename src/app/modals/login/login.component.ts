@@ -15,6 +15,9 @@ import {UserService} from "../../services/user.service";
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+    hide = true;
+    
     loginControl: FormGroup;
     user: SocialUser;
     loggedIn: boolean;
