@@ -4,7 +4,7 @@ const heroku = `export const environment = {
     production: true,
     api: 'https://bbooks-api.herokuapp.com/',
     gauth: '${process.env.GOOGLELOGIN}',
-    apicep: '${process.env.APICEP}
+    apicep: '${process.env.APICEP}'
 }`
 
 fs.writeFile('src/environments/environment.prod.ts', heroku, (err, result) => {
