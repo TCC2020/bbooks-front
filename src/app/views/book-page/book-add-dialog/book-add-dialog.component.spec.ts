@@ -147,7 +147,7 @@ describe('BookAddDialogComponent', () => {
     it('test text on create mode  ', () => {
         component.tagsBook = [];
         component.Book.idUserBook = null;
-        expect(component.title).toEqual('Adicionar livro em tags');
+        expect(component.title).toEqual('Adicionar livro na estante');
         expect(component.buttonText).toEqual('Adicionar');
         expect(component.formBook.get('statusBook').value).toEqual(bookMock.status);
     });
