@@ -11,12 +11,6 @@ export class AppPage {
 
     search = element(by.css('input[formControlName=book]'));
 
-    card;
-
-    botaoBuscar;
-
-    botaoEntrar;
-
     esperar = (milisegundos: number) => {
         browser.driver.sleep(milisegundos);
     }

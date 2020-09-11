@@ -38,7 +38,10 @@ export class TagDialogComponent implements OnInit {
 
     private createForm(): void {
         this.formTag = this.formBuilder.group({
-            name: new FormControl(this.tag?.name, Validators.required),
+            name: new FormControl(this.tag?.name, Validators.compose([
+                Validators.maxLength(20),
+                Validators.required
+            ])),
         });
     }
 

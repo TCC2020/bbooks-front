@@ -64,10 +64,10 @@ export class BookAddDialogComponent implements OnInit {
 
     modeDialog() {
         if (this.Book.idUserBook) {
-            this.title = 'Editar tags do livro';
+            this.title = 'Editar livro';
             this.buttonText = "Editar";
         } else {
-            this.title = 'Adicionar livro em tags';
+            this.title = 'Adicionar livro na estante';
             this.buttonText = 'Adicionar';
         }
     }

@@ -51,9 +51,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
             }
         });
         dialogRef.afterClosed().subscribe((result) => {
-            if (result) {
-                this.book.idUserBook = result.id;
-            }
+                this.book.idUserBook = result?.id;
         });
     }
 
