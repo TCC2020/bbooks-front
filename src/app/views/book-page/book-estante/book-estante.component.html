@@ -1,18 +1,18 @@
 <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="20px"
      fxLayoutAlign.xs="space-around center">
-    <mat-form-field>
+    <mat-form-field fxFlex="30">
         <mat-label>Pesquise um livro</mat-label>
         <input matInput type="text" [(ngModel)]="search">
         <mat-icon matSuffix mat-icon-button>search</mat-icon>
     </mat-form-field>
-    <mat-form-field fxFlex="40" fxFlex.xs>
+    <mat-form-field fxFlex="30" fxFlex.xs>
         <mat-chip-list #chipList aria-label="filter selection">
             <mat-chip
                     *ngFor="let element of filter"
                     [selectable]="selectable"
                     [removable]="removable"
                     (removed)="remove(element)">
-                {{element | titlecase}}
+                {{mapStatus.get(element) | titlecase}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
             <input
@@ -26,7 +26,7 @@
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
             <mat-option *ngFor="let status of filteredElements | async" [value]="status">
-                {{status | titlecase}}
+                {{mapStatus.get(status) | titlecase}}
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>

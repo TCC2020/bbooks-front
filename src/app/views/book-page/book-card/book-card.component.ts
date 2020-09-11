@@ -71,11 +71,11 @@ export class BookCardComponent implements OnInit {
             }
         });
         dialogRef.afterClosed().subscribe((result) => {
-            if (result) {
-                this.book.idUserBook = result?.id;
+            this.book.idUserBook = result?.id;
+            if (result?.status) {
                 this.book.status = result?.status;
-                this.bookService.updateListCarrousel.emit(true);
             }
+            this.bookService.updateListCarrousel.emit(true);
         });
     }
 

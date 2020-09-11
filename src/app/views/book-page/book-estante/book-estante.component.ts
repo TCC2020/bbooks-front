@@ -7,7 +7,7 @@ import {BookCase} from "../../../models/bookCase.model";
 import {Book} from "../../../models/book.model";
 import {MatDialog} from "@angular/material/dialog";
 import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {BookStatus, getArrayStatus} from "../../../models/enums/BookStatus.enum";
+import {BookStatus, getArrayStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {map} from "rxjs/operators";
@@ -27,6 +27,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
     mediaSub: Subscription;
     userBook: boolean;
     routerlink: string;
+    mapStatus = mapBookStatus;
 
     selectable = true;
     removable = true;

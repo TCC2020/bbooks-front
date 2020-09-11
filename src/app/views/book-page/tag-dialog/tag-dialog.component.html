@@ -1,15 +1,27 @@
-<h2 mat-dialog-title>{{textForm}} Tag</h2>
-<mat-dialog-content align="center">
-    <form [formGroup]="formTag" class="example-form">
-        <mat-form-field class="example-full-width">
-            <mat-label>Estante</mat-label>
-            <input matInput placeholder="Ex. Literatura" formControlName="name">
-        </mat-form-field>
-    </form>
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <h2 mat-dialog-title>{{textForm}} Tag</h2>
+
+        <form [formGroup]="formTag" class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Estante</mat-label>
+                <input matInput placeholder="Ex. Literatura" formControlName="name">
+            </mat-form-field>
+        </form>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-error *ngIf="formTag.get('name').hasError('maxlength')">
+            A Tag deve conter, no máximo, 20 caracteres.
+        </mat-error>
+        <mat-error *ngIf="formTag.get('name').hasError('required')">
+            Tag é <strong>obrigatório</strong>
+        </mat-error>
+    </div>
+    <p></p>
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+        <button mat-flat-button color="accent" (click)="save()"
+                [disabled]="formTag.invalid">
+            {{textForm}}
+        </button>
+    </div>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-flat-button color="accent"(click)="save()"
-            [disabled]="formTag.invalid">
-        {{textForm}}
-    </button>
-</mat-dialog-actions>

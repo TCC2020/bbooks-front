@@ -53,14 +53,14 @@ export class BookMenuComponent implements OnInit {
     }
 
     sideBarScroll() {
-        let e = this.deviceXs ? 140 : 65;
+        let e = this.deviceXs ? 117 : 65;
         return e - this.topVal;
     }
 
     openDialogTag(tag: Tag): void {
         const dialogRef = this.dialog.open(TagDialogComponent, {
             width: '300px',
-            height: '200px',
+            height: '250px',
             data: tag
         });
         dialogRef.afterClosed().subscribe(result => {
@@ -76,7 +76,9 @@ export class BookMenuComponent implements OnInit {
 
     deleteTag(tagId: number): void {
         this.tagService.delete(tagId).subscribe(
-            value => {this.getTags()},
+            value => {
+                this.getTags();
+            },
             error => {
                 console.log('erro bookmenu tag delete', error);
             }
