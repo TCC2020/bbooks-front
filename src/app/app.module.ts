@@ -27,6 +27,7 @@ import {GoogleLoginProvider} from 'angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {BookModule} from "./views/book-page/book.module";
 import {AuthVerifyLogin} from "./guards/auth-verify-login";
+import { PerfilComponent } from './views/perfil/perfil.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import {AuthVerifyLogin} from "./guards/auth-verify-login";
         CadastroComponent,
         CadastroSegundaEtapaComponent,
         RecuperarSenhaComponent,
-        NovaSenhaComponent
+        NovaSenhaComponent,
+        PerfilComponent
     ],
     imports: [
         BrowserModule,

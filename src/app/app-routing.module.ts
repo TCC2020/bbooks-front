@@ -9,6 +9,7 @@ import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 import { LoginComponent } from './modals/login/login.component';
 import {AuthGuard} from './guards/auth-guard';
 import {AuthVerifyLogin} from "./guards/auth-verify-login";
+import { PerfilComponent } from './views/perfil/perfil.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,9 @@ const routes: Routes = [
     },
     {
         path: 'nova-senha', component: NovaSenhaComponent,
+    },
+    {
+        path: 'perfil', component: PerfilComponent,
     },
     {
         path: '',

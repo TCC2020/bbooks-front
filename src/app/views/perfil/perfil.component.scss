@@ -1,0 +1,89 @@
+.container-conteudo {
+    width: 900px;
+    margin: 50px auto 0px;
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    padding: 30px 40px 35px;
+    box-sizing: border-box;
+  }
+  
+  
+  .container-imagem-perfil {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .imagem-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+  }
+  
+  .nome-usuario {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .card {
+    margin-bottom: 10px;
+  }
+  
+  .botao-editar {
+    color: #394A59 !important;
+  }
+  
+  .container-dados-usuario {
+    flex-direction: row;
+    display: flex;
+    margin: 10px 0px 5px;
+    padding: 10px 0px;
+  }
+  
+  .titulo-dados-usuario {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    width: 250px;
+    margin: 0px;
+  
+  }
+  
+  .conteudo-dados-usuario {
+    width: 100%;
+    font-size: 16px;
+    margin: 0px;
+    padding: 5px 0px;
+  }
+  
+  .container-menu-opcoes {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .container-menu-opcoes a{
+    
+  }
+  
+  @media screen and (max-width: 900px){
+    .container-conteudo {
+        border: none;
+        width: 100%;
+        margin: auto 0px;
+        padding: 0px;
+    }
+  
+    .container-imagem-perfil {
+      margin-top: 20px;
+    }
+  
+    .container-cards {
+      padding: 10px;
+    }
+  
+    .container-dados-usuario {
+      display: block;
+    }
+  }
