@@ -26,7 +26,6 @@ export class CadastroComponent implements OnInit {
     hide = true;
     cadastroControl: FormGroup;
     userTo: UserTO;
-
     matcher = new MyErrorStateMatcher();
 
     constructor(
@@ -73,6 +72,8 @@ export class CadastroComponent implements OnInit {
     }
 
     cadastrar() {
+        const username = this.cadastroControl.get('username').value;
+        this.cadastroControl.get('username').setValue(username.toLowerCase());
         this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
         this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
                 this.auth.setUserRegister(res);
