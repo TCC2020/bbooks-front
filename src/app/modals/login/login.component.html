@@ -27,11 +27,14 @@
             </mat-form-field>
         </div>
 
-        <div id="botaoLogar"><button mat-raised-button id="entrar" (click)="login()">Entrar</button></div>
-
-        <div id="botaoLogarGoogle">
-          <button mat-raised-button (click)="loginGoogle()" id="entrarGoogle"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> Continuar com o Google</button>
-      </div>
+<!--        <div id="botaoLogar">-->
+<!--            <button mat-raised-button id="entrar" (click)="login()">Entrar</button>-->
+<!--        </div>-->
+        <!--        <div id="botaoLogarGoogle">-->
+        <!--          <button mat-raised-button (click)="loginGoogle()" id="entrarGoogle"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> Continuar com o Google</button>-->
+        <!--      </div>-->
+        <button type="button" mat-raised-button color="primary" (click)="login()">Entrar</button>
+        <button mat-raised-button (click)="loginGoogle()"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> Continuar com o Google</button>
 
       <mat-divider id="divisor"></mat-divider>
 
