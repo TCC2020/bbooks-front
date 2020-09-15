@@ -5,11 +5,28 @@
        </div>
        <h1 class="nome-usuario">NOME SOBRENOME</h1>
        <div class="container-menu-opcoes">
-        <a href="perfil#h2-informacoes-usuario">Informações do Usuário</a>
-        <a href="perfil#h2-alterar-senha">Alterar Senha</a>
-        <a href="perfil#h2-alterar-senha">Amigos</a>
-        <a href="perfil#h2-alterar-senha">Estante</a>
-        <a href="perfil#h2-alterar-senha">Estatística</a>
+          <!--<ul>
+             <li><a href="perfil#h2-informacoes-usuario">Informações do Usuário</a></li>
+             <li><a href="perfil#h2-alterar-senha">Alterar Senha</a></li>
+             <li><a href="perfil#h2-amigos">Amigos</a></li>
+             <li><a href="perfil#h2-estante">Estante</a></li>
+             <li><a href="perfil#h2-estatistica">Estatística</a></li>
+          </ul>-->
+           <div>
+               <a href="perfil#h2-informacoes-usuario">Informações do Usuário</a>
+            </div>
+            <div>
+                <a href="perfil#h2-alterar-senha">Alterar Senha</a>
+            </div>
+            <div>
+                <a href="perfil#h2-amigos">Amigos</a>
+            </div>
+            <div>
+                <a href="perfil#h2-estante">Estante</a>
+            </div>
+            <div>
+                <a href="perfil#h2-estatistica">Estatística</a>
+            </div>
        </div>
   
        <div class="container-cards">
@@ -63,6 +80,7 @@
                 </a>
              </mat-card-actions>
           </mat-card>
+          <div class="duasColunas">
           <mat-card class="card">
              <mat-card-header>
                 <mat-card-title>
@@ -74,6 +92,44 @@
                 <a href="nova-senha"><button mat-button class="botao-editar">ALTERE SUA SENHA</button></a>
              </mat-card-actions>
           </mat-card>
+          <mat-card class="card">
+            <mat-card-header>
+               <mat-card-title>
+                  <h2 name="h2-amigos" id="h2-amigos">Amigos</h2>
+               </mat-card-title>
+               <mat-card-subtitle>Veja sua lista de amigos.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions>
+               <a href="perfil#"><button mat-button class="botao-editar">VER AMIGOS</button></a>
+            </mat-card-actions>
+         </mat-card>
+         </div>
+         <div class="duasColunas">
+         <mat-card class="card">
+            <mat-card-header>
+               <mat-card-title>
+                  <h2 name="h2-estante" id="h2-estante">Estante</h2>
+               </mat-card-title>
+               <mat-card-subtitle>Veja seus livros na estante virtual.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions>
+               <a href="perfil#"><button mat-button class="botao-editar">VER ESTANTE VIRTUAL</button></a>
+            </mat-card-actions>
+         </mat-card>
+
+         <mat-card class="card">
+            <mat-card-header>
+               <mat-card-title>
+                  <h2 name="h2-estatistica" id="h2-estatistica">Estatística</h2>
+               </mat-card-title>
+               <mat-card-subtitle>Estatísticas do usuário.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions>
+               <a href="perfil#"><button mat-button class="botao-editar">VER SUAS ESTATÍSTICAS</button>
+               </a>
+            </mat-card-actions>
+         </mat-card>
+         </div>
        </div>
     </div>
   </div>
