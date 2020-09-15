@@ -78,6 +78,13 @@
   .container-menu-opcoes div:hover {
     background-color: #f1f1f1;
   }
+
+.container-menu-opcoes div a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+}
   
   /*.duasColunas {
     flex-direction: row;
@@ -113,6 +120,9 @@
         gap: 0px;
     }
 
+    .container-menu-opcoes {
+      margin: 0px 10px
+    }
     .container-menu-opcoes div{
         width: 100%;
       }
