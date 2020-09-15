@@ -85,7 +85,7 @@
     <div>
       <mat-form-field class="inputCadastrar">
         <mat-label>Nome de Usuário</mat-label>
-        <input matInput id="nomeUsuarioCadastrar" formControlName="userName">
+        <input matInput id="nomeUsuarioCadastrar" formControlName="userName" #username (input)="username.value = username.value.toLowerCase()" >
         <mat-error *ngIf="cadastroControl.get('userName').hasError('pattern') && !cadastroControl.get('userName').hasError('required')">
           O primeiro caractere deve ser uma letra
         </mat-error>
