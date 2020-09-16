@@ -1,0 +1,27 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+        <h2 mat-dialog-title>Escolher foto de perfil</h2>
+
+        <form [formGroup]="formFile">
+            <!--Linha form-->
+            <div  fxLayout="column"
+                 fxLayout.xs="column"
+                 fxLayoutAlign="start">
+                <input type="file" (change)="inputFileChange($event)" accept="image/png, image/jpeg" formControlName="file">
+            </div>
+            <mat-error *ngIf="formFile.controls['file'].hasError('required')">
+                Foto é obrigatório.
+            </mat-error>
+
+        </form>
+        <div>
+            <img class="card" src="{{image}}">
+        </div>
+    </div>
+</mat-dialog-content>
+<div mat-dialog-actions>
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <button type="button"  mat-button color="accent">
+        </button>
+    </div>
+</div>

@@ -10,6 +10,9 @@ import { State } from "../../models/state.model";
 import { City } from "../../models/city.model";
 import { ProfileService } from "../../services/profile.service";
 import { CDNService } from 'src/app/services/cdn.service';
+import {BookAddDialogComponent} from "../book-page/book-add-dialog/book-add-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {UploadComponent} from "../upload/upload.component";
 
 @Component({
     selector: 'app-cadastro-segunda-etapa',
@@ -32,7 +35,8 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         private formBuilder: FormBuilder,
         private consultaCepService: ConsultaCepService,
         private profileService: ProfileService,
-        private cdnService: CDNService
+        private cdnService: CDNService,
+        public dialog: MatDialog,
     ) {
     }
 
@@ -46,7 +50,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     private createForm(): void {
         this.formCadastro2 = this.formBuilder.group({
             id: [],
-            image: new FormControl(null),
+            image: new FormControl({value: null, disabled : true}),
             birthDate: new FormControl('', Validators.required),
             country: new FormControl('', Validators.required),
             city: new FormControl('', Validators.required),
@@ -163,4 +167,14 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         await this.cdnService.uploadAsync(this.file, 'cdn-bbooks');
         this.file = null;
     }
+    openDialogUpload() {
+        const dialogRef = this.dialog.open(UploadComponent, {
+            height: '450px',
+            width: '400px',
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+
+        });
+    }
+
 }

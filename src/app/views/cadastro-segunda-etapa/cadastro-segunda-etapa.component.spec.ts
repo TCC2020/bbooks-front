@@ -11,10 +11,17 @@ import {ProfileService} from "../../services/profile.service";
 import {RouterTestingModule} from "@angular/router/testing";
 import {SocialAuthServiceConfigMock} from "../../mocks/google.provide.mock";
 import {SocialLoginModule} from "angularx-social-login";
+import {of} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {CDNService} from "../../services/cdn.service";
 
 describe('CadastroSegundaEtapaComponent', () => {
     let component: CadastroSegundaEtapaComponent;
     let fixture: ComponentFixture<CadastroSegundaEtapaComponent>;
+    const mockMatDialog = { open: jest.fn( () =>  {
+            return {afterClosed: jest.fn(() => of([])) };
+        })};
+
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -34,7 +41,11 @@ describe('CadastroSegundaEtapaComponent', () => {
                 FormBuilder,
                 ConsultaCepService,
                 ProfileService,
-                SocialAuthServiceConfigMock
+                SocialAuthServiceConfigMock,
+                {
+                    provide: MatDialog, useValue: mockMatDialog
+                },
+                CDNService
             ]
         }).compileComponents();
     }));
