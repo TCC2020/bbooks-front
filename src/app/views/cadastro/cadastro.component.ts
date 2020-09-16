@@ -51,13 +51,13 @@ export class CadastroComponent implements OnInit {
             ])],
             userName: ['', Validators.compose([
                 Validators.required,
-                Validators.pattern("^([A-Z]|[a-z])[A-Za-z0-9.]*$")
+                Validators.pattern('^([A-Z]|[a-z])[A-Za-z0-9.]*$')
             ])],
             password: ['', Validators.compose([
                 Validators.required,
                 Validators.minLength(8),
                 Validators.maxLength(20),
-                Validators.pattern(/^(?=\D*\d)(?=[^A-Za-z]*[A-Za-z]).{8,20}$/)
+                Validators.pattern('^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$')
             ])],
             confirmPassword: [''],
             idSocial: [this.userTo?.idSocial ? this.userTo.idSocial : '']
@@ -72,8 +72,8 @@ export class CadastroComponent implements OnInit {
     }
 
     cadastrar() {
-        const username = this.cadastroControl.get('username').value;
-        this.cadastroControl.get('username').setValue(username.toLowerCase());
+        const username = this.cadastroControl.get('userName').value;
+        this.cadastroControl.get('userName').setValue(username.toLowerCase());
         this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
         this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
                 this.auth.setUserRegister(res);

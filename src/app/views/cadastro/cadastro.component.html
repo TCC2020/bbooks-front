@@ -98,7 +98,7 @@
 
 
     <div id="senhaConfirmarSenha" >
-      <mat-form-field class="inputCadastrar">
+      <mat-form-field class="inputCadastraSenha">
         <mat-label>Senha</mat-label>
         <input type="password"
         matInput 
@@ -108,28 +108,29 @@
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-        <mat-error *ngIf="cadastroControl.get('password').hasError('minlength') && !cadastroControl.get('password').hasError('required')">
-          A senha deve conter, no mínimo, 8 caracteres
-        </mat-error>
         <mat-error *ngIf="cadastroControl.get('password').hasError('maxlength') && !cadastroControl.get('password').hasError('required')">
           A senha deve conter, no máximo, 20 caracteres
         </mat-error>
         <mat-error *ngIf="cadastroControl.get('password').hasError('pattern') && !cadastroControl.get('password').hasError('required')">
-          A senha deve conter letras e números
+          Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.
         </mat-error>
         <mat-error *ngIf="cadastroControl.get('password').hasError('required')">
           Senha é <strong>obrigatório</strong>
         </mat-error>
-        <mat-hint>Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras e números.</mat-hint>
+        <mat-hint>Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.</mat-hint>
       </mat-form-field>
 
-      <mat-form-field class="inputCadastrar">
+      <mat-form-field class="inputCadastraSenha">
         <mat-label>Confirmar Senha</mat-label>
         <input type="password"
+         [type]="hide ? 'password' : 'text'"
         matInput
         formControlName="confirmPassword"
         [errorStateMatcher]="matcher"
         id="confirmarSenhaCadastrar" onpaste="return false" ondrop="return false">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
         <mat-error *ngIf="cadastroControl.hasError('notSame')">
           Senhas diferentes
         </mat-error>
