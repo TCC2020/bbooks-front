@@ -112,7 +112,7 @@
           A senha deve conter, no máximo, 20 caracteres
         </mat-error>
         <mat-error *ngIf="cadastroControl.get('password').hasError('pattern') && !cadastroControl.get('password').hasError('required')">
-          A senha deve conter, no mínimo 8 caracteres, pelo menos 1 letra, 1 número e 1 caractere especial.
+          Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.
         </mat-error>
         <mat-error *ngIf="cadastroControl.get('password').hasError('required')">
           Senha é <strong>obrigatório</strong>
