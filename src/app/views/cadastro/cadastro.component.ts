@@ -57,7 +57,7 @@ export class CadastroComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(8),
                 Validators.maxLength(20),
-                Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')
+                Validators.pattern('^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$')
             ])],
             confirmPassword: [''],
             idSocial: [this.userTo?.idSocial ? this.userTo.idSocial : '']
