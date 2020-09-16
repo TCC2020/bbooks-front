@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {AuthService} from "../../services/auth.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ConsultaCepService} from "../../services/consulta-cep.service";
-import {Observable} from "rxjs";
-import {map, startWith} from "rxjs/operators";
-import {Country} from "../../models/country.model";
-import {State} from "../../models/state.model";
-import {City} from "../../models/city.model";
-import {ProfileService} from "../../services/profile.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from "../../services/auth.service";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { ConsultaCepService } from "../../services/consulta-cep.service";
+import { Observable } from "rxjs";
+import { map, startWith } from "rxjs/operators";
+import { Country } from "../../models/country.model";
+import { State } from "../../models/state.model";
+import { City } from "../../models/city.model";
+import { ProfileService } from "../../services/profile.service";
+import { CDNService } from 'src/app/services/cdn.service';
 
 @Component({
     selector: 'app-cadastro-segunda-etapa',
@@ -20,6 +21,8 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     public citys: City[];
     public countrys: Country[];
     public states: State[]
+    maxSize = 3579139;
+    file;
 
     filteredOptionsCity: Observable<City[]>;
 
@@ -28,7 +31,8 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         private auth: AuthService,
         private formBuilder: FormBuilder,
         private consultaCepService: ConsultaCepService,
-        private profileService: ProfileService
+        private profileService: ProfileService,
+        private cdnService: CDNService
     ) {
     }
 
@@ -107,17 +111,17 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         this.profileService.update(this.formCadastro2.value).subscribe(
             () => {
                 this.auth.login(userLogin).subscribe(res => {
-                        localStorage.clear();
-                        this.auth.authenticate(res, true);
-                        this.router.navigateByUrl('/');
-                    },
+                    localStorage.clear();
+                    this.auth.authenticate(res, true);
+                    this.router.navigateByUrl('/');
+                },
                     (err) => {
                         alert(err.error.message);
                         localStorage.clear();
                     }
                 );
             },
-            error => {console.log('error update profile', error); localStorage.clear(); }
+            error => { console.log('error update profile', error); localStorage.clear(); }
         );
 
     }
@@ -145,4 +149,18 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         return this.formCadastro2.get(campo).invalid || this.formCadastro2.get(campo).touched;
     }
 
+    chooseFile(file) {
+        if (file.size > this.maxSize) {
+            alert('O arquivo é muito grande, favor formatar...');
+        } else {
+            this.file = file;
+        }
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+    }
+
+    async uploadFile() {
+        await this.cdnService.uploadAsync(this.file, 'cdn-bbooks');
+        this.file = null;
+    }
 }
