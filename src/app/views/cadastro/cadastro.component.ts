@@ -51,13 +51,13 @@ export class CadastroComponent implements OnInit {
             ])],
             userName: ['', Validators.compose([
                 Validators.required,
-                Validators.pattern("^([A-Z]|[a-z])[A-Za-z0-9.]*$")
+                Validators.pattern('^([A-Z]|[a-z])[A-Za-z0-9.]*$')
             ])],
             password: ['', Validators.compose([
                 Validators.required,
                 Validators.minLength(8),
                 Validators.maxLength(20),
-                Validators.pattern(/^(?=\D*\d)(?=[^A-Za-z]*[A-Za-z]).{8,20}$/)
+                Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')
             ])],
             confirmPassword: [''],
             idSocial: [this.userTo?.idSocial ? this.userTo.idSocial : '']

@@ -49,8 +49,17 @@ form {
 #texto-introducao {
     margin-bottom: 10px;
 }
+.inputCadastraSenha{
+    width: 100%;
+}
 
 @media screen and (max-width: 600px){
+    .inputCadastraSenha{
+        padding-bottom: 25px;
+    }
+    #senhaConfirmarSenha{
+        flex-direction: row;
+    }
     form {
         border: none;
         width: 100%;
