@@ -1,27 +1,48 @@
+<!--<mat-dialog-content>-->
+<!--    <div fxLayout="column" fxLayoutAlign="space-around center">-->
+<!--        <h2 mat-dialog-title>Escolher foto de perfil</h2>-->
+
+<!--        <form [formGroup]="formFile">-->
+<!--            &lt;!&ndash;Linha form&ndash;&gt;-->
+<!--            <div  fxLayout="column"-->
+<!--                 fxLayout.xs="column"-->
+<!--                 fxLayoutAlign="start">-->
+<!--                <input type="file" (change)="inputFileChange($event)" accept="image/png, image/jpeg" formControlName="file">-->
+<!--            </div>-->
+<!--            <mat-error *ngIf="formFile.controls['file'].hasError('required')">-->
+<!--                Foto é obrigatório.-->
+<!--            </mat-error>-->
+
+<!--        </form>-->
+<!--        <div>-->
+<!--            <img class="card" src="{{image}}">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</mat-dialog-content>-->
+<!--<div mat-dialog-actions>-->
+<!--    <div fxLayout="row" fxLayoutAlign="end center">-->
+<!--        <button type="button"  mat-button color="accent">-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</div>-->
 <mat-dialog-content>
-    <div fxLayout="column" fxLayoutAlign="space-around center">
-        <h2 mat-dialog-title>Escolher foto de perfil</h2>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <h2 mat-dialog-title> Escolher foto de perfil </h2>
 
         <form [formGroup]="formFile">
-            <!--Linha form-->
-            <div  fxLayout="column"
-                 fxLayout.xs="column"
-                 fxLayoutAlign="start">
-                <input type="file" (change)="inputFileChange($event)" accept="image/png, image/jpeg" formControlName="file">
-            </div>
+            <input type="file" (change)="inputFileChange($event)" accept="image/png, image/jpeg" formControlName="file">
             <mat-error *ngIf="formFile.controls['file'].hasError('required')">
-                Foto é obrigatório.
+                Foto é <strong>obrigatório</strong>
             </mat-error>
-
         </form>
         <div>
             <img class="card" src="{{image}}">
         </div>
     </div>
-</mat-dialog-content>
-<div mat-dialog-actions>
-    <div fxLayout="row" fxLayoutAlign="end center">
-        <button type="button"  mat-button color="accent">
+    <p></p>
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+        <button mat-flat-button color="accent" [disabled]="formFile.invalid" [mat-dialog-close]="this.file">
+           Enviar
         </button>
     </div>
-</div>
+</mat-dialog-content>

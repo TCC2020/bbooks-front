@@ -50,6 +50,7 @@ export class UploadComponent implements OnInit {
             return true;
         } else {
             this.formFile.reset()
+            this.image = null;
             return false;
         }
     }

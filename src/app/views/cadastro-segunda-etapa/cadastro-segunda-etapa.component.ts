@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from "../../services/auth.service";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { ConsultaCepService } from "../../services/consulta-cep.service";
-import { Observable } from "rxjs";
-import { map, startWith } from "rxjs/operators";
-import { Country } from "../../models/country.model";
-import { State } from "../../models/state.model";
-import { City } from "../../models/city.model";
-import { ProfileService } from "../../services/profile.service";
-import { CDNService } from 'src/app/services/cdn.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from "../../services/auth.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ConsultaCepService} from "../../services/consulta-cep.service";
+import {Observable} from "rxjs";
+import {map, startWith} from "rxjs/operators";
+import {Country} from "../../models/country.model";
+import {State} from "../../models/state.model";
+import {City} from "../../models/city.model";
+import {ProfileService} from "../../services/profile.service";
+import {CDNService} from 'src/app/services/cdn.service';
 import {BookAddDialogComponent} from "../book-page/book-add-dialog/book-add-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {UploadComponent} from "../upload/upload.component";
@@ -50,7 +50,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     private createForm(): void {
         this.formCadastro2 = this.formBuilder.group({
             id: [],
-            image: new FormControl({value: null, disabled : true}),
+            image: new FormControl({value: null, disabled: true}),
             birthDate: new FormControl('', Validators.required),
             country: new FormControl('', Validators.required),
             city: new FormControl('', Validators.required),
@@ -115,17 +115,20 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         this.profileService.update(this.formCadastro2.value).subscribe(
             () => {
                 this.auth.login(userLogin).subscribe(res => {
-                    localStorage.clear();
-                    this.auth.authenticate(res, true);
-                    this.router.navigateByUrl('/');
-                },
+                        localStorage.clear();
+                        this.auth.authenticate(res, true);
+                        this.router.navigateByUrl('/');
+                    },
                     (err) => {
                         alert(err.error.message);
                         localStorage.clear();
                     }
                 );
             },
-            error => { console.log('error update profile', error); localStorage.clear(); }
+            error => {
+                console.log('error update profile', error);
+                localStorage.clear();
+            }
         );
 
     }
@@ -167,13 +170,19 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         await this.cdnService.uploadAsync(this.file, 'cdn-bbooks');
         this.file = null;
     }
+
     openDialogUpload() {
         const dialogRef = this.dialog.open(UploadComponent, {
-            height: '450px',
+            height: '350px',
             width: '400px',
         });
         dialogRef.afterClosed().subscribe((result) => {
-
+            if (result) {
+                this.file = result;
+                this.formCadastro2.get('image').setValue(result.name);
+            } else {
+                this.file = null;
+            }
         });
     }
 
