@@ -13,20 +13,20 @@
                     fxLayout="column" fxLayoutAlign="start space-between" [style.marginTop.px]="0"
                     [style.top.px]="sideBarScroll()" class="sidenav">
             <mat-list role="listitem">
-                <h2 align="center" *ngIf="!deviceXs">Estante Virtual</h2>
+                <h2 align="center" *ngIf="!deviceXs"> {{'ESTANTE.ESTANTE_VIRTUAL' | translate}}</h2>
                 <mat-list role="list" class="list-width">
                     <mat-list-item role="listitem" class="list-item" matRipple routerLink="/book"
                                    routerLinkActive="activedList">
                         <button mat-mini-fab color="primary" >
                             <mat-icon>library_books</mat-icon>
                         </button>
-                        <span class="itemPadding">Livros</span>
+                        <span class="itemPadding"> {{'PADRAO.LIVROS' | translate}}</span>
                     </mat-list-item>
                     <div  *ngIf="!verifyRouterLink('my')">
                         <mat-list role="list" *ngFor="let bookcase of bookcasesGbooks ">
                             <mat-list-item routerLinkActive="activedList" role="listitem"
                                            class="list-item" matRipple [routerLink]="['/book/', bookcase]">
-                                <span class="subItemPadding">{{bookcase | titlecase }} </span>
+                                <span class="subItemPadding">{{'GENEROS.' + bookcase.toUpperCase() | translate | titlecase }} </span>
                             </mat-list-item>
                         </mat-list>
                     </div>
@@ -36,7 +36,7 @@
                         <button mat-mini-fab color="primary">
                             <mat-icon>menu_book</mat-icon>
                         </button>
-                        <span class="itemPadding">Meus Livros</span>
+                        <span class="itemPadding">{{'ESTANTE.MEUS_LIVROS' | translate}}</span>
                     </mat-list-item>
                     <div *ngIf="verifyRouterLink('my')">
                         <mat-list role="list" *ngFor="let tag of tags ">
@@ -52,11 +52,11 @@
                                 <mat-menu #menu="matMenu">
                                     <div mat-menu-item (click)="openDialogTag(tag)">
                                         <mat-icon>create</mat-icon>
-                                        <span>Editar</span>
+                                        <span>{{'PADRAO.EDITAR' | translate}}</span>
                                     </div>
                                     <div mat-menu-item (click)="deleteTag(tag.id)">
                                         <mat-icon>delete</mat-icon>
-                                        <span>Remover</span>
+                                        <span>{{'PADRAO.REMOVER' | translate}}</span>
                                     </div>
                                 </mat-menu>
                             </mat-list-item>
@@ -65,7 +65,7 @@
 
                     <mat-list-item *ngIf="verifyRouterLink('my')" role="listitem" class="list-item" matRipple
                                    (click)="openDialogTag(null)">
-                        <span class="subItemPadding">Criar Tag</span>
+                        <span class="subItemPadding">{{'TAG.CRIAR_TAG' | translate}}</span>
                     </mat-list-item>
 
                 </mat-list>

@@ -22,11 +22,11 @@
                         <div fxLayout="row" fxLayoutAlign="end center">
                             <button type="button" *ngIf="book.idUserBook? false : true" mat-flat-button color="accent"
                                     (click)="openDialogAddBook(book)">
-                                Adicionar livro na estante
+                                {{'ESTANTE.ADICIONAR_LIVRO' | translate}}
                             </button>
                             <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
                                     (click)="openDialogAddBook(book)">
-                                Editar livro
+                                {{'ESTANTE.EDITAR_LIVRO' | translate}}
                             </button>
                         </div>
 
@@ -37,11 +37,11 @@
                 </div>
                 <mat-list>
                     <mat-divider></mat-divider>
-                    <mat-list-item>OUTRAS INFORMAÇÕES</mat-list-item>
+                    <mat-list-item>{{'BOOK.OUTRAS_INFO' | translate}}</mat-list-item>
                     <div fxLayout="row" fxLayoutAlign="space-around center">
-                        <div fxFlex="20"><strong>Editora</strong></div>
-                        <div fxFlex="20"><strong>Publicado em</strong></div>
-                        <div fxFlex="20"><strong>Páginas</strong></div>
+                        <div fxFlex="20"><strong>{{'BOOK.EDITORA' | translate}}</strong></div>
+                        <div fxFlex="20"><strong>{{'BOOK.PUPLICACAO' | translate}}</strong></div>
+                        <div fxFlex="20"><strong>{{'BOOK.PAGES' | translate}}</strong></div>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-around center">
                         <div fxFlex="20"><p> {{book.publisher}}</p></div>
@@ -49,8 +49,8 @@
                         <div fxFlex="20"><p> {{book.numberPage}}</p></div>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-around center">
-                        <div fxFlex="20"><strong>Idioma</strong></div>
-                        <div fxFlex="20"><strong>Avaliação</strong></div>
+                        <div fxFlex="20"><strong>{{'BOOK.IDIOMA' | translate}}</strong></div>
+                        <div fxFlex="20"><strong>{{'BOOK.AVALIACAO' | translate}}</strong></div>
                         <div fxFlex="20"></div>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-around center">

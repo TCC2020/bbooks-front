@@ -11,6 +11,7 @@ import {UserTO} from "../models/userTO.model";
 export class AuthService {
     api = environment.api + 'auth/';
     logged = new EventEmitter<boolean>();
+    language = new EventEmitter<string>();
 
     userToRegister = new EventEmitter<UserTO>();
 

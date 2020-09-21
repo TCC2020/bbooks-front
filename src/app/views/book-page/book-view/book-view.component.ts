@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Book} from "../../../models/book.model";
-import {Subscription} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
+import {Book} from '../../../models/book.model';
+import {Subscription} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {BookAddDialogComponent} from '../book-add-dialog/book-add-dialog.component';
 
 @Component({
     selector: 'app-book-view',
@@ -51,7 +51,9 @@ export class BookViewComponent implements OnInit, OnDestroy {
             }
         });
         dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
                 this.book.idUserBook = result?.id;
+            }
         });
     }
 
