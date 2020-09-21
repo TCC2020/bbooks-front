@@ -16,6 +16,7 @@ import {bookMock} from '../../../mocks/book.model.mock';
 import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('BookViewComponent', () => {
     let component: BookViewComponent;
@@ -47,7 +48,9 @@ describe('BookViewComponent', () => {
                 {
                     provide: ActivatedRoute,
                     useValue: routeMock
-                }
+                },
+                TranslateService,
+                TranslateStore
             ],
             declarations: [BookViewComponent]
         }).compileComponents();

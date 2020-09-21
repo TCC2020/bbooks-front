@@ -14,6 +14,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialog} from '@angular/material/dialog';
 import {of} from 'rxjs';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {TranslateService} from '@ngx-translate/core'
 
 describe('BookCardComponent', () => {
 
@@ -40,6 +41,7 @@ describe('BookCardComponent', () => {
                 {
                     provide: MatDialog, useValue: mockMatDialog
                 },
+                TranslateService
             ]
         }).compileComponents();
     }));

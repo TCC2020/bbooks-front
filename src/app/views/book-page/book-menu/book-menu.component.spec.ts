@@ -18,6 +18,7 @@ import {of} from 'rxjs';
 import {tagsMock} from '../../../mocks/tag.model.mock';
 import {MatDialog} from '@angular/material/dialog';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('BookMenuComponent', () => {
     let component: BookMenuComponent;
@@ -73,6 +74,8 @@ describe('BookMenuComponent', () => {
                 {
                     provide: MatDialog, useValue: mockMatDialog
                 },
+                TranslateService,
+                TranslateStore
             ],
             declarations: [BookMenuComponent]
         }).compileComponents();

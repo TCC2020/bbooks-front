@@ -18,6 +18,7 @@ import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {BookStatus, getArrayStatus} from '../../../models/enums/BookStatus.enum';
 import {bookMock} from '../../../mocks/book.model.mock';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('BookEstanteComponent', () => {
     let component: BookEstanteComponent;
@@ -52,7 +53,9 @@ describe('BookEstanteComponent', () => {
                 {
                     provide: MediaObserver,
                     useValue: {media$: mockMediaSubject.asObservable()}
-                }
+                },
+                TranslateService,
+                TranslateStore
             ]
         }).compileComponents();
     }));

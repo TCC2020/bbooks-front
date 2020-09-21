@@ -17,6 +17,8 @@ import {bookMock} from '../../../mocks/book.model.mock';
 import {tagsMock} from '../../../mocks/tag.model.mock';
 import {UserbookService} from '../../../services/userbook.service';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('BookAddDialogComponent', () => {
     let component: BookAddDialogComponent;
@@ -70,7 +72,8 @@ describe('BookAddDialogComponent', () => {
                 SocialLoginModule,
                 FormsModule,
                 ReactiveFormsModule,
-                TranslateServiceMockForChild
+                TranslateServiceMockForChild,
+                BrowserDynamicTestingModule
             ],
             providers: [
                 TagService,
@@ -98,7 +101,9 @@ describe('BookAddDialogComponent', () => {
                 {
                     provide: UserbookService,
                     useValue: userbookServiceMock
-                }
+                },
+                TranslateService,
+                TranslateStore
             ]
 
         }).compileComponents();
@@ -149,8 +154,8 @@ describe('BookAddDialogComponent', () => {
     it('test text on create mode  ', () => {
         component.tagsBook = [];
         component.Book.idUserBook = null;
-        expect(component.title).toEqual('Adicionar livro na estante');
-        expect(component.buttonText).toEqual('Adicionar');
+        expect(component.title).toEqual('ESTANTE.ADICIONAR_LIVRO');
+        expect(component.buttonText).toEqual('PADRAO.ADICIONAR');
         expect(component.formBook.get('statusBook').value).toEqual(bookMock.status);
     });
 
