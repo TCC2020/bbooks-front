@@ -5,7 +5,7 @@ import { AuthGuard } from './auth-guard';
 import { tap } from 'rxjs/operators';
 import { LoaderService } from '../services/loader.service';
 import { environment } from 'src/environments/environment';
-import {AuthService} from "../services/auth.service";
+import {AuthService} from '../services/auth.service';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {

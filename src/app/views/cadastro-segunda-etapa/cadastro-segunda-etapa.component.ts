@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from "../../services/auth.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ConsultaCepService} from "../../services/consulta-cep.service";
-import {Observable} from "rxjs";
-import {map, startWith} from "rxjs/operators";
-import {Country} from "../../models/country.model";
-import {State} from "../../models/state.model";
-import {City} from "../../models/city.model";
-import {ProfileService} from "../../services/profile.service";
-import {DateAdapter} from "@angular/material/core";
-import {TranslateService} from "@ngx-translate/core";
+import {AuthService} from '../../services/auth.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ConsultaCepService} from '../../services/consulta-cep.service';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+import {Country} from '../../models/country.model';
+import {State} from '../../models/state.model';
+import {City} from '../../models/city.model';
+import {ProfileService} from '../../services/profile.service';
+import {DateAdapter} from '@angular/material/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-cadastro-segunda-etapa',

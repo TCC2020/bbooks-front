@@ -8,7 +8,7 @@ import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha
 import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 import { LoginComponent } from './modals/login/login.component';
 import {AuthGuard} from './guards/auth-guard';
-import {AuthVerifyLogin} from "./guards/auth-verify-login";
+import {AuthVerifyLogin} from './guards/auth-verify-login';
 
 
 const routes: Routes = [

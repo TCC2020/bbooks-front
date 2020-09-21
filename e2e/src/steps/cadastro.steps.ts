@@ -1,7 +1,7 @@
 import {AppPage} from '../pages/mainpage.po';
 import {AfterAll, Before, Given, Then, When} from 'cucumber';
-import {browser, by, element} from "protractor";
-import {expect} from "chai";
+import {browser, by, element} from 'protractor';
+import {expect} from 'chai';
 
 
 let page: AppPage;
