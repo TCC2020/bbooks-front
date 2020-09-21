@@ -1,21 +1,22 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BookAddDialogComponent} from './book-add-dialog.component';
-import {MaterialModule} from "../../../material/material.module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {RouterTestingModule} from "@angular/router/testing";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {CarouselModule} from "ngx-owl-carousel-o";
-import {SocialLoginModule} from "angularx-social-login";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AuthService} from "../../../services/auth.service";
-import {TagService} from "../../../services/tag.service";
-import {SocialAuthServiceConfigMock} from "../../../mocks/google.provide.mock";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {of} from "rxjs";
-import {bookMock} from "../../../mocks/book.model.mock";
-import {tagsMock} from "../../../mocks/tag.model.mock";
-import {UserbookService} from "../../../services/userbook.service";
+import {MaterialModule} from '../../../material/material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {CarouselModule} from 'ngx-owl-carousel-o';
+import {SocialLoginModule} from 'angularx-social-login';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AuthService} from '../../../services/auth.service';
+import {TagService} from '../../../services/tag.service';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {of} from 'rxjs';
+import {bookMock} from '../../../mocks/book.model.mock';
+import {tagsMock} from '../../../mocks/tag.model.mock';
+import {UserbookService} from '../../../services/userbook.service';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('BookAddDialogComponent', () => {
     let component: BookAddDialogComponent;
@@ -68,7 +69,8 @@ describe('BookAddDialogComponent', () => {
                 CarouselModule,
                 SocialLoginModule,
                 FormsModule,
-                ReactiveFormsModule
+                ReactiveFormsModule,
+                TranslateServiceMockForChild
             ],
             providers: [
                 TagService,

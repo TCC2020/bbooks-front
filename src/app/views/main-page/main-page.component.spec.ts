@@ -1,15 +1,16 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MainPageComponent} from './main-page.component';
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MaterialModule} from "../../material/material.module";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "angularx-social-login";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {RouterTestingModule} from "@angular/router/testing";
-import {SocialAuthServiceConfigMock} from "../../mocks/google.provide.mock";
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from '../../material/material.module';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterTestingModule} from '@angular/router/testing';
+import {SocialAuthServiceConfigMock} from '../../mocks/google.provide.mock';
+import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
 
 describe('MainPageComponent', () => {
     let component: MainPageComponent;
@@ -27,7 +28,8 @@ describe('MainPageComponent', () => {
                 SocialLoginModule,
                 BrowserAnimationsModule,
                 NoopAnimationsModule,
-                RouterTestingModule
+                RouterTestingModule,
+                TranslateServiceMockForRoot
             ],
             providers: [
                 SocialAuthServiceConfigMock

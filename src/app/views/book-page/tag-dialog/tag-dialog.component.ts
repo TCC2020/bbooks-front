@@ -6,7 +6,7 @@ import {Tag} from '../../../models/tag';
 import {AuthService} from '../../../services/auth.service';
 import {TagService} from '../../../services/tag.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-tag-dialog',

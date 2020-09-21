@@ -1,18 +1,19 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {TagDialogComponent} from './tag-dialog.component';
-import {MaterialModule} from "../../../material/material.module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {RouterTestingModule} from "@angular/router/testing";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {CarouselModule} from "ngx-owl-carousel-o";
-import {AuthService} from "../../../services/auth.service";
-import {TagService} from "../../../services/tag.service";
-import {SocialLoginModule} from "angularx-social-login";
-import {SocialAuthServiceConfigMock} from "../../../mocks/google.provide.mock";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {of} from "rxjs";
+import {MaterialModule} from '../../../material/material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {CarouselModule} from 'ngx-owl-carousel-o';
+import {AuthService} from '../../../services/auth.service';
+import {TagService} from '../../../services/tag.service';
+import {SocialLoginModule} from 'angularx-social-login';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {of} from 'rxjs';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('TagDialogComponent', () => {
     let component: TagDialogComponent;
@@ -49,7 +50,8 @@ describe('TagDialogComponent', () => {
                 CarouselModule,
                 SocialLoginModule,
                 FormsModule,
-                ReactiveFormsModule
+                ReactiveFormsModule,
+                TranslateServiceMockForChild
             ],
             providers: [
                 AuthService,

@@ -12,6 +12,7 @@ import {bookMock, booksMock} from "../../../mocks/book.model.mock";
 import {FlexLayoutModule, FlexModule, MediaChange, MediaObserver} from "@angular/flex-layout";
 import {BehaviorSubject} from "rxjs";
 import {CarouselModule} from "ngx-owl-carousel-o";
+import {TranslateServiceMockForChild} from "../../../mocks/translate.service.mock";
 
 describe('CarrouselComponent', () => {
     let component: CarrouselComponent;
@@ -30,7 +31,8 @@ describe('CarrouselComponent', () => {
                 MaterialModule,
                 FlexLayoutModule,
                 FlexModule,
-                CarouselModule
+                CarouselModule,
+                TranslateServiceMockForChild
             ],
             providers: [
                 GoogleBooksService,

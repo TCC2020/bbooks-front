@@ -1,18 +1,19 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BookCardComponent} from './book-card.component';
-import {BooksResolve} from "../guards/books.resolve";
-import {BookService} from "../../../services/book.service";
-import {UserbookService} from "../../../services/userbook.service";
-import {RouterTestingModule} from "@angular/router/testing";
-import {MaterialModule} from "../../../material/material.module";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {SocialAuthServiceConfigMock} from "../../../mocks/google.provide.mock";
-import {SocialLoginModule} from "angularx-social-login";
-import {bookMock} from "../../../mocks/book.model.mock";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatDialog} from "@angular/material/dialog";
-import {of} from "rxjs";
+import {BooksResolve} from '../guards/books.resolve';
+import {BookService} from '../../../services/book.service';
+import {UserbookService} from '../../../services/userbook.service';
+import {RouterTestingModule} from '@angular/router/testing';
+import {MaterialModule} from '../../../material/material.module';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {SocialLoginModule} from 'angularx-social-login';
+import {bookMock} from '../../../mocks/book.model.mock';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDialog} from '@angular/material/dialog';
+import {of} from 'rxjs';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('BookCardComponent', () => {
 
@@ -28,7 +29,8 @@ describe('BookCardComponent', () => {
                 MaterialModule,
                 HttpClientTestingModule,
                 SocialLoginModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                TranslateServiceMockForChild
             ],
             declarations: [BookCardComponent],
             providers: [
