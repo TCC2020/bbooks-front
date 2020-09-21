@@ -88,10 +88,10 @@ describe('TagDialogComponent', () => {
     it('test on mod create tag', () => {
         component.tag = null;
         component.ngOnInit()
-        expect(component.textForm).toEqual('Criar');
+        expect(component.textForm).toEqual('PADRAO.CRIAR');
     });
     it('test on mod edit tag', () => {
-        expect(component.textForm).toEqual('Editar');
+        expect(component.textForm).toEqual('PADRAO.EDITAR');
     });
     it('form invalid when input tag is empty', () => {
         component.tag = null;
