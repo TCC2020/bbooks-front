@@ -1,21 +1,22 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BooksComponent} from './books.component';
-import {of} from "rxjs";
-import {bookMock} from "../../../mocks/book.model.mock";
-import {BookService} from "../../../services/book.service";
-import {SocialAuthServiceConfigMock} from "../../../mocks/google.provide.mock";
-import {ActivatedRoute} from "@angular/router";
-import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MaterialModule} from "../../../material/material.module";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {SocialLoginModule} from "angularx-social-login";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {RouterTestingModule} from "@angular/router/testing";
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
-import {bookcasesMock} from "../../../mocks/bookcase.model.mock";
-import {BookStatus} from "../../../models/enums/BookStatus.enum";
+import {of} from 'rxjs';
+import {bookMock} from '../../../mocks/book.model.mock';
+import {BookService} from '../../../services/book.service';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {ActivatedRoute} from '@angular/router';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from '../../../material/material.module';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {SocialLoginModule} from 'angularx-social-login';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterTestingModule} from '@angular/router/testing';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {bookcasesMock} from '../../../mocks/bookcase.model.mock';
+import {BookStatus} from '../../../models/enums/BookStatus.enum';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('BooksComponent', () => {
     let component: BooksComponent;
@@ -45,7 +46,8 @@ describe('BooksComponent', () => {
                 BrowserAnimationsModule,
                 NoopAnimationsModule,
                 RouterTestingModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                TranslateServiceMockForChild
             ]
         }).compileComponents();
     }));

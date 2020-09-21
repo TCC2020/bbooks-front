@@ -1,4 +1,4 @@
-import {Book} from "./book.model";
+import {Book} from './book.model';
 
 export class BookCase {
     id: any;

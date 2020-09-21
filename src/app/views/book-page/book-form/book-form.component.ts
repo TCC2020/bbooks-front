@@ -3,9 +3,9 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {Book} from '../../../models/book.model';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {BookService} from "../../../services/book.service";
-import {Author} from "../../../models/author.model";
-import {AuthorService} from "../../../services/author.service";
+import {BookService} from '../../../services/book.service';
+import {Author} from '../../../models/author.model';
+import {AuthorService} from '../../../services/author.service';
 
 
 @Component({

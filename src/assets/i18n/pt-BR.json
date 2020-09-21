@@ -1,0 +1,70 @@
+{
+  "PADRAO": {
+    "BUSCAR": "Buscar",
+    "ENTRAR": "Entrar",
+    "SENHA": "Senha",
+    "EMAIL": "Email",
+    "NOME": "Nome",
+    "SOBRENOME": "Sobrenome",
+    "NOME_USUARIO": "Nome de Usuário",
+    "CONFIRMAR_SENHA": "Confirmar Senha",
+    "PAIS": "País",
+    "CIDADE": "Cidade",
+    "ESTADO": "Estado",
+    "DATA_NASCIMENTO": "Data de Nascimento",
+    "LIVROS": "Livros",
+    "CRIAR": "Criar",
+    "EDITAR": "Editar",
+    "REMOVER": "Remover",
+    "ADICIONAR": "Adicionar",
+    "FILTRO": "Filtro"
+
+  },
+  "NAV": {
+    "SAIR": "Sair",
+    "PORTUGUES": "Português",
+    "INGLES": "Inglês"
+  },
+  "HOME": {
+    "BUSCARTEXT": "Procure um livro"
+  },
+  "LOGIN": {
+    "TIULO": "Informe seus dados",
+    "GOOGLE": "Continuar com o Google",
+    "ESQUECER_SENHA": "Esqueceu sua senha?",
+    "CRIAR_CONTA": "Cria uma conta"
+  },
+  "CADASTRO1": {
+    "TITULO": "Preencha o formulário para se cadastrar",
+    "PROXIMO": "Próximo"
+  },
+  "CADASTRO2": {
+    "TITULO": "Preencha o formulário para finalizar seu cadastro",
+    "CADASTRAR": "Cadastrar",
+    "FOTO": "Escolher foto de perfil..."
+  },
+  "ESTANTE": {
+    "ESTANTE_VIRTUAL": "Estante Virtual",
+    "MEUS_LIVROS": "Meus Livros",
+    "ADICIONAR_LIVRO": "Adicionar livro na Estante",
+    "EDITAR_LIVRO": "Editar Livro"
+  },
+  "TAG": {
+    "CRIAR_TAG": "Criar Tag"
+  },
+  "GENEROS": {
+    "LITERATURA" :  "Literatura",
+    "FICÇÃO": "Ficção",
+    "CLASSICOS": "Clássicos",
+    "ROMANCE": "Romance"
+  },
+  "BOOK": {
+    "EDITORA": "Editora",
+    "PUPLICACAO": "Publicado em",
+    "PAGINAS": "Páginas",
+    "IDIOMA": "Idioma",
+    "AVALIACAO": "Avaliação",
+    "OUTRAS_INFO": "OUTRAS INFORMAÇÕES"
+  }
+}
+

@@ -4,10 +4,10 @@ import {AuthService} from 'src/app/services/auth.service';
 import {AuthGuard} from 'src/app/guards/auth-guard';
 import {Router} from '@angular/router';
 import {Md5} from 'ts-md5/dist/md5';
-import {SocialAuthService} from "angularx-social-login";
-import {SocialUser} from "angularx-social-login";
-import {UserTO} from "../../models/userTO.model";
-import {UserService} from "../../services/user.service";
+import {SocialAuthService} from 'angularx-social-login';
+import {SocialUser} from 'angularx-social-login';
+import {UserTO} from '../../models/userTO.model';
+import {UserService} from '../../services/user.service';
 
 @Component({
     selector: 'app-login',

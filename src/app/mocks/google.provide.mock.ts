@@ -1,4 +1,4 @@
-import {GoogleLoginProvider, SocialAuthServiceConfig} from "angularx-social-login";
+import {GoogleLoginProvider, SocialAuthServiceConfig} from 'angularx-social-login';
 
 export const SocialAuthServiceConfigMock = {
     provide: 'SocialAuthServiceConfig',

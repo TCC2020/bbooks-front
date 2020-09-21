@@ -1,17 +1,17 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Observable, Subscription} from "rxjs";
-import {BookService} from "../../../services/book.service";
-import {BookCase} from "../../../models/bookCase.model";
-import {Book} from "../../../models/book.model";
-import {MatDialog} from "@angular/material/dialog";
-import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {BookStatus, getArrayStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
-import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
-import {map} from "rxjs/operators";
-import {MatChipInputEvent} from "@angular/material/chips";
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable, Subscription} from 'rxjs';
+import {BookService} from '../../../services/book.service';
+import {BookCase} from '../../../models/bookCase.model';
+import {Book} from '../../../models/book.model';
+import {MatDialog} from '@angular/material/dialog';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
+import {BookStatus, getArrayStatus, mapBookStatus} from '../../../models/enums/BookStatus.enum';
+import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {map} from 'rxjs/operators';
+import {MatChipInputEvent} from '@angular/material/chips';
 
 
 @Component({

@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {CadastroComponent} from './cadastro.component';
-import {CadastroService} from "../../services/cadastro-service.service";
+import {CadastroService} from '../../services/cadastro-service.service';
 
 describe('CadastroComponent', () => {
     // let component: CadastroComponent;

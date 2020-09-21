@@ -1,11 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {BookService} from "../../../services/book.service";
-import {BookCase} from "../../../models/bookCase.model";
-import {Tag} from "../../../models/tag";
-import {AuthService} from "../../../services/auth.service";
-import {TagService} from "../../../services/tag.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {BookService} from '../../../services/book.service';
+import {BookCase} from '../../../models/bookCase.model';
+import {Tag} from '../../../models/tag';
+import {AuthService} from '../../../services/auth.service';
+import {TagService} from '../../../services/tag.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-tag-dialog',
@@ -23,15 +24,20 @@ export class TagDialogComponent implements OnInit {
         private formBuilder: FormBuilder,
         private authService: AuthService,
         private tagService: TagService,
-        public dialogRef: MatDialogRef<Tag>
+        public dialogRef: MatDialogRef<Tag>,
+        public translate: TranslateService
     ) {
     }
 
     ngOnInit(): void {
         if (this.tag) {
-            this.textForm = 'Editar';
+            this.translate.get('PADRAO.EDITAR').subscribe(text => {
+                this.textForm = text;
+            });
         } else {
-            this.textForm = 'Criar';
+            this.translate.get('PADRAO.CRIAR').subscribe(text => {
+                this.textForm = text;
+            });
         }
         this.createForm();
     }

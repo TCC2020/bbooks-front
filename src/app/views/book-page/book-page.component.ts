@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {MediaChange, MediaObserver} from "@angular/flex-layout";
+import {Subscription} from 'rxjs';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
 
 
 @Component({

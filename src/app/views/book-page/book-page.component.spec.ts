@@ -1,8 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BookPageComponent} from './book-page.component';
-import {FlexLayoutModule, FlexModule} from "@angular/flex-layout";
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('BookPageComponent', () => {
     let component: BookPageComponent;

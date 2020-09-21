@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {BookService} from "../../../services/book.service";
-import {Book} from "../../../models/book.model";
-import {Observable} from "rxjs";
-import {GoogleBooksService} from "../../../services/google-books.service";
-import {of} from "rxjs";
-import {map} from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {BookService} from '../../../services/book.service';
+import {Book} from '../../../models/book.model';
+import {Observable} from 'rxjs';
+import {GoogleBooksService} from '../../../services/google-books.service';
+import {of} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Injectable()
 export class BookViewResolve implements Resolve<Book> {

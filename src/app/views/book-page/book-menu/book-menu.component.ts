@@ -3,10 +3,10 @@ import {Router} from '@angular/router';
 import {BookService} from '../../../services/book.service';
 import {MatDialog} from '@angular/material/dialog';
 import {Input} from '@angular/core';
-import {TagDialogComponent} from "../tag-dialog/tag-dialog.component";
-import {TagService} from "../../../services/tag.service";
-import {AuthService} from "../../../services/auth.service";
-import {Tag} from "../../../models/tag";
+import {TagDialogComponent} from '../tag-dialog/tag-dialog.component';
+import {TagService} from '../../../services/tag.service';
+import {AuthService} from '../../../services/auth.service';
+import {Tag} from '../../../models/tag';
 
 @Component({
     selector: 'app-book-menu',

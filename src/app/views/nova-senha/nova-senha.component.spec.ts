@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NovaSenhaComponent } from './nova-senha.component';
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('NovaSenhaComponent', () => {
   let component: NovaSenhaComponent;

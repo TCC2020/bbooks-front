@@ -2,12 +2,21 @@
     <span routerLink="">BBooks</span>
     <span class="example-spacer"></span>
     <button *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;" routerLink="/book">
-        Livros
+        {{'PADRAO.LIVROS' | translate}}
     </button>
     <button *ngIf="!isLogged" mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/login']">
-        Entrar
+        {{'PADRAO.ENTRAR' | translate}}
     </button>
     <button *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;" (click)="logout()">
-        Sair
+        {{'NAV.SAIR' | translate}}
     </button>
+    <button mat-button [matMenuTriggerFor]="afterMenu">
+        <span class="material-icons">
+            language
+        </span>
+    </button>
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item (click)="switchLang('pt-BR')">{{'NAV.PORTUGUES' | translate}}</button>
+        <button mat-menu-item (click)="switchLang('en')">{{'NAV.INGLES' | translate}}</button>
+    </mat-menu>
 </mat-toolbar>

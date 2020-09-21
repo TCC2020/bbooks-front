@@ -1,6 +1,6 @@
-import {Author} from "./author.model";
-import {BookStatus} from "./enums/BookStatus.enum";
-import {Tag} from "./tag";
+import {Author} from './author.model';
+import {BookStatus} from './enums/BookStatus.enum';
+import {Tag} from './tag';
 
 export class Book {
     id: string;
