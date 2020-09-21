@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {of} from 'rxjs';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('TagDialogComponent', () => {
     let component: TagDialogComponent;
@@ -68,7 +69,9 @@ describe('TagDialogComponent', () => {
                 {
                     provide: MatDialogRef,
                     useValue: matDialogRefMock
-                }
+                },
+                TranslateService,
+                TranslateStore
             ]
         }).compileComponents();
     }));
