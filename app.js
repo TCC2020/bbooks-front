@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const sslRedirect = require('heroku-ssl-redirect')
+var sslRedirect = require('heroku-ssl-redirect')
 
 const app = express();
 app.use(express.static(__dirname + '/dist/bbooks'));
@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) =>  {
     res.sendFile('index.html', { root: 'dist/bbooks/' });
 });
 
