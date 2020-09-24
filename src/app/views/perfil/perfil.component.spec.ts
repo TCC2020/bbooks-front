@@ -16,6 +16,14 @@ import { PerfilComponent } from './perfil.component';
 describe('PerfilComponent', () => {
   let component: PerfilComponent;
   let fixture: ComponentFixture<PerfilComponent>;
+  const userMock = {
+      profile: {
+          id: 10
+      }
+  };
+  const authServiceMock = {
+      getUser: jest.fn(() => userMock)
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -32,11 +40,14 @@ describe('PerfilComponent', () => {
         TranslateServiceMockForRoot
     ],
     providers: [
-        AuthService,
         FormBuilder,
         ConsultaCepService,
         ProfileService,
-        SocialAuthServiceConfigMock
+        SocialAuthServiceConfigMock,
+        {
+          provide: AuthService,
+          useValue: authServiceMock
+      }
     ]
     })
     .compileComponents();
