@@ -82,24 +82,8 @@ getStates(country: Country) {
   }
 }
 
-/*getStatesWhenChanged(country: Country) {
-  if (country.id.toString().includes('3469034')) {
-      this.consultaCepService.getStatesBr().subscribe(
-          res => this.states = res,
-          error => console.log('error states', error)
-      );
-  } else {
-      this.consultaCepService.getStates(country.id).subscribe(
-          res => this.states = res,
-          error => console.log('error states', error)
-      );
-  }
-  this.basicInfo.get('city').setValue("");
-}*/
-
-
-
 getCitys(state: State) {
+  this.basicInfo.get('city').setValue("");
   if (state.sigla) {
       this.consultaCepService.getCitysBr(state.id).subscribe(
           res => {
