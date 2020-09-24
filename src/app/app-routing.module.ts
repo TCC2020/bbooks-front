@@ -38,6 +38,7 @@ const routes: Routes = [
     },
     {
         path: 'perfil', component: PerfilComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: '',
