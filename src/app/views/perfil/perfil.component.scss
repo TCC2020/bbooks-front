@@ -1,0 +1,129 @@
+.container-conteudo {
+    width: 900px;
+    margin: 50px auto 0px;
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    padding: 30px 40px 35px;
+    box-sizing: border-box;
+  }
+  
+  
+  .container-imagem-perfil {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .imagem-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: auto;
+  }
+  
+  .nome-usuario {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .card {
+    margin-bottom: 10px;
+  }
+  
+  .botao-editar {
+    color: #394A59 !important;
+  }
+  
+  .container-dados-usuario {
+    flex-direction: row;
+    display: flex;
+    margin: 10px 0px 5px;
+    padding: 10px 0px;
+  }
+  
+  .titulo-dados-usuario {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    width: 250px;
+    margin: 0px;
+  
+  }
+  
+  .conteudo-dados-usuario {
+    width: 100%;
+    font-size: 16px;
+    margin: 0px;
+    padding: 5px 0px;
+  }
+  
+  .container-menu-opcoes {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 0px 16px;
+
+    // margin: 10px;
+    border-radius: 4px;
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: rgba(0, 0, 0, 0.87);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  }
+  
+  .container-menu-opcoes div{
+    width: auto;
+    padding: 16px 7px;
+  }
+
+  .container-menu-opcoes div:hover {
+    background-color: #f1f1f1;
+  }
+
+.container-menu-opcoes div a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+  
+  /*.duasColunas {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+  }
+
+  .duasColunas mat-card {
+    width: 50%;
+  }*/
+
+  @media screen and (max-width: 900px){
+    .container-conteudo {
+        border: none;
+        width: 100%;
+        margin: auto 0px;
+        padding: 0px;
+    }
+  
+    .container-imagem-perfil {
+      margin-top: 20px;
+    }
+  
+    .container-cards {
+      padding: 10px;
+    }
+  
+    .container-dados-usuario {
+      display: block;
+    }
+    .container-menu-opcoes{
+        display: block;
+        gap: 0px;
+    }
+
+    .container-menu-opcoes {
+      margin: 0px 10px
+    }
+    .container-menu-opcoes div{
+        width: 100%;
+      }
+  }

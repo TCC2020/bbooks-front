@@ -43,7 +43,7 @@ export class ConsultaCepService {
     }
 
     getStates(idCountry: string): Observable<State[]> {
-        return this.http.get<any>('https://secure.geonames.org/childrenJSON?geonameId=' + idCountry + '&username=' + environment.apicep)
+        return this.http.get<any>('https://secure.geonames.org/childrenJSON?geonameId=' + idCountry + '&username=' + 'bulls2020') // bull2020 por environment.apicep
             .pipe(
                 map(response => {
                     const t = response.geonames.map(result => {
@@ -75,7 +75,7 @@ export class ConsultaCepService {
     }
 
     getCountry(): Observable<Country[]> {
-        return this.http.get<any>('https://secure.geonames.org/countryInfoJSON?lang=pt&username=' + environment.apicep)
+        return this.http.get<any>('https://secure.geonames.org/countryInfoJSON?lang=pt&username=' + "bulls2020") // trocar bulls2020 por environment.apicep
             .pipe(
                 map(response => {
                     const t = response.geonames.map(result => {

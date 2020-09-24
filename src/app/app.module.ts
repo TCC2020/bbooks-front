@@ -29,6 +29,8 @@ import {BookModule} from './views/book-page/book.module';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { PerfilComponent } from './views/perfil/perfil.component';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -45,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         CadastroComponent,
         CadastroSegundaEtapaComponent,
         RecuperarSenhaComponent,
-        NovaSenhaComponent
+        NovaSenhaComponent,
+        PerfilComponent
     ],
     imports: [
         BrowserModule,
