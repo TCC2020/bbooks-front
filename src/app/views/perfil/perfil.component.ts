@@ -39,13 +39,11 @@ export class PerfilComponent implements OnInit {
     this.profileService.getById(this.authService.getUser().profile.id).subscribe(
       user => {
         this.profileTo = user;
-        console.log(this.profileTo);
         this.createForm();
       }
     );
     this.consultaCepService.getCountry().subscribe(result => {
       this.countrys = result;
-      console.log(this.countrys);
       const country = this.countrys.find(c => c.name.includes(this.basicInfo.get('country').value));
       this.getStates(country);
   });
@@ -143,8 +141,8 @@ changeModeBasicInfo() {
 }
 
 save(){
-  this.profileTo.user.name = this.basicInfo.get('name').value;
-  this.profileTo.user.lastName = this.basicInfo.get('lastName').value;
+  this.profileTo.name = this.basicInfo.get('name').value;
+  this.profileTo.lastName = this.basicInfo.get('lastName').value;
   this.profileTo.user.email = this.basicInfo.get('email').value;
   this.profileTo.user.userName = this.basicInfo.get('userName').value;
   this.profileTo.birthDate = this.basicInfo.get('birthDate').value;
@@ -152,12 +150,9 @@ save(){
   this.profileTo.state = this.basicInfo.get('state').value;
   this.profileTo.city = this.basicInfo.get('city').value;
 
-  console.log(this.profileTo);
-
   this.profileService.updatePerfil(this.profileTo).subscribe(
     response => {
       this.profileTo = response;
-      console.log(response);
       this.changeModeBasicInfo();
     }
   );
