@@ -1,8 +1,8 @@
 import {TestBed} from '@angular/core/testing';
 
 import {AuthConfirmService} from './auth-confirm.service';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {GoogleLoginProvider, SocialAuthServiceConfig} from "angularx-social-login";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {GoogleLoginProvider, SocialAuthServiceConfig} from 'angularx-social-login';
 
 describe('AuthConfirmService', () => {
     let service: AuthConfirmService;

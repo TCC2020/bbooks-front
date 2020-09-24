@@ -1,14 +1,14 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {AuthConfirmComponent} from './auth-confirm.component';
-import {MaterialModule} from "../../material/material.module";
-import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "angularx-social-login";
-import {AuthService} from "../../services/auth.service";
-import {AuthConfirmService} from "../../services/auth-confirm.service";
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
-import {RouterTestingModule} from "@angular/router/testing";
+import {MaterialModule} from '../../material/material.module';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {AuthService} from '../../services/auth.service';
+import {AuthConfirmService} from '../../services/auth-confirm.service';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('AuthConfirmComponent', () => {
     // let component: AuthConfirmComponent;

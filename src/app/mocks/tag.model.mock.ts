@@ -1,4 +1,4 @@
-import {Tag} from "../models/tag";
+import {Tag} from '../models/tag';
 
 export const tagMock = new Tag();
 tagMock.id = 10;

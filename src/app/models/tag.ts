@@ -1,4 +1,4 @@
-import {UserBookTO} from "./userBookTO";
+import {UserBookTO} from './userBookTO';
 
 export class Tag {
     id: number;

@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="start center" *ngIf="nameTag && books.length > 0" [routerLink]="[ routerlink ,idTag]">
     <div class="buttonCarousel" fxLayout="row" fxLayoutAlign="start center" fxFlex matRipple fxLayoutGap="5px">
-        <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{nameTag | titlecase}}</span>
+        <span class="textButtonCarrousel" fxFlexOffset="1" fxFlex="nogrow">{{'GENEROS.' + nameTag.toUpperCase() | translate | titlecase}}</span>
         <mat-icon class="iconColor" fxFlexOffset="10">arrow_forward</mat-icon>
     </div>
 </div>

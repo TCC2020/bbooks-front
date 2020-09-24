@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {AuthGuard} from "../guards/auth-guard";
-import {Observable} from "rxjs";
-import {UserBookTO} from "../models/userBookTO";
-import {Tag} from "../models/tag";
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {AuthGuard} from '../guards/auth-guard';
+import {Observable} from 'rxjs';
+import {UserBookTO} from '../models/userBookTO';
+import {Tag} from '../models/tag';
 
 @Injectable({
     providedIn: 'root'

@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {BookService} from "../../../services/book.service";
-import {Book} from "../../../models/book.model";
-import {Observable} from "rxjs";
-import {GoogleBooksService} from "../../../services/google-books.service";
-import {BookCase} from "../../../models/bookCase.model";
-import {of} from "rxjs";
-import {TagService} from "../../../services/tag.service";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {BookService} from '../../../services/book.service';
+import {Book} from '../../../models/book.model';
+import {Observable} from 'rxjs';
+import {GoogleBooksService} from '../../../services/google-books.service';
+import {BookCase} from '../../../models/bookCase.model';
+import {of} from 'rxjs';
+import {TagService} from '../../../services/tag.service';
 
 @Injectable()
 export class BookEstanteResolve implements Resolve<Book[]> {

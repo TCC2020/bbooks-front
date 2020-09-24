@@ -1,7 +1,7 @@
 import {fakeAsync, TestBed} from '@angular/core/testing';
 
 import {TagService} from './tag.service';
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
 
 describe('TagService', () => {

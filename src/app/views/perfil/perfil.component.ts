@@ -45,7 +45,9 @@ export class PerfilComponent implements OnInit {
     );
     this.consultaCepService.getCountry().subscribe(result => {
       this.countrys = result;
-      // this.getStates(this.basicInfo.get('country').value.id);
+      console.log(this.countrys);
+      const country = this.countrys.find(c => c.name.includes(this.basicInfo.get('country').value));
+      this.getStates(country);
   });
   }
 
@@ -81,6 +83,22 @@ getStates(country: Country) {
       );
   }
 }
+
+/*getStatesWhenChanged(country: Country) {
+  if (country.id.toString().includes('3469034')) {
+      this.consultaCepService.getStatesBr().subscribe(
+          res => this.states = res,
+          error => console.log('error states', error)
+      );
+  } else {
+      this.consultaCepService.getStates(country.id).subscribe(
+          res => this.states = res,
+          error => console.log('error states', error)
+      );
+  }
+  this.basicInfo.get('city').setValue("");
+}*/
+
 
 
 getCitys(state: State) {

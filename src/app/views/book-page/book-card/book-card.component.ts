@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Book} from "../../../models/book.model";
-import {BookStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
-import {Router} from "@angular/router";
-import {UserbookService} from "../../../services/userbook.service";
-import {BookAddDialogComponent} from "../book-add-dialog/book-add-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import {BookService} from "../../../services/book.service";
+import {Book} from '../../../models/book.model';
+import {BookStatus, mapBookStatus} from '../../../models/enums/BookStatus.enum';
+import {Router} from '@angular/router';
+import {UserbookService} from '../../../services/userbook.service';
+import {BookAddDialogComponent} from '../book-add-dialog/book-add-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
+import {BookService} from '../../../services/book.service';
 
 @Component({
     selector: 'app-book-card',
@@ -70,12 +70,13 @@ export class BookCardComponent implements OnInit {
                 book
             }
         });
-        dialogRef.afterClosed().subscribe((result) => {
-            this.book.idUserBook = result?.id;
-            if (result?.status) {
+        dialogRef.afterClosed().toPromise().then((result) => {
+            if (result) {
+                this.book.idUserBook = result?.id;
                 this.book.status = result?.status;
+                this.bookService.updateListCarrousel.emit(true);
+
             }
-            this.bookService.updateListCarrousel.emit(true);
         });
     }
 

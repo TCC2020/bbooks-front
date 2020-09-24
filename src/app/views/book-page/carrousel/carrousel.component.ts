@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {GoogleBooksService} from '../../../services/google-books.service';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs";
-import {MatDialog} from "@angular/material/dialog";
-import {Book} from "../../../models/book.model";
-import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {BookStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
-import {UserbookService} from "../../../services/userbook.service";
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {Book} from '../../../models/book.model';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
+import {BookStatus, mapBookStatus} from '../../../models/enums/BookStatus.enum';
+import {UserbookService} from '../../../services/userbook.service';
 
 @Component({
     selector: 'app-carrousel',

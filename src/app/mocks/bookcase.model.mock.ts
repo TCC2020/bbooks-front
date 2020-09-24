@@ -1,5 +1,5 @@
-import {booksMock} from "./book.model.mock";
-import {BookCase} from "../models/bookCase.model";
+import {booksMock} from './book.model.mock';
+import {BookCase} from '../models/bookCase.model';
 
 export const bookcaseMock = new BookCase();
 bookcaseMock.books = booksMock;

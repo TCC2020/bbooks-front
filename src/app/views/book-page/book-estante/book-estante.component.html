@@ -1,7 +1,7 @@
 <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="20px"
      fxLayoutAlign.xs="space-around center">
     <mat-form-field fxFlex="30">
-        <mat-label>Pesquise um livro</mat-label>
+        <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
         <input matInput type="text" [(ngModel)]="search">
         <mat-icon matSuffix mat-icon-button>search</mat-icon>
     </mat-form-field>
@@ -16,7 +16,7 @@
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
             <input
-                    placeholder="Filtro"
+                    placeholder="{{'PADRAO.FILTRO' | translate}}"
                     #fruitInput
                     [formControl]="filterCtrl"
                     [matAutocomplete]="auto"

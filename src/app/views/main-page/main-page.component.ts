@@ -3,12 +3,12 @@ import {AuthGuard} from 'src/app/guards/auth-guard';
 import {UserService} from 'src/app/services/user.service';
 import {FormBuilder} from '@angular/forms';
 import {GoogleBooksService} from 'src/app/services/google-books.service';
-import {AuthService} from "../../services/auth.service";
-import {Book} from "../../models/book.model";
-import {BooksResolve} from "../book-page/guards/books.resolve";
-import {BookService} from "../../services/book.service";
-import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {Subscription} from "rxjs";
+import {AuthService} from '../../services/auth.service';
+import {Book} from '../../models/book.model';
+import {BooksResolve} from '../book-page/guards/books.resolve';
+import {BookService} from '../../services/book.service';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-main-page',

@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {BookService} from "../../../services/book.service";
-import {Book} from "../../../models/book.model";
-import {Observable} from "rxjs";
-import {GoogleBooksService} from "../../../services/google-books.service";
-import {BookCase} from "../../../models/bookCase.model";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {BookService} from '../../../services/book.service';
+import {Book} from '../../../models/book.model';
+import {Observable} from 'rxjs';
+import {GoogleBooksService} from '../../../services/google-books.service';
+import {BookCase} from '../../../models/bookCase.model';
 
 @Injectable()
 export class CarrouselResolve implements Resolve<Book[]> {

@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable, of} from "rxjs";
-import {Country} from "../models/country.model";
-import {State} from "../models/state.model";
-import {City} from "../models/city.model";
-import {map} from "rxjs/operators";
-import {environment} from "../../environments/environment";
+import {HttpClient} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
+import {Country} from '../models/country.model';
+import {State} from '../models/state.model';
+import {City} from '../models/city.model';
+import {map} from 'rxjs/operators';
+import {environment} from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'

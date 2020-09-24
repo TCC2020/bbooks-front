@@ -1,17 +1,17 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
-import {BookCase} from "../models/bookCase.model";
-import {Book} from "../models/book.model";
-import {GoogleBooksService} from "./google-books.service";
-import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Author} from "../models/author.model";
-import {UserbookService} from "./userbook.service";
-import {of} from "rxjs";
-import {AuthService} from "./auth.service";
-import {TagService} from "./tag.service";
-import {UserBookTO} from "../models/userBookTO";
-import {take} from "rxjs/operators";
+import {BookCase} from '../models/bookCase.model';
+import {Book} from '../models/book.model';
+import {GoogleBooksService} from './google-books.service';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Author} from '../models/author.model';
+import {UserbookService} from './userbook.service';
+import {of} from 'rxjs';
+import {AuthService} from './auth.service';
+import {TagService} from './tag.service';
+import {UserBookTO} from '../models/userBookTO';
+import {take} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -127,6 +127,7 @@ export class BookService {
             if (book.volumeInfo.imageLinks) {
                 b.image = book.volumeInfo.imageLinks.thumbnail;
                 b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
+                b.image = b.image + '&source=gbs_api';
             }
             b.description = book.volumeInfo.description;
             b.authors = this.convertAuthorToModel(book.volumeInfo.authors);

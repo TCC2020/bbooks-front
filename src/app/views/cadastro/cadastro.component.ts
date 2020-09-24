@@ -4,8 +4,8 @@ import {Router} from '@angular/router';
 import {CadastroService} from '../../services/cadastro-service.service';
 import {Md5} from 'ts-md5/dist/md5';
 import {ErrorStateMatcher} from '@angular/material/core';
-import {UserTO} from "../../models/userTO.model";
-import {AuthService} from "../../services/auth.service";
+import {UserTO} from '../../models/userTO.model';
+import {AuthService} from '../../services/auth.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -65,8 +65,8 @@ export class CadastroComponent implements OnInit {
     }
 
     checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-        let pass = group.controls.password.value;
-        let confirmPass = group.controls.confirmPassword.value;
+        const pass = group.controls.password.value;
+        const confirmPass = group.controls.confirmPassword.value;
 
         return pass === confirmPass ? null : {notSame: true}
     }
