@@ -2,10 +2,10 @@ import {Component, OnInit, OnChanges} from '@angular/core';
 import {FormGroup, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CadastroService} from '../../services/cadastro-service.service';
-import {Md5} from 'ts-md5/dist/md5';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {UserTO} from '../../models/userTO.model';
 import {AuthService} from '../../services/auth.service';
+import { EncryptService } from 'src/app/services/encrypt.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -32,7 +32,8 @@ export class CadastroComponent implements OnInit {
         private fb: FormBuilder,
         private router: Router,
         private cadastroService: CadastroService,
-        private auth: AuthService
+        private auth: AuthService,
+        private encrypt: EncryptService
     ) {
     }
 
@@ -74,7 +75,7 @@ export class CadastroComponent implements OnInit {
     cadastrar() {
         const username = this.cadastroControl.get('userName').value;
         this.cadastroControl.get('userName').setValue(username.toLowerCase());
-        this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
+        this.cadastroControl.value.password = this.encrypt.encryptPass(this.cadastroControl.value.password);
         this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
                 this.auth.setUserRegister(res);
                 this.router.navigateByUrl('continuar-cadastro');
