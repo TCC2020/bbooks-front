@@ -13,6 +13,8 @@ import {CDNService} from 'src/app/services/cdn.service';
 import {BookAddDialogComponent} from "../book-page/book-add-dialog/book-add-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {UploadComponent} from "../upload/upload.component";
+import {DateAdapter} from '@angular/material/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-cadastro-segunda-etapa',
@@ -37,7 +39,11 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         private profileService: ProfileService,
         private cdnService: CDNService,
         public dialog: MatDialog,
+        private adapter: DateAdapter<any>,
     ) {
+        this.auth.language.subscribe(lang => {
+            this.adapter.setLocale(lang);
+        });
     }
 
     ngOnInit(): void {
@@ -180,10 +186,16 @@ export class CadastroSegundaEtapaComponent implements OnInit {
             if (result) {
                 this.file = result;
                 this.formCadastro2.get('image').setValue(result.name);
+                this.uploadImage();
             } else {
                 this.file = null;
             }
         });
     }
 
+    uploadImage() {
+        this.cdnService.upload({file: this.file, type: 'image'}).subscribe(res => {
+            console.log(res);
+        })
+    }
 }

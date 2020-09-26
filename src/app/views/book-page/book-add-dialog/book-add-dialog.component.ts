@@ -1,15 +1,16 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Book} from "../../../models/book.model";
-import {BookService} from "../../../services/book.service";
-import {BookStatus, getArrayStatus, mapBookStatus} from "../../../models/enums/BookStatus.enum";
-import {UserbookService} from "../../../services/userbook.service";
-import {UserBookTO} from "../../../models/userBookTO";
-import {AuthService} from "../../../services/auth.service";
-import {Tag} from "../../../models/tag";
-import {TagService} from "../../../services/tag.service";
-import {take} from "rxjs/operators";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Book} from '../../../models/book.model';
+import {BookService} from '../../../services/book.service';
+import {BookStatus, getArrayStatus, mapBookStatus} from '../../../models/enums/BookStatus.enum';
+import {UserbookService} from '../../../services/userbook.service';
+import {UserBookTO} from '../../../models/userBookTO';
+import {AuthService} from '../../../services/auth.service';
+import {Tag} from '../../../models/tag';
+import {TagService} from '../../../services/tag.service';
+import {take} from 'rxjs/operators';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-book-add-dialog',
@@ -35,7 +36,9 @@ export class BookAddDialogComponent implements OnInit {
         private bookService: BookService,
         private userbookService: UserbookService,
         private authService: AuthService,
-        private tagService: TagService
+        private tagService: TagService,
+        public translate: TranslateService
+
     ) {
         this.Book = data.book;
         this.tagsBook = [];
@@ -64,11 +67,19 @@ export class BookAddDialogComponent implements OnInit {
 
     modeDialog() {
         if (this.Book.idUserBook) {
-            this.title = 'Editar livro';
-            this.buttonText = "Editar";
+            this.translate.get('ESTANTE.EDITAR_LIVRO').subscribe(title => {
+                this.title = title;
+            });
+            this.translate.get('PADRAO.EDITAR').subscribe(text => {
+                this.buttonText = text;
+            });
         } else {
-            this.title = 'Adicionar livro na estante';
-            this.buttonText = 'Adicionar';
+            this.translate.get('ESTANTE.ADICIONAR_LIVRO').subscribe(title => {
+                this.title = title;
+            });
+            this.translate.get('PADRAO.ADICIONAR').subscribe(text => {
+                this.buttonText = text;
+            });
         }
     }
 

@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 
 import {ConsultaCepService} from './consulta-cep.service';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('ConsultaCepService', () => {
     let service: ConsultaCepService;

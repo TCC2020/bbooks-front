@@ -4,12 +4,12 @@
         <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
     </div>
     <div>
-        <span>Preencha o formulário para finalizar seu cadastro</span>
+        <span>{{'CADASTRO2.TITULO' | translate}}</span>
     </div>
 
     <div id="paisEstadoCidade">
         <mat-form-field>
-            <mat-label>País</mat-label>
+            <mat-label>{{'PADRAO.PAIS' | translate}}</mat-label>
             <mat-select formControlName="country">
                 <mat-option [value]="country.name" *ngFor="let country of countrys"  (blur)="getStates(country)">{{country.name}}</mat-option>
             </mat-select>
@@ -19,7 +19,7 @@
         </mat-form-field>
 
         <mat-form-field class="inputSegundaEtapa">
-            <mat-label>Estado</mat-label>
+            <mat-label>{{'PADRAO.ESTADO' | translate}}</mat-label>
             <mat-select  formControlName="state">
                 <mat-option [value]="state.name" *ngFor="let state of states" (blur)="getCitys(state)">{{state.name}}</mat-option>
             </mat-select>
@@ -30,7 +30,7 @@
 
         <mat-form-field class="inputSegundaEtapa" >
             <input type="text"
-                   placeholder="Cidade"
+                   placeholder="{{'PADRAO.CIDADE' | translate}}"
                    aria-label="Number"
                    matInput
                    formControlName="city"
@@ -49,7 +49,7 @@
 
     <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
         <mat-form-field class="inputSegundaEtapa">
-            <mat-label>Escolher foto de perfil...</mat-label>
+            <mat-label>{{'CADASTRO2.FOTO' | translate}}</mat-label>
             <input type="text" matInput id="fotoSegundaEtapa" formControlName="image">
             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="openDialogUpload()">
                 <mat-icon>create</mat-icon>
@@ -60,7 +60,7 @@
         </mat-form-field>
 
         <mat-form-field class="inputSegundaEtapa">
-            <mat-label>Data de Nascimento</mat-label>
+            <mat-label>{{'PADRAO.DATA_NASCIMENTO' | translate}}</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="birthDate">
             <mat-error *ngIf="verificaValidToTouched('birthDate')">
                 Data de Nascimento é <strong>obrigatório</strong>
@@ -71,6 +71,6 @@
     </div>
 
     <div id="divBotao">
-        <button type="button" mat-raised-button color="primary" (click)="loginRegister()" [disabled]="formCadastro2.invalid">Cadastrar</button>
+        <button type="button" mat-raised-button color="primary" (click)="loginRegister()" [disabled]="formCadastro2.invalid">{{'CADASTRO2.CADASTRAR' | translate}}</button>
     </div>
 </form>

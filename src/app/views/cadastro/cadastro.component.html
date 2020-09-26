@@ -47,12 +47,12 @@
       <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
     </div>
     <div>
-      <span id="texto-introducao">Preencha o formulário para se cadastrar</span>
+      <span id="texto-introducao">{{'CADASTRO1.TITULO' | translate}}</span>
     </div>
 
     <div id="nomeSobrenome">
       <mat-form-field id="nome" class="inputCadastrar">
-        <mat-label>Nome</mat-label>
+        <mat-label>{{'PADRAO.NOME' | translate}}</mat-label>
         <input matInput id="nomeCadastrar" formControlName="name">
         <mat-error *ngIf="cadastroControl.get('name').hasError('required')">
           Nome é <strong>obrigatório</strong>
@@ -60,7 +60,7 @@
       </mat-form-field>
 
       <mat-form-field id="sobrenome" class="inputCadastrar">
-        <mat-label>Sobrenome</mat-label>
+        <mat-label>{{'PADRAO.SOBRENOME' | translate}}</mat-label>
         <input matInput id="sobrenomeCadastrar" formControlName="lastName">
         <mat-error *ngIf="cadastroControl.get('lastName').hasError('required')">
           Sobrenome é <strong>obrigatório</strong>
@@ -70,7 +70,7 @@
   
     <div>
       <mat-form-field class="inputCadastrar">
-        <mat-label>Email</mat-label>
+        <mat-label>{{'PADRAO.EMAIL' | translate}}</mat-label>
         <input type="email" matInput id="emailCadastrar" formControlName="email">
         <mat-error *ngIf="cadastroControl.get('email').hasError('email') && !cadastroControl.get('email').hasError('required')">
           Por favor, insira um endereço de e-mail válido
@@ -84,7 +84,7 @@
 
     <div>
       <mat-form-field class="inputCadastrar">
-        <mat-label>Nome de Usuário</mat-label>
+        <mat-label>{{'PADRAO.NOME_USUARIO' | translate}}</mat-label>
         <input matInput id="nomeUsuarioCadastrar" formControlName="userName" #username (input)="username.value = username.value.toLowerCase()" >
         <mat-error *ngIf="cadastroControl.get('userName').hasError('pattern') && !cadastroControl.get('userName').hasError('required')">
           O primeiro caractere deve ser uma letra
@@ -99,7 +99,7 @@
 
     <div id="senhaConfirmarSenha" >
       <mat-form-field class="inputCadastraSenha">
-        <mat-label>Senha</mat-label>
+        <mat-label>{{'PADRAO.SENHA' | translate}}</mat-label>
         <input type="password"
         matInput 
         [type]="hide ? 'password' : 'text'"
@@ -121,7 +121,7 @@
       </mat-form-field>
 
       <mat-form-field class="inputCadastraSenha">
-        <mat-label>Confirmar Senha</mat-label>
+        <mat-label>{{'PADRAO.CONFIRMAR_SENHA' | translate}}</mat-label>
         <input type="password"
          [type]="hide ? 'password' : 'text'"
         matInput
@@ -138,6 +138,6 @@
     </div>
   
     <div id="divBotao">
-      <button type="button" mat-raised-button color="primary" (click)="cadastrar()" [disabled]="cadastroControl.invalid">Próximo</button>
+      <button type="button" mat-raised-button color="primary" (click)="cadastrar()" [disabled]="cadastroControl.invalid">{{'CADASTRO1.PROXIMO' | translate}}</button>
     </div>
   </form>

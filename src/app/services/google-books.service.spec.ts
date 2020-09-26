@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 
 import {GoogleBooksService} from './google-books.service';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('GoogleBooksService', () => {
     let service: GoogleBooksService;

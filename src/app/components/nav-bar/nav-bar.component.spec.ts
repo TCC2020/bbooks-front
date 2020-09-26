@@ -1,12 +1,13 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NavBarComponent} from './nav-bar.component';
-import {AuthService} from "../../services/auth.service";
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "angularx-social-login";
-import {RouterTestingModule} from "@angular/router/testing";
-import {MaterialModule} from "../../material/material.module";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {AuthService} from '../../services/auth.service';
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {RouterTestingModule} from '@angular/router/testing';
+import {MaterialModule} from '../../material/material.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
 
 describe('NavBarComponent', () => {
     let component: NavBarComponent;
@@ -20,7 +21,8 @@ describe('NavBarComponent', () => {
                 MaterialModule,
                 FormsModule,
                 ReactiveFormsModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                TranslateServiceMockForRoot
             ],
             providers: [
                 AuthService,

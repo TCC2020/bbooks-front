@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="newPassword">
 
     <div>
       <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
@@ -10,10 +10,18 @@
     <div>
       <mat-form-field class="inputNovaSenha">
         <mat-label>Email</mat-label>
-        <input matInput disabled id="emailNovaSenha">
+        <input matInput disabled id="emailNovaSenha" value="{{profileTo?.user?.email}}">
       </mat-form-field>
     </div>
   
+    <div>
+      <mat-form-field class="inputNovaSenha">
+        <mat-label>Senha Atual</mat-label>
+        <input type="password" matInput id="senhaAtualNovaSenha">
+        <mat-hint>Insira sua senha atual para alterá-la.</mat-hint>
+      </mat-form-field>
+    </div>
+
     <div>
       <mat-form-field class="inputNovaSenha">
         <mat-label>Nova Senha</mat-label>

@@ -1,5 +1,5 @@
 // material.module.ts
-import { ModuleWithProviders, NgModule} from "@angular/core";
+import { ModuleWithProviders, NgModule} from '@angular/core';
 import { MAT_LABEL_GLOBAL_OPTIONS, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';

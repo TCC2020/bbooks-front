@@ -1,20 +1,22 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BookViewComponent} from './book-view.component';
-import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MaterialModule} from "../../../material/material.module";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "angularx-social-login";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {GoogleBooksService} from "../../../services/google-books.service";
-import {BookService} from "../../../services/book.service";
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
-import {RouterTestingModule} from "@angular/router/testing";
-import {SocialAuthServiceConfigMock} from "../../../mocks/google.provide.mock";
-import {bookMock} from "../../../mocks/book.model.mock";
-import {ActivatedRoute} from "@angular/router";
-import {of} from "rxjs";
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from '../../../material/material.module';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {GoogleBooksService} from '../../../services/google-books.service';
+import {BookService} from '../../../services/book.service';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {bookMock} from '../../../mocks/book.model.mock';
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('BookViewComponent', () => {
     let component: BookViewComponent;
@@ -36,7 +38,8 @@ describe('BookViewComponent', () => {
                 BrowserAnimationsModule,
                 NoopAnimationsModule,
                 MaterialModule,
-                RouterTestingModule
+                RouterTestingModule,
+                TranslateServiceMockForChild
             ],
             providers: [
                 GoogleBooksService,
@@ -45,7 +48,9 @@ describe('BookViewComponent', () => {
                 {
                     provide: ActivatedRoute,
                     useValue: routeMock
-                }
+                },
+                TranslateService,
+                TranslateStore
             ],
             declarations: [BookViewComponent]
         }).compileComponents();

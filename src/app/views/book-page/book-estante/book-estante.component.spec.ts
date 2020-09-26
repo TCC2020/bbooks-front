@@ -1,22 +1,24 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BookEstanteComponent} from './book-estante.component';
-import {MaterialModule} from "../../../material/material.module";
-import {RouterTestingModule} from "@angular/router/testing";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {BookService} from "../../../services/book.service";
-import {SocialLoginModule} from "angularx-social-login";
-import {SocialAuthServiceConfigMock} from "../../../mocks/google.provide.mock";
-import {bookcaseMock} from "../../../mocks/bookcase.model.mock";
-import {BehaviorSubject, of} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {MediaChange, MediaObserver} from "@angular/flex-layout";
-import {BookStatus, getArrayStatus} from "../../../models/enums/BookStatus.enum";
-import {bookMock} from "../../../mocks/book.model.mock";
+import {MaterialModule} from '../../../material/material.module';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BookService} from '../../../services/book.service';
+import {SocialLoginModule} from 'angularx-social-login';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {bookcaseMock} from '../../../mocks/bookcase.model.mock';
+import {BehaviorSubject, of} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
+import {BookStatus, getArrayStatus} from '../../../models/enums/BookStatus.enum';
+import {bookMock} from '../../../mocks/book.model.mock';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('BookEstanteComponent', () => {
     let component: BookEstanteComponent;
@@ -38,7 +40,8 @@ describe('BookEstanteComponent', () => {
                 BrowserModule,
                 HttpClientTestingModule,
                 BrowserAnimationsModule,
-                SocialLoginModule
+                SocialLoginModule,
+                TranslateServiceMockForChild
             ],
             providers: [
                 BookService,
@@ -50,7 +53,9 @@ describe('BookEstanteComponent', () => {
                 {
                     provide: MediaObserver,
                     useValue: {media$: mockMediaSubject.asObservable()}
-                }
+                },
+                TranslateService,
+                TranslateStore
             ]
         }).compileComponents();
     }));

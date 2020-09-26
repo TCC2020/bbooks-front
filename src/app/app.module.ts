@@ -9,7 +9,7 @@ import {NavBarComponent} from './components/nav-bar/nav-bar.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {LoginComponent} from './modals/login/login.component';
 import {AuthGuard} from './guards/auth-guard';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {Interceptor} from './guards/interceptor';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -28,6 +28,15 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 import {BookModule} from "./views/book-page/book.module";
 import {AuthVerifyLogin} from "./guards/auth-verify-login";
 import { UploadComponent } from './views/upload/upload.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { PerfilComponent } from './views/perfil/perfil.component';
+
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
     declarations: [
@@ -40,7 +49,8 @@ import { UploadComponent } from './views/upload/upload.component';
         CadastroSegundaEtapaComponent,
         RecuperarSenhaComponent,
         NovaSenhaComponent,
-        UploadComponent
+        UploadComponent,
+        PerfilComponent,
     ],
     imports: [
         BrowserModule,
@@ -56,10 +66,16 @@ import { UploadComponent } from './views/upload/upload.component';
         MatFormFieldModule,
         MatInputModule,
         SocialLoginModule,
-        BookModule
+        BookModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+        })
     ],
     providers: [
-        { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
         AuthVerifyLogin,
         AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
         {

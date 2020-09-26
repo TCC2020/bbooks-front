@@ -1,9 +1,9 @@
 import {TestBed} from '@angular/core/testing';
 
 import {UserbookService} from './userbook.service';
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {RouterTestingModule} from "@angular/router/testing";
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "angularx-social-login";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
 
 describe('UserbookService', () => {
     let service: UserbookService;

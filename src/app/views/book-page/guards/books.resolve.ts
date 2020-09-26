@@ -1,8 +1,8 @@
-import {BookCase} from "../../../models/bookCase.model";
-import {Observable, of} from "rxjs";
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {BookService} from "../../../services/book.service";
+import {BookCase} from '../../../models/bookCase.model';
+import {Observable, of} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {BookService} from '../../../services/book.service';
 
 @Injectable()
 export class BooksResolve implements Resolve<BookCase[]> {

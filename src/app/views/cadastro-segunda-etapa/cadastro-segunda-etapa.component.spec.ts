@@ -1,5 +1,4 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {CadastroSegundaEtapaComponent} from './cadastro-segunda-etapa.component';
 import {MaterialModule} from "../../material/material.module";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
@@ -14,6 +13,7 @@ import {SocialLoginModule} from "angularx-social-login";
 import {of} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {CDNService} from "../../services/cdn.service";
+import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
 
 describe('CadastroSegundaEtapaComponent', () => {
     let component: CadastroSegundaEtapaComponent;
@@ -34,7 +34,8 @@ describe('CadastroSegundaEtapaComponent', () => {
                 NoopAnimationsModule,
                 HttpClientTestingModule,
                 RouterTestingModule,
-                SocialLoginModule
+                SocialLoginModule,
+                TranslateServiceMockForRoot
             ],
             providers: [
                 AuthService,

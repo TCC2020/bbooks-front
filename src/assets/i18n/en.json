@@ -1,0 +1,68 @@
+{
+  "PADRAO": {
+    "BUSCAR": "Search",
+    "ENTRAR": "Login",
+    "SENHA": "Password",
+    "EMAIL": "E-mail",
+    "NOME": "Name",
+    "SOBRENOME": "Last Name",
+    "NOME_USUARIO": "Username",
+    "CONFIRMAR_SENHA": "Confirm Password",
+    "PAIS": "Country",
+    "CIDADE": "City",
+    "ESTADO": "State",
+    "DATA_NASCIMENTO": "Date of birth",
+    "LIVROS": "Books",
+    "CRIAR": "Create",
+    "EDITAR": "Edit",
+    "REMOVER": "Remove",
+    "ADICIONAR": "Add",
+    "FILTRO": "Filter"
+  },
+  "NAV": {
+    "SAIR": "Logout",
+    "PORTUGUES": "Portuguese - Brazil",
+    "INGLES": "English"
+  },
+  "HOME": {
+    "BUSCARTEXT": "Search for a book"
+  },
+  "LOGIN": {
+    "TIULO": "Sign in ",
+    "GOOGLE": "Sign with Google",
+    "ESQUECER_SENHA": "Forgot Password?",
+    "CRIAR_CONTA": "Create new account"
+  },
+  "CADASTRO1": {
+    "TITULO": "Fill out the form to register",
+    "PROXIMO": "Next"
+  },
+  "CADASTRO2": {
+    "TITULO": "Fill out the form to complete your registration",
+    "CADASTRAR": "Register",
+    "FOTO": "Choose profile photo..."
+  },
+  "ESTANTE": {
+    "ESTANTE_VIRTUAL": "Bookcase",
+    "MEUS_LIVROS": "My Books",
+    "ADICIONAR_LIVRO": "Add book on the Bookcase",
+    "EDITAR_LIVRO": "Edit Book"
+  },
+  "TAG": {
+    "CRIAR_TAG": "Create Tag"
+  },
+  "GENEROS": {
+    "LITERATURA" :  "Literature",
+    "FICÇÃO": "Fiction",
+    "CLASSICOS": "Classics",
+    "ROMANCE": "Romance"
+  },
+  "BOOK": {
+    "EDITORA": "Publisher",
+    "PUPLICACAO": "Published in",
+    "PAGINAS": "Pages",
+    "IDIOMA": "Language",
+    "AVALIACAO": "Evaluation",
+    "OUTRAS_INFO": "OTHER INFORMATION"
+  }
+}

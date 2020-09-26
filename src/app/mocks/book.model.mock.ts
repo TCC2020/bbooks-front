@@ -1,6 +1,6 @@
-import {Book} from "../models/book.model";
-import {Author} from "../models/author.model";
-import {BookStatus} from "../models/enums/BookStatus.enum";
+import {Book} from '../models/book.model';
+import {Author} from '../models/author.model';
+import {BookStatus} from '../models/enums/BookStatus.enum';
 
 export const bookMock = new Book();
 const authors = [];

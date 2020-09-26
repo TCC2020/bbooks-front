@@ -1,19 +1,19 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RecuperarSenhaComponent} from './recuperar-senha.component';
-import {FormBuilder, FormsModule} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {MaterialModule} from "../../material/material.module";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {FormBuilder, FormsModule} from '@angular/forms';
+import {AuthService} from '../../services/auth.service';
+import {MaterialModule} from '../../material/material.module';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {
     GoogleLoginProvider,
     SocialAuthService,
     SocialAuthServiceConfig,
     SocialLoginModule
-} from "angularx-social-login";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+} from 'angularx-social-login';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('RecuperarSenhaComponent', () => {
     let component: RecuperarSenhaComponent;

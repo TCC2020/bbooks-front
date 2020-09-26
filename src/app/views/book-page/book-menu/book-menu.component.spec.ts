@@ -1,22 +1,24 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BookMenuComponent} from './book-menu.component';
-import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
-import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MaterialModule} from "../../../material/material.module";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import { SocialLoginModule} from "angularx-social-login";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {RouterTestingModule} from "@angular/router/testing";
-import {GoogleBooksService} from "../../../services/google-books.service";
-import {BookService} from "../../../services/book.service";
-import {TagService} from "../../../services/tag.service";
-import {AuthService} from "../../../services/auth.service";
-import {SocialAuthServiceConfigMock} from "../../../mocks/google.provide.mock";
-import {of} from "rxjs";
-import {tagsMock} from "../../../mocks/tag.model.mock";
-import {MatDialog} from "@angular/material/dialog";
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from '../../../material/material.module';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import { SocialLoginModule} from 'angularx-social-login';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {RouterTestingModule} from '@angular/router/testing';
+import {GoogleBooksService} from '../../../services/google-books.service';
+import {BookService} from '../../../services/book.service';
+import {TagService} from '../../../services/tag.service';
+import {AuthService} from '../../../services/auth.service';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {of} from 'rxjs';
+import {tagsMock} from '../../../mocks/tag.model.mock';
+import {MatDialog} from '@angular/material/dialog';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('BookMenuComponent', () => {
     let component: BookMenuComponent;
@@ -52,7 +54,8 @@ describe('BookMenuComponent', () => {
                 BrowserAnimationsModule,
                 NoopAnimationsModule,
                 MaterialModule,
-                RouterTestingModule
+                RouterTestingModule,
+                TranslateServiceMockForChild
             ],
             providers: [
                 GoogleBooksService,
@@ -71,6 +74,8 @@ describe('BookMenuComponent', () => {
                 {
                     provide: MatDialog, useValue: mockMatDialog
                 },
+                TranslateService,
+                TranslateStore
             ],
             declarations: [BookMenuComponent]
         }).compileComponents();
