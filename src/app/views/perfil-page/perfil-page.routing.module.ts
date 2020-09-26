@@ -4,11 +4,16 @@ import {MainPageComponent} from './main-page/main-page.component';
 import {FriendComponent} from './friend/friend.component';
 import {FeedComponent} from './feed/feed.component';
 import {BookcaseComponent} from './bookcase/bookcase.component';
+import {MainResolve} from './guards/main.resolve';
+import {MainGuard} from './guards/main.guard';
 
 
 const perfilRouter = [
     {
-        path: ':username', component: MainPageComponent, children: [
+        path: ':username', component: MainPageComponent,
+        canActivate: [MainGuard],
+        resolve: {user: MainResolve},
+        children: [
             {
                 path: 'friend', component: FriendComponent,
             },

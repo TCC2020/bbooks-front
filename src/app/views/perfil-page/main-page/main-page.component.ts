@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserTO} from '../../../models/userTO.model';
+import {take} from 'rxjs/operators';
 
 @Component({
     selector: 'app-main-page',
@@ -10,10 +12,14 @@ import {Router} from '@angular/router';
 export class MainPageComponent implements OnInit {
     links = ['feed', 'bookcase', 'friend'];
     activeLink = this.links[0];
-
+    user: UserTO;
     constructor(
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) {
+        this.route.data.pipe(take(1)).subscribe((data: { user: UserTO }) => {
+            this.user = data.user;
+        });
     }
 
     ngOnInit(): void {
@@ -27,7 +33,7 @@ export class MainPageComponent implements OnInit {
                 return;
             }
             this.activeLink = this.links[0];
-            this.router.navigate([`perfil/${this.links[0].toString()}`]);
+            this.router.navigate([`${this.user.userName}/${ this.links[0].toString()}`]);
         });
     }
 

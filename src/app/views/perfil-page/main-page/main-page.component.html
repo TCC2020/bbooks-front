@@ -3,8 +3,8 @@
         <div class="container-imagem-perfil">
             <img class="imagem-perfil" src="assets/images/imagem-perfil.png" alt="imagem de perfil"/>
         </div>
-        <h4><strong>Andre Nascimento</strong></h4>
-        <p>@nfandree</p>
+        <h4><strong>{{user.name}} {{user.lastName}}</strong></h4>
+        <p>@{{user.userName}}</p>
         <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px">
             <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" routerLink="/perfil/friend">
                 <mat-icon>

@@ -1,3 +1,5 @@
+import {Profile} from './profileTO.model';
+
 export class UserTO {
     id: number;
     userName: string;
@@ -9,4 +11,5 @@ export class UserTO {
     verified: boolean;
     name: string;
     lastName: string;
+    profile: Profile;
 }
