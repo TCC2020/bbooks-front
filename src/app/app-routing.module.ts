@@ -37,14 +37,19 @@ const routes: Routes = [
         path: 'nova-senha', component: NovaSenhaComponent,
         canActivate: [AuthGuard]
     },
-    {
-        path: 'perfil', component: PerfilComponent,
-        canActivate: [AuthGuard]
-    },
+    // {
+    //     path: 'perfil', component: PerfilComponent,
+    //     canActivate: [AuthGuard]
+    // },
     {
         path: '',
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/book-page/book.module').then(m => m.BookModule)
+    },
+    {
+        path: '',
+        canActivate: [],
+        loadChildren: () => import('./views/perfil-page/perfil-page.module').then(m => m.PerfilPageModule)
     }
 ];
 

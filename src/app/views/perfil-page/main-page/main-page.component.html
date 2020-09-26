@@ -1,0 +1,38 @@
+<div class="container-conteudo">
+    <div fxLayout="column" fxLayoutAlign="space-around center" >
+        <div class="container-imagem-perfil">
+            <img class="imagem-perfil" src="assets/images/imagem-perfil.png" alt="imagem de perfil"/>
+        </div>
+        <h4><strong>Andre Nascimento</strong></h4>
+        <p>@nfandree</p>
+        <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" routerLink="/perfil/friend">
+                <mat-icon>
+                    group_add
+                </mat-icon>
+                Adicionar
+            </button>
+            <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">
+                <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <div mat-menu-item>
+                    <mat-icon>turned_in</mat-icon>
+                    <span>Bloquear</span>
+                </div>
+            </mat-menu>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <nav mat-tab-nav-bar>
+                <a mat-tab-link *ngFor="let link of links"
+                   (click)="activeLink = link"
+                   [active]="activeLink == link" routerLink="{{link}}"
+                > {{link}} </a>
+            </nav>
+        </div>
+        <router-outlet></router-outlet>
+
+    </div>
+
+</div>
+

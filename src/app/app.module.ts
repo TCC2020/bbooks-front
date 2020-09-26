@@ -30,6 +30,7 @@ import {AuthVerifyLogin} from './guards/auth-verify-login';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { PerfilComponent } from './views/perfil/perfil.component';
+import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 
 
 
@@ -65,6 +66,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatInputModule,
         SocialLoginModule,
         BookModule,
+        PerfilPageModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

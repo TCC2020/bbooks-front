@@ -1,0 +1,37 @@
+.container-conteudo {
+  width: 600px;
+  height: 100%;
+  margin: 0px auto 0px;
+  border: 1px solid #dadce0;
+  padding: 30px 40px 35px;
+  box-sizing: border-box;
+}
+
+.container-imagem-perfil {
+  width: 100%;
+  text-align: center;
+}
+
+.imagem-perfil {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: auto;
+}
+@media screen and (max-width: 900px) {
+  .container-conteudo {
+    border: none;
+    width: 100%;
+    margin: auto 0px;
+    padding: 0px;
+  }
+  .container-imagem-perfil {
+    margin-top: 20px;
+  }
+  .input-edicao {
+    width: 100%;
+  }
+}
+.iconTextWhite {
+  color: white;
+}
