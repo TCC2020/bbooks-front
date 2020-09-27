@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./friend.component.scss']
 })
 export class FriendComponent implements OnInit {
+  search: string;
 
   constructor() { }
 
