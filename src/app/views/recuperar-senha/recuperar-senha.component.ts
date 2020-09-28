@@ -28,7 +28,7 @@ export class RecuperarSenhaComponent implements OnInit {
 
     sendResetPassRequest() {
         this.service.sendResetPassEmail(this.form.value).pipe(take(1)).subscribe(
-            res => {
+            () => {
                 alert('Email enviado.');
                 this.showMessage = true;
                 this.form.disable();
