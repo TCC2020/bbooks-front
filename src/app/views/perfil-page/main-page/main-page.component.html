@@ -3,22 +3,44 @@
         <div class="container-imagem-perfil">
             <img class="imagem-perfil" src="assets/images/imagem-perfil.png" alt="imagem de perfil"/>
         </div>
-        <h4><strong>{{user.name}} {{user.lastName}}</strong></h4>
+        <h4><strong>{{user.profile.name}} {{user.profile.lastName}}</strong></h4>
         <p>@{{user.userName}}</p>
         <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px">
-            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" routerLink="/perfil/friend">
+            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="verfiyPerfilPageisUserLogged()">
+                <mat-icon>
+                    create
+                </mat-icon>
+                Editar Perfil
+            </button>
+            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="!verfiyPerfilPageisUserLogged()">
                 <mat-icon>
                     group_add
                 </mat-icon>
                 Adicionar
             </button>
+            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged()">
+                <mat-icon>
+                    people_alt
+                </mat-icon>
+                Amigos
+            </button>
+            <mat-menu #menuAmigos="matMenu">
+                <div mat-menu-item>
+                    <mat-icon>indeterminate_check_box</mat-icon>
+                    <span>Desfazer amizade</span>
+                </div>
+            </mat-menu>
             <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">
                 <mat-icon>more_horiz</mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
-                <div mat-menu-item>
-                    <mat-icon>turned_in</mat-icon>
+            <mat-menu #menu="matMenu" >
+                <div mat-menu-item *ngIf="!verfiyPerfilPageisUserLogged()">
+                    <mat-icon>indeterminate_check_box</mat-icon>
                     <span>Bloquear</span>
+                </div>
+                <div mat-menu-item *ngIf="verfiyPerfilPageisUserLogged()">
+                    <mat-icon>link</mat-icon>
+                    <span>Copiar link para o perfil</span>
                 </div>
             </mat-menu>
         </div>
@@ -30,8 +52,9 @@
                 > {{link}} </a>
             </nav>
         </div>
-        <router-outlet></router-outlet>
-
+        <div>
+            <router-outlet></router-outlet>
+        </div>
     </div>
 
 </div>

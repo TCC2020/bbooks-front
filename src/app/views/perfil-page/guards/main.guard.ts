@@ -3,7 +3,6 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '
 import {Observable} from 'rxjs';
 import {UserService} from '../../../services/user.service';
 import {map, take} from 'rxjs/operators';
-import {error} from '@angular/compiler/src/util';
 
 @Injectable({
     providedIn: 'root'
@@ -18,14 +17,16 @@ export class MainGuard implements CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
-    ): Observable<boolean> | boolean | Observable<boolean> {
-        const username = route.params['username'];
+    ): Observable<boolean> | boolean  {
+        const username = route.params.username;
         return this.userService.getUserName(username).pipe(
             take(1),
             map((res) => {
                 if (res?.userName.includes(username)) {
                     return true;
                 }
+                this.router.navigate(['/']);
+                return false;
             }),
         );
     }
