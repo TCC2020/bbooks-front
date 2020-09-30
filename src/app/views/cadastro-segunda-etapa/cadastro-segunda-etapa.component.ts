@@ -115,6 +115,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
                 this.auth.login(userLogin).subscribe(res => {
                         localStorage.clear();
                         this.auth.authenticate(res, true);
+                        alert("Cadastro concluído.");
                         this.router.navigateByUrl('/');
                     },
                     (err) => {

@@ -77,7 +77,8 @@ export class CadastroComponent implements OnInit {
         this.cadastroControl.value.password = Md5.hashStr(this.cadastroControl.value.password);
         this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
                 this.auth.setUserRegister(res);
-                this.router.navigateByUrl('continuar-cadastro');
+                alert("Verifique sua caixa de e-mail para confimar seu cadastro.");
+                this.router.navigateByUrl('/');
             },
             (err) => {
                 alert(err.error.message);
