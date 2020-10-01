@@ -25,8 +25,9 @@ import {MatSliderModule} from '@angular/material/slider';
 import {NovaSenhaComponent} from './views/nova-senha/nova-senha.component';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import {BookModule} from './views/book-page/book.module';
-import {AuthVerifyLogin} from './guards/auth-verify-login';
+import {BookModule} from "./views/book-page/book.module";
+import {AuthVerifyLogin} from "./guards/auth-verify-login";
+import { UploadComponent } from './views/upload/upload.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { PerfilComponent } from './views/perfil/perfil.component';
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         CadastroSegundaEtapaComponent,
         RecuperarSenhaComponent,
         NovaSenhaComponent,
-        PerfilComponent
+        UploadComponent,
+        PerfilComponent,
     ],
     imports: [
         BrowserModule,
