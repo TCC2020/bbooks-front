@@ -11,15 +11,14 @@ import {UserService} from '../../../services/user.service';
     styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
-    links = ['feed', 'bookcase', 'friend'];
+    links = ['feed', 'bookcase', 'friends'];
     activeLink = this.links[0];
     user: UserTO;
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private authService: AuthService,
-        private userService: UserService
+        private authService: AuthService
     ) {
         this.route.data.pipe(take(1)).subscribe((data: { user: UserTO }) => {
             this.user = data.user;

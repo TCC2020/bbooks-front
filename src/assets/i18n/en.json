@@ -64,5 +64,11 @@
     "IDIOMA": "Language",
     "AVALIACAO": "Evaluation",
     "OUTRAS_INFO": "OTHER INFORMATION"
+  },
+  "PERFIL": {
+    "feed": "feed",
+    "bookcase": "bookcase",
+    "friends": "friends",
+    "EDITAR_PERFIL": "edit profile"
   }
 }

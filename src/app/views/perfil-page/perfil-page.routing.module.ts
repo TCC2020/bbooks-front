@@ -17,7 +17,7 @@ const perfilRouter = [
         resolve: {user: MainResolve},
         children: [
             {
-                path: 'friend', component: FriendComponent,
+                path: 'friends', component: FriendComponent,
             },
             {
                 path: 'feed', component: FeedComponent,

@@ -3,8 +3,7 @@
         <button *ngIf="deviceXs" type="button" mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        Estante Virtual
-
+        {{'ESTANTE.ESTANTE_VIRTUAL' | translate}}
     </mat-toolbar>
     <mat-drawer-container style="background-color: white">
         <mat-drawer #drawer [mode]="deviceXs?'over':'side'" [opened]="deviceXs?false:true" position="start"

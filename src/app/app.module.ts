@@ -31,6 +31,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { PerfilComponent } from './views/perfil/perfil.component';
 import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 
 
 
@@ -49,7 +50,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         CadastroSegundaEtapaComponent,
         RecuperarSenhaComponent,
         NovaSenhaComponent,
-        PerfilComponent
+        PerfilComponent,
+        PageNotFoundComponent
     ],
     imports: [
         BrowserModule,

@@ -65,6 +65,12 @@
     "IDIOMA": "Idioma",
     "AVALIACAO": "Avaliação",
     "OUTRAS_INFO": "OUTRAS INFORMAÇÕES"
+  },
+  "PERFIL": {
+    "feed": "feed",
+    "bookcase": "Estante Virtual",
+    "friends": "Amigos,",
+    "EDITAR_PERFIL": "editar perfil"
   }
 }
 

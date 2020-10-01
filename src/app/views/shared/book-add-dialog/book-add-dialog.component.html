@@ -1,0 +1,44 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+
+        <h2 mat-dialog-title>{{title}}</h2>
+
+        <div>
+            <img class="cardImage" src="{{Book.image}}">
+        </div>
+
+
+        <form [formGroup]="formBook">
+            <!--Linha form-->
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                <mat-form-field appearance="fill">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="statusBook">
+                        <mat-option *ngFor="let bookcase of bookCases" [value]="bookcase">
+                            {{mapStatus.get(bookcase) | titlecase}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div formArrayName="tags" fxLayout="column"
+                 fxLayout.xs="column"
+                 fxLayoutAlign="start">
+                <section *ngFor="let item of tagsControl.controls; let i = index;">
+                    <mat-checkbox [formControlName]="i"> {{this.tags[i].name}}</mat-checkbox>
+                </section>
+            </div>
+            <mat-error *ngIf="formBook.controls['statusBook'].hasError('required')">
+                Status é obrigatório
+            </mat-error>
+        </form>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <button type="button" mat-flat-button color="accent"
+                [disabled]="formBook.invalid"
+                (click)="saveBook()"
+                mat-button [mat-dialog-close]>
+            {{this.buttonText}}
+        </button>
+    </div>
+</mat-dialog-content>
+

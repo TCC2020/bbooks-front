@@ -8,8 +8,9 @@ import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha
 import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 import { LoginComponent } from './modals/login/login.component';
 import {AuthGuard} from './guards/auth-guard';
-import {AuthVerifyLogin} from "./guards/auth-verify-login";
+import {AuthVerifyLogin} from './guards/auth-verify-login';
 import { PerfilComponent } from './views/perfil/perfil.component';
+import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,14 @@ const routes: Routes = [
         path: '',
         canActivate: [],
         loadChildren: () => import('./views/perfil-page/perfil-page.module').then(m => m.PerfilPageModule)
+    },
+    {
+        path: 'pagenotfound',
+        component: PageNotFoundComponent
+    },
+    {
+        path: '**',
+        component: PageNotFoundComponent
     }
 ];
 

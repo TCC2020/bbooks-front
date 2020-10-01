@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {UserService} from '../../../services/user.service';
-import {map, take} from 'rxjs/operators';
+import {catchError, map, take} from 'rxjs/operators';
+import {error} from '@angular/compiler/src/util';
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +29,11 @@ export class MainGuard implements CanActivate {
                 this.router.navigate(['/']);
                 return false;
             }),
+            catchError(() => {
+                this.router.navigate(['/pagenotfound']);
+                return of(false);
+            })
         );
+        return false;
     }
 }

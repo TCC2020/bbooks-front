@@ -1,4 +1,4 @@
-<div class="container-conteudo">
+<mat-card class="container-conteudo">
     <div fxLayout="column" fxLayoutAlign="space-around center" >
         <div class="container-imagem-perfil">
             <img class="imagem-perfil" src="assets/images/imagem-perfil.png" alt="imagem de perfil"/>
@@ -10,19 +10,20 @@
                 <mat-icon>
                     create
                 </mat-icon>
-                Editar Perfil
+                {{'PERFIL.EDITAR_PERFIL' | translate | titlecase}}
             </button>
             <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="!verfiyPerfilPageisUserLogged()">
                 <mat-icon>
                     group_add
                 </mat-icon>
-                Adicionar
+                {{'PADRAO.ADICIONAR' | translate | titlecase}}
+
             </button>
             <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged()">
                 <mat-icon>
                     people_alt
                 </mat-icon>
-                Amigos
+                {{'PERFIL.friends' | translate | titlecase}}
             </button>
             <mat-menu #menuAmigos="matMenu">
                 <div mat-menu-item>
@@ -49,7 +50,7 @@
                 <a mat-tab-link *ngFor="let link of links"
                    (click)="activeLink = link"
                    [active]="activeLink == link" routerLink="{{link}}"
-                > {{link}} </a>
+                > {{'PERFIL.' + link | translate | titlecase}}</a>
             </nav>
         </div>
         <div>
@@ -57,5 +58,5 @@
         </div>
     </div>
 
-</div>
+</mat-card>
 

@@ -11,6 +11,10 @@ import {UserService} from '../../services/user.service';
 import {MainResolve} from './guards/main.resolve';
 import {FeedResolve} from './guards/feed.resolve';
 import {BookcaseResolve} from './guards/bookcase.resolve';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpClient} from '@angular/common/http';
+import {HttpLoaderFactory} from '../book-page/book.module';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -22,10 +26,18 @@ import {BookcaseResolve} from './guards/bookcase.resolve';
     ],
     imports: [
         CommonModule,
+        SharedModule,
         PerfilPageRoutingModule,
         MaterialModule,
         FlexModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+        })
     ],
     providers: [
         UserService,
