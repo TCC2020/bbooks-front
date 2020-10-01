@@ -5,7 +5,8 @@ import {CadastroService} from '../../services/cadastro-service.service';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {UserTO} from '../../models/userTO.model';
 import {AuthService} from '../../services/auth.service';
-import { EncryptService } from 'src/app/services/encrypt.service';
+import {EncryptService} from 'src/app/services/encrypt.service';
+import {take} from 'rxjs/operators';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -76,9 +77,18 @@ export class CadastroComponent implements OnInit {
         const username = this.cadastroControl.get('userName').value;
         this.cadastroControl.get('userName').setValue(username.toLowerCase());
         this.cadastroControl.value.password = this.encrypt.encryptPass(this.cadastroControl.value.password);
-        this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
-                this.auth.setUserRegister(res);
-                this.router.navigateByUrl('continuar-cadastro');
+        this.cadastroService.cadastrar(this.cadastroControl.value).pipe(take(1)).subscribe((res: UserTO) => {
+                const userLogin = {
+                    email: res.email,
+                    password: this.cadastroControl.value.password
+                };
+                this.auth.login(userLogin).pipe(take(1)).subscribe(loginTo => {
+                        this.auth.setUserRegister(loginTo);
+                        this.router.navigateByUrl('continuar-cadastro');
+                    },
+                    error => {
+                        console.log('error login', error);
+                    });
             },
             (err) => {
                 alert(err.error.message);

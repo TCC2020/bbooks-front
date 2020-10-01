@@ -6,4 +6,5 @@ export class Profile {
     city: string;
     state: string;
     bithDate: string;
+    profileImage: string;
 }

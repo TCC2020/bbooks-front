@@ -53,10 +53,6 @@ const routes: Routes = [
         loadChildren: () => import('./views/perfil-page/perfil-page.module').then(m => m.PerfilPageModule)
     },
     {
-        path: 'pagenotfound',
-        component: PageNotFoundComponent
-    },
-    {
         path: '**',
         component: PageNotFoundComponent
     }

@@ -95,8 +95,10 @@ export class AuthService {
     }
 
     public setUserRegister(userTO) {
-         localStorage.setItem('userRegister', JSON.stringify(userTO));
+        this.setToken(userTO['token']);
+        localStorage.setItem('userRegister', JSON.stringify(userTO));
     }
+
     public getUserRegister(): any {
         return JSON.parse(localStorage.getItem('userRegister'));
     }

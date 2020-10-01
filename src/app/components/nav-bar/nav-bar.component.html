@@ -13,9 +13,9 @@
         </button>
         <mat-menu  #menuPerfil="matMenu">
             <div mat-menu-item >
-                <div fxLayout="row" [routerLink]="['', user.userName]">
-                    <img class="imagem-perfil" src="assets/images/imagem-perfil.png" alt="imagem de perfil"/>
-                    <span> {{this.user.userName}}</span>
+                <div fxLayout="row" [routerLink]="['', user?.userName]">
+                    <img class="imagem-perfil" [src]="user?.profile?.profileImage" alt="imagem de perfil"/>
+                    <span> {{this.user?.userName}}</span>
                 </div>
             </div>
             <div mat-menu-item (click)="logout()">

@@ -30,7 +30,7 @@ export class MainGuard implements CanActivate {
                 return false;
             }),
             catchError(() => {
-                this.router.navigate(['/pagenotfound']);
+                this.router.navigate(['/*/pagenotfound']);
                 return of(false);
             })
         );

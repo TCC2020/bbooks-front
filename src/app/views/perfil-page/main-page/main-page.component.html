@@ -1,7 +1,7 @@
 <mat-card class="container-conteudo">
     <div fxLayout="column" fxLayoutAlign="space-around center" >
         <div class="container-imagem-perfil">
-            <img class="imagem-perfil" src="assets/images/imagem-perfil.png" alt="imagem de perfil"/>
+            <img class="imagem-perfil" [src]="user.profile.profileImage" alt="imagem de perfil"/>
         </div>
         <h4><strong>{{user.profile.name}} {{user.profile.lastName}}</strong></h4>
         <p>@{{user.userName}}</p>

@@ -15,10 +15,10 @@ export class ProfileService {
     }
 
     update(profile): Observable<any> {
-        return this.http.put(this.api + 'profileRegister',  profile);
+        return this.http.put(this.api + '/' + profile.id,  profile);
     }
 
-    updatePerfil(profile) : Observable<any> {
+    updatePerfil(profile): Observable<any> {
         return this.http.put(this.api + profile.id, profile);
     }
 

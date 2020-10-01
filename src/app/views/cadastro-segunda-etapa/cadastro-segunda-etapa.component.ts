@@ -116,9 +116,9 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         const userLogin = {
             email: this.auth.getUserRegister().email,
             password: this.auth.getUserRegister().password
-        }
+        };
         this.formCadastro2.get('id').setValue(this.auth.getUserRegister().profile.id);
-        this.profileService.update(this.formCadastro2.value).subscribe(
+        this.profileService.updatePerfil(this.formCadastro2.value).subscribe(
             () => {
                 this.auth.login(userLogin).subscribe(res => {
                         localStorage.clear();
