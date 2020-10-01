@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { AuthConfirmService} from '../../services/auth-confirm.service';
-import { Md5 } from 'ts-md5/dist/md5';
-import { AuthGuard } from 'src/app/guards/auth-guard';
 import { Router } from '@angular/router';
 import {AuthService} from "../../services/auth.service";
+import { EncryptService } from 'src/app/services/encrypt.service';
 
 @Component({
   selector: 'app-auth-confirm',
@@ -18,7 +17,8 @@ export class AuthConfirmComponent implements OnInit {
     private fb: FormBuilder,
     private authConfirmService: AuthConfirmService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private encrypt: EncryptService
   ) {
     this.confirmControl = this.fb.group({
       email: '',
@@ -31,7 +31,7 @@ export class AuthConfirmComponent implements OnInit {
   }
 
   confirm(): void {
-    this.confirmControl.value.password = Md5.hashStr(this.confirmControl.value.password);
+    this.confirmControl.value.password = this.encrypt.encryptPass(this.confirmControl.value.password);
     this.authConfirmService.confirm(this.confirmControl.value).subscribe(res => {
       this.authService.authenticate(res, this.confirmControl.value.keepLogin);
       this.router.navigateByUrl('/');

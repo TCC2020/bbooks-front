@@ -27,6 +27,7 @@ import {GoogleLoginProvider} from 'angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {BookModule} from './views/book-page/book.module';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
+import { UploadComponent } from './views/upload/upload.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { PerfilComponent } from './views/perfil/perfil.component';
@@ -51,7 +52,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         RecuperarSenhaComponent,
         NovaSenhaComponent,
         PerfilComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        UploadComponent,
+        PerfilComponent,
     ],
     imports: [
         BrowserModule,

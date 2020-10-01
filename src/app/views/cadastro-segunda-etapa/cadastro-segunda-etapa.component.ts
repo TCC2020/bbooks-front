@@ -1,14 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ConsultaCepService} from '../../services/consulta-cep.service';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {Country} from '../../models/country.model';
-import {State} from '../../models/state.model';
-import {City} from '../../models/city.model';
-import {ProfileService} from '../../services/profile.service';
+import {AuthService} from "../../services/auth.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ConsultaCepService} from "../../services/consulta-cep.service";
+import {Observable} from "rxjs";
+import {map, startWith} from "rxjs/operators";
+import {Country} from "../../models/country.model";
+import {State} from "../../models/state.model";
+import {City} from "../../models/city.model";
+import {ProfileService} from "../../services/profile.service";
+import {CDNService} from 'src/app/services/cdn.service';
+import {BookAddDialogComponent} from "../book-page/book-add-dialog/book-add-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {UploadComponent} from "../upload/upload.component";
 import {DateAdapter} from '@angular/material/core';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -22,6 +26,8 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     public citys: City[];
     public countrys: Country[];
     public states: State[]
+    maxSize = 3579139;
+    file;
 
     filteredOptionsCity: Observable<City[]>;
 
@@ -31,6 +37,8 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         private formBuilder: FormBuilder,
         private consultaCepService: ConsultaCepService,
         private profileService: ProfileService,
+        private cdnService: CDNService,
+        public dialog: MatDialog,
         private adapter: DateAdapter<any>,
     ) {
         this.auth.language.subscribe(lang => {
@@ -48,7 +56,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     private createForm(): void {
         this.formCadastro2 = this.formBuilder.group({
             id: [],
-            image: new FormControl(null),
+            image: new FormControl({value: null, disabled: true}),
             birthDate: new FormControl('', Validators.required),
             country: new FormControl('', Validators.required),
             city: new FormControl('', Validators.required),
@@ -115,6 +123,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
                 this.auth.login(userLogin).subscribe(res => {
                         localStorage.clear();
                         this.auth.authenticate(res, true);
+                        alert("Cadastro concluído.");
                         this.router.navigateByUrl('/');
                     },
                     (err) => {
@@ -123,7 +132,10 @@ export class CadastroSegundaEtapaComponent implements OnInit {
                     }
                 );
             },
-            error => {console.log('error update profile', error); localStorage.clear(); }
+            error => {
+                console.log('error update profile', error);
+                localStorage.clear();
+            }
         );
 
     }
@@ -151,4 +163,40 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         return this.formCadastro2.get(campo).invalid || this.formCadastro2.get(campo).touched;
     }
 
+    chooseFile(file) {
+        if (file.size > this.maxSize) {
+            alert('O arquivo é muito grande, favor formatar...');
+        } else {
+            this.file = file;
+        }
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+    }
+
+    async uploadFile() {
+        await this.cdnService.uploadAsync(this.file, 'cdn-bbooks');
+        this.file = null;
+    }
+
+    openDialogUpload() {
+        const dialogRef = this.dialog.open(UploadComponent, {
+            height: '350px',
+            width: '400px',
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.file = result;
+                this.formCadastro2.get('image').setValue(result.name);
+                this.uploadImage();
+            } else {
+                this.file = null;
+            }
+        });
+    }
+
+    uploadImage() {
+        this.cdnService.upload({file: this.file, type: 'image'}, 'profile_image').subscribe(res => {
+            console.log(res);
+        })
+    }
 }
