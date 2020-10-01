@@ -194,7 +194,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     }
 
     uploadImage() {
-        this.cdnService.upload({file: this.file, type: 'image'}).subscribe(res => {
+        this.cdnService.upload({file: this.file, type: 'image'}, 'profile_image').subscribe(res => {
             console.log(res);
         })
     }

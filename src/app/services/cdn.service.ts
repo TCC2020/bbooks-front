@@ -12,12 +12,13 @@ export class CDNService {
 
   constructor(private http: HttpClient) { }
 
-  upload(value: CDNFile) {
+  upload(value: CDNFile, objectType: String) {
     const formData: FormData = new FormData();
     formData.append('file', value.file, value.file.name);
     formData.append('info', JSON.stringify(
       {
         type: value.type,
+        objectType: objectType
       }));
     return this.http.post(this.api + 'upload', formData);
   }
