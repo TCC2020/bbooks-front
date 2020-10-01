@@ -78,8 +78,7 @@ export class CadastroComponent implements OnInit {
         this.cadastroControl.value.password = this.encrypt.encryptPass(this.cadastroControl.value.password);
         this.cadastroService.cadastrar(this.cadastroControl.value).subscribe(res => {
                 this.auth.setUserRegister(res);
-                alert("Verifique sua caixa de e-mail para confimar seu cadastro.");
-                this.router.navigateByUrl('/');
+                this.router.navigateByUrl('continuar-cadastro');
             },
             (err) => {
                 alert(err.error.message);
