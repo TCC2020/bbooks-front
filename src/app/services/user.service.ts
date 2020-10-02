@@ -24,11 +24,17 @@ export class UserService {
     verifyEmail(email: string) {
         return this.http.get(this.api + 'email/' + email);
     }
+    verifyEmailForGoogle(email: string) {
+        return this.http.get(this.api + 'google/' + email);
+    }
 
     getById(id: string): Observable<UserTO> {
         return this.http.get<UserTO>(this.api + id);
     }
     getUserName(username: string): Observable<UserTO> {
         return this.http.get<UserTO>(this.api + 'username/' + username);
+    }
+    update(userTo: UserTO) {
+        return this.http.put<UserTO>(this.api + userTo.id, userTo);
     }
 }

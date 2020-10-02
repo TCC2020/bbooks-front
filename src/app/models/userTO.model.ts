@@ -9,7 +9,5 @@ export class UserTO {
     idToken: string;
     idSocial: string;
     verified: boolean;
-    name: string;
-    lastName: string;
     profile: Profile;
 }

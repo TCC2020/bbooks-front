@@ -77,6 +77,9 @@ export class AuthService {
     login(loginTO) {
         return this.http.post(this.api + 'login', loginTO);
     }
+    loginToken(loginTO) {
+        return this.http.post(this.api + 'login/token', loginTO);
+    }
 
     saveByGoogle(userTO: UserTO) {
         return this.http.post(this.api + 'login/google', userTO);

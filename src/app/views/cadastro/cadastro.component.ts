@@ -45,8 +45,8 @@ export class CadastroComponent implements OnInit {
 
     createForm() {
         this.cadastroControl = this.fb.group({
-            name: [this.userTo?.name ? this.userTo.name : '', Validators.required],
-            lastName: [this.userTo?.lastName ? this.userTo.lastName : '', Validators.required],
+            name: [this.userTo?.profile?.name ? this.userTo.profile.name : '', Validators.required],
+            lastName: [this.userTo?.profile?.lastName ? this.userTo.profile.lastName : '', Validators.required],
             email: [this.userTo?.email ? this.userTo.email : '', Validators.compose([
                 Validators.required,
                 Validators.email
@@ -62,7 +62,9 @@ export class CadastroComponent implements OnInit {
                 Validators.pattern('^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$')
             ])],
             confirmPassword: [''],
-            idSocial: [this.userTo?.idSocial ? this.userTo.idSocial : '']
+            idSocial: [this.userTo?.idSocial ? this.userTo.idSocial : ''],
+            profileImage: [this.userTo?.profile?.profileImage ? this.userTo.profile.profileImage : '']
+
         }, {validator: this.checkPasswords});
     }
 
@@ -70,7 +72,7 @@ export class CadastroComponent implements OnInit {
         const pass = group.controls.password.value;
         const confirmPass = group.controls.confirmPassword.value;
 
-        return pass === confirmPass ? null : {notSame: true}
+        return pass === confirmPass ? null : {notSame: true};
     }
 
     cadastrar() {
@@ -80,9 +82,9 @@ export class CadastroComponent implements OnInit {
         this.cadastroService.cadastrar(this.cadastroControl.value).pipe(take(1)).subscribe((res: UserTO) => {
                 const userLogin = {
                     email: res.email,
-                    password: this.cadastroControl.value.password
+                    token: res.token
                 };
-                this.auth.login(userLogin).pipe(take(1)).subscribe(loginTo => {
+                this.auth.loginToken(userLogin).pipe(take(1)).subscribe((loginTo: UserTO) => {
                         this.auth.setUserRegister(loginTo);
                         this.router.navigateByUrl('continuar-cadastro');
                     },

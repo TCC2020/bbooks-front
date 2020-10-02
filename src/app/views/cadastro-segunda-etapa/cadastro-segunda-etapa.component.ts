@@ -1,20 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from "../../services/auth.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ConsultaCepService} from "../../services/consulta-cep.service";
-import {Observable} from "rxjs";
-import {map, startWith} from "rxjs/operators";
-import {Country} from "../../models/country.model";
-import {State} from "../../models/state.model";
-import {City} from "../../models/city.model";
-import {ProfileService} from "../../services/profile.service";
+import {AuthService} from '../../services/auth.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ConsultaCepService} from '../../services/consulta-cep.service';
+import {Observable} from 'rxjs';
+import {map, startWith, take} from 'rxjs/operators';
+import {Country} from '../../models/country.model';
+import {State} from '../../models/state.model';
+import {City} from '../../models/city.model';
+import {ProfileService} from '../../services/profile.service';
 import {CDNService} from 'src/app/services/cdn.service';
-import {BookAddDialogComponent} from "../book-page/book-add-dialog/book-add-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
-import {UploadComponent} from "../upload/upload.component";
+import {MatDialog} from '@angular/material/dialog';
+import {UploadComponent} from '../upload/upload.component';
 import {DateAdapter} from '@angular/material/core';
-import {TranslateService} from '@ngx-translate/core';
+import {Profile} from '../../models/profileTO.model';
 
 @Component({
     selector: 'app-cadastro-segunda-etapa',
@@ -25,7 +24,12 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     public formCadastro2: FormGroup;
     public citys: City[];
     public countrys: Country[];
-    public states: State[]
+    public states: State[];
+    public profileTo: Profile;
+    userLogin = {
+        email: this.auth.getUserRegister().email,
+        token: this.auth.getUserRegister().token
+    };
     maxSize = 3579139;
     file;
 
@@ -33,7 +37,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private auth: AuthService,
+        public auth: AuthService,
         private formBuilder: FormBuilder,
         private consultaCepService: ConsultaCepService,
         private profileService: ProfileService,
@@ -112,31 +116,61 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         return this.citys.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
     }
 
+    updateProfileTo() {
+        this.profileTo.birthDate = this.formCadastro2.get('birthDate').value;
+        this.profileTo.country = this.formCadastro2.get('country').value;
+        this.profileTo.city = this.formCadastro2.get('city').value;
+        this.profileTo.state = this.formCadastro2.get('state').value;
+    }
+
     loginRegister() {
-        const userLogin = {
-            email: this.auth.getUserRegister().email,
-            password: this.auth.getUserRegister().password
-        };
+
         this.formCadastro2.get('id').setValue(this.auth.getUserRegister().profile.id);
-        this.profileService.updatePerfil(this.formCadastro2.value).subscribe(
+        if (this.auth.getUserRegister().profile.profileImage) {
+            this.getByIdToUpdateProfile();
+        } else {
+            this.cdnService.upload({file: this.file, type: 'image'}, 'profile_image').subscribe(() => {
+                    this.getByIdToUpdateProfile();
+                },
+                error => {
+                    console.log('error upload', error);
+                    localStorage.clear();
+                });
+        }
+
+    }
+
+    getByIdToUpdateProfile(): void {
+        this.profileService.getById(this.auth.getUserRegister().profile.id).pipe(take(1)).subscribe((profile: Profile) => {
+            this.profileTo = profile;
+            this.updateProfileTo();
+            this.updateProfileToLogin();
+        });
+    }
+
+    updateProfileToLogin(): void {
+        this.profileService.updatePerfil(this.profileTo).subscribe(
             () => {
-                this.auth.login(userLogin).subscribe(res => {
-                        localStorage.clear();
-                        this.auth.authenticate(res, true);
-                        this.router.navigateByUrl('/');
-                    },
-                    (err) => {
-                        alert(err.error.message);
-                        localStorage.clear();
-                    }
-                );
+                this.login();
             },
             error => {
                 console.log('error update profile', error);
                 localStorage.clear();
             }
         );
+    }
 
+    login(): void {
+        this.auth.loginToken(this.userLogin).subscribe(res => {
+                localStorage.clear();
+                this.auth.authenticate(res, true);
+                this.router.navigate(['/']);
+            },
+            (err) => {
+                alert(err.error.message);
+                localStorage.clear();
+            }
+        );
     }
 
     consultaCep() {
@@ -186,16 +220,9 @@ export class CadastroSegundaEtapaComponent implements OnInit {
             if (result) {
                 this.file = result;
                 this.formCadastro2.get('image').setValue(result.name);
-                this.uploadImage();
             } else {
                 this.file = null;
             }
         });
-    }
-
-    uploadImage() {
-        this.cdnService.upload({file: this.file, type: 'image'}, 'profile_image').subscribe(res => {
-            console.log(res);
-        })
     }
 }

@@ -56,7 +56,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
             this.deviceXs = result.mqAlias === 'xs' ? true : false;
         });
-        this.userBook = this.verifyrouter()
+        this.userBook = this.verifyrouter();
 
         this.inscricao = this.route.data.subscribe((data: { bookcase: BookCase }) => {
             this.bookCase = data.bookcase;

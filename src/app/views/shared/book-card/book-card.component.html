@@ -55,11 +55,11 @@
             <mat-menu #menu="matMenu">
                 <button mat-menu-item *ngIf="book.idUserBook ? false : true" (click)="openDialogAddBook(book)">
                     <mat-icon>playlist_add</mat-icon>
-                    <span>Adicionar</span>
+                    <span>{{'PADRAO.ADICIONAR' | translate}}</span>
                 </button>
                 <button mat-menu-item *ngIf="book.idUserBook" (click)="openDialogAddBook(book)">
                     <mat-icon>create</mat-icon>
-                    <span>Editar</span>
+                    <span>{{'PADRAO.EDITAR' | translate}}</span>
                 </button>
             </mat-menu>
         </div>

@@ -1,17 +1,135 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {BookCase} from '../../../models/bookCase.model';
+import {ActivatedRoute} from '@angular/router';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
+import {Observable, Subscription} from 'rxjs';
+import {BookStatus, getArrayStatus, mapBookStatus} from '../../../models/enums/BookStatus.enum';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {FormControl} from '@angular/forms';
+import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {Book} from '../../../models/book.model';
+import {AuthService} from '../../../services/auth.service';
+import {map} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-bookcase',
-  templateUrl: './bookcase.component.html',
-  styleUrls: ['./bookcase.component.scss']
+    selector: 'app-bookcase',
+    templateUrl: './bookcase.component.html',
+    styleUrls: ['./bookcase.component.scss']
 })
-export class BookcaseComponent implements OnInit {
+export class BookcaseComponent implements OnInit, OnDestroy {
 
-  panelOpenState = false;
+    panelOpenState = false;
+    bookCase: BookCase = new BookCase();
+    search;
+    inscricao: Subscription;
+    deviceXs;
+    mediaSub: Subscription;
+    userBook: boolean;
+    mapStatus = mapBookStatus;
 
-  constructor() { }
+    selectable = true;
+    removable = true;
+    separatorKeysCodes: number[] = [ENTER, COMMA];
+    filterCtrl = new FormControl();
+    filteredElements: Observable<BookStatus[]>;
+    filter: BookStatus[] = [];
+    allStatus: BookStatus[] = getArrayStatus();
 
-  ngOnInit(): void {
-  }
+    @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+    @ViewChild('auto') matAutocomplete: MatAutocomplete;
+
+    constructor(
+        private route: ActivatedRoute,
+        public mediaObserver: MediaObserver,
+        public authService: AuthService
+    ) {
+        this.filteredElements = this.filterCtrl.valueChanges.pipe(
+            map((status: string | null) => status ? this._filter(status) : this.allStatus));
+    }
+
+    ngOnInit(): void {
+        this.inscricao = this.route.data.subscribe((data: { bookcase: BookCase }) => {
+            this.bookCase = data.bookcase;
+        });
+        this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
+            this.deviceXs = result.mqAlias === 'xs' ? true : false;
+        });
+
+    }
+
+    bookReturn(event) {
+        this.bookCase.books[this.bookCase.books.indexOf((event.book))].status = event.status;
+    }
+
+    ngOnDestroy(): void {
+        this.inscricao.unsubscribe();
+        this.mediaSub.unsubscribe();
+    }
+
+    add(event: MatChipInputEvent): void {
+        const input = event.input;
+        const value = event.value;
+
+        // Add our fruit
+        if ((value || '')) {
+            this.filter.push();
+        }
+
+        // Reset the input value
+        if (input) {
+            input.value = '';
+        }
+
+        this.filterCtrl.setValue(null);
+    }
+
+    remove(status: BookStatus): void {
+        const index = this.filter.indexOf(status);
+        this.allStatus.push(status);
+        if (index >= 0) {
+            this.filter.splice(index, 1);
+        }
+    }
+
+    selected(event: MatAutocompleteSelectedEvent): void {
+        this.filter.push(event.option.value);
+        this.allStatus = this.allStatus.filter(status => status !== event.option.value);
+        this.fruitInput.nativeElement.value = '';
+        this.filterCtrl.setValue(null);
+    }
+
+    _filter(value: string): BookStatus[] {
+        return this.allStatus.filter(status => status.toLowerCase().indexOf(value.toLowerCase()) === 0);
+    }
+
+    filterBooks(): Book[] {
+        if (this.search === undefined || this.search.trim() === null) {
+            return this.filterStatus();
+        }
+        const books = this.filterStatus().filter((book) => {
+            if (book.title.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) !== -1) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        return books;
+    }
+
+    filterStatus(): Book[] {
+        if (this.filter.length <= 0) {
+            return this.bookCase.books;
+        }
+        const books = [];
+        this.bookCase.books.filter((book) => {
+            for (const status of this.filter) {
+                if (status === book.status) {
+                    books.push(book);
+                }
+            }
+        });
+        return books;
+    }
 
 }

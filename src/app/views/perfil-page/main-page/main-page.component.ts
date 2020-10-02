@@ -41,7 +41,11 @@ export class MainPageComponent implements OnInit {
     }
 
     verfiyPerfilPageisUserLogged() {
-        return this.authService.getUser().id === this.user.id;
+        if (this.authService.getUser()?.id) {
+            return this.authService.getUser().id === this.user.id;
+        } else {
+            return false;
+        }
     }
 
 }

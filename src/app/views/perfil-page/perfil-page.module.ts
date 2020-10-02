@@ -13,8 +13,10 @@ import {FeedResolve} from './guards/feed.resolve';
 import {BookcaseResolve} from './guards/bookcase.resolve';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
-import {HttpLoaderFactory} from '../book-page/book.module';
+import {BookModule, HttpLoaderFactory} from '../book-page/book.module';
 import {SharedModule} from '../shared/shared.module';
+import {PerfilComponent} from './perfil/perfil.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import {SharedModule} from '../shared/shared.module';
         MainPageComponent,
         FriendComponent,
         FeedComponent,
-        BookcaseComponent
+        BookcaseComponent,
+        PerfilComponent
     ],
     imports: [
         CommonModule,
@@ -31,13 +34,16 @@ import {SharedModule} from '../shared/shared.module';
         MaterialModule,
         FlexModule,
         FlexLayoutModule,
+        FormsModule,
+        ReactiveFormsModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             },
-        })
+        }),
+        BookModule
     ],
     providers: [
         UserService,

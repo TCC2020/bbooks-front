@@ -32,7 +32,13 @@ export class NavBarComponent implements OnInit {
         this.isLogged = this.auth.isLogged();
         this.auth.logged.subscribe(eventLogged => {
             this.isLogged = eventLogged;
+            this.getuser();
         });
+        this.getuser();
+
+    }
+
+    getuser() {
         if (this.isLogged) {
             this.userService.getById(this.auth.getUser().id).pipe(
                 take(1))
@@ -51,6 +57,6 @@ export class NavBarComponent implements OnInit {
     logout() {
         this.auth.logout();
         document.location.reload();
-        this.router.navigateByUrl('/');
+        this.router.navigate(['']);
     }
 }

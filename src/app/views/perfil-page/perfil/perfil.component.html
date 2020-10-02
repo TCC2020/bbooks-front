@@ -1,0 +1,232 @@
+<div class="container-conteudo">
+    <div class="conteudo">
+        <div class="container-imagem-perfil">
+            <img class="imagem-perfil"
+                 [src]="userTO?.profile?.profileImage ?
+                 userTO?.profile?.profileImage:
+                 'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+        </div>
+        <h1 class="nome-usuario">{{userTO?.profile.name}} {{userTO?.profile.lastName}}</h1>
+        <!--<p>{{basicInfo.value | json}}</p>-->
+        <div class="container-menu-opcoes">
+            <!--<ul>
+             <li><a href="perfil#h2-informacoes-usuario">Informações do Usuário</a></li>
+             <li><a href="perfil#h2-alterar-senha">Alterar Senha</a></li>
+             <li><a href="perfil#h2-amigos">Amigos</a></li>
+             <li><a href="perfil#h2-estante">Estante</a></li>
+             <li><a href="perfil#h2-estatistica">Estatística</a></li>
+          </ul>-->
+            <div>
+                <a href="perfil#h2-informacoes-usuario">Informações do Usuário</a>
+            </div>
+            <div>
+                <a href="perfil#h2-alterar-senha">Alterar Senha</a>
+            </div>
+            <div>
+                <a href="perfil#h2-amigos">Amigos</a>
+            </div>
+            <div>
+                <a href="perfil#h2-estante">Estante</a>
+            </div>
+            <div>
+                <a href="perfil#h2-estatistica">Estatística</a>
+            </div>
+        </div>
+
+        <div class="container-cards">
+            <mat-card class="card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h2 name="h2-informacoes-usuario" id="h2-informacoes-usuario">Informações do Usuário</h2>
+                    </mat-card-title>
+                    <mat-card-subtitle>Todos os dados cadastrados do usuário.</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Dados do Usuário
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <form [formGroup]="basicInfo">
+                            <div class="container-dados-usuario">
+                                <h3 class="titulo-dados-usuario">Nome</h3>
+                                <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.name}}</p>
+                                <!-- input para alteração -->
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                    <mat-label>Nome</mat-label>
+                                    <input matInput type="text" formControlName="name"/>
+                                </mat-form-field>
+                                <!--<input type="email" formControlName="email" *ngIf="modeBasicInfo">-->
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="container-dados-usuario">
+                                <h3 class="titulo-dados-usuario">Sobrenome</h3>
+                                <p class="conteudo-dados-usuario"
+                                   *ngIf="!modeBasicInfo">{{userTO?.profile?.lastName}}</p>
+                                <!-- input para alteração -->
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                    <mat-label>Sobrenome</mat-label>
+                                    <input matInput type="text" formControlName="lastName"/>
+                                </mat-form-field>
+                                <!--<input type="email" formControlName="email" *ngIf="modeBasicInfo">-->
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="container-dados-usuario">
+                                <h3 class="titulo-dados-usuario">EMAIL</h3>
+                                <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.email}}</p>
+                                <!-- input para alteração -->
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput type="email" formControlName="email"/>
+                                </mat-form-field>
+                                <!--<input type="email" formControlName="email" *ngIf="modeBasicInfo">-->
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="container-dados-usuario">
+                                <h3 class="titulo-dados-usuario">NOME DE USUÁRIO</h3>
+                                <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.userName}}</p>
+                                <!-- input para alteração -->
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                    <mat-label>Nome de Usuario</mat-label>
+                                    <input matInput type="text" formControlName="userName"/>
+                                </mat-form-field>
+                                <!--<input type="text" formControlName="userName" *ngIf="modeBasicInfo">-->
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="container-dados-usuario">
+                                <h3 class="titulo-dados-usuario">DATA DE NASCIMENTO</h3>
+                                <p class="conteudo-dados-usuario"
+                                   *ngIf="!modeBasicInfo">{{userTO?.profile?.birthDate}}</p>
+                                <!-- input para alteração -->
+                                <mat-form-field *ngIf="modeBasicInfo">
+                                    <input matInput type="date" formControlName="birthDate"/>
+                                </mat-form-field>
+                                <!--<input type="date" formControlName="birthDate" *ngIf="modeBasicInfo">-->
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="container-dados-usuario">
+                                <h3 class="titulo-dados-usuario">PAÍS</h3>
+                                <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.country}}</p>
+                                <!-- input para alteração -->
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                    <mat-label>País</mat-label>
+                                    <mat-select formControlName="country">
+                                        <mat-option [value]="country.name" *ngFor="let country of countrys"
+                                                    (change)="getStates(country)"
+                                                    (blur)="getStates(country)">{{country.name}}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="verificaValidToTouched('country')"> País é
+                                        <strong>obrigatório</strong></mat-error>
+                                </mat-form-field>
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="container-dados-usuario">
+                                <h3 class="titulo-dados-usuario">ESTADO</h3>
+                                <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.state}}</p>
+                                <!-- input para alteração -->
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                    <mat-label>Estado</mat-label>
+                                    <mat-select formControlName="state">
+                                        <mat-option [value]="state.name" *ngFor="let state of states"
+                                                    (blur)="getCitys(state)">{{state.name}}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="verificaValidToTouched('state')"> Estado é
+                                        <strong>obrigatório</strong></mat-error>
+                                </mat-form-field>
+                            </div>
+                            <mat-divider></mat-divider>
+                            <div class="container-dados-usuario">
+                                <h3 class="titulo-dados-usuario">CIDADE</h3>
+                                <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.city}}</p>
+                                <!-- input para alteração -->
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                    <input type="text" placeholder="Cidade" aria-label="Number" matInput
+                                           formControlName="city" [matAutocomplete]="autoCity"
+                                           class="example-full-width"/>
+                                    <mat-autocomplete autoActiveFirstOption #autoCity="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredOptionsCity | async"
+                                                    [value]="option.name">
+                                            {{option.name}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                    <mat-error *ngIf="verificaValidToTouched('city')"> Cidade é
+                                        <strong>obrigatório</strong></mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div *ngIf="!modeBasicInfo">
+                                <button type="button" mat-raised-button color="primary" (click)="changeModeBasicInfo()">
+                                    EDITAR SUAS INFORMAÇÕES DE PERFIL
+                                </button>
+                            </div>
+                            <div class="botoes-edicao" *ngIf="modeBasicInfo">
+                                <button type="button" mat-raised-button color="primary" (click)="save()">SALVAR</button>
+                                <button type="button" mat-raised-button (click)="changeModeBasicInfo()">CANCELAR
+                                </button>
+                            </div>
+                        </form>
+                    </mat-expansion-panel>
+                </mat-card-content>
+            </mat-card>
+            <div class="duasColunas">
+                <mat-card class="card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h2 name="h2-alterar-senha" id="h2-alterar-senha">Alterar Senha</h2>
+                        </mat-card-title>
+                        <mat-card-subtitle>Realize a alteração de senha do seu usuário, que dá acesso às funcionalidades
+                            do BBooks.
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions>
+                        <a href="nova-senha">
+                            <button mat-button class="botao-editar">ALTERE SUA SENHA</button>
+                        </a>
+                    </mat-card-actions>
+                </mat-card>
+                <mat-card class="card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h2 name="h2-amigos" id="h2-amigos">Amigos</h2>
+                        </mat-card-title>
+                        <mat-card-subtitle>Veja sua lista de amigos.</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions>
+                        <a href="perfil#">
+                            <button mat-button class="botao-editar">VER AMIGOS</button>
+                        </a>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div class="duasColunas">
+                <mat-card class="card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h2 name="h2-estante" id="h2-estante">Estante</h2>
+                        </mat-card-title>
+                        <mat-card-subtitle>Veja seus livros na estante virtual.</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions>
+                        <a href="perfil#">
+                            <button mat-button class="botao-editar">VER ESTANTE VIRTUAL</button>
+                        </a>
+                    </mat-card-actions>
+                </mat-card>
+
+                <mat-card class="card">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h2 name="h2-estatistica" id="h2-estatistica">Estatística</h2>
+                        </mat-card-title>
+                        <mat-card-subtitle>Estatísticas do usuário.</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions>
+                        <a href="perfil#">
+                            <button mat-button class="botao-editar">VER SUAS ESTATÍSTICAS</button>
+                        </a>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

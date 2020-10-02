@@ -4,20 +4,27 @@ import {Observable} from 'rxjs';
 import {UserService} from '../../../services/user.service';
 import {UserTO} from '../../../models/userTO.model';
 import {map, take} from 'rxjs/operators';
+import {BookCase} from '../../../models/bookCase.model';
+import {BookService} from '../../../services/book.service';
 
 
 @Injectable()
-export class BookcaseResolve implements Resolve<UserTO> {
+export class BookcaseResolve implements Resolve<BookCase> {
+    bookCase: BookCase = new BookCase();
 
     constructor(
-        private userService: UserService) {
+        private bookService: BookService,
+    ) {
+        this.bookCase.books = [];
+        this.bookService.getAllBooks().subscribe(books => {
+            this.bookCase.books = books;
+        });
     }
 
     resolve(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
-        const username = route.parent.params.username;
-        return this.userService.getUserName(username).pipe(take(1), map(user => user));
+        return this.bookCase;
     }
 }

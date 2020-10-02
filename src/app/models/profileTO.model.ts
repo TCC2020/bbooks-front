@@ -5,6 +5,6 @@ export class Profile {
     country: string;
     city: string;
     state: string;
-    bithDate: string;
+    birthDate: string;
     profileImage: string;
 }

@@ -4,7 +4,7 @@ import {MaterialModule} from '../../material/material.module';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {HttpLoaderFactory} from '../book-page/book.module';
 import {BookCardComponent} from './book-card/book-card.component';
 import {BookAddDialogComponent} from './book-add-dialog/book-add-dialog.component';
@@ -25,6 +25,7 @@ import {RouterModule} from '@angular/router';
         ReactiveFormsModule,
         RouterModule,
         FlexLayoutModule,
+        HttpClientModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
@@ -33,6 +34,7 @@ import {RouterModule} from '@angular/router';
             },
         })
     ],
+    exports: [],
     providers: []
 })
 export class SharedModule {

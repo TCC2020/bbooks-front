@@ -8,6 +8,8 @@ import {MainResolve} from './guards/main.resolve';
 import {MainGuard} from './guards/main.guard';
 import {FeedResolve} from './guards/feed.resolve';
 import {BookcaseResolve} from './guards/bookcase.resolve';
+import {PerfilComponent} from './perfil/perfil.component';
+import {AuthGuard} from '../../guards/auth-guard';
 
 
 const perfilRouter = [
@@ -25,9 +27,14 @@ const perfilRouter = [
             },
             {
                 path: 'bookcase', component: BookcaseComponent,
-                resolve: {user: BookcaseResolve}
-            }
+                resolve: {bookcase: BookcaseResolve}
+            },
         ]
+
+    },
+    {
+        path: ':username/settings', component: PerfilComponent,
+        canActivate: [AuthGuard]
     },
 ];
 

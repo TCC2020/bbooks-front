@@ -9,7 +9,7 @@ import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 import { LoginComponent } from './modals/login/login.component';
 import {AuthGuard} from './guards/auth-guard';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
-import { PerfilComponent } from './views/perfil/perfil.component';
+import { PerfilComponent } from './views/perfil-page/perfil/perfil.component';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
 
 
@@ -38,10 +38,6 @@ const routes: Routes = [
         path: 'nova-senha', component: NovaSenhaComponent,
         canActivate: [AuthGuard]
     },
-    // {
-    //     path: 'perfil', component: PerfilComponent,
-    //     canActivate: [AuthGuard]
-    // },
     {
         path: '',
         canActivate: [AuthGuard],
