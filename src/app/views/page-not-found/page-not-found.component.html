@@ -1,17 +1,17 @@
 <div class="container" fxLayout="row" fxLayoutAlign="space-around center">
     <div>
-        <div>
-            <h1>Página não encontrada</h1>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <h1>{{'PG_N_ENCONTRADA.PG_N_ENCONTRADA' | translate }}</h1>
 
         </div>
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <p>
-                Desculpa, esta página não existe.
+                {{'PG_N_ENCONTRADA.NAO_EXISTE' | translate}}
             </p>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <button fxLayoutAlign="s"  mat-raised-button color="accent" style="color: white" (click)="redirect()">
-                Ir para página inicial
+                {{'PG_N_ENCONTRADA.IR_PG_INICIAL' | translate }}
             </button>
         </div>
 

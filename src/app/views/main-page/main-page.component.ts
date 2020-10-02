@@ -51,20 +51,33 @@ export class MainPageComponent implements OnInit, OnDestroy {
         this.gBooksService.searchByName(this.searchControl.value.book.split(' ').join('+')).subscribe(books => {
             let booksConvert = [];
             booksConvert = books['items'];
-            this.books = booksConvert.map(value => {
-                const book = this.bookService.convertBookToModel(value);
-                if (this.user) {
-                    this.bookService.getAllUserBooks().subscribe((userbooks) => {
-                        userbooks.books.forEach(userbook => {
-                            if (userbook.idBook === book.id) {
-                                book.status = userbook.status;
-                                book.idUserBook = userbook.id;
-                            }
-                        });
+            this.resulSearch(booksConvert);
+        });
+    }
+    resulSearch(booksConvert): void {
+       const result =  booksConvert.map(value => {
+            const book = this.bookService.convertBookToModel(value);
+            if (this.user) {
+                this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                    userbooks.books.forEach(userbook => {
+                        if (book.id.includes(userbook.idBook)) {
+                            book.status = userbook.status;
+                            book.idUserBook = userbook.id;
+                        }
                     });
-                }
-                return book;
-            });
+                });
+            }
+            return book;
+        });
+       this.longPromise(500).then(() => {
+           this.books = result;
+       });
+    }
+    longPromise(delay: number) {
+        return new Promise<string>((resolve) => {
+            setTimeout(() => {
+                resolve('Done');
+            }, delay);
         });
     }
 

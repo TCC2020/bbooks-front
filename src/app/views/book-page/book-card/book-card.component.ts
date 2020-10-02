@@ -6,6 +6,7 @@ import {UserbookService} from '../../../services/userbook.service';
 import {BookAddDialogComponent} from '../book-add-dialog/book-add-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {BookService} from '../../../services/book.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
     selector: 'app-book-card',
@@ -40,7 +41,7 @@ export class BookCardComponent implements OnInit {
 
     ngOnInit(): void {
         this.userBook = this.router.url.includes('mybooks');
-        if (!this.userBook) {
+        if (!this.book.idUserBook) {
             this.routerlink = '/book/';
         } else {
             this.routerlink = '/mybooks/';
@@ -70,12 +71,13 @@ export class BookCardComponent implements OnInit {
                 book
             }
         });
-        dialogRef.afterClosed().toPromise().then((result) => {
+        dialogRef.afterClosed().pipe(switchMap(async res => {
+            return await res;
+        })).subscribe((result) => {
             if (result) {
                 this.book.idUserBook = result?.id;
                 this.book.status = result?.status;
                 this.bookService.updateListCarrousel.emit(true);
-
             }
         });
     }

@@ -71,6 +71,11 @@
     "bookcase": "Estante Virtual",
     "friends": "Amigos,",
     "EDITAR_PERFIL": "editar perfil"
+  },
+  "PG_N_ENCONTRADA": {
+    "PG_N_ENCONTRADA": "Página não encontrada",
+    "NAO_EXISTE": " Desculpa, esta página não existe.",
+    "IR_PG_INICIAL": "Ir para página inicial"
   }
 }
 

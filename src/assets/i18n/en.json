@@ -70,5 +70,10 @@
     "bookcase": "bookcase",
     "friends": "friends",
     "EDITAR_PERFIL": "edit profile"
+  },
+  "PG_N_ENCONTRADA": {
+    "PG_N_ENCONTRADA": "Page not found",
+    "NAO_EXISTE": "Sorry, this page does not exist.",
+    "IR_PG_INICIAL": "Go to home page"
   }
 }
