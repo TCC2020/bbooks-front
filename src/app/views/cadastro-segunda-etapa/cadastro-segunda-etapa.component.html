@@ -14,7 +14,7 @@
                 <mat-option [value]="country.name" *ngFor="let country of countrys"  (blur)="getStates(country)">{{country.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="verificaValidToTouched('country')">
-                País é <strong>obrigatório</strong>
+                {{'CADASTRO2.MSG_PAIS_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
             </mat-error>
         </mat-form-field>
 
@@ -24,7 +24,7 @@
                 <mat-option [value]="state.name" *ngFor="let state of states" (blur)="getCitys(state)">{{state.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="verificaValidToTouched('state')">
-                Estado é <strong>obrigatório</strong>
+                {{'CADASTRO2.MSG_ESTADO_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
             </mat-error>
         </mat-form-field>
 
@@ -41,7 +41,7 @@
                 </mat-option>
             </mat-autocomplete>
             <mat-error *ngIf="verificaValidToTouched('city')">
-                Cidade é <strong>obrigatório</strong>
+                {{'CADASTRO2.MSG_CIDADE_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
             </mat-error>
         </mat-form-field>
 
@@ -55,7 +55,7 @@
                 <mat-icon>create</mat-icon>
             </button>
             <mat-error>
-                Foto é <strong>obrigatório</strong>
+                {{'CADASTRO2.MSG_FOTO_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
             </mat-error>
         </mat-form-field>
 
@@ -63,7 +63,7 @@
             <mat-label>{{'PADRAO.DATA_NASCIMENTO' | translate}}</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="birthDate">
             <mat-error *ngIf="verificaValidToTouched('birthDate')">
-                Data de Nascimento é <strong>obrigatório</strong>
+                {{'CADASTRO2.MSG_DTA_NASC' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
             </mat-error>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>

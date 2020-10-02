@@ -32,6 +32,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import {SharedModule} from './views/shared/shared.module';
 
 
 
@@ -69,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         SocialLoginModule,
         BookModule,
         PerfilPageModule,
+        SharedModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

@@ -3,7 +3,13 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Book} from '../../../models/book.model';
 import {BookService} from '../../../services/book.service';
-import {BookStatus, getArrayStatus, mapBookStatus} from '../../../models/enums/BookStatus.enum';
+import {
+    BookStatus,
+    BookStatusEnglish,
+    getArrayStatus,
+    mapBookStatus,
+    mapBookStatusEnglish
+} from '../../../models/enums/BookStatus.enum';
 import {UserbookService} from '../../../services/userbook.service';
 import {UserBookTO} from '../../../models/userBookTO';
 import {AuthService} from '../../../services/auth.service';
@@ -11,6 +17,7 @@ import {Tag} from '../../../models/tag';
 import {TagService} from '../../../services/tag.service';
 import {take} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
+import {zip} from 'rxjs';
 
 @Component({
     selector: 'app-book-add-dialog',
@@ -19,10 +26,12 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class BookAddDialogComponent implements OnInit {
 
-    bookCases: BookStatus[] = getArrayStatus();
+    AllStatus: BookStatus[] = getArrayStatus();
     tags: Tag[];
     tagsBook: Tag[];
     mapStatus = mapBookStatus;
+    mapStatusEnglish = mapBookStatusEnglish;
+
     public formBook: FormGroup;
     public Book: Book;
     public title: string;
@@ -38,7 +47,6 @@ export class BookAddDialogComponent implements OnInit {
         private authService: AuthService,
         private tagService: TagService,
         public translate: TranslateService
-
     ) {
         this.Book = data.book;
         this.tagsBook = [];
@@ -50,6 +58,8 @@ export class BookAddDialogComponent implements OnInit {
         } else {
             this.modeDialog();
         }
+        this.updateLanguageStatus();
+
     }
 
     ngOnInit(): void {
@@ -122,12 +132,12 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.id = this.Book.idUserBook;
         this.userBookTo.idBook = this.Book.id;
         this.userBookTo.profileId = this.authService.getUser().profile.id;
-        this.userBookTo.status = this.formBook.get('statusBook').value;
+        this.userBookTo.status = this.getStatusToUserBook();
         this.userBookTo.tags = this.getSelectedTags();
         if (this.tagsBook.length > 0) {
             this.userbookService.update(this.userBookTo).pipe(take(1)).subscribe(
                 value => {
-                        this.dialogRef.close(value);
+                    this.dialogRef.close(value);
                 },
                 error => {
                     console.log('TagDialog Error', error);
@@ -137,7 +147,7 @@ export class BookAddDialogComponent implements OnInit {
         } else {
             this.userbookService.save(this.userBookTo).pipe(take(1)).subscribe(
                 value => {
-                        this.dialogRef.close(value);
+                    this.dialogRef.close(value);
                 },
                 error => {
                     console.log('TagDialog Error', error);
@@ -146,5 +156,36 @@ export class BookAddDialogComponent implements OnInit {
         }
 
     }
+
+    updateLanguageStatus(): void {
+        zip(
+            this.translate.get('STATUS.QUERO_LER'),
+            this.translate.get('STATUS.LENDO'),
+            this.translate.get('STATUS.LIDO'),
+            this.translate.get('STATUS.EMPRESTADO'),
+            this.translate.get('STATUS.RELENDO'),
+            this.translate.get('STATUS.INTERROMPIDO'),
+            this.translate.get('STATUS.' + this.Book.status),
+        ).subscribe(res => {
+            this.AllStatus[0] = res[0];
+            this.AllStatus[1] = res[1];
+            this.AllStatus[2] = res[2];
+            this.AllStatus[3] = res[3];
+            this.AllStatus[4] = res[4];
+            this.AllStatus[5] = res[5];
+            this.Book.status = res[6];
+        });
+    }
+
+    getStatusToUserBook(): any {
+        const valueFormStatus = this.formBook.get('statusBook').value;
+        const statusEnglish = this.mapStatusEnglish.get(valueFormStatus);
+        if (statusEnglish) {
+            return statusEnglish;
+        } else {
+            return mapBookStatus.get(valueFormStatus.toUpperCase());
+        }
+    }
+
 
 }

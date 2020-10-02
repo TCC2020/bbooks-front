@@ -9,7 +9,7 @@ import {UserBookTO} from '../../../models/userBookTO';
 import {AuthService} from '../../../services/auth.service';
 import {Tag} from '../../../models/tag';
 import {TagService} from '../../../services/tag.service';
-import {take} from 'rxjs/operators';
+import {switchMap, take} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -125,7 +125,9 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.status = this.formBook.get('statusBook').value;
         this.userBookTo.tags = this.getSelectedTags();
         if (this.tagsBook.length > 0) {
-            this.userbookService.update(this.userBookTo).pipe(take(1)).subscribe(
+            this.userbookService.update(this.userBookTo).pipe(take(1), switchMap(async res => {
+                return await res;
+            })).subscribe(
                 value => {
                         this.dialogRef.close(value);
                 },
@@ -135,7 +137,9 @@ export class BookAddDialogComponent implements OnInit {
             );
 
         } else {
-            this.userbookService.save(this.userBookTo).pipe(take(1)).subscribe(
+            this.userbookService.save(this.userBookTo).pipe(take(1), switchMap(async res => {
+                return await res;
+            })).subscribe(
                 value => {
                         this.dialogRef.close(value);
                 },

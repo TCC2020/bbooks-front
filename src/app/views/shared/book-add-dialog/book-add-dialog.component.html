@@ -14,8 +14,8 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Status</mat-label>
                     <mat-select formControlName="statusBook">
-                        <mat-option *ngFor="let bookcase of bookCases" [value]="bookcase">
-                            {{mapStatus.get(bookcase) | titlecase}}
+                        <mat-option *ngFor="let bookcase of AllStatus" [value]="bookcase">
+                            {{bookcase | titlecase}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

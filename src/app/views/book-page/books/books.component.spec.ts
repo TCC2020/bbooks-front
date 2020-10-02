@@ -2,7 +2,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BooksComponent} from './books.component';
 import {of} from 'rxjs';
-import {bookMock} from '../../../mocks/book.model.mock';
 import {BookService} from '../../../services/book.service';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {ActivatedRoute} from '@angular/router';

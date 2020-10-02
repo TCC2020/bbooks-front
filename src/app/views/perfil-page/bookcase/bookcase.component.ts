@@ -2,7 +2,7 @@ import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core
 import {BookCase} from '../../../models/bookCase.model';
 import {ActivatedRoute} from '@angular/router';
 import {MediaChange, MediaObserver} from '@angular/flex-layout';
-import {Observable, Subscription} from 'rxjs';
+import {Observable, Subscription, zip} from 'rxjs';
 import {BookStatus, getArrayStatus, mapBookStatus} from '../../../models/enums/BookStatus.enum';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {FormControl} from '@angular/forms';
@@ -11,6 +11,7 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {Book} from '../../../models/book.model';
 import {AuthService} from '../../../services/auth.service';
 import {map} from 'rxjs/operators';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-bookcase',
@@ -42,10 +43,11 @@ export class BookcaseComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         public mediaObserver: MediaObserver,
-        public authService: AuthService
+        public authService: AuthService,
+        private translate: TranslateService
+
     ) {
-        this.filteredElements = this.filterCtrl.valueChanges.pipe(
-            map((status: string | null) => status ? this._filter(status) : this.allStatus));
+        this.updateLanguageStatus();
     }
 
     ngOnInit(): void {
@@ -55,7 +57,29 @@ export class BookcaseComponent implements OnInit, OnDestroy {
         this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
             this.deviceXs = result.mqAlias === 'xs' ? true : false;
         });
+        this.translate.onLangChange.subscribe(() => {
+            this.updateLanguageStatus();
+        });
 
+    }
+    updateLanguageStatus(): void {
+        zip(
+            this.translate.get('STATUS.QUERO_LER'),
+            this.translate.get('STATUS.LENDO'),
+            this.translate.get('STATUS.LIDO'),
+            this.translate.get('STATUS.EMPRESTADO'),
+            this.translate.get('STATUS.RELENDO'),
+            this.translate.get('STATUS.INTERROMPIDO'),
+        ).subscribe(res => {
+            this.allStatus[0] = res[0];
+            this.allStatus[1] = res[1];
+            this.allStatus[2] = res[2];
+            this.allStatus[3] = res[3];
+            this.allStatus[4] = res[4];
+            this.allStatus[5] = res[5];
+            this.filteredElements = this.filterCtrl.valueChanges.pipe(
+                map((status: string | null) => status ? this._filter(status) : this.allStatus));
+        });
     }
 
     bookReturn(event) {
@@ -123,11 +147,14 @@ export class BookcaseComponent implements OnInit, OnDestroy {
         }
         const books = [];
         this.bookCase.books.filter((book) => {
-            for (const status of this.filter) {
-                if (status === book.status) {
-                    books.push(book);
+            this.translate.get('STATUS.' + book.status).subscribe(statusBook => {
+                for (const status of this.filter) {
+                    if (status === statusBook) {
+                        books.push(book);
+                    }
                 }
-            }
+            });
+
         });
         return books;
     }

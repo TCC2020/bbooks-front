@@ -12,7 +12,7 @@
                     [selectable]="selectable"
                     [removable]="removable"
                     (removed)="remove(element)">
-                {{mapStatus.get(element) | titlecase}}
+                {{element | titlecase}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
             <input
@@ -26,7 +26,7 @@
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
             <mat-option *ngFor="let status of filteredElements | async" [value]="status">
-                {{mapStatus.get(status) | titlecase}}
+                {{status | titlecase}}
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>

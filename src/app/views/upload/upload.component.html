@@ -27,12 +27,12 @@
 <!--</div>-->
 <mat-dialog-content>
     <div fxLayout="column" fxLayoutAlign="space-between center">
-        <h2 mat-dialog-title> Escolher foto de perfil </h2>
+        <h2 mat-dialog-title>  {{'UPLOAD.TITULO' | translate}} </h2>
 
         <form [formGroup]="formFile">
             <input type="file" (change)="inputFileChange($event)" accept="image/png, image/jpeg" formControlName="file">
             <mat-error *ngIf="formFile.controls['file'].hasError('required')">
-                Foto é <strong>obrigatório</strong>
+                {{'UPLOAD.MSG_FOTO_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
             </mat-error>
         </form>
         <div>
@@ -42,7 +42,7 @@
     <p></p>
     <div fxLayout="column" fxLayoutAlign="space-around center">
         <button mat-flat-button color="accent" [disabled]="formFile.invalid" [mat-dialog-close]="this.file">
-           Enviar
+            {{'PADRAO.ENVIAR' | translate}}
         </button>
     </div>
 </mat-dialog-content>

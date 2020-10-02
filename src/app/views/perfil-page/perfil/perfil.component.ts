@@ -9,6 +9,7 @@ import {map, startWith} from 'rxjs/operators';
 import {AuthService} from 'src/app/services/auth.service';
 import {UserService} from '../../../services/user.service';
 import {UserTO} from '../../../models/userTO.model';
+import {ProfileService} from '../../../services/profile.service';
 
 @Component({
     selector: 'app-perfil',
@@ -30,7 +31,8 @@ export class PerfilComponent implements OnInit {
         private fb: FormBuilder,
         private consultaCepService: ConsultaCepService,
         private userService: UserService,
-        private authService: AuthService
+        private authService: AuthService,
+        private profileService: ProfileService
     ) {
 
     }
@@ -136,12 +138,16 @@ export class PerfilComponent implements OnInit {
         this.userTO.profile.country = this.basicInfo.get('country').value;
         this.userTO.profile.state = this.basicInfo.get('state').value;
         this.userTO.profile.city = this.basicInfo.get('city').value;
-
         this.userService.update(this.userTO).subscribe(
             response => {
-                console.log(response);
-                this.userTO = response;
-                this.changeModeBasicInfo();
+                this.profileService.update(this.userTO.profile).subscribe(profile => {
+                        this.userTO = response;
+                        this.userTO.profile = profile;
+                        this.changeModeBasicInfo();
+                    },
+                    error => {
+                        console.log('error update profile', error);
+                    });
             },
             error => {
                 console.log('error update', error);

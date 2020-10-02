@@ -34,7 +34,9 @@ import {RouterModule} from '@angular/router';
             },
         })
     ],
-    exports: [],
+    exports: [
+        BookCardComponent
+    ],
     providers: []
 })
 export class SharedModule {
