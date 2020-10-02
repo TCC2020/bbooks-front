@@ -8,6 +8,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {of} from 'rxjs';
 import {bookMock} from '../../mocks/book.model.mock';
+import {TranslateService} from '@ngx-translate/core';
 
 describe('PageNotFoundComponent', () => {
     let component: PageNotFoundComponent;
@@ -28,7 +29,7 @@ describe('PageNotFoundComponent', () => {
                 BrowserAnimationsModule
             ],
             providers: [
-
+                TranslateService
             ]
         })
             .compileComponents();

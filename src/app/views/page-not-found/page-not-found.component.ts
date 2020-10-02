@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
-import {pipe} from 'rxjs';
+import {pipe, zip} from 'rxjs';
 import {take} from 'rxjs/operators';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-page-not-found',
@@ -10,22 +11,35 @@ import {take} from 'rxjs/operators';
     styleUrls: ['./page-not-found.component.scss']
 })
 export class PageNotFoundComponent implements OnInit {
-    message = 'Ir para pagina inicial';
-    action = 'Ir';
+    message: string;
+    action: string;
 
     constructor(
         private snackBar: MatSnackBar,
-        private router: Router
+        private router: Router,
+        private translate: TranslateService
     ) {
+
     }
 
     ngOnInit(): void {
-        const snackBarRef = this.snackBar.open(this.message, this.action, {
-            duration: 2000,
+        zip(
+            this.translate.get('PG_N_ENCONTRADA.IR_PG_INICIAL'),
+            this.translate.get('PG_N_ENCONTRADA.IR')
+        ).subscribe(res => {
+            this.message = res[0];
+            this.action = res[1];
+            const snackBarRef = this.snackBar.open(this.message, this.action, {
+                duration: 3000,
+            });
+            snackBarRef.onAction().pipe(take(1)).subscribe(() => {
+                this.redirect();
+            });
         });
-        snackBarRef.onAction().pipe(take(1)).subscribe(() => {
-            this.redirect();
-        });
+
+
+
+
     }
     redirect(): void {
         this.router.navigate(['/']);
