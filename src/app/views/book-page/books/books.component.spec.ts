@@ -16,6 +16,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {bookcasesMock} from '../../../mocks/bookcase.model.mock';
 import {BookStatus} from '../../../models/enums/BookStatus.enum';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('BooksComponent', () => {
     let component: BooksComponent;
@@ -34,7 +35,9 @@ describe('BooksComponent', () => {
                 {
                     provide: ActivatedRoute,
                     useValue: routeMock
-                }
+                },
+                TranslateService,
+                TranslateStore
             ],
             imports: [
                 BrowserModule,
