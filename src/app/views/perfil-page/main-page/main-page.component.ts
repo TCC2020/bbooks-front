@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserTO} from '../../../models/userTO.model';
 import {take} from 'rxjs/operators';
 import {AuthService} from '../../../services/auth.service';
-import {UserService} from '../../../services/user.service';
 
 @Component({
     selector: 'app-main-page',

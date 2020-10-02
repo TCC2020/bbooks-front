@@ -26,7 +26,7 @@ describe('BookEstanteComponent', () => {
     let mockMediaSubject: any;
     const routeMock = {
         data: of({bookcase: bookcaseMock})
-    }
+    };
     beforeEach(async(() => {
         mockMediaSubject = new BehaviorSubject({});
         TestBed.configureTestingModule({

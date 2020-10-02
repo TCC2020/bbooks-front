@@ -1,25 +1,50 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FriendComponent } from './friend.component';
+import {FriendComponent} from './friend.component';
+import {of} from 'rxjs';
+import {userMock} from '../../../mocks/user.model.mock';
+import {RouterTestingModule} from '@angular/router/testing';
+import {MaterialModule} from '../../../material/material.module';
+import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ActivatedRoute} from '@angular/router';
 
 describe('FriendComponent', () => {
-  let component: FriendComponent;
-  let fixture: ComponentFixture<FriendComponent>;
+    let component: FriendComponent;
+    let fixture: ComponentFixture<FriendComponent>;
+    const routeMock = {
+        data: of({user: userMock})
+    };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FriendComponent ]
-    })
-    .compileComponents();
-  }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FriendComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [FriendComponent],
+            imports: [
+                RouterTestingModule,
+                MaterialModule,
+                TranslateServiceMockForRoot,
+                HttpClientTestingModule,
+                BrowserAnimationsModule
+            ],
+            providers: [
+                {
+                    provide: ActivatedRoute,
+                    useValue: routeMock
+                },
+            ]
+        })
+            .compileComponents();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(FriendComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
