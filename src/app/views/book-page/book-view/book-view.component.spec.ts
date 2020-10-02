@@ -5,7 +5,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../../../material/material.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import { SocialLoginModule} from 'angularx-social-login';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {GoogleBooksService} from '../../../services/google-books.service';
 import {BookService} from '../../../services/book.service';
@@ -23,7 +23,7 @@ describe('BookViewComponent', () => {
     let fixture: ComponentFixture<BookViewComponent>;
     const routeMock = {
         data: of({book: bookMock})
-    }
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

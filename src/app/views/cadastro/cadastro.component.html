@@ -55,7 +55,7 @@
         <mat-label>{{'PADRAO.NOME' | translate}}</mat-label>
         <input matInput id="nomeCadastrar" formControlName="name">
         <mat-error *ngIf="cadastroControl.get('name').hasError('required')">
-          Nome é <strong>obrigatório</strong>
+          {{'CADASTRO1.MSG_NAME_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
         </mat-error>
       </mat-form-field>
 
@@ -63,7 +63,7 @@
         <mat-label>{{'PADRAO.SOBRENOME' | translate}}</mat-label>
         <input matInput id="sobrenomeCadastrar" formControlName="lastName">
         <mat-error *ngIf="cadastroControl.get('lastName').hasError('required')">
-          Sobrenome é <strong>obrigatório</strong>
+          {{'CADASTRO1.MSG_SOBRENOME_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
         </mat-error>
       </mat-form-field>
     </div>
@@ -73,12 +73,12 @@
         <mat-label>{{'PADRAO.EMAIL' | translate}}</mat-label>
         <input type="email" matInput id="emailCadastrar" formControlName="email">
         <mat-error *ngIf="cadastroControl.get('email').hasError('email') && !cadastroControl.get('email').hasError('required')">
-          Por favor, insira um endereço de e-mail válido
+          {{'CADASTRO1.VLD_EMAIL' | translate}}
         </mat-error>
         <mat-error *ngIf="cadastroControl.get('email').hasError('required')">
-          E-mail é <strong>obrigatório</strong>
+          {{'CADASTRO1.MSG_EMAIL_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
         </mat-error>
-        <mat-hint>Informe um endereço de e-mail válido, pois você receberá um e-mail de confirmação.</mat-hint>
+        <mat-hint>{{'CADASTRO1.MSG_EMAIL_INIT' | translate}}</mat-hint>
       </mat-form-field>
     </div>
 
@@ -87,12 +87,12 @@
         <mat-label>{{'PADRAO.NOME_USUARIO' | translate}}</mat-label>
         <input matInput id="nomeUsuarioCadastrar" formControlName="userName" #username (input)="username.value = username.value.toLowerCase()" >
         <mat-error *ngIf="cadastroControl.get('userName').hasError('pattern') && !cadastroControl.get('userName').hasError('required')">
-          O primeiro caractere deve ser uma letra
+          {{'CADASTRO1.VLD_USERNAME_LETRA' | translate}}
         </mat-error>
         <mat-error *ngIf="cadastroControl.get('userName').hasError('required')">
-          Nome de Usuário é <strong>obrigatório</strong>
+          {{'CADASTRO1.MSG_USERNAME_E' | translate}}   <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
         </mat-error>
-        <mat-hint>Seu nome de usuário pode ter letras, números e pontos finais.</mat-hint>
+        <mat-hint> {{'CADASTRO1.MSG_USERNAME_INT' | translate}}</mat-hint>
       </mat-form-field>
     </div>
 
@@ -109,15 +109,17 @@
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         <mat-error *ngIf="cadastroControl.get('password').hasError('maxlength') && !cadastroControl.get('password').hasError('required')">
-          A senha deve conter, no máximo, 20 caracteres
+          {{'CADASTRO1.VLD_SENHA' | translate}}
         </mat-error>
         <mat-error *ngIf="cadastroControl.get('password').hasError('pattern') && !cadastroControl.get('password').hasError('required')">
-          Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.
+          {{'CADASTRO1.VLD_SENHA_CARACTERES' | translate}}
         </mat-error>
         <mat-error *ngIf="cadastroControl.get('password').hasError('required')">
-          Senha é <strong>obrigatório</strong>
+          {{'CADASTRO1.SENHA_E' | translate}}<strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
         </mat-error>
-        <mat-hint>Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.</mat-hint>
+        <mat-hint>
+          {{'CADASTRO1.SENHA_INIT' | translate}}
+        </mat-hint>
       </mat-form-field>
 
       <mat-form-field class="inputCadastraSenha">
@@ -132,7 +134,7 @@
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-error *ngIf="cadastroControl.hasError('notSame')">
-          Senhas diferentes
+          {{'CADASTRO1.VLD_SENHA_DIFERENTE' | translate}}
         </mat-error>
       </mat-form-field>
     </div>

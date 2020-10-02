@@ -1,19 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {CadastroSegundaEtapaComponent} from './cadastro-segunda-etapa.component';
-import {MaterialModule} from "../../material/material.module";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {AuthService} from "../../services/auth.service";
-import {ConsultaCepService} from "../../services/consulta-cep.service";
-import {ProfileService} from "../../services/profile.service";
-import {RouterTestingModule} from "@angular/router/testing";
-import {SocialAuthServiceConfigMock} from "../../mocks/google.provide.mock";
-import {SocialLoginModule} from "angularx-social-login";
-import {of} from "rxjs";
-import {MatDialog} from "@angular/material/dialog";
-import {CDNService} from "../../services/cdn.service";
+import {MaterialModule} from '../../material/material.module';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {AuthService} from '../../services/auth.service';
+import {ConsultaCepService} from '../../services/consulta-cep.service';
+import {ProfileService} from '../../services/profile.service';
+import {RouterTestingModule} from '@angular/router/testing';
+import {SocialAuthServiceConfigMock} from '../../mocks/google.provide.mock';
+import {SocialLoginModule} from 'angularx-social-login';
+import {of} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {CDNService} from '../../services/cdn.service';
 import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
+import {userMock} from '../../mocks/user.model.mock';
 
 describe('CadastroSegundaEtapaComponent', () => {
     let component: CadastroSegundaEtapaComponent;
@@ -21,7 +22,12 @@ describe('CadastroSegundaEtapaComponent', () => {
     const mockMatDialog = { open: jest.fn( () =>  {
             return {afterClosed: jest.fn(() => of([])) };
         })};
-
+    const authServiceMock = {
+        language: of('pt'),
+        getUserRegister: jest.fn( () => {
+            return userMock;
+        })
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -46,7 +52,11 @@ describe('CadastroSegundaEtapaComponent', () => {
                 {
                     provide: MatDialog, useValue: mockMatDialog
                 },
-                CDNService
+                CDNService,
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                }
             ]
         }).compileComponents();
     }));

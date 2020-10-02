@@ -8,8 +8,9 @@ import { RecuperarSenhaComponent } from './views/recuperar-senha/recuperar-senha
 import { NovaSenhaComponent } from './views/nova-senha/nova-senha.component';
 import { LoginComponent } from './modals/login/login.component';
 import {AuthGuard} from './guards/auth-guard';
-import {AuthVerifyLogin} from "./guards/auth-verify-login";
-import { PerfilComponent } from './views/perfil/perfil.component';
+import {AuthVerifyLogin} from './guards/auth-verify-login';
+import { PerfilComponent } from './views/perfil-page/perfil/perfil.component';
+import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -38,13 +39,18 @@ const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: 'perfil', component: PerfilComponent,
-        canActivate: [AuthGuard]
-    },
-    {
         path: '',
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/book-page/book.module').then(m => m.BookModule)
+    },
+    {
+        path: '',
+        canActivate: [],
+        loadChildren: () => import('./views/perfil-page/perfil-page.module').then(m => m.PerfilPageModule)
+    },
+    {
+        path: '**',
+        component: PageNotFoundComponent
     }
 ];
 

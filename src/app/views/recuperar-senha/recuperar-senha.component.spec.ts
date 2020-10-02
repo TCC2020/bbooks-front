@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {RecuperarSenhaComponent} from './recuperar-senha.component';
-import {FormBuilder, FormsModule} from '@angular/forms';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {MaterialModule} from '../../material/material.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -28,7 +28,8 @@ describe('RecuperarSenhaComponent', () => {
                 HttpClientTestingModule,
                 SocialLoginModule,
                 BrowserAnimationsModule,
-                NoopAnimationsModule
+                NoopAnimationsModule,
+                ReactiveFormsModule
             ],
             declarations: [RecuperarSenhaComponent],
             providers: [

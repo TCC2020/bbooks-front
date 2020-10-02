@@ -8,10 +8,10 @@
     </div>
 </form>
 <div fxLayout="row wrap" fxFLex="100" fxLayoutAlign="center">
-    <div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center">
+    <div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center" *ngIf="books?.length > 0">
         <app-book-card
                 *ngFor="let book of books"
-                [idTag]="book.idUserBook"
+                [idTag]=""
                 [book]="book"
                 [deviceXs]="deviceXs"
                 [logged]="this.user ? true : false">

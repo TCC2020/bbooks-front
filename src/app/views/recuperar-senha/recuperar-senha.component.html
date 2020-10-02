@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="form">
 
   <div>
     <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
@@ -10,16 +10,22 @@
   <div>
     <mat-form-field class="inputRecuperarSenha">
       <mat-label>Email</mat-label>
-      <input matInput id="emailRecuperarSenha" [(ngModel)]="form.value.email"  [ngModelOptions]="{standalone: true}">
+      <input matInput id="emailRecuperarSenha" [(ngModel)]="form.value.email" formControlName="email">
+      <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+        Por favor, insira um endereço de e-mail válido
+      </mat-error>
+      <mat-error *ngIf="form.get('email').hasError('required')">
+        E-mail é <strong>obrigatório</strong>
+      </mat-error>
       <mat-hint>Informe o email cadastrado para recuperar sua senha.</mat-hint>
     </mat-form-field>
   </div>
 
   <div>
-    <button mat-raised-button id="enviarRecuperarSenha" (click)="sendResetPassRequest()">Enviar</button>
+    <button mat-flat-button color="primary" [disabled]="this.form.invalid || showMessage" (click)="sendResetPassRequest()">Enviar</button>
   </div>
   <div>
-    <span><i class="fas fa-check" style="color:#36BF7F"></i> Você receberá em instantes um link na sua caixa de email
+    <span *ngIf="showMessage"><i class="fas fa-check" style="color:#36BF7F"></i> Você receberá em instantes um link na sua caixa de email
       para recuperação da senha!</span>
   </div>
 </form>

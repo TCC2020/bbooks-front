@@ -4,6 +4,7 @@ import {environment} from 'src/environments/environment';
 import {AuthGuard} from '../guards/auth-guard';
 import {UserTO} from '../models/userTO.model';
 import {AuthService} from './auth.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,21 @@ export class UserService {
             this.auth.setUser(response);
         });
     }
+
     verifyEmail(email: string) {
         return this.http.get(this.api + 'email/' + email);
+    }
+    verifyEmailForGoogle(email: string) {
+        return this.http.get(this.api + 'google/' + email);
+    }
+
+    getById(id: string): Observable<UserTO> {
+        return this.http.get<UserTO>(this.api + id);
+    }
+    getUserName(username: string): Observable<UserTO> {
+        return this.http.get<UserTO>(this.api + 'username/' + username);
+    }
+    update(userTo: UserTO) {
+        return this.http.put<UserTO>(this.api + userTo.id, userTo);
     }
 }

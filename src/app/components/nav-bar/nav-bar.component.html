@@ -7,9 +7,26 @@
     <button *ngIf="!isLogged" mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/login']">
         {{'PADRAO.ENTRAR' | translate}}
     </button>
-    <button *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;" (click)="logout()">
-        {{'NAV.SAIR' | translate}}
-    </button>
+    <div *ngIf="isLogged">
+        <button  mat-flat-button color="primary" style="width: 5vw;"  [matMenuTriggerFor]="menuPerfil">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu  #menuPerfil="matMenu">
+            <div mat-menu-item >
+                <div fxLayout="row" [routerLink]="['', user?.userName]">
+                    <img *ngIf="user?.profile?.profileImage" class="imagem-perfil" [src]="user?.profile?.profileImage" alt="imagem de perfil"/>
+
+                    <span> {{this.user?.userName}}</span>
+                </div>
+            </div>
+            <div mat-menu-item (click)="logout()">
+                <mat-icon>login</mat-icon>
+                <span>{{'NAV.SAIR' | translate}}</span>
+            </div>
+
+        </mat-menu>
+    </div>
+
     <button mat-button [matMenuTriggerFor]="afterMenu">
         <span class="material-icons">
             language

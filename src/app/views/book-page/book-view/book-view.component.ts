@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {BookAddDialogComponent} from '../book-add-dialog/book-add-dialog.component';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
     selector: 'app-book-view',
@@ -50,9 +51,12 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 book
             }
         });
-        dialogRef.afterClosed().subscribe((result) => {
+        dialogRef.afterClosed().pipe(switchMap(async res => {
+           return await res;
+        })).subscribe((result) => {
             if (result) {
-                this.book.idUserBook = result?.id;
+                    this.book.idUserBook = result?.id;
+                    this.book.status = result?.status;
             }
         });
     }

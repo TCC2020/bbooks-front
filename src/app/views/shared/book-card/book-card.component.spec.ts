@@ -1,7 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BookCardComponent} from './book-card.component';
-import {BooksResolve} from '../guards/books.resolve';
 import {BookService} from '../../../services/book.service';
 import {UserbookService} from '../../../services/userbook.service';
 import {RouterTestingModule} from '@angular/router/testing';

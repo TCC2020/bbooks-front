@@ -17,7 +17,9 @@
     "EDITAR": "Editar",
     "REMOVER": "Remover",
     "ADICIONAR": "Adicionar",
-    "FILTRO": "Filtro"
+    "FILTRO": "Filtro",
+    "ENVIAR": "ENVIAR"
+
 
   },
   "NAV": {
@@ -36,12 +38,31 @@
   },
   "CADASTRO1": {
     "TITULO": "Preencha o formulário para se cadastrar",
-    "PROXIMO": "Próximo"
+    "PROXIMO": "Próximo",
+    "OBRIGATORIO": "obrigatório",
+    "MSG_NAME_E": "Nome é",
+    "MSG_SOBRENOME_E": "Sobrenome é",
+    "MSG_EMAIL_E": "E-mail é",
+    "VLD_EMAIL": "Por favor, insira um endereço de e-mail válido",
+    "MSG_EMAIL_INIT": "Informe um endereço de e-mail válido, pois você receberá um e-mail de confirmação.",
+    "VLD_USERNAME_LETRA": "O primeiro caractere deve ser uma letra",
+    "MSG_USERNAME_E":"Nome de Usuário é",
+    "MSG_USERNAME_INT": "Seu nome de usuário pode ter letras, números e pontos finais.",
+    "VLD_SENHA": "A senha deve conter, no máximo, 20 caracteres",
+    "VLD_SENHA_CARACTERES": "Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.",
+    "SENHA_E": "Senha é,",
+    "SENHA_INIT": "Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.",
+    "VLD_SENHA_DIFERENTE":"Senhas diferentes"
   },
   "CADASTRO2": {
     "TITULO": "Preencha o formulário para finalizar seu cadastro",
     "CADASTRAR": "Cadastrar",
-    "FOTO": "Escolher foto de perfil..."
+    "FOTO": "Escolher foto de perfil...",
+    "MSG_PAIS_E": "País é",
+    "MSG_ESTADO_E": "Estado é",
+    "MSG_CIDADE_E": "Cidade é",
+    "MSG_FOTO_E": "Foto é",
+    "MSG_DTA_NASC": "Data de Nascimento é"
   },
   "ESTANTE": {
     "ESTANTE_VIRTUAL": "Estante Virtual",
@@ -50,7 +71,9 @@
     "EDITAR_LIVRO": "Editar Livro"
   },
   "TAG": {
-    "CRIAR_TAG": "Criar Tag"
+    "CRIAR_TAG": "Criar Tag",
+    "MSG_TAG_E": "Tag é",
+    "VLD_TAG": "A Tag deve conter, no máximo, 20 caracteres."
   },
   "GENEROS": {
     "LITERATURA" :  "Literatura",
@@ -65,6 +88,30 @@
     "IDIOMA": "Idioma",
     "AVALIACAO": "Avaliação",
     "OUTRAS_INFO": "OUTRAS INFORMAÇÕES"
+  },
+  "PERFIL": {
+    "feed": "feed",
+    "bookcase": "Estante Virtual",
+    "friends": "Amigos",
+    "EDITAR_PERFIL": "editar perfil"
+  },
+  "PG_N_ENCONTRADA": {
+    "PG_N_ENCONTRADA": "Página não encontrada",
+    "NAO_EXISTE": " Desculpa, esta página não existe.",
+    "IR_PG_INICIAL": "Ir para página inicial",
+    "IR": "IR"
+  },
+  "UPLOAD":{
+    "TITULO": "Escolher foto de perfil",
+    "MSG_FOTO_E": "Foto é"
+  },
+  "STATUS": {
+    "LIDO": "Lidos",
+    "LENDO": "Lendo",
+    "QUERO_LER": "Quero Ler",
+    "EMPRESTADO": "Emprestado",
+    "RELENDO": "Relendo",
+    "INTERROMPIDO": "Interrompido"
   }
 }
 

@@ -1,3 +1,5 @@
+import {Profile} from './profileTO.model';
+
 export class UserTO {
     id: number;
     userName: string;
@@ -7,6 +9,5 @@ export class UserTO {
     idToken: string;
     idSocial: string;
     verified: boolean;
-    name: string;
-    lastName: string;
+    profile: Profile;
 }

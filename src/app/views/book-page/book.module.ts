@@ -20,11 +20,11 @@ import {BookEstanteResolve} from './guards/book-estante.resolve';
 import {BookViewResolve} from './guards/book-view.resolve';
 import {CarrouselResolve} from './guards/carrousel.resolve';
 import {BooksComponent} from './books/books.component';
-import {TagDialogComponent} from './tag-dialog/tag-dialog.component';
 import {BooksResolve} from './guards/books.resolve';
-import {BookCardComponent} from './book-card/book-card.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {SharedModule} from '../shared/shared.module';
+import {TagDialogComponent} from './tag-dialog/tag-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -33,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
     imports: [
+        SharedModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -51,9 +52,6 @@ export function HttpLoaderFactory(http: HttpClient) {
             },
         })
     ],
-    exports: [
-        BookCardComponent
-    ],
     declarations: [
         BookComponent,
         BookPageComponent,
@@ -65,8 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         BookViewComponent,
         RatingComponent,
         BooksComponent,
-        TagDialogComponent,
-        BookCardComponent
+        TagDialogComponent
 
     ],
     entryComponents: [

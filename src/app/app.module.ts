@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import { NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
@@ -15,7 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {AuthConfirmComponent} from './views/auth-confirm/auth-confirm.component';
-import {ErrorStateMatcher, MAT_DATE_LOCALE, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
 import {CadastroComponent} from './views/cadastro/cadastro.component';
 import {CadastroSegundaEtapaComponent} from './views/cadastro-segunda-etapa/cadastro-segunda-etapa.component';
 import {RecuperarSenhaComponent} from './views/recuperar-senha/recuperar-senha.component';
@@ -25,12 +25,14 @@ import {MatSliderModule} from '@angular/material/slider';
 import {NovaSenhaComponent} from './views/nova-senha/nova-senha.component';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import {BookModule} from "./views/book-page/book.module";
-import {AuthVerifyLogin} from "./guards/auth-verify-login";
+import {BookModule} from './views/book-page/book.module';
+import {AuthVerifyLogin} from './guards/auth-verify-login';
 import { UploadComponent } from './views/upload/upload.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { PerfilComponent } from './views/perfil/perfil.component';
+import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
+import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import {SharedModule} from './views/shared/shared.module';
 
 
 
@@ -49,8 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         CadastroSegundaEtapaComponent,
         RecuperarSenhaComponent,
         NovaSenhaComponent,
-        UploadComponent,
-        PerfilComponent,
+        PageNotFoundComponent,
+        UploadComponent
     ],
     imports: [
         BrowserModule,
@@ -67,6 +69,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatInputModule,
         SocialLoginModule,
         BookModule,
+        PerfilPageModule,
+        SharedModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

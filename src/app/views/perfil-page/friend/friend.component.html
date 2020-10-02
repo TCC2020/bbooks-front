@@ -1,0 +1,31 @@
+<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="20px"
+     fxLayoutAlign.xs="space-around center">
+
+    <mat-form-field >
+        <mat-label>Encontrar Amigos</mat-label>
+        <input matInput type="text" >
+    </mat-form-field>
+</div>
+
+<div fxLayout="column" fxLayoutAlign="space-evenly center" >
+    <div fxLayout="row" fxLayoutAlign="space-between center"*ngFor="let i of [0,0,0,0,0,0,0,0,0]" fxLayoutGap="10px" >
+        <div class="card" >
+            <div class="container">
+                <img src="https://pbs.twimg.com/media/EFBhvTtXsAAT08f.jpg" class="image" >
+            </div>
+        </div>
+        <div fxFlex="100px">
+            <p><b>Pedro pedrino</b></p>
+        </div>
+        <div>
+            <button  mat-raised-button color="accent" class="iconTextWhite">
+                <mat-icon>
+                    people_alt
+                </mat-icon>
+                Amigos
+            </button>
+        </div>
+    </div>
+
+</div>
+

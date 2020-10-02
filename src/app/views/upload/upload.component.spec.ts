@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {of} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
 
 describe('UploadComponent', () => {
   let component: UploadComponent;
@@ -27,7 +28,8 @@ describe('UploadComponent', () => {
         HttpClientTestingModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        TranslateServiceMockForRoot
       ],
       providers: [
         {
