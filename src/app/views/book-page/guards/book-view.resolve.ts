@@ -9,11 +9,14 @@ import {map} from 'rxjs/operators';
 
 @Injectable()
 export class BookViewResolve implements Resolve<Book> {
-
+    userbooks;
     constructor(
         private bookService: BookService,
         private gBookService: GoogleBooksService
     ) {
+        this.bookService.getAllUserBooks().subscribe((userbooks) => {
+            this.userbooks = userbooks;
+        });
     }
 
     resolve(
@@ -23,13 +26,11 @@ export class BookViewResolve implements Resolve<Book> {
         const id = route.params['id'];
         return this.gBookService.getById(id).pipe(map(b => {
             const book = this.bookService.convertBookToModel(b);
-            this.bookService.getAllUserBooks().subscribe((userbooks) => {
-                userbooks.books.forEach(userbook => {
-                    if (userbook.idBook === book.id) {
-                        book.status = userbook.status;
-                        book.idUserBook = userbook.id;
-                    }
-                });
+            this.userbooks.books.forEach(userbook => {
+                if (userbook.idBook === book.id) {
+                    book.status = userbook.status;
+                    book.idUserBook = userbook.id;
+                }
             });
             return book;
         }));

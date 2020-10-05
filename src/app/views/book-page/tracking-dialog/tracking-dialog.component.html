@@ -1,0 +1,39 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <h2 mat-dialog-title>Acompanmento de Leitura</h2>
+
+        <form [formGroup]="formTracking" class="example-form">
+            <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="example-full-width">
+                <mat-label>Número de páginas</mat-label>
+                <input matInput formControlName="numPag" pattern="[0-9]+$">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Leave a comment</mat-label>
+                <textarea matInput formControlName="comentario"></textarea>
+            </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-error *ngIf="formTracking.get('comentario').hasError('maxlength')">
+            Comentário é obrigatório.
+        </mat-error>
+    </div>
+    <p></p>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <div fxLayoutGap="8px">
+            <button mat-flat-button color="warn" (click)="save()"
+                    [disabled]="formTracking.invalid">
+                Excluir
+            </button>
+            <button mat-flat-button color="accent" (click)="save()"
+                    [disabled]="formTracking.invalid">
+                Cadastrar
+            </button>
+        </div>
+
+    </div>
+</mat-dialog-content>
+
+
