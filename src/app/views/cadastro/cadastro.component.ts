@@ -79,7 +79,6 @@ export class CadastroComponent implements OnInit {
         const username = this.cadastroControl.get('userName').value;
         this.cadastroControl.get('userName').setValue(username.toLowerCase());
         this.cadastroControl.value.password = this.encrypt.encryptPass(this.cadastroControl.value.password);
-        console.log(this.cadastroControl.value)
         this.cadastroService.cadastrar(this.cadastroControl.value).pipe(take(1)).subscribe((res: UserTO) => {
                 const userLogin = {
                     email: res.email,
