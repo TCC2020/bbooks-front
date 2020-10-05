@@ -11,7 +11,6 @@ import {of} from 'rxjs';
 import {AuthService} from './auth.service';
 import {TagService} from './tag.service';
 import {UserBookTO} from '../models/userBookTO';
-import {take} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -128,6 +127,7 @@ export class BookService {
                 b.image = book.volumeInfo.imageLinks.thumbnail;
                 b.image = b.image.slice(0, b.image.indexOf('zoom=1') + 'zoom=1'.length);
                 b.image = b.image + '&source=gbs_api';
+                b.image = 'https' + b.image.substr(4, b.image.length);
             }
             b.description = book.volumeInfo.description;
             b.authors = this.convertAuthorToModel(book.volumeInfo.authors);

@@ -26,7 +26,10 @@ describe('BookAddDialogComponent', () => {
 
     const mockMatDialog = {
         open: jest.fn(() => {
-            return {afterClosed: jest.fn(() => of([]))};
+            return {
+                afterClosed: jest.fn(() => of([])),
+                beforeClosed: jest.fn(() => of([]))
+            };
         })
     };
     const matDialogRefMock = {

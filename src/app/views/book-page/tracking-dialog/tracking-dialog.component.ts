@@ -16,12 +16,9 @@ export class TrackingDialogComponent implements OnInit {
 
     public formTracking: FormGroup;
 
-    public textForm: string;
-
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: { tracking: ReadingTrackingTO, idUserbook: number },
         private formBuilder: FormBuilder,
-        private authService: AuthService,
         public dialogRef: MatDialogRef<ReadingTrackingTO>,
         public translate: TranslateService,
         private trackingService: ReadingTrackingService,
