@@ -34,6 +34,7 @@ import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import {SharedModule} from './views/shared/shared.module';
 import { TrackingDialogComponent } from './views/book-page/tracking-dialog/tracking-dialog.component';
+import { NumbersOnlyInputDirective } from './views/shared/directive/numbers-only-input.directive';
 
 
 
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CadastroSegundaEtapaComponent,
         RecuperarSenhaComponent,
         NovaSenhaComponent,
+        PageNotFoundComponent,
         PageNotFoundComponent,
         UploadComponent
     ],

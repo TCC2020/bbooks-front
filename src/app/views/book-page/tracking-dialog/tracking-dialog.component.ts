@@ -1,15 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {Tag} from '../../../models/tag';
 import {AuthService} from '../../../services/auth.service';
-import {TagService} from '../../../services/tag.service';
 import {TranslateService} from '@ngx-translate/core';
 import {ReadingTrackingTO} from '../../../models/ReadingTrackingTO.model';
 import {ReadingTrackingService} from '../../../services/reading-tracking.service';
 import {take} from 'rxjs/operators';
-import {UserbookService} from '../../../services/userbook.service';
-import {UserBookTO} from '../../../models/userBookTO';
 
 @Component({
     selector: 'app-tracking-dialog',
@@ -50,7 +46,7 @@ export class TrackingDialogComponent implements OnInit {
             id: new FormControl(this.data.tracking?.id ? this.data.tracking.id : ''),
             numPag: new FormControl(this.data.tracking?.numPag ? this.data.tracking.numPag : '', Validators.required),
             comentario: new FormControl(this.data.tracking?.comentario ? this.data.tracking.comentario : '', Validators.compose([
-                Validators.maxLength(60)
+                Validators.maxLength(50)
             ])),
             percentage: new FormControl(''),
             userBookId: new FormControl(this.data?.idUserbook)
@@ -63,17 +59,36 @@ export class TrackingDialogComponent implements OnInit {
                     this.dialogRef.close(tracking);
                 },
                 error => {
-                    console.log('error tracking update', error);
+                    if (error.error.message === 'Livro já está concluído' ||
+                        error.error.message === 'Número de página maior que o total de páginas do livro') {
+                        alert(error.error.message);
+                    }else{
+                        console.log('error tracking update', error);
+                    }
                 });
         } else {
             this.trackingService.save(this.formTracking.value).pipe(take(1)).subscribe(tracking => {
                     this.dialogRef.close(tracking);
                 },
                 error => {
-                    console.log('error tracking', error);
+                    if (error.error.message === 'Livro já está concluído' ||
+                        error.error.message === 'Número de página maior que o total de páginas do livro') {
+                        alert(error.error.message);
+                    }else {
+                        console.log('error tracking', error);
+                    }
                 });
         }
 
+    }
+
+    delete() {
+        this.trackingService.delete(this.data.tracking.id).subscribe(() => {
+                this.dialogRef.close('delete');
+            },
+            error => {
+                console.log('error tracking delete', error);
+            });
     }
 
 }

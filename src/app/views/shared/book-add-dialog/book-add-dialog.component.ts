@@ -59,8 +59,11 @@ export class BookAddDialogComponent implements OnInit {
             this.modeDialog();
         }
         this.updateLanguageStatus();
-
+        dialogRef.beforeClosed().subscribe(() => {
+            this.data.book.status = this.getStatusToUserBookClose();
+        });
     }
+
 
     ngOnInit(): void {
         this.createForm();
@@ -188,6 +191,15 @@ export class BookAddDialogComponent implements OnInit {
             return mapBookStatus.get(valueFormStatus.toUpperCase());
         }
     }
-
+    getStatusToUserBookClose(): any {
+        const valueFormStatus = this.Book.status.toString() as BookStatusEnglish;
+        const statusEnglish = this.mapStatusEnglish.get(valueFormStatus);
+        if (statusEnglish) {
+            return statusEnglish;
+        } else {
+            const status = this.Book.status as BookStatus;
+            return mapBookStatus.get(status);
+        }
+    }
 
 }

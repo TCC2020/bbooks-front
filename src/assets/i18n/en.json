@@ -110,6 +110,13 @@
     "EMPRESTADO": "Borrowed",
     "RELENDO": "Rereading",
     "INTERROMPIDO": "Interrupted"
+  },
+  "ACOMP_LEITURA": {
+    "ACOMP_LEITURA": "Reading Tracking",
+    "DEIX_COMENTARIO": "Leave a comment",
+    "PAG_LIDAS": "How many pages have you read?",
+    "MSG_APG_E": "Number of pages is",
+    "MSG_COMENT": "Comment must have a maximum of 50 characters."
   }
 
 }

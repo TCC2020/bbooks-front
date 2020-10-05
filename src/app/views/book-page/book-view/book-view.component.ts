@@ -7,7 +7,12 @@ import {switchMap, take} from 'rxjs/operators';
 import {ReadingTrackingTO} from '../../../models/ReadingTrackingTO.model';
 import {TrackingDialogComponent} from '../tracking-dialog/tracking-dialog.component';
 import {ReadingTrackingService} from '../../../services/reading-tracking.service';
-import {BookStatus, mapBookStatus} from '../../../models/enums/BookStatus.enum';
+import {
+    BookStatus,
+    BookStatusEnglish,
+    mapBookStatus,
+    mapBookStatusEnglish
+} from '../../../models/enums/BookStatus.enum';
 import {BookAddDialogComponent} from '../../shared/book-add-dialog/book-add-dialog.component';
 
 @Component({
@@ -24,6 +29,9 @@ export class BookViewComponent implements OnInit, OnDestroy {
     stringAuthors: string;
     readingTracking: ReadingTrackingTO[] = [];
     status = BookStatus;
+    mapEnglish = mapBookStatusEnglish;
+    statusEnglish = BookStatusEnglish;
+
     percentage: number;
 
 
@@ -36,23 +44,23 @@ export class BookViewComponent implements OnInit, OnDestroy {
             this.book = data.book;
             this.stringAuthors = this.convertAuthorsToString();
             if (this.book.idUserBook) {
-                this.trackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {
-                        this.readingTracking = trackings.slice().sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
-                        this.percentage = this.getPercentTotal();
-                    },
-                    error => {
-                        if (error.error.message.contains('Livro já está concluído')) {
-                            alert(error.error.message);
-                        } else {
-                            console.log('error tracking all by idbook', error);
-                        }
-                    });
+                this.getAllTrackings();
             }
         });
     }
 
     ngOnInit(): void {
 
+    }
+
+    getAllTrackings() {
+        this.trackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {
+                this.readingTracking = trackings.slice().sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
+                this.percentage = this.getPercentTotal();
+            },
+            error => {
+                console.log('error tracking all by idbook', error);
+            });
     }
 
     getPercentTotal(): number {
@@ -89,6 +97,9 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 book
             }
         });
+        console.log(this.statusEnglish)
+
+        console.log(book.status)
         dialogRef.afterClosed().pipe(switchMap(async res => {
             return await res;
         })).subscribe((result) => {
@@ -113,6 +124,9 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
         })).subscribe((result) => {
             if (result) {
+                if (result === 'delete') {
+                    this.getAllTrackings();
+                }
                 if (tracking) {
                     tracking.comentario = result.comentario;
                     tracking.percentage = result.percentage;
