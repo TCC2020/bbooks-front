@@ -33,13 +33,14 @@
 </div>
 
 <div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
-   <app-book-card
-           *ngFor="let book of filterBooks()"
-           [idTag]="bookCase.id"
-           [book]="book"
-           [deviceXs]="deviceXs"
-           (bookReturn)="bookReturn($event)"
-            [logged]="true">
-   </app-book-card>
+    <app-book-card
+            *ngFor="let book of filterBooks()"
+            [idTag]="bookCase.id"
+            [book]="book"
+            [deviceXs]="deviceXs"
+            (bookReturn)="bookReturn($event)"
+            [logged]="true"
+            [canEdit]="true">
+    </app-book-card>
 </div>
 

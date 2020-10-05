@@ -1,30 +1,64 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
 import {UserService} from '../../../services/user.service';
 import {UserTO} from '../../../models/userTO.model';
 import {map, take} from 'rxjs/operators';
 import {BookCase} from '../../../models/bookCase.model';
 import {BookService} from '../../../services/book.service';
+import {UserbookService} from '../../../services/userbook.service';
+import {GoogleBooksService} from '../../../services/google-books.service';
+import {Profile} from '../../../models/profileTO.model';
 
 
 @Injectable()
-export class BookcaseResolve implements Resolve<BookCase> {
+export class BookcaseResolve implements Resolve<any> {
     bookCase: BookCase = new BookCase();
+    user = new UserTO();
+
 
     constructor(
         private bookService: BookService,
+        private userService: UserService,
+        private userBookService: UserbookService,
+        private gBooksService: GoogleBooksService,
+        private router: Router
     ) {
         this.bookCase.books = [];
-        this.bookService.getAllBooks().subscribe(books => {
-            this.bookCase.books = books;
-        });
+        this.user.profile = new Profile();
+
     }
 
     resolve(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
-        return this.bookCase;
+        const username = route.parent.params.username;
+        this.userService.getUserName(username).pipe(take(1)).subscribe(user => {
+            // tslint:disable-next-line:radix
+            this.userBookService.getAllByProfile(Number.parseInt(user.profile.id)).pipe(take(1)).subscribe(userBook => {
+                userBook.books.forEach(realation => {
+                    this.gBooksService.getById(realation.idBook).subscribe(book => {
+                        const b = this.bookService.convertBookToModel(book);
+                        b.idUserBook = realation.id;
+                        b.status = realation.status;
+                        this.bookCase.books.push(b);
+
+                    });
+                });
+            });
+            this.user.id = user.id;
+            this.user.idSocial= user.idSocial;
+            this.user.email = user.email;
+            this.user.verified = user.verified;
+            this.user.userName = user.userName;
+            this.user.token = user.token;
+            this.user.profile.id = this.user.profile.id;
+            this.user.profile.name = this.user.profile.name;
+        });
+        return {
+            bookcase: this.bookCase,
+            user: this.user
+        };
     }
 }

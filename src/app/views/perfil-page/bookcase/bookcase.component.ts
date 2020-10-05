@@ -12,6 +12,7 @@ import {Book} from '../../../models/book.model';
 import {AuthService} from '../../../services/auth.service';
 import {map} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
+import {UserTO} from '../../../models/userTO.model';
 
 @Component({
     selector: 'app-bookcase',
@@ -19,7 +20,7 @@ import {TranslateService} from '@ngx-translate/core';
     styleUrls: ['./bookcase.component.scss']
 })
 export class BookcaseComponent implements OnInit, OnDestroy {
-
+    user: UserTO = new UserTO();
     panelOpenState = false;
     bookCase: BookCase = new BookCase();
     search;
@@ -51,8 +52,9 @@ export class BookcaseComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.inscricao = this.route.data.subscribe((data: { bookcase: BookCase }) => {
-            this.bookCase = data.bookcase;
+        this.inscricao = this.route.data.subscribe((data: { data: {bookcase: BookCase, user: UserTO }}) => {
+            this.bookCase = data.data.bookcase;
+            this.user = data.data.user;
         });
         this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
             this.deviceXs = result.mqAlias === 'xs' ? true : false;
@@ -157,6 +159,13 @@ export class BookcaseComponent implements OnInit, OnDestroy {
 
         });
         return books;
+    }
+    verfiyPerfilPageisUserLogged() {
+        if (this.authService.getUser()?.id) {
+            return this.authService.getUser().id === this.user.id;
+        } else {
+            return false;
+        }
     }
 
 }
