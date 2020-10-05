@@ -12,12 +12,11 @@
                 </mat-icon>
                 {{'PERFIL.EDITAR_PERFIL' | translate | titlecase}}
             </button>
-            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="!verfiyPerfilPageisUserLogged()">
+            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="!verfiyPerfilPageisUserLogged()" (click)="sendRequest()">
                 <mat-icon>
                     group_add
                 </mat-icon>
                 {{'PADRAO.ADICIONAR' | translate | titlecase}}
-
             </button>
             <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged()">
                 <mat-icon>

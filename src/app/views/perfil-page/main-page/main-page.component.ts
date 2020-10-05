@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserTO} from '../../../models/userTO.model';
 import {take} from 'rxjs/operators';
 import {AuthService} from '../../../services/auth.service';
+import {FriendsService} from '../../../services/friends.service';
+import {Friend} from '../../../models/friend.model';
 
 @Component({
     selector: 'app-main-page',
@@ -13,11 +15,13 @@ export class MainPageComponent implements OnInit {
     links = ['feed', 'bookcase', 'friends'];
     activeLink = this.links[0];
     user: UserTO;
+    friendTO: Friend;
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private authService: AuthService
+        private authService: AuthService,
+        private friendsService: FriendsService
     ) {
         this.route.data.pipe(take(1)).subscribe((data: { user: UserTO }) => {
             this.user = data.user;
@@ -45,6 +49,18 @@ export class MainPageComponent implements OnInit {
         } else {
             return false;
         }
+    }
+
+    sendRequest() {
+        this.friendTO = new Friend();
+        this.friendTO.id = Number.parseInt(this.user.profile.id);
+        console.log(this.friendTO)
+        this.friendsService.add(this.friendTO, this.authService.getUser().token).subscribe(() => {
+                alert('pedido enviado!');
+            },
+            error => {
+                console.log(error);
+            });
     }
 
 }
