@@ -27,7 +27,7 @@ const perfilRouter = [
             },
             {
                 path: 'bookcase', component: BookcaseComponent,
-                resolve: {bookcase: BookcaseResolve}
+                resolve: {data: BookcaseResolve}
             },
         ]
 

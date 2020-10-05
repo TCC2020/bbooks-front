@@ -17,6 +17,7 @@ import {BookModule, HttpLoaderFactory} from '../book-page/book.module';
 import {SharedModule} from '../shared/shared.module';
 import {PerfilComponent} from './perfil/perfil.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ActivatedRouteSnapshot} from '@angular/router';
 
 
 @NgModule({

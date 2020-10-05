@@ -25,6 +25,8 @@ export class BookCardComponent implements OnInit {
 
     @Input() logged: boolean;
 
+    @Input() canEdit: boolean;
+
     bookStatus = BookStatus;
 
     routerlink: string;

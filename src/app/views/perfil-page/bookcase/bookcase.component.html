@@ -39,6 +39,7 @@
             [book]="book"
             [deviceXs]="deviceXs"
             (bookReturn)="bookReturn($event)"
-            [logged]="authService.getUser()">
+            [logged]="authService.getUser()"
+            [canEdit]="verfiyPerfilPageisUserLogged()">
     </app-book-card>
 </div>

@@ -97,9 +97,6 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 book
             }
         });
-        console.log(this.statusEnglish)
-
-        console.log(book.status)
         dialogRef.afterClosed().pipe(switchMap(async res => {
             return await res;
         })).subscribe((result) => {
