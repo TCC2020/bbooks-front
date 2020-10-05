@@ -13,7 +13,6 @@ import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {MatInputModule} from '@angular/material/input';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {CarrouselComponent} from './carrousel/carrousel.component';
-import {BookAddDialogComponent} from './book-add-dialog/book-add-dialog.component';
 import {BookViewComponent} from './book-view/book-view.component';
 import {RatingComponent} from '../../components/rating/rating.component';
 import {BookEstanteResolve} from './guards/book-estante.resolve';
@@ -25,6 +24,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SharedModule} from '../shared/shared.module';
 import {TagDialogComponent} from './tag-dialog/tag-dialog.component';
+import {TrackingDialogComponent} from './tracking-dialog/tracking-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -59,11 +59,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         BookMenuComponent,
         BookEstanteComponent,
         CarrouselComponent,
-        BookAddDialogComponent,
         BookViewComponent,
         RatingComponent,
         BooksComponent,
-        TagDialogComponent
+        TagDialogComponent,
+        TrackingDialogComponent
 
     ],
     entryComponents: [

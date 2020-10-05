@@ -9,5 +9,6 @@ export class UserBookTO {
     addDate: Date;
     book: Book;
     tags: Tag[];
+    page: number;
     profileId: number;
 }

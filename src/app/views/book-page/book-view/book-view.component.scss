@@ -11,7 +11,30 @@
   border-style: solid;
   border-radius: 4px;
 }
+.mat-progress-bar {
+  height: 20px;
+}
 
 .description{
   text-align: justify;
+  margin: auto 1px;
+}
+.trackings{
+  width: 100%;
+}
+@media screen and (max-width: 600px) {
+  .card {
+    border: none;
+    width: 100%;
+    margin: auto 1px;
+    padding: 0px;
+  }
+  .trackings{
+    border: none;
+    //width: 100%;
+  }
+  .mat-card-content{
+    margin: auto 10px;
+  }
+
 }

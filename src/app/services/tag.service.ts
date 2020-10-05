@@ -17,6 +17,9 @@ export class TagService {
     save(tag: Tag): Observable<Tag> {
         return this.http.post<Tag>(this.api, tag);
     }
+    update(tag: Tag): Observable<Tag> {
+        return this.http.put<Tag>(this.api + tag.id, tag);
+    }
 
     getAllByProfile(profileId: number): Observable<Tag[]> {
         return this.http.get<Tag[]>(this.api + 'profile/' + profileId);

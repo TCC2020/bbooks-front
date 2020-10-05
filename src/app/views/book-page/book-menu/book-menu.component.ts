@@ -65,7 +65,7 @@ export class BookMenuComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.tags.push(result);
+                this.getTags();
             }
         });
     }

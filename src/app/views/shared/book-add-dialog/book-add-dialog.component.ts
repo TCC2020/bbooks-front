@@ -59,8 +59,11 @@ export class BookAddDialogComponent implements OnInit {
             this.modeDialog();
         }
         this.updateLanguageStatus();
-
+        dialogRef.beforeClosed().subscribe(() => {
+            this.data.book.status = this.getStatusToUserBookClose();
+        });
     }
+
 
     ngOnInit(): void {
         this.createForm();
@@ -134,6 +137,8 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.profileId = this.authService.getUser().profile.id;
         this.userBookTo.status = this.getStatusToUserBook();
         this.userBookTo.tags = this.getSelectedTags();
+        this.userBookTo.page = this.Book.numberPage;
+
         if (this.tagsBook.length > 0) {
             this.userbookService.update(this.userBookTo).pipe(take(1)).subscribe(
                 value => {
@@ -186,6 +191,15 @@ export class BookAddDialogComponent implements OnInit {
             return mapBookStatus.get(valueFormStatus.toUpperCase());
         }
     }
-
+    getStatusToUserBookClose(): any {
+        const valueFormStatus = this.Book.status.toString() as BookStatusEnglish;
+        const statusEnglish = this.mapStatusEnglish.get(valueFormStatus);
+        if (statusEnglish) {
+            return statusEnglish;
+        } else {
+            const status = this.Book.status as BookStatus;
+            return mapBookStatus.get(status);
+        }
+    }
 
 }

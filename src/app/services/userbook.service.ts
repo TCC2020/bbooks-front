@@ -15,6 +15,8 @@ export class UserbookService {
     constructor(private http: HttpClient, private auth: AuthGuard) {
     }
 
+
+
     getAllByProfile(profileId: number): Observable<any> {
         return this.http.get(this.api + 'profile/' + profileId);
     }
@@ -26,8 +28,13 @@ export class UserbookService {
     save(userBookTo): Observable<any> {
         return this.http.post(this.api, userBookTo);
     }
+
     update(userBookTo: UserBookTO): Observable<any> {
-        return this.http.put(this.api , userBookTo);
+        return this.http.put(this.api, userBookTo);
+    }
+
+    getById(id: number): Observable<UserBookTO> {
+        return this.http.get<UserBookTO>(this.api + id);
     }
 
 }
