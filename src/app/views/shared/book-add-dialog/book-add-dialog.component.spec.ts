@@ -27,15 +27,15 @@ describe('BookAddDialogComponent', () => {
     const mockMatDialog = {
         open: jest.fn(() => {
             return {
-                afterClosed: jest.fn(() => of([])),
-                beforeClosed: jest.fn(() => of([]))
+                afterClosed: jest.fn(() => of([]))
             };
         })
     };
     const matDialogRefMock = {
         close: jest.fn((response) => {
             return response;
-        })
+        }),
+        beforeClosed: jest.fn(() => of([]))
     };
 
     const data = {
@@ -139,6 +139,7 @@ describe('BookAddDialogComponent', () => {
         component.tagsBook = tagsMock;
         const spyComponent = jest.spyOn(component, 'saveBook');
         const spyUserBookService = jest.spyOn(userbookServiceMock, 'update');
+        component.formBook.get('statusBook').setValue('LIDO');
         component.saveBook();
         expect(spyComponent).toHaveBeenCalled();
         expect(spyUserBookService).toHaveBeenCalled();
@@ -149,6 +150,7 @@ describe('BookAddDialogComponent', () => {
         component.ngOnInit();
         const spyComponent = jest.spyOn(component, 'saveBook');
         const spyUserBookService = jest.spyOn(userbookServiceMock, 'update');
+        component.formBook.get('statusBook').setValue('LIDO');
         component.saveBook();
         expect(spyComponent).toHaveBeenCalled();
         expect(spyUserBookService).toHaveBeenCalled();
@@ -159,7 +161,6 @@ describe('BookAddDialogComponent', () => {
         component.Book.idUserBook = null;
         expect(component.title).toEqual('ESTANTE.ADICIONAR_LIVRO');
         expect(component.buttonText).toEqual('PADRAO.ADICIONAR');
-        expect(component.formBook.get('statusBook').value).toEqual(bookMock.status);
     });
 
 });
