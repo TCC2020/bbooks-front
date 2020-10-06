@@ -5,6 +5,8 @@ import {TranslateService} from '@ngx-translate/core';
 import {UserTO} from '../../models/userTO.model';
 import {UserService} from '../../services/user.service';
 import {take} from 'rxjs/operators';
+import {FriendsService} from '../../services/friends.service';
+import {FriendRequest} from '../../models/friendRequest.model';
 
 @Component({
     selector: 'app-nav-bar',
@@ -15,12 +17,14 @@ export class NavBarComponent implements OnInit {
     isLogged: boolean;
     user: UserTO;
     menuPerfil;
+    requests: FriendRequest[];
 
     constructor(
         public auth: AuthService,
         private router: Router,
         public translate: TranslateService,
-        private userService: UserService
+        private userService: UserService,
+        private friendService: FriendsService
     ) {
         translate.addLangs(['pt-BR', 'en']);
         translate.setDefaultLang('pt-BR');
@@ -35,6 +39,14 @@ export class NavBarComponent implements OnInit {
             this.getuser();
         });
         this.getuser();
+
+        if (this.isLogged) {
+            setInterval(() => {
+                this.friendService.getRequests().subscribe(requests => {
+                    this.requests = requests;
+                });
+            }, 2000);
+        }
 
     }
 

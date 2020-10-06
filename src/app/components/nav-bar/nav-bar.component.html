@@ -8,6 +8,28 @@
         {{'PADRAO.ENTRAR' | translate}}
     </button>
     <div *ngIf="isLogged">
+        <button  mat-flat-button color="primary" style="width: 5vw;">
+            <mat-icon [matBadge]="requests?.length" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
+        </button>
+        <mat-menu  #menuNofify="matMenu">
+            <div mat-menu-item *ngFor="let request of requests" style="height: 120px">
+                <div fxLayout="row" [routerLink]="['', user?.userName]">
+                    <img *ngIf="request?.profileTO?.profileImage" class="imagem-perfil" [src]="request?.profileTO?.profileImage" alt="imagem de perfil"/>
+
+                    <span> {{this.request.profileTO?.name}} {{this.request.profileTO?.lastName}}</span>
+                </div>
+                <div fxLayout="row">
+                    <button mat-mini-fab color="accent">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="accent">
+                        <mat-icon>clear</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-menu>
+    </div>
+    <div *ngIf="isLogged">
         <button  mat-flat-button color="primary" style="width: 5vw;"  [matMenuTriggerFor]="menuPerfil">
             <mat-icon>account_circle</mat-icon>
         </button>

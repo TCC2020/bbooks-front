@@ -76,7 +76,6 @@ export class LoginComponent implements OnInit {
     }
 
     login(): void {
-        this.loginControl.value.password = this.encrypt.encryptPass(this.loginControl.value.password);
         this.loginFinalize(this.loginControl.value);
     }
 

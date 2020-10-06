@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Friend} from '../models/friend.model';
+import {FriendRequest} from '../models/friendRequest.model';
 
 @Injectable({
     providedIn: 'root'
@@ -15,12 +16,11 @@ export class FriendsService {
     ) {
     }
 
-    add(friendTO: Friend, tokenSend: string): Observable<any> {
-        const header = new HttpHeaders({
-            'Content-Type': 'application/json',
-            AUTHORIZATION: tokenSend });
-        const options = { headers: header };
+    add(friendTO: Friend): Observable<any> {
+        return this.http.post(this.api + 'requests', friendTO);
+    }
 
-        return this.http.post(this.api + 'requests', friendTO, options);
+    getRequests(): Observable<FriendRequest[]> {
+        return this.http.get<FriendRequest[]>(this.api + 'requests');
     }
 }
