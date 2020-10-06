@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {TranslateService} from '@ngx-translate/core';
@@ -40,15 +40,25 @@ export class NavBarComponent implements OnInit {
             this.getuser();
         });
         this.getuser();
+        this.refreshRequest();
 
+    }
+
+    refreshRequest() {
+        setInterval(() => {
+            this.getRequests();
+        }, 2000);
+    }
+
+    getRequests() {
         if (this.isLogged) {
-            setInterval(() => {
-                this.friendService.getRequests().subscribe(requests => {
+            this.friendService.getRequests().subscribe(requests => {
                     this.requests = requests;
+                },
+                error => {
+                    console.log('error getRequests', error);
                 });
-            }, 2000);
         }
-
     }
 
     getuser() {
@@ -58,6 +68,7 @@ export class NavBarComponent implements OnInit {
                 .subscribe(user => {
                     this.user = user;
                 });
+            this.getRequests();
         }
 
     }
@@ -72,6 +83,7 @@ export class NavBarComponent implements OnInit {
         document.location.reload();
         this.router.navigate(['']);
     }
+
     aceptRequest(request: FriendRequest) {
         const acept = new Friend();
         acept.id = request.id;
@@ -80,6 +92,7 @@ export class NavBarComponent implements OnInit {
         });
 
     }
+
     deleteRequest(request: FriendRequest) {
         const acept = new Friend();
         acept.id = request.id;

@@ -9,12 +9,12 @@
     </button>
     <div *ngIf="isLogged">
         <button  mat-flat-button color="primary" style="width: 5vw;">
-            <mat-icon [matBadge]="requests?.length" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
+            <mat-icon [matBadge]="requests?.length ? requests?.length : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
         </button>
         <mat-menu  #menuNofify="matMenu">
-            <div mat-menu-item *ngFor="let request of requests" style="height: 120px">
+            <div mat-menu-item *ngFor="let request of requests" style="height: 120px" >
                 <div fxLayout="row" [routerLink]="['', user?.userName]">
-                    <img *ngIf="request?.profileTO?.profileImage" class="imagem-perfil" [src]="request?.profileTO?.profileImage" alt="imagem de perfil"/>
+                    <img *ngIf="request?.profileTO?.profileImage" class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
 
                     <span> {{this.request.profileTO?.name}} {{this.request.profileTO?.lastName}}</span>
                 </div>

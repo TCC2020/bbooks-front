@@ -4,28 +4,29 @@
     <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
   </div>
   <div>
-    <span>Recuperação de senha</span>
+    <span>{{'ESQUECI_SENHA.RECUP_SENHA' | translate}}</span>
   </div>
 
   <div>
     <mat-form-field class="inputRecuperarSenha">
-      <mat-label>Email</mat-label>
+      <mat-label>{{'PADRAO.EMAIL' | translate}}</mat-label>
       <input matInput id="emailRecuperarSenha" [(ngModel)]="form.value.email" formControlName="email">
       <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
-        Por favor, insira um endereço de e-mail válido
+        {{'CADASTRO1.VLD_EMAIL' | translate}}
       </mat-error>
       <mat-error *ngIf="form.get('email').hasError('required')">
-        E-mail é <strong>obrigatório</strong>
+        {{'CADASTRO1.MSG_EMAIL_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
       </mat-error>
-      <mat-hint>Informe o email cadastrado para recuperar sua senha.</mat-hint>
+      <mat-hint>{{'ESQUECI_SENHA.MSG_EMAIL_CAD' | translate}}</mat-hint>
     </mat-form-field>
   </div>
 
   <div>
-    <button mat-flat-button color="primary" [disabled]="this.form.invalid || showMessage" (click)="sendResetPassRequest()">Enviar</button>
+    <button mat-flat-button color="primary" [disabled]="this.form.invalid || showMessage" (click)="sendResetPassRequest()">{{'PADRAO.ENVIAR' | translate | titlecase}}</button>
   </div>
   <div>
-    <span *ngIf="showMessage"><i class="fas fa-check" style="color:#36BF7F"></i> Você receberá em instantes um link na sua caixa de email
-      para recuperação da senha!</span>
+    <span *ngIf="showMessage"><i class="fas fa-check" style="color:#36BF7F"></i>
+      {{'ESQUECI_SENHA.RECEBER_LINK' | translate}}
+    </span>
   </div>
 </form>

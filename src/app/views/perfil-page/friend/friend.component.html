@@ -11,11 +11,11 @@
     <div fxLayout="row" fxLayoutAlign="space-between center"*ngFor="let friend of friendShip?.friends" fxLayoutGap="10px" >
         <div class="card" >
             <div class="container">
-                <img [src]="friend?.profileImage" class="image" >
+                <img [src]="friend?.profileImage ? friend.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" class="image" >
             </div>
         </div>
-        <div fxFlex="100px">
-            <p><b>Pedro pedrino</b></p>
+        <div>
+            <div><b>{{friend?.name}} {{friend?.lastName}}</b></div>
         </div>
         <div>
             <button  mat-raised-button color="accent" class="iconTextWhite">

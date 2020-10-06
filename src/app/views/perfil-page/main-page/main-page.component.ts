@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserTO} from '../../../models/userTO.model';
 import {take} from 'rxjs/operators';
@@ -11,7 +11,7 @@ import {Friend} from '../../../models/friend.model';
     templateUrl: './main-page.component.html',
     styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, OnChanges {
     links = ['feed', 'bookcase', 'friends'];
     activeLink = this.links[0];
     user: UserTO;
@@ -29,6 +29,9 @@ export class MainPageComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.changeMenu();
+    }
+    ngOnChanges() {
         this.changeMenu();
     }
 
