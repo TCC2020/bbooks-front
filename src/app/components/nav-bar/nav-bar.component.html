@@ -18,12 +18,12 @@
 
                     <span> {{this.request.profileTO?.name}} {{this.request.profileTO?.lastName}}</span>
                 </div>
-                <div fxLayout="row">
-                    <button mat-mini-fab color="accent">
+                <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="5px">
+                    <button  mat-flat-button color="warn" (click)="deleteRequest(request)">
                         <mat-icon>clear</mat-icon>
                     </button>
-                    <button mat-mini-fab color="accent">
-                        <mat-icon>clear</mat-icon>
+                    <button  mat-flat-button color="accent" (click)="aceptRequest(request)">
+                        <mat-icon>done</mat-icon>
                     </button>
                 </div>
             </div>

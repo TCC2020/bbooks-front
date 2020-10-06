@@ -54,7 +54,6 @@ export class MainPageComponent implements OnInit {
     sendRequest() {
         this.friendTO = new Friend();
         this.friendTO.id = Number.parseInt(this.user.profile.id);
-        console.log(this.friendTO)
         this.friendsService.add(this.friendTO).subscribe(() => {
                 alert('pedido enviado!');
             },

@@ -8,10 +8,10 @@
 </div>
 
 <div fxLayout="column" fxLayoutAlign="space-evenly center" >
-    <div fxLayout="row" fxLayoutAlign="space-between center"*ngFor="let i of [0,0,0,0,0,0,0,0,0]" fxLayoutGap="10px" >
+    <div fxLayout="row" fxLayoutAlign="space-between center"*ngFor="let friend of friendShip?.friends" fxLayoutGap="10px" >
         <div class="card" >
             <div class="container">
-                <img src="https://pbs.twimg.com/media/EFBhvTtXsAAT08f.jpg" class="image" >
+                <img [src]="friend?.profileImage" class="image" >
             </div>
         </div>
         <div fxFlex="100px">

@@ -7,6 +7,7 @@ import {UserService} from '../../services/user.service';
 import {take} from 'rxjs/operators';
 import {FriendsService} from '../../services/friends.service';
 import {FriendRequest} from '../../models/friendRequest.model';
+import {Friend} from '../../models/friend.model';
 
 @Component({
     selector: 'app-nav-bar',
@@ -70,5 +71,20 @@ export class NavBarComponent implements OnInit {
         this.auth.logout();
         document.location.reload();
         this.router.navigate(['']);
+    }
+    aceptRequest(request: FriendRequest) {
+        const acept = new Friend();
+        acept.id = request.id;
+        this.friendService.acceptRequest(acept).subscribe(() => {
+            alert('Solicitação aceita!');
+        });
+
+    }
+    deleteRequest(request: FriendRequest) {
+        const acept = new Friend();
+        acept.id = request.id;
+        this.friendService.deleteRequest(acept).subscribe(() => {
+            alert('Solicitação não aceita!');
+        });
     }
 }
