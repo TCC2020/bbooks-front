@@ -20,7 +20,9 @@
     "FILTRO": "Filtro",
     "ENVIAR": "ENVIAR",
     "SALVAR": "Salvar",
-    "CANCELAR": "Cancelar"
+    "CANCELAR": "Cancelar",
+    "CONFIRMAR": "Confirmar"
+
   },
   "NAV": {
     "SAIR": "Sair",

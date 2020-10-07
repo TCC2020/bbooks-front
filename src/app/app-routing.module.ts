@@ -35,7 +35,7 @@ const routes: Routes = [
         path: 'recuperar-senha', component: RecuperarSenhaComponent,
     },
     {
-        path: 'nova-senha', component: NovaSenhaComponent,
+        path: 'nova-senha/:token', component: NovaSenhaComponent,
     },
     {
         path: '',
