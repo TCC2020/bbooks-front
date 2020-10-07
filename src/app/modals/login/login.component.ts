@@ -6,7 +6,6 @@ import {SocialAuthService} from 'angularx-social-login';
 import {SocialUser} from 'angularx-social-login';
 import {UserTO} from '../../models/userTO.model';
 import {UserService} from '../../services/user.service';
-import {EncryptService} from 'src/app/services/encrypt.service';
 import {Profile} from '../../models/profileTO.model';
 
 @Component({
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private authService: AuthService,
-        private encrypt: EncryptService,
         private router: Router,
         private authServiceSocial: SocialAuthService,
         private userService: UserService
@@ -76,7 +74,6 @@ export class LoginComponent implements OnInit {
     }
 
     login(): void {
-        this.loginControl.value.password = this.encrypt.encryptPass(this.loginControl.value.password);
         this.loginFinalize(this.loginControl.value);
     }
 

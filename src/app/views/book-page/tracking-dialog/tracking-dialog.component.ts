@@ -17,7 +17,7 @@ export class TrackingDialogComponent implements OnInit {
     public formTracking: FormGroup;
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: { tracking: ReadingTrackingTO, idUserbook: number },
+        @Inject(MAT_DIALOG_DATA) public data: { tracking: ReadingTrackingTO, idUserbook: number, canEditPag: boolean },
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<ReadingTrackingTO>,
         public translate: TranslateService,
@@ -41,7 +41,10 @@ export class TrackingDialogComponent implements OnInit {
     private createForm(): void {
         this.formTracking = this.formBuilder.group({
             id: new FormControl(this.data.tracking?.id ? this.data.tracking.id : ''),
-            numPag: new FormControl(this.data.tracking?.numPag ? this.data.tracking.numPag : '', Validators.required),
+            numPag: new FormControl({
+                value: this.data.tracking?.numPag ? this.data.tracking.numPag : '',
+                disabled: this.data.canEditPag
+            }, Validators.required),
             comentario: new FormControl(this.data.tracking?.comentario ? this.data.tracking.comentario : '', Validators.compose([
                 Validators.maxLength(50)
             ])),
@@ -52,14 +55,18 @@ export class TrackingDialogComponent implements OnInit {
 
     save() {
         if (this.data.tracking?.id) {
-            this.trackingService.update(this.formTracking.value).pipe(take(1)).subscribe(tracking => {
+            if (this.formTracking.get('numPag').value) {
+                this.data.tracking.numPag = this.formTracking.get('numPag').value;
+            }
+            this.data.tracking.comentario = this.formTracking.get('comentario').value;
+            this.trackingService.update(this.data.tracking).pipe(take(1)).subscribe(tracking => {
                     this.dialogRef.close(tracking);
                 },
                 error => {
                     if (error.error.message === 'Livro já está concluído' ||
                         error.error.message === 'Número de página maior que o total de páginas do livro') {
                         alert(error.error.message);
-                    }else{
+                    } else {
                         console.log('error tracking update', error);
                     }
                 });
@@ -71,7 +78,7 @@ export class TrackingDialogComponent implements OnInit {
                     if (error.error.message === 'Livro já está concluído' ||
                         error.error.message === 'Número de página maior que o total de páginas do livro') {
                         alert(error.error.message);
-                    }else {
+                    } else {
                         console.log('error tracking', error);
                     }
                 });

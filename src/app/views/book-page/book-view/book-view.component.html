@@ -61,18 +61,17 @@
                 </mat-list>
                 <mat-divider></mat-divider>
                 <br>
-                <div *ngIf="book.status !== status.LIDO">
-                    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!verifystatusBook()">
+                <div *ngIf="book.status !== status.LIDO && book.idUserBook">
+                    <div fxLayout="row" fxLayoutAlign="center center">
                         <h2>{{'ACOMP_LEITURA.ACOMP_LEITURA' | translate}}</h2>
                     </div>
-                    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center"
-                         *ngIf="!verifystatusBook()">
+                    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center">
                         <mat-progress-bar color="accent" mode="determinate" [value]="percentage"></mat-progress-bar>
                         <div style="position: absolute; padding: 10px; color: white;"> {{percentage | number}}%</div>
                         <button style="width: 100px" type="button" *ngIf="readingTracking[0]?.percentage !== 100 "
                                 mat-flat-button
                                 color="accent"
-                                (click)="openDialogTracking(null)">
+                                (click)="openDialogTracking(null, false)">
                             {{'PADRAO.ADICIONAR' | translate}}
                         </button>
                     </div>
@@ -91,7 +90,7 @@
                                 <div fxFlex="10">{{tracking.numPag}}</div>
                                 <button mat-mini-fab color="accent"
                                         aria-label="Example icon button with a filter list icon"
-                                        (click)="openDialogTracking(tracking)">
+                                        (click)="openDialogTracking(tracking, tracking === readingTracking[0] ? false : true)">
                                     <mat-icon>create</mat-icon>
                                 </button>
                             </div>

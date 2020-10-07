@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { AuthConfirmService} from '../../services/auth-confirm.service';
 import { Router } from '@angular/router';
-import {AuthService} from "../../services/auth.service";
-import { EncryptService } from 'src/app/services/encrypt.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth-confirm',
@@ -18,7 +17,6 @@ export class AuthConfirmComponent implements OnInit {
     private authConfirmService: AuthConfirmService,
     private authService: AuthService,
     private router: Router,
-    private encrypt: EncryptService
   ) {
     this.confirmControl = this.fb.group({
       email: '',
@@ -31,7 +29,6 @@ export class AuthConfirmComponent implements OnInit {
   }
 
   confirm(): void {
-    this.confirmControl.value.password = this.encrypt.encryptPass(this.confirmControl.value.password);
     this.authConfirmService.confirm(this.confirmControl.value).subscribe(res => {
       this.authService.authenticate(res, this.confirmControl.value.keepLogin);
       this.router.navigateByUrl('/');

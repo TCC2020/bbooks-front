@@ -5,7 +5,6 @@ import {CadastroService} from '../../services/cadastro-service.service';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {UserTO} from '../../models/userTO.model';
 import {AuthService} from '../../services/auth.service';
-import {EncryptService} from 'src/app/services/encrypt.service';
 import {take} from 'rxjs/operators';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -34,7 +33,6 @@ export class CadastroComponent implements OnInit {
         private router: Router,
         private cadastroService: CadastroService,
         private auth: AuthService,
-        private encrypt: EncryptService
     ) {
     }
 
@@ -78,7 +76,6 @@ export class CadastroComponent implements OnInit {
     cadastrar() {
         const username = this.cadastroControl.get('userName').value;
         this.cadastroControl.get('userName').setValue(username.toLowerCase());
-        this.cadastroControl.value.password = this.encrypt.encryptPass(this.cadastroControl.value.password);
         this.cadastroService.cadastrar(this.cadastroControl.value).pipe(take(1)).subscribe((res: UserTO) => {
                 const userLogin = {
                     email: res.email,

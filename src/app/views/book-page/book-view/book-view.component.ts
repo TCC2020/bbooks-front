@@ -107,13 +107,14 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
     }
 
-    openDialogTracking(tracking: ReadingTrackingTO) {
+    openDialogTracking(tracking: ReadingTrackingTO, editPag: boolean) {
         const dialogRef = this.dialog.open(TrackingDialogComponent, {
             height: '300px',
             width: '400px',
             data: {
                 tracking,
-                idUserbook: this.book.idUserBook
+                idUserbook: this.book.idUserBook,
+                canEditPag: editPag
             }
         });
         dialogRef.afterClosed().pipe(switchMap(async res => {

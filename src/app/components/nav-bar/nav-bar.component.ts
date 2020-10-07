@@ -1,10 +1,13 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {TranslateService} from '@ngx-translate/core';
 import {UserTO} from '../../models/userTO.model';
 import {UserService} from '../../services/user.service';
 import {take} from 'rxjs/operators';
+import {FriendsService} from '../../services/friends.service';
+import {FriendRequest} from '../../models/friendRequest.model';
+import {Friend} from '../../models/friend.model';
 
 @Component({
     selector: 'app-nav-bar',
@@ -15,12 +18,14 @@ export class NavBarComponent implements OnInit {
     isLogged: boolean;
     user: UserTO;
     menuPerfil;
+    requests: FriendRequest[];
 
     constructor(
         public auth: AuthService,
         private router: Router,
         public translate: TranslateService,
-        private userService: UserService
+        private userService: UserService,
+        private friendService: FriendsService
     ) {
         translate.addLangs(['pt-BR', 'en']);
         translate.setDefaultLang('pt-BR');
@@ -35,7 +40,25 @@ export class NavBarComponent implements OnInit {
             this.getuser();
         });
         this.getuser();
+        this.refreshRequest();
 
+    }
+
+    refreshRequest() {
+        setInterval(() => {
+            this.getRequests();
+        }, 2000);
+    }
+
+    getRequests() {
+        if (this.isLogged) {
+            this.friendService.getRequests().subscribe(requests => {
+                    this.requests = requests;
+                },
+                error => {
+                    console.log('error getRequests', error);
+                });
+        }
     }
 
     getuser() {
@@ -45,6 +68,7 @@ export class NavBarComponent implements OnInit {
                 .subscribe(user => {
                     this.user = user;
                 });
+            this.getRequests();
         }
 
     }
@@ -58,5 +82,22 @@ export class NavBarComponent implements OnInit {
         this.auth.logout();
         document.location.reload();
         this.router.navigate(['']);
+    }
+
+    aceptRequest(request: FriendRequest) {
+        const acept = new Friend();
+        acept.id = request.id;
+        this.friendService.acceptRequest(acept).subscribe(() => {
+            alert('Solicitação aceita!');
+        });
+
+    }
+
+    deleteRequest(request: FriendRequest) {
+        const acept = new Friend();
+        acept.id = request.id;
+        this.friendService.deleteRequest(acept).subscribe(() => {
+            alert('Solicitação não aceita!');
+        });
     }
 }
