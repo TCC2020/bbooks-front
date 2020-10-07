@@ -49,7 +49,8 @@ export class CadastroComponent implements OnInit {
             lastName: [this.userTo?.profile?.lastName ? this.userTo.profile.lastName : '', Validators.required],
             email: [this.userTo?.email ? this.userTo.email : '', Validators.compose([
                 Validators.required,
-                Validators.email
+                Validators.email,
+                Validators.pattern('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)+(\.[a-z0-9-]+).(\.[a-z]{2,4})$')
             ])],
             userName: ['', Validators.compose([
                 Validators.required,

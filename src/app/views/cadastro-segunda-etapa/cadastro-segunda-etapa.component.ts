@@ -62,9 +62,9 @@ export class CadastroSegundaEtapaComponent implements OnInit {
             id: [],
             image: new FormControl({value: null, disabled: true}),
             birthDate: new FormControl('', Validators.required),
-            country: new FormControl('', Validators.required),
-            city: new FormControl('', Validators.required),
-            state: new FormControl('', Validators.required)
+            country: new FormControl(''),
+            city: new FormControl(''),
+            state: new FormControl('')
         });
     }
 
