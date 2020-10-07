@@ -18,6 +18,7 @@ import {SharedModule} from '../shared/shared.module';
 import {PerfilComponent} from './perfil/perfil.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRouteSnapshot} from '@angular/router';
+import {FriendResolve} from './guards/friend.resolve';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {ActivatedRouteSnapshot} from '@angular/router';
         UserService,
         MainResolve,
         FeedResolve,
-        BookcaseResolve
+        BookcaseResolve,
+        FriendResolve
     ]
 })
 export class PerfilPageModule {

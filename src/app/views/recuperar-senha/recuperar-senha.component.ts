@@ -18,7 +18,7 @@ export class RecuperarSenhaComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            url: ['http://bbooks-ifsp.herokuapp.com/redefinir-senha/'],
+            url: ['http://bbooks-front.herokuapp.com/redefinir-senha/'],
             email: ['', Validators.compose([
                 Validators.required,
                 Validators.email

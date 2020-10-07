@@ -4,7 +4,6 @@ import {UserTO} from '../../../models/userTO.model';
 import {ActivatedRoute} from '@angular/router';
 import {Friendship} from '../../../models/Friendship.model';
 import {FriendsService} from '../../../services/friends.service';
-import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-friend',
@@ -27,12 +26,9 @@ export class FriendComponent implements OnInit {
     }
 
     getFriends() {
-
-        this.friendsService.getFriends().subscribe(friendShip => {
+        this.friendsService.getFriendsByUserName(this.user.userName).subscribe(friendShip => {
             this.friendShip = friendShip;
         });
-
-
     }
 
     ngOnInit(): void {

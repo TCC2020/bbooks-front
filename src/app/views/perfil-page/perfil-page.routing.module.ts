@@ -10,6 +10,7 @@ import {FeedResolve} from './guards/feed.resolve';
 import {BookcaseResolve} from './guards/bookcase.resolve';
 import {PerfilComponent} from './perfil/perfil.component';
 import {AuthGuard} from '../../guards/auth-guard';
+import {FriendResolve} from './guards/friend.resolve';
 
 
 const perfilRouter = [
@@ -20,6 +21,8 @@ const perfilRouter = [
         children: [
             {
                 path: 'friends', component: FriendComponent,
+                resolve: {user: FriendResolve}
+
             },
             {
                 path: 'feed', component: FeedComponent,

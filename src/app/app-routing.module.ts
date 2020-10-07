@@ -36,7 +36,6 @@ const routes: Routes = [
     },
     {
         path: 'nova-senha', component: NovaSenhaComponent,
-        canActivate: [AuthGuard]
     },
     {
         path: '',
