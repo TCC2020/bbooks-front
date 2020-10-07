@@ -1,7 +1,7 @@
-import {Profile} from './profileTO.model';
+import {UserTO} from './userTO.model';
 
 export class Friendship {
     id: number;
-    friends: Profile[];
+    friends: UserTO[];
 }
 
