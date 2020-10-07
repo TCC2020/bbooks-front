@@ -9,6 +9,7 @@ import {BookService} from '../../../services/book.service';
 import {UserbookService} from '../../../services/userbook.service';
 import {GoogleBooksService} from '../../../services/google-books.service';
 import {Profile} from '../../../models/profileTO.model';
+import {AuthService} from '../../../services/auth.service';
 
 
 @Injectable()
@@ -21,7 +22,8 @@ export class BookcaseResolve implements Resolve<any> {
         private bookService: BookService,
         private userService: UserService,
         private userBookService: UserbookService,
-        private gBooksService: GoogleBooksService
+        private gBooksService: GoogleBooksService,
+        private authservice: AuthService
     ) {
         this.bookCase.books = [];
         this.user.profile = new Profile();
@@ -34,7 +36,7 @@ export class BookcaseResolve implements Resolve<any> {
     ): Observable<any> | Promise<any> | any {
         const username = route.parent.params.username;
         this.bookCase.books = [];
-        this.userService.getUserName(username).pipe(take(1)).subscribe(user => {
+        this.userService.getUserName(username, this.authservice.getToken()).pipe(take(1)).subscribe(user => {
             // tslint:disable-next-line:radix
             this.userBookService.getAllByProfile(Number.parseInt(user.profile.id)).pipe(take(1)).subscribe(userBook => {
                 userBook.books.forEach(realation => {

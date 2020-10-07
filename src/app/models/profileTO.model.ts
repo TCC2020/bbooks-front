@@ -7,4 +7,5 @@ export class Profile {
     state: string;
     birthDate: string;
     profileImage: string;
+    friendshipStatus: string;
 }
