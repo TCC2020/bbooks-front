@@ -5,10 +5,13 @@ import {of} from 'rxjs';
 import {userMock} from '../../../mocks/user.model.mock';
 import {RouterTestingModule} from '@angular/router/testing';
 import {MaterialModule} from '../../../material/material.module';
-import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
+import {TranslateServiceMockForChild, TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {SocialLoginModule} from 'angularx-social-login';
 
 describe('FriendComponent', () => {
     let component: FriendComponent;
@@ -24,15 +27,18 @@ describe('FriendComponent', () => {
             imports: [
                 RouterTestingModule,
                 MaterialModule,
-                TranslateServiceMockForRoot,
                 HttpClientTestingModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                TranslateServiceMockForChild,
+                SocialLoginModule
             ],
             providers: [
                 {
                     provide: ActivatedRoute,
                     useValue: routeMock
                 },
+                AuthService,
+                SocialAuthServiceConfigMock,
             ]
         })
             .compileComponents();

@@ -44,3 +44,21 @@
 .iconTextWhite {
   color: white;
 }
+.friendTittle{
+  color: black;
+  text-decoration: underline;
+}
+.friendTittle :hover{
+  cursor: pointer;
+}
+.matcard {
+  width: 350px;
+  margin: 0px auto 0px;
+
+}
+
+@media screen and (max-width: 400px) {
+  .matcard {
+    width: 300px;
+  }
+}

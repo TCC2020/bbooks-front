@@ -41,7 +41,6 @@ export class NavBarComponent implements OnInit {
         });
         this.getuser();
         this.refreshRequest();
-
     }
 
     refreshRequest() {
@@ -54,6 +53,8 @@ export class NavBarComponent implements OnInit {
         if (this.isLogged) {
             this.friendService.getRequests().subscribe(requests => {
                     this.requests = requests;
+                    // console.log(this.requests)
+
                 },
                 error => {
                     console.log('error getRequests', error);

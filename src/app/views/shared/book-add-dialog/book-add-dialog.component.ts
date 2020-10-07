@@ -140,8 +140,9 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.page = this.Book.numberPage;
 
         if (this.tagsBook.length > 0) {
-            this.userbookService.update(this.userBookTo).pipe(take(1)).subscribe(
+            this.userbookService.update(this.userBookTo).subscribe(
                 value => {
+                    console.log(value)
                     this.dialogRef.close(value);
                 },
                 error => {
@@ -150,7 +151,7 @@ export class BookAddDialogComponent implements OnInit {
             );
 
         } else {
-            this.userbookService.save(this.userBookTo).pipe(take(1)).subscribe(
+            this.userbookService.save(this.userBookTo).subscribe(
                 value => {
                     this.dialogRef.close(value);
                 },
