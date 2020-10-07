@@ -10,34 +10,57 @@
     <div>
       <mat-form-field class="inputNovaSenha">
         <mat-label>Email</mat-label>
-        <input matInput disabled id="emailNovaSenha" value="{{profileTo?.user?.email}}">
+        <input matInput disabled id="emailNovaSenha" value="{{user?.email}}">
       </mat-form-field>
     </div>
-  
     <div>
       <mat-form-field class="inputNovaSenha">
-        <mat-label>Senha Atual</mat-label>
-        <input type="password" matInput id="senhaAtualNovaSenha">
-        <mat-hint>Insira sua senha atual para alterá-la.</mat-hint>
+          <mat-label>{{'PADRAO.SENHA' | translate}}</mat-label>
+          <input type="password"
+                 matInput
+                 [type]="hide ? 'password' : 'text'"
+                 formControlName="password"
+                 id="senhaCadastrar">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="newPassword.get('password').hasError('maxlength') && !newPassword.get('password').hasError('required')">
+              {{'CADASTRO1.VLD_SENHA' | translate}}
+          </mat-error>
+          <mat-error *ngIf="newPassword.get('password').hasError('pattern') && !newPassword.get('password').hasError('required')">
+              {{'CADASTRO1.VLD_SENHA_CARACTERES' | translate}}
+          </mat-error>
+          <mat-error *ngIf="newPassword.get('password').hasError('required')">
+              {{'CADASTRO1.SENHA_E' | translate}}<strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+          </mat-error>
+          <mat-hint>
+              {{'CADASTRO1.SENHA_INIT' | translate}}
+          </mat-hint>
       </mat-form-field>
-    </div>
 
-    <div>
-      <mat-form-field class="inputNovaSenha">
-        <mat-label>Nova Senha</mat-label>
-        <input type="password" matInput id="novaSenhaNovaSenha">
-        <mat-hint>Sua nova senha deve ter entre 8 e 20 caracters, os quais devem ser letras e números.</mat-hint>
-      </mat-form-field>
     </div>
-
+    <br>
     <div>
         <mat-form-field class="inputNovaSenha">
-          <mat-label>Confirmar Nova Senha</mat-label>
-          <input type="password" matInput id="confirmarSenhaNovaSenha">
+            <mat-label>{{'PADRAO.CONFIRMAR_SENHA' | translate}}</mat-label>
+            <input type="password"
+                   [type]="hide ? 'password' : 'text'"
+                   matInput
+                   formControlName="confirmPassword"
+                   [errorStateMatcher]="matcher"
+                   id="confirmarSenhaCadastrar" onpaste="return false" ondrop="return false">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="newPassword.hasError('notSame')">
+                {{'CADASTRO1.VLD_SENHA_DIFERENTE' | translate}}
+            </mat-error>
         </mat-form-field>
-      </div>
+    </div>
   
     <div>
-      <button mat-raised-button id="confirmarNovaSenha">Confirmar</button>
+      <button  type="button" mat-raised-button color="primary" [disabled]="newPassword.invalid" (click)="resetPassword()">
+          {{'PADRAO.CONFIRMAR' | translate}}
+      </button>
     </div>
   </form>

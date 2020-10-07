@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {SocialAuthService} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import {UserTO} from '../models/userTO.model';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -32,6 +33,12 @@ export class AuthService {
         this.isLogged();
     }
 
+    getByToken(token: string): Observable<UserTO> {
+        return this.http.get<UserTO>(this.api + 'reset-pass/' + token);
+    }
+    resetPass(ResetPassTO: any): Observable<any> {
+        return this.http.put(this.api + 'reset-pass/' , ResetPassTO);
+    }
 
     logout() {
         localStorage.clear();
@@ -77,6 +84,7 @@ export class AuthService {
     login(loginTO) {
         return this.http.post(this.api + 'login', loginTO);
     }
+
     loginToken(loginTO) {
         return this.http.post(this.api + 'login/token', loginTO);
     }

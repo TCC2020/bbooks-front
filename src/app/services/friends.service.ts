@@ -42,4 +42,7 @@ export class FriendsService {
     getFriends(): Observable<Friendship> {
         return this.http.get<Friendship>(this.api);
     }
+    getFriendsByUserName(username: string): Observable<Friendship> {
+        return this.http.get<Friendship>(this.api + username);
+    }
 }

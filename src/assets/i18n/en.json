@@ -20,7 +20,8 @@
     "FILTRO": "Filter",
     "ENVIAR": "SEND",
     "SALVAR": "Save",
-    "CANCELAR": "Cancel"
+    "CANCELAR": "Cancel",
+    "CONFIRMAR": "Confirm"
 
 
   },
