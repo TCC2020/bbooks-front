@@ -4,16 +4,15 @@ import {RecuperarSenhaComponent} from './recuperar-senha.component';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {MaterialModule} from '../../material/material.module';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {
     GoogleLoginProvider,
-    SocialAuthService,
     SocialAuthServiceConfig,
     SocialLoginModule
 } from 'angularx-social-login';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
 
 describe('RecuperarSenhaComponent', () => {
     let component: RecuperarSenhaComponent;
@@ -29,7 +28,8 @@ describe('RecuperarSenhaComponent', () => {
                 SocialLoginModule,
                 BrowserAnimationsModule,
                 NoopAnimationsModule,
-                ReactiveFormsModule
+                ReactiveFormsModule,
+                TranslateServiceMockForRoot
             ],
             declarations: [RecuperarSenhaComponent],
             providers: [
