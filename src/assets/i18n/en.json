@@ -18,7 +18,11 @@
     "REMOVER": "Remove",
     "ADICIONAR": "Add",
     "FILTRO": "Filter",
-    "ENVIAR": "SEND"
+    "ENVIAR": "SEND",
+    "SALVAR": "Save",
+    "CANCELAR": "Cancel"
+
+
   },
   "NAV": {
     "SAIR": "Logout",
@@ -60,7 +64,8 @@
     "MSG_ESTADO_E": "State is",
     "MSG_CIDADE_E": "City is",
     "MSG_FOTO_E": "Image is",
-    "MSG_DTA_NASC": "Birthdate is"
+    "MSG_DTA_NASC": "Birthdate is",
+    "DTA_NASIMENTO": "Birthdate"
   },
   "ESTANTE": {
     "ESTANTE_VIRTUAL": "Bookcase",
@@ -117,6 +122,25 @@
     "PAG_LIDAS": "How many pages have you read?",
     "MSG_APG_E": "Number of pages is",
     "MSG_COMENT": "Comment must have a maximum of 50 characters."
+  },
+  "CONFIG_PERFIL": {
+    "DADOS_USER": "User data",
+    "INFO_USER": "User Information",
+    "EDITAR_SENHA": "Change Password",
+    "LISTA_AMIGOS": "See your friends list.",
+    "LISTA_ESTANTE": "See your books on the bookcase",
+    "USER_ESTATISTICA": "User statistics.",
+    "ESTATISTICA": "Statistics",
+    "VER_AMIGOS": "See friends",
+    "VER_ESTANTE": "View your bookcase",
+    "VER_ESTATI": "View your statistics",
+    "MSG_REALIZE": "Change your user's password, which gives access to BBooks functionalities.",
+    "MSG_VEJA_LIVROS": "See your books on the bookcase"
+  },
+  "ESQUECI_SENHA": {
+    "RECUP_SENHA": "Password recovery",
+    "MSG_EMAIL_CAD": "Enter the registered email to recover your password.",
+    "RECEBER_LINK": "You will receive an instant link in your email box to recover your password!"
   }
 
 }

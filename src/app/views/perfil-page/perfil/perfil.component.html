@@ -17,19 +17,27 @@
              <li><a href="perfil#h2-estatistica">Estatística</a></li>
           </ul>-->
             <div>
-                <a href="perfil#h2-informacoes-usuario">Informações do Usuário</a>
+                <a href="{{userTO?.userName}}/settings#h2-informacoes-usuario">
+                    {{'CONFIG_PERFIL.DADOS_USER' | translate}}
+                </a>
             </div>
             <div>
-                <a href="perfil#h2-alterar-senha">Alterar Senha</a>
+                <a href="{{userTO?.userName}}/settings#h2-alterar-senha">
+                    {{'CONFIG_PERFIL.EDITAR_SENHA' | translate}}
+                </a>
             </div>
             <div>
-                <a href="perfil#h2-amigos">Amigos</a>
+                <a href="{{userTO?.userName}}/settings#h2-amigos">
+                    {{'PERFIL.friends' | translate}}
+                </a>
             </div>
             <div>
-                <a href="perfil#h2-estante">Estante</a>
+                <a href="{{userTO?.userName}}/settings#h2-estante">{{'ESTANTE.ESTANTE_VIRTUAL' | translate}}</a>
             </div>
             <div>
-                <a href="perfil#h2-estatistica">Estatística</a>
+                <a href="{{userTO?.userName}}/settings#h2-estatistica">
+                    {{'CONFIG_PERFIL.ESTATISTICA' | translate}}
+                </a>
             </div>
         </div>
 
@@ -37,65 +45,64 @@
             <mat-card class="card">
                 <mat-card-header>
                     <mat-card-title>
-                        <h2 name="h2-informacoes-usuario" id="h2-informacoes-usuario">Informações do Usuário</h2>
+                        <h2 name="h2-informacoes-usuario" id="h2-informacoes-usuario">{{'CONFIG_PERFIL.INFO_USER' | translate}}</h2>
                     </mat-card-title>
-                    <mat-card-subtitle>Todos os dados cadastrados do usuário.</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <mat-expansion-panel>
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Dados do Usuário
+                                {{'CONFIG_PERFIL.DADOS_USER' | translate}}
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <form [formGroup]="basicInfo">
                             <div class="container-dados-usuario">
-                                <h3 class="titulo-dados-usuario">Nome</h3>
+                                <h3 class="titulo-dados-usuario">{{'PADRAO.NOME' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.name}}</p>
                                 <!-- input para alteração -->
                                 <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
-                                    <mat-label>Nome</mat-label>
+                                    <mat-label>{{'PADRAO.NOME' | translate}}</mat-label>
                                     <input matInput type="text" formControlName="name"/>
                                 </mat-form-field>
                                 <!--<input type="email" formControlName="email" *ngIf="modeBasicInfo">-->
                             </div>
                             <mat-divider></mat-divider>
                             <div class="container-dados-usuario">
-                                <h3 class="titulo-dados-usuario">Sobrenome</h3>
+                                <h3 class="titulo-dados-usuario">{{'PADRAO.SOBRENOME' | translate}}</h3>
                                 <p class="conteudo-dados-usuario"
                                    *ngIf="!modeBasicInfo">{{userTO?.profile?.lastName}}</p>
                                 <!-- input para alteração -->
                                 <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
-                                    <mat-label>Sobrenome</mat-label>
+                                    <mat-label>{{'PADRAO.SOBRENOME' | translate}}</mat-label>
                                     <input matInput type="text" formControlName="lastName"/>
                                 </mat-form-field>
                                 <!--<input type="email" formControlName="email" *ngIf="modeBasicInfo">-->
                             </div>
                             <mat-divider></mat-divider>
                             <div class="container-dados-usuario">
-                                <h3 class="titulo-dados-usuario">EMAIL</h3>
+                                <h3 class="titulo-dados-usuario">{{'PADRAO.EMAIL' | translate | uppercase}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.email}}</p>
                                 <!-- input para alteração -->
                                 <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
-                                    <mat-label>Email</mat-label>
+                                    <mat-label>{{'PADRAO.EMAIL' | translate}}</mat-label>
                                     <input matInput type="email" formControlName="email"/>
                                 </mat-form-field>
                                 <!--<input type="email" formControlName="email" *ngIf="modeBasicInfo">-->
                             </div>
                             <mat-divider></mat-divider>
                             <div class="container-dados-usuario">
-                                <h3 class="titulo-dados-usuario">NOME DE USUÁRIO</h3>
+                                <h3 class="titulo-dados-usuario">{{'PADRAO.NOME_USUARIO' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.userName}}</p>
                                 <!-- input para alteração -->
                                 <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
-                                    <mat-label>Nome de Usuario</mat-label>
+                                    <mat-label>{{'PADRAO.NOME_USUARIO' | translate}}</mat-label>
                                     <input matInput type="text" formControlName="userName"/>
                                 </mat-form-field>
-                                <input type="text" formControlName="userName" *ngIf="modeBasicInfo">
+<!--                                <input type="text" formControlName="userName" *ngIf="modeBasicInfo">-->
                             </div>
                             <mat-divider></mat-divider>
                             <div class="container-dados-usuario">
-                                <h3 class="titulo-dados-usuario">DATA DE NASCIMENTO</h3>
+                                <h3 class="titulo-dados-usuario">{{'CADASTRO2.DTA_NASIMENTO' | translate}}</h3>
                                 <p class="conteudo-dados-usuario"
                                    *ngIf="!modeBasicInfo">{{userTO?.profile?.birthDate}}</p>
                                 <!-- input para alteração -->
@@ -106,11 +113,11 @@
                             </div>
                             <mat-divider></mat-divider>
                             <div class="container-dados-usuario">
-                                <h3 class="titulo-dados-usuario">PAÍS</h3>
+                                <h3 class="titulo-dados-usuario">{{'PADRAO.PAIS' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.country}}</p>
                                 <!-- input para alteração -->
                                 <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
-                                    <mat-label>País</mat-label>
+                                    <mat-label>{{'PADRAO.PAIS' | translate}}</mat-label>
                                     <mat-select formControlName="country">
                                         <mat-option [value]="country.name" *ngFor="let country of countrys"
                                                     (change)="getStates(country)"
@@ -122,11 +129,11 @@
                             </div>
                             <mat-divider></mat-divider>
                             <div class="container-dados-usuario">
-                                <h3 class="titulo-dados-usuario">ESTADO</h3>
+                                <h3 class="titulo-dados-usuario">{{'PADRAO.ESTADO' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.state}}</p>
                                 <!-- input para alteração -->
                                 <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
-                                    <mat-label>Estado</mat-label>
+                                    <mat-label>{{'PADRAO.ESTADO' | translate}}</mat-label>
                                     <mat-select formControlName="state">
                                         <mat-option [value]="state.name" *ngFor="let state of states"
                                                     (blur)="getCitys(state)">{{state.name}}</mat-option>
@@ -137,11 +144,11 @@
                             </div>
                             <mat-divider></mat-divider>
                             <div class="container-dados-usuario">
-                                <h3 class="titulo-dados-usuario">CIDADE</h3>
+                                <h3 class="titulo-dados-usuario">{{'PADRAO.CIDADE' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.city}}</p>
                                 <!-- input para alteração -->
                                 <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
-                                    <input type="text" placeholder="Cidade" aria-label="Number" matInput
+                                    <input type="text" placeholder="{{'PADRAO.CIDADE' | translate}}" aria-label="Number" matInput
                                            formControlName="city" [matAutocomplete]="autoCity"
                                            class="example-full-width"/>
                                     <mat-autocomplete autoActiveFirstOption #autoCity="matAutocomplete">
@@ -156,12 +163,12 @@
                             </div>
                             <div *ngIf="!modeBasicInfo">
                                 <button type="button" mat-raised-button color="primary" (click)="changeModeBasicInfo()">
-                                    EDITAR SUAS INFORMAÇÕES DE PERFIL
+                                    {{'PADRAO.EDITAR' | translate}}
                                 </button>
                             </div>
                             <div class="botoes-edicao" *ngIf="modeBasicInfo">
-                                <button type="button" mat-raised-button color="primary" (click)="save()">SALVAR</button>
-                                <button type="button" mat-raised-button (click)="changeModeBasicInfo()">CANCELAR
+                                <button type="button" mat-raised-button color="primary" (click)="save()">{{'PADRAO.SALVAR' | translate}}</button>
+                                <button type="button" mat-raised-button (click)="changeModeBasicInfo()">{{'PADRAO.CANCELAR' | translate}}
                                 </button>
                             </div>
                         </form>
@@ -172,28 +179,28 @@
                 <mat-card class="card">
                     <mat-card-header>
                         <mat-card-title>
-                            <h2 name="h2-alterar-senha" id="h2-alterar-senha">Alterar Senha</h2>
+                            <h2 name="h2-alterar-senha" id="h2-alterar-senha">{{'CONFIG_PERFIL.EDITAR_SENHA' | translate}}</h2>
                         </mat-card-title>
-                        <mat-card-subtitle>Realize a alteração de senha do seu usuário, que dá acesso às funcionalidades
-                            do BBooks.
+                        <mat-card-subtitle>
+                            {{'CONFIG_PERFIL.MSG_REALIZE' | translate}}
                         </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
                         <a href="nova-senha">
-                            <button mat-button class="botao-editar">ALTERE SUA SENHA</button>
+                            <button mat-button class="botao-editar">{{'CONFIG_PERFIL.EDITAR_SENHA' | translate}}</button>
                         </a>
                     </mat-card-actions>
                 </mat-card>
                 <mat-card class="card">
                     <mat-card-header>
                         <mat-card-title>
-                            <h2 name="h2-amigos" id="h2-amigos">Amigos</h2>
+                            <h2 name="h2-amigos" id="h2-amigos">{{'PERFIL.friends' | translate}}</h2>
                         </mat-card-title>
-                        <mat-card-subtitle>Veja sua lista de amigos.</mat-card-subtitle>
+                        <mat-card-subtitle>{{'CONFIG_PERFIL.LISTA_AMIGOS' | translate}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
                         <a href="perfil#">
-                            <button mat-button class="botao-editar">VER AMIGOS</button>
+                            <button mat-button class="botao-editar">{{'CONFIG_PERFIL.VER_AMIGOS' | translate}}</button>
                         </a>
                     </mat-card-actions>
                 </mat-card>
@@ -202,13 +209,13 @@
                 <mat-card class="card">
                     <mat-card-header>
                         <mat-card-title>
-                            <h2 name="h2-estante" id="h2-estante">Estante</h2>
+                            <h2 name="h2-estante" id="h2-estante">{{'ESTANTE.ESTANTE_VIRTUAL' | translate}}</h2>
                         </mat-card-title>
-                        <mat-card-subtitle>Veja seus livros na estante virtual.</mat-card-subtitle>
+                        <mat-card-subtitle>{{'CONFIG_PERFIL.VER_AMIGOS' | translate}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
                         <a href="perfil#">
-                            <button mat-button class="botao-editar">VER ESTANTE VIRTUAL</button>
+                            <button mat-button class="botao-editar">{{'CONFIG_PERFIL.MSG_VEJA_LIVROS' | translate}}</button>
                         </a>
                     </mat-card-actions>
                 </mat-card>
@@ -216,13 +223,13 @@
                 <mat-card class="card">
                     <mat-card-header>
                         <mat-card-title>
-                            <h2 name="h2-estatistica" id="h2-estatistica">Estatística</h2>
+                            <h2 name="h2-estatistica" id="h2-estatistica">{{'CONFIG_PERFIL.ESTATISTICA' | translate}}</h2>
                         </mat-card-title>
-                        <mat-card-subtitle>Estatísticas do usuário.</mat-card-subtitle>
+                        <mat-card-subtitle>{{'CONFIG_PERFIL.USER_ESTATISTICA' | translate}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
                         <a href="perfil#">
-                            <button mat-button class="botao-editar">VER SUAS ESTATÍSTICAS</button>
+                            <button mat-button class="botao-editar">{{'CONFIG_PERFIL.VER_ESTATI' | translate}}</button>
                         </a>
                     </mat-card-actions>
                 </mat-card>

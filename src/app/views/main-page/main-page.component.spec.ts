@@ -6,7 +6,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../../material/material.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import { SocialLoginModule} from 'angularx-social-login';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
 import {SocialAuthServiceConfigMock} from '../../mocks/google.provide.mock';

@@ -52,6 +52,7 @@ export class BookcaseComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.bookCase = new BookCase();
         this.inscricao = this.route.data.subscribe((data: { data: {bookcase: BookCase, user: UserTO }}) => {
             this.bookCase = data.data.bookcase;
             this.user = data.data.user;

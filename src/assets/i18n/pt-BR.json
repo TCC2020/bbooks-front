@@ -18,9 +18,9 @@
     "REMOVER": "Remover",
     "ADICIONAR": "Adicionar",
     "FILTRO": "Filtro",
-    "ENVIAR": "ENVIAR"
-
-
+    "ENVIAR": "ENVIAR",
+    "SALVAR": "Salvar",
+    "CANCELAR": "Cancelar"
   },
   "NAV": {
     "SAIR": "Sair",
@@ -46,13 +46,13 @@
     "VLD_EMAIL": "Por favor, insira um endereço de e-mail válido",
     "MSG_EMAIL_INIT": "Informe um endereço de e-mail válido, pois você receberá um e-mail de confirmação.",
     "VLD_USERNAME_LETRA": "O primeiro caractere deve ser uma letra",
-    "MSG_USERNAME_E":"Nome de Usuário é",
+    "MSG_USERNAME_E": "Nome de Usuário é",
     "MSG_USERNAME_INT": "Seu nome de usuário pode ter letras, números e pontos finais.",
     "VLD_SENHA": "A senha deve conter, no máximo, 20 caracteres",
     "VLD_SENHA_CARACTERES": "Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.",
     "SENHA_E": "Senha é,",
     "SENHA_INIT": "Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.",
-    "VLD_SENHA_DIFERENTE":"Senhas diferentes"
+    "VLD_SENHA_DIFERENTE": "Senhas diferentes"
   },
   "CADASTRO2": {
     "TITULO": "Preencha o formulário para finalizar seu cadastro",
@@ -62,7 +62,9 @@
     "MSG_ESTADO_E": "Estado é",
     "MSG_CIDADE_E": "Cidade é",
     "MSG_FOTO_E": "Foto é",
-    "MSG_DTA_NASC": "Data de Nascimento é"
+    "MSG_DTA_NASC": "Data de Nascimento é",
+    "DTA_NASIMENTO": "Data de Nascimento"
+
   },
   "ESTANTE": {
     "ESTANTE_VIRTUAL": "Estante Virtual",
@@ -76,7 +78,7 @@
     "VLD_TAG": "A Tag deve conter, no máximo, 20 caracteres."
   },
   "GENEROS": {
-    "LITERATURA" :  "Literatura",
+    "LITERATURA": "Literatura",
     "FICÇÃO": "Ficção",
     "CLASSICOS": "Clássicos",
     "ROMANCE": "Romance"
@@ -101,7 +103,7 @@
     "IR_PG_INICIAL": "Ir para página inicial",
     "IR": "IR"
   },
-  "UPLOAD":{
+  "UPLOAD": {
     "TITULO": "Escolher foto de perfil",
     "MSG_FOTO_E": "Foto é"
   },
@@ -119,6 +121,25 @@
     "PAG_LIDAS": "Quantas páginas você leu?",
     "MSG_APG_E": "Número de páginas é",
     "MSG_COMENT": "Comentário tem que ter no máximo 50 caracteres."
+  },
+  "CONFIG_PERFIL": {
+    "DADOS_USER": "Dados do Usuário",
+    "INFO_USER": "Informações do Usuário",
+    "EDITAR_SENHA": "Alterar Senha",
+    "LISTA_AMIGOS": "Veja sua lista de amigos.",
+    "LISTA_ESTANTE": "Veja seus livros na estante virtual.",
+    "USER_ESTATISTICA": "Estatísticas do usuário.",
+    "ESTATISTICA": "Estatísticas",
+    "VER_AMIGOS": "Ver amigos",
+    "VER_ESTANTE": "Ver estante virtual",
+    "VER_ESTATI": "Ver suas estatísticas",
+    "MSG_REALIZE": "Realize a alteração de senha do seu usuário, que dá acesso às funcionalidades do BBooks.",
+    "MSG_VEJA_LIVROS": "Veja seus livros na estante virtual."
+  },
+  "ESQUECI_SENHA": {
+    "RECUP_SENHA": "Recuperação de senha",
+    "MSG_EMAIL_CAD": "Informe o email cadastrado para recuperar sua senha.",
+    "RECEBER_LINK": "Você receberá em instantes um link na sua caixa de email para recuperação da senha!"
   }
 }
 
