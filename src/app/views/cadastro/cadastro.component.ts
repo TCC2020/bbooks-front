@@ -5,7 +5,6 @@ import {CadastroService} from '../../services/cadastro-service.service';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {UserTO} from '../../models/userTO.model';
 import {AuthService} from '../../services/auth.service';
-import {EncryptService} from 'src/app/services/encrypt.service';
 import {take} from 'rxjs/operators';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -34,7 +33,6 @@ export class CadastroComponent implements OnInit {
         private router: Router,
         private cadastroService: CadastroService,
         private auth: AuthService,
-        private encrypt: EncryptService
     ) {
     }
 
