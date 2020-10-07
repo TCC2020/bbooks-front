@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {Observable} from 'rxjs';
 import {UserService} from '../../../services/user.service';
 import {UserTO} from '../../../models/userTO.model';
-import {map, take} from 'rxjs/operators';
+import {catchError, map, take} from 'rxjs/operators';
 import {AuthService} from '../../../services/auth.service';
 
 
@@ -13,7 +13,8 @@ export class MainResolve implements Resolve<UserTO> {
     isUser: boolean;
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private authService: AuthService
     ) {
     }
 
@@ -22,7 +23,11 @@ export class MainResolve implements Resolve<UserTO> {
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
         const username = route.params.username;
-        return this.userService.getUserName(username).pipe(take(1), map(user => user));
+        return this.userService.getUserName(username, this.authService.getToken())
+            .pipe(
+                take(1),
+                map(user => user)
+            );
     }
 
 }

@@ -18,11 +18,11 @@
             <div><b>{{friend?.profile.name}} {{friend?.profile.lastName}}</b></div>
         </div>
         <div>
-            <button  mat-raised-button color="accent" class="iconTextWhite">
+            <button  mat-raised-button color="accent" class="iconTextWhite" *ngIf="user.profile.friendshipStatus ==='added'">
                 <mat-icon>
                     people_alt
                 </mat-icon>
-                Amigos
+                {{'PERFIL.friends' | translate}}
             </button>
         </div>
     </div>
