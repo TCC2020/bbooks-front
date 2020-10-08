@@ -186,7 +186,7 @@
                         </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
-                        <a href="nova-senha">
+                        <a routerLink="/recuperar-senha">
                             <button mat-button class="botao-editar">{{'CONFIG_PERFIL.EDITAR_SENHA' | translate}}</button>
                         </a>
                     </mat-card-actions>
@@ -199,7 +199,7 @@
                         <mat-card-subtitle>{{'CONFIG_PERFIL.LISTA_AMIGOS' | translate}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
-                        <a href="perfil#">
+                        <a routerLink="/{{userTO?.userName}}/friends">
                             <button mat-button class="botao-editar">{{'CONFIG_PERFIL.VER_AMIGOS' | translate}}</button>
                         </a>
                     </mat-card-actions>
@@ -214,7 +214,7 @@
                         <mat-card-subtitle>{{'CONFIG_PERFIL.VER_AMIGOS' | translate}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
-                        <a href="perfil#">
+                        <a routerLink="/book">
                             <button mat-button class="botao-editar">{{'CONFIG_PERFIL.MSG_VEJA_LIVROS' | translate}}</button>
                         </a>
                     </mat-card-actions>

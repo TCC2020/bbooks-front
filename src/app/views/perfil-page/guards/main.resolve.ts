@@ -23,11 +23,13 @@ export class MainResolve implements Resolve<UserTO> {
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
         const username = route.params.username;
-        return this.userService.getUserName(username, this.authService.getToken())
+        let result;
+        result = this.userService.getUserName(username, this.authService.getToken())
             .pipe(
                 take(1),
                 map(user => user)
             );
+        return result;
     }
 
 }

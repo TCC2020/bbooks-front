@@ -1,10 +1,11 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserTO} from '../../../models/userTO.model';
-import {take} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {AuthService} from '../../../services/auth.service';
 import {FriendsService} from '../../../services/friends.service';
 import {Friend} from '../../../models/friend.model';
+import {UserService} from '../../../services/user.service';
 
 @Component({
     selector: 'app-main-page',
@@ -14,16 +15,17 @@ import {Friend} from '../../../models/friend.model';
 export class MainPageComponent implements OnInit, OnChanges {
     links = ['feed', 'bookcase', 'friends'];
     activeLink = this.links[0];
-    user: UserTO;
-    friendTO: Friend;
+    user: UserTO = new UserTO();
+    friendTO: Friend = new Friend();
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private authService: AuthService,
-        private friendsService: FriendsService
+        private friendsService: FriendsService,
+        private userService: UserService
     ) {
-        this.route.data.pipe(take(1)).subscribe((data: { user: UserTO }) => {
+        this.route.data.subscribe((data: { user: UserTO }) => {
             this.user = data.user;
         });
     }
@@ -33,6 +35,9 @@ export class MainPageComponent implements OnInit, OnChanges {
     }
     ngOnChanges() {
         this.changeMenu();
+        this.userService.getUserName(this.user.userName, this.authService.getToken()).subscribe((result) => {
+            this.user = result;
+        });
     }
 
     changeMenu(): void {
@@ -59,6 +64,7 @@ export class MainPageComponent implements OnInit, OnChanges {
         this.friendTO.id = Number.parseInt(this.user.profile.id);
         this.friendsService.add(this.friendTO).subscribe(() => {
                 alert('pedido enviado!');
+                this.user.profile.friendshipStatus = 'pending';
             },
             error => {
                 console.log(error);

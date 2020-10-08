@@ -91,7 +91,9 @@
     "PAGINAS": "Páginas",
     "IDIOMA": "Idioma",
     "AVALIACAO": "Avaliação",
-    "OUTRAS_INFO": "OUTRAS INFORMAÇÕES"
+    "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
+    "CRIAR_LIVRO": "Criar livro"
+
   },
   "PERFIL": {
     "feed": "feed",

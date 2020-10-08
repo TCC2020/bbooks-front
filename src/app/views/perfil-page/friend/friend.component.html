@@ -1,31 +1,58 @@
 <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="20px"
      fxLayoutAlign.xs="space-around center">
 
-    <mat-form-field >
+    <mat-form-field>
         <mat-label>Encontrar Amigos</mat-label>
-        <input matInput type="text" >
+        <input matInput type="text">
     </mat-form-field>
 </div>
 
-<div fxLayout="column" fxLayoutAlign="space-evenly center" >
-    <div fxLayout="row" fxLayoutAlign="space-between center"*ngFor="let friend of friendShip?.friends" fxLayoutGap="10px" >
-        <div class="card" >
-            <div class="container">
-                <img [src]="friend?.profile.profileImage ? friend.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" class="image" >
-            </div>
-        </div>
-        <div>
-            <div><b>{{friend?.profile.name}} {{friend?.profile.lastName}}</b></div>
-        </div>
-        <div>
-            <button  mat-raised-button color="accent" class="iconTextWhite" *ngIf="user.profile.friendshipStatus ==='added'">
-                <mat-icon>
-                    people_alt
-                </mat-icon>
-                {{'PERFIL.friends' | translate}}
-            </button>
-        </div>
-    </div>
+<div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="6px">
+    <div *ngFor="let friend of friendShip?.friends">
+        <mat-card class="matcard">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="card">
+                    <div class="container">
+                        <img [src]="friend?.profile.profileImage ? friend.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'"
+                             class="image">
+                    </div>
+                </div>
+                <div>
+                    <div><a style="color: black"
+                            [routerLink]="['', friend?.userName]"><b>@{{friend?.userName}}</b></a>
+                    </div>
+                </div>
 
+                <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="user.profile.friendshipStatus === null" (click)="sendRequest()">
+                    <mat-icon>
+                        group_add
+                    </mat-icon>
+                    {{'PADRAO.ADICIONAR' | translate | titlecase}}
+                </button>
+                <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf=" user.profile.friendshipStatus === 'added'">
+                    <mat-icon>
+                        people_alt
+                    </mat-icon>
+                    {{'PERFIL.friends' | translate | titlecase}}
+                </button>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="menuAmigos" *ngIf=" user.profile.friendshipStatus === 'pending'" >
+                    <mat-icon>done</mat-icon>
+                    Solicitacao enviada
+                </button>
+                <mat-menu #menuAmigos="matMenu">
+                    <div mat-menu-item>
+                        <mat-icon color="warn">indeterminate_check_box</mat-icon>
+                        <span>Cancelar Solicitacao</span>
+                    </div>
+                </mat-menu>
+
+            </div>
+            <div>
+                <div><a style="color: black"
+                        [routerLink]="['', friend?.userName]"><b>{{friend?.profile.name}} {{friend?.profile.lastName}}</b></a>
+                </div>
+            </div>
+        </mat-card>
+    </div>
 </div>
 

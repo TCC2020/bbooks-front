@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {take} from 'rxjs/operators';
 import {UserTO} from '../../../models/userTO.model';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-feed',
@@ -21,5 +22,6 @@ export class FeedComponent implements OnInit {
             this.user = data.user;
         });
     }
+
 
 }

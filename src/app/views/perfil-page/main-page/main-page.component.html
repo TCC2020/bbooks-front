@@ -12,22 +12,26 @@
                 </mat-icon>
                 {{'PERFIL.EDITAR_PERFIL' | translate | titlecase}}
             </button>
-            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus !='added'" (click)="sendRequest()">
+            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === null" (click)="sendRequest()">
                 <mat-icon>
                     group_add
                 </mat-icon>
                 {{'PADRAO.ADICIONAR' | translate | titlecase}}
             </button>
-            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === null">
+            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'added'">
                 <mat-icon>
                     people_alt
                 </mat-icon>
                 {{'PERFIL.friends' | translate | titlecase}}
             </button>
+            <button mat-raised-button color="primary" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'pending'" >
+                <mat-icon>done</mat-icon>
+                Solicitacao enviada
+            </button>
             <mat-menu #menuAmigos="matMenu">
                 <div mat-menu-item>
-                    <mat-icon>indeterminate_check_box</mat-icon>
-                    <span>Desfazer amizade</span>
+                    <mat-icon color="warn">indeterminate_check_box</mat-icon>
+                    <span>Cancelar Solicitacao</span>
                 </div>
             </mat-menu>
             <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">

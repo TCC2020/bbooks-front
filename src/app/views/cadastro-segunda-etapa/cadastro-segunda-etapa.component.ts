@@ -129,13 +129,17 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         if (this.auth.getUserRegister().profile.profileImage) {
             this.getByIdToUpdateProfile();
         } else {
-            this.cdnService.upload({file: this.file, type: 'image'}, 'profile_image').subscribe(() => {
-                    this.getByIdToUpdateProfile();
-                },
-                error => {
-                    console.log('error upload', error);
-                    localStorage.clear();
-                });
+            if (this.file) {
+                this.cdnService.upload({file: this.file, type: 'image'}, 'profile_image').subscribe(() => {
+                        this.getByIdToUpdateProfile();
+                    },
+                    error => {
+                        console.log('error upload', error);
+                        localStorage.clear();
+                    });
+            } else {
+                this.getByIdToUpdateProfile();
+            }
         }
 
     }

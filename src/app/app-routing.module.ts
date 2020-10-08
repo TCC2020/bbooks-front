@@ -44,7 +44,7 @@ const routes: Routes = [
     },
     {
         path: '',
-        canActivate: [],
+        canActivate: [AuthGuard],
         loadChildren: () => import('./views/perfil-page/perfil-page.module').then(m => m.PerfilPageModule)
     },
     {
