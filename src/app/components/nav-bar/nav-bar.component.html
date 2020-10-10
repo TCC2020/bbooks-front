@@ -32,6 +32,9 @@
         </mat-menu>
     </div>
     <div *ngIf="isLogged">
+        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/pesquisar-amigos']">
+            <mat-icon>group_add</mat-icon>
+        </button>
         <button  mat-flat-button color="primary" style="width: 5vw;"  [matMenuTriggerFor]="menuPerfil">
             <mat-icon>account_circle</mat-icon>
         </button>
