@@ -35,6 +35,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import {SharedModule} from './views/shared/shared.module';
 import { TrackingDialogComponent } from './views/book-page/tracking-dialog/tracking-dialog.component';
 import { NumbersOnlyInputDirective } from './views/shared/directive/numbers-only-input.directive';
+import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
 
 
 
@@ -55,7 +56,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         NovaSenhaComponent,
         PageNotFoundComponent,
         PageNotFoundComponent,
-        UploadComponent
+        UploadComponent,
+        PesquisarAmigosComponent
     ],
     imports: [
         BrowserModule,

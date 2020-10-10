@@ -11,6 +11,7 @@ import {AuthGuard} from './guards/auth-guard';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
 import { PerfilComponent } from './views/perfil-page/perfil/perfil.component';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
+import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,10 @@ const routes: Routes = [
     },
     {
         path: 'nova-senha/:token', component: NovaSenhaComponent,
+    },
+    {
+        path: 'pesquisar-amigos', component: PesquisarAmigosComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: '',

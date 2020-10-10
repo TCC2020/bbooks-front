@@ -42,4 +42,8 @@ export class UserService {
     update(userTo: UserTO) {
         return this.http.put<UserTO>(this.api + userTo.id, userTo);
     }
+
+    getAllUsers() {
+        return this.http.get<UserTO[]>(this.api);
+    }
 }

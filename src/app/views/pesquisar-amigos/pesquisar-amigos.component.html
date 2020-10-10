@@ -1,0 +1,33 @@
+   <form [formGroup]="pesquisarUsuarios"  class="form-inline mr-auto" fxLayout="row">
+        <div fxFlex="100" fxLayoutAlign="center center">
+            <mat-form-field fxFlex="40" style="margin: 25px;">
+                <mat-label>Procurar amigos</mat-label>
+                <input matInput matInput type="text" fxFlex="40" #nome (keyup)="pesquisar(nome)">
+            </mat-form-field>
+            <button mat-raised-button color="accent" id="search-bt" type="submit">Buscar</button>
+        </div>
+    </form>
+<div class="container-da-lista">
+    <div class="container-lista-amigos">
+        <!--começa card-->
+        <div class="container-amigo" *ngFor="let user of filterUsers">
+            <div class="container-imagem">
+                <div>
+                    <img class="imagem-perfil"
+                    [src]="user.profile.profileImage ?
+                     user.profile.profileImage:
+                    'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                </div>
+                <div class="informacoes">
+                    <div><span>{{user.profile.name}} {{user.profile.lastName}}</span></div>
+                    <div><span>{{user.userName}}</span></div>
+                    <div><span>{{user.profile.city}}</span></div>
+                </div>
+                <div class="adicionar-amigos">
+                    <span><mat-icon>person_add</mat-icon></span>
+               </div>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>
