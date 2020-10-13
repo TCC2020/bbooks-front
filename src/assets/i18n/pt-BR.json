@@ -109,7 +109,7 @@
     "MSG_FOTO_E": "Foto é"
   },
   "STATUS": {
-    "LIDO": "Lidos",
+    "LIDO": "Lido",
     "LENDO": "Lendo",
     "QUERO_LER": "Quero Ler",
     "EMPRESTADO": "Emprestado",
@@ -152,7 +152,7 @@
     "US002": "E-mail já utilizado",
     "US003": "A senha não pode ser nula",
     "US004": "Token não encontrado",
-    "US005": "Nome de usuário já usado",
+    "US005": "Nome de usuário já existe",
     "BK001": "ISBN já existe",
     "BK002": "Livro não encontrado",
     "BK003": "O livro deve ter pelo menos 1 autor",
@@ -166,6 +166,7 @@
     "UB002": "Status inválido",
     "TK001": "Token inválido",
     "FR001": "Pedido não encontrado",
+    "FR002": "Conflito ao remover amigo",
     "FR002": "Conflito ao remover amigo"
   }
 }

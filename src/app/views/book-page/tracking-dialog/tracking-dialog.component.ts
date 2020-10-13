@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {AuthService} from '../../../services/auth.service';
 import {TranslateService} from '@ngx-translate/core';
 import {ReadingTrackingTO} from '../../../models/ReadingTrackingTO.model';
 import {ReadingTrackingService} from '../../../services/reading-tracking.service';
@@ -75,11 +74,19 @@ export class TrackingDialogComponent implements OnInit {
                     this.dialogRef.close(tracking);
                 },
                 error => {
-                    if (error.error.message === 'Livro já está concluído' ||
-                        error.error.message === 'Número de página maior que o total de páginas do livro') {
-                        alert(error.error.message);
+                    let codMessage = '';
+                    if (error.error.message.includes('RT002')) {
+                        codMessage = 'RT002';
+                    }
+                    if (error.error.message.includes('RT003')) {
+                        codMessage = 'RT003';
+                    }
+                    if (codMessage) {
+                        this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                            alert(message);
+                        });
                     } else {
-                        console.log('error tracking', error);
+                        console.log(error);
                     }
                 });
         }
