@@ -22,7 +22,6 @@
     "SALVAR": "Salvar",
     "CANCELAR": "Cancelar",
     "CONFIRMAR": "Confirmar"
-
   },
   "NAV": {
     "SAIR": "Sair",
@@ -66,7 +65,6 @@
     "MSG_FOTO_E": "Foto é",
     "MSG_DTA_NASC": "Data de Nascimento é",
     "DTA_NASIMENTO": "Data de Nascimento"
-
   },
   "ESTANTE": {
     "ESTANTE_VIRTUAL": "Estante Virtual",
@@ -93,7 +91,6 @@
     "AVALIACAO": "Avaliação",
     "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
     "CRIAR_LIVRO": "Criar livro"
-
   },
   "PERFIL": {
     "feed": "feed",
@@ -144,6 +141,32 @@
     "RECUP_SENHA": "Recuperação de senha",
     "MSG_EMAIL_CAD": "Informe o email cadastrado para recuperar sua senha.",
     "RECEBER_LINK": "Você receberá em instantes um link na sua caixa de email para recuperação da senha!"
+  },
+  "MESSAGE_ERROR": {
+    "AU001": "Autor não encontrado",
+    "AU002": "Autor já existe",
+    "AT001": "Erro, senha errada ou usuário não encontrado",
+    "AT002": "Erro, token não encontrado",
+    "AT003": "Senha já alterada",
+    "US001": "Usuário não encontrado",
+    "US002": "E-mail já utilizado",
+    "US003": "A senha não pode ser nula",
+    "US004": "Token não encontrado",
+    "US005": "Nome de usuário já usado",
+    "BK001": "ISBN já existe",
+    "BK002": "Livro não encontrado",
+    "BK003": "O livro deve ter pelo menos 1 autor",
+    "RT001": "Acompanhamento de leitura não encontrado",
+    "RT002": "Número de página maior que o total de páginas do livro",
+    "RT003": "Livro já concluído",
+    "TG001": "Tag não encontrada",
+    "VTG002": "Tag sent does not match ID",
+    "PF001": "Perfil Não Encontrado",
+    "UB001": "UserBook não encontrado",
+    "UB002": "Status inválido",
+    "TK001": "Token inválido",
+    "FR001": "Pedido não encontrado",
+    "FR002": "Conflito ao remover amigo"
   }
 }
 
