@@ -53,12 +53,19 @@ export class NavBarComponent implements OnInit {
         if (this.isLogged) {
             this.friendService.getRequests().subscribe(requests => {
                     this.requests = requests;
-                    // console.log(this.requests)
-
                 },
                 error => {
                     console.log('error getRequests', error);
                 });
+        }
+    }
+
+    verifyRequests() {
+        const result = this.requests?.filter(request => request.status !== 'added');
+        if (result.length > 0) {
+            return result.length;
+        } else {
+            return '';
         }
     }
 
@@ -89,7 +96,9 @@ export class NavBarComponent implements OnInit {
         const acept = new Friend();
         acept.id = request.id;
         this.friendService.acceptRequest(acept).subscribe(() => {
-            alert('Solicitação aceita!');
+            this.translate.get('PADRAO.SOLICITACAO_ACEITA').subscribe(message => {
+                alert(message);
+            });
         });
 
     }
@@ -98,7 +107,9 @@ export class NavBarComponent implements OnInit {
         const acept = new Friend();
         acept.id = request.id;
         this.friendService.deleteRequest(acept).subscribe(() => {
-            alert('Solicitação não aceita!');
+            this.translate.get('PADRAO.SOLICITACAO_N_ACEITA').subscribe(message => {
+                alert(message);
+            });
         });
     }
 }

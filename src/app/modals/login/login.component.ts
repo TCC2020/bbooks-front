@@ -7,6 +7,7 @@ import {SocialUser} from 'angularx-social-login';
 import {UserTO} from '../../models/userTO.model';
 import {UserService} from '../../services/user.service';
 import {Profile} from '../../models/profileTO.model';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
         private authService: AuthService,
         private router: Router,
         private authServiceSocial: SocialAuthService,
-        private userService: UserService
+        private userService: UserService,
+        private translate: TranslateService
     ) {
         this.loginControl = this.fb.group({
             email: '',
@@ -83,10 +85,21 @@ export class LoginComponent implements OnInit {
                 this.router.navigateByUrl('/');
             },
             (err) => {
-                alert(err.error.message);
+                let codMessage = '';
+                if (err.error.message.includes('AT001')) {
+                    codMessage = 'AT001';
+                }
+                if (codMessage) {
+                    this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                        alert(message);
+                    });
+                } else {
+                    console.log(err);
+                }
             }
         );
     }
+
     LoginFinalizeToken(userLogin): void {
         this.authService.loginToken(userLogin).subscribe(res => {
                 this.authService.authenticate(res, this.loginControl.value.keepLogin);

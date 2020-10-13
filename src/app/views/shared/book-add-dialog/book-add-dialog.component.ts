@@ -142,7 +142,6 @@ export class BookAddDialogComponent implements OnInit {
         if (this.tagsBook.length > 0) {
             this.userbookService.update(this.userBookTo).subscribe(
                 value => {
-                    console.log(value)
                     this.dialogRef.close(value);
                 },
                 error => {
@@ -184,21 +183,26 @@ export class BookAddDialogComponent implements OnInit {
     }
 
     getStatusToUserBook(): any {
-        const valueFormStatus = this.formBook.get('statusBook').value;
+        let valueFormStatus = this.formBook.get('statusBook').value;
         const statusEnglish = this.mapStatusEnglish.get(valueFormStatus);
         if (statusEnglish) {
             return statusEnglish;
         } else {
-            return mapBookStatus.get(valueFormStatus.toUpperCase());
+            if (valueFormStatus === 'Quero Ler') {
+                valueFormStatus = 'QUERO_LER';
+                return valueFormStatus;
+            }
+            return mapBookStatus.get(valueFormStatus.toUpperCase()).toUpperCase();
         }
     }
+
     getStatusToUserBookClose(): any {
         const valueFormStatus = this.Book.status.toString() as BookStatusEnglish;
         const statusEnglish = this.mapStatusEnglish.get(valueFormStatus);
         if (statusEnglish) {
-            return statusEnglish;
+            return statusEnglish.toUpperCase();
         } else {
-            const status = this.Book.status as BookStatus;
+            const status = this.Book.status.toString() as BookStatus;
             return mapBookStatus.get(status);
         }
     }

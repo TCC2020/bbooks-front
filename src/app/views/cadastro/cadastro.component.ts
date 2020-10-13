@@ -6,6 +6,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {UserTO} from '../../models/userTO.model';
 import {AuthService} from '../../services/auth.service';
 import {take} from 'rxjs/operators';
+import {TranslateService} from '@ngx-translate/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -33,6 +34,7 @@ export class CadastroComponent implements OnInit {
         private router: Router,
         private cadastroService: CadastroService,
         private auth: AuthService,
+        private translate: TranslateService
     ) {
     }
 
@@ -91,7 +93,22 @@ export class CadastroComponent implements OnInit {
                     });
             },
             (err) => {
-                alert(err.error.message);
+                let codMessage = '';
+                // email
+                if (err.error.message.includes('US002')) {
+                    codMessage = 'US002';
+                }
+                // username
+                if (err.error.message.includes('US005')) {
+                    codMessage = 'US005';
+                }
+                if (codMessage) {
+                    this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                        alert(message);
+                    });
+                } else {
+                    console.log(err);
+                }
             }
         );
     }

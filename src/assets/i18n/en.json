@@ -21,8 +21,12 @@
     "ENVIAR": "SEND",
     "SALVAR": "Save",
     "CANCELAR": "Cancel",
-    "CONFIRMAR": "Confirm"
-
+    "CONFIRMAR": "Confirm",
+    "EMAIL_ENVIADO": "E-mail sent",
+    "SOLICITACAO_ACEITA": "Request accepted",
+    "SOLICITACAO_N_ACEITA": "Request refused",
+    "SOLICITACAO_ENVIADA": "Request sent",
+    "SOLICITACAO_CANCELAR": "Cancel request"
 
   },
   "NAV": {
@@ -49,13 +53,13 @@
     "VLD_EMAIL": "Please enter a valid email address",
     "MSG_EMAIL_INIT": "Enter a valid email address, as you will receive a confirmation email.",
     "VLD_USERNAME_LETRA": "The first character must be a letter",
-    "MSG_USERNAME_E":"Username is",
+    "MSG_USERNAME_E": "Username is",
     "MSG_USERNAME_INT": "Your username can have letters, numbers and periods.",
     "VLD_SENHA": "The password must contain a maximum of 20 characters",
     "VLD_SENHA_CARACTERES": "Your password must be between 8 and 20 characters, which must be letters (upper and lower case), numbers and a special character.",
     "SENHA_E": "Password is",
     "SENHA_INIT": "Your password must be between 8 and 20 characters, which must be letters (upper and lower case), numbers and a special character.",
-    "VLD_SENHA_DIFERENTE":"Different passwords"
+    "VLD_SENHA_DIFERENTE": "Different passwords"
   },
   "CADASTRO2": {
     "TITULO": "Fill out the form to complete your registration",
@@ -80,7 +84,7 @@
     "VLD_TAG": "The tag must contain a maximum of 20 characters."
   },
   "GENEROS": {
-    "LITERATURA" :  "Literature",
+    "LITERATURA": "Literature",
     "FICÇÃO": "Fiction",
     "CLASSICOS": "Classics",
     "ROMANCE": "Romance"
@@ -106,7 +110,7 @@
     "IR_PG_INICIAL": "Go to home page",
     "IR": "Go"
   },
-  "UPLOAD":{
+  "UPLOAD": {
     "TITULO": "Choose profile photo",
     "MSG_FOTO_E": "Photo is"
   },
@@ -143,6 +147,31 @@
     "RECUP_SENHA": "Password recovery",
     "MSG_EMAIL_CAD": "Enter the registered email to recover your password.",
     "RECEBER_LINK": "You will receive an instant link in your email box to recover your password!"
+  },
+  "MESSAGE_ERROR": {
+    "AU001": "Author not found",
+    "AU002": "Author already exists",
+    "AT001": "Error, wrong password or user not found",
+    "AT002": "Error, token not found",
+    "AT003": "Password already changed",
+    "US001": "User not found",
+    "US002": "Email already used",
+    "US003": "Password can't be null",
+    "US004": "Token not found",
+    "US005": "Username already used",
+    "BK001": "IBNB already exists",
+    "BK002": "Book not found",
+    "BK003": "Book should have at least 1 author",
+    "RT001": "Reading Tracking not found",
+    "RT002": "Page number greater than the total pages of the book",
+    "RT003": "Book already completed",
+    "TG001": "Tag not found",
+    "VTG002": "Tag sent does not match ID",
+    "PF001": "Profile not found",
+    "UB001": "UserBook not found",
+    "UB002": "Invalid status",
+    "TK001": "Invalid token",
+    "FR001": "Request not found",
+    "FR002": "Conflict while removing friend"
   }
-
 }
