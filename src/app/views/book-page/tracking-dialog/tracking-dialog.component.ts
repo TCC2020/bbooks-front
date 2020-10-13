@@ -62,11 +62,19 @@ export class TrackingDialogComponent implements OnInit {
                     this.dialogRef.close(tracking);
                 },
                 error => {
-                    if (error.error.message === 'Livro já está concluído' ||
-                        error.error.message === 'Número de página maior que o total de páginas do livro') {
-                        alert(error.error.message);
+                    let codMessage = '';
+                    if (error.error.message.includes('RT002')) {
+                        codMessage = 'RT002';
+                    }
+                    if (error.error.message.includes('RT003')) {
+                        codMessage = 'RT003';
+                    }
+                    if (codMessage) {
+                        this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                            alert(message);
+                        });
                     } else {
-                        console.log('error tracking update', error);
+                        console.log(error);
                     }
                 });
         } else {
