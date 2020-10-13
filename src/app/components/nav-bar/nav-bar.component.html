@@ -9,7 +9,7 @@
     </button>
     <div *ngIf="isLogged">
         <button  mat-flat-button color="primary" style="width: 5vw;">
-            <mat-icon [matBadge]="requests?.length ? requests?.length : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
+            <mat-icon [matBadge]="requests?.length ? verifyRequests() : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
         </button>
         <mat-menu  #menuNofify="matMenu">
             <div *ngFor="let request of requests" >

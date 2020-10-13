@@ -21,7 +21,13 @@
     "ENVIAR": "ENVIAR",
     "SALVAR": "Salvar",
     "CANCELAR": "Cancelar",
-    "CONFIRMAR": "Confirmar"
+    "CONFIRMAR": "Confirmar",
+    "EMAIL_ENVIADO": "Email enviado",
+    "SOLICITACAO_ACEITA": "Solicitação aceita",
+    "SOLICITACAO_N_ACEITA": "Solicitação recusada",
+    "SOLICITACAO_ENVIADA": "Solicitação enviada",
+    "SOLICITACAO_CANCELAR": "Cancelar solicitação"
+
   },
   "NAV": {
     "SAIR": "Sair",

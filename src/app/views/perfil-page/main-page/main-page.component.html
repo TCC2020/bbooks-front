@@ -26,12 +26,12 @@
             </button>
             <button mat-raised-button color="primary" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'pending'" >
                 <mat-icon>done</mat-icon>
-                Solicitacao enviada
+                {{'PADRAO.SOLICITACAO_ENVIADA' | translate}}
             </button>
             <mat-menu #menuAmigos="matMenu">
                 <div mat-menu-item>
                     <mat-icon color="warn">indeterminate_check_box</mat-icon>
-                    <span>Cancelar Solicitacao</span>
+                    <span>{{'PADRAO.SOLICITACAO_CANCELAR' | translate}}</span>
                 </div>
             </mat-menu>
             <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">

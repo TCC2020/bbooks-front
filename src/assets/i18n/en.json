@@ -21,7 +21,13 @@
     "ENVIAR": "SEND",
     "SALVAR": "Save",
     "CANCELAR": "Cancel",
-    "CONFIRMAR": "Confirm"
+    "CONFIRMAR": "Confirm",
+    "EMAIL_ENVIADO": "E-mail sent",
+    "SOLICITACAO_ACEITA": "Request accepted",
+    "SOLICITACAO_N_ACEITA": "Request refused",
+    "SOLICITACAO_ENVIADA": "Request sent",
+    "SOLICITACAO_CANCELAR": "Cancel request"
+
   },
   "NAV": {
     "SAIR": "Logout",

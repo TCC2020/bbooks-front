@@ -13,6 +13,8 @@ import {
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
+import {SocialAuthServiceConfigMock} from '../../mocks/google.provide.mock';
 
 describe('RecuperarSenhaComponent', () => {
     let component: RecuperarSenhaComponent;
@@ -35,20 +37,9 @@ describe('RecuperarSenhaComponent', () => {
             providers: [
                 FormBuilder,
                 AuthService,
-                {
-                    provide: 'SocialAuthServiceConfig',
-                    useValue: {
-                        autoLogin: false,
-                        providers: [
-                            {
-                                id: GoogleLoginProvider.PROVIDER_ID,
-                                provider: new GoogleLoginProvider(
-                                    '637875920121-2l5ibvruevm5ldf5gdc78erdno23pd2b.apps.googleusercontent.com'
-                                ),
-                            }
-                        ],
-                    } as SocialAuthServiceConfig
-                }
+                SocialAuthServiceConfigMock,
+                TranslateService,
+                TranslateStore
             ]
         }).compileComponents();
     }));

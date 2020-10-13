@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from 'src/app/services/auth.service';
 import {take} from 'rxjs/operators';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-recuperar-senha',
@@ -13,7 +14,11 @@ export class RecuperarSenhaComponent implements OnInit {
 
     showMessage: boolean;
 
-    constructor(private fb: FormBuilder, private service: AuthService) {
+    constructor(
+        private fb: FormBuilder,
+        private service: AuthService,
+        private translate: TranslateService
+    ) {
     }
 
     ngOnInit(): void {
@@ -29,13 +34,24 @@ export class RecuperarSenhaComponent implements OnInit {
     sendResetPassRequest() {
         this.service.sendResetPassEmail(this.form.value).pipe(take(1)).subscribe(
             () => {
-                alert('Email enviado.');
-                this.showMessage = true;
-                this.form.disable();
+                this.translate.get('PADRAO.EMAIL_ENVIADO').subscribe(message => {
+                    alert(message);
+                    this.showMessage = true;
+                    this.form.disable();
+                });
             },
             error => {
-                alert(error.error.message);
-                console.log('Error reset pass', error);
+                let codeMessage = '';
+                if (error.error.message.includes('US001')) {
+                    codeMessage = 'US001';
+                }
+                if (codeMessage) {
+                    this.translate.get('MESSAGE_ERROR.US001').subscribe(message => {
+                        alert(message);
+                    });
+                } else {
+                    console.log('Error reset pass', error);
+                }
                 this.showMessage = false;
             });
     }
