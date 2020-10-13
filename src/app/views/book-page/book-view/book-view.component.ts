@@ -3,7 +3,7 @@ import {Book} from '../../../models/book.model';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
-import {switchMap, take} from 'rxjs/operators';
+import {map, switchMap, take} from 'rxjs/operators';
 import {ReadingTrackingTO} from '../../../models/ReadingTrackingTO.model';
 import {TrackingDialogComponent} from '../tracking-dialog/tracking-dialog.component';
 import {ReadingTrackingService} from '../../../services/reading-tracking.service';
@@ -14,6 +14,8 @@ import {
     mapBookStatusEnglish
 } from '../../../models/enums/BookStatus.enum';
 import {BookAddDialogComponent} from '../../shared/book-add-dialog/book-add-dialog.component';
+import {GoogleBooksService} from '../../../services/google-books.service';
+import {BookService} from '../../../services/book.service';
 
 @Component({
     selector: 'app-book-view',
@@ -38,7 +40,9 @@ export class BookViewComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         public dialog: MatDialog,
-        private trackingService: ReadingTrackingService
+        private trackingService: ReadingTrackingService,
+        private gBookService: GoogleBooksService,
+        private bookService: BookService
     ) {
         this.inscricao = this.route.data.pipe(take(1)).subscribe((data: { book: Book }) => {
             this.book = data.book;
@@ -50,12 +54,28 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+    }
 
+    getBook(): void {
+        this.bookService.getAllUserBooks().subscribe((userbooks) => {
+            this.gBookService.getById(this.book.id).subscribe(b => {
+                const book = this.bookService.convertBookToModel(b);
+                userbooks.books.forEach(userbook => {
+                    if (userbook.idBook === book.id) {
+                        book.status = userbook.status;
+                        book.idUserBook = userbook.id;
+                    }
+                });
+                this.book = book;
+            });
+        });
     }
 
     getAllTrackings() {
         this.trackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {
-                this.readingTracking = trackings.slice().sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
+                this.readingTracking = trackings
+                    .slice()
+                    .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
                 this.percentage = this.getPercentTotal();
             },
             error => {
@@ -133,6 +153,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                     this.readingTracking.splice(0, 0, result);
                 }
                 this.percentage = this.getPercentTotal();
+                this.getBook();
             }
         });
     }
