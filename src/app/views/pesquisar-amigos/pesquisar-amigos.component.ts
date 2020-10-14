@@ -29,12 +29,20 @@ export class PesquisarAmigosComponent implements OnInit {
         this.getUsers();
     }
 
+    /*pesquisar(nome) {
+        this.filterUsers = this.users.filter(user => {
+            if(user) {
+                user.profile.name.concat(user.profile.lastName).toLocaleLowerCase().replace(' ', '')
+                .includes(nome.value.toLocaleLowerCase().replace(' ', ''));
+            }
+        })
+    }*/
+
+
     pesquisar(nome) {
-        this.filterUsers = this.users.filter(user =>
-            user.profile.name.concat(user.profile.lastName).toLocaleLowerCase().replace(' ', '')
+        this.filterUsers = this.users.filter(user => 
+                user.profile.name.concat(user.profile.lastName).toLocaleLowerCase().replace(' ', '')
                 .includes(nome.value.toLocaleLowerCase().replace(' ', '')));
-
-
     }
 
     getUsers() {
