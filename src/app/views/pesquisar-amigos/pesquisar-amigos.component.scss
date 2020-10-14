@@ -12,8 +12,8 @@
 .container-lista-amigos {
     width: 680px;
     height: 580px;
-	margin-left: auto;
-    margin-right: auto;
+	margin-left: auto !important;
+    margin-right: auto !important;
     margin: 1px solid black;
     
     background-color: white;
@@ -49,4 +49,8 @@
 .adicionar-amigos {
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.nome-usuario {
+    color: black;
 }
