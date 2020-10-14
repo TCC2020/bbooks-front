@@ -26,6 +26,10 @@ export class FriendsService {
         return this.http.get<FriendRequest[]>(this.api + 'requests');
     }
 
+    getRequestByUserName(username: string): Observable<FriendRequest> {
+        return this.http.get<FriendRequest>(this.api + 'requests/' + username);
+    }
+
     acceptRequest(AcceptTO: Accept): Observable<any> {
         return this.http.put(this.api + 'requests', AcceptTO);
     }
@@ -44,5 +48,9 @@ export class FriendsService {
     }
     getFriendsByUserName(username: string): Observable<Friendship> {
         return this.http.get<Friendship>(this.api + username);
+    }
+
+    deleteFriend(idprofile: number): Observable<any>{
+        return this.http.delete(this.api + idprofile);
     }
 }

@@ -24,16 +24,38 @@
                 </mat-icon>
                 {{'PERFIL.friends' | translate | titlecase}}
             </button>
-            <button mat-raised-button color="primary" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'pending'" >
+            <mat-menu #menuAmigos="matMenu">
+                <div mat-menu-item (click)="deleteFriend(user.profile.id)">
+                    <mat-icon color="warn">indeterminate_check_box</mat-icon>
+                    <span>{{'PADRAO.DESFAZER_AMIZADE' | translate}}</span>
+                </div>
+            </mat-menu>
+            <button mat-raised-button color="primary" [matMenuTriggerFor]="menuSent" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'sent'" >
                 <mat-icon>done</mat-icon>
                 {{'PADRAO.SOLICITACAO_ENVIADA' | translate}}
             </button>
-            <mat-menu #menuAmigos="matMenu">
-                <div mat-menu-item>
+            <mat-menu #menuSent="matMenu">
+                <div mat-menu-item (click)="deleteRequest(user.userName)" >
                     <mat-icon color="warn">indeterminate_check_box</mat-icon>
                     <span>{{'PADRAO.SOLICITACAO_CANCELAR' | translate}}</span>
                 </div>
             </mat-menu>
+            <button mat-raised-button color="primary" [matMenuTriggerFor]="menuReceive" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'received'" >
+                <mat-icon>done</mat-icon>
+                {{'PADRAO.SOLICITACAO_RECEBIDA' | translate}}
+            </button>
+            <mat-menu #menuReceive="matMenu">
+                <div mat-menu-item (click)="aceptRequest(user.userName)">
+                    <mat-icon color="accent">done</mat-icon>
+                    <span>{{'PADRAO.CONFIRMAR' | translate}}</span>
+                </div>
+                <div mat-menu-item (click)="deleteRequest(user.userName)">
+                    <mat-icon color="warn">indeterminate_check_box</mat-icon>
+                    <span>{{'PADRAO.EXCLUIR' | translate}}</span>
+                </div>
+            </mat-menu>
+
+
             <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">
                 <mat-icon>more_horiz</mat-icon>
             </button>

@@ -6,6 +6,7 @@ import {AuthService} from '../../../services/auth.service';
 import {FriendsService} from '../../../services/friends.service';
 import {Friend} from '../../../models/friend.model';
 import {UserService} from '../../../services/user.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-main-page',
@@ -23,7 +24,8 @@ export class MainPageComponent implements OnInit, OnChanges {
         private route: ActivatedRoute,
         private authService: AuthService,
         private friendsService: FriendsService,
-        private userService: UserService
+        private userService: UserService,
+        public translate: TranslateService,
     ) {
         this.route.data.subscribe((data: { user: UserTO }) => {
             this.user = data.user;
@@ -33,8 +35,12 @@ export class MainPageComponent implements OnInit, OnChanges {
     ngOnInit(): void {
         this.changeMenu();
     }
+
     ngOnChanges() {
         this.changeMenu();
+        this.getUser();
+    }
+    getUser() {
         this.userService.getUserName(this.user.userName, this.authService.getToken()).subscribe((result) => {
             this.user = result;
         });
@@ -63,8 +69,45 @@ export class MainPageComponent implements OnInit, OnChanges {
         this.friendTO = new Friend();
         this.friendTO.id = Number.parseInt(this.user.profile.id);
         this.friendsService.add(this.friendTO).subscribe(() => {
-                alert('pedido enviado!');
-                this.user.profile.friendshipStatus = 'pending';
+                this.translate.get('PADRAO.SOLICITACAO_ENVIADA').subscribe(message => {
+                    alert(message);
+                });
+                this.user.profile.friendshipStatus = 'sent';
+            },
+            error => {
+                console.log(error);
+            });
+    }
+
+    deleteRequest(username: string) {
+        this.friendsService.getRequestByUserName(username).subscribe(request => {
+            const acept = new Friend();
+            acept.id = request.id;
+            this.friendsService.deleteRequest(acept).subscribe(() => {
+                this.translate.get('PADRAO.SOLICITACAO_N_ACEITA').subscribe(message => {
+                    alert(message);
+                    this.getUser();
+                });
+            });
+        });
+    }
+
+    aceptRequest(username: string) {
+        this.friendsService.getRequestByUserName(username).subscribe(request => {
+            const acept = new Friend();
+            acept.id = request.id;
+            this.friendsService.acceptRequest(acept).subscribe(() => {
+                this.translate.get('PADRAO.SOLICITACAO_ACEITA').subscribe(message => {
+                    alert(message);
+                    this.getUser();
+                });
+            });
+        });
+    }
+
+    deleteFriend(idProfile: string) {
+        this.friendsService.deleteFriend(Number.parseInt(idProfile)).subscribe(() => {
+                this.getUser();
             },
             error => {
                 console.log(error);

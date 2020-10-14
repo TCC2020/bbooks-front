@@ -26,7 +26,12 @@
     "SOLICITACAO_ACEITA": "Solicitação aceita",
     "SOLICITACAO_N_ACEITA": "Solicitação recusada",
     "SOLICITACAO_ENVIADA": "Solicitação enviada",
-    "SOLICITACAO_CANCELAR": "Cancelar solicitação"
+    "SOLICITACAO_CANCELAR": "Cancelar solicitação",
+    "SOLICITACAO_RECEBIDA": "Solicitação recebida",
+    "COMPLETO": "Amizade desfeita",
+    "CONFIRMAR": "Confirmar",
+    "EXCLUIR": "Excluir",
+    "DESFAZER_AMIZADE": "Desfazer amizade"
 
   },
   "NAV": {
