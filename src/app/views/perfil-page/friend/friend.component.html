@@ -9,7 +9,7 @@
 
 <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="6px">
     <div *ngFor="let friend of friendShip?.friends">
-        <mat-card class="matcard">
+        <mat-card class="matcard" *ngIf="friend.userName !== this.authService.getUser().userName">
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div class="card">
                     <div class="container">
@@ -23,26 +23,47 @@
                     </div>
                 </div>
 
-                <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="user.profile.friendshipStatus === null" (click)="sendRequest()">
+                <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="friend.profile.friendshipStatus === null" (click)="sendRequest()">
                     <mat-icon>
                         group_add
                     </mat-icon>
                     {{'PADRAO.ADICIONAR' | translate | titlecase}}
                 </button>
-                <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf=" user.profile.friendshipStatus === 'added'">
+                <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf=" friend.profile.friendshipStatus == 'added'">
                     <mat-icon>
                         people_alt
                     </mat-icon>
                     {{'PERFIL.friends' | translate | titlecase}}
                 </button>
-                <button mat-raised-button color="primary" [matMenuTriggerFor]="menuAmigos" *ngIf=" user.profile.friendshipStatus === 'pending'" >
-                    <mat-icon>done</mat-icon>
-                    Solicitacao enviada
-                </button>
                 <mat-menu #menuAmigos="matMenu">
-                    <div mat-menu-item>
+                    <div mat-menu-item (click)="deleteFriend(friend.profile.id)">
                         <mat-icon color="warn">indeterminate_check_box</mat-icon>
-                        <span>Cancelar Solicitacao</span>
+                        <span>{{'PADRAO.DESFAZER_AMIZADE' | translate}}</span>
+                    </div>
+                </mat-menu>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="menuSent" *ngIf=" friend.profile.friendshipStatus === 'pending'" >
+                    <mat-icon>done</mat-icon>
+                    {{'PADRAO.SOLICITACAO_ENVIADA' | translate}}
+                </button>
+                <mat-menu #menuSent="matMenu">
+                    <div mat-menu-item (click)="deleteRequest(friend.userName)">
+                        <mat-icon color="warn">indeterminate_check_box</mat-icon>
+                        <span>{{'PADRAO.SOLICITACAO_CANCELAR' | translate}}</span>
+                    </div>
+                </mat-menu>
+
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="menuReceive" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'received'" >
+                    <mat-icon>done</mat-icon>
+                    {{'PADRAO.SOLICITACAO_RECEBIDA' | translate}}
+                </button>
+                <mat-menu #menuReceive="matMenu">
+                    <div mat-menu-item (click)="aceptRequest(friend.userName)">
+                        <mat-icon color="accent">done</mat-icon>
+                        <span>{{'PADRAO.CONFIRMAR' | translate}}</span>
+                    </div>
+                    <div mat-menu-item (click)="deleteRequest(friend.userName)">
+                        <mat-icon color="warn">indeterminate_check_box</mat-icon>
+                        <span>{{'PADRAO.EXCLUIR' | translate}}</span>
                     </div>
                 </mat-menu>
 

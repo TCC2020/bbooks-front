@@ -8,4 +8,5 @@ export class Profile {
     birthDate: string;
     profileImage: string;
     friendshipStatus: string;
+    username: string;
 }

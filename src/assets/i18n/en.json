@@ -26,8 +26,12 @@
     "SOLICITACAO_ACEITA": "Request accepted",
     "SOLICITACAO_N_ACEITA": "Request refused",
     "SOLICITACAO_ENVIADA": "Request sent",
-    "SOLICITACAO_CANCELAR": "Cancel request"
-
+    "SOLICITACAO_CANCELAR": "Cancel request",
+    "SOLICITACAO_RECEBIDA": "request received",
+    "COMPLETO": "Completed",
+    "CONFIRMAR": "Confirm",
+    "EXCLUIR": "Delete",
+    "DESFAZER_AMIZADE": "Unfriend"
   },
   "NAV": {
     "SAIR": "Logout",

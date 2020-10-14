@@ -12,6 +12,8 @@ import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {SocialLoginModule} from 'angularx-social-login';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
+import {UserService} from '../../../services/user.service';
 
 describe('FriendComponent', () => {
     let component: FriendComponent;
@@ -38,6 +40,9 @@ describe('FriendComponent', () => {
                     useValue: routeMock
                 },
                 AuthService,
+                TranslateStore,
+                TranslateService,
+                UserService,
                 SocialAuthServiceConfigMock,
             ]
         })
