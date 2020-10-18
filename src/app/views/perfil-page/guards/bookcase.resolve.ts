@@ -50,7 +50,7 @@ export class BookcaseResolve implements Resolve<any> {
                 });
             });
             this.user.id = user.id;
-            this.user.idSocial= user.idSocial;
+            this.user.idSocial = user.idSocial;
             this.user.email = user.email;
             this.user.verified = user.verified;
             this.user.userName = user.userName;

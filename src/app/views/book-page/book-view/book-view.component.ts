@@ -121,8 +121,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
             return await res;
         })).subscribe((result) => {
             if (result) {
-                this.book.idUserBook = result?.id;
-                this.book.status = result?.status;
+                this.getBook();
             }
         });
     }

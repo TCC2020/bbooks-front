@@ -20,7 +20,7 @@ export class AuthVerifyLogin implements CanActivate {
         if (!this.authService.isLogged()) {
             return true;
         }
-        this.router.navigateByUrl('/');
+        this.router.navigate(['']);
         return false;
     }
 }

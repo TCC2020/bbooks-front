@@ -26,7 +26,6 @@ export class MainResolve implements Resolve<UserTO> {
         let result;
         result = this.userService.getUserName(username, this.authService.getToken())
             .pipe(
-                take(1),
                 map(user => user)
             );
         return result;
