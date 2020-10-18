@@ -20,6 +20,6 @@ export class FriendResolve implements Resolve<UserTO> {
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
         const username = route.parent.params.username;
-        return this.userService.getUserName(username, this.authService.getToken()).pipe(take(1), map(user => user));
+        return this.userService.getUserName(username, this.authService.getToken()).pipe(map(user => user));
     }
 }

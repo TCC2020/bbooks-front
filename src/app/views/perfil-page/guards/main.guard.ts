@@ -23,8 +23,7 @@ export class MainGuard implements CanActivate {
         state: RouterStateSnapshot
     ): Observable<boolean> | boolean  {
         const username = route.params.username;
-        return this.userService.getUserName(username,this.authService.getToken()).pipe(
-            take(1),
+        return this.userService.getUserName(username, this.authService.getToken()).pipe(
             map((res) => {
                 if (res?.userName.includes(username)) {
                     return true;
@@ -33,10 +32,9 @@ export class MainGuard implements CanActivate {
                 return false;
             }),
             catchError(() => {
-                this.router.navigate(['/*/pagenotfound']);
+                this.router.navigate(['/pagenotfound']);
                 return of(false);
             })
         );
-        return false;
     }
 }
