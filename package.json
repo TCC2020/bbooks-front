@@ -5,7 +5,6 @@
     "ng": "ng",
     "start": "node app.js",
     "build": "ng build --aot --prod",
-    "postinstall": "ng build --aot --prod",
     "preinstall": "node environment.js",
     "lint": "ng lint",
     "e2e": "ng e2e",
