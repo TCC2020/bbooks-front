@@ -7,6 +7,14 @@
         <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
     </div>
 </form>
+<mat-paginator
+        *ngIf="books?.length > 0"
+        [length]="totalBooks"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="[10, 20, 30, 40]"
+               (page)="changePage($event)">
+</mat-paginator>
+
 <div fxLayout="row wrap" fxFLex="100" fxLayoutAlign="center">
     <div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center" *ngIf="books?.length > 0">
         <app-book-card

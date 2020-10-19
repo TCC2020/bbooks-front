@@ -14,6 +14,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {of} from 'rxjs';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 import {TranslateService} from '@ngx-translate/core'
+import {GoogleBooksService} from '../../../services/google-books.service';
 
 describe('BookCardComponent', () => {
 
@@ -40,7 +41,8 @@ describe('BookCardComponent', () => {
                 {
                     provide: MatDialog, useValue: mockMatDialog
                 },
-                TranslateService
+                TranslateService,
+                GoogleBooksService
             ]
         }).compileComponents();
     }));

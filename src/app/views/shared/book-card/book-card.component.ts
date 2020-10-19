@@ -7,6 +7,7 @@ import {BookAddDialogComponent} from '../book-add-dialog/book-add-dialog.compone
 import {MatDialog} from '@angular/material/dialog';
 import {BookService} from '../../../services/book.service';
 import {switchMap} from 'rxjs/operators';
+import {GoogleBooksService} from '../../../services/google-books.service';
 
 @Component({
     selector: 'app-book-card',
@@ -37,7 +38,8 @@ export class BookCardComponent implements OnInit {
         private router: Router,
         private userbookService: UserbookService,
         public dialog: MatDialog,
-        private bookService: BookService
+        private bookService: BookService,
+        private gbookService: GoogleBooksService
     ) {
     }
 
@@ -75,13 +77,23 @@ export class BookCardComponent implements OnInit {
         });
         dialogRef.afterClosed().pipe(switchMap(async res => {
             return await res;
-        })).subscribe((result) => {
-            if (result) {
-                this.book.idUserBook = result?.id;
-                this.book.status = result?.status;
+        })).subscribe(() => {
+                this.getBook();
                 this.bookService.updateListCarrousel.emit(true);
-
-            }
+        });
+    }
+    getBook(): void {
+        this.bookService.getAllUserBooks().subscribe((userbooks) => {
+            this.gbookService.getById(this.book.id).subscribe(b => {
+                const book = this.bookService.convertBookToModel(b);
+                userbooks.books.forEach(userbook => {
+                    if (userbook.idBook === book.id) {
+                        book.status = userbook.status;
+                        book.idUserBook = userbook.id;
+                    }
+                });
+                this.book = book;
+            });
         });
     }
 

@@ -12,6 +12,9 @@ export class GoogleBooksService {
   searchByName(bookName) {
     return this.http.get('https://www.googleapis.com/books/v1/volumes?q=' + bookName);
   }
+  searchByNamePagination(bookName: string, maxResult: number, index: number) {
+    return this.http.get('https://www.googleapis.com/books/v1/volumes?maxResults=' + maxResult + '&q=' + bookName + '&startIndex=' + index);
+  }
 
   getById(id: string): Observable<any> {
     return this.http.get('https://www.googleapis.com/books/v1/volumes/' + id);
