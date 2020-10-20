@@ -31,7 +31,9 @@
     "COMPLETO": "Completed",
     "CONFIRMAR": "Confirm",
     "EXCLUIR": "Delete",
-    "DESFAZER_AMIZADE": "Unfriend"
+    "DESFAZER_AMIZADE": "Unfriend",
+    "CONCLUIDO": "Completed",
+    "PENDENTE": "Pending"
   },
   "NAV": {
     "SAIR": "Logout",
@@ -131,7 +133,9 @@
     "DEIX_COMENTARIO": "Leave a comment",
     "PAG_LIDAS": "How many pages have you read?",
     "MSG_APG_E": "Number of pages is",
-    "MSG_COMENT": "Comment must have a maximum of 50 characters."
+    "MSG_COMENT": "Comment must have a maximum of 50 characters.",
+    "ACOMPANHAMENTO": "Tracking",
+    "NEW": "New Reading Tracking"
   },
   "CONFIG_PERFIL": {
     "DADOS_USER": "User data",
@@ -176,6 +180,8 @@
     "UB002": "Invalid status",
     "TK001": "Invalid token",
     "FR001": "Request not found",
-    "FR002": "Conflict while removing friend"
+    "FR002": "Conflict while removing friend",
+    "RT005": "Page smaller than last tracking",
+    "TA001": "Last tracking is not finished yeat"
   }
 }

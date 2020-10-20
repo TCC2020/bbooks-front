@@ -16,7 +16,7 @@ export class TrackingDialogComponent implements OnInit {
     public formTracking: FormGroup;
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: { tracking: ReadingTrackingTO, idUserbook: number, canEditPag: boolean },
+        @Inject(MAT_DIALOG_DATA) public data: { tracking: ReadingTrackingTO, idUserbook: number, canEditPag: boolean, trackingUpId },
         private formBuilder: FormBuilder,
         public dialogRef: MatDialogRef<ReadingTrackingTO>,
         public translate: TranslateService,
@@ -25,15 +25,6 @@ export class TrackingDialogComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // if (this.tag) {
-        //     this.translate.get('PADRAO.EDITAR').subscribe(text => {
-        //         this.textForm = text;
-        //     });
-        // } else {
-        //     this.translate.get('PADRAO.CRIAR').subscribe(text => {
-        //         this.textForm = text;
-        //     });
-        // }
         this.createForm();
     }
 
@@ -48,7 +39,8 @@ export class TrackingDialogComponent implements OnInit {
                 Validators.maxLength(50)
             ])),
             percentage: new FormControl(''),
-            userBookId: new FormControl(this.data?.idUserbook)
+            userBookId: new FormControl(this.data?.idUserbook),
+            trackingUpId: new FormControl(this.data.trackingUpId ? this.data.trackingUpId : '')
         });
     }
 
@@ -68,6 +60,9 @@ export class TrackingDialogComponent implements OnInit {
                     }
                     if (error.error.message.includes('RT003')) {
                         codMessage = 'RT003';
+                    }
+                    if (error.error.message.includes('RT005')) {
+                        codMessage = 'RT005';
                     }
                     if (codMessage) {
                         this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
@@ -89,6 +84,9 @@ export class TrackingDialogComponent implements OnInit {
                     if (error.error.message.includes('RT003')) {
                         codMessage = 'RT003';
                     }
+                    if (error.error.message.includes('RT005')) {
+                        codMessage = 'RT005';
+                    }
                     if (codMessage) {
                         this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
                             alert(message);
@@ -102,7 +100,8 @@ export class TrackingDialogComponent implements OnInit {
     }
 
     delete() {
-        this.trackingService.delete(this.data.tracking.id).subscribe(() => {
+        this.data.tracking.trackingUpId = this.data.trackingUpId;
+        this.trackingService.delete(this.data.tracking.id, this.data.tracking).subscribe(() => {
                 this.dialogRef.close('delete');
             },
             error => {

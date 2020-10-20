@@ -1,0 +1,31 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <h2 mat-dialog-title>Init reading tracking</h2>
+
+        <form [formGroup]="formTracking" class="example-form">
+            <div fxLayout="column" fxLayoutAlign="space-between center">
+                <mat-form-field class="example-full-width">
+                    <mat-label>{{'ACOMP_LEITURA.DEIX_COMENTARIO' | translate}}</mat-label>
+                    <textarea matInput formControlName="comentario"></textarea>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <p></p>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <div fxLayoutGap="8px">
+            <button mat-flat-button color="warn" (click)="delete()" *ngIf="data.tracking">
+                {{'PADRAO.REMOVER' | translate}}
+            </button>
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="data.tracking"
+                    [disabled]="formTracking.invalid">
+                {{'PADRAO.EDITAR' | translate}}
+            </button>
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="!data.tracking"
+                    [disabled]="formTracking.invalid">
+                {{'PADRAO.ADICIONAR' | translate}}
+            </button>
+        </div>
+
+    </div>
+</mat-dialog-content>

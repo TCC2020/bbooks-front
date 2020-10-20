@@ -31,8 +31,9 @@
     "COMPLETO": "Amizade desfeita",
     "CONFIRMAR": "Confirmar",
     "EXCLUIR": "Excluir",
-    "DESFAZER_AMIZADE": "Desfazer amizade"
-
+    "DESFAZER_AMIZADE": "Desfazer amizade",
+    "CONCLUIDO": "Concluído",
+    "PENDENTE": "Pendente"
   },
   "NAV": {
     "SAIR": "Sair",
@@ -132,7 +133,9 @@
     "DEIX_COMENTARIO": "Deixar um comentário",
     "PAG_LIDAS": "Quantas páginas você leu?",
     "MSG_APG_E": "Número de páginas é",
-    "MSG_COMENT": "Comentário tem que ter no máximo 50 caracteres."
+    "MSG_COMENT": "Comentário tem que ter no máximo 50 caracteres.",
+    "ACOMPANHAMENTO": "Acompanhamento",
+    "NEW": "Novo Acompanhamento"
   },
   "CONFIG_PERFIL": {
     "DADOS_USER": "Dados do Usuário",
@@ -178,7 +181,10 @@
     "TK001": "Token inválido",
     "FR001": "Pedido não encontrado",
     "FR002": "Conflito ao remover amigo",
-    "FR002": "Conflito ao remover amigo"
+    "FR002": "Conflito ao remover amigo",
+    "RT005": "Página menor que o último acompanhamento",
+    "TA001": "O último acompanhamento ainda não terminou"
+
   }
 }
 

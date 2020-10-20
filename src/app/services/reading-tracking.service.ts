@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {ReadingTrackingTO} from '../models/ReadingTrackingTO.model';
@@ -19,8 +19,14 @@ export class ReadingTrackingService {
     update(readingTracking: ReadingTrackingTO): Observable<ReadingTrackingTO> {
         return this.http.put<ReadingTrackingTO>(this.api + readingTracking.id, readingTracking);
     }
-    delete(trackingid: string): Observable<void> {
-        return this.http.delete<void>(this.api + trackingid);
+    delete(trackingid: string, readingTrackingTO: ReadingTrackingTO): Observable<void> {
+        const options = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            }),
+            body: readingTrackingTO
+        };
+        return this.http.delete<void>(this.api + trackingid, options);
     }
 
     getAllByUserBook(idUserBook: number): Observable<ReadingTrackingTO[]> {
