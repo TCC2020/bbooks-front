@@ -4,8 +4,8 @@ const path = require('path');
 var forceSsl = require('force-ssl-heroku');
 
 const app = express();
-app.use(express.static(__dirname + '/dist'));
-app.use(express.static(path.join(__dirname + '/node_modules')));
+app.use(express.static(__dirname + 'dist'));
+app.use(express.static(path.join(__dirname + 'node_modules')));
 
 app.use(bodyParser.json()); // support json encoded bodies
 // app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile('index.html', { root: 'dist/bbooks/' });
+    res.sendFile('./dist/index.html');
 });
 // HTTP listener
 app.listen(process.env.PORT || 8080, function () {
