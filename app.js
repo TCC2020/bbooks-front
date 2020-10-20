@@ -4,7 +4,7 @@ const path = require('path');
 var forceSsl = require('force-ssl-heroku');
 
 const app = express();
-app.use(express.static(__dirname + 'dist'));
+app.use(express.static(__dirname + 'dist', 'bbooks'));
 app.use(express.static(path.join(__dirname + 'node_modules')));
 
 app.use(bodyParser.json()); // support json encoded bodies
