@@ -100,9 +100,14 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     orderByDate(readingTracking: ReadingTrackingTO[]) {
-        return readingTracking
-            .slice()
-            .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
+        if (readingTracking) {
+            return readingTracking
+                .slice()
+                .sort((a, b) =>
+                    new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()
+                );
+        }
+        return [];
     }
 
     getPercentTotal(readingTrackings: ReadingTrackingTO[]): number {
@@ -142,7 +147,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
     }
 
-    openDialogTracking(tracking: ReadingTrackingTO, editPag: boolean, trackingUpId: string) {
+    openDialogReadingTracking(trackings: ReadingTrackingTO[], tracking: ReadingTrackingTO, editPag: boolean, trackingUpId: string) {
         const dialogRef = this.dialog.open(TrackingDialogComponent, {
             height: '300px',
             width: '400px',
@@ -159,23 +164,19 @@ export class BookViewComponent implements OnInit, OnDestroy {
         })).subscribe((result) => {
             if (result) {
                 if (result === 'delete') {
-                    this.getAllTracking();
+                    trackings.splice(trackings.indexOf(tracking), 1);
                 }
                 if (tracking) {
-                    tracking.comentario = result.comentario;
-                    tracking.percentage = result.percentage;
-                    tracking.numPag = result.numPag;
+                    tracking = result;
                 } else {
-                    this.readingTracking.splice(0, 0, result);
+                    trackings.push(result);
                 }
-                //this.percentage = this.getPercentTotal();
             }
             this.getBook();
-            this.getAllTracking();
         });
     }
 
-    openDialogView(tracking: TrackingTO) {
+    openDialogTrackingView(tracking: TrackingTO) {
 
         const dialogRef = this.dialog.open(TrackingViewComponent, {
             height: '300px',
@@ -187,9 +188,15 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
         dialogRef.afterClosed().pipe(switchMap(async res => {
             return await res;
-        })).subscribe(() => {
+        })).subscribe((res) => {
             this.getBook();
-            this.getAllTracking();
+            if (tracking) {
+                tracking = res;
+            } else {
+                if (res) {
+                    this.getAllTracking();
+                }
+            }
         });
     }
 
@@ -199,6 +206,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
             return readingTrackings[0].percentage.toString() === '100' ? 'concluido' : 'pending';
         } else {
             return 'pending';
+
         }
     }
 
@@ -219,6 +227,16 @@ export class BookViewComponent implements OnInit, OnDestroy {
         } else {
             return 'PADRAO.PENDENTE';
         }
+    }
+
+    delete(id: string): void {
+        this.trackingService.delete(id).pipe(take(1)).subscribe(() => {
+                alert('tracking removed');
+                this.getAllTracking();
+            },
+            error => {
+                console.log(error);
+            });
     }
 
 }

@@ -101,7 +101,7 @@ export class TrackingDialogComponent implements OnInit {
 
     delete() {
         this.data.tracking.trackingUpId = this.data.trackingUpId;
-        this.trackingService.delete(this.data.tracking.id, this.data.tracking).subscribe(() => {
+        this.trackingService.delete(this.data.tracking.id).subscribe(() => {
                 this.dialogRef.close('delete');
             },
             error => {

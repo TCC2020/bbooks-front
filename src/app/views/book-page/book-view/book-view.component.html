@@ -100,13 +100,13 @@
                 </div>
             </mat-expansion-panel>
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" fxLayout.xs="row">
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" fxLayout.xs="row">
             <mat-form-field>
                 <mat-label>{{'PADRAO.BUSCAR' | translate}}</mat-label>
                 <input matInput type="text" [(ngModel)]="search">
             </mat-form-field>
             <button
-                    (click)="openDialogView(null)"
+                    (click)="openDialogTrackingView(null)"
                     type="button"
                     mat-flat-button
                     color="accent">
@@ -126,17 +126,17 @@
                             {{ getStatusTranslate(tracking.trackings) | translate}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                Descricao: {{tracking.comentario}}
+                {{'PADRAO.COMENTARIO' | translate}}: {{tracking.comentario}}
                 <div>
                     <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center">
                         <mat-progress-bar color="accent" mode="determinate" [value]="this.getPercentTotal(tracking.trackings)"></mat-progress-bar>
                         <div style="position: absolute; color: white; padding-left: 10px;"> {{this.getPercentTotal(tracking.trackings) | number}}%</div>
                         <button
 
-                                style="width: 100px" type="button" *ngIf="tracking.trackings[tracking.trackings.length -1]?.percentage.toString() !== '100' "
+                                style="width: 100px" type="button" *ngIf="tracking.trackings ? tracking.trackings[tracking.trackings.length -1]?.percentage.toString() !== '100' : true "
                                 mat-flat-button
                                 color="accent"
-                                (click)="openDialogTracking(null, false, tracking.id)">
+                                (click)="openDialogReadingTracking(tracking.trackings,null, false, tracking.id)">
                             {{'PADRAO.ADICIONAR' | translate}}
                         </button>
                     </div>
@@ -155,7 +155,7 @@
                                 <div fxFlex="10">{{readingTracking.numPag}}</div>
                                 <button mat-mini-fab color="accent"
                                         aria-label="Example icon button with a filter list icon"
-                                        (click)="openDialogTracking(readingTracking, readingTracking === tracking.trackings[0] ? false : true, tracking.id)">
+                                        (click)="openDialogReadingTracking(tracking.trackings, readingTracking, readingTracking === orderByDate(tracking.trackings)[0] ? false : true, tracking.id)">
                                     <mat-icon>create</mat-icon>
                                 </button>
                             </div>
@@ -163,9 +163,16 @@
                                 <div>{{readingTracking.comentario}}</div>
                             </div>
                         </mat-card>
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                            <button mat-flat-button color="warn" (click)="delete(tracking.id)">
+                                {{'PADRAO.REMOVER' | translate}}
+                            </button>
+                            <button mat-flat-button color="accent" (click)="openDialogTrackingView(tracking)">
+                                {{'PADRAO.EDITAR' | translate}}
+                            </button>
+                        </div>
                     </div>
                 </div>
-
             </mat-expansion-panel>
         </div>
     </div>

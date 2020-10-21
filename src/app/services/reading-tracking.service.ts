@@ -19,14 +19,8 @@ export class ReadingTrackingService {
     update(readingTracking: ReadingTrackingTO): Observable<ReadingTrackingTO> {
         return this.http.put<ReadingTrackingTO>(this.api + readingTracking.id, readingTracking);
     }
-    delete(trackingid: string, readingTrackingTO: ReadingTrackingTO): Observable<void> {
-        const options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            }),
-            body: readingTrackingTO
-        };
-        return this.http.delete<void>(this.api + trackingid, options);
+    delete(trackingid: string): Observable<void> {
+        return this.http.delete<void>(this.api + trackingid);
     }
 
     getAllByUserBook(idUserBook: number): Observable<ReadingTrackingTO[]> {

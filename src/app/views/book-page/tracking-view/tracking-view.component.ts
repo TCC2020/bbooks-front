@@ -53,25 +53,25 @@ export class TrackingViewComponent implements OnInit {
     save() {
         if (this.data.tracking?.id) {
             this.data.tracking.comentario = this.formTracking.get('comentario').value;
-            // this.trackingService.update(this.data.tracking).pipe(take(1)).subscribe(tracking => {
-            //         this.dialogRef.close(tracking);
-            //     },
-            //     error => {
-            //         let codMessage = '';
-            //         if (error.error.message.includes('RT002')) {
-            //             codMessage = 'RT002';
-            //         }
-            //         if (error.error.message.includes('RT003')) {
-            //             codMessage = 'RT003';
-            //         }
-            //         if (codMessage) {
-            //             this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
-            //                 alert(message);
-            //             });
-            //         } else {
-            //             console.log(error);
-            //         }
-            //     });
+            this.trackingService.update(this.data.tracking).pipe(take(1)).subscribe(tracking => {
+                    this.dialogRef.close(tracking);
+                },
+                error => {
+                    let codMessage = '';
+                    if (error.error.message.includes('RT002')) {
+                        codMessage = 'RT002';
+                    }
+                    if (error.error.message.includes('RT003')) {
+                        codMessage = 'RT003';
+                    }
+                    if (codMessage) {
+                        this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                            alert(message);
+                        });
+                    } else {
+                        console.log(error);
+                    }
+                });
         } else {
             this.trackingService.save(this.formTracking.value).pipe(take(1)).subscribe(tracking => {
                     this.dialogRef.close(tracking);

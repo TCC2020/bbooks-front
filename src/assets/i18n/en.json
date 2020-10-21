@@ -33,7 +33,8 @@
     "EXCLUIR": "Delete",
     "DESFAZER_AMIZADE": "Unfriend",
     "CONCLUIDO": "Completed",
-    "PENDENTE": "Pending"
+    "PENDENTE": "Pending",
+    "COMENTARIO": "Comment"
   },
   "NAV": {
     "SAIR": "Logout",

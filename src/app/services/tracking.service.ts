@@ -22,4 +22,10 @@ export class TrackingService {
     getAllByUserBook(idUserBook: number): Observable<TrackingTO[]> {
         return this.http.get<TrackingTO[]>(this.api + 'book/' + idUserBook);
     }
+    delete(id: string): Observable<any> {
+        return this.http.delete(this.api + id);
+    }
+    update(trackingTO: TrackingTO): Observable<ReadingTrackingTO> {
+        return this.http.put<ReadingTrackingTO>(this.api + trackingTO.id, trackingTO);
+    }
 }

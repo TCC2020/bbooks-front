@@ -126,7 +126,8 @@
     "QUERO_LER": "Quero Ler",
     "EMPRESTADO": "Emprestado",
     "RELENDO": "Relendo",
-    "INTERROMPIDO": "Interrompido"
+    "INTERROMPIDO": "Interrompido",
+    "COMENTARIO": "Comentário"
   },
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Acompanhamento de Leitura",
