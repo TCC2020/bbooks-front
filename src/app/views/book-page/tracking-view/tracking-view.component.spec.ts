@@ -1,22 +1,22 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {TrackingDialogComponent} from './tracking-dialog.component';
-import {of} from 'rxjs';
-import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {TranslateService, TranslateStore} from '@ngx-translate/core';
-import {MaterialModule} from '../../../material/material.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TrackingViewComponent} from './tracking-view.component';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
-import {ReadingTrackingService} from '../../../services/reading-tracking.service';
+import {MaterialModule} from '../../../material/material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {of} from 'rxjs';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {trackingMock} from '../../../mocks/tracking.model';
+import {TrackingService} from '../../../services/tracking.service';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
-describe('TrackingDialogComponent', () => {
-    let component: TrackingDialogComponent;
-    let fixture: ComponentFixture<TrackingDialogComponent>;
+describe('TrackingViewComponent', () => {
+    let component: TrackingViewComponent;
+    let fixture: ComponentFixture<TrackingViewComponent>;
+
 
     const mockMatDialog = {
         open: jest.fn(() => {
@@ -31,19 +31,18 @@ describe('TrackingDialogComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [TrackingDialogComponent],
+            declarations: [TrackingViewComponent],
             imports: [
                 MaterialModule,
                 BrowserAnimationsModule,
                 RouterTestingModule,
-                HttpClientTestingModule,
-                FormsModule,
                 ReactiveFormsModule,
                 TranslateServiceMockForChild,
+                HttpClientTestingModule,
+                FormsModule
             ],
             providers: [
-                ReadingTrackingService,
-                SocialAuthServiceConfigMock,
+                TrackingService,
                 {
                     provide: MatDialog,
                     useValue: mockMatDialog
@@ -59,12 +58,11 @@ describe('TrackingDialogComponent', () => {
                 TranslateService,
                 TranslateStore
             ]
-        })
-            .compileComponents();
+        }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(TrackingDialogComponent);
+        fixture = TestBed.createComponent(TrackingViewComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

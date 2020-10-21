@@ -16,6 +16,9 @@ import {
 import {BookAddDialogComponent} from '../../shared/book-add-dialog/book-add-dialog.component';
 import {GoogleBooksService} from '../../../services/google-books.service';
 import {BookService} from '../../../services/book.service';
+import {TrackingViewComponent} from '../tracking-view/tracking-view.component';
+import {TrackingTO} from '../../../models/TrackingTO.model';
+import {TrackingService} from '../../../services/tracking.service';
 
 @Component({
     selector: 'app-book-view',
@@ -30,9 +33,13 @@ export class BookViewComponent implements OnInit, OnDestroy {
     rating = 1;
     stringAuthors: string;
     readingTracking: ReadingTrackingTO[] = [];
+    trackings: TrackingTO[] = [];
+
     status = BookStatus;
     mapEnglish = mapBookStatusEnglish;
     statusEnglish = BookStatusEnglish;
+    panelOpenState = true;
+    search;
 
     percentage: number;
 
@@ -40,20 +47,19 @@ export class BookViewComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         public dialog: MatDialog,
-        private trackingService: ReadingTrackingService,
+        private readingTrackingService: ReadingTrackingService,
         private gBookService: GoogleBooksService,
-        private bookService: BookService
+        private bookService: BookService,
+        private trackingService: TrackingService
     ) {
         this.inscricao = this.route.data.pipe(take(1)).subscribe((data: { book: Book }) => {
             this.book = data.book;
             this.stringAuthors = this.convertAuthorsToString();
-            if (this.book.idUserBook) {
-                this.getAllTrackings();
-            }
         });
     }
 
     ngOnInit(): void {
+        this.getAllTracking();
     }
 
     getBook(): void {
@@ -71,25 +77,42 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
     }
 
-    getAllTrackings() {
+    // getAllReadingTracking() {
+    //     this.readingTrackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {
+    //             this.readingTracking = trackings
+    //                 .slice()
+    //                 .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
+    //             this.percentage = this.getPercentTotal();
+    //         },
+    //         error => {
+    //             console.log('error tracking all by idbook', error);
+    //         });
+    // }
+    getAllTracking() {
         this.trackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {
-                this.readingTracking = trackings
+                this.trackings = trackings
                     .slice()
                     .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
-                this.percentage = this.getPercentTotal();
             },
             error => {
                 console.log('error tracking all by idbook', error);
             });
     }
 
-    getPercentTotal(): number {
-        // let total = 0;
-        // this.readingTracking.forEach(tracking => {
-        //     total += tracking.percentage;
-        // });
-        // return total;
-        return this.readingTracking[0]?.percentage ? this.readingTracking[0].percentage : 0;
+    orderByDate(readingTracking: ReadingTrackingTO[]) {
+        if (readingTracking) {
+            return readingTracking
+                .slice()
+                .sort((a, b) =>
+                    new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()
+                );
+        }
+        return [];
+    }
+
+    getPercentTotal(readingTrackings: ReadingTrackingTO[]): number {
+        readingTrackings = this.orderByDate(readingTrackings);
+        return readingTrackings[0]?.percentage ? readingTrackings[0].percentage : 0;
     }
 
     verifystatusBook(): boolean {
@@ -119,21 +142,20 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
         dialogRef.afterClosed().pipe(switchMap(async res => {
             return await res;
-        })).subscribe((result) => {
-            if (result) {
-                this.getBook();
-            }
+        })).subscribe(() => {
+            this.getBook();
         });
     }
 
-    openDialogTracking(tracking: ReadingTrackingTO, editPag: boolean) {
+    openDialogReadingTracking(track: TrackingTO, tracking: ReadingTrackingTO, editPag: boolean, trackingUpId: string) {
         const dialogRef = this.dialog.open(TrackingDialogComponent, {
             height: '300px',
             width: '400px',
             data: {
                 tracking,
                 idUserbook: this.book.idUserBook,
-                canEditPag: editPag
+                canEditPag: editPag,
+                trackingUpId
             }
         });
         dialogRef.afterClosed().pipe(switchMap(async res => {
@@ -142,19 +164,79 @@ export class BookViewComponent implements OnInit, OnDestroy {
         })).subscribe((result) => {
             if (result) {
                 if (result === 'delete') {
-                    this.getAllTrackings();
+                    track.finishedDate = null;
+                    track.trackings.splice(track.trackings.indexOf(tracking), 1);
                 }
                 if (tracking) {
-                    tracking.comentario = result.comentario;
-                    tracking.percentage = result.percentage;
-                    tracking.numPag = result.numPag;
+                    tracking = result;
                 } else {
-                    this.readingTracking.splice(0, 0, result);
+                    track.trackings.push(result);
                 }
-                this.percentage = this.getPercentTotal();
-                this.getBook();
+            }
+            this.getBook();
+        });
+    }
+    openDialogTrackingView(tracking: TrackingTO) {
+
+        const dialogRef = this.dialog.open(TrackingViewComponent, {
+            height: '300px',
+            width: '400px',
+            data: {
+                tracking,
+                idUserbook: this.book.idUserBook,
             }
         });
+        dialogRef.afterClosed().pipe(switchMap(async res => {
+            return await res;
+        })).subscribe((res) => {
+            this.getBook();
+            if (tracking) {
+                tracking = res;
+            } else {
+                if (res) {
+                    this.getAllTracking();
+                }
+            }
+        });
+    }
+
+    getStatus(readingTrackings: ReadingTrackingTO[]): string {
+        if (readingTrackings.length > 0) {
+            readingTrackings = this.orderByDate(readingTrackings);
+            return readingTrackings[0].percentage.toString() === '100' ? 'concluido' : 'pending';
+        } else {
+            return 'pending';
+
+        }
+    }
+
+    getConcluidos(status: string): number {
+        let response = 0;
+        this.trackings.forEach(tracking => {
+            if (status === this.getStatus(tracking.trackings)) {
+                response++;
+            }
+        });
+        return response;
+    }
+
+    getStatusTranslate(readings: ReadingTrackingTO[]): string {
+        const resp = this.getStatus(readings);
+        if (resp === 'concluido') {
+            return 'PADRAO.CONCLUIDO';
+        } else {
+            return 'PADRAO.PENDENTE';
+        }
+    }
+
+    delete(id: string): void {
+        this.trackingService.delete(id).pipe(take(1)).subscribe(() => {
+                alert('tracking removed');
+                this.getAllTracking();
+            },
+            error => {
+                console.log(error);
+            });
     }
 
 }

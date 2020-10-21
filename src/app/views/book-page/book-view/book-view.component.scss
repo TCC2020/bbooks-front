@@ -1,10 +1,16 @@
 .card {
   margin: 0.5em;
-  max-width: 700px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  //max-width: 700px;
+  //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 4px;
 }
-
+.acompanhamento {
+  margin: 0.5em;
+  width: 96%;
+}
+.button-color{
+  color: white;
+}
 .cardImage{
   border-color:  rgba(0, 0, 0, 0.2);
   border-width: 1px;
@@ -13,6 +19,7 @@
 }
 .mat-progress-bar {
   height: 20px;
+  border-radius: 15px;
 }
 
 .description{
@@ -35,6 +42,10 @@
   }
   .mat-card-content{
     margin: auto 10px;
+  }
+  .acompanhamento{
+    border: none;
+    width: 100%;
   }
 
 }

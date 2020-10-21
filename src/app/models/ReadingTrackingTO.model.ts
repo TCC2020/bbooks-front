@@ -5,5 +5,6 @@ export class ReadingTrackingTO {
     percentage: number;
     creationDate: Date;
     userBookId: number;
+    trackingUpId: string;
 }
 
