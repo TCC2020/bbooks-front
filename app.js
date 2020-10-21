@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile('./dist/index.html');
+    res.sendFile('./dist/bbooks/index.html');
 });
 // HTTP listener
 app.listen(process.env.PORT || 8080, function () {
