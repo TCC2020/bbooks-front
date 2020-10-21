@@ -91,6 +91,9 @@ export class TrackingDialogComponent implements OnInit {
         if (error.error.message.includes('TA001')) {
             codMessage = 'TA001';
         }
+        if (error.error.message.includes('RT006')) {
+            codMessage = 'RT006';
+        }
         if (codMessage) {
             this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
                 alert(message);

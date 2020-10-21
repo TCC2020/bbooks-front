@@ -52,14 +52,17 @@ export class BookViewComponent implements OnInit, OnDestroy {
         private bookService: BookService,
         private trackingService: TrackingService
     ) {
-        this.inscricao = this.route.data.pipe(take(1)).subscribe((data: { book: Book }) => {
+        this.inscricao = this.route.data.subscribe((data: { book: Book }) => {
             this.book = data.book;
             this.stringAuthors = this.convertAuthorsToString();
+            if (this.book?.idUserBook > 0) {
+                this.getAllTracking();
+            }
         });
     }
 
     ngOnInit(): void {
-        this.getAllTracking();
+        this.getBook();
     }
 
     getBook(): void {
@@ -89,14 +92,16 @@ export class BookViewComponent implements OnInit, OnDestroy {
     //         });
     // }
     getAllTracking() {
-        this.trackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {
-                this.trackings = trackings
-                    .slice()
-                    .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
-            },
-            error => {
-                console.log('error tracking all by idbook', error);
-            });
+        if (this.book?.idUserBook) {
+            this.trackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {
+                    this.trackings = trackings
+                        .slice()
+                        .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
+                },
+                error => {
+                    console.log('error tracking all by idbook', error);
+                });
+        }
     }
 
     orderByDate(readingTracking: ReadingTrackingTO[]) {
@@ -140,9 +145,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 book
             }
         });
-        dialogRef.afterClosed().pipe(switchMap(async res => {
-            return await res;
-        })).subscribe(() => {
+        dialogRef.afterClosed().subscribe(() => {
             this.getBook();
         });
     }
@@ -176,6 +179,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
             this.getBook();
         });
     }
+
     openDialogTrackingView(tracking: TrackingTO) {
 
         const dialogRef = this.dialog.open(TrackingViewComponent, {

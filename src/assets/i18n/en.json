@@ -183,6 +183,7 @@
     "FR001": "Request not found",
     "FR002": "Conflict while removing friend",
     "RT005": "Page smaller than last tracking",
-    "TA001": "Last tracking is not finished yeat"
+    "TA001": "Last tracking is not finished yeat",
+    "RT006": "Page can´t be zero"
   }
 }
