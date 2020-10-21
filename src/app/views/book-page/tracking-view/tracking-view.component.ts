@@ -27,15 +27,6 @@ export class TrackingViewComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // if (this.tag) {
-        //     this.translate.get('PADRAO.EDITAR').subscribe(text => {
-        //         this.textForm = text;
-        //     });
-        // } else {
-        //     this.translate.get('PADRAO.CRIAR').subscribe(text => {
-        //         this.textForm = text;
-        //     });
-        // }
         this.createForm();
     }
 
