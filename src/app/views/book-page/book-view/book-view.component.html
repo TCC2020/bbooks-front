@@ -155,9 +155,10 @@
                                 <div fxFlex="10">{{readingTracking.numPag}}</div>
                                 <button mat-mini-fab color="accent"
                                         aria-label="Example icon button with a filter list icon"
-                                        (click)="openDialogReadingTracking(tracking.trackings, readingTracking, readingTracking === orderByDate(tracking.trackings)[0] ? false : true, tracking.id)">
+                                        (click)="openDialogReadingTracking(tracking.trackings, readingTracking, true, tracking.id)">
                                     <mat-icon>create</mat-icon>
                                 </button>
+
                             </div>
                             <div fxLayout="row" fxLayoutAlign="center center">
                                 <div>{{readingTracking.comentario}}</div>

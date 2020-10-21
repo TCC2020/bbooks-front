@@ -175,7 +175,6 @@ export class BookViewComponent implements OnInit, OnDestroy {
             this.getBook();
         });
     }
-
     openDialogTrackingView(tracking: TrackingTO) {
 
         const dialogRef = this.dialog.open(TrackingViewComponent, {
