@@ -6,7 +6,7 @@
 }
 .acompanhamento {
   margin: 0.5em;
-  width: 96%;
+  width: 100%;
 }
 .button-color{
   color: white;
@@ -26,9 +26,7 @@
   text-align: justify;
   margin: auto 1px;
 }
-.trackings{
-  width: 100%;
-}
+
 @media screen and (max-width: 600px) {
   .card {
     border: none;
@@ -40,12 +38,16 @@
     border: none;
     //width: 100%;
   }
+  .acompanhamento{
+    border: none;
+    width: 100% !important;
+    padding: 0;
+  }
   .mat-card-content{
     margin: auto 10px;
   }
-  .acompanhamento{
-    border: none;
-    width: 100%;
+  .flex{
+    width: 100% !important;
   }
 
 }

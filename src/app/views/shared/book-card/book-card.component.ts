@@ -75,9 +75,7 @@ export class BookCardComponent implements OnInit {
                 book
             }
         });
-        dialogRef.afterClosed().pipe(switchMap(async res => {
-            return await res;
-        })).subscribe(() => {
+        dialogRef.afterClosed().subscribe(() => {
                 this.getBook();
                 this.bookService.updateListCarrousel.emit(true);
         });
@@ -93,6 +91,7 @@ export class BookCardComponent implements OnInit {
                     }
                 });
                 this.book = book;
+                this.userBook = this.book.idUserBook ? true : false;
             });
         });
     }

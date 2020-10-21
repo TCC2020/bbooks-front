@@ -69,42 +69,41 @@
             </mat-card-content>
         </mat-card>
     </div>
-    <div fxLayout="column" fxLayoutAlign="space-between center" fxFlex="50" *ngIf="book.idUserBook" >
+    <div fxLayout="column" fxLayoutAlign="space-between center" fxFlex="50" *ngIf="book.idUserBook" class="flex">
         <div fxLayout="row" fxLayoutAlign="center center">
             <h2>{{'ACOMP_LEITURA.ACOMP_LEITURA' | translate}}</h2>
         </div>
-        <div class="acompanhamento">
-            <mat-expansion-panel
-                    [expanded]="true"
-                    (opened)="panelOpenState = true"
-                    (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        {{'ACOMP_LEITURA.ACOMP_LEITURA' | translate}}
-                    </mat-panel-title>
-                    <mat-panel-description>
+        <mat-expansion-panel
+                class="acompanhamento"
+                [expanded]="true"
+                (opened)="panelOpenState = true"
+                (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{'ACOMP_LEITURA.ACOMP_LEITURA' | translate}}
+                </mat-panel-title>
+                <mat-panel-description>
 
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <div fxLayout="row" fxLayoutAlign="space-between center" >
-                    <div><b>Total</b></div>
-                    <div> {{trackings.length}}</div>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="space-between center" >
-                    <div><b>{{'PADRAO.CONCLUIDO' | translate}}</b></div>
-                    <div> {{ getConcluidos('concluido')}} </div>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="space-between center" >
-                    <div><b>{{'PADRAO.PENDENTE' | translate}}</b></div>
-                    <div> {{ getConcluidos('pending')}}</div>
-                </div>
-            </mat-expansion-panel>
-        </div>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div><b>Total</b></div>
+                <div> {{trackings.length}}</div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div><b>{{'PADRAO.CONCLUIDO' | translate}}</b></div>
+                <div> {{ getConcluidos('concluido')}} </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <div><b>{{'PADRAO.PENDENTE' | translate}}</b></div>
+                <div> {{ getConcluidos('pending')}}</div>
+            </div>
+        </mat-expansion-panel>
         <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" fxLayout.xs="row">
-<!--            <mat-form-field>-->
-<!--                <mat-label>{{'PADRAO.BUSCAR' | translate}}</mat-label>-->
-<!--                <input matInput type="text" [(ngModel)]="search">-->
-<!--            </mat-form-field>-->
+            <!--            <mat-form-field>-->
+            <!--                <mat-label>{{'PADRAO.BUSCAR' | translate}}</mat-label>-->
+            <!--                <input matInput type="text" [(ngModel)]="search">-->
+            <!--            </mat-form-field>-->
             <button
                     (click)="openDialogTrackingView(null)"
                     type="button"
@@ -123,17 +122,21 @@
                         {{'ACOMP_LEITURA.ACOMPANHAMENTO' | translate}} {{trackings.length - i}}
                     </mat-panel-title>
                     <mat-panel-description>
-                            {{ getStatusTranslate(tracking.trackings) | translate}} {{tracking.finishedDate | date}}
+                        {{ getStatusTranslate(tracking.trackings) | translate}} {{tracking.finishedDate | date}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div *ngIf="tracking.comentario">{{'PADRAO.COMENTARIO' | translate}}: {{tracking.comentario}}</div>
                 <div>
                     <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center">
-                        <mat-progress-bar color="accent" mode="determinate" [value]="this.getPercentTotal(tracking.trackings)"></mat-progress-bar>
-                        <div style="position: absolute; color: white; padding-left: 10px;"> {{this.getPercentTotal(tracking.trackings) | number}}%</div>
+                        <mat-progress-bar color="accent" mode="determinate"
+                                          [value]="this.getPercentTotal(tracking.trackings)"></mat-progress-bar>
+                        <div style="position: absolute; color: white; padding-left: 10px;"> {{this.getPercentTotal(tracking.trackings) | number}}
+                            %
+                        </div>
                         <button
 
-                                style="width: 100px" type="button" *ngIf="tracking.trackings ? tracking.trackings[tracking.trackings.length -1]?.percentage.toString() !== '100' : true "
+                                style="width: 100px" type="button"
+                                *ngIf="tracking.trackings ? tracking.trackings[tracking.trackings.length -1]?.percentage.toString() !== '100' : true "
                                 mat-flat-button
                                 color="accent"
                                 (click)="openDialogReadingTracking(tracking,null, false, tracking.id)">
@@ -145,7 +148,8 @@
                     <div fxLayout="column"
                          fxLayout.xs="column"
                          fxLayoutGap="10px" fxLayoutAlign="space-between center">
-                        <mat-card class="trackings" *ngFor="let readingTracking of orderByDate(tracking.trackings), let i = index;"
+                        <mat-card class="trackings"
+                                  *ngFor="let readingTracking of orderByDate(tracking.trackings), let i = index;"
                                   [ngStyle]="{
                               'background': readingTracking === orderByDate(tracking.trackings)[0] ? '#ebfff5' : ''
                               }">

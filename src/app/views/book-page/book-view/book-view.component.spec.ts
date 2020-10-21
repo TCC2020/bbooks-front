@@ -17,12 +17,21 @@ import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
+import {AuthService} from '../../../services/auth.service';
 
 describe('BookViewComponent', () => {
     let component: BookViewComponent;
     let fixture: ComponentFixture<BookViewComponent>;
     const routeMock = {
         data: of({book: bookMock})
+    };
+    const userMock = {
+        profile: {
+            id: 10
+        }
+    };
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
     };
 
     beforeEach(async(() => {
@@ -48,6 +57,10 @@ describe('BookViewComponent', () => {
                 {
                     provide: ActivatedRoute,
                     useValue: routeMock
+                },
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
                 },
                 TranslateService,
                 TranslateStore

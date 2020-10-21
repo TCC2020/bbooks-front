@@ -184,8 +184,8 @@
     "FR002": "Conflito ao remover amigo",
     "FR002": "Conflito ao remover amigo",
     "RT005": "Página menor que o último acompanhamento",
-    "TA001": "O último acompanhamento ainda não terminou"
-
+    "TA001": "O último acompanhamento ainda não terminou",
+    "RT006": "A página não pode ser zero"
   }
 }
 

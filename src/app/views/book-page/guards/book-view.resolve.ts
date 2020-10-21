@@ -28,8 +28,8 @@ export class BookViewResolve implements Resolve<Book> {
             const book = this.bookService.convertBookToModel(b);
             this.userbooks.books.forEach(userbook => {
                 if (userbook.idBook === book.id) {
-                    book.status = userbook.status;
                     book.idUserBook = userbook.id;
+                    book.status = userbook.status;
                 }
             });
             return book;
