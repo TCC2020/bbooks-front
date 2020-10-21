@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "node app.js",
-    "build": "ng build --aot --prod",
-    "postinstall": "ng build --aot --prod",
+    "build": "ng build",
     "preinstall": "node environment.js",
+    "heroku-postbuild": "ng build --aot --prod",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test": "jest --collectCoverage --coverageReporters=\"text-summary\"",
