@@ -11,6 +11,7 @@ import {of} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {trackingMock} from '../../../mocks/tracking.model';
 import {TrackingService} from '../../../services/tracking.service';
+import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('TrackingViewComponent', () => {
     let component: TrackingViewComponent;
@@ -54,6 +55,8 @@ describe('TrackingViewComponent', () => {
                     provide: MatDialogRef,
                     useValue: matDialogRefMock
                 },
+                TranslateService,
+                TranslateStore
             ]
         }).compileComponents();
     }));
