@@ -147,7 +147,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
     }
 
-    openDialogReadingTracking(trackings: ReadingTrackingTO[], tracking: ReadingTrackingTO, editPag: boolean, trackingUpId: string) {
+    openDialogReadingTracking(track: TrackingTO, tracking: ReadingTrackingTO, editPag: boolean, trackingUpId: string) {
         const dialogRef = this.dialog.open(TrackingDialogComponent, {
             height: '300px',
             width: '400px',
@@ -164,12 +164,13 @@ export class BookViewComponent implements OnInit, OnDestroy {
         })).subscribe((result) => {
             if (result) {
                 if (result === 'delete') {
-                    trackings.splice(trackings.indexOf(tracking), 1);
+                    track.finishedDate = null;
+                    track.trackings.splice(track.trackings.indexOf(tracking), 1);
                 }
                 if (tracking) {
                     tracking = result;
                 } else {
-                    trackings.push(result);
+                    track.trackings.push(result);
                 }
             }
             this.getBook();

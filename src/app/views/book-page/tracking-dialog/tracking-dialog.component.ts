@@ -54,59 +54,50 @@ export class TrackingDialogComponent implements OnInit {
                     this.dialogRef.close(tracking);
                 },
                 error => {
-                    let codMessage = '';
-                    if (error.error.message.includes('RT002')) {
-                        codMessage = 'RT002';
-                    }
-                    if (error.error.message.includes('RT003')) {
-                        codMessage = 'RT003';
-                    }
-                    if (error.error.message.includes('RT005')) {
-                        codMessage = 'RT005';
-                    }
-                    if (codMessage) {
-                        this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
-                            alert(message);
-                        });
-                    } else {
-                        console.log(error);
-                    }
+                    this.verifyError(error, 'error reading tracking update');
                 });
         } else {
             this.trackingService.save(this.formTracking.value).pipe(take(1)).subscribe(tracking => {
                     this.dialogRef.close(tracking);
                 },
                 error => {
-                    let codMessage = '';
-                    if (error.error.message.includes('RT002')) {
-                        codMessage = 'RT002';
-                    }
-                    if (error.error.message.includes('RT003')) {
-                        codMessage = 'RT003';
-                    }
-                    if (error.error.message.includes('RT005')) {
-                        codMessage = 'RT005';
-                    }
-                    if (codMessage) {
-                        this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
-                            alert(message);
-                        });
-                    } else {
-                        console.log(error);
-                    }
+                    this.verifyError(error, 'error reading tracking save');
                 });
         }
 
     }
 
-    delete() {
+    delete(): void {
         this.data.tracking.trackingUpId = this.data.trackingUpId;
         this.trackingService.delete(this.data.tracking.id).subscribe(() => {
                 this.dialogRef.close('delete');
             },
             error => {
-                console.log('error tracking delete', error);
+                this.verifyError(error, 'error reading tracking delete');
             });
+    }
+
+    verifyError(error: any, locationError: string): void {
+        let codMessage = '';
+        if (error.error.message.includes('RT002')) {
+            codMessage = 'RT002';
+        }
+        if (error.error.message.includes('RT003')) {
+            codMessage = 'RT003';
+        }
+        if (error.error.message.includes('RT005')) {
+            codMessage = 'RT005';
+        }
+        if (error.error.message.includes('TA001')) {
+            codMessage = 'TA001';
+        }
+        if (codMessage) {
+            this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                alert(message);
+            });
+        } else {
+            console.log(locationError + ': ' , error);
+        }
     }
 
 }

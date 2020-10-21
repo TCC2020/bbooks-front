@@ -33,7 +33,8 @@
     "EXCLUIR": "Excluir",
     "DESFAZER_AMIZADE": "Desfazer amizade",
     "CONCLUIDO": "Concluído",
-    "PENDENTE": "Pendente"
+    "PENDENTE": "Pendente",
+    "COMENTARIO": "Comentário"
   },
   "NAV": {
     "SAIR": "Sair",
@@ -126,8 +127,7 @@
     "QUERO_LER": "Quero Ler",
     "EMPRESTADO": "Emprestado",
     "RELENDO": "Relendo",
-    "INTERROMPIDO": "Interrompido",
-    "COMENTARIO": "Comentário"
+    "INTERROMPIDO": "Interrompido"
   },
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Acompanhamento de Leitura",

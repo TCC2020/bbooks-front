@@ -101,5 +101,4 @@ export class TrackingViewComponent implements OnInit {
         //         console.log('error tracking delete', error);
         //     });
     }
-
 }

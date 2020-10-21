@@ -123,10 +123,10 @@
                         {{'ACOMP_LEITURA.ACOMPANHAMENTO' | translate}} {{trackings.length - i}}
                     </mat-panel-title>
                     <mat-panel-description>
-                            {{ getStatusTranslate(tracking.trackings) | translate}}
+                            {{ getStatusTranslate(tracking.trackings) | translate}} {{tracking.finishedDate | date}}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                {{'PADRAO.COMENTARIO' | translate}}: {{tracking.comentario}}
+                <div *ngIf="tracking.comentario">{{'PADRAO.COMENTARIO' | translate}}: {{tracking.comentario}}</div>
                 <div>
                     <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center">
                         <mat-progress-bar color="accent" mode="determinate" [value]="this.getPercentTotal(tracking.trackings)"></mat-progress-bar>
@@ -136,7 +136,7 @@
                                 style="width: 100px" type="button" *ngIf="tracking.trackings ? tracking.trackings[tracking.trackings.length -1]?.percentage.toString() !== '100' : true "
                                 mat-flat-button
                                 color="accent"
-                                (click)="openDialogReadingTracking(tracking.trackings,null, false, tracking.id)">
+                                (click)="openDialogReadingTracking(tracking,null, false, tracking.id)">
                             {{'PADRAO.ADICIONAR' | translate}}
                         </button>
                     </div>
@@ -155,7 +155,7 @@
                                 <div fxFlex="10">{{readingTracking.numPag}}</div>
                                 <button mat-mini-fab color="accent"
                                         aria-label="Example icon button with a filter list icon"
-                                        (click)="openDialogReadingTracking(tracking.trackings, readingTracking, true, tracking.id)">
+                                        (click)="openDialogReadingTracking(tracking, readingTracking, true, tracking.id)">
                                     <mat-icon>create</mat-icon>
                                 </button>
 
