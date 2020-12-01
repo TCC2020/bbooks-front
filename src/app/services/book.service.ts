@@ -3,7 +3,7 @@ import {BookCase} from '../models/bookCase.model';
 import {Book} from '../models/book.model';
 import {GoogleBooksService} from './google-books.service';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Author} from '../models/author.model';
 import {UserbookService} from './userbook.service';
@@ -11,6 +11,7 @@ import {of} from 'rxjs';
 import {AuthService} from './auth.service';
 import {TagService} from './tag.service';
 import {UserBookTO} from '../models/userBookTO';
+import {BookPagination} from '../models/pagination/book.pagination';
 
 @Injectable({
     providedIn: 'root'
@@ -166,7 +167,8 @@ export class BookService {
             bc.id = genre;
             this.gBooksService.searchByName(genre).subscribe(response => {
                 let books = [];
-                books = response['items'];
+                // @ts-ignore
+                books = response.items;
 
                 bc.books = books.map(value => {
                     const b = this.convertBookToModel(value);
@@ -184,5 +186,13 @@ export class BookService {
             });
         });
         return of(result);
+    }
+
+    search(search: string, size: number, page: number): Observable<BookPagination> {
+        const params = new HttpParams()
+            .set('search' , search)
+            .set('page', page.toString())
+            .set('size', size.toString());
+        return this.http.get<BookPagination>(this.api + '/search', {params});
     }
 }
