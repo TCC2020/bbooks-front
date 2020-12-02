@@ -36,7 +36,8 @@ export class BookEstanteResolve implements Resolve<Book[]> {
             } else {
                 this.bookService.getAllBooks().subscribe(books => {
                     bookCase.books = books;
-                });
+                },
+                error => console.log('errro', error));
             }
         } else {
             this.gBooksService.searchByName(tag).subscribe(books => {

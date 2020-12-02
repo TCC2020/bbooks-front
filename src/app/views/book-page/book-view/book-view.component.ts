@@ -66,18 +66,33 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     getBook(): void {
-        this.bookService.getAllUserBooks().subscribe((userbooks) => {
-            this.gBookService.getById(this.book.id).subscribe(b => {
-                const book = this.bookService.convertBookToModel(b);
-                userbooks.books.forEach(userbook => {
-                    if (userbook.idBook === book.id) {
-                        book.status = userbook.status;
-                        book.idUserBook = userbook.id;
-                    }
+        if (this.book.api === 'google') {
+            this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                this.gBookService.getById(this.book.id).subscribe(b => {
+                    const book = this.bookService.convertBookToModel(b);
+                    userbooks.books.forEach(userbook => {
+                        if (userbook.idBook === book.id) {
+                            book.status = userbook.status;
+                            book.idUserBook = userbook.id;
+                        }
+                    });
+                    this.book = book;
                 });
-                this.book = book;
             });
-        });
+        } else {
+            this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                // tslint:disable-next-line:radix
+                this.bookService.getById(Number.parseInt(this.book.id)).subscribe(b => {
+                    userbooks.books.forEach(userbook => {
+                        if (userbook.book.id === b.id) {
+                            b.status = userbook.status;
+                            b.idUserBook = userbook.id;
+                        }
+                    });
+                    this.book = b;
+                });
+            });
+        }
     }
 
     // getAllReadingTracking() {

@@ -77,7 +77,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
             ).subscribe(booksPagination => {
                 console.log(booksPagination);
                 this.totalBooks = booksPagination.totalElements;
-                this.resulSearch(booksPagination.content);
+                this.resulSearch(booksPagination.content.map(b => {
+                    b.api = 'bbooks';
+                    return b;
+                }));
             });
         }
     }
@@ -92,7 +95,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
             if (this.user) {
                 this.bookService.getAllUserBooks().subscribe((userbooks) => {
                     userbooks.books.forEach(userbook => {
-                        if (book?.id?.toString() === userbook.idBook) {
+                        if (book?.id === userbook.idBook ||
+                            book?.id === userbook?.book?.id) {
                             book.status = userbook.status;
                             book.idUserBook = userbook.id;
                         }
