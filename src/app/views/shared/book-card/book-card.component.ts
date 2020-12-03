@@ -81,19 +81,36 @@ export class BookCardComponent implements OnInit {
         });
     }
     getBook(): void {
-        this.bookService.getAllUserBooks().subscribe((userbooks) => {
-            this.gbookService.getById(this.book.id).subscribe(b => {
-                const book = this.bookService.convertBookToModel(b);
-                userbooks.books.forEach(userbook => {
-                    if (userbook.idBook === book.id) {
-                        book.status = userbook.status;
-                        book.idUserBook = userbook.id;
-                    }
+        if (this.book.api === 'google') {
+            this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                this.gbookService.getById(this.book.id).subscribe(b => {
+                    const book = this.bookService.convertBookToModel(b);
+                    userbooks.books.forEach(userbook => {
+                        if (userbook.idBookGoogle === book.id) {
+                            book.status = userbook.status;
+                            book.idUserBook = userbook.id;
+                        }
+                    });
+                    this.book = book;
+                    this.userBook = this.book.idUserBook ? true : false;
                 });
-                this.book = book;
-                this.userBook = this.book.idUserBook ? true : false;
             });
-        });
+        } else {
+            this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                // tslint:disable-next-line:radix
+                this.bookService.getById(Number.parseInt(this.book.id)).subscribe(b => {
+                    userbooks.books.forEach(userbook => {
+                        if (userbook?.idBook === b.id) {
+                            b.status = userbook.status;
+                            b.idUserBook = userbook.id;
+                        }
+                    });
+                    this.book = b;
+                    this.userBook = this.book.idUserBook ? true : false;
+                });
+            });
+        }
+
     }
 
     verifyrouter(): boolean {

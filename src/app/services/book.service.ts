@@ -3,14 +3,17 @@ import {BookCase} from '../models/bookCase.model';
 import {Book} from '../models/book.model';
 import {GoogleBooksService} from './google-books.service';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable, throwError, zip} from 'rxjs';
 import {Author} from '../models/author.model';
 import {UserbookService} from './userbook.service';
 import {of} from 'rxjs';
 import {AuthService} from './auth.service';
 import {TagService} from './tag.service';
 import {UserBookTO} from '../models/userBookTO';
+import {BookPagination} from '../models/pagination/book.pagination';
+import {catchError, map, mergeMap} from 'rxjs/operators';
+import {Tag} from '../models/tag';
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +24,7 @@ export class BookService {
 
     @Output() updateListCarrousel = new EventEmitter<any>();
 
-    api = environment.api + 'books';
+    api = environment.api + 'books/';
 
     constructor(
         private gBooksService: GoogleBooksService,
@@ -45,72 +48,92 @@ export class BookService {
                 bc.description = tag.name;
                 bc.books = [];
                 if (tag.books) {
-                    this.getBooksByUserBooks(tag.books).subscribe(books => {
+                    zip(
+                        ...this.getBooksByUserBooks(tag.books)
+                    ).subscribe((books: Book[]) => {
                         bc.books = books;
+                        result.push(bc);
                     });
-                    result.push(bc);
                 }
             });
         });
         return of(result);
     }
 
-    getAllUserBooks() {
+    getAllUserBooks(): Observable<any> {
         return this.userbookService.getAllByProfile(this.authGuard.getUser().profile.id);
     }
 
     getAllBooks(): Observable<any> {
-        const result = [];
-        this.getAllUserBooks().subscribe(userBook => {
-            userBook.books.forEach(realation => {
-                this.gBooksService.getById(realation.idBook).subscribe(book => {
-                    const b = this.convertBookToModel(book);
-                    b.idUserBook = realation.id;
-                    b.status = realation.status;
-                    result.push(b);
-                });
-            });
-
-        });
-        return of(result);
+       return this.getAllUserBooks()
+            .pipe(
+                mergeMap(userBook => {
+                    return zip(
+                        ...this.getBooksByUserBooks(userBook.books)
+                    );
+                })
+            );
     }
 
     getBookCaseByTag(tagId: number): Observable<BookCase> {
-        const result = new BookCase();
-        result.books = [];
-        this.tagService.getById(tagId).subscribe(tag => {
-                result.description = tag.name;
-                result.id = tag.id;
-                this.getBooksByUserBooks(tag.books).subscribe(books => {
-                    result.books = books;
-                });
-            },
-            error => {
-                console.log('BookService - error, getBookCaseByTag', error);
-            });
-        return of(result);
+
+        // @ts-ignore
+        return this.tagService.getById(tagId)
+            .pipe(
+                mergeMap(tag => {
+                    const result = new BookCase();
+                    result.books = [];
+                    result.description = tag.name;
+                    result.id = tag.id;
+                    if (tag?.books?.length > 0) {
+                        return zip(
+                            ...this.getBooksByUserBooks(tag.books)
+                        ).pipe(
+                            map((books: Book[]) => {
+                                result.books = books;
+                                return result;
+                            })
+                        );
+                    } 
+                    return of(result);
+                    
+                }),
+                catchError((err => {
+                        console.log('BookService - error, getBookCaseByTag', err);
+                        return throwError(err);
+                    })
+                ));
     }
 
-    getBooksByUserBooks(userBook: UserBookTO[]): Observable<Book[]> {
-        const result = [];
-        if (userBook) {
-            userBook.forEach(realation => {
-                this.gBooksService.getById(realation.idBook).subscribe(book => {
-                    const b = this.convertBookToModel(book);
-                    b.idUserBook = realation.id;
-                    b.status = realation.status;
-                    result.push(b);
-                });
+    getBooksByUserBooks(userBook: UserBookTO[]): any[] {
+            return userBook.map(realation => {
+                if (realation.idBookGoogle) {
+                    return this.gBooksService.getById(realation.idBookGoogle).pipe(
+                        map(book => {
+                            const b = this.convertBookToModel(book);
+                            b.idUserBook = realation.id;
+                            b.status = realation.status;
+                            return b;
+                        })
+                    );
+                } else {
+                    const id = realation.idBook ? realation.idBook : realation['book'].id;
+                    return this.getById(id).pipe(
+                        map(b => {
+                            b.idUserBook = realation.id;
+                            b.status = realation.status;
+                            return b;
+                        })
+                    );
+                }
             });
-        }
-
-        return of(result);
     }
 
     convertBookToModel(book: any): Book {
         const b = new Book();
         b.authors = [];
         b.id = book.id;
+        b.api = 'google';
         if (book.volumeInfo) {
             if (book.volumeInfo.industryIdentifiers) {
                 b.isbn10 = book.volumeInfo.industryIdentifiers[0]?.identifier;
@@ -166,13 +189,14 @@ export class BookService {
             bc.id = genre;
             this.gBooksService.searchByName(genre).subscribe(response => {
                 let books = [];
-                books = response['items'];
+                // @ts-ignore
+                books = response.items;
 
                 bc.books = books.map(value => {
                     const b = this.convertBookToModel(value);
                     this.getAllUserBooks().subscribe((userbooks) => {
                         userbooks.books.forEach(userbook => {
-                            if (userbook.idBook === b.id) {
+                            if (userbook.idBookGoogle === b.id) {
                                 b.status = userbook.status;
                                 b.idUserBook = userbook.id;
                             }
@@ -184,5 +208,17 @@ export class BookService {
             });
         });
         return of(result);
+    }
+
+    search(search: string, size: number, page: number): Observable<BookPagination> {
+        const params = new HttpParams()
+            .set('search', search)
+            .set('page', page.toString())
+            .set('size', size.toString());
+        return this.http.get<BookPagination>(this.api + 'search', {params});
+    }
+
+    getById(id: number): Observable<Book> {
+        return this.http.get<Book>(this.api + id);
     }
 }
