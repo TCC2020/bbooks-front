@@ -34,7 +34,9 @@
     "DESFAZER_AMIZADE": "Desfazer amizade",
     "CONCLUIDO": "Concluído",
     "PENDENTE": "Pendente",
-    "COMENTARIO": "Comentário"
+    "COMENTARIO": "Comentário",
+    "VELOCIDADE_LEITURA" : "Velocidade de leitura",
+    "PAGINA_POR_DIA": "páginas/dia"  
   },
   "NAV": {
     "SAIR": "Sair",

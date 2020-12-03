@@ -34,7 +34,9 @@
     "DESFAZER_AMIZADE": "Unfriend",
     "CONCLUIDO": "Completed",
     "PENDENTE": "Pending",
-    "COMENTARIO": "Comment"
+    "COMENTARIO": "Comment",
+    "VELOCIDADE_LEITURA": "Reading speed",
+    "PAGINA_POR_DIA": "pages/day"
   },
   "NAV": {
     "SAIR": "Logout",
