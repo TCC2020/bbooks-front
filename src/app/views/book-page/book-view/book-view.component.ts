@@ -71,7 +71,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 this.gBookService.getById(this.book.id).subscribe(b => {
                     const book = this.bookService.convertBookToModel(b);
                     userbooks.books.forEach(userbook => {
-                        if (userbook.idBook === book.id) {
+                        if (userbook.idBookGoogle === book.id) {
                             book.status = userbook.status;
                             book.idUserBook = userbook.id;
                         }
@@ -84,7 +84,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 // tslint:disable-next-line:radix
                 this.bookService.getById(Number.parseInt(this.book.id)).subscribe(b => {
                     userbooks.books.forEach(userbook => {
-                        if (userbook.book.id === b.id) {
+                        if (userbook.idBook === b.id) {
                             b.status = userbook.status;
                             b.idUserBook = userbook.id;
                         }

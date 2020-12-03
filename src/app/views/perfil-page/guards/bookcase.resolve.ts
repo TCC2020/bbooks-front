@@ -38,15 +38,27 @@ export class BookcaseResolve implements Resolve<any> {
         this.bookCase.books = [];
         this.userService.getUserName(username, this.authservice.getToken()).pipe(take(1)).subscribe(user => {
             // tslint:disable-next-line:radix
-            this.userBookService.getAllByProfile(Number.parseInt(user.profile.id)).pipe(take(1)).subscribe(userBook => {
+            this.userBookService.getAllByProfile(Number.parseInt(user.profile.id))
+                .pipe(take(1))
+                .subscribe(userBook => {
                 userBook.books.forEach(realation => {
-                    this.gBooksService.getById(realation.idBook).subscribe(book => {
-                        const b = this.bookService.convertBookToModel(book);
-                        b.idUserBook = realation.id;
-                        b.status = realation.status;
-                        this.bookCase.books.push(b);
+                    if (realation.idBookGoogle) {
+                        this.gBooksService.getById(realation.idBookGoogle).subscribe(book => {
+                            const b = this.bookService.convertBookToModel(book);
+                            b.idUserBook = realation.id;
+                            b.status = realation.status;
+                            this.bookCase.books.push(b);
 
-                    });
+                        });
+                    } else {
+                        const id = realation.idBook ? realation.idBook :  realation['book'].id;
+                        this.bookService.getById(id).subscribe(book => {
+                            const b = this.bookService.convertBookToModel(book);
+                            b.idUserBook = realation.id;
+                            b.status = realation.status;
+                            this.bookCase.books.push(b);
+                        });
+                    }
                 });
             });
             this.user.id = user.id;

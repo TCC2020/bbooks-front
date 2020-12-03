@@ -138,8 +138,9 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.tags = this.getSelectedTags();
         this.userBookTo.page = this.Book.numberPage;
         this.Book.api === 'google' ?
-            this.userBookTo.idBook = this.Book.id :
-            this.userBookTo.book = this.Book;
+            this.userBookTo.idBookGoogle = this.Book.id :
+            // tslint:disable-next-line:radix
+            this.userBookTo.idBook = Number.parseInt(this.Book.id);
 
         if (this.tagsBook.length > 0) {
             this.userbookService.update(this.userBookTo).subscribe(

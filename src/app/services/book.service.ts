@@ -13,6 +13,7 @@ import {TagService} from './tag.service';
 import {UserBookTO} from '../models/userBookTO';
 import {BookPagination} from '../models/pagination/book.pagination';
 import {catchError, map, mergeMap} from 'rxjs/operators';
+import {Tag} from '../models/tag';
 
 @Injectable({
     providedIn: 'root'
@@ -47,10 +48,12 @@ export class BookService {
                 bc.description = tag.name;
                 bc.books = [];
                 if (tag.books) {
-                    this.getBooksByUserBooks(tag.books).subscribe(books => {
+                    zip(
+                        ...this.getBooksByUserBooks(tag.books)
+                    ).subscribe((books: Book[]) => {
                         bc.books = books;
+                        result.push(bc);
                     });
-                    result.push(bc);
                 }
             });
         });
@@ -66,26 +69,7 @@ export class BookService {
             .pipe(
                 mergeMap(userBook => {
                     return zip(
-                        ...userBook.books.map(realation => {
-                            if (realation.idBook) {
-                                return this.gBooksService.getById(realation.idBook).pipe(
-                                    map(book => {
-                                        const b = this.convertBookToModel(book);
-                                        b.idUserBook = realation.id;
-                                        b.status = realation.status;
-                                        return b;
-                                    })
-                                );
-                            } else {
-                                return this.getById(realation.book.id).pipe(
-                                    map(b => {
-                                        b.idUserBook = realation.id;
-                                        b.status = realation.status;
-                                        return b;
-                                    })
-                                );
-                            }
-                        })
+                        ...this.getBooksByUserBooks(userBook.books)
                     );
                 })
             );
@@ -101,12 +85,18 @@ export class BookService {
                     result.books = [];
                     result.description = tag.name;
                     result.id = tag.id;
-                    return this.getBooksByUserBooks(tag.books)
-                        .pipe(
-                            map(books => {
+                    if (tag?.books?.length > 0) {
+                        return zip(
+                            ...this.getBooksByUserBooks(tag.books)
+                        ).pipe(
+                            map((books: Book[]) => {
                                 result.books = books;
+                                return result;
                             })
                         );
+                    } else {
+                        return of(result);
+                    }
                 }),
                 catchError((err => {
                         console.log('BookService - error, getBookCaseByTag', err);
@@ -115,30 +105,28 @@ export class BookService {
                 ));
     }
 
-    getBooksByUserBooks(userBook: UserBookTO[]): Observable<Book[]> {
-        const result = [];
-        if (userBook) {
-            userBook.forEach(realation => {
-                if (realation?.idBook) {
-                    this.gBooksService.getById(realation.idBook).subscribe(book => {
-                        const b = this.convertBookToModel(book);
-                        b.idUserBook = realation.id;
-                        b.status = realation.status;
-                        result.push(b);
-                    });
+    getBooksByUserBooks(userBook: UserBookTO[]): any[] {
+            return userBook.map(realation => {
+                if (realation.idBookGoogle) {
+                    return this.gBooksService.getById(realation.idBookGoogle).pipe(
+                        map(book => {
+                            const b = this.convertBookToModel(book);
+                            b.idUserBook = realation.id;
+                            b.status = realation.status;
+                            return b;
+                        })
+                    );
                 } else {
-                    // tslint:disable-next-line:radix
-                    this.getById(Number.parseInt(realation.book.id)).subscribe(b => {
-                        b.idUserBook = realation.id;
-                        b.status = realation.status;
-                        result.push(b);
-                    });
-
+                    const id = realation.idBook ? realation.idBook : realation['book'].id;
+                    return this.getById(id).pipe(
+                        map(b => {
+                            b.idUserBook = realation.id;
+                            b.status = realation.status;
+                            return b;
+                        })
+                    );
                 }
             });
-        }
-
-        return of(result);
     }
 
     convertBookToModel(book: any): Book {
@@ -208,7 +196,7 @@ export class BookService {
                     const b = this.convertBookToModel(value);
                     this.getAllUserBooks().subscribe((userbooks) => {
                         userbooks.books.forEach(userbook => {
-                            if (userbook.idBook === b.id) {
+                            if (userbook.idBookGoogle === b.id) {
                                 b.status = userbook.status;
                                 b.idUserBook = userbook.id;
                             }

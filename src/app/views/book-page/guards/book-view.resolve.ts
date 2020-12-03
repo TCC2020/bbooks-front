@@ -31,7 +31,7 @@ export class BookViewResolve implements Resolve<Book> {
             return this.gBookService.getById(id).pipe(map(b => {
                 const book = this.bookService.convertBookToModel(b);
                 this.userbooks.books.forEach(userbook => {
-                    if (userbook.idBook === book.id) {
+                    if (userbook.idBookGoogle === book.id) {
                         book.idUserBook = userbook.id;
                         book.status = userbook.status;
                     }
@@ -44,7 +44,7 @@ export class BookViewResolve implements Resolve<Book> {
                 .pipe(
                     map(b => {
                         this.userbooks.books.forEach(userbook => {
-                            if (userbook?.book?.id === b.id) {
+                            if (userbook?.idBook === b.id) {
                                 b.idUserBook = userbook.id;
                                 b.status = userbook.status;
                             }

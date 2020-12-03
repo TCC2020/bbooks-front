@@ -60,6 +60,17 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         this.inscricao = this.route.data.subscribe((data: { bookcase: BookCase }) => {
             this.bookCase = data.bookcase;
         });
+        this.bookService.updateListCarrousel.subscribe(updated => {
+            if (updated) {
+                const myBook = this.router.url.toString().includes('mybooks');
+                if (myBook) {
+                    this.bookService.getBookCaseByTag(this.bookCase.id).subscribe(
+                        bcs => {
+                            this.bookCase = bcs;
+                        }, error => console.log('error booksComponent', error));
+                }
+            }
+        });
 
         if (!this.userBook) {
             this.routerlink = '/book/';

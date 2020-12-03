@@ -67,20 +67,24 @@ export class MainPageComponent implements OnInit, OnDestroy {
                 this.totalBooks = books['totalItems'];
                 let booksConvert = [];
                 booksConvert = books['items'];
-                this.resulSearch(booksConvert);
+                booksConvert?.length > 0 ?
+                    this.resulSearch(booksConvert) :
+                    this.resetBooks();
             });
         } else {
             this.bookService.search(
                 this.searchControl.value.book.split(' ').join('+'),
                 this.pageEvent.pageSize,
-                this.pageEvent.pageIndex * this.pageEvent.pageSize
+                this.pageEvent.pageIndex
             ).subscribe(booksPagination => {
-                console.log(booksPagination);
                 this.totalBooks = booksPagination.totalElements;
-                this.resulSearch(booksPagination.content.map(b => {
+                const books = booksPagination.content.map(b => {
                     b.api = 'bbooks';
                     return b;
-                }));
+                });
+                books?.length > 0 ?
+                    this.resulSearch(books) :
+                    this.resetBooks();
             });
         }
     }
@@ -95,8 +99,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
             if (this.user) {
                 this.bookService.getAllUserBooks().subscribe((userbooks) => {
                     userbooks.books.forEach(userbook => {
-                        if (book?.id === userbook.idBook ||
-                            book?.id === userbook?.book?.id) {
+                        if (book?.id === userbook.idBookGoogle ||
+                            book?.id === userbook?.idBook) {
                             book.status = userbook.status;
                             book.idUserBook = userbook.id;
                         }
@@ -119,5 +123,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.mediaSub.unsubscribe();
+    }
+    resetBooks(): void {
+        this.books = [];
+        this.totalBooks = 0;
     }
 }
