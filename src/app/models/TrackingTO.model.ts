@@ -7,4 +7,5 @@ export class TrackingTO {
     finishedDate: Date;
     trackings: ReadingTrackingTO[];
     userBookId: number;
+    velocidadeLeitura: number;
 }

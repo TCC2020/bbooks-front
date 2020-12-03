@@ -28,4 +28,8 @@ export class TrackingService {
     update(trackingTO: TrackingTO): Observable<ReadingTrackingTO> {
         return this.http.put<ReadingTrackingTO>(this.api + trackingTO.id, trackingTO);
     }
+
+    getById(id: string): Observable<TrackingTO> {
+        return this.http.get<TrackingTO>(this.api + id);
+    }
 }
