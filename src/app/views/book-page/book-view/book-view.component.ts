@@ -104,6 +104,15 @@ export class BookViewComponent implements OnInit, OnDestroy {
         }
     }
 
+    getByIdTrackingSpeed(id: string, tracking: TrackingTO) {
+        this.trackingService.getById(id).pipe(take(1)).subscribe(result => { 
+            this.trackings[this.trackings.indexOf(tracking)].velocidadeLeitura = result.velocidadeLeitura;
+         },
+            error => {
+                console.log('error tracking all by idbook', error);
+            });
+    }
+
     orderByDate(readingTracking: ReadingTrackingTO[]) {
         if (readingTracking) {
             return readingTracking
@@ -172,8 +181,10 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 }
                 if (tracking) {
                     tracking = result;
+                    this.getByIdTrackingSpeed(track.id, track);
                 } else {
                     track.trackings.push(result);
+                    this.getByIdTrackingSpeed(track.id, track);
                 }
             }
             this.getBook();
@@ -205,7 +216,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     getStatus(readingTrackings: ReadingTrackingTO[]): string {
-        if (readingTrackings.length > 0) {
+        if (readingTrackings?.length > 0) {
             readingTrackings = this.orderByDate(readingTrackings);
             return readingTrackings[0].percentage.toString() === '100' ? 'concluido' : 'pending';
         } else {
