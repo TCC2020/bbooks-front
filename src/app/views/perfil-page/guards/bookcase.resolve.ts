@@ -52,8 +52,8 @@ export class BookcaseResolve implements Resolve<any> {
                         });
                     } else {
                         const id = realation.idBook ? realation.idBook :  realation['book'].id;
-                        this.bookService.getById(id).subscribe(book => {
-                            const b = this.bookService.convertBookToModel(book);
+                        this.bookService.getById(id)
+                            .subscribe(b => {
                             b.idUserBook = realation.id;
                             b.status = realation.status;
                             this.bookCase.books.push(b);

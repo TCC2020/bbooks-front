@@ -23,7 +23,6 @@ export class BookViewResolve implements Resolve<Book> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
-        console.log('query', route.queryParams['api']);
         const api = route.queryParams['api'];
         const id = route.params['id'];
 

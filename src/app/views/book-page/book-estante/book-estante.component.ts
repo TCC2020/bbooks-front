@@ -64,7 +64,10 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
             if (updated) {
                 const myBook = this.router.url.toString().includes('mybooks');
                 if (myBook) {
-                    this.bookService.getBookCaseByTag(this.bookCase.id).subscribe(
+                    if (this.bookCase.id)
+                    this.bookService.getBookCaseByTag(this.bookCase.id)
+                        .pipe(take(1))
+                        .subscribe(
                         bcs => {
                             this.bookCase = bcs;
                         }, error => console.log('error booksComponent', error));
