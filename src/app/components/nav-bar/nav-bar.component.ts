@@ -61,7 +61,7 @@ export class NavBarComponent implements OnInit {
     }
 
     verifyRequests() {
-        const result = this.requests?.filter(request => request.status !== 'added');
+        const result = this.requests?.filter(request => request.status === 'received');
         if (result.length > 0) {
             return result.length;
         } else {
@@ -107,9 +107,22 @@ export class NavBarComponent implements OnInit {
         const acept = new Friend();
         acept.id = request.id;
         this.friendService.deleteRequest(acept).subscribe(() => {
-            this.translate.get('PADRAO.SOLICITACAO_N_ACEITA').subscribe(message => {
-                alert(message);
-            });
+            if (request.status === 'sent') {
+                this.translate.get('PADRAO.SOLICITACAO_CANCELADA').subscribe(message => {
+                    alert(message);
+                });
+            } else {
+                this.translate.get('PADRAO.SOLICITACAO_N_ACEITA').subscribe(message => {
+                    alert(message);
+                });
+            }
+
         });
+    }
+    requestsSent(): FriendRequest[] {
+        return this.requests?.filter(r => r.status === 'sent');
+    }
+    requestsReceived(): FriendRequest[] {
+        return this.requests?.filter(r => r.status === 'received');
     }
 }

@@ -14,8 +14,11 @@
             <mat-icon [matBadge]="requests?.length ? verifyRequests() : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
         </button>
         <mat-menu  #menuNofify="matMenu">
-            <div *ngFor="let request of requests" >
-                <div mat-menu-item style="height: 120px" *ngIf="request.status ==='pending' && request.profileTO.id" >
+            <div *ngFor="let request of requestsReceived()" >
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <p><b>{{'PADRAO.SOLICITACOES_RECEBIDAS' | translate}}</b></p>
+                </div>
+                <div mat-menu-item style="height: 120px" *ngIf="request.profileTO.id" >
                     <div fxLayout="row" [routerLink]="['', request?.profileTO.username]">
                         <img *ngIf="request?.profileTO?.profileImage" class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
 
@@ -27,6 +30,25 @@
                         </button>
                         <button  mat-flat-button color="accent" (click)="aceptRequest(request)">
                             <mat-icon>done</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngFor="let request of requestsSent()" >
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <p><b>{{'PADRAO.SOLICITACOES_ENVIADAS' | translate}}</b></p>
+                </div>
+                <div mat-menu-item style="height: 120px" *ngIf="request.profileTO.id" >
+
+                    <div fxLayout="row" [routerLink]="['', request?.profileTO.username]">
+                        <img *ngIf="request?.profileTO?.profileImage" class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+
+                        <span> {{this.request.profileTO?.name}} {{this.request.profileTO?.lastName}}</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="5px">
+                        <button  mat-flat-button color="warn" (click)="deleteRequest(request)">
+                            <mat-icon>clear</mat-icon>
+                            {{'PADRAO.CANCELAR' | translate}}
                         </button>
                     </div>
                 </div>
