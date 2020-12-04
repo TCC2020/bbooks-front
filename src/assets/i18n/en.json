@@ -137,7 +137,7 @@
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Reading Tracking",
     "DEIX_COMENTARIO": "Leave a comment",
-    "PAG_LIDAS": "How many pages have you read?",
+    "PAG_LIDAS": "What was the last page you read?",
     "MSG_APG_E": "Number of pages is",
     "MSG_COMENT": "Comment must have a maximum of 50 characters.",
     "ACOMPANHAMENTO": "Tracking",
