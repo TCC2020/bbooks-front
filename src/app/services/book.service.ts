@@ -94,9 +94,8 @@ export class BookService {
                                 return result;
                             })
                         );
-                    } 
+                    }
                     return of(result);
-                    
                 }),
                 catchError((err => {
                         console.log('BookService - error, getBookCaseByTag', err);
