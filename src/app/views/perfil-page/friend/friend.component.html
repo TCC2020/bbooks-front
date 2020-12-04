@@ -41,7 +41,7 @@
                         <span>{{'PADRAO.DESFAZER_AMIZADE' | translate}}</span>
                     </div>
                 </mat-menu>
-                <button mat-raised-button color="primary" [matMenuTriggerFor]="menuSent" *ngIf=" friend.profile.friendshipStatus === 'pending'" >
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="menuSent" *ngIf=" friend.profile.friendshipStatus === 'sent'" >
                     <mat-icon>done</mat-icon>
                     {{'PADRAO.SOLICITACAO_ENVIADA' | translate}}
                 </button>
