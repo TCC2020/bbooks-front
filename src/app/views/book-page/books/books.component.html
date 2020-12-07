@@ -1,0 +1,36 @@
+<br>
+<div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>help_outline</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <div mat-menu-item disabled>
+            <mat-icon class="iconStatusLidos">turned_in</mat-icon>
+            <span>{{'STATUS.LIDO' | translate}}</span>
+        </div>
+        <div mat-menu-item disabled>
+            <mat-icon class="iconStatusLendo" >turned_in</mat-icon>
+            <span>{{'STATUS.LENDO' | translate}}</span>
+        </div>
+        <div mat-menu-item disabled>
+            <mat-icon class="iconStatusQueroLer">turned_in</mat-icon>
+            <span>{{'STATUS.QUERO_LER' | translate}}</span>
+        </div>
+        <div mat-menu-item disabled>
+            <mat-icon class="iconStatusEmprestado">turned_in</mat-icon>
+            <span>{{'STATUS.EMPRESTADO' | translate}}</span>
+        </div>
+        <div mat-menu-item disabled>
+            <mat-icon class="iconStatusRelendo">turned_in</mat-icon>
+            <span>{{'STATUS.RELENDO' | translate}}</span>
+        </div>
+        <div mat-menu-item disabled>
+            <mat-icon class="iconStatusInterrompido">turned_in</mat-icon>
+            <span>{{'STATUS.INTERROMPIDO' | translate}}</span>
+        </div>
+    </mat-menu>
+</div>
+
+<div *ngFor="let bookcase of bookCases">
+    <app-carrousel [books]="bookcase.books" [nameTag]="bookcase.description" [idTag]="bookcase.id" (updateBooks)="updateBooksStatus($event)"></app-carrousel>
+</div>

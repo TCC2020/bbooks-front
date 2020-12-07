@@ -1,0 +1,53 @@
+.card {
+  margin: 0.5em;
+  //max-width: 700px;
+  //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 4px;
+}
+.acompanhamento {
+  margin: 0.5em;
+  width: 100%;
+}
+.button-color{
+  color: white;
+}
+.cardImage{
+  border-color:  rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+}
+.mat-progress-bar {
+  height: 20px;
+  border-radius: 15px;
+}
+
+.description{
+  text-align: justify;
+  margin: auto 1px;
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    border: none;
+    width: 100%;
+    margin: auto 1px;
+    padding: 0px;
+  }
+  .trackings{
+    border: none;
+    //width: 100%;
+  }
+  .acompanhamento{
+    border: none;
+    width: 100% !important;
+    padding: 0;
+  }
+  .mat-card-content{
+    margin: auto 10px;
+  }
+  .flex{
+    width: 100% !important;
+  }
+
+}

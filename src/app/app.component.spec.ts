@@ -1,35 +1,38 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import {SocialAuthService} from 'angularx-social-login';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {TranslateServiceMockForRoot} from './mocks/translate.service.mock';
 
 describe('AppComponent', () => {
+
+  let fixture;
+  let component;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        TranslateServiceMockForRoot
       ],
       declarations: [
-        AppComponent
+        AppComponent,
       ],
+      providers: [
+          SocialAuthService
+      ]
     }).compileComponents();
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('should be initialized', () => {
+    expect(fixture).toBeTruthy();
   });
 
   it(`should have as title 'bbooks'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('bbooks');
+    expect(component.title).toEqual('bbooks');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('bbooks app is running!');
-  });
 });

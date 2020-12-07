@@ -1,0 +1,191 @@
+{
+  "PADRAO": {
+    "BUSCAR": "Buscar",
+    "ENTRAR": "Entrar",
+    "SENHA": "Senha",
+    "EMAIL": "Email",
+    "NOME": "Nome",
+    "SOBRENOME": "Sobrenome",
+    "NOME_USUARIO": "Nome de Usuário",
+    "CONFIRMAR_SENHA": "Confirmar Senha",
+    "PAIS": "País",
+    "CIDADE": "Cidade",
+    "ESTADO": "Estado",
+    "DATA_NASCIMENTO": "Data de Nascimento",
+    "LIVROS": "Livros",
+    "CRIAR": "Criar",
+    "EDITAR": "Editar",
+    "REMOVER": "Remover",
+    "ADICIONAR": "Adicionar",
+    "FILTRO": "Filtro",
+    "ENVIAR": "ENVIAR",
+    "SALVAR": "Salvar",
+    "CANCELAR": "Cancelar",
+    "CONFIRMAR": "Confirmar",
+    "EMAIL_ENVIADO": "Email enviado",
+    "SOLICITACAO_ACEITA": "Solicitação aceita",
+    "SOLICITACAO_N_ACEITA": "Solicitação recusada",
+    "SOLICITACAO_ENVIADA": "Solicitação enviada",
+    "SOLICITACAO_CANCELAR": "Cancelar solicitação",
+    "SOLICITACAO_RECEBIDA": "Solicitação recebida",
+    "COMPLETO": "Amizade desfeita",
+    "CONFIRMAR": "Confirmar",
+    "EXCLUIR": "Excluir",
+    "DESFAZER_AMIZADE": "Desfazer amizade",
+    "CONCLUIDO": "Concluído",
+    "PENDENTE": "Pendente",
+    "COMENTARIO": "Comentário"
+  },
+  "NAV": {
+    "SAIR": "Sair",
+    "PORTUGUES": "Português",
+    "INGLES": "Inglês"
+  },
+  "HOME": {
+    "BUSCARTEXT": "Procure um livro"
+  },
+  "LOGIN": {
+    "TIULO": "Informe seus dados",
+    "GOOGLE": "Continuar com o Google",
+    "ESQUECER_SENHA": "Esqueceu sua senha?",
+    "CRIAR_CONTA": "Cria uma conta"
+  },
+  "CADASTRO1": {
+    "TITULO": "Preencha o formulário para se cadastrar",
+    "PROXIMO": "Próximo",
+    "OBRIGATORIO": "obrigatório",
+    "MSG_NAME_E": "Nome é",
+    "MSG_SOBRENOME_E": "Sobrenome é",
+    "MSG_EMAIL_E": "E-mail é",
+    "VLD_EMAIL": "Por favor, insira um endereço de e-mail válido",
+    "MSG_EMAIL_INIT": "Informe um endereço de e-mail válido, pois você receberá um e-mail de confirmação.",
+    "VLD_USERNAME_LETRA": "O primeiro caractere deve ser uma letra",
+    "MSG_USERNAME_E": "Nome de Usuário é",
+    "MSG_USERNAME_INT": "Seu nome de usuário pode ter letras, números e pontos finais.",
+    "VLD_SENHA": "A senha deve conter, no máximo, 20 caracteres",
+    "VLD_SENHA_CARACTERES": "Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.",
+    "SENHA_E": "Senha é,",
+    "SENHA_INIT": "Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras(maiúsculo e minúsculo), números e caractere especial.",
+    "VLD_SENHA_DIFERENTE": "Senhas diferentes"
+  },
+  "CADASTRO2": {
+    "TITULO": "Preencha o formulário para finalizar seu cadastro",
+    "CADASTRAR": "Cadastrar",
+    "FOTO": "Escolher foto de perfil...",
+    "MSG_PAIS_E": "País é",
+    "MSG_ESTADO_E": "Estado é",
+    "MSG_CIDADE_E": "Cidade é",
+    "MSG_FOTO_E": "Foto é",
+    "MSG_DTA_NASC": "Data de Nascimento é",
+    "DTA_NASIMENTO": "Data de Nascimento"
+  },
+  "ESTANTE": {
+    "ESTANTE_VIRTUAL": "Estante Virtual",
+    "MEUS_LIVROS": "Meus Livros",
+    "ADICIONAR_LIVRO": "Adicionar livro na Estante",
+    "EDITAR_LIVRO": "Editar Livro"
+  },
+  "TAG": {
+    "CRIAR_TAG": "Criar Tag",
+    "MSG_TAG_E": "Tag é",
+    "VLD_TAG": "A Tag deve conter, no máximo, 20 caracteres."
+  },
+  "GENEROS": {
+    "LITERATURA": "Literatura",
+    "FICÇÃO": "Ficção",
+    "CLASSICOS": "Clássicos",
+    "ROMANCE": "Romance"
+  },
+  "BOOK": {
+    "EDITORA": "Editora",
+    "PUPLICACAO": "Publicado em",
+    "PAGINAS": "Páginas",
+    "IDIOMA": "Idioma",
+    "AVALIACAO": "Avaliação",
+    "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
+    "CRIAR_LIVRO": "Criar livro"
+  },
+  "PERFIL": {
+    "feed": "feed",
+    "bookcase": "Estante Virtual",
+    "friends": "Amigos",
+    "EDITAR_PERFIL": "editar perfil"
+  },
+  "PG_N_ENCONTRADA": {
+    "PG_N_ENCONTRADA": "Página não encontrada",
+    "NAO_EXISTE": " Desculpa, esta página não existe.",
+    "IR_PG_INICIAL": "Ir para página inicial",
+    "IR": "IR"
+  },
+  "UPLOAD": {
+    "TITULO": "Escolher foto de perfil",
+    "MSG_FOTO_E": "Foto é"
+  },
+  "STATUS": {
+    "LIDO": "Lido",
+    "LENDO": "Lendo",
+    "QUERO_LER": "Quero Ler",
+    "EMPRESTADO": "Emprestado",
+    "RELENDO": "Relendo",
+    "INTERROMPIDO": "Interrompido"
+  },
+  "ACOMP_LEITURA": {
+    "ACOMP_LEITURA": "Acompanhamento de Leitura",
+    "DEIX_COMENTARIO": "Deixar um comentário",
+    "PAG_LIDAS": "Quantas páginas você leu?",
+    "MSG_APG_E": "Número de páginas é",
+    "MSG_COMENT": "Comentário tem que ter no máximo 50 caracteres.",
+    "ACOMPANHAMENTO": "Acompanhamento",
+    "NEW": "Novo Acompanhamento"
+  },
+  "CONFIG_PERFIL": {
+    "DADOS_USER": "Dados do Usuário",
+    "INFO_USER": "Informações do Usuário",
+    "EDITAR_SENHA": "Alterar Senha",
+    "LISTA_AMIGOS": "Veja sua lista de amigos.",
+    "LISTA_ESTANTE": "Veja seus livros na estante virtual.",
+    "USER_ESTATISTICA": "Estatísticas do usuário.",
+    "ESTATISTICA": "Estatísticas",
+    "VER_AMIGOS": "Ver amigos",
+    "VER_ESTANTE": "Ver estante virtual",
+    "VER_ESTATI": "Ver suas estatísticas",
+    "MSG_REALIZE": "Realize a alteração de senha do seu usuário, que dá acesso às funcionalidades do BBooks.",
+    "MSG_VEJA_LIVROS": "Veja seus livros na estante virtual."
+  },
+  "ESQUECI_SENHA": {
+    "RECUP_SENHA": "Recuperação de senha",
+    "MSG_EMAIL_CAD": "Informe o email cadastrado para recuperar sua senha.",
+    "RECEBER_LINK": "Você receberá em instantes um link na sua caixa de email para recuperação da senha!"
+  },
+  "MESSAGE_ERROR": {
+    "AU001": "Autor não encontrado",
+    "AU002": "Autor já existe",
+    "AT001": "Erro, senha errada ou usuário não encontrado",
+    "AT002": "Erro, token não encontrado",
+    "AT003": "Senha já alterada",
+    "US001": "Usuário não encontrado",
+    "US002": "E-mail já utilizado",
+    "US003": "A senha não pode ser nula",
+    "US004": "Token não encontrado",
+    "US005": "Nome de usuário já existe",
+    "BK001": "ISBN já existe",
+    "BK002": "Livro não encontrado",
+    "BK003": "O livro deve ter pelo menos 1 autor",
+    "RT001": "Acompanhamento de leitura não encontrado",
+    "RT002": "Número de página maior que o total de páginas do livro",
+    "RT003": "Livro já concluído",
+    "TG001": "Tag não encontrada",
+    "VTG002": "Tag sent does not match ID",
+    "PF001": "Perfil Não Encontrado",
+    "UB001": "UserBook não encontrado",
+    "UB002": "Status inválido",
+    "TK001": "Token inválido",
+    "FR001": "Pedido não encontrado",
+    "FR002": "Conflito ao remover amigo",
+    "FR002": "Conflito ao remover amigo",
+    "RT005": "Página menor que o último acompanhamento",
+    "TA001": "O último acompanhamento ainda não terminou",
+    "RT006": "A página não pode ser zero"
+  }
+}
+

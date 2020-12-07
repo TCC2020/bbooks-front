@@ -1,0 +1,76 @@
+<form [formGroup]="formCadastro2">
+
+    <div>
+        <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
+    </div>
+    <div>
+        <span>{{'CADASTRO2.TITULO' | translate}}</span>
+    </div>
+
+    <div id="paisEstadoCidade">
+        <mat-form-field>
+            <mat-label>{{'PADRAO.PAIS' | translate}}</mat-label>
+            <mat-select formControlName="country">
+                <mat-option [value]="country.name" *ngFor="let country of countrys"  (blur)="getStates(country)">{{country.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="verificaValidToTouched('country')">
+                {{'CADASTRO2.MSG_PAIS_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="inputSegundaEtapa">
+            <mat-label>{{'PADRAO.ESTADO' | translate}}</mat-label>
+            <mat-select  formControlName="state">
+                <mat-option [value]="state.name" *ngFor="let state of states" (blur)="getCitys(state)">{{state.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="verificaValidToTouched('state')">
+                {{'CADASTRO2.MSG_ESTADO_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="inputSegundaEtapa" >
+            <input type="text"
+                   placeholder="{{'PADRAO.CIDADE' | translate}}"
+                   aria-label="Number"
+                   matInput
+                   formControlName="city"
+                   [matAutocomplete]="autoCity" class="example-full-width">
+            <mat-autocomplete autoActiveFirstOption #autoCity="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptionsCity | async" [value]="option.name">
+                    {{option.name}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="verificaValidToTouched('city')">
+                {{'CADASTRO2.MSG_CIDADE_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+    <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
+        <mat-form-field class="inputSegundaEtapa" *ngIf="!this.auth.getUserRegister()?.profile?.profileImage">
+            <mat-label>{{'CADASTRO2.FOTO' | translate}}</mat-label>
+            <input type="text" matInput id="fotoSegundaEtapa" formControlName="image">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="openDialogUpload()">
+                <mat-icon>create</mat-icon>
+            </button>
+            <mat-error>
+                {{'CADASTRO2.MSG_FOTO_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="inputSegundaEtapa">
+            <mat-label>{{'PADRAO.DATA_NASCIMENTO' | translate}}</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthDate">
+            <mat-error *ngIf="verificaValidToTouched('birthDate')">
+                {{'CADASTRO2.MSG_DTA_NASC' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+            </mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <div id="divBotao">
+        <button type="button" mat-raised-button color="primary" (click)="loginRegister()" [disabled]="formCadastro2.invalid">{{'CADASTRO2.CADASTRAR' | translate}}</button>
+    </div>
+</form>

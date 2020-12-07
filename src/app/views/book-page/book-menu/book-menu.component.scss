@@ -1,0 +1,67 @@
+.content {
+  position: absolute;
+  top: 65px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+}
+
+.content-mob {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+
+}
+
+
+mat-drawer {
+  position: fixed;
+  background-color: white;
+}
+
+.list-width {
+  width: 290px;
+  margin-left: 5px;
+}
+.list-item{
+  //color: #9bbccb;
+  //background-color: #415566;
+  //border-bottom: 2px solid #394A59;
+  //padding: 20px;
+  transition: all .2s linear;
+  border-radius: 10px;
+}
+
+.list-item:hover {
+  background-color: rgba(196, 201, 205, 0.3);
+  //color: white;
+  cursor: pointer;
+}
+.list-item:hover #iconSubItem{
+  transition: all .2s linear;
+  opacity: 1;
+}
+.sidenav{
+  //background-color:  white;
+  width: 301px;
+  border-radius: 3px;
+  box-shadow: 1px 5px 5px rgba(128, 128, 128, 0.39);
+
+}
+.activedList{
+  background-color: rgba(65, 85, 102, 0.11);
+}
+.subItemPadding{
+  margin-left:15px;
+}
+.iconSubItem{
+  opacity: 0;
+  margin-right:5px;
+}
+.itemPadding{
+  margin-left:15px;
+}

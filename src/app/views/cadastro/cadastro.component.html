@@ -1,0 +1,148 @@
+<!-- 
+<div id="espaco">
+
+</div>
+<form [formGroup]="cadastroControl">
+    <div id="cabecalho-cadastro" class="form-rows">
+        <div>
+            <h1 class="form-group col-md-12">BBooks</h1>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <input type="text" class="form-control" id="inputNome" placeholder="Nome" formControlName="name" >
+          </div>
+          <div class="form-group col-md-8">
+            <input type="text" class="form-control" id="inputSobrenome" placeholder="Sobrenome" formControlName="lastName" >
+          </div>
+      <div class="form-group col-md-12">
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email">
+        <small id="passwordHelpBlock" class="form-text text-muted">
+            Informe um endereço de e-mail válido, pois você receberá um e-mail de confirmação.
+          </small>
+      </div>
+      <div class="form-group col-md-12">
+        <input type="text" class="form-control" id="inputNomeUsuario" placeholder="Nome de Usuário" formControlName="userName">
+        <small id="nomeUsuarioHelpBlock" class="form-text text-muted">
+            Seu nome de usuário pode ter letras, números e pontos finais.
+          </small>
+      </div>
+      <div class="form-group col-md-6">
+        <input type="password" class="form-control" id="inputSenha" placeholder="Senha" formControlName="password">
+        <small id="passwordHelpBlock" class="form-text text-muted">
+            Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser letras e números.
+          </small>
+      </div>
+      <div class="form-group col-md-6">
+        <input type="password" class="form-control" id="inputConfirmarSenha" placeholder="Confirmar Senha">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="cadastrar()">Próximo</button>
+  </form> -->
+
+
+  <form [formGroup]="cadastroControl">
+
+    <div>
+      <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
+    </div>
+    <div>
+      <span id="texto-introducao">{{'CADASTRO1.TITULO' | translate}}</span>
+    </div>
+
+    <div id="nomeSobrenome">
+      <mat-form-field id="nome" class="inputCadastrar">
+        <mat-label>{{'PADRAO.NOME' | translate}}</mat-label>
+        <input matInput id="nomeCadastrar" formControlName="name">
+        <mat-error *ngIf="cadastroControl.get('name').hasError('required')">
+          {{'CADASTRO1.MSG_NAME_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field id="sobrenome" class="inputCadastrar">
+        <mat-label>{{'PADRAO.SOBRENOME' | translate}}</mat-label>
+        <input matInput id="sobrenomeCadastrar" formControlName="lastName">
+        <mat-error *ngIf="cadastroControl.get('lastName').hasError('required')">
+          {{'CADASTRO1.MSG_SOBRENOME_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div>
+      <mat-form-field class="inputCadastrar">
+        <mat-label>{{'PADRAO.EMAIL' | translate}}</mat-label>
+        <input type="email" matInput id="emailCadastrar" formControlName="email">
+        <!-- <mat-error *ngIf="cadastroControl.get('email').hasError('email') && !cadastroControl.get('email').hasError('required')">
+          {{'CADASTRO1.VLD_EMAIL' | translate}}
+        </mat-error> -->
+        <mat-error *ngIf="cadastroControl.get('email').hasError('required')">
+          {{'CADASTRO1.MSG_EMAIL_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+        </mat-error>
+        <mat-error *ngIf="cadastroControl.get('email').hasError('pattern') && !cadastroControl.get('email').hasError('required')">
+          {{'CADASTRO1.VLD_EMAIL' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+        </mat-error>
+        <mat-hint>{{'CADASTRO1.MSG_EMAIL_INIT' | translate}}</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="inputCadastrar">
+        <mat-label>{{'PADRAO.NOME_USUARIO' | translate}}</mat-label>
+        <input matInput id="nomeUsuarioCadastrar" formControlName="userName" #username (input)="username.value = username.value.toLowerCase()" >
+        <mat-error *ngIf="cadastroControl.get('userName').hasError('pattern') && !cadastroControl.get('userName').hasError('required')">
+          {{'CADASTRO1.VLD_USERNAME_LETRA' | translate}}
+        </mat-error>
+        <mat-error *ngIf="cadastroControl.get('userName').hasError('required')">
+          {{'CADASTRO1.MSG_USERNAME_E' | translate}}   <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+        </mat-error>
+        <mat-hint> {{'CADASTRO1.MSG_USERNAME_INT' | translate}}</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <div id="senhaConfirmarSenha" >
+      <mat-form-field class="inputCadastraSenha">
+        <mat-label>{{'PADRAO.SENHA' | translate}}</mat-label>
+        <input type="password"
+        matInput 
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+        id="senhaCadastrar">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        <mat-error *ngIf="cadastroControl.get('password').hasError('maxlength') && !cadastroControl.get('password').hasError('required')">
+          {{'CADASTRO1.VLD_SENHA' | translate}}
+        </mat-error>
+        <mat-error *ngIf="cadastroControl.get('password').hasError('pattern') && !cadastroControl.get('password').hasError('required')">
+          {{'CADASTRO1.VLD_SENHA_CARACTERES' | translate}}
+        </mat-error>
+        <mat-error *ngIf="cadastroControl.get('password').hasError('required')">
+          {{'CADASTRO1.SENHA_E' | translate}}<strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+        </mat-error>
+        <mat-hint>
+          {{'CADASTRO1.SENHA_INIT' | translate}}
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="inputCadastraSenha">
+        <mat-label>{{'PADRAO.CONFIRMAR_SENHA' | translate}}</mat-label>
+        <input type="password"
+         [type]="hide ? 'password' : 'text'"
+        matInput
+        formControlName="confirmPassword"
+        [errorStateMatcher]="matcher"
+        id="confirmarSenhaCadastrar" onpaste="return false" ondrop="return false">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="cadastroControl.hasError('notSame')">
+          {{'CADASTRO1.VLD_SENHA_DIFERENTE' | translate}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div id="divBotao">
+      <button type="button" mat-raised-button color="primary" (click)="cadastrar()" [disabled]="cadastroControl.invalid">{{'CADASTRO1.PROXIMO' | translate}}</button>
+    </div>
+  </form>

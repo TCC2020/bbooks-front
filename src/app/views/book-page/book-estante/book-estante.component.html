@@ -1,0 +1,49 @@
+<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="20px"
+     fxLayoutAlign.xs="space-around center">
+    <mat-form-field fxFlex="30">
+        <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
+        <input matInput type="text" [(ngModel)]="search">
+        <mat-icon matSuffix mat-icon-button>search</mat-icon>
+    </mat-form-field>
+    <mat-form-field fxFlex="30" fxFlex.xs>
+        <mat-chip-list #chipList aria-label="filter selection">
+            <mat-chip
+                    *ngFor="let element of filter"
+                    [selectable]="selectable"
+                    [removable]="removable"
+                    (removed)="remove(element)">
+                {{element | titlecase}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+                    placeholder="{{'PADRAO.FILTRO' | translate}}"
+                    #fruitInput
+                    [formControl]="filterCtrl"
+                    [matAutocomplete]="auto"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let status of filteredElements | async" [value]="status">
+                {{status | titlecase}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <button type="button" mat-raised-button color="primary" routerLink="/new" >
+        {{'BOOK.CRIAR_LIVRO' | translate}}
+    </button>
+</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+    <app-book-card
+            *ngFor="let book of filterBooks()"
+            [idTag]="bookCase.id"
+            [book]="book"
+            [deviceXs]="deviceXs"
+            (bookReturn)="bookReturn($event)"
+            [logged]="true"
+            [canEdit]="true">
+    </app-book-card>
+</div>
+

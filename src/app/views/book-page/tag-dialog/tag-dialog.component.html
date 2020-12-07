@@ -1,0 +1,26 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <h2 mat-dialog-title>{{textForm}} Tag</h2>
+
+        <form [formGroup]="formTag" class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Tag</mat-label>
+                <input matInput placeholder="Ex. Literatura" formControlName="name">
+            </mat-form-field>
+        </form>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-error *ngIf="formTag.get('name').hasError('maxlength')">
+            {{'TAG.VLD_TAG' | translate}}        </mat-error>
+        <mat-error *ngIf="formTag.get('name').hasError('required')">
+            {{'TAG.MSG_TAG_E' | translate}} <strong> {{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+        </mat-error>
+    </div>
+    <p></p>
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+        <button mat-flat-button color="accent" (click)="save()"
+                [disabled]="formTag.invalid">
+            {{textForm}}
+        </button>
+    </div>
+</mat-dialog-content>

@@ -1,0 +1,45 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <h2 mat-dialog-title>{{'ACOMP_LEITURA.ACOMP_LEITURA' | translate}}</h2>
+
+        <form [formGroup]="formTracking" class="example-form">
+            <div fxLayout="column" fxLayoutAlign="space-between center">
+            <mat-form-field class="example-full-width">
+                <mat-label>{{'ACOMP_LEITURA.PAG_LIDAS' | translate}}</mat-label>
+                <input matInput  formControlName="numPag" maxlength="5" appNumbersOnlyInput >
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>{{'ACOMP_LEITURA.DEIX_COMENTARIO' | translate}}</mat-label>
+                <textarea matInput formControlName="comentario"></textarea>
+            </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <mat-error *ngIf="formTracking.get('numPag').hasError('required')">
+            {{'ACOMP_LEITURA.MSG_APG_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+        </mat-error>
+        <mat-error *ngIf="formTracking.get('comentario').hasError('maxlength')">
+            {{'ACOMP_LEITURA.MSG_COMENT' | translate}}
+        </mat-error>
+    </div>
+    <p></p>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <div fxLayoutGap="8px">
+            <button mat-flat-button color="warn" (click)="delete()" *ngIf="data.tracking">
+                {{'PADRAO.REMOVER' | translate}}
+            </button>
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="data.tracking"
+                    [disabled]="formTracking.invalid">
+                {{'PADRAO.EDITAR' | translate}}
+            </button>
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="!data.tracking"
+                    [disabled]="formTracking.invalid">
+                {{'PADRAO.ADICIONAR' | translate}}
+            </button>
+        </div>
+
+    </div>
+</mat-dialog-content>
+
+

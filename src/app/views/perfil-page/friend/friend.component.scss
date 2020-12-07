@@ -1,0 +1,64 @@
+.container {
+  position: relative;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 80px;
+  height: 80px;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.faixa{
+  transition: .5s ease;
+  opacity: 1;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.container:hover {
+  transition: all .2s linear;
+  cursor: pointer;
+  opacity: 1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card {
+  max-width: 150px;
+  margin: 0.5em;
+  border-radius: 4px;
+}
+.iconTextWhite {
+  color: white;
+}
+.friendTittle{
+  color: black;
+  text-decoration: underline;
+}
+.friendTittle :hover{
+  cursor: pointer;
+}
+.matcard {
+  width: 350px;
+  margin: 0px auto 0px;
+
+}
+
+@media screen and (max-width: 400px) {
+  .matcard {
+    width: 300px;
+  }
+}

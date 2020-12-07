@@ -1,0 +1,189 @@
+{
+  "PADRAO": {
+    "BUSCAR": "Search",
+    "ENTRAR": "Login",
+    "SENHA": "Password",
+    "EMAIL": "E-mail",
+    "NOME": "Name",
+    "SOBRENOME": "Last Name",
+    "NOME_USUARIO": "Username",
+    "CONFIRMAR_SENHA": "Confirm Password",
+    "PAIS": "Country",
+    "CIDADE": "City",
+    "ESTADO": "State",
+    "DATA_NASCIMENTO": "Date of birth",
+    "LIVROS": "Books",
+    "CRIAR": "Create",
+    "EDITAR": "Edit",
+    "REMOVER": "Remove",
+    "ADICIONAR": "Add",
+    "FILTRO": "Filter",
+    "ENVIAR": "SEND",
+    "SALVAR": "Save",
+    "CANCELAR": "Cancel",
+    "CONFIRMAR": "Confirm",
+    "EMAIL_ENVIADO": "E-mail sent",
+    "SOLICITACAO_ACEITA": "Request accepted",
+    "SOLICITACAO_N_ACEITA": "Request refused",
+    "SOLICITACAO_ENVIADA": "Request sent",
+    "SOLICITACAO_CANCELAR": "Cancel request",
+    "SOLICITACAO_RECEBIDA": "request received",
+    "COMPLETO": "Completed",
+    "CONFIRMAR": "Confirm",
+    "EXCLUIR": "Delete",
+    "DESFAZER_AMIZADE": "Unfriend",
+    "CONCLUIDO": "Completed",
+    "PENDENTE": "Pending",
+    "COMENTARIO": "Comment"
+  },
+  "NAV": {
+    "SAIR": "Logout",
+    "PORTUGUES": "Portuguese - Brazil",
+    "INGLES": "English"
+  },
+  "HOME": {
+    "BUSCARTEXT": "Search for a book"
+  },
+  "LOGIN": {
+    "TIULO": "Sign in ",
+    "GOOGLE": "Sign with Google",
+    "ESQUECER_SENHA": "Forgot Password?",
+    "CRIAR_CONTA": "Create new account"
+  },
+  "CADASTRO1": {
+    "TITULO": "Fill out the form to register",
+    "PROXIMO": "Next",
+    "OBRIGATORIO": "required",
+    "MSG_NAME_E": "Name is",
+    "MSG_SOBRENOME_E": "Lastname is",
+    "MSG_EMAIL_E": "E-mail is",
+    "VLD_EMAIL": "Please enter a valid email address",
+    "MSG_EMAIL_INIT": "Enter a valid email address, as you will receive a confirmation email.",
+    "VLD_USERNAME_LETRA": "The first character must be a letter",
+    "MSG_USERNAME_E": "Username is",
+    "MSG_USERNAME_INT": "Your username can have letters, numbers and periods.",
+    "VLD_SENHA": "The password must contain a maximum of 20 characters",
+    "VLD_SENHA_CARACTERES": "Your password must be between 8 and 20 characters, which must be letters (upper and lower case), numbers and a special character.",
+    "SENHA_E": "Password is",
+    "SENHA_INIT": "Your password must be between 8 and 20 characters, which must be letters (upper and lower case), numbers and a special character.",
+    "VLD_SENHA_DIFERENTE": "Different passwords"
+  },
+  "CADASTRO2": {
+    "TITULO": "Fill out the form to complete your registration",
+    "CADASTRAR": "Register",
+    "FOTO": "Choose profile photo...",
+    "MSG_PAIS_E": "Country é",
+    "MSG_ESTADO_E": "State is",
+    "MSG_CIDADE_E": "City is",
+    "MSG_FOTO_E": "Image is",
+    "MSG_DTA_NASC": "Birthdate is",
+    "DTA_NASIMENTO": "Birthdate"
+  },
+  "ESTANTE": {
+    "ESTANTE_VIRTUAL": "Bookcase",
+    "MEUS_LIVROS": "My Books",
+    "ADICIONAR_LIVRO": "Add book on the Bookcase",
+    "EDITAR_LIVRO": "Edit Book"
+  },
+  "TAG": {
+    "CRIAR_TAG": "Create Tag",
+    "MSG_TAG_E": "Tag is",
+    "VLD_TAG": "The tag must contain a maximum of 20 characters."
+  },
+  "GENEROS": {
+    "LITERATURA": "Literature",
+    "FICÇÃO": "Fiction",
+    "CLASSICOS": "Classics",
+    "ROMANCE": "Romance"
+  },
+  "BOOK": {
+    "EDITORA": "Publisher",
+    "PUPLICACAO": "Published in",
+    "PAGINAS": "Pages",
+    "IDIOMA": "Language",
+    "AVALIACAO": "Evaluation",
+    "OUTRAS_INFO": "OTHER INFORMATION",
+    "CRIAR_LIVRO": "Create Book"
+  },
+  "PERFIL": {
+    "feed": "feed",
+    "bookcase": "bookcase",
+    "friends": "friends",
+    "EDITAR_PERFIL": "edit profile"
+  },
+  "PG_N_ENCONTRADA": {
+    "PG_N_ENCONTRADA": "Page not found",
+    "NAO_EXISTE": "Sorry, this page does not exist.",
+    "IR_PG_INICIAL": "Go to home page",
+    "IR": "Go"
+  },
+  "UPLOAD": {
+    "TITULO": "Choose profile photo",
+    "MSG_FOTO_E": "Photo is"
+  },
+  "STATUS": {
+    "LIDO": "Read",
+    "LENDO": "Currently Reading",
+    "QUERO_LER": "Want to Read",
+    "EMPRESTADO": "Borrowed",
+    "RELENDO": "Rereading",
+    "INTERROMPIDO": "Interrupted"
+  },
+  "ACOMP_LEITURA": {
+    "ACOMP_LEITURA": "Reading Tracking",
+    "DEIX_COMENTARIO": "Leave a comment",
+    "PAG_LIDAS": "How many pages have you read?",
+    "MSG_APG_E": "Number of pages is",
+    "MSG_COMENT": "Comment must have a maximum of 50 characters.",
+    "ACOMPANHAMENTO": "Tracking",
+    "NEW": "New Reading Tracking"
+  },
+  "CONFIG_PERFIL": {
+    "DADOS_USER": "User data",
+    "INFO_USER": "User Information",
+    "EDITAR_SENHA": "Change Password",
+    "LISTA_AMIGOS": "See your friends list.",
+    "LISTA_ESTANTE": "See your books on the bookcase",
+    "USER_ESTATISTICA": "User statistics.",
+    "ESTATISTICA": "Statistics",
+    "VER_AMIGOS": "See friends",
+    "VER_ESTANTE": "View your bookcase",
+    "VER_ESTATI": "View your statistics",
+    "MSG_REALIZE": "Change your user's password, which gives access to BBooks functionalities.",
+    "MSG_VEJA_LIVROS": "See your books on the bookcase"
+  },
+  "ESQUECI_SENHA": {
+    "RECUP_SENHA": "Password recovery",
+    "MSG_EMAIL_CAD": "Enter the registered email to recover your password.",
+    "RECEBER_LINK": "You will receive an instant link in your email box to recover your password!"
+  },
+  "MESSAGE_ERROR": {
+    "AU001": "Author not found",
+    "AU002": "Author already exists",
+    "AT001": "Error, wrong password or user not found",
+    "AT002": "Error, token not found",
+    "AT003": "Password already changed",
+    "US001": "User not found",
+    "US002": "Email already used",
+    "US003": "Password can't be null",
+    "US004": "Token not found",
+    "US005": "Username already used",
+    "BK001": "IBNB already exists",
+    "BK002": "Book not found",
+    "BK003": "Book should have at least 1 author",
+    "RT001": "Reading Tracking not found",
+    "RT002": "Page number greater than the total pages of the book",
+    "RT003": "Book already completed",
+    "TG001": "Tag not found",
+    "VTG002": "Tag sent does not match ID",
+    "PF001": "Profile not found",
+    "UB001": "UserBook not found",
+    "UB002": "Invalid status",
+    "TK001": "Invalid token",
+    "FR001": "Request not found",
+    "FR002": "Conflict while removing friend",
+    "RT005": "Page smaller than last tracking",
+    "TA001": "Last tracking is not finished yeat",
+    "RT006": "Page can´t be zero"
+  }
+}

@@ -1,0 +1,81 @@
+.inputCadastrar {
+    width: 100%;
+}
+
+
+#nomeSobrenome, #senhaConfirmarSenha {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+#nome {
+    width: 35%;
+}
+
+#sobrenome {
+    width: 65%;
+}
+
+button#proximoCadastrar {
+    color: #FFFFFF;
+    background-color: #394A59;
+}
+
+button#proximoCadastrar:hover {
+    opacity: 80%;
+}
+
+div {
+    padding: 3px;
+}
+
+#divBotao {
+    text-align: right;
+}
+
+form {
+    border: 1px solid #dadce0;
+    border-radius: 10px;
+    padding: 30px 40px 35px;
+    width: 800px;
+    height: auto;
+    min-height: 500px;
+    margin: 50px auto 0px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#texto-introducao {
+    margin-bottom: 10px;
+}
+.inputCadastraSenha{
+    width: 100%;
+}
+
+@media screen and (max-width: 600px){
+    .inputCadastraSenha{
+        padding-bottom: 25px;
+    }
+    #senhaConfirmarSenha{
+        flex-direction: row;
+    }
+    form {
+        border: none;
+        width: 100%;
+        margin: auto 0px;
+    }
+
+    div {
+        padding: 7px;
+    }
+
+    div#nomeSobrenome, div#senhaConfirmarSenha {
+        display: block;
+        gap: 0px;
+    }
+
+    div#nomeSobrenome mat-form-field, div#senhaConfirmarSenha mat-form-field{
+        width: 100%;
+    }    
+}

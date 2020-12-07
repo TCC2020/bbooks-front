@@ -1,0 +1,68 @@
+<mat-toolbar color="primary">
+    <span routerLink="">
+        <img class="iconbbooks"src="assets/images/logobboks.png">
+    </span>
+    <span class="example-spacer"></span>
+    <button *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;" routerLink="/book">
+        <mat-icon>menu_book</mat-icon>
+    </button>
+    <button *ngIf="!isLogged" mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/login']">
+        {{'PADRAO.ENTRAR' | translate}}
+    </button>
+    <div *ngIf="isLogged">
+        <button  mat-flat-button color="primary" style="width: 5vw;">
+            <mat-icon [matBadge]="requests?.length ? verifyRequests() : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
+        </button>
+        <mat-menu  #menuNofify="matMenu">
+            <div *ngFor="let request of requests" >
+                <div mat-menu-item style="height: 120px" *ngIf="request.status ==='pending' && request.profileTO.id" >
+                    <div fxLayout="row" [routerLink]="['', request?.profileTO.username]">
+                        <img *ngIf="request?.profileTO?.profileImage" class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+
+                        <span> {{this.request.profileTO?.name}} {{this.request.profileTO?.lastName}}</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="5px">
+                        <button  mat-flat-button color="warn" (click)="deleteRequest(request)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                        <button  mat-flat-button color="accent" (click)="aceptRequest(request)">
+                            <mat-icon>done</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </mat-menu>
+    </div>
+    <div *ngIf="isLogged">
+        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/pesquisar-amigos']">
+            <mat-icon>group_add</mat-icon>
+        </button>
+        <button  mat-flat-button color="primary" style="width: 5vw;"  [matMenuTriggerFor]="menuPerfil">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu  #menuPerfil="matMenu">
+            <div mat-menu-item >
+                <div fxLayout="row" [routerLink]="['', user?.userName]">
+                    <img *ngIf="user?.profile?.profileImage" class="imagem-perfil" [src]="user?.profile?.profileImage" alt="imagem de perfil"/>
+
+                    <span> {{this.user?.userName}}</span>
+                </div>
+            </div>
+            <div mat-menu-item (click)="logout()">
+                <mat-icon>login</mat-icon>
+                <span>{{'NAV.SAIR' | translate}}</span>
+            </div>
+
+        </mat-menu>
+    </div>
+
+    <button mat-button [matMenuTriggerFor]="afterMenu">
+        <span class="material-icons">
+            language
+        </span>
+    </button>
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item (click)="switchLang('pt-BR')">{{'NAV.PORTUGUES' | translate}}</button>
+        <button mat-menu-item (click)="switchLang('en')">{{'NAV.INGLES' | translate}}</button>
+    </mat-menu>
+</mat-toolbar>

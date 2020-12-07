@@ -1,0 +1,103 @@
+<div class="form">
+    <form [formGroup]="loginControl">
+
+        <div>
+            <img mat-card-image src="assets/images/logo-bbooks-branco.png" alt="logo bbooks transparente">
+        </div>
+        <div>
+            <span class="texto">{{'LOGIN.TIULO' | translate}}</span>
+        </div>
+
+        <div>
+            <mat-form-field class="input-style">
+                <mat-label>{{'PADRAO.EMAIL' | translate}}</mat-label>
+                <input matInput type="text" formControlName="email">
+                <!--onpaste="return false" ondrop="return false" -->
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="input-style">
+                <mat-label>{{'PADRAO.SENHA' | translate}}</mat-label>
+                <!--<input type="password" matInput formControlName="password">-->
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+            </mat-form-field>
+        </div>
+
+<!--        <div id="botaoLogar">-->
+<!--            <button mat-raised-button id="entrar" (click)="login()">Entrar</button>-->
+<!--        </div>-->
+        <!--        <div id="botaoLogarGoogle">-->
+        <!--          <button mat-raised-button (click)="loginGoogle()" id="entrarGoogle"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> Continuar com o Google</button>-->
+        <!--      </div>-->
+        <button type="button" mat-raised-button color="primary" (click)="login()">{{'PADRAO.ENTRAR' | translate}}</button>
+        <button mat-raised-button (click)="loginGoogle()"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> {{'LOGIN.GOOGLE' | translate}}</button>
+
+      <mat-divider id="divisor"></mat-divider>
+
+      <div id="recuperarSenha" >
+      <a [routerLink]="['/recuperar-senha']" style="margin-top: 15px;">
+          {{'LOGIN.ESQUECER_SENHA' | translate}}
+      </a>
+    </div>
+    <div id="criarConta" >
+      <a [routerLink]="['/cadastro']" style="margin-top: 15px;">
+          {{'LOGIN.CRIAR_CONTA' | translate}}
+      </a>
+    </div>
+    </form>
+    
+</div>
+<!-- <mdb-card>
+
+    <mdb-card-header class="secondary-color white-text text-center py-4">
+      <h5>
+        <strong>Login</strong>
+      </h5>
+    </mdb-card-header>
+    <mdb-card-body class="px-lg-5 pt-0">
+  
+      <form [formGroup]="loginControl" class="text-center" style="color: #757575;">
+  
+        <div class="md-form">
+          <input type="email" id="materialLoginFormEmail" class="form-control" mdbInput formControlName="email">
+          <label for="materialLoginFormEmail">E-mail</label>
+        </div>
+  
+        <div class="md-form">
+          <input type="password" id="materialLoginFormPassword" class="form-control" mdbInput formControlName="password">
+          <label for="materialLoginFormPassword">Senha</label>
+        </div>
+  
+        <div class="d-flex justify-content-around">
+          <div>
+            <mdb-checkbox formControlName="keepLogin">Lembrar de mim</mdb-checkbox>
+          </div>
+          <div>
+            <a href="">Esqueceu a senha?</a>
+          </div>
+        </div>
+  
+        <button mdbBtn color="secondary" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+        (click)="login()">Entrar</button>
+  
+        <p>Novo por aqui?
+          <a href="http://localhost:4200/cadastro">Registrar</a>
+        </p>
+  
+        <p>Logar com</p>
+        <a type="button" mdbBtn floating="true" color="fb" size="sm">
+          <mdb-icon fab icon="facebook"></mdb-icon>
+        </a>
+        <a type="button" mdbBtn floating="true" color="tw" size="sm">
+          <mdb-icon fab icon="google"></mdb-icon>
+        </a>
+
+      </form>
+  
+    </mdb-card-body>
+  
+  </mdb-card> -->

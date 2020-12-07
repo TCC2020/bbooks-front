@@ -1,41 +1,18 @@
-sudo: false
 language: node_js
 node_js:
-- '13'
+- '14'
 cache:
   directories:
-  - "$HOME/google-cloud-sdk/"
   - node_modules
-services:
-- docker
-env:
-  global:
-  - GOOGLE_APPLICATION_CREDENTIALS=./travis.json
-  - PROJECT_NAME_STG=bbooks
-  - CLUSTER_NAME_STG=$INSTANCE
-  - CLOUDSDK_COMPUTE_ZONE=$CLOUDSDK_COMPUTE_ZONE
-  - DOCKER_IMAGE_NAME=bbooksfront
-  - KUBE_DEPLOYMENT_NAME=bbooksfront
-  - KUBE_DEPLOYMENT_CONTAINER_NAME=bbooksfront
-  - NODE_ENV=CI
-install:
-- npm install
-script:
-- npm test
-before_deploy:
-- if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export
-  CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash > /dev/null;
-  fi
-- source /home/travis/google-cloud-sdk/path.bash.inc
-- gcloud --quiet version
-- gcloud --quiet components update
-- gcloud --quiet components update kubectl
-deploy:
-- provider: script
-  script: bash ./deploy.sh
-  skip_cleanup: true
-  on:
-    branch: master
 before_install:
-- openssl aes-256-cbc -K $encrypted_7e3b9f3f674f_key -iv $encrypted_7e3b9f3f674f_iv
-  -in travis.json.enc -out travis.json -d
+- npm install -g @angular/cli
+install: npm install
+branches:
+  - develop
+after_script:
+# - chmod +x publish-gh-pages.sh && ./publish-gh-pages.sh
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU_FRONT_KEY
+  app: bbooks-front
