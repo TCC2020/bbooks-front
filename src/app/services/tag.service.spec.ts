@@ -14,8 +14,7 @@ describe('TagService', () => {
         color: 'white',
         profile: null,
         books: []
-    }
-    let response;
+    };
 
     beforeEach(() => {
         TestBed.configureTestingModule({

@@ -67,6 +67,7 @@ export class MainPageComponent implements OnInit, OnChanges {
 
     sendRequest() {
         this.friendTO = new Friend();
+        // tslint:disable-next-line: radix
         this.friendTO.id = Number.parseInt(this.user.profile.id);
         this.friendsService.add(this.friendTO).subscribe(() => {
                 this.translate.get('PADRAO.SOLICITACAO_ENVIADA').subscribe(message => {
@@ -106,6 +107,7 @@ export class MainPageComponent implements OnInit, OnChanges {
     }
 
     deleteFriend(idProfile: string) {
+        // tslint:disable-next-line: radix
         this.friendsService.deleteFriend(Number.parseInt(idProfile)).subscribe(() => {
                 this.getUser();
             },

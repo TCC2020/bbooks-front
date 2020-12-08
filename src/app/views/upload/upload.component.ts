@@ -49,10 +49,9 @@ export class UploadComponent implements OnInit {
         if (ext.includes('jpeg') || ext.includes('png') || ext.includes('jpg')) {
             return true;
         } else {
-            this.formFile.reset()
+            this.formFile.reset();
             this.image = null;
             return false;
         }
     }
-
 }

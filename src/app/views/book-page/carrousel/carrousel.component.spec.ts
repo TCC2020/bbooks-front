@@ -76,7 +76,7 @@ describe('CarrouselComponent', () => {
         const event = {
             book: bookMock,
             status: BookStatus.EMPRESTADO
-        }
+        };
         component.bookReturn(event);
         expect(component.books[component.books.indexOf((event.book))].status).toEqual(event.status);
     });

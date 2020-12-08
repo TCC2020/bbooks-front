@@ -50,7 +50,7 @@ export class FriendsService {
         return this.http.get<Friendship>(this.api + username);
     }
 
-    deleteFriend(idprofile: number): Observable<any>{
+    deleteFriend(idprofile: number): Observable<any> {
         return this.http.delete(this.api + idprofile);
     }
 }

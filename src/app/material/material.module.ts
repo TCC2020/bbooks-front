@@ -109,7 +109,7 @@ import { MatTreeModule } from '@angular/material/tree';
         MatTreeModule,
         MatNativeDateModule
     ],
-    providers: [     
+    providers: [
     ]
 })
 export class MaterialModule {

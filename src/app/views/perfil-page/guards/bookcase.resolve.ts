@@ -51,7 +51,7 @@ export class BookcaseResolve implements Resolve<any> {
 
                         });
                     } else {
-                        const id = realation.idBook ? realation.idBook :  realation['book'].id;
+                        const id = realation.idBook ? realation.idBook :  realation.book.id;
                         this.bookService.getById(id)
                             .subscribe(b => {
                             b.idUserBook = realation.id;

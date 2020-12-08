@@ -142,8 +142,8 @@ export class BookFormComponent implements OnInit {
     }
 
     saveBook() {
-        console.log(this.book)
-        console.log(this.formBook.value)
+        console.log(this.book);
+        console.log(this.formBook.value);
         this.bookService.save(this.formBook.value).subscribe(book => {
             console.log(book);
         });

@@ -12,13 +12,13 @@ export class CDNService {
 
   constructor(private http: HttpClient) { }
 
-  upload(value: CDNFile, objectType: String) {
+  upload(value: CDNFile, objectType: string) {
     const formData: FormData = new FormData();
     formData.append('file', value.file, value.file.name);
     formData.append('info', JSON.stringify(
       {
         type: value.type,
-        objectType: objectType
+        objectType
       }));
     return this.http.post(this.api + 'upload', formData);
   }
@@ -31,7 +31,7 @@ export class CDNService {
           const formData: FormData = new FormData();
           formData.append('info', JSON.stringify(
             {
-              bucket: bucket
+              bucket
             }));
 
           formData.append('file', file, file.name);
@@ -60,7 +60,7 @@ export class CDNService {
       .set('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS')
       .set('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token')
       .set('Accept', '*/*')
-      .set('enctype', 'multipart/form-data')
+      .set('enctype', 'multipart/form-data');
 
     return this.http.post(this.api + 'upload', data,
       { headers });

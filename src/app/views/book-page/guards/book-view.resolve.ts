@@ -23,8 +23,8 @@ export class BookViewResolve implements Resolve<Book> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
-        const api = route.queryParams['api'];
-        const id = route.params['id'];
+        const api = route.queryParams.api;
+        const id = route.params.id;
 
         if (api === 'google') {
             return this.gBookService.getById(id).pipe(map(b => {

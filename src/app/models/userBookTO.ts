@@ -11,4 +11,5 @@ export class UserBookTO {
     tags: Tag[];
     page: number;
     profileId: number;
+    book: Book;
 }

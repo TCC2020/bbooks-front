@@ -6,7 +6,7 @@ export const bookMock = new Book();
 const authors = [];
 const author = new Author();
 author.name = 'António Soares Amora';
-authors.push(author)
+authors.push(author);
 bookMock.authors = [];
 bookMock.id = '101010101010110';
 bookMock.isbn10 = '8531602084';
@@ -40,7 +40,7 @@ while (i < 15) {
     book.authors = authors;
     book.status = BookStatus.QUERO_LER;
     book.idUserBook = 2020;
-    const random = Math.floor(Math.random() * 100)
+    const random = Math.floor(Math.random() * 100);
     book.id = random.toString();
     if (!books.includes(book)) {
         books.push(book);

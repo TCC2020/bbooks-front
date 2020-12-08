@@ -50,8 +50,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
             this.userService.updateUserInfo();
             this.user = this.auth.getUser();
         }
-        this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
-            this.deviceXs = result.mqAlias === 'xs' ? true : false;
+        this.mediaSub = this.mediaObserver.asObservable().subscribe((result: MediaChange[]) => {
+            this.deviceXs = result[0].mqAlias === 'xs' ? true : false;
         });
     }
 
@@ -64,9 +64,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
                 this.pageEvent.pageSize,
                 this.pageEvent.pageIndex * this.pageEvent.pageSize
             ).subscribe(books => {
-                this.totalBooks = books['totalItems'];
+                this.totalBooks = books.totalItems;
                 let booksConvert = [];
-                booksConvert = books['items'];
+                booksConvert = books.items;
                 booksConvert?.length > 0 ?
                     this.resulSearch(booksConvert) :
                     this.resetBooks();

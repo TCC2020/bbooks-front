@@ -13,7 +13,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialog} from '@angular/material/dialog';
 import {of} from 'rxjs';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
-import {TranslateService} from '@ngx-translate/core'
+import {TranslateService} from '@ngx-translate/core';
 import {GoogleBooksService} from '../../../services/google-books.service';
 
 describe('BookCardComponent', () => {
