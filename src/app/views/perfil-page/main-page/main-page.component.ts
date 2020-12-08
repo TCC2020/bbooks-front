@@ -106,7 +106,6 @@ export class MainPageComponent implements OnInit, OnChanges {
     }
 
     deleteFriend(idProfile: number) {
-        // tslint:disable-next-line: radix
         this.friendsService.deleteFriend(idProfile).subscribe(() => {
                 this.getUser();
             },

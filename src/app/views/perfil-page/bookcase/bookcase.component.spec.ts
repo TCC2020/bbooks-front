@@ -14,20 +14,20 @@ import {TranslateServiceMockForChild} from '../../../mocks/translate.service.moc
 import {BookService} from '../../../services/book.service';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {ActivatedRoute} from '@angular/router';
-import {MediaObserver} from '@angular/flex-layout';
+import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('BookcaseComponent', () => {
     let component: BookcaseComponent;
     let fixture: ComponentFixture<BookcaseComponent>;
-    let mockMediaSubject: any;
     const routeMock = {
         data: of({bookcase: bookcaseMock})
     };
+    const mediaChange = new MediaChange();
+    mediaChange.mqAlias = 'xs';
 
     beforeEach(async(() => {
-        mockMediaSubject = new BehaviorSubject({});
         TestBed.configureTestingModule({
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
             declarations: [BookcaseComponent],
@@ -51,7 +51,7 @@ describe('BookcaseComponent', () => {
                 },
                 {
                     provide: MediaObserver,
-                    useValue: {asObservable: mockMediaSubject.asObservable()}
+                    useValue: {asObservable: jest.fn(() =>  of([mediaChange]))}
                 },
                 TranslateService,
                 TranslateStore

@@ -27,8 +27,10 @@ describe('BookEstanteComponent', () => {
     const routeMock = {
         data: of({bookcase: bookcaseMock})
     };
+    const mediaChange = new MediaChange();
+    mediaChange.mqAlias = 'xs';
     beforeEach(async(() => {
-        mockMediaSubject = new BehaviorSubject({});
+        mockMediaSubject = new BehaviorSubject([mediaChange]);
         TestBed.configureTestingModule({
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
             declarations: [BookEstanteComponent],
@@ -52,7 +54,7 @@ describe('BookEstanteComponent', () => {
                 },
                 {
                     provide: MediaObserver,
-                    useValue: {asObservable: mockMediaSubject.asObservable()}
+                    useValue: {asObservable: jest.fn(() =>  of([mediaChange]))}
                 },
                 TranslateService,
                 TranslateStore,
@@ -70,19 +72,6 @@ describe('BookEstanteComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should set deviceXS to true when media$ emits xs as mqAlias', () => {
-        const mediaChange = new MediaChange();
-        mediaChange.mqAlias = 'xs';
-        mockMediaSubject.next(mediaChange);
-        expect(component.deviceXs).toBeTruthy();
-    });
-
-    it('should set deviceXS to false when media$ emits !== xs as mqAlias', () => {
-        const mediaChange = new MediaChange();
-        mediaChange.mqAlias = 'sm';
-        mockMediaSubject.next(mediaChange);
-        expect(component.deviceXs).toBeFalsy();
-    });
     it('test _filter status', () => {
         const result = component._filter(BookStatus.RELENDO);
         result.forEach(status => {
