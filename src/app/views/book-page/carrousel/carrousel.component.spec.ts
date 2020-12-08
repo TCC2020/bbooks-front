@@ -39,7 +39,7 @@ describe('CarrouselComponent', () => {
                 GoogleBooksService,
                 {
                     provide: MediaObserver,
-                    useValue: {media$: mockMediaSubject.asObservable()}
+                    useValue: {asObservable: mockMediaSubject.asObservable()}
                 },
                 TranslateService,
                 TranslateStore
