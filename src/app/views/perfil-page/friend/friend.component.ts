@@ -67,7 +67,7 @@ export class FriendComponent implements OnInit {
 
     sendRequest() {
         this.friendTO = new Friend();
-        this.friendTO.id = Number.parseInt(this.user.profile.id);
+        this.friendTO.id = this.user.profile.id;
         this.friendsService.add(this.friendTO).subscribe(() => {
                 this.translate.get('PADRAO.SOLICITACAO_ENVIADA').subscribe(message => {
                     alert(message);
@@ -105,8 +105,8 @@ export class FriendComponent implements OnInit {
         });
     }
 
-    deleteFriend(idProfile: string) {
-        this.friendsService.deleteFriend(Number.parseInt(idProfile)).subscribe(() => {
+    deleteFriend(idProfile: number) {
+        this.friendsService.deleteFriend(idProfile).subscribe(() => {
                 this.getFriends();
             },
             error => {

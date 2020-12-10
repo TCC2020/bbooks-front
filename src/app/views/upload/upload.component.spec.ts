@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UploadComponent } from './upload.component';
-import {RouterTestingModule} from "@angular/router/testing";
-import {MaterialModule} from "../../material/material.module";
-import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {SocialLoginModule} from "angularx-social-login";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {of} from "rxjs";
-import {MatDialog} from "@angular/material/dialog";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RouterTestingModule} from '@angular/router/testing';
+import {MaterialModule} from '../../material/material.module';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {SocialLoginModule} from 'angularx-social-login';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {of} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
 
 describe('UploadComponent', () => {

@@ -60,8 +60,8 @@ export class CarrouselComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
-            this.deviceXs = result.mqAlias === 'xs' ? true : false;
+        this.mediaSub = this.mediaObserver.asObservable().subscribe((result: MediaChange[]) => {
+            this.deviceXs = result[0].mqAlias === 'xs' ? true : false;
         });
         this.userBook = this.router.url.includes('mybooks');
         if (!this.userBook) {

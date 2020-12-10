@@ -10,6 +10,9 @@ install: npm install
 branches:
   - develop
 after_script:
+script:
+- npm run lint
+- npm run test
 # - chmod +x publish-gh-pages.sh && ./publish-gh-pages.sh
 deploy:
   provider: heroku

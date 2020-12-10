@@ -24,10 +24,10 @@ export class AuthService {
 
     public authenticate(res, keepLogin: boolean) {
         if (keepLogin) {
-            this.setToken(res['token']);
+            this.setToken(res.token);
             this.setUser(res);
         } else {
-            this.setSessionToken(res['token']);
+            this.setSessionToken(res.token);
             this.setSessionUser(res);
         }
         this.isLogged();
@@ -46,7 +46,9 @@ export class AuthService {
     }
 
     public isLogged(): boolean {
-        const user = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : JSON.parse(sessionStorage.getItem('user'));
+        const user = JSON.parse(localStorage.getItem('user')) ?
+        JSON.parse(localStorage.getItem('user')) :
+        JSON.parse(sessionStorage.getItem('user'));
         if (user !== null) {
             this.logged.emit(true);
             return true;
@@ -61,7 +63,9 @@ export class AuthService {
     }
 
     public getUser(): any {
-        return JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : JSON.parse(sessionStorage.getItem('user'));
+        return JSON.parse(localStorage.getItem('user')) ?
+        JSON.parse(localStorage.getItem('user')) :
+        JSON.parse(sessionStorage.getItem('user'));
     }
 
 
@@ -106,7 +110,7 @@ export class AuthService {
     }
 
     public setUserRegister(userTO) {
-        this.setToken(userTO['token']);
+        this.setToken(userTO.token);
         localStorage.setItem('userRegister', JSON.stringify(userTO));
     }
 

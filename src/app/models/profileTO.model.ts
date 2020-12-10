@@ -1,5 +1,5 @@
 export class Profile {
-    id: string;
+    id: number;
     name: string;
     lastName: string;
     country: string;

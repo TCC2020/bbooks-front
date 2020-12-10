@@ -37,7 +37,7 @@ describe('TagDialogComponent', () => {
         color: 'white',
         profile: null,
         books: []
-    }
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -87,7 +87,7 @@ describe('TagDialogComponent', () => {
     });
     it('test on mod create tag', () => {
         component.tag = null;
-        component.ngOnInit()
+        component.ngOnInit();
         expect(component.textForm).toEqual('PADRAO.CRIAR');
     });
     it('test on mod edit tag', () => {
@@ -96,7 +96,7 @@ describe('TagDialogComponent', () => {
     it('form invalid when input tag is empty', () => {
         component.tag = null;
         component.ngOnInit();
-        const tagInput = component.formTag.controls['name'];
+        const tagInput = component.formTag.controls.name;
         expect(tagInput.errors.required).toBeTruthy();
         expect(component.formTag.invalid).toBeTruthy();
     });

@@ -60,7 +60,7 @@ describe('BookAddDialogComponent', () => {
     const userbookServiceMock = {
         update: jest.fn(() => of()),
         save: jest.fn(() => of()),
-    }
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -130,7 +130,8 @@ describe('BookAddDialogComponent', () => {
         component.Book.status = null;
         component.tagsBook = [];
         component.ngOnInit();
-        const tagInput = component.formBook.controls['statusBook'];
+        const newLocal = 'statusBook';
+        const tagInput = component.formBook.controls[newLocal];
         expect(tagInput.errors.required).toBeTruthy();
         expect(component.formBook.invalid).toBeTruthy();
     });

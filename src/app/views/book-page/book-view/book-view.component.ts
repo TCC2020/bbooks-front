@@ -120,7 +120,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     getByIdTrackingSpeed(id: string, tracking: TrackingTO) {
-        this.trackingService.getById(id).pipe(take(1)).subscribe(result => { 
+        this.trackingService.getById(id).pipe(take(1)).subscribe(result => {
             this.trackings[this.trackings.indexOf(tracking)].velocidadeLeitura = result.velocidadeLeitura;
          },
             error => {

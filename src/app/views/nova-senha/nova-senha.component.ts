@@ -31,7 +31,7 @@ export class NovaSenhaComponent implements OnInit {
     ngOnInit(): void {
         this.createForm();
         this.route.params.subscribe((result) => {
-            const token = result['token'];
+            const token = result.token;
             this.authService.getByToken(token).subscribe(
                 user => {
                     this.user = user;
@@ -69,7 +69,7 @@ export class NovaSenhaComponent implements OnInit {
         const resetPass = {
             token: this.user.token,
             password: this.newPassword.get('password').value
-        }
+        };
         this.authService.resetPass(resetPass).subscribe(value => {
             alert('Senha alterada');
             this.router.navigate(['/']);

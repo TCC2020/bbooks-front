@@ -13,4 +13,5 @@ export const SocialAuthServiceConfigMock = {
             }
         ],
     } as SocialAuthServiceConfig
-}
+};
+

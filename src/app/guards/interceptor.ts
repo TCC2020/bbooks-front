@@ -20,7 +20,7 @@ export class Interceptor implements HttpInterceptor {
           // 'Access-Control-Allow-Origin': '*',
           // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
            'Access-Control-Allow-Methods': 'GET, POST',
-          'Authorization': `Bearer ${this.auth.getToken()}`,
+          Authorization: `Bearer ${this.auth.getToken()}`,
         },
       });
       return next.handle(request).pipe(

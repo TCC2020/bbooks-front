@@ -37,8 +37,7 @@ export class BookcaseResolve implements Resolve<any> {
         const username = route.parent.params.username;
         this.bookCase.books = [];
         this.userService.getUserName(username, this.authservice.getToken()).pipe(take(1)).subscribe(user => {
-            // tslint:disable-next-line:radix
-            this.userBookService.getAllByProfile(Number.parseInt(user.profile.id))
+            this.userBookService.getAllByProfile(user.profile.id)
                 .pipe(take(1))
                 .subscribe(userBook => {
                 userBook.books.forEach(realation => {
@@ -51,7 +50,7 @@ export class BookcaseResolve implements Resolve<any> {
 
                         });
                     } else {
-                        const id = realation.idBook ? realation.idBook :  realation['book'].id;
+                        const id = realation.idBook ? realation.idBook :  realation.book.id;
                         this.bookService.getById(id)
                             .subscribe(b => {
                             b.idUserBook = realation.id;

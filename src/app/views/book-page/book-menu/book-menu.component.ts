@@ -41,7 +41,7 @@ export class BookMenuComponent implements OnInit {
     }
 
     onScroll(e) {
-        let scrollXs = this.deviceXs ? 55 : 73;
+        const scrollXs = this.deviceXs ? 55 : 73;
         if (this.deviceXs) {
             if (e.srcElement.scrollTop < scrollXs) {
                 this.topVal = e.srcElement.scrollTop;
@@ -53,7 +53,7 @@ export class BookMenuComponent implements OnInit {
     }
 
     sideBarScroll() {
-        let e = this.deviceXs ? 117 : 65;
+        const e = this.deviceXs ? 117 : 65;
         return e - this.topVal;
     }
 

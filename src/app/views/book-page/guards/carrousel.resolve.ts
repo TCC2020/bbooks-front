@@ -20,8 +20,8 @@ export class CarrouselResolve implements Resolve<Book[]> {
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
         const myBook = route.url.toString().includes('my');
-        const bookcaseDescripton = route.params['bookcase'];
-        let bookCase = new BookCase();
+        const bookcaseDescripton = route.params.bookcase;
+        const bookCase = new BookCase();
         if (myBook) {
             // bookCase = this.bookService.getBookCaseByDescription(bookcaseDescripton);
             if (bookCase) {
@@ -29,7 +29,7 @@ export class CarrouselResolve implements Resolve<Book[]> {
             }
         } else {
             this.gBooksService.searchByName(bookcaseDescripton).subscribe(books => {
-                return  this.bookService.convertBookToBookList(books['items']);
+                return  this.bookService.convertBookToBookList(books.items);
             });
         }
     }

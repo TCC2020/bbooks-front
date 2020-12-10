@@ -6,4 +6,4 @@ bookcaseMock.books = booksMock;
 bookcaseMock.id = 1;
 bookcaseMock.description = 'teste';
 
-export const bookcasesMock = [bookcaseMock, bookcaseMock, bookcaseMock, bookcaseMock, bookcaseMock]
+export const bookcasesMock = [bookcaseMock, bookcaseMock, bookcaseMock, bookcaseMock, bookcaseMock];

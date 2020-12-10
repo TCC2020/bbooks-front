@@ -23,7 +23,7 @@ describe('BooksComponent', () => {
     let fixture: ComponentFixture<BooksComponent>;
     const routeMock = {
         data: of({bookcases: bookcasesMock})
-    }
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -72,7 +72,7 @@ describe('BooksComponent', () => {
         const event = {
             idbook: '101010101010110',
             status: BookStatus.EMPRESTADO
-        }
+        };
         component.updateBooksStatus(event);
         component.bookCases.forEach(bookcases => {
             bookcases.books.forEach(book => {

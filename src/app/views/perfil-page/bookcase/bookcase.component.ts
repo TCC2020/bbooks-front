@@ -57,8 +57,8 @@ export class BookcaseComponent implements OnInit, OnDestroy {
             this.bookCase = data.data.bookcase;
             this.user = data.data.user;
         });
-        this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
-            this.deviceXs = result.mqAlias === 'xs' ? true : false;
+        this.mediaSub = this.mediaObserver.asObservable().subscribe((result: MediaChange[]) => {
+            this.deviceXs = result[0].mqAlias === 'xs' ? true : false;
         });
         this.translate.onLangChange.subscribe(() => {
             this.updateLanguageStatus();

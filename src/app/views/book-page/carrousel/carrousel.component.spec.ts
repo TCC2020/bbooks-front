@@ -10,7 +10,7 @@ import {MaterialModule} from '../../../material/material.module';
 import {BookStatus} from '../../../models/enums/BookStatus.enum';
 import {bookMock, booksMock} from '../../../mocks/book.model.mock';
 import {FlexLayoutModule, FlexModule, MediaChange, MediaObserver} from '@angular/flex-layout';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, of} from 'rxjs';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
@@ -18,10 +18,11 @@ import {TranslateService, TranslateStore} from '@ngx-translate/core';
 describe('CarrouselComponent', () => {
     let component: CarrouselComponent;
     let fixture: ComponentFixture<CarrouselComponent>;
-    let mockMediaSubject: any;
+
+    const mediaChange = new MediaChange();
+    mediaChange.mqAlias = 'xs';
 
     beforeEach(async(() => {
-        mockMediaSubject = new BehaviorSubject({});
         TestBed.configureTestingModule({
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
             declarations: [CarrouselComponent],
@@ -39,7 +40,7 @@ describe('CarrouselComponent', () => {
                 GoogleBooksService,
                 {
                     provide: MediaObserver,
-                    useValue: {media$: mockMediaSubject.asObservable()}
+                    useValue: {asObservable: jest.fn(() =>  of([mediaChange]))}
                 },
                 TranslateService,
                 TranslateStore
@@ -57,26 +58,11 @@ describe('CarrouselComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
-
-    it('should set deviceXS to true when media$ emits xs as mqAlias', () => {
-        const mediaChange = new MediaChange();
-        mediaChange.mqAlias = 'xs';
-        mockMediaSubject.next(mediaChange);
-        expect(component.deviceXs).toBeTruthy();
-    });
-
-    it('should set deviceXS to false when media$ emits !==xs as mqAlias', () => {
-        const mediaChange = new MediaChange();
-        mediaChange.mqAlias = 'sm';
-        mockMediaSubject.next(mediaChange);
-        expect(component.deviceXs).toBeFalsy();
-    });
-
     it('bookReturn',  async () => {
         const event = {
             book: bookMock,
             status: BookStatus.EMPRESTADO
-        }
+        };
         component.bookReturn(event);
         expect(component.books[component.books.indexOf((event.book))].status).toEqual(event.status);
     });

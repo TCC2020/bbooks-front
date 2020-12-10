@@ -116,8 +116,8 @@ export class BookService {
                         })
                     );
                 } else {
-                    const id = realation.idBook ? realation.idBook : realation['book'].id;
-                    return this.getById(id).pipe(
+                    const id = realation.idBook ? realation.idBook : realation.book.id;
+                    return this.getById(id as number).pipe(
                         map(b => {
                             b.idUserBook = realation.id;
                             b.status = realation.status;

@@ -24,8 +24,8 @@ export class BookEstanteResolve implements Resolve<Book[]> {
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
         const myBook = route.url.toString().includes('my');
-        const tag = route.params['tag'];
-        let bookCase = new BookCase();
+        const tag = route.params.tag;
+        const bookCase = new BookCase();
         bookCase.books = [];
         bookCase.description = tag;
         bookCase.id = tag;
@@ -40,7 +40,7 @@ export class BookEstanteResolve implements Resolve<Book[]> {
             }
         } else {
             this.gBooksService.searchByName(tag).subscribe(books => {
-                bookCase.books = this.bookService.convertBookToBookList(books['items']).map(book => {
+                bookCase.books = this.bookService.convertBookToBookList(books.items).map(book => {
                     this.bookService.getAllUserBooks().subscribe((userbooks) => {
                         userbooks.books.forEach(userbook => {
                             if (userbook.idBookGoogle === book.id) {
