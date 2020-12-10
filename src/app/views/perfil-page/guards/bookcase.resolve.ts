@@ -37,7 +37,6 @@ export class BookcaseResolve implements Resolve<any> {
         const username = route.parent.params.username;
         this.bookCase.books = [];
         this.userService.getUserName(username, this.authservice.getToken()).pipe(take(1)).subscribe(user => {
-            // tslint:disable-next-line:radix
             this.userBookService.getAllByProfile(user.profile.id)
                 .pipe(take(1))
                 .subscribe(userBook => {
