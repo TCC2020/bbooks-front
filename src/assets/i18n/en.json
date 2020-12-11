@@ -51,7 +51,8 @@
   },
   "LOGIN": {
     "TIULO": "Sign in ",
-    "GOOGLE": "Sign with Google",
+    "GOOGLE": "Google",
+    "FACEBOOK": "Facebook",
     "ESQUECER_SENHA": "Forgot Password?",
     "CRIAR_CONTA": "Create new account"
   },

@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    loginGoogleSocial() {
+    loginSocial() {
         this.authServiceSocial.authState.subscribe((user) => {
             this.user = user;
             this.loggedIn = (user != null);
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
                 userTO.idToken = this.user.idToken;
                 userTO.idSocial = this.user.id;
                 userTO.profile.profileImage = this.user.photoUrl;
-                this.userService.verifyEmailForGoogle(userTO.email).subscribe(
+                this.userService.verifyEmailForSocialLogin(userTO.email).subscribe(
                     (result: UserTO) => {
                         if (result?.id) {
                             const userLogin = {
@@ -113,7 +113,11 @@ export class LoginComponent implements OnInit {
 
     loginGoogle(): void {
         this.authService.signInWithGoogle();
-        this.loginGoogleSocial();
+        this.loginSocial();
+    }
+    loginFacebook(): void {
+        this.authService.signInWithFacebook();
+        this.loginSocial();
     }
 
 }

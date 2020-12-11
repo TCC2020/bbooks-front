@@ -51,7 +51,8 @@
   },
   "LOGIN": {
     "TIULO": "Informe seus dados",
-    "GOOGLE": "Continuar com o Google",
+    "GOOGLE": "Google",
+    "FACEBOOK": "Facebook",
     "ESQUECER_SENHA": "Esqueceu sua senha?",
     "CRIAR_CONTA": "Cria uma conta"
   },

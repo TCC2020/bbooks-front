@@ -34,7 +34,14 @@
         <!--          <button mat-raised-button (click)="loginGoogle()" id="entrarGoogle"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> Continuar com o Google</button>-->
         <!--      </div>-->
         <button type="button" mat-raised-button color="primary" (click)="login()">{{'PADRAO.ENTRAR' | translate}}</button>
-        <button mat-raised-button (click)="loginGoogle()"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> {{'LOGIN.GOOGLE' | translate}}</button>
+        <div>
+            <p style="margin-top: 15px; color: #777777"> OR</p>
+        </div>
+        <button mat-button (click)="loginGoogle()"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> {{'LOGIN.GOOGLE' | translate}}</button>
+        <button mat-button (click)="loginFacebook()" style="background-color: white; color: #1877F2">
+            <i style="color:#1877F2; font-size: 17px;" class="fab fa-facebook"></i>
+            {{'LOGIN.FACEBOOK' | translate}}
+        </button>
 
       <mat-divider id="divisor"></mat-divider>
 
