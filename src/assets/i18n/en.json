@@ -108,7 +108,8 @@
     "IDIOMA": "Language",
     "AVALIACAO": "Evaluation",
     "OUTRAS_INFO": "OTHER INFORMATION",
-    "CRIAR_LIVRO": "Create Book"
+    "CRIAR_LIVRO": "Create Book",
+    "ESCOLHER_FOTO_LIVRO": "Choose book photo"
   },
   "PERFIL": {
     "feed": "feed",
@@ -123,7 +124,7 @@
     "IR": "Go"
   },
   "UPLOAD": {
-    "TITULO": "Choose profile photo",
+    "TITULO": "Choose photo",
     "MSG_FOTO_E": "Photo is"
   },
   "STATUS": {
@@ -189,6 +190,7 @@
     "FR002": "Conflict while removing friend",
     "RT005": "Page smaller than last tracking",
     "TA001": "Last tracking is not finished yeat",
-    "RT006": "Page can´t be zero"
+    "RT006": "Page can´t be zero",
+    "BK001": "ISBN already exists"
   }
 }

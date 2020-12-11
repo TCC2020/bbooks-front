@@ -108,7 +108,8 @@
     "IDIOMA": "Idioma",
     "AVALIACAO": "Avaliação",
     "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
-    "CRIAR_LIVRO": "Criar livro"
+    "CRIAR_LIVRO": "Criar livro",
+    "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro"
   },
   "PERFIL": {
     "feed": "feed",
@@ -123,7 +124,7 @@
     "IR": "IR"
   },
   "UPLOAD": {
-    "TITULO": "Escolher foto de perfil",
+    "TITULO": "Escolher foto",
     "MSG_FOTO_E": "Foto é"
   },
   "STATUS": {
@@ -190,7 +191,8 @@
     "FR002": "Conflito ao remover amigo",
     "RT005": "Página menor que o último acompanhamento",
     "TA001": "O último acompanhamento ainda não terminou",
-    "RT006": "A página não pode ser zero"
+    "RT006": "A página não pode ser zero",
+    "BK001": "ISBN já existe"
   }
 }
 

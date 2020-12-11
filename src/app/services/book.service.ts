@@ -161,8 +161,11 @@ export class BookService {
         return books.map(value => this.convertBookToModel(value));
     }
 
-    save(book: Book): Observable<any> {
-        return this.http.post(this.api, book);
+    save(book: Book): Observable<Book> {
+        return this.http.post<Book>(this.api, book);
+    }
+    update(book: Book): Observable<Book> {
+        return this.http.put<Book>(this.api + book.id, book);
     }
 
     convertAuthorToModel(authors: any[]): Author[] {

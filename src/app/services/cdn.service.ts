@@ -10,29 +10,27 @@ export class CDNService {
 
   api = environment.api + 'cdn/';
 
+  bucket = 'cdn-bbooks';
+
   constructor(private http: HttpClient) { }
 
-  upload(value: CDNFile, objectType: string) {
+  upload(value: CDNFile, info: any) {
     const formData: FormData = new FormData();
     formData.append('file', value.file, value.file.name);
     formData.append('info', JSON.stringify(
-      {
-        type: value.type,
-        objectType
-      }));
+        info
+      ));
     return this.http.post(this.api + 'upload', formData);
   }
 
-  uploadAsync(file, bucket) {
+  uploadAsync(file, info) {
 
     return new Promise(resolve => {
       setTimeout(() => {
         if (file) {
+          info.bucket = this.bucket;
           const formData: FormData = new FormData();
-          formData.append('info', JSON.stringify(
-            {
-              bucket
-            }));
+          formData.append('info', JSON.stringify(info));
 
           formData.append('file', file, file.name);
 
@@ -65,5 +63,4 @@ export class CDNService {
     return this.http.post(this.api + 'upload', data,
       { headers });
   }
-
 }
