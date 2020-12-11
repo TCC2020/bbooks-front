@@ -24,7 +24,7 @@ export class UserService {
     verifyEmail(email: string) {
         return this.http.get(this.api + 'email/' + email);
     }
-    verifyEmailForGoogle(email: string) {
+    verifyEmailForSocialLogin(email: string) {
         return this.http.get(this.api + 'google/' + email);
     }
 

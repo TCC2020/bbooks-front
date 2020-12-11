@@ -4,6 +4,7 @@ const heroku = `export const environment = {
     production: true,
     api: 'https://bbooks-api.herokuapp.com/',
     gauth: '${process.env.GOOGLELOGIN}',
+    fbauth: '${process.env.FACEBOOKLOGIN}',
     apicep: '${process.env.APICEP}'
 }`
 

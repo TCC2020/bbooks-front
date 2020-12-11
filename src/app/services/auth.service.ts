@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {SocialAuthService} from 'angularx-social-login';
+import {FacebookLoginProvider, SocialAuthService} from 'angularx-social-login';
 import {GoogleLoginProvider} from 'angularx-social-login';
 import {UserTO} from '../models/userTO.model';
 import {Observable} from 'rxjs';
@@ -106,6 +106,13 @@ export class AuthService {
     }
 
     signOutGoogle(): void {
+        this.authServiceSocial.signOut();
+    }
+
+    signInWithFacebook(): void {
+        this.authServiceSocial.signIn(FacebookLoginProvider.PROVIDER_ID);
+    }
+    signOutFacebook(): void {
         this.authServiceSocial.signOut();
     }
 
