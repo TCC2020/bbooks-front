@@ -102,7 +102,9 @@ export function HttpLoaderFactory(http: HttpClient) {
                     },
                     {
                         id: FacebookLoginProvider.PROVIDER_ID,
-                        provider: environment.fbauth
+                        provider: new FacebookLoginProvider(
+                            environment.fbauth
+                        )
                     }
                 ],
             } as SocialAuthServiceConfig
