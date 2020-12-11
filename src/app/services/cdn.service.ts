@@ -63,5 +63,4 @@ export class CDNService {
     return this.http.post(this.api + 'upload', data,
       { headers });
   }
-
 }
