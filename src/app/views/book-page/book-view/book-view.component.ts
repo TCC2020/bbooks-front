@@ -31,7 +31,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
     book: Book = new Book();
     stars: number[] = [1, 2, 3, 4, 5];
     rating = 1;
-    stringAuthors: string;
+    stringAuthors: string[];
     readingTracking: ReadingTrackingTO[] = [];
     trackings: TrackingTO[] = [];
 
@@ -156,9 +156,9 @@ export class BookViewComponent implements OnInit, OnDestroy {
         return this.percentage <= 100;
     }
 
-    convertAuthorsToString(): string {
+    convertAuthorsToString(): string[] {
         const namesAuthors = this.book.authors.map(value => value.name);
-        return namesAuthors.toString();
+        return namesAuthors;
     }
 
     openDialogAddBook(book: Book) {
