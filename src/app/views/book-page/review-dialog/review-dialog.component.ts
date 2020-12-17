@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ReviewTO} from '../../../models/ReviewTO.model';
 import {ReviewService} from '../../../services/review.service';
 import {take} from 'rxjs/operators';
+import {Book} from '../../../models/book.model';
 
 @Component({
     selector: 'app-review-dialog',
@@ -16,7 +17,7 @@ export class ReviewDialogComponent implements OnInit {
 
 
     constructor(
-        @Inject(MAT_DIALOG_DATA) public data: { review: ReviewTO },
+        @Inject(MAT_DIALOG_DATA) public data: { review: ReviewTO, book: Book },
         private formBuilder: FormBuilder,
         private reviewService: ReviewService
     ) {
@@ -31,7 +32,7 @@ export class ReviewDialogComponent implements OnInit {
             id: new FormControl(this.data.review?.id ? this.data.review.id : ''),
             title: new FormControl(this.data.review?.title ? this.data.review.id : ''),
             body: new FormControl(this.data.review?.body ? this.data.review.body : '', Validators.compose([
-                Validators.maxLength(200)
+                Validators.maxLength(300)
             ])),
             bookId: new FormControl(this.data?.review.bookId),
             idGoogleBook: new FormControl(this.data?.review.idGoogleBook),

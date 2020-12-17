@@ -1,18 +1,17 @@
-<div fxLayout="row"
-     fxLayoutAlign="space-evenly start"
+<div fxLayout="column"
+     fxLayoutAlign="space-between center"
      fxLayout.xs="column"
      fxLayoutAlign.xs="space-evenly center"
-     fxLayoutGap="5px">
+     fxLayoutGap="5px" >
     <div>
         <div class="card">
-            <div>
-                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="4px">
                     <div>
                         <img class="cardImage" src="{{book.image}}">
                     </div>
                     <div fxFlexOffset="1" fxLayout.xs="column">
                         <div fxLayout="row" fxLayoutAlign="space-around center">
-                            <h2>{{book.title}}</h2>
+                            <h2 style="word-break: break-word">{{book.title}}</h2>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="space-around center">
                             <div class="textColor">
@@ -28,7 +27,7 @@
                                 {{book.isbn10}}
                             </div>
                         </div>
-                        <div fxLayout="row" fxLayoutAlign="start start" class="totalStatus" fxLayoutGap="5px">
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutAlign.xs="center center" class="totalStatus" fxLayoutGap="5px">
                             <mat-card>
                                 LENDO
                                 <p>10</p>
@@ -71,35 +70,39 @@
                         </div>
 
                     </div>
-                    <div fxFlexOffset="1" fxLayout.xs="column" fxFlex="40">
-<!--                        <mat-list>-->
-<!--                            <mat-list-item>{{'BOOK.OUTRAS_INFO' | translate}}</mat-list-item>-->
-                            <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap.xs="60px">
-                                <div fxFlex="30"><strong>{{'BOOK.EDITORA' | translate}}</strong></div>
-                                <div fxFlex="30"><strong>{{'BOOK.PUPLICACAO' | translate}}</strong></div>
-                                <div fxFlex="30"><strong>{{'BOOK.PAGINAS' | translate}}</strong></div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-around center">
+                    <div class="cardDescription">
+                        <p style="font-weight: 500; color: #1a1a1a; margin: auto 10px;">About this book:</p>
+                        <p class="description">{{book.description}}</p>
+                        <div fxLayout="row" fxLayoutAlign="center center">
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutAlign.xs="center center" fxLayoutGap="5px" class="totalStatus">
+                                <mat-card>
+                                    <div ><strong>{{'BOOK.EDITORA' | translate}}</strong></div>
+                                    <p>{{book.publisher}}</p>
+                                </mat-card>
+                                <mat-card>
+                                    <div ><strong>{{'BOOK.PUPLICACAO' | translate}}</strong></div>
+                                    <p>{{book.publishedDate}}</p>
+                                </mat-card>
+                                <mat-card>
+                                    <div ><strong>{{'BOOK.PAGINAS' | translate}}</strong></div>
+                                    <p>{{book.numberPage}}</p>
+                                </mat-card>
+                                <mat-card>
+                                    <div ><strong>{{'BOOK.IDIOMA' | translate}}</strong></div>
+                                    <p>{{book.language}}</p>
+                                </mat-card>
+<!--                                <mat-card>-->
+<!--                                    <div ><strong>{{'BOOK.AVALIACAO' | translate}}</strong></div>-->
+<!--                                    <p>{{book.averageRating}}</p>-->
+<!--                                </mat-card>-->
                             </div>
-                            <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap.xs="60px">
-                                <div fxFlex="30"><p> {{book.publisher}}</p></div>
-                                <div fxFlex="30"><p> {{book.publishedDate}}</p></div>
-                                <div fxFlex="30"><p> {{book.numberPage}}</p></div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap.xs="60px">
-                                <div fxFlex="30"><strong>{{'BOOK.IDIOMA' | translate}}</strong></div>
-                                <div fxFlex="30"><strong>{{'BOOK.AVALIACAO' | translate}}</strong></div>
-                                <div fxFlex="30"></div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap.xs="60px">
-                                <div fxFlex="30"><p> {{book.language}}</p></div>
-                                <div fxFlex="30"><p> {{book.averageRating}}</p></div>
-                                <div fxFlex="30"></div>
-                            </div>
+                        </div>
                     </div>
+
                 </div>
-                <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <p class="description">{{book.description}}</p>
-                </div>
-                <br>
+
             </div>
         </div>
         <mat-tab-group mat-align-tabs="center">
@@ -107,12 +110,12 @@
                 <br>
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <button type="button" mat-flat-button color="accent" (click)="openDialogReview()">
-                        criar review
+                        Escrever resenha
                     </button>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngFor="let r of reviews | async">
                     <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexOffset="1"
-                         fxLayoutAlign.xs="space-around start" fxLayoutGap.xs="20px" >
+                         fxLayoutAlign.xs="space-around start" fxLayoutGap.xs="20px">
                         <div fxLayout="column" fxLayoutAlign="start start">
                             <div>
                                 <img class="cardImageReview" src="{{(r.profileTO | async)?.profileImage ? (r.profileTO | async)?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
@@ -120,19 +123,29 @@
                         </div>
                         <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px" >
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
-                                <div><strong>@nfandre</strong></div>
+                                <div style="font-weight: 500; color: #1a1a1a">@{{(r.profileTO | async)?.username}}</div>
                             </div>
 
                             <div fxLayout="row" fxLayoutAlign="start start">
                                 <mat-card class="commentReview">
-                                    <p>
+                                    <mat-card-subtitle><b>{{r.title}}</b></mat-card-subtitle>
+                                    <p >
                                         {{r.body}}
+                                    </p>
+                                    <p  style="color: #696969">
+                                        {{r.creationDate | date}}
                                     </p>
                                 </mat-card>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
-                                <div>Gostei</div>
-                                <div>Comentários</div>
+                                <button mat-button class="button-like">
+                                    <mat-icon>thumb_up</mat-icon>
+                                    Curtir
+                                </button>
+                                <button mat-button class="button-like">
+                                    <mat-icon>comment</mat-icon>
+                                    Comentários
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -140,10 +153,7 @@
 
             </mat-tab>
             <mat-tab label="{{'ACOMP_LEITURA.ACOMP_LEITURA' | translate}}"  *ngIf="book.idUserBook">
-                <div fxLayout="row"
-                     fxLayoutAlign="space-evenly start"
-                     fxLayoutGap="5px">
-                    <div fxLayout="column" fxLayoutAlign="space-between center" fxFlex="50" class="flex" fxFlex.xs>
+                    <div fxLayout="column" fxLayoutAlign="space-between center" class="flex" fxFlex.xs>
                         <mat-expansion-panel
                                 class="acompanhamento"
                                 [expanded]="true"
@@ -227,10 +237,10 @@
                                                   [ngStyle]="{
                               'background': readingTracking === orderByDate(tracking.trackings)[0] ? '#ebfff5' : ''
                               }">
-                                            <div fxLayout="row" fxLayoutAlign="space-around center">
+                                            <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="50px">
                                                 <div fxFlex="30"><strong>{{readingTracking.creationDate | date}}</strong></div>
                                                 <div fxFlex="10"><strong>{{readingTracking.percentage | number:'1.1-2'}}%</strong></div>
-                                                <div fxFlex="10">{{readingTracking.numPag}}</div>
+                                                <div fxFlex="10"><strong>p. {{readingTracking.numPag}} </strong></div>
                                                 <button mat-mini-fab color="accent"
                                                         aria-label="Example icon button with a filter list icon"
                                                         (click)="openDialogReadingTracking(tracking, readingTracking, true, tracking.id)">
@@ -255,8 +265,6 @@
                             </mat-expansion-panel>
                         </div>
                     </div>
-                </div>
             </mat-tab>
         </mat-tab-group>
-    </div>
 </div>

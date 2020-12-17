@@ -39,7 +39,8 @@
     "PENDENTE": "Pendente",
     "COMENTARIO": "Comentário",
     "VELOCIDADE_LEITURA" : "Velocidade de leitura",
-    "PAGINA_POR_DIA": "páginas/dia"  
+    "PAGINA_POR_DIA": "páginas/dia",
+    "RESENHA": "Resenha"
   },
   "NAV": {
     "SAIR": "Sair",

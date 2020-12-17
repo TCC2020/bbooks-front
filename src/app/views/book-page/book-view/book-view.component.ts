@@ -193,9 +193,10 @@ export class BookViewComponent implements OnInit, OnDestroy {
         review.profileId = this.authService.getUser().profile.id;
         const dialogRef = this.dialog.open(ReviewDialogComponent, {
             height: '450px',
-            width: '400px',
+            width: '500px',
             data: {
-                review
+                review,
+                book: this.book
             }
         });
         dialogRef.afterClosed().subscribe(() => {

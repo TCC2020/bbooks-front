@@ -3,6 +3,7 @@
   //max-width: 700px;
   //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 4px;
+  max-width: 600px;
 
 }
 .textColor{
@@ -15,7 +16,7 @@
 }
 .acompanhamento {
   margin: 0.5em;
-  width: 100%;
+  width: 600px;
 }
 .button-color{
   color: white;
@@ -37,6 +38,7 @@
 .description{
   text-align: justify;
   margin: auto 15px;
+  max-width: 600px;
 }
 
 .cardImageReview{
@@ -51,12 +53,20 @@
 }
 .commentReview{
   border-radius: 4px;
-  background-color: #d6dadb;
-  width: 600px;
-  max-width: 600px;
+  background-color: #eaeaea;
   word-break: break-word;
   text-align: justify;
+  width: 600px;
 
+}
+.button-like{
+  color: #5f5f5f;
+  //color: #D9BC9A;
+}
+.cardDescription{
+  border: 1px solid #dadce0;
+  border-radius: 5px;
+  padding: 30px 40px 35px;
 }
 
 @media screen and (max-width: 600px) {
@@ -66,9 +76,14 @@
     margin: auto 1px;
     padding: 0px;
   }
+  .cardDescription{
+    border: none;
+    width: 100%;
+    padding: 0px;
+  }
   .trackings{
     border: none;
-    //width: 100%;
+    width: 300px;
   }
   .acompanhamento{
     border: none;

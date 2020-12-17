@@ -39,7 +39,9 @@
     "PENDENTE": "Pending",
     "COMENTARIO": "Comment",
     "VELOCIDADE_LEITURA": "Reading speed",
-    "PAGINA_POR_DIA": "pages/day"
+    "PAGINA_POR_DIA": "pages/day",
+    "RESENHA": "Review"
+
   },
   "NAV": {
     "SAIR": "Logout",

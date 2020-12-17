@@ -1,16 +1,21 @@
 <mat-dialog-content>
-    <div fxLayout="column" fxLayoutAlign="space-between center">
-        <h2 mat-dialog-title>{{'ACOMP_LEITURA.ACOMP_LEITURA' | translate}}</h2>
-
+    <div fxLayout="column" fxLayoutAlign="space-between center" fxFill>
+        <h2 mat-dialog-title>{{'PADRAO.RESENHA' | translate}}</h2>
+        <div>
+            {{data.book.title}}
+        </div>
+        <div *ngFor="let a of data.book.authors">
+            {{a.name}}
+        </div>
         <form [formGroup]="formReview">
             <div fxLayout="column" fxLayoutAlign="space-between center">
                 <mat-form-field class="example-full-width">
-                    <mat-label>Title Review</mat-label>
+                    <mat-label>Título para sua resenha</mat-label>
                     <input matInput formControlName="title">
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <mat-label>Escreva o que achou do livro / o que aprendeu com ele </mat-label>
+                    <mat-label>Escreva o que achou do livro </mat-label>
                     <textarea matInput placeholder="this book was wonderful" formControlName="body"></textarea>
                 </mat-form-field>
             </div>
