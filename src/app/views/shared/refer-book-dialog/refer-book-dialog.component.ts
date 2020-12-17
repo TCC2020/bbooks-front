@@ -22,7 +22,7 @@ export class ReferBookDialogComponent implements OnInit {
   filterUsers: UserTO[];
   public Profile: Profile;
   private bookRecommendationTO = new BookRecommendationTO();
-  public Book : Book;
+  public Book: Book;
   public formRecommendation: FormGroup;
 
 
@@ -73,14 +73,8 @@ export class ReferBookDialogComponent implements OnInit {
             // tslint:disable-next-line:radix
             this.bookRecommendationTO.idBook = Number.parseInt(this.Book.id);
     this.bookRecommendationTO.comentario = this.formRecommendation.get('comment').value;
-
-
-
-    console.log(this.bookRecommendationTO);
-    
-  
-     this.bookRecommendationService.save(this.bookRecommendationTO).subscribe(
-        value => {
+    this.bookRecommendationService.save(this.bookRecommendationTO).subscribe(
+        () => {
             alert('O seu livro foi indicado para seu amigo.');
         },
         error => {
