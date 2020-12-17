@@ -43,7 +43,7 @@
                 <div mat-menu-item style="height: 120px;" [routerLink]="['/book/undefined', (r?.book | async)?.id]" [queryParams]="routerRecommendation(r?.idBookGoogle)">
                     <div fxLayout="row">
                         <div>
-                            <img *ngIf="(r?.profileTO | async)?.profileImage" class="imagem-perfil" [src]="(r?.profileTO | async)?.profileImage ? r.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+                            <img class="imagem-perfil" [src]="(r?.profileTO | async)?.profileImage ? r.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
                         </div>
                         <div style="width: 250px;">
                             <p style="width: 250px;">{{(r?.profileTO | async)?.name}} {{(r?.profileTO | async)?.lastName}} te indicou o livro {{(r?.book | async)?.title}}</p>
@@ -57,7 +57,7 @@
             <div *ngFor="let request of requestsReceived()" >
                 <div mat-menu-item style="height: 120px" *ngIf="request.profileTO.id" >
                     <div fxLayout="row" [routerLink]="['', request?.profileTO.username]">
-                        <img *ngIf="request?.profileTO?.profileImage" class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+                        <img class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
 
                         <span> {{this.request.profileTO?.name}} {{this.request.profileTO?.lastName}}</span>
                     </div>
@@ -78,7 +78,7 @@
                 <div mat-menu-item style="height: 120px" *ngIf="request.profileTO.id" >
 
                     <div fxLayout="row" [routerLink]="['', request?.profileTO.username]">
-                        <img *ngIf="request?.profileTO?.profileImage" class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+                        <img class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
 
                         <span> {{this.request.profileTO?.name}} {{this.request.profileTO?.lastName}}</span>
                     </div>
@@ -102,7 +102,7 @@
         <mat-menu  #menuPerfil="matMenu">
             <div mat-menu-item >
                 <div fxLayout="row" [routerLink]="['', user?.userName]">
-                    <img *ngIf="user?.profile?.profileImage" class="imagem-perfil" [src]="user?.profile?.profileImage" alt="imagem de perfil"/>
+                    <img class="imagem-perfil" [src]="user?.profile?.profileImage ? user.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
 
                     <span> {{this.user?.userName}}</span>
                 </div>
