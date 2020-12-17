@@ -1,0 +1,33 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+        <h2 mat-dialog-title>{{'ACOMP_LEITURA.ACOMP_LEITURA' | translate}}</h2>
+
+        <form [formGroup]="formReview">
+            <div fxLayout="column" fxLayoutAlign="space-between center">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Title Review</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Escreva o que achou do livro / o que aprendeu com ele </mat-label>
+                    <textarea matInput placeholder="this book was wonderful" formControlName="body"></textarea>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    <p></p>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <div fxLayoutGap="8px">
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="data.review"
+                    [disabled]="formReview.invalid">
+                {{'PADRAO.EDITAR' | translate}}
+            </button>
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="!data.review"
+                    [disabled]="formReview.invalid">
+                {{'PADRAO.ADICIONAR' | translate}}
+            </button>
+        </div>
+
+    </div>
+</mat-dialog-content>

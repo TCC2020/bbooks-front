@@ -1,3 +1,6 @@
+import {Observable} from 'rxjs';
+import {Profile} from './profileTO.model';
+
 export class ReviewTO {
     id: string;
     title: string;
@@ -6,4 +9,5 @@ export class ReviewTO {
     idGoogleBook: string;
     profileId: number;
     creationDate: Date;
+    profileTO: Observable<Profile>;
 }

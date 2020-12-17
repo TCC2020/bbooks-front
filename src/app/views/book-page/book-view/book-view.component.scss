@@ -36,7 +36,7 @@
 
 .description{
   text-align: justify;
-  margin: auto 1px;
+  margin: auto 15px;
 }
 
 .cardImageReview{
@@ -46,11 +46,17 @@
   border-radius: 4px;
   width: 50px;
   max-width: 50px;
+  max-height: 50px;
+
 }
 .commentReview{
-  width: 100%;
   border-radius: 4px;
   background-color: #d6dadb;
+  width: 600px;
+  max-width: 600px;
+  word-break: break-word;
+  text-align: justify;
+
 }
 
 @media screen and (max-width: 600px) {
@@ -74,6 +80,9 @@
   }
   .flex{
     width: 100% !important;
+  }
+  .commentReview{
+    width: 250px;
   }
 
 }

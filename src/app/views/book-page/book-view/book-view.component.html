@@ -104,28 +104,29 @@
         </div>
         <mat-tab-group mat-align-tabs="center">
             <mat-tab label="Review">
-                <div fxLayout="row" fxLayoutAlign="space-evenly center"  fxLayoutGap="20px"  *ngFor="let f of [0,2,3,4,6]">
+                <br>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <button type="button" mat-flat-button color="accent" (click)="openDialogReview()">
+                        criar review
+                    </button>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngFor="let r of reviews | async">
                     <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexOffset="1"
                          fxLayoutAlign.xs="space-around start" fxLayoutGap.xs="20px" >
                         <div fxLayout="column" fxLayoutAlign="start start">
                             <div>
-                                <img class="cardImageReview" src="{{book.image}}">
+                                <img class="cardImageReview" src="{{(r.profileTO | async)?.profileImage ? (r.profileTO | async)?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
                             </div>
                         </div>
-                        <div fxLayout="column" fxLayoutAlign="start start">
+                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px" >
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
                                 <div><strong>@nfandre</strong></div>
                             </div>
 
-                            <div fxLayout="row" fxLayoutAlign="start start" >
+                            <div fxLayout="row" fxLayoutAlign="start start">
                                 <mat-card class="commentReview">
-
                                     <p>
-                                        Nossa que livro sensacional!!! Eh como viajar pra Bahia e poder sentir
-                                        o cheiro do mar, o vento no rosto, sentir o sol queimar e ainda poder
-                                        admirar as estrelas!!!!! Mas é tbm sentir que meninos órfãos tbm precisam
-                                        de atenção e carinho!!!! Nesse livro vc vai chorar e rir, vai querer pegar
-                                        os meninos no colo e abraçar como mãe!!!
+                                        {{r.body}}
                                     </p>
                                 </mat-card>
                             </div>
