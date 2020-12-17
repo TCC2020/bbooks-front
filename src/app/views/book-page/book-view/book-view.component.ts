@@ -19,6 +19,7 @@ import {BookService} from '../../../services/book.service';
 import {TrackingViewComponent} from '../tracking-view/tracking-view.component';
 import {TrackingTO} from '../../../models/TrackingTO.model';
 import {TrackingService} from '../../../services/tracking.service';
+import { ReferBookDialogComponent } from '../../shared/refer-book-dialog/refer-book-dialog.component';
 
 @Component({
     selector: 'app-book-view',
@@ -165,6 +166,19 @@ export class BookViewComponent implements OnInit, OnDestroy {
         const dialogRef = this.dialog.open(BookAddDialogComponent, {
             height: '450px',
             width: '400px',
+            data: {
+                book
+            }
+        });
+        dialogRef.afterClosed().subscribe(() => {
+            this.getBook();
+        });
+    }
+
+    openDialogReferBook(book: Book) {
+        const dialogRef = this.dialog.open(ReferBookDialogComponent, {
+            height: '580px',
+            width: '680px',
             data: {
                 book
             }

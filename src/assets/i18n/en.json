@@ -89,7 +89,11 @@
     "ESTANTE_VIRTUAL": "Bookcase",
     "MEUS_LIVROS": "My Books",
     "ADICIONAR_LIVRO": "Add book on the Bookcase",
-    "EDITAR_LIVRO": "Edit Book"
+    "EDITAR_LIVRO": "Edit Book",
+    "INDICAR_LIVRO": "Show book to a friend",
+    "BOTAO_INDICAR": "Show"
+
+
   },
   "TAG": {
     "CRIAR_TAG": "Create Tag",
