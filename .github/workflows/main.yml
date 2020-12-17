@@ -7,7 +7,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-     steps:
+    steps:
     - uses: actions/checkout@v1
     - name: Use Node.js 14
       uses: actions/setup-node@v1
@@ -21,5 +21,5 @@ jobs:
       run: npm run build -- --prod
     - name: Test
       run: npm test -- --configuration=ci
-    - name: E2E
+    - name: e2e
       run: npm run e2e -- --configuration=ci
