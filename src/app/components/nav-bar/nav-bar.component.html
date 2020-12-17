@@ -14,6 +14,43 @@
             <mat-icon [matBadge]="requests?.length ? verifyRequests() : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
         </button>
         <mat-menu  #menuNofify="matMenu">
+
+            <div class="container-lista-amigos">
+                <!--começa card-->
+                <div class="container-amigo">
+                    <div class="container-imagem">
+                        <div>
+                            <img class="imagem-perfil"
+                            src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
+                        </div>
+                        <div class="informacoes">
+<!--                             <div><span><a class="nome-usuario" [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span></div>
+ -->                            <div><span>Rafael Peinado</span></div>
+                            <div><span>São Paulo</span></div>
+                        </div>
+                        <div class="adicionar-amigos">
+                            <span><mat-icon>person_add</mat-icon></span>
+                       </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+
+            <div>
+                <p>Recommendations</p>
+            </div>
+            <div *ngFor="let r of recommendations">
+                <div mat-menu-item style="height: 120px;" [routerLink]="['/book/undefined', (r?.book | async)?.id]" [queryParams]="routerRecommendation(r?.idBookGoogle)">
+                    <div fxLayout="row">
+                        <div>
+                            <img *ngIf="(r?.profileTO | async)?.profileImage" class="imagem-perfil" [src]="(r?.profileTO | async)?.profileImage ? r.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+                        </div>
+                        <div style="width: 250px;">
+                            <p style="width: 250px;">{{(r?.profileTO | async)?.name}} {{(r?.profileTO | async)?.lastName}} te indicou o livro {{(r?.book | async)?.title}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div fxLayout="row" fxLayoutAlign="center center" *ngIf="requestsReceived()?.length > 0">
                 <p><b>{{'PADRAO.SOLICITACOES_RECEBIDAS' | translate}}</b></p>
             </div>
