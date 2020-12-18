@@ -1,0 +1,40 @@
+<form [formGroup]="pesquisarUsuarios"  class="form-inline mr-auto">
+    <div class="container-pesquisar">
+        <mat-form-field style="margin: 25px;">
+            <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
+            <input matInput matInput type="text"  #nome (keyup)="pesquisar(nome)">
+        </mat-form-field>
+        <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
+    </div>
+</form>
+<div class="container-lista-amigos">
+    <form [formGroup]="formRecommendation">
+        <mat-form-field class="example-full-width">
+            <mat-label>{{'PESQUISAR_AMIGOS.COMENTARIO' | translate}}</mat-label>
+            <textarea matInput formControlName="comment"></textarea>
+        </mat-form-field>
+    </form>
+    <!--começa card-->
+    <div class="container-amigo" *ngFor="let user of filterUsers">
+        <div class="container-imagem">
+            <div class="container-imagem-perfil">
+                <img class="imagem-perfil"
+                [src]="user?.profile?.profileImage ?
+                 user.profile.profileImage:
+                'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+            </div>
+            <div class="informacoes">
+                <div><span><a class="nome-usuario" [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span></div>
+                <div><span>{{user?.userName}}</span></div>
+                <div><span>{{user?.profile?.city}}</span></div>
+            </div>
+            <div class="adicionar-amigos">
+                <button type="button" mat-flat-button color="accent" 
+                (click)="referBook(user?.profile?.id)">
+                    {{'ESTANTE.BOTAO_INDICAR' | translate}}
+                </button>
+           </div>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+</div>

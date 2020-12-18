@@ -8,10 +8,23 @@ import {MaterialModule} from '../../material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
+import { BookRecommendationService } from 'src/app/services/book-recommendation.service';
+import { ProfileService } from 'src/app/services/profile.service';
+import { BookService } from 'src/app/services/book.service';
+import { GoogleBooksService } from 'src/app/services/google-books.service';
+import { userMock } from 'src/app/mocks/user.model.mock';
+import { SocialAuthServiceConfigMock } from 'src/app/mocks/google.provide.mock';
+import { of } from 'rxjs';
 
 describe('NavBarComponent', () => {
     let component: NavBarComponent;
     let fixture: ComponentFixture<NavBarComponent>;
+
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock),
+        isLogged: jest.fn(() => true),
+        logged: of(true)
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -25,20 +38,15 @@ describe('NavBarComponent', () => {
                 TranslateServiceMockForRoot
             ],
             providers: [
+                SocialAuthServiceConfigMock,
                 AuthService,
+                BookRecommendationService,
+                ProfileService,
+                BookService,
+                GoogleBooksService,
                 {
-                    provide: 'SocialAuthServiceConfig',
-                    useValue: {
-                        autoLogin: false,
-                        providers: [
-                            {
-                                id: GoogleLoginProvider.PROVIDER_ID,
-                                provider: new GoogleLoginProvider(
-                                    '637875920121-2l5ibvruevm5ldf5gdc78erdno23pd2b.apps.googleusercontent.com'
-                                ),
-                            }
-                        ],
-                    } as SocialAuthServiceConfig
+                    provide: AuthService,
+                    useValue: authServiceMock
                 }
             ],
             declarations: [NavBarComponent]

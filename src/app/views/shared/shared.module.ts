@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {NumbersOnlyInputDirective} from './directive/numbers-only-input.directive';
 import {LoaderComponent} from '../../loader/loader.component';
+import { ReferBookDialogComponent } from './refer-book-dialog/refer-book-dialog.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {LoaderComponent} from '../../loader/loader.component';
         BookCardComponent,
         BookAddDialogComponent,
         NumbersOnlyInputDirective,
-        LoaderComponent
+        LoaderComponent,
+        ReferBookDialogComponent
     ],
     imports: [
         CommonModule,
