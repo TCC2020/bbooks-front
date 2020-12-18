@@ -1,6 +1,6 @@
-import { Observable } from "rxjs";
-import { Book } from "./book.model";
-import { Profile } from "./profileTO.model";
+import { Observable } from 'rxjs';
+import { Book } from './book.model';
+import { Profile } from './profileTO.model';
 
 export class BookRecommendationTO {
     id: string;
@@ -11,5 +11,4 @@ export class BookRecommendationTO {
     comentario: string;
     profileTO: Observable<Profile>;
     book: Observable<Book>;
-    
 }

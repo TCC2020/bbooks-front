@@ -44,7 +44,9 @@
   "NAV": {
     "SAIR": "Logout",
     "PORTUGUES": "Portuguese - Brazil",
-    "INGLES": "English"
+    "INGLES": "English",
+    "RECOMENDACOES": "Recommendation",
+    "INDICOU": "recommended you"
   },
   "HOME": {
     "BUSCARTEXT": "Search for a book"
@@ -91,7 +93,7 @@
     "ADICIONAR_LIVRO": "Add book on the Bookcase",
     "EDITAR_LIVRO": "Edit Book",
     "INDICAR_LIVRO": "Show book to a friend",
-    "BOTAO_INDICAR": "Show"
+    "BOTAO_INDICAR": "Indicate"
 
 
   },
@@ -167,6 +169,10 @@
     "RECUP_SENHA": "Password recovery",
     "MSG_EMAIL_CAD": "Enter the registered email to recover your password.",
     "RECEBER_LINK": "You will receive an instant link in your email box to recover your password!"
+  },
+  "PESQUISAR_AMIGOS": {
+    "PROCURAR": "Search friends",
+    "COMENTARIO": "Comment"
   },
   "MESSAGE_ERROR": {
     "AU001": "Author not found",

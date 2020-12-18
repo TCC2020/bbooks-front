@@ -143,8 +143,8 @@ export class NavBarComponent implements OnInit {
             map((recommendations: BookRecommendationTO[]) => {
                 return recommendations.map(r => {
                     r.profileTO = this.profileService.getById(r.profileSubmitter);
-                    r.book = r.idBook ? 
-                    this.bookService.getById(r.idBook) : 
+                    r.book = r.idBook ?
+                    this.bookService.getById(r.idBook) :
                     this.gBookService.getById(r.idBookGoogle).pipe(map(b => this.bookService.convertBookToModel(b)));
                     return r;
                 });
@@ -154,7 +154,7 @@ export class NavBarComponent implements OnInit {
             this.recommendations = recommendations;
             console.log(recommendations);
         }, error => {
-            console.log("Erro getRecommendation ", error);
+            console.log('Erro getRecommendation ', error);
         });
     }
 
