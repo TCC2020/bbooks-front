@@ -23,10 +23,6 @@
   margin-right: 10px;
 }
 
-
-
-
-
 #search-bt {
 	color: white;
 }
@@ -35,7 +31,7 @@
     width: 100%;
     height: 800px;
     background-color: #f2f2f2;
-    padding: 20px 0px;
+    padding: 20px;
 }
 
 .container-lista-amigos {
@@ -64,7 +60,7 @@
     padding: 10px;
 }
 
-.container-amigo{
+.container-amigo {
     padding: 10px;
     width: 248px;
     height: auto;
@@ -77,11 +73,12 @@
 
 .container-imagem:hover {
     cursor: pointer;
-    background-color:rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
 
-.adicionar-amigos, .titulo-notificacao {
+.adicionar-amigos, 
+.titulo-notificacao {
     width: 100%;
     text-align: center;
 }
@@ -91,5 +88,5 @@
 }
 
 .adicionar-amigos {
-    padding: 5px 0px;
+    padding: 5px;
 }
