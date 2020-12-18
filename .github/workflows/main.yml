@@ -3,12 +3,12 @@ name: ANgular CI
 on: [push]
 
 jobs:
+  codacy-coverage-reporter:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@master
     - name: Use Node.js 14
       uses: actions/setup-node@v1
       with:
@@ -22,7 +22,7 @@ jobs:
     - name: Run codacy-coverage-reporter
       uses: codacy/codacy-coverage-reporter-action@master
       with:
-        project-token: $CODACY_PROJECT_TOKEN
+        project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
         coverage-reports: ../coverage/clover.xml
     - name: Build
       run: npm run build -- --prod
