@@ -2,7 +2,7 @@ import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import { MaterialModule } from 'src/app/material/material.module';
@@ -15,6 +15,8 @@ import { GoogleBooksService } from 'src/app/services/google-books.service';
 import { ProfileService } from 'src/app/services/profile.service';
 
 import { ReferBookDialogComponent } from './refer-book-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { bookMock } from 'src/app/mocks/book.model.mock';
 
 describe('ReferBookDialogComponent', () => {
   let component: ReferBookDialogComponent;
@@ -28,6 +30,10 @@ describe('ReferBookDialogComponent', () => {
     })
   };
 
+  const data = {
+    book: bookMock
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -37,7 +43,8 @@ describe('ReferBookDialogComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         HttpClientTestingModule,
-        TranslateServiceMockForRoot
+        TranslateServiceMockForRoot,
+        BrowserAnimationsModule
     ],
     providers: [
         AuthService,
@@ -50,6 +57,10 @@ describe('ReferBookDialogComponent', () => {
                     provide: MatDialog,
                     useValue: mockMatDialog
                 },
+                {
+                  provide: MAT_DIALOG_DATA,
+                  useValue: data
+              },
     ],
     declarations: [ ReferBookDialogComponent ]
     })
