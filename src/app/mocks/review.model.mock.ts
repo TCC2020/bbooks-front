@@ -9,3 +9,13 @@ reviewMock.title = ' asfeoifojdsafasef';
 reviewMock.profileId = 10;
 reviewMock.body = 'fsaesfsef';
 reviewMock.idGoogleBook = 'fesafjlasoief';
+
+export const reviewsMock = [];
+reviewsMock.push(reviewsMock);
+reviewsMock.push(reviewsMock);
+reviewsMock.push(reviewsMock);
+reviewsMock.push(reviewsMock);
+
+
+
+

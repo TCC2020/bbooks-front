@@ -13,14 +13,14 @@ export class ReviewService {
     constructor(private http: HttpClient) {
     }
 
-    save(friendTO: Friend): Observable<ReviewTO> {
-        return this.http.post<ReviewTO>(this.api, friendTO);
+    save(review: ReviewTO): Observable<ReviewTO> {
+        return this.http.post<ReviewTO>(this.api, review);
     }
-    delete(friendId: string): Observable<void> {
-        return this.http.delete<void>(this.api + friendId);
+    delete(reviewId: string): Observable<void> {
+        return this.http.delete<void>(this.api + reviewId);
     }
-    update(friendTO: Friend): Observable<ReviewTO> {
-        return this.http.put<ReviewTO>(this.api + friendTO.id, friendTO);
+    update(review: ReviewTO): Observable<ReviewTO> {
+        return this.http.put<ReviewTO>(this.api + review.id, review);
     }
     getAllByBook(idBook: number): Observable<ReviewTO[]> {
         return this.http.get<ReviewTO[]>(this.api + 'book/' + idBook);
