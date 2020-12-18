@@ -3,7 +3,6 @@ name: ANgular CI
 on: [push]
 
 jobs:
-  codacy-coverage-reporter:
   build:
     runs-on: ubuntu-latest
 
