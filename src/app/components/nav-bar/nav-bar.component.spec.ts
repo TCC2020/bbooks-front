@@ -8,6 +8,10 @@ import {MaterialModule} from '../../material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TranslateServiceMockForRoot} from '../../mocks/translate.service.mock';
+import { BookRecommendationService } from 'src/app/services/book-recommendation.service';
+import { ProfileService } from 'src/app/services/profile.service';
+import { BookService } from 'src/app/services/book.service';
+import { GoogleBooksService } from 'src/app/services/google-books.service';
 
 describe('NavBarComponent', () => {
     let component: NavBarComponent;
@@ -26,6 +30,10 @@ describe('NavBarComponent', () => {
             ],
             providers: [
                 AuthService,
+                BookRecommendationService,
+                ProfileService,
+                BookService,
+                GoogleBooksService,
                 {
                     provide: 'SocialAuthServiceConfig',
                     useValue: {
