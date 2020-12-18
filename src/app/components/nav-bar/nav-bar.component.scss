@@ -16,8 +16,77 @@
 }
 
 .imagem-perfil {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   margin: auto;
+  margin-right: 10px;
+}
+
+#search-bt {
+	color: white;
+}
+
+.container-da-lista {
+    width: 100%;
+    height: 800px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.container-lista-amigos {
+    width: 268px;
+    height: auto;
+	margin-left: auto !important;
+    margin-right: auto !important;
+    margin: 1px solid black;
+}
+
+.informacoes {
+    width: 173px;
+    padding: 10px;
+}
+
+.informacoes p {
+    width: 173px;
+    word-wrap: break-word;
+}
+
+.imagem-perfil-notificacao {
+    width: 35px;
+    height: 35px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 10px;
+}
+
+.container-amigo {
+    padding: 10px;
+    width: 248px;
+    height: auto;
+}
+
+.container-imagem {
+    flex-direction: row;
+    display: flex;
+}
+
+.container-imagem:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.adicionar-amigos, 
+.titulo-notificacao {
+    width: 100%;
+    text-align: center;
+}
+
+.nome-usuario {
+    color: black;
+}
+
+.adicionar-amigos {
+    padding: 5px;
 }

@@ -33,6 +33,12 @@
                             <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
                                     (click)="openDialogAddBook(book)">
                                 {{'ESTANTE.EDITAR_LIVRO' | translate}}
+                            </button>                           
+                        </div>
+                        <div style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
+                            <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
+                                    (click)="openDialogReferBook(book)">
+                                {{'ESTANTE.INDICAR_LIVRO' | translate}}
                             </button>
                         </div>
 
