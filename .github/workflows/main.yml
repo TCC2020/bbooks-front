@@ -4,10 +4,11 @@ on: [push]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
     - name: Use Node.js 14
       uses: actions/setup-node@v1
       with:
@@ -19,7 +20,7 @@ jobs:
     - name: Test
       run: npm test -- --configuration=ci
     - name: Run codacy-coverage-reporter
-      uses: codacy/codacy-coverage-reporter-action@master
+      uses: codacy/codacy-coverage-reporter-action@checkout@v1
       with:
         project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
         coverage-reports: ../coverage/clover.xml
