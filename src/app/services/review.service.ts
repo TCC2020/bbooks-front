@@ -16,6 +16,9 @@ export class ReviewService {
     save(friendTO: Friend): Observable<ReviewTO> {
         return this.http.post<ReviewTO>(this.api, friendTO);
     }
+    delete(friendId: string): Observable<void> {
+        return this.http.delete<void>(this.api + friendId);
+    }
     update(friendTO: Friend): Observable<ReviewTO> {
         return this.http.put<ReviewTO>(this.api + friendTO.id, friendTO);
     }

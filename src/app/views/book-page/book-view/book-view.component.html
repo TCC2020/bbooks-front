@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-around center">
-                    <div class="cardDescription">
+                    <div>
                         <p style="font-weight: 500; color: #1a1a1a; margin: auto 10px;">About this book:</p>
                         <p class="description">{{book.description}}</p>
                         <div fxLayout="row" fxLayoutAlign="center center">
@@ -106,51 +106,77 @@
             </div>
         </div>
         <mat-tab-group mat-align-tabs="center">
-            <mat-tab label="Review">
+            <mat-tab label="{{'PADRAO.RESENHA' | translate}}">
                 <br>
-                <div fxLayout="row" fxLayoutAlign="center center">
-                    <button type="button" mat-flat-button color="accent" (click)="openDialogReview()">
-                        Escrever resenha
-                    </button>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngFor="let r of reviews | async">
-                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexOffset="1"
-                         fxLayoutAlign.xs="space-around start" fxLayoutGap.xs="20px">
-                        <div fxLayout="column" fxLayoutAlign="start start">
-                            <div>
-                                <img class="cardImageReview" src="{{(r.profileTO | async)?.profileImage ? (r.profileTO | async)?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
-                            </div>
-                        </div>
-                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px" >
-                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
-                                <div style="font-weight: 500; color: #1a1a1a">@{{(r.profileTO | async)?.username}}</div>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutAlign="start start">
-                                <mat-card class="commentReview">
-                                    <mat-card-subtitle><b>{{r.title}}</b></mat-card-subtitle>
-                                    <p >
-                                        {{r.body}}
-                                    </p>
-                                    <p  style="color: #696969">
-                                        {{r.creationDate | date}}
-                                    </p>
-                                </mat-card>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
-                                <button mat-button class="button-like">
-                                    <mat-icon>thumb_up</mat-icon>
-                                    Curtir
-                                </button>
-                                <button mat-button class="button-like">
-                                    <mat-icon>comment</mat-icon>
-                                    Comentários
-                                </button>
-                            </div>
-                        </div>
+                <mat-progress-bar mode="indeterminate" *ngIf="!(reviews | async)"></mat-progress-bar>
+                <br>
+                <div *ngIf="(reviews | async)">
+                    <div fxLayout="row" fxLayoutAlign="center center">
+                        <button type="button" mat-flat-button color="accent" (click)="openDialogReview(null)">
+                            {{'RESENHA.ESCREVER_RESENHA' | translate}}
+                        </button>
                     </div>
-                </div>
+                    <div *ngFor="let r of reviews | async" >
+                        <div fxLayout="column" fxLayoutAlign="space-between center" class="flex" fxFlex.xs>
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexOffset="1"
+                                 fxLayoutAlign.xs="space-around start" fxLayoutGap.xs="20px" >
+                                <div fxLayout="column" fxLayoutAlign="start start">
+                                    <div>
+                                        <img class="cardImageReview" src="{{(r.profileTO | async)?.profileImage ? (r.profileTO | async)?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                                    </div>
+                                </div>
+                                <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px" >
+                                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                                        <div style="font-weight: 500; color: #1a1a1a">@{{(r.profileTO | async)?.username}}</div>
+                                    </div>
 
+                                    <div fxLayout="row" fxLayoutAlign="start start">
+                                        <mat-card class="commentReview">
+                                            <div fxLayout="row"  fxLayoutAlign="end center">
+
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="space-between center" >
+                                                <div>
+                                                    <b>{{r.title}}</b>
+                                                </div>
+                                                <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf=" (r.profileTO | async)?.id == authService.getUser().profile.id">
+                                                    <mat-icon>more_vert</mat-icon>
+                                                </button>
+                                            </div>
+                                            <mat-menu #menu="matMenu">
+                                                <div mat-menu-item (click)="openDialogReview(r)">
+                                                    <mat-icon>create</mat-icon>
+                                                    <span>{{'PADRAO.EDITAR' | translate}}</span>
+                                                </div>
+                                                <div mat-menu-item (click)="deleteReview(r)">
+                                                    <mat-icon>delete</mat-icon>
+                                                    <span>{{'PADRAO.REMOVER' | translate}}</span>
+                                                </div>
+                                            </mat-menu>
+                                            <p >
+                                                {{r.body}}
+                                            </p>
+                                            <p  style="color: #696969">
+                                                {{r.creationDate | date}}
+                                            </p>
+                                        </mat-card>
+                                    </div>
+                                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+                                        <button mat-button class="button-like">
+                                            <mat-icon>thumb_up</mat-icon>
+                                            Curtir
+                                        </button>
+                                        <button mat-button class="button-like">
+                                            <mat-icon>comment</mat-icon>
+                                            Comentários
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                </div>
             </mat-tab>
             <mat-tab label="{{'ACOMP_LEITURA.ACOMP_LEITURA' | translate}}"  *ngIf="book.idUserBook">
                     <div fxLayout="column" fxLayoutAlign="space-between center" class="flex" fxFlex.xs>
@@ -209,7 +235,7 @@
                                 <div *ngIf="tracking.comentario">{{'PADRAO.COMENTARIO' | translate}}: {{tracking.comentario}}</div>
                                 <div>
                                     <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center">
-                                        <mat-progress-bar color="accent" mode="determinate"
+                                        <mat-progress-bar color="accent" mode="determinate" class="progresBarTracking"
                                                           [value]="this.getPercentTotal(tracking.trackings)"></mat-progress-bar>
                                         <div style="position: absolute; color: white; padding-left: 10px;"> {{this.getPercentTotal(tracking.trackings) | number}}
                                             %

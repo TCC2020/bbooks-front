@@ -11,13 +11,15 @@ import {BookAddDialogComponent} from './book-add-dialog/book-add-dialog.componen
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {NumbersOnlyInputDirective} from './directive/numbers-only-input.directive';
+import {LoaderComponent} from '../../loader/loader.component';
 
 
 @NgModule({
     declarations: [
         BookCardComponent,
         BookAddDialogComponent,
-        NumbersOnlyInputDirective
+        NumbersOnlyInputDirective,
+        LoaderComponent
     ],
     imports: [
         CommonModule,
@@ -38,7 +40,8 @@ import {NumbersOnlyInputDirective} from './directive/numbers-only-input.directiv
     ],
     exports: [
         BookCardComponent,
-        NumbersOnlyInputDirective
+        NumbersOnlyInputDirective,
+        LoaderComponent
     ],
     providers: []
 })

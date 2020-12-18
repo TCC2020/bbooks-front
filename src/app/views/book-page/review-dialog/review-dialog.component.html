@@ -1,34 +1,35 @@
 <mat-dialog-content>
     <div fxLayout="column" fxLayoutAlign="space-between center" fxFill>
         <h2 mat-dialog-title>{{'PADRAO.RESENHA' | translate}}</h2>
-        <div>
-            {{data.book.title}}
+        <div >
+            <b>{{data.book.title}}</b>
         </div>
         <div *ngFor="let a of data.book.authors">
             {{a.name}}
         </div>
+        <div>
+            <br>
+        </div>
         <form [formGroup]="formReview">
-            <div fxLayout="column" fxLayoutAlign="space-between center">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Título para sua resenha</mat-label>
+                <mat-form-field style="width: 100%" >
+                    <mat-label>{{'RESENHA.TITULO' | translate}}</mat-label>
                     <input matInput formControlName="title">
                 </mat-form-field>
 
-                <mat-form-field class="example-full-width">
-                    <mat-label>Escreva o que achou do livro </mat-label>
-                    <textarea matInput placeholder="this book was wonderful" formControlName="body"></textarea>
+                <mat-form-field style="width: 100%">
+                    <mat-label>{{'RESENHA.BODY' | translate}}</mat-label>
+                    <textarea matInput placeholder="{{'RESENHA.BODY_TEXT' | translate}}" formControlName="body"></textarea>
                 </mat-form-field>
-            </div>
         </form>
     </div>
     <p></p>
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
         <div fxLayoutGap="8px">
-            <button mat-flat-button color="accent" (click)="save()" *ngIf="data.review"
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="data.review.id"
                     [disabled]="formReview.invalid">
                 {{'PADRAO.EDITAR' | translate}}
             </button>
-            <button mat-flat-button color="accent" (click)="save()" *ngIf="!data.review"
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="!data.review.id"
                     [disabled]="formReview.invalid">
                 {{'PADRAO.ADICIONAR' | translate}}
             </button>

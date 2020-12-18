@@ -23,6 +23,7 @@ import {AuthService} from '../../../services/auth.service';
 import {ReviewDialogComponent} from '../review-dialog/review-dialog.component';
 import {ReviewService} from '../../../services/review.service';
 import {ProfileService} from '../../../services/profile.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-book-view',
@@ -54,10 +55,10 @@ export class BookViewComponent implements OnInit, OnDestroy {
         private gBookService: GoogleBooksService,
         private bookService: BookService,
         private trackingService: TrackingService,
-        private authService: AuthService,
+        public authService: AuthService,
         private reviewService: ReviewService,
-        private profileService: ProfileService
-
+        private profileService: ProfileService,
+        private translate: TranslateService
     ) {
         this.inscricao = this.route.data.subscribe((data: { book: Book }) => {
             this.book = data.book;
@@ -182,15 +183,22 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
     }
 
-    openDialogReview() {
+    openDialogReview(r: ReviewTO): void {
         const review = new ReviewTO();
+        if (r) {
+            review.id = r.id;
+            review.title = r.title;
+            review.body = r.body;
+            review.profileTO = r.profileTO;
+        } else {
+            review.profileId = this.authService.getUser().profile.id;
+        }
         if (this.book.api) {
             review.idGoogleBook = this.book.id;
         } else {
             // tslint:disable-next-line:radix
             review.bookId = Number.parseInt(this.book.id);
         }
-        review.profileId = this.authService.getUser().profile.id;
         const dialogRef = this.dialog.open(ReviewDialogComponent, {
             height: '450px',
             width: '500px',
@@ -199,8 +207,10 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 book: this.book
             }
         });
-        dialogRef.afterClosed().subscribe(() => {
-            //
+        dialogRef.afterClosed().pipe(take(1)).subscribe((result) => {
+            if (result) {
+                this.reviews = this.reviews.pipe(take(1));
+            }
         });
     }
 
@@ -317,11 +327,22 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 );
         }
     }
+
     mapForReviews(reviews: ReviewTO[]): ReviewTO[] {
         return reviews.map(r => {
             r.profileTO = this.profileService.getById(r.profileId);
             return r;
         });
+    }
+    deleteReview(r: ReviewTO): void {
+        this.reviewService.delete(r.id)
+            .pipe(take(1))
+            .subscribe(() => {
+                this.reviews = this.reviews.pipe(take(1));
+                this.translate.get('RESENHA.APAGAR_RENHA').subscribe(message => {
+                    alert(message);
+                });
+            });
     }
 
 }

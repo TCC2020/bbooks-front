@@ -41,6 +41,13 @@
     "VELOCIDADE_LEITURA": "Reading speed",
     "PAGINA_POR_DIA": "pages/day",
     "RESENHA": "Review"
+  },
+  "RESENHA" : {
+    "ESCREVER_RESENHA" : "Write review",
+    "TITULO": "Title for your review",
+    "BODY" : "Write your opinion of the book",
+    "BODY_TEXT": "This book is wonderful",
+    "APAGAR_RENHA": "Review deleted"
 
   },
   "NAV": {

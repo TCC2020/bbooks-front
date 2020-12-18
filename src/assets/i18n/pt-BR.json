@@ -42,6 +42,13 @@
     "PAGINA_POR_DIA": "páginas/dia",
     "RESENHA": "Resenha"
   },
+  "RESENHA" : {
+    "ESCREVER_RESENHA" : "Escrever resenha",
+    "TITULO": "Título para sua resenha",
+    "BODY" : "Escreva o que achou do livro",
+    "BODY_TEXT": "Este livro é maravilhoso",
+    "APAGAR_RENHA": "Resenha excluída"
+  },
   "NAV": {
     "SAIR": "Sair",
     "PORTUGUES": "Português",
