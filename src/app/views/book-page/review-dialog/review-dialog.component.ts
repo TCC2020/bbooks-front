@@ -5,7 +5,6 @@ import {ReviewTO} from '../../../models/ReviewTO.model';
 import {ReviewService} from '../../../services/review.service';
 import {take} from 'rxjs/operators';
 import {Book} from '../../../models/book.model';
-import {Tag} from '../../../models/tag';
 import {ProfileService} from '../../../services/profile.service';
 
 @Component({
@@ -34,9 +33,10 @@ export class ReviewDialogComponent implements OnInit {
     private createForm(): void {
         this.formReview = this.formBuilder.group({
             id: new FormControl(this.data.review?.id ? this.data.review.id : ''),
-            title: new FormControl(this.data.review?.title ? this.data.review.title : ''),
+            title: new FormControl(this.data.review?.title ? this.data.review.title : '', Validators.required),
             body: new FormControl(this.data.review?.body ? this.data.review.body : '', Validators.compose([
-                Validators.maxLength(300)
+                Validators.maxLength(300),
+                Validators.required
             ])),
             bookId: new FormControl(this.data?.review.bookId),
             idGoogleBook: new FormControl(this.data?.review.idGoogleBook),
