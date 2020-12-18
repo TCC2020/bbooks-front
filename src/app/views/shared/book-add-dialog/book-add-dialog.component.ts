@@ -31,6 +31,8 @@ export class BookAddDialogComponent implements OnInit {
     tagsBook: Tag[];
     mapStatus = mapBookStatus;
     mapStatusEnglish = mapBookStatusEnglish;
+    status = BookStatus;
+    statusEnglish = BookStatusEnglish;
 
     public formBook: FormGroup;
     public Book: Book;
