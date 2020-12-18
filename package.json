@@ -10,6 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test": "jest --collectCoverage --coverageReporters=\"text-summary\"",
+    "testUnit": "jest",
     "test:watch": "jest --watch"
   },
   "engines": {
