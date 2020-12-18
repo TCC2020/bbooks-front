@@ -1,0 +1,39 @@
+<mat-dialog-content>
+    <div fxLayout="column" fxLayoutAlign="space-between center" fxFill>
+        <h2 mat-dialog-title>{{'PADRAO.RESENHA' | translate}}</h2>
+        <div >
+            <b>{{data.book.title}}</b>
+        </div>
+        <div *ngFor="let a of data.book.authors">
+            {{a.name}}
+        </div>
+        <div>
+            <br>
+        </div>
+        <form [formGroup]="formReview">
+                <mat-form-field style="width: 100%" >
+                    <mat-label>{{'RESENHA.TITULO' | translate}}</mat-label>
+                    <input matInput formControlName="title">
+                </mat-form-field>
+
+                <mat-form-field style="width: 100%">
+                    <mat-label>{{'RESENHA.BODY' | translate}}</mat-label>
+                    <textarea matInput placeholder="{{'RESENHA.BODY_TEXT' | translate}}" formControlName="body"></textarea>
+                </mat-form-field>
+        </form>
+    </div>
+    <p></p>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+        <div fxLayoutGap="8px">
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="data.review.id"
+                    [disabled]="formReview.invalid">
+                {{'PADRAO.EDITAR' | translate}}
+            </button>
+            <button mat-flat-button color="accent" (click)="save()" *ngIf="!data.review.id"
+                    [disabled]="formReview.invalid">
+                {{'PADRAO.ADICIONAR' | translate}}
+            </button>
+        </div>
+
+    </div>
+</mat-dialog-content>

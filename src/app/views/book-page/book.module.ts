@@ -26,6 +26,7 @@ import {SharedModule} from '../shared/shared.module';
 import {TagDialogComponent} from './tag-dialog/tag-dialog.component';
 import {TrackingDialogComponent} from './tracking-dialog/tracking-dialog.component';
 import {TrackingViewComponent} from './tracking-view/tracking-view.component';
+import {ReviewDialogComponent} from './review-dialog/review-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -65,8 +66,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         BooksComponent,
         TagDialogComponent,
         TrackingDialogComponent,
-        TrackingViewComponent
-
+        TrackingViewComponent,
+        ReviewDialogComponent
     ],
     entryComponents: [
         // BookcaseModalComponent
