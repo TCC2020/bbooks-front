@@ -12,7 +12,7 @@ describe('ReviewService', () => {
     let service: ReviewService;
     let httpMock: HttpTestingController;
 
-    let api = environment.api + 'review/';
+    const api = environment.api + 'review/';
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
