@@ -11,8 +11,8 @@ import {environment} from '../../environments/environment';
 describe('ReviewService', () => {
     let service: ReviewService;
     let httpMock: HttpTestingController;
-
     const api = environment.api + 'review/';
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [
