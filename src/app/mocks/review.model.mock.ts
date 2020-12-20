@@ -11,10 +11,10 @@ reviewMock.body = 'fsaesfsef';
 reviewMock.idGoogleBook = 'fesafjlasoief';
 
 export const reviewsMock = [];
-reviewsMock.push(reviewsMock);
-reviewsMock.push(reviewsMock);
-reviewsMock.push(reviewsMock);
-reviewsMock.push(reviewsMock);
+reviewsMock.push(reviewMock);
+reviewsMock.push(reviewMock);
+reviewsMock.push(reviewMock);
+reviewsMock.push(reviewMock);
 
 
 

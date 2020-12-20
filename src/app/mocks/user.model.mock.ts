@@ -13,3 +13,9 @@ userMock.password = 'safdoiewahfojsafe';
 userMock.idSocial = '1111111111111';
 userMock.verified = false;
 userMock.password = 'asdfjoiewajfoiafoijwefoiewafw';
+
+export const usersMock = [];
+usersMock.push(userMock);
+usersMock.push(userMock);
+usersMock.push(userMock);
+usersMock.push(userMock);
