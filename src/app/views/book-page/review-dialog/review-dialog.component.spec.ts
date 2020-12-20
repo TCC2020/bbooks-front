@@ -4,7 +4,7 @@ import {ReviewDialogComponent} from './review-dialog.component';
 import {MaterialModule} from '../../../material/material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {SocialLoginModule} from 'angularx-social-login';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -20,10 +20,13 @@ import {ProfileService} from '../../../services/profile.service';
 import {of} from 'rxjs';
 import {bookMock} from '../../../mocks/book.model.mock';
 import {reviewMock} from '../../../mocks/review.model.mock';
+import {ReviewTO} from '../../../models/ReviewTO.model';
+import {ReviewService} from '../../../services/review.service';
 
 describe('ReviewDialogComponent', () => {
     let component: ReviewDialogComponent;
     let fixture: ComponentFixture<ReviewDialogComponent>;
+    let reviewService: ReviewService;
 
     const mockMatDialog = {
         open: jest.fn(() => {
@@ -90,11 +93,58 @@ describe('ReviewDialogComponent', () => {
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ReviewDialogComponent);
+        reviewService = TestBed.inject(ReviewService);
+
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('Should inject Data dialog', () => {
+        expect(component.data).toEqual(data);
+    });
+
+    it('form invalid when input tittle is empty', () => {
+        component.data.review.title = null;
+        component.ngOnInit();
+        const newLocal = 'title';
+        const tagInput = component.formReview.controls[newLocal];
+        expect(tagInput.errors.required).toBeTruthy();
+        expect(component.formReview.invalid).toBeTruthy();
+    });
+
+    it('form invalid when input body is empty', () => {
+        component.data.review.body = null;
+        component.ngOnInit();
+        const newLocal = 'body';
+        const tagInput = component.formReview.controls[newLocal];
+        expect(tagInput.errors.required).toBeTruthy();
+        expect(component.formReview.invalid).toBeTruthy();
+    });
+
+    it('should call save and and call reviewService save method ', () => {
+        component.data.review = new ReviewTO();
+        component.ngOnInit();
+        const spyComponent = jest.spyOn(component, 'save');
+        const spyReviewService = jest.spyOn(reviewService, 'save').mockReturnValue(of(reviewMock));
+        component.formReview.get('title').setValue('Maravilhoso');
+        component.formReview.get('body').setValue('Um livro  historico');
+        component.save();
+        expect(spyComponent).toHaveBeenCalled();
+        expect(spyReviewService).toHaveBeenCalled();
+    });
+
+    it('should call save and and call reviewService  update method', () => {
+        const spyComponent = jest.spyOn(component, 'save');
+        const spyReviewService = jest.spyOn(reviewService, 'update').mockReturnValue(of(reviewMock));
+
+        component.formReview.get('title').setValue('Maravilhoso');
+        component.formReview.get('body').setValue('Um livro  historico');
+        component.save();
+        expect(spyComponent).toHaveBeenCalled();
+        expect(spyReviewService).toHaveBeenCalled();
     });
 });
