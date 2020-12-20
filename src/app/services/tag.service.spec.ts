@@ -1,10 +1,8 @@
-import {fakeAsync, TestBed} from '@angular/core/testing';
+import { TestBed} from '@angular/core/testing';
 
 import {TagService} from './tag.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {reviewMock} from '../mocks/review.model.mock';
-import {tagMock, tagsMock} from '../mocks/tag.model.mock';
-import {profileMock} from '../mocks/profile.model.mock';
+import {tagMock} from '../mocks/tag.model.mock';
 import {userbookMock} from '../mocks/userbook.model.mock';
 
 
