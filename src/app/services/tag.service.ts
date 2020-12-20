@@ -28,7 +28,7 @@ export class TagService {
         return this.http.get<Tag[]>(this.api + 'book/' + idUserBook);
     }
     getById(idTag: number): Observable<Tag> {
-        return this.http.get<Tag>(`${this.api} ${idTag}`);
+        return this.http.get<Tag>(`${this.api}${idTag}`);
     }
 
     delete(tagId: number): Observable<any> {

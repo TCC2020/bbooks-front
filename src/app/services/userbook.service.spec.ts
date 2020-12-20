@@ -122,7 +122,7 @@ describe('UserbookService', () => {
             });
     });
 
-    it('getById: should call http GET',  done => {
+    it('getAllByProfile: should call http GET',  done => {
         service.getAllByProfile(profileMock.id).subscribe(() => {});
         const req = httpMock.expectOne(api + 'profile/' + profileMock.id);
         expect(req.request.method).toBe('GET');
