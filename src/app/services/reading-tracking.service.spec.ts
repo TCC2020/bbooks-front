@@ -3,7 +3,6 @@ import {TestBed} from '@angular/core/testing';
 import {ReadingTrackingService} from './reading-tracking.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {of} from 'rxjs';
-import {reviewMock, reviewsMock} from '../mocks/review.model.mock';
 import {readingsTrackingMock, readingTrackingMock} from '../mocks/tracking.model';
 
 describe('ReadingTrackingService', () => {

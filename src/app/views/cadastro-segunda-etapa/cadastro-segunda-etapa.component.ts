@@ -153,7 +153,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     }
 
     updateProfileToLogin(): void {
-        this.profileService.updatePerfil(this.profileTo).subscribe(
+        this.profileService.update(this.profileTo).subscribe(
             () => {
                 this.login();
             },
