@@ -10,7 +10,7 @@ reviewMock.profileId = 10;
 reviewMock.body = 'fsaesfsef';
 reviewMock.idGoogleBook = 'fesafjlasoief';
 
-export const reviewsMock = [];
+export const reviewsMock = [] as ReviewTO[];
 reviewsMock.push(reviewMock);
 reviewsMock.push(reviewMock);
 reviewsMock.push(reviewMock);

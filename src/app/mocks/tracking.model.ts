@@ -1,11 +1,18 @@
 import {ReadingTrackingTO} from '../models/ReadingTrackingTO.model';
 
-export const trackingMock = new ReadingTrackingTO();
+export const readingTrackingMock = new ReadingTrackingTO();
 
 
-trackingMock.id = 'ASDIJFOIAJWFIESAFLLKWOI';
-trackingMock.percentage = 100;
-trackingMock.comentario = 'fsafedfawefdsf';
-trackingMock.creationDate = new Date(Date.now());
-trackingMock.numPag = 50;
-trackingMock.userBookId = 10;
+readingTrackingMock.id = 'ASDIJFOIAJWFIESAFLLKWOI';
+readingTrackingMock.percentage = 100;
+readingTrackingMock.comentario = 'fsafedfawefdsf';
+readingTrackingMock.creationDate = new Date(Date.now());
+readingTrackingMock.numPag = 50;
+readingTrackingMock.userBookId = 10;
+
+
+export const readingsTrackingMock = [];
+readingsTrackingMock.push(readingTrackingMock);
+readingsTrackingMock.push(readingTrackingMock);
+readingsTrackingMock.push(readingTrackingMock);
+readingsTrackingMock.push(readingTrackingMock);
