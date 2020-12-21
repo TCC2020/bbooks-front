@@ -3,6 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {AuthService} from './auth.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {SocialAuthServiceConfigMock} from '../mocks/google.provide.mock';
 
 describe('AuthService', () => {
     let service: AuthService;
@@ -14,20 +15,7 @@ describe('AuthService', () => {
                 SocialLoginModule
             ],
             providers: [
-                {
-                    provide: 'SocialAuthServiceConfig',
-                    useValue: {
-                        autoLogin: false,
-                        providers: [
-                            {
-                                id: GoogleLoginProvider.PROVIDER_ID,
-                                provider: new GoogleLoginProvider(
-                                    '637875920121-2l5ibvruevm5ldf5gdc78erdno23pd2b.apps.googleusercontent.com'
-                                ),
-                            }
-                        ],
-                    } as SocialAuthServiceConfig
-                }
+                SocialAuthServiceConfigMock
             ]
         });
         service = TestBed.inject(AuthService);
