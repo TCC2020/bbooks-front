@@ -103,6 +103,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
                             book?.id === userbook?.idBook) {
                             book.status = userbook.status;
                             book.idUserBook = userbook.id;
+                            book.finishDate = userbook.finishDate;
                         }
                     });
                 });
