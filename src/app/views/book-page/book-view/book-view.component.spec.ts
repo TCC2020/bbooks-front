@@ -85,6 +85,8 @@ describe('BookViewComponent', () => {
 
     it('convertAuthorsToString', () => {
         const result = component.book.authors.map(value => value.name);
-        expect(component.convertAuthorsToString()).toEqual(result.toString());
+        component.convertAuthorsToString().forEach(r => {
+            expect(r).toEqual(result.toString());
+        });
     });
 });

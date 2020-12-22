@@ -19,10 +19,6 @@ export class ProfileService {
         return this.http.put(this.api + profile.id, profile);
     }
 
-    updatePerfil(profile): Observable<any> {
-        return this.http.put(this.api + profile.id, profile);
-    }
-
     getById(id: number): Observable<Profile> {
         return this.http.get<Profile>(this.api + id);
     }
