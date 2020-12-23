@@ -4,9 +4,10 @@ import {ReviewService} from './review.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {reviewMock, reviewPagination, reviewsMock} from '../mocks/review.model.mock';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {take} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
+import {Profile} from '../models/profileTO.model';
 
 describe('ReviewService', () => {
     let service: ReviewService;
@@ -113,5 +114,13 @@ describe('ReviewService', () => {
         const req = httpMock.expectOne(api + 'google-book/32399928?page=22&size=22');
         expect(req.request.method).toBe('GET');
         done();
+    });
+
+    it('mapForReviews',  done => {
+        const result = service.mapForReviews(reviewsMock);
+        result.forEach(r => {
+            expect(r.profileTO).toBeInstanceOf(Observable);
+            done();
+        });
     });
 });
