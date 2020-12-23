@@ -25,6 +25,8 @@ import {ReviewService} from '../../../services/review.service';
 import {ProfileService} from '../../../services/profile.service';
 import {TranslateService} from '@ngx-translate/core';
 import { ReferBookDialogComponent } from '../../shared/refer-book-dialog/refer-book-dialog.component';
+import {PageEvent} from '@angular/material/paginator';
+import {ReviewsPagination} from '../../../models/pagination/reviews.pagination';
 
 @Component({
     selector: 'app-book-view',
@@ -48,6 +50,10 @@ export class BookViewComponent implements OnInit, OnDestroy {
     percentage: number;
 
     reviews: Observable<ReviewTO[]>;
+    reviewPagination: ReviewsPagination;
+
+    pageEvent: PageEvent = new PageEvent();
+
 
     constructor(
         private route: ActivatedRoute,
@@ -68,6 +74,8 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 this.getAllTracking();
             }
         });
+        this.pageEvent.pageSize = 10;
+        this.pageEvent.pageIndex = 0;
     }
 
     ngOnInit(): void {
@@ -160,6 +168,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.inscricao.unsubscribe();
+        this.reviewPagination = new ReviewsPagination();
     }
 
     verifyPercentageIsLess100() {
@@ -210,7 +219,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
         dialogRef.afterClosed().pipe(take(1)).subscribe((result) => {
             if (result) {
-                this.reviews = this.reviews.pipe(take(1));
+                this.getAllReviews();
             }
         });
     }
@@ -324,30 +333,13 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     getAllReviews(): void {
-        if (this.book.api) {
-            this.reviews = this.reviewService.getAllByGoogleBook(this.book.id)
-                .pipe(
-                    map(reviews => {
-                        return this.mapForReviews(reviews);
-                    })
-                );
+        if (this.book.api === 'google') {
+            this.getAllByGoogleBook();
         } else {
-            // tslint:disable-next-line:radix
-            this.reviews = this.reviewService.getAllByBook(Number.parseInt(this.book.id))
-                .pipe(
-                    map(reviews => {
-                        return this.mapForReviews(reviews);
-                    })
-                );
+            this.getAllByBook();
         }
     }
 
-    mapForReviews(reviews: ReviewTO[]): ReviewTO[] {
-        return reviews.map(r => {
-            r.profileTO = this.profileService.getById(r.profileId);
-            return r;
-        });
-    }
     deleteReview(r: ReviewTO): void {
         this.reviewService.delete(r.id)
             .pipe(take(1))
@@ -357,6 +349,34 @@ export class BookViewComponent implements OnInit, OnDestroy {
                     alert(message);
                 });
             });
+    }
+    changePage(event: PageEvent) {
+        this.pageEvent = event;
+        this.getAllReviews();
+    }
+
+    getAllByGoogleBook(): void {
+        this.reviewService.getAllByGoogleBook(
+            this.book.id,
+            this.pageEvent.pageSize,
+            this.pageEvent.pageIndex
+        )
+        .pipe(take(1))
+        .subscribe(reviewsPagination => {
+            this.reviewPagination = reviewsPagination;
+        });
+    }
+    getAllByBook(): void {
+        this.reviewService.getAllByBook(
+            // tslint:disable-next-line:radix
+            Number.parseInt(this.book.id),
+            this.pageEvent.pageSize,
+            this.pageEvent.pageIndex
+        )
+        .pipe(take(1))
+        .subscribe(reviewsPagination => {
+            this.reviewPagination = reviewsPagination;
+        });
     }
 
 }

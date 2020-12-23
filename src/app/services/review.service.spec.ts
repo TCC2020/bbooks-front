@@ -3,7 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {ReviewService} from './review.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
-import {reviewMock, reviewsMock} from '../mocks/review.model.mock';
+import {reviewMock, reviewPagination, reviewsMock} from '../mocks/review.model.mock';
 import {of} from 'rxjs';
 import {take} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
@@ -75,42 +75,42 @@ describe('ReviewService', () => {
         done();
     });
     it('getAllByBook: should call getAllByBook and return expected list review',  done => {
-        const spy = jest.spyOn(service, 'getAllByBook').mockReturnValue(of(reviewsMock));
-        service.getAllByBook(32399928)
+        const spy = jest.spyOn(service, 'getAllByBook').mockReturnValue(of(reviewPagination));
+        service.getAllByBook(32399928 , 22 , 22)
             .subscribe(result => {
                 expect(spy).toHaveBeenCalled();
-                expect(spy).toHaveBeenCalledWith(32399928);
-                expect(result).toEqual(reviewsMock);
+                expect(spy).toHaveBeenCalledWith(32399928, 22, 22);
+                expect(result).toEqual(reviewPagination);
                 done();
             });
     });
 
     it('getAllByBook: should call http get',  done => {
-        service.getAllByBook(32399928)
+        service.getAllByBook(32399928, 22, 22)
             .subscribe(() => {
             });
-        const req = httpMock.expectOne(api + 'book/' + 32399928 );
+        const req = httpMock.expectOne(api + 'book/32399928?page=22&size=22');
         expect(req.request.method).toBe('GET');
         done();
     });
 
     it('getAllByGoogleBook: should call getAllByGoogleBook and return expected list review',  done => {
-        const spy = jest.spyOn(service, 'getAllByGoogleBook').mockReturnValue(of(reviewsMock));
-        service.getAllByGoogleBook('32399928')
+        const spy = jest.spyOn(service, 'getAllByGoogleBook').mockReturnValue(of(reviewPagination));
+        service.getAllByGoogleBook('32399928', 22, 22)
             .pipe(take(1))
             .subscribe(result => {
                 expect(spy).toHaveBeenCalled();
-                expect(spy).toHaveBeenCalledWith('32399928');
-                expect(result).toEqual(reviewsMock);
+                expect(spy).toHaveBeenCalledWith('32399928', 22, 22);
+                expect(result).toEqual(reviewPagination);
                 done();
             });
     });
 
     it('getAllByGoogleBook: should call http get',  done => {
-        service.getAllByGoogleBook('32399928')
+        service.getAllByGoogleBook('32399928', 22, 22)
             .subscribe(() => {
             });
-        const req = httpMock.expectOne(api + 'google-book/' + 32399928 );
+        const req = httpMock.expectOne(api + 'google-book/32399928?page=22&size=22');
         expect(req.request.method).toBe('GET');
         done();
     });
