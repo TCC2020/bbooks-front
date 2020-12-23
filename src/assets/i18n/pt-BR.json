@@ -39,7 +39,15 @@
     "PENDENTE": "Pendente",
     "COMENTARIO": "Comentário",
     "VELOCIDADE_LEITURA" : "Velocidade de leitura",
-    "PAGINA_POR_DIA": "páginas/dia"  
+    "PAGINA_POR_DIA": "páginas/dia",
+    "RESENHA": "Resenha"
+  },
+  "RESENHA" : {
+    "ESCREVER_RESENHA" : "Escrever resenha",
+    "TITULO": "Título para sua resenha",
+    "BODY" : "Escreva o que achou do livro",
+    "BODY_TEXT": "Este livro é maravilhoso",
+    "APAGAR_RENHA": "Resenha excluída"
   },
   "NAV": {
     "SAIR": "Sair",
@@ -110,7 +118,7 @@
   },
   "BOOK": {
     "EDITORA": "Editora",
-    "PUPLICACAO": "Publicado em",
+    "PUPLICACAO": "Publicação",
     "PAGINAS": "Páginas",
     "IDIOMA": "Idioma",
     "AVALIACAO": "Avaliação",

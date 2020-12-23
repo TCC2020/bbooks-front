@@ -11,6 +11,7 @@ import {BookAddDialogComponent} from './book-add-dialog/book-add-dialog.componen
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {NumbersOnlyInputDirective} from './directive/numbers-only-input.directive';
+import {LoaderComponent} from '../../loader/loader.component';
 import { ReferBookDialogComponent } from './refer-book-dialog/refer-book-dialog.component';
 
 
@@ -19,6 +20,7 @@ import { ReferBookDialogComponent } from './refer-book-dialog/refer-book-dialog.
         BookCardComponent,
         BookAddDialogComponent,
         NumbersOnlyInputDirective,
+        LoaderComponent,
         ReferBookDialogComponent
     ],
     imports: [
@@ -40,7 +42,8 @@ import { ReferBookDialogComponent } from './refer-book-dialog/refer-book-dialog.
     ],
     exports: [
         BookCardComponent,
-        NumbersOnlyInputDirective
+        NumbersOnlyInputDirective,
+        LoaderComponent
     ],
     providers: []
 })

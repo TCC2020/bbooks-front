@@ -9,7 +9,7 @@ import {MaterialModule} from '../../../material/material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {of} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {trackingMock} from '../../../mocks/tracking.model';
+import {readingTrackingMock} from '../../../mocks/tracking.model';
 import {TrackingService} from '../../../services/tracking.service';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 
@@ -49,7 +49,7 @@ describe('TrackingViewComponent', () => {
                 },
                 {
                     provide: MAT_DIALOG_DATA,
-                    useValue: trackingMock
+                    useValue: readingTrackingMock
                 },
                 {
                     provide: MatDialogRef,
