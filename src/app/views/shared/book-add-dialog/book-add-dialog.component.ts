@@ -109,7 +109,6 @@ export class BookAddDialogComponent implements OnInit {
                 Validators.required :
                 Validators.nullValidator),
         });
-        console.log(this.Book.finishDate);
     }
 
     private createTagForm(checked: boolean): FormControl {
@@ -146,7 +145,7 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.status = this.getStatusToUserBook();
         this.userBookTo.tags = this.getSelectedTags();
         this.userBookTo.page = this.Book.numberPage;
-        if( 
+        if (
             this.formBook.get('statusBook').value.toUpperCase() === this.status.LIDO ||
             this.formBook.get('statusBook').value === this.statusEnglish.LIDO
         ) {
