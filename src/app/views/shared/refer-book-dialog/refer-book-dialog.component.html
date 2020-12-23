@@ -2,7 +2,7 @@
     <div class="container-pesquisar">
         <mat-form-field style="margin: 25px;">
             <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
-            <input matInput matInput type="text"  #nome (keyup)="pesquisar(nome)">
+            <input matInput matInput type="text" id="user" formControlName="user"  #nome (keyup)="pesquisar(nome)">
         </mat-form-field>
         <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
     </div>

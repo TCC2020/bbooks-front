@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -21,7 +22,7 @@ export class ReferBookDialogComponent implements OnInit {
   users: UserTO[];
   filterUsers: UserTO[];
   public Profile: Profile;
-  private bookRecommendationTO = new BookRecommendationTO();
+  public bookRecommendationTO = new BookRecommendationTO();
   public Book: Book;
   public formRecommendation: FormGroup;
 
@@ -33,6 +34,7 @@ export class ReferBookDialogComponent implements OnInit {
     private userService: UserService,
     private bookRecommendationService: BookRecommendationService,
     private authService: AuthService,
+    public translate: TranslateService,
 
 
   ) {
@@ -53,19 +55,19 @@ export class ReferBookDialogComponent implements OnInit {
     });
 }
 
-  pesquisar(nome) {
+  pesquisar(nome): void {
     this.filterUsers = this.users.filter(user =>
             user?.profile?.name.concat(user?.profile?.lastName).toLocaleLowerCase().replace(' ', '')
             .includes(nome.value.toLocaleLowerCase().replace(' ', '')));
   }
 
-  getUsers() {
+  getUsers(): void {
       this.userService.getAllUsers().subscribe(response => {
           this.users = response;
       });
   }
 
-  referBook(profileReceivedId: number) {
+  referBook(profileReceivedId: number): void {
     this.bookRecommendationTO.profileSubmitter = this.authService.getUser().profile.id;
     this.bookRecommendationTO.profileReceived = profileReceivedId;
     this.Book.api === 'google' ?
@@ -75,10 +77,12 @@ export class ReferBookDialogComponent implements OnInit {
     this.bookRecommendationTO.comentario = this.formRecommendation.get('comment').value;
     this.bookRecommendationService.save(this.bookRecommendationTO).subscribe(
         () => {
-            alert('O seu livro foi indicado para seu amigo.');
+          this.translate.get('PADRAO.LIVRO_INDICADO').subscribe(text => {
+            alert(text);
+        });
         },
         error => {
-            console.log('TagDialog Error', error);
+            console.log('BookRecommendation Error', error);
         }
     );
   }
