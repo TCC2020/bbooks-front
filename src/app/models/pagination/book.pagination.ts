@@ -1,11 +1,6 @@
 import {Book} from '../book.model';
-import {Pageable} from './pageable.pagination';
+import {PaginationInterface} from './pagination.interface';
 
-export class BookPagination {
+export class BookPagination extends PaginationInterface {
     content: Book[];
-    pageable: Pageable;
-    totalPages: number;
-    last: boolean;
-    size: number;
-    totalElements: number;
 }

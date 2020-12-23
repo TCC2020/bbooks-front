@@ -121,7 +121,6 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
         <mat-tab-group mat-align-tabs="center">
@@ -129,13 +128,20 @@
 <!--                <br>-->
 <!--                //<mat-progress-bar mode="indeterminate" *ngIf="!(reviews | async)"></mat-progress-bar>-->
                 <br>
-                <div *ngIf="(reviews | async)">
+                <mat-paginator
+                        *ngIf="reviewPagination?.content?.length > 0"
+                        [length]="reviewPagination?.totalElements"
+                        [pageSize]="pageEvent.pageSize"
+                        [pageSizeOptions]="[10, 20, 30, 40]"
+                        (page)="changePage($event)">
+                </mat-paginator>
+                <div *ngIf="reviewPagination">
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <button type="button" mat-flat-button color="accent" (click)="openDialogReview(null)">
                             {{'RESENHA.ESCREVER_RESENHA' | translate}}
                         </button>
                     </div>
-                    <div *ngFor="let r of reviews | async" >
+                    <div *ngFor="let r of reviewPagination?.content" >
                         <div fxLayout="column" fxLayoutAlign="space-between center" class="flex" fxFlex.xs>
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexOffset="1"
                                  fxLayoutAlign.xs="space-around start" fxLayoutGap.xs="20px" >

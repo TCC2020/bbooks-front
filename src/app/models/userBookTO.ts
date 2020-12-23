@@ -12,4 +12,5 @@ export class UserBookTO {
     page: number;
     profileId: number;
     book: Book;
+    finishDate: Date;
 }
