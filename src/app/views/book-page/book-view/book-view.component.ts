@@ -92,6 +92,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                         if (userbook.idBookGoogle === book.id) {
                             book.status = userbook.status;
                             book.idUserBook = userbook.id;
+                            book.finishDate = userbook.finishDate;
                         }
                     });
                     this.book = book;
@@ -105,6 +106,9 @@ export class BookViewComponent implements OnInit, OnDestroy {
                         if (userbook.idBook === b.id) {
                             b.status = userbook.status;
                             b.idUserBook = userbook.id;
+                            b.finishDate = userbook.finishDate;
+                            console.log(userbook);
+
                         }
                     });
                     this.book = b;

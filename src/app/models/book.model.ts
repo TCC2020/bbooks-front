@@ -20,4 +20,5 @@ export class Book {
     idUserBook: number;
     tags: Tag[];
     api: string;
+    finishDate: Date;
 }

@@ -40,7 +40,9 @@
     "COMENTARIO": "Comment",
     "VELOCIDADE_LEITURA": "Reading speed",
     "PAGINA_POR_DIA": "pages/day",
-    "RESENHA": "Review"
+    "RESENHA": "Review",
+    "LIVRO_INDICADO": "The book was referred to your friend."
+
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",

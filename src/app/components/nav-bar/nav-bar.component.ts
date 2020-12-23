@@ -152,7 +152,6 @@ export class NavBarComponent implements OnInit {
         )
         .subscribe(recommendations => {
             this.recommendations = recommendations;
-            console.log(recommendations);
         }, error => {
             console.log('Erro getRecommendation ', error);
         });

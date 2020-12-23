@@ -40,7 +40,8 @@
     "COMENTARIO": "Comentário",
     "VELOCIDADE_LEITURA" : "Velocidade de leitura",
     "PAGINA_POR_DIA": "páginas/dia",
-    "RESENHA": "Resenha"
+    "RESENHA": "Resenha",
+    "LIVRO_INDICADO": "O livro foi indicado para seu amigo."
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",
