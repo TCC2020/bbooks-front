@@ -33,6 +33,7 @@ export class BookViewResolve implements Resolve<Book> {
                     if (userbook.idBookGoogle === book.id) {
                         book.idUserBook = userbook.id;
                         book.status = userbook.status;
+                        book.finishDate = userbook.finishDate;
                     }
                 });
                 book.api = 'google';
@@ -46,6 +47,7 @@ export class BookViewResolve implements Resolve<Book> {
                             if (userbook?.idBook === b.id) {
                                 b.idUserBook = userbook.id;
                                 b.status = userbook.status;
+                                b.finishDate = userbook.finishDate;
                             }
                         });
                         b.api = 'bbooks';

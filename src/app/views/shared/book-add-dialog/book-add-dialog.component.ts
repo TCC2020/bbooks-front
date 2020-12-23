@@ -48,10 +48,11 @@ export class BookAddDialogComponent implements OnInit {
         private userbookService: UserbookService,
         private authService: AuthService,
         private tagService: TagService,
-        public translate: TranslateService
+        public translate: TranslateService,
     ) {
         this.Book = data.book;
         this.tagsBook = [];
+
         if (this.Book.idUserBook) {
             this.tagService.getAllByUserBook(this.Book.idUserBook).subscribe(tags => {
                 this.tagsBook = tags;
@@ -101,7 +102,12 @@ export class BookAddDialogComponent implements OnInit {
     private createForm(): void {
         this.formBook = this.formBuilder.group({
             statusBook: new FormControl(this.Book.status ? this.Book.status : null, Validators.required),
-            tags: this.formBuilder.array([])
+            tags: this.formBuilder.array([]),
+            finishDate: new FormControl(this.Book.finishDate ?
+                this.Book.finishDate.toString() :
+                null, this.Book.finishDate ?
+                Validators.required :
+                Validators.nullValidator),
         });
     }
 
@@ -139,11 +145,18 @@ export class BookAddDialogComponent implements OnInit {
         this.userBookTo.status = this.getStatusToUserBook();
         this.userBookTo.tags = this.getSelectedTags();
         this.userBookTo.page = this.Book.numberPage;
+        if (
+            this.formBook.get('statusBook').value.toUpperCase() === this.status.LIDO ||
+            this.formBook.get('statusBook').value === this.statusEnglish.LIDO
+        ) {
+            this.userBookTo.finishDate = this.formBook.get('finishDate').value;
+        } else {
+            this.userBookTo.finishDate = this.Book.finishDate;
+        }
         this.Book.api === 'google' ?
             this.userBookTo.idBookGoogle = this.Book.id :
             // tslint:disable-next-line:radix
             this.userBookTo.idBook = Number.parseInt(this.Book.id);
-        console.log(this.userBookTo);
         if (this.tagsBook.length > 0 || this.userBookTo.id) {
             this.userbookService.update(this.userBookTo).subscribe(
                 value => {

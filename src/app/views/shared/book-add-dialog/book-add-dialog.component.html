@@ -10,7 +10,7 @@
 
         <form [formGroup]="formBook">
             <!--Linha form-->
-            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+            <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                 <mat-form-field appearance="fill">
                     <mat-label>Status</mat-label>
                     <mat-select formControlName="statusBook">
@@ -19,9 +19,11 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field color="accent" appearance="fill" *ngIf="formBook.get('statusBook').value.toUpperCase() === status.LIDO || formBook.get('statusBook').value === statusEnglish.LIDO">
+            </div>
+            <div>
+                <mat-form-field color="accent" appearance="fill" *ngIf="formBook.get('statusBook')?.value?.toUpperCase() === status.LIDO || formBook.get('statusBook')?.value === statusEnglish.LIDO">
                     <mat-label>Data de conclusão</mat-label>
-                    <input matInput [matDatepicker]="picker1">
+                    <input matInput [value]="this.Book.finishDate | date:'yyyy-MM-dd'" [matDatepicker]="picker1" formControlName="finishDate">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
                   </mat-form-field>

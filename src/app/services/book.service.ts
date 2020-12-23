@@ -201,6 +201,8 @@ export class BookService {
                             if (userbook.idBookGoogle === b.id) {
                                 b.status = userbook.status;
                                 b.idUserBook = userbook.id;
+                                b.finishDate = userbook.finishDate;
+                                console.log(userbook);
                             }
                         });
                     });
