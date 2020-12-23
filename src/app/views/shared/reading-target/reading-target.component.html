@@ -1,0 +1,28 @@
+<div>
+    <div>
+        <h2>Meta de Leitura</h2>
+    </div>
+    <form [formGroup]="formReadingTarget">
+        <div>
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Data para atingir meta</mat-label>
+                <input matInput (blur)="calculateDays()" [matDatepicker]="picker1" formControlName="dateTarget">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <p *ngIf="formReadingTarget.get('dateTarget').value != null">
+                Você terá {{calculateDays()}} dias para finalizar sua meta.
+            </p>
+        </div>
+        <div>
+            <button type="button" mat-flat-button color="accent">
+                Adicionar meta
+            </button>
+        </div>
+    </form>
+<!--    <div>{{this.formReadingTarget.value | json}}</div>
+ --></div>
+
+<!--<input matInput [value]="this.Book.finishDate | date:'yyyy-MM-dd'" [matDatepicker]="picker1" formControlName="finishDate">
+        (click)="referBook(user?.profile?.id)">
+-->

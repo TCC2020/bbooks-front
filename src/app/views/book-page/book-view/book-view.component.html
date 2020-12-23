@@ -74,7 +74,20 @@
                                 {{'ESTANTE.INDICAR_LIVRO' | translate}}
                             </button>
                         </div>
-
+                        <div *ngIf="!isReadingTarget()" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
+                            <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
+                                    (click)="addReadingTarget()">
+                                    {{'ESTANTE.META_LEITURA' | translate}}
+                            </button>
+                        </div>
+                        <div *ngIf="isReadingTarget()" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
+                            <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
+                                    (click)="openDialogReadingTarget(book)">
+                                    {{'ESTANTE.META_LEITURA' | translate}}
+                            </button>
+                            <p>A meta de leitura será encerrada em {{calculateDays()}}</p>
+                            precisa fazer translate
+                        </div>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-around center">

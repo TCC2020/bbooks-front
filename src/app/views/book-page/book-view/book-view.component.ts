@@ -1,3 +1,4 @@
+import { ReadingTargetComponent } from './../../shared/reading-target/reading-target.component';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../../../models/book.model';
 import {Observable, Subscription} from 'rxjs';
@@ -227,6 +228,36 @@ export class BookViewComponent implements OnInit, OnDestroy {
             this.getBook();
         });
     }
+
+    openDialogReadingTarget(book: Book) {
+        const dialogRef = this.dialog.open(ReadingTargetComponent, {
+            height: '400px',
+            width: '600px',
+            data: {
+                book
+            }
+        });
+        dialogRef.afterClosed().subscribe(() => {
+            this.getBook();
+        });
+    }
+
+    addReadingTarget(): void {
+
+    }
+
+    isReadingTarget() : boolean {
+        return false;
+    }
+
+    public calculateDays(): string {
+        let date1 = new Date();
+        let date2 = new Date('12/31/' + date1.getFullYear());
+        let timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+        return diffDays.toString();
+      
+      }
 
     openDialogReadingTracking(track: TrackingTO, tracking: ReadingTrackingTO, editPag: boolean, trackingUpId: string) {
         const dialogRef = this.dialog.open(TrackingDialogComponent, {
