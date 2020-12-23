@@ -19,7 +19,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field color="accent" appearance="fill" *ngIf="formBook.get('statusBook').value.toUpperCase() === status.LIDO || formBook.get('statusBook').value === statusEnglish.LIDO">
+                <mat-form-field color="accent" appearance="fill" *ngIf="formBook.get('statusBook')?.value?.toUpperCase() === status.LIDO || formBook.get('statusBook')?.value === statusEnglish.LIDO">
                     <mat-label>Data de conclusão</mat-label>
                     <input matInput [value]="this.Book.finishDate | date:'yyyy-MM-dd'" [matDatepicker]="picker1" formControlName="finishDate">
                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>

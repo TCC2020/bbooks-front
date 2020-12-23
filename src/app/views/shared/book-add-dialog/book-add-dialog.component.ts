@@ -157,7 +157,6 @@ export class BookAddDialogComponent implements OnInit {
             this.userBookTo.idBookGoogle = this.Book.id :
             // tslint:disable-next-line:radix
             this.userBookTo.idBook = Number.parseInt(this.Book.id);
-        console.log(this.userBookTo);
         if (this.tagsBook.length > 0 || this.userBookTo.id) {
             this.userbookService.update(this.userBookTo).subscribe(
                 value => {
