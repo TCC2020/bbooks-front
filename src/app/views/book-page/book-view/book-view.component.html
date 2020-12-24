@@ -76,19 +76,19 @@
                         </div>
                         <div *ngIf="!isReadingTarget()" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
                             <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
-                                    (click)="addReadingTarget()">
+                                    (click)="addToReadingTarget(book)">
                                     {{'ESTANTE.META_LEITURA' | translate}}
                             </button>
                         </div>
                         <div *ngIf="isReadingTarget()" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
                             <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
-                                    (click)="openDialogReadingTarget(book)">
-                                    {{'ESTANTE.META_LEITURA' | translate}}
+                                    (click)="removeFromReadingTarget(book)">
+                                    {{'ESTANTE.META_LEITURA_REMOVER' | translate}}
                             </button>
-                            <p>A meta de leitura será encerrada em {{calculateDays()}}</p>
-                            precisa fazer translate
                         </div>
-                    </div>
+                        <div>
+                            <p style="text-align: right;">{{'ESTANTE.ENCERRAR_META_LEITURA' | translate}} {{calculateDays()}} {{'ESTANTE.DIAS_ENCERRAR_META' | translate}}</p>                        </div>
+                        </div>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-around center">
                     <div>

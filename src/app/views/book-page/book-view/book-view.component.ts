@@ -1,4 +1,3 @@
-import { ReadingTargetComponent } from './../../shared/reading-target/reading-target.component';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../../../models/book.model';
 import {Observable, Subscription} from 'rxjs';
@@ -242,34 +241,20 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
     }
 
-    openDialogReadingTarget(book: Book) {
-        const dialogRef = this.dialog.open(ReadingTargetComponent, {
-            height: '400px',
-            width: '600px',
-            data: {
-                book
-            }
-        });
-        dialogRef.afterClosed().subscribe(() => {
-            this.getBook();
-        });
-    }
+    addToReadingTarget(book: Book): void { }
 
-    addReadingTarget(): void {
+    removeFromReadingTarget(book: Book): void { }
 
-    }
-
-    isReadingTarget() : boolean {
-        return false;
+    isReadingTarget(): boolean {
+        return true;
     }
 
     public calculateDays(): string {
-        let date1 = new Date();
-        let date2 = new Date('12/31/' + date1.getFullYear());
-        let timeDiff = Math.abs(date2.getTime() - date1.getTime());
-        let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-        return diffDays.toString();
-      
+        const currentDate = new Date();
+        const lastDayOfYear = new Date('12/31/' + currentDate.getFullYear());
+        const diffenceOfDates = Math.abs(lastDayOfYear.getTime() - currentDate.getTime());
+        const differenceInDays = Math.ceil(diffenceOfDates / (1000 * 3600 * 24));
+        return differenceInDays.toString();
       }
 
     openDialogReadingTracking(track: TrackingTO, tracking: ReadingTrackingTO, editPag: boolean, trackingUpId: string) {

@@ -105,7 +105,13 @@
     "EDITAR_LIVRO": "Edit Book",
     "INDICAR_LIVRO": "Show book to a friend",
     "BOTAO_INDICAR": "Indicate",
-    "META_LEITURA": "Add to reading target"
+    "META_LEITURA": "Add to reading target",
+    "META_LEITURA_REMOVER": "Remove from reading target",
+    "ENCERRAR_META_LEITURA": "The reading target will end in",
+    "DIAS_ENCERRAR_META": "days."
+
+    
+
 
 
   },
