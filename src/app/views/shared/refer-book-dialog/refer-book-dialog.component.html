@@ -17,16 +17,20 @@
     <!--começa card-->
     <div class="container-amigo" *ngFor="let user of filterUsers">
         <div class="container-imagem">
-            <div class="container-imagem-perfil">
-                <img class="imagem-perfil"
-                [src]="user?.profile?.profileImage ?
-                 user.profile.profileImage:
-                'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
-            </div>
-            <div class="informacoes">
-                <div><span><a class="nome-usuario" [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span></div>
-                <div><span>{{user?.userName}}</span></div>
-                <div><span>{{user?.profile?.city}}</span></div>
+            <div>
+                <div class="informacoes-do-usuario">
+                    <div class="container-imagem-perfil">
+                        <img class="imagem-perfil"
+                        [src]="user?.profile?.profileImage ?
+                        user.profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                    </div>
+                    <div class="informacoes">
+                        <div><span><a class="nome-usuario" [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span></div>
+                        <div><span>{{user?.userName}}</span></div>
+                        <div><span>{{user?.profile?.city}}</span></div>
+                    </div>
+                </div>
             </div>
             <div class="adicionar-amigos">
                 <button type="button" mat-flat-button color="accent" 
