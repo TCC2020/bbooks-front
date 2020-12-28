@@ -14,6 +14,7 @@ import {UserBookTO} from '../models/userBookTO';
 import {BookPagination} from '../models/pagination/book.pagination';
 import {catchError, map, mergeMap} from 'rxjs/operators';
 import {Tag} from '../models/tag';
+import {BookSearchTO} from '../models/bookSearchTO.model';
 
 @Injectable({
     providedIn: 'root'
@@ -220,6 +221,10 @@ export class BookService {
             .set('page', page.toString())
             .set('size', size.toString());
         return this.http.get<BookPagination>(this.api + 'search', {params});
+    }
+
+    searchMergeBooks(bookSearch: BookSearchTO): Observable<BookSearchTO> {
+        return this.http.get<BookSearchTO>(this.api + 'searchByString');
     }
 
     getById(id: number): Observable<Book> {
