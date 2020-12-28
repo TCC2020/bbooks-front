@@ -1,3 +1,5 @@
+import { ReadingTargetService } from './../../../services/reading-target.service';
+import { ReadingTargetTO } from './../../../models/readingTargetTO.model';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../../../models/book.model';
 import {Observable, Subscription} from 'rxjs';
@@ -54,6 +56,9 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
     pageEvent: PageEvent = new PageEvent();
 
+    public readingTargetTO = new ReadingTargetTO();
+    readingTargets: Observable<ReadingTargetTO[]>;
+
 
     constructor(
         private route: ActivatedRoute,
@@ -64,6 +69,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
         private trackingService: TrackingService,
         public authService: AuthService,
         private reviewService: ReviewService,
+        private readingTargetService: ReadingTargetService,
         private profileService: ProfileService,
         private translate: TranslateService
     ) {
@@ -241,9 +247,27 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
     }
 
-    addToReadingTarget(book: Book): void { }
+    addToReadingTarget(book: Book): void {
+        this.readingTargetTO.profileId = this.authService.getUser().profile.id;
+        this.readingTargetTO.year = new Date().getFullYear();
+        this.readingTargetTO.targets = null;
 
-    removeFromReadingTarget(book: Book): void { }
+        this.readingTargetService.save(this.readingTargetTO).subscribe(
+            () => {
+                alert("Livro adicionado à Meta de Leitura");
+            },
+            error => {
+                console.log('ReadingTarget Error', error);
+            }
+        );
+
+        console.log(this.readingTargetTO);
+    }
+
+    removeFromReadingTarget(book: Book): void {
+        this.readingTargets = this.readingTargetService.getAllByProfileId(this.authService.getUser().profile.id);
+        console.log(this.readingTargets);
+    }
 
     isReadingTarget(): boolean {
         return true;
