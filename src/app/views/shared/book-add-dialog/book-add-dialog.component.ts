@@ -150,8 +150,6 @@ export class BookAddDialogComponent implements OnInit {
             this.formBook.get('statusBook').value === this.statusEnglish.LIDO
         ) {
             this.userBookTo.finishDate = this.formBook.get('finishDate').value;
-        } else {
-            this.userBookTo.finishDate = this.Book.finishDate;
         }
         this.Book.api === 'google' ?
             this.userBookTo.idBookGoogle = this.Book.id :
