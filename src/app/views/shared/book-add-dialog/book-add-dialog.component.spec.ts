@@ -151,7 +151,7 @@ describe('BookAddDialogComponent', () => {
         component.userBookTo.id = null;
         component.ngOnInit();
         const spyComponent = jest.spyOn(component, 'saveBook');
-        const spyUserBookService = jest.spyOn(userbookServiceMock, 'update');
+        const spyUserBookService = jest.spyOn(userbookServiceMock, 'save');
         component.formBook.get('statusBook').setValue('LIDO');
         component.saveBook();
         expect(spyComponent).toHaveBeenCalled();
