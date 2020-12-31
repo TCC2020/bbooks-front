@@ -3,11 +3,9 @@ import {TestBed} from '@angular/core/testing';
 import {UserbookService} from './userbook.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {RouterTestingModule} from '@angular/router/testing';
-import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from 'angularx-social-login';
+import {SocialLoginModule} from 'angularx-social-login';
 import {SocialAuthServiceConfigMock} from '../mocks/google.provide.mock';
 import {of} from 'rxjs';
-import {reviewMock} from '../mocks/review.model.mock';
-import {take} from 'rxjs/operators';
 import {userbookMock, userbooksMock} from '../mocks/userbook.model.mock';
 import {environment} from '../../environments/environment';
 import {BookStatus} from '../models/enums/BookStatus.enum';
@@ -70,7 +68,7 @@ describe('UserbookService', () => {
 
     it('update: should call http PUT',  done => {
         service.update(userbookMock).subscribe(() => {});
-        const req = httpMock.expectOne(api);
+        const req = httpMock.expectOne(api + userbookMock.id);
         expect(req.request.method).toBe('PUT');
         done();
     });
