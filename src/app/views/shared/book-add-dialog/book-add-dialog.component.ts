@@ -38,7 +38,7 @@ export class BookAddDialogComponent implements OnInit {
     public Book: Book;
     public title: string;
     public buttonText: string;
-    private userBookTo = new UserBookTO();
+    public userBookTo = new UserBookTO();
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: { book: Book },

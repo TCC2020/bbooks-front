@@ -202,7 +202,6 @@ export class BookService {
                                 b.status = userbook.status;
                                 b.idUserBook = userbook.id;
                                 b.finishDate = userbook.finishDate;
-                                console.log(userbook);
                             }
                         });
                     });

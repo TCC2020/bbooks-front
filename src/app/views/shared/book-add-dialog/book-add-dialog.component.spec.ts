@@ -148,6 +148,7 @@ describe('BookAddDialogComponent', () => {
 
     it('should call save and and call userbookservice save', () => {
         component.tagsBook = [];
+        component.userBookTo.id = null;
         component.ngOnInit();
         const spyComponent = jest.spyOn(component, 'saveBook');
         const spyUserBookService = jest.spyOn(userbookServiceMock, 'update');
