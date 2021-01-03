@@ -1,4 +1,4 @@
 export interface CDNFile {
-    file: File,
-    type: string
+    file: File;
+    type: string;
 }

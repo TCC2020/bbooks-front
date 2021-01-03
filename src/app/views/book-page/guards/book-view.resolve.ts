@@ -23,16 +23,38 @@ export class BookViewResolve implements Resolve<Book> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
-        const id = route.params['id'];
-        return this.gBookService.getById(id).pipe(map(b => {
-            const book = this.bookService.convertBookToModel(b);
-            this.userbooks.books.forEach(userbook => {
-                if (userbook.idBook === book.id) {
-                    book.idUserBook = userbook.id;
-                    book.status = userbook.status;
-                }
-            });
-            return book;
-        }));
+        const api = route.queryParams.api;
+        const id = route.params.id;
+
+        if (api === 'google') {
+            return this.gBookService.getById(id).pipe(map(b => {
+                const book = this.bookService.convertBookToModel(b);
+                this.userbooks.books.forEach(userbook => {
+                    if (userbook.idBookGoogle === book.id) {
+                        book.idUserBook = userbook.id;
+                        book.status = userbook.status;
+                        book.finishDate = userbook.finishDate;
+                    }
+                });
+                book.api = 'google';
+                return book;
+            }));
+        } else {
+            return this.bookService.getById(id)
+                .pipe(
+                    map(b => {
+                        this.userbooks.books.forEach(userbook => {
+                            if (userbook?.idBook === b.id) {
+                                b.idUserBook = userbook.id;
+                                b.status = userbook.status;
+                                b.finishDate = userbook.finishDate;
+                            }
+                        });
+                        b.api = 'bbooks';
+                        return b;
+                    })
+                );
+        }
+
     }
 }

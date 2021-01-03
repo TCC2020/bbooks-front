@@ -4,11 +4,13 @@ import {Tag} from './tag';
 
 export class UserBookTO {
     id: number;
-    idBook: string;
+    idBookGoogle: string;
     status: BookStatus;
     addDate: Date;
-    book: Book;
+    idBook: number;
     tags: Tag[];
     page: number;
     profileId: number;
+    book: Book;
+    finishDate: Date;
 }

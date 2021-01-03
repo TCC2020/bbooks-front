@@ -53,9 +53,9 @@ export class BookCardComponent implements OnInit {
     }
 
 
-    changeStatusBook(bookStatus: BookStatus, id: number, book: Book) {
+    changeStatusBook(bookStatus: BookStatus, idBook: number, book: Book) {
         const userBookUpdateStatusTO = {
-            'id': id,
+            id: idBook,
             status: mapBookStatus.get(bookStatus)
         };
         this.userbookService.changeStatus(userBookUpdateStatusTO).subscribe(value => {
@@ -81,19 +81,40 @@ export class BookCardComponent implements OnInit {
         });
     }
     getBook(): void {
-        this.bookService.getAllUserBooks().subscribe((userbooks) => {
-            this.gbookService.getById(this.book.id).subscribe(b => {
-                const book = this.bookService.convertBookToModel(b);
-                userbooks.books.forEach(userbook => {
-                    if (userbook.idBook === book.id) {
-                        book.status = userbook.status;
-                        book.idUserBook = userbook.id;
-                    }
+        if (this.book.api === 'google') {
+            this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                this.gbookService.getById(this.book.id).subscribe(b => {
+                    const book = this.bookService.convertBookToModel(b);
+                    userbooks.books.forEach(userbook => {
+                        if (userbook.idBookGoogle === book.id) {
+                            book.status = userbook.status;
+                            book.idUserBook = userbook.id;
+                            book.finishDate = userbook.finishDate;
+                        }
+                    });
+                    this.book = book;
+                    this.userBook = this.book.idUserBook ? true : false;
                 });
-                this.book = book;
-                this.userBook = this.book.idUserBook ? true : false;
             });
-        });
+        } else {
+            this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                // tslint:disable-next-line:radix
+                this.bookService.getById(Number.parseInt(this.book.id)).subscribe(b => {
+                    userbooks.books.forEach(userbook => {
+                        if (userbook?.idBook === b.id) {
+                            b.status = userbook.status;
+                            b.idUserBook = userbook.id;
+                            b.finishDate = userbook.finishDate;
+                            console.log(userbook);
+
+                        }
+                    });
+                    this.book = b;
+                    this.userBook = this.book.idUserBook ? true : false;
+                });
+            });
+        }
+
     }
 
     verifyrouter(): boolean {

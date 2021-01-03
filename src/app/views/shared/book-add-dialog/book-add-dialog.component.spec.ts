@@ -60,7 +60,7 @@ describe('BookAddDialogComponent', () => {
     const userbookServiceMock = {
         update: jest.fn(() => of()),
         save: jest.fn(() => of()),
-    }
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -130,7 +130,8 @@ describe('BookAddDialogComponent', () => {
         component.Book.status = null;
         component.tagsBook = [];
         component.ngOnInit();
-        const tagInput = component.formBook.controls['statusBook'];
+        const newLocal = 'statusBook';
+        const tagInput = component.formBook.controls[newLocal];
         expect(tagInput.errors.required).toBeTruthy();
         expect(component.formBook.invalid).toBeTruthy();
     });
@@ -147,9 +148,10 @@ describe('BookAddDialogComponent', () => {
 
     it('should call save and and call userbookservice save', () => {
         component.tagsBook = [];
+        component.userBookTo.id = null;
         component.ngOnInit();
         const spyComponent = jest.spyOn(component, 'saveBook');
-        const spyUserBookService = jest.spyOn(userbookServiceMock, 'update');
+        const spyUserBookService = jest.spyOn(userbookServiceMock, 'save');
         component.formBook.get('statusBook').setValue('LIDO');
         component.saveBook();
         expect(spyComponent).toHaveBeenCalled();

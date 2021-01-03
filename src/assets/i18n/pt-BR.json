@@ -25,6 +25,9 @@
     "EMAIL_ENVIADO": "Email enviado",
     "SOLICITACAO_ACEITA": "Solicitação aceita",
     "SOLICITACAO_N_ACEITA": "Solicitação recusada",
+    "SOLICITACAO_CANCELADA": "Solicitação cancelada",
+    "SOLICITACOES_ENVIADAS": "Solicitações enviadas",
+    "SOLICITACOES_RECEBIDAS": "Solicitações recebidas",
     "SOLICITACAO_ENVIADA": "Solicitação enviada",
     "SOLICITACAO_CANCELAR": "Cancelar solicitação",
     "SOLICITACAO_RECEBIDA": "Solicitação recebida",
@@ -34,19 +37,35 @@
     "DESFAZER_AMIZADE": "Desfazer amizade",
     "CONCLUIDO": "Concluído",
     "PENDENTE": "Pendente",
-    "COMENTARIO": "Comentário"
+    "COMENTARIO": "Comentário",
+    "VELOCIDADE_LEITURA" : "Velocidade de leitura",
+    "PAGINA_POR_DIA": "páginas/dia",
+    "RESENHA": "Resenha",
+    "LIVRO_INDICADO": "O livro foi indicado para seu amigo."
+  },
+  "RESENHA" : {
+    "ESCREVER_RESENHA" : "Escrever resenha",
+    "TITULO": "Título para sua resenha",
+    "BODY" : "Escreva o que achou do livro",
+    "BODY_TEXT": "Este livro é maravilhoso",
+    "APAGAR_RENHA": "Resenha excluída"
   },
   "NAV": {
     "SAIR": "Sair",
     "PORTUGUES": "Português",
-    "INGLES": "Inglês"
+    "INGLES": "Inglês",
+    "RECOMENDACOES": "Recomendações",
+    "INDICOU": "te recomendou"
+
+
   },
   "HOME": {
     "BUSCARTEXT": "Procure um livro"
   },
   "LOGIN": {
     "TIULO": "Informe seus dados",
-    "GOOGLE": "Continuar com o Google",
+    "GOOGLE": "Google",
+    "FACEBOOK": "Facebook",
     "ESQUECER_SENHA": "Esqueceu sua senha?",
     "CRIAR_CONTA": "Cria uma conta"
   },
@@ -83,7 +102,9 @@
     "ESTANTE_VIRTUAL": "Estante Virtual",
     "MEUS_LIVROS": "Meus Livros",
     "ADICIONAR_LIVRO": "Adicionar livro na Estante",
-    "EDITAR_LIVRO": "Editar Livro"
+    "EDITAR_LIVRO": "Editar Livro",
+    "INDICAR_LIVRO": "Indicar livro para um amigo",
+    "BOTAO_INDICAR": "Indicar"
   },
   "TAG": {
     "CRIAR_TAG": "Criar Tag",
@@ -98,12 +119,13 @@
   },
   "BOOK": {
     "EDITORA": "Editora",
-    "PUPLICACAO": "Publicado em",
+    "PUPLICACAO": "Publicação",
     "PAGINAS": "Páginas",
     "IDIOMA": "Idioma",
     "AVALIACAO": "Avaliação",
     "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
-    "CRIAR_LIVRO": "Criar livro"
+    "CRIAR_LIVRO": "Criar livro",
+    "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro"
   },
   "PERFIL": {
     "feed": "feed",
@@ -118,7 +140,7 @@
     "IR": "IR"
   },
   "UPLOAD": {
-    "TITULO": "Escolher foto de perfil",
+    "TITULO": "Escolher foto",
     "MSG_FOTO_E": "Foto é"
   },
   "STATUS": {
@@ -132,7 +154,7 @@
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Acompanhamento de Leitura",
     "DEIX_COMENTARIO": "Deixar um comentário",
-    "PAG_LIDAS": "Quantas páginas você leu?",
+    "PAG_LIDAS": "Qual foi a última página que você leu?",
     "MSG_APG_E": "Número de páginas é",
     "MSG_COMENT": "Comentário tem que ter no máximo 50 caracteres.",
     "ACOMPANHAMENTO": "Acompanhamento",
@@ -156,6 +178,10 @@
     "RECUP_SENHA": "Recuperação de senha",
     "MSG_EMAIL_CAD": "Informe o email cadastrado para recuperar sua senha.",
     "RECEBER_LINK": "Você receberá em instantes um link na sua caixa de email para recuperação da senha!"
+  },
+  "PESQUISAR_AMIGOS": {
+    "PROCURAR": "Procurar amigos",
+    "COMENTARIO": "Comentário"
   },
   "MESSAGE_ERROR": {
     "AU001": "Autor não encontrado",
@@ -185,7 +211,8 @@
     "FR002": "Conflito ao remover amigo",
     "RT005": "Página menor que o último acompanhamento",
     "TA001": "O último acompanhamento ainda não terminou",
-    "RT006": "A página não pode ser zero"
+    "RT006": "A página não pode ser zero",
+    "BK001": "ISBN já existe"
   }
 }
 

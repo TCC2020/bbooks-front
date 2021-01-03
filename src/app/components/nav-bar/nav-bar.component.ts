@@ -4,10 +4,15 @@ import {AuthService} from '../../services/auth.service';
 import {TranslateService} from '@ngx-translate/core';
 import {UserTO} from '../../models/userTO.model';
 import {UserService} from '../../services/user.service';
-import {take} from 'rxjs/operators';
+import {map, mergeMap, take} from 'rxjs/operators';
 import {FriendsService} from '../../services/friends.service';
 import {FriendRequest} from '../../models/friendRequest.model';
 import {Friend} from '../../models/friend.model';
+import { BookRecommendationService } from 'src/app/services/book-recommendation.service';
+import { BookRecommendationTO } from 'src/app/models/bookRecommendationTO.model';
+import { ProfileService } from 'src/app/services/profile.service';
+import { BookService } from 'src/app/services/book.service';
+import { GoogleBooksService } from 'src/app/services/google-books.service';
 
 @Component({
     selector: 'app-nav-bar',
@@ -19,13 +24,18 @@ export class NavBarComponent implements OnInit {
     user: UserTO;
     menuPerfil;
     requests: FriendRequest[];
+    recommendations: BookRecommendationTO[];
 
     constructor(
         public auth: AuthService,
         private router: Router,
         public translate: TranslateService,
         private userService: UserService,
-        private friendService: FriendsService
+        private friendService: FriendsService,
+        private bookRecommendation: BookRecommendationService,
+        private profileService: ProfileService,
+        private bookService: BookService,
+        private gBookService: GoogleBooksService
     ) {
         translate.addLangs(['pt-BR', 'en']);
         translate.setDefaultLang('pt-BR');
@@ -41,6 +51,7 @@ export class NavBarComponent implements OnInit {
         });
         this.getuser();
         this.refreshRequest();
+        this.getRecommendations();
     }
 
     refreshRequest() {
@@ -61,7 +72,7 @@ export class NavBarComponent implements OnInit {
     }
 
     verifyRequests() {
-        const result = this.requests?.filter(request => request.status !== 'added');
+        const result = this.requests?.filter(request => request.status === 'received');
         if (result.length > 0) {
             return result.length;
         } else {
@@ -107,9 +118,46 @@ export class NavBarComponent implements OnInit {
         const acept = new Friend();
         acept.id = request.id;
         this.friendService.deleteRequest(acept).subscribe(() => {
-            this.translate.get('PADRAO.SOLICITACAO_N_ACEITA').subscribe(message => {
-                alert(message);
-            });
+            if (request.status === 'sent') {
+                this.translate.get('PADRAO.SOLICITACAO_CANCELADA').subscribe(message => {
+                    alert(message);
+                });
+            } else {
+                this.translate.get('PADRAO.SOLICITACAO_N_ACEITA').subscribe(message => {
+                    alert(message);
+                });
+            }
+
         });
+    }
+    requestsSent(): FriendRequest[] {
+        return this.requests?.filter(r => r.status === 'sent');
+    }
+    requestsReceived(): FriendRequest[] {
+        return this.requests?.filter(r => r.status === 'received');
+    }
+
+    getRecommendations(): void {
+        this.bookRecommendation.getRecommentionsReceived(this.auth.getUser().profile.id)
+        .pipe(
+            map((recommendations: BookRecommendationTO[]) => {
+                return recommendations.map(r => {
+                    r.profileTO = this.profileService.getById(r.profileSubmitter);
+                    r.book = r.idBook ?
+                    this.bookService.getById(r.idBook) :
+                    this.gBookService.getById(r.idBookGoogle).pipe(map(b => this.bookService.convertBookToModel(b)));
+                    return r;
+                });
+            })
+        )
+        .subscribe(recommendations => {
+            this.recommendations = recommendations;
+        }, error => {
+            console.log('Erro getRecommendation ', error);
+        });
+    }
+
+    routerRecommendation(idGoogleBook: string): any {
+        return idGoogleBook ? {api: 'google'} : {};
     }
 }

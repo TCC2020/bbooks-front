@@ -22,9 +22,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
     books: Book[];
     mediaSub: Subscription;
     deviceXs: boolean;
-    totalBooks: 0;
+    totalBooks = 0;
     pageEvent: PageEvent = new PageEvent();
     pageSize = 10;
+    typeSearch: any;
 
 
     constructor(
@@ -49,38 +50,60 @@ export class MainPageComponent implements OnInit, OnDestroy {
             this.userService.updateUserInfo();
             this.user = this.auth.getUser();
         }
-        this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
-            this.deviceXs = result.mqAlias === 'xs' ? true : false;
+        this.mediaSub = this.mediaObserver.asObservable().subscribe((result: MediaChange[]) => {
+            this.deviceXs = result[0].mqAlias === 'xs' ? true : false;
         });
     }
 
-    searchBook() {
-        this.searchControl.value.book?.split(' ').join('+');
-        this.gBooksService.searchByNamePagination(
-            this.searchControl.value.book.split(' ').join('+'),
-            this.pageEvent.pageSize,
-            this.pageEvent.pageIndex * this.pageEvent.pageSize
-        ).subscribe(books => {
-            this.totalBooks = books['totalItems'];
-            let booksConvert = [];
-            booksConvert = books['items'];
-            this.resulSearch(booksConvert);
-        });
+    searchBook(typeSearch) {
+        this.typeSearch = typeSearch;
+        if (this.typeSearch === 'google') {
+            this.searchControl.value.book?.split(' ').join('+');
+            this.gBooksService.searchByNamePagination(
+                this.searchControl.value.book.split(' ').join('+'),
+                this.pageEvent.pageSize,
+                this.pageEvent.pageIndex * this.pageEvent.pageSize
+            ).subscribe(books => {
+                this.totalBooks = books.totalItems;
+                let booksConvert = [];
+                booksConvert = books.items;
+                booksConvert?.length > 0 ?
+                    this.resulSearch(booksConvert) :
+                    this.resetBooks();
+            });
+        } else {
+            this.bookService.search(
+                this.searchControl.value.book.split(' ').join('+'),
+                this.pageEvent.pageSize,
+                this.pageEvent.pageIndex
+            ).subscribe(booksPagination => {
+                this.totalBooks = booksPagination.totalElements;
+                const books = booksPagination.content.map(b => {
+                    b.api = 'bbooks';
+                    return b;
+                });
+                books?.length > 0 ?
+                    this.resulSearch(books) :
+                    this.resetBooks();
+            });
+        }
     }
     changePage(event: PageEvent) {
         this.pageEvent = event;
-        this.searchBook();
+        this.searchBook(this.typeSearch);
     }
 
     resulSearch(booksConvert): void {
        const result =  booksConvert.map(value => {
-            const book = this.bookService.convertBookToModel(value);
+            const book = this.typeSearch === 'google' ? this.bookService.convertBookToModel(value) : value;
             if (this.user) {
                 this.bookService.getAllUserBooks().subscribe((userbooks) => {
                     userbooks.books.forEach(userbook => {
-                        if (book.id.includes(userbook.idBook)) {
+                        if (book?.id === userbook.idBookGoogle ||
+                            book?.id === userbook?.idBook) {
                             book.status = userbook.status;
                             book.idUserBook = userbook.id;
+                            book.finishDate = userbook.finishDate;
                         }
                     });
                 });
@@ -101,5 +124,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.mediaSub.unsubscribe();
+    }
+    resetBooks(): void {
+        this.books = [];
+        this.totalBooks = 0;
     }
 }

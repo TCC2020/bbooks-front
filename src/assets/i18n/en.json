@@ -25,6 +25,9 @@
     "EMAIL_ENVIADO": "E-mail sent",
     "SOLICITACAO_ACEITA": "Request accepted",
     "SOLICITACAO_N_ACEITA": "Request refused",
+    "SOLICITACAO_CANCELADA": "Request canceled",
+    "SOLICITACOES_ENVIADAS": "Requests sent",
+    "SOLICITACOES_RECEBIDAS": "Requests received",
     "SOLICITACAO_ENVIADA": "Request sent",
     "SOLICITACAO_CANCELAR": "Cancel request",
     "SOLICITACAO_RECEBIDA": "request received",
@@ -34,19 +37,35 @@
     "DESFAZER_AMIZADE": "Unfriend",
     "CONCLUIDO": "Completed",
     "PENDENTE": "Pending",
-    "COMENTARIO": "Comment"
+    "COMENTARIO": "Comment",
+    "VELOCIDADE_LEITURA": "Reading speed",
+    "PAGINA_POR_DIA": "pages/day",
+    "RESENHA": "Review",
+    "LIVRO_INDICADO": "The book was referred to your friend."
+
+  },
+  "RESENHA" : {
+    "ESCREVER_RESENHA" : "Write review",
+    "TITULO": "Title for your review",
+    "BODY" : "Write your opinion of the book",
+    "BODY_TEXT": "This book is wonderful",
+    "APAGAR_RENHA": "Review deleted"
+
   },
   "NAV": {
     "SAIR": "Logout",
     "PORTUGUES": "Portuguese - Brazil",
-    "INGLES": "English"
+    "INGLES": "English",
+    "RECOMENDACOES": "Recommendation",
+    "INDICOU": "recommended you"
   },
   "HOME": {
     "BUSCARTEXT": "Search for a book"
   },
   "LOGIN": {
     "TIULO": "Sign in ",
-    "GOOGLE": "Sign with Google",
+    "GOOGLE": "Google",
+    "FACEBOOK": "Facebook",
     "ESQUECER_SENHA": "Forgot Password?",
     "CRIAR_CONTA": "Create new account"
   },
@@ -83,7 +102,11 @@
     "ESTANTE_VIRTUAL": "Bookcase",
     "MEUS_LIVROS": "My Books",
     "ADICIONAR_LIVRO": "Add book on the Bookcase",
-    "EDITAR_LIVRO": "Edit Book"
+    "EDITAR_LIVRO": "Edit Book",
+    "INDICAR_LIVRO": "Show book to a friend",
+    "BOTAO_INDICAR": "Indicate"
+
+
   },
   "TAG": {
     "CRIAR_TAG": "Create Tag",
@@ -98,12 +121,13 @@
   },
   "BOOK": {
     "EDITORA": "Publisher",
-    "PUPLICACAO": "Published in",
+    "PUPLICACAO": "Publication",
     "PAGINAS": "Pages",
     "IDIOMA": "Language",
     "AVALIACAO": "Evaluation",
     "OUTRAS_INFO": "OTHER INFORMATION",
-    "CRIAR_LIVRO": "Create Book"
+    "CRIAR_LIVRO": "Create Book",
+    "ESCOLHER_FOTO_LIVRO": "Choose book photo"
   },
   "PERFIL": {
     "feed": "feed",
@@ -118,7 +142,7 @@
     "IR": "Go"
   },
   "UPLOAD": {
-    "TITULO": "Choose profile photo",
+    "TITULO": "Choose photo",
     "MSG_FOTO_E": "Photo is"
   },
   "STATUS": {
@@ -132,7 +156,7 @@
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Reading Tracking",
     "DEIX_COMENTARIO": "Leave a comment",
-    "PAG_LIDAS": "How many pages have you read?",
+    "PAG_LIDAS": "What was the last page you read?",
     "MSG_APG_E": "Number of pages is",
     "MSG_COMENT": "Comment must have a maximum of 50 characters.",
     "ACOMPANHAMENTO": "Tracking",
@@ -156,6 +180,10 @@
     "RECUP_SENHA": "Password recovery",
     "MSG_EMAIL_CAD": "Enter the registered email to recover your password.",
     "RECEBER_LINK": "You will receive an instant link in your email box to recover your password!"
+  },
+  "PESQUISAR_AMIGOS": {
+    "PROCURAR": "Search friends",
+    "COMENTARIO": "Comment"
   },
   "MESSAGE_ERROR": {
     "AU001": "Author not found",
@@ -184,6 +212,7 @@
     "FR002": "Conflict while removing friend",
     "RT005": "Page smaller than last tracking",
     "TA001": "Last tracking is not finished yeat",
-    "RT006": "Page can´t be zero"
+    "RT006": "Page can´t be zero",
+    "BK001": "ISBN already exists"
   }
 }

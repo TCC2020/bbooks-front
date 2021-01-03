@@ -52,13 +52,38 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
-            this.deviceXs = result.mqAlias === 'xs' ? true : false;
+        this.mediaSub = this.mediaObserver.asObservable().subscribe((result: MediaChange[]) => {
+            this.deviceXs = result[0].mqAlias === 'xs' ? true : false;
         });
         this.userBook = this.verifyrouter();
 
         this.inscricao = this.route.data.subscribe((data: { bookcase: BookCase }) => {
             this.bookCase = data.bookcase;
+        });
+        this.bookService.updateListCarrousel.subscribe(updated => {
+            if (updated) {
+                const myBook = this.router.url.toString().includes('mybooks');
+                if (myBook) {
+                    if (this.bookCase.id) {
+                        this.bookService.getBookCaseByTag(this.bookCase.id)
+                        .pipe(take(1))
+                        .subscribe(
+                        bcs => {
+                            this.bookCase = bcs;
+                        }, error => console.log('error booksComponent', error));
+
+                    } else {
+                        this.bookService.getAllBooks()
+                        .pipe(
+                            take(1)
+                        )
+                        .subscribe(books => {
+                            this.bookCase.books = books;
+                        },
+                        error => console.log('error booksComponent get all', error));
+                    }
+                }
+            }
         });
 
         if (!this.userBook) {
@@ -94,6 +119,8 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
 
 
     ngOnDestroy(): void {
+        this.bookCase = new BookCase();
+        this.bookCase.books = [];
         this.inscricao.unsubscribe();
         this.mediaSub.unsubscribe();
     }
@@ -143,7 +170,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
             return this.allStatus;
         }
         let result = [];
-        for (let s of this.filter) {
+        for (const s of this.filter) {
             result = this.allStatus.filter((status) => {
                 if (status === s) {
                     return false;
@@ -160,7 +187,7 @@ export class BookEstanteComponent implements OnInit, OnDestroy {
         if (this.search === undefined || this.search.trim() === null) {
             return this.filterStatus();
         }
-        let books = this.filterStatus().filter((book) => {
+        const books = this.filterStatus().filter((book) => {
             if (book.title.toLocaleLowerCase().indexOf(this.search.toLocaleLowerCase()) !== -1) {
                 return true;
             } else {

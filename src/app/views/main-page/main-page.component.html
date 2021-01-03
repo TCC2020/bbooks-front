@@ -1,10 +1,22 @@
-<form [formGroup]="searchControl" class="form-inline mr-auto" fxLayout="row" (ngSubmit)="searchBook()">
-    <div fxFlex="100" fxLayoutAlign="center center">
-        <mat-form-field fxFlex="40" style="margin: 25px;">
+<form [formGroup]="searchControl" class="form-inline mr-auto" (ngSubmit)="searchBook(typeSearch.value)">
+    <div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayout.xs="column">
+        <mat-form-field fxFlex="40" fxFlex.xs="100">
             <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
-            <input matInput formControlName="book" matInput type="text" fxFlex="40">
+            <input matInput formControlName="book" matInput type="text" >
         </mat-form-field>
-        <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
+
+        <mat-form-field appearance="fill" >
+            <mat-label>Choose an api</mat-label>
+            <mat-select #typeSearch  value="google">
+                <mat-option value="google">Google api</mat-option>
+                <mat-option value="bbooks">Bbooks api</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div>
+            <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
+        </div>
+
+
     </div>
 </form>
 <mat-paginator

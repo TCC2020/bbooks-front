@@ -6,6 +6,10 @@ import {map, startWith} from 'rxjs/operators';
 import {BookService} from '../../../services/book.service';
 import {Author} from '../../../models/author.model';
 import {AuthorService} from '../../../services/author.service';
+import {CDNService} from '../../../services/cdn.service';
+import {UploadComponent} from '../../upload/upload.component';
+import {MatDialog} from '@angular/material/dialog';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -21,10 +25,17 @@ export class BookFormComponent implements OnInit {
     public book: Book = new Book();
     filteredOptions2: Observable<string[]>[] = [];
 
+    maxSize = 3579139;
+    file;
+
     constructor(
         private formBuilder: FormBuilder,
         private bookService: BookService,
-        private authorService: AuthorService
+        private authorService: AuthorService,
+        private cdnService: CDNService,
+        public dialog: MatDialog,
+        public translate: TranslateService
+
         // public modalRef: MDBModalRef
     ) {
         this.book.authors = [];
@@ -37,7 +48,7 @@ export class BookFormComponent implements OnInit {
 
     private createForm(): void {
         this.formBook = this.formBuilder.group({
-            // image: new FormControl(null, Validators.required),
+            image: new FormControl({value: null, disabled: true}),
             isbn10: new FormControl(null, Validators.required),
             title: new FormControl(null, Validators.required),
             publisher: new FormControl(null, Validators.required),
@@ -128,24 +139,43 @@ export class BookFormComponent implements OnInit {
         }
 
     }
-
-    convertToBook() {
-        this.book.isbn10 = this.formBook.get('isbn10').value;
-        this.book.authors = [];
-        this.book.title = this.formBook.get('title').value;
-        this.book.language = this.formBook.get('language').value;
-        this.book.numberPage = this.formBook.get('numberPage').value;
-        this.book.publishedDate = this.formBook.get('publishedDate').value;
-        this.book.publisher = this.formBook.get('publisher').value;
-        this.book.authors = this.authors.value;
-        this.book.description = 'dsfasdfsafadsf';
-    }
-
-    saveBook() {
-        console.log(this.book)
-        console.log(this.formBook.value)
-        this.bookService.save(this.formBook.value).subscribe(book => {
-            console.log(book);
+    openDialogUpload() {
+        const dialogRef = this.dialog.open(UploadComponent, {
+            height: '350px',
+            width: '400px',
         });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.file = result;
+                this.formBook.get('image').setValue(result.name);
+            } else {
+                this.file = null;
+            }
+        });
+    }
+    saveBook() {
+        this.bookService.save(this.formBook.value)
+            .subscribe(book => {
+                this.cdnService.upload(
+                    {file: this.file, type: 'image'},
+                    {objectType: 'book_image', bookId: book.id}
+                ).subscribe(() => {
+                    },
+                    error => {
+                        console.log('error upload', error);
+                    });
+            },
+        error => {
+                let codMessage = '';
+                if (error.error.message.includes('BK001')) {
+                    codMessage = 'BK001';
+                }
+                if (codMessage) {
+                    this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                        alert(message);
+                    });
+                } else {
+                    console.log('error book form', error);
+                }});
     }
 }

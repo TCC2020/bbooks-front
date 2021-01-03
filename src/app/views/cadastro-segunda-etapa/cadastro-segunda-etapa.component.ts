@@ -130,7 +130,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
             this.getByIdToUpdateProfile();
         } else {
             if (this.file) {
-                this.cdnService.upload({file: this.file, type: 'image'}, 'profile_image').subscribe(() => {
+                this.cdnService.upload({file: this.file, type: 'image'}, {objectType: 'profile_image'}).subscribe(() => {
                         this.getByIdToUpdateProfile();
                     },
                     error => {
@@ -153,7 +153,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     }
 
     updateProfileToLogin(): void {
-        this.profileService.updatePerfil(this.profileTo).subscribe(
+        this.profileService.update(this.profileTo).subscribe(
             () => {
                 this.login();
             },
@@ -208,11 +208,6 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         }
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
-    }
-
-    async uploadFile() {
-        await this.cdnService.uploadAsync(this.file, 'cdn-bbooks');
-        this.file = null;
     }
 
     openDialogUpload() {

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
-import {AuthGuard} from '../guards/auth-guard';
 import {UserTO} from '../models/userTO.model';
 import {AuthService} from './auth.service';
 import {Observable} from 'rxjs';
@@ -21,10 +20,7 @@ export class UserService {
         });
     }
 
-    verifyEmail(email: string) {
-        return this.http.get(this.api + 'email/' + email);
-    }
-    verifyEmailForGoogle(email: string) {
+    verifyEmailForSocialLogin(email: string) {
         return this.http.get(this.api + 'google/' + email);
     }
 

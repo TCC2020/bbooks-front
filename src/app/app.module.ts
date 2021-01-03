@@ -23,7 +23,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSliderModule} from '@angular/material/slider';
 import {NovaSenhaComponent} from './views/nova-senha/nova-senha.component';
-import {GoogleLoginProvider} from 'angularx-social-login';
+import {FacebookLoginProvider, GoogleLoginProvider} from 'angularx-social-login';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {BookModule} from './views/book-page/book.module';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
@@ -34,7 +34,6 @@ import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import {SharedModule} from './views/shared/shared.module';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
-
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -99,6 +98,12 @@ export function HttpLoaderFactory(http: HttpClient) {
                         provider: new GoogleLoginProvider(
                             environment.gauth
                         ),
+                    },
+                    {
+                        id: FacebookLoginProvider.PROVIDER_ID,
+                        provider: new FacebookLoginProvider(
+                            environment.fbauth
+                        )
                     }
                 ],
             } as SocialAuthServiceConfig

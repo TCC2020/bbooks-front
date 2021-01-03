@@ -14,10 +14,34 @@
             <mat-icon [matBadge]="requests?.length ? verifyRequests() : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
         </button>
         <mat-menu  #menuNofify="matMenu">
-            <div *ngFor="let request of requests" >
-                <div mat-menu-item style="height: 120px" *ngIf="request.status ==='pending' && request.profileTO.id" >
+            
+            <div class="container-lista-amigos">
+                <div class="titulo-notificacao">
+                    <span><b>{{'NAV.RECOMENDACOES' | translate}}</b></span>
+                </div>
+                <!--começa card-->
+                <div class="container-amigo" *ngFor="let r of recommendations">
+                    <div class="container-imagem" [routerLink]="['/book/undefined', (r?.book | async)?.id]" [queryParams]="routerRecommendation(r?.idBookGoogle)">
+                        <div>
+                            <img class="imagem-perfil-notificacao"
+                            [src]="(r?.profileTO | async)?.profileImage ? r.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+                        </div>
+                        <div class="informacoes">
+<!--                             <div><span><a class="nome-usuario" [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span></div>
+                            <div><span>Rafael Peinado</span></div> -->
+                            <p>{{(r?.profileTO | async)?.name}} {{(r?.profileTO | async)?.lastName}} {{'NAV.INDICOU' | translate}} {{(r?.book | async)?.title}}</p>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" *ngIf="requestsReceived()?.length > 0">
+                <p><b>{{'PADRAO.SOLICITACOES_RECEBIDAS' | translate}}</b></p>
+            </div>
+            <div *ngFor="let request of requestsReceived()" >
+                <div mat-menu-item style="height: 120px" *ngIf="request.profileTO.id" >
                     <div fxLayout="row" [routerLink]="['', request?.profileTO.username]">
-                        <img *ngIf="request?.profileTO?.profileImage" class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+                        <img class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
 
                         <span> {{this.request.profileTO?.name}} {{this.request.profileTO?.lastName}}</span>
                     </div>
@@ -27,6 +51,25 @@
                         </button>
                         <button  mat-flat-button color="accent" (click)="aceptRequest(request)">
                             <mat-icon>done</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" *ngIf="requestsSent()?.length > 0">
+                <p><b>{{'PADRAO.SOLICITACOES_ENVIADAS' | translate}}</b></p>
+            </div>
+            <div *ngFor="let request of requestsSent()" >
+                <div mat-menu-item style="height: 120px" *ngIf="request.profileTO.id" >
+
+                    <div fxLayout="row" [routerLink]="['', request?.profileTO.username]">
+                        <img class="imagem-perfil" [src]="request?.profileTO?.profileImage ? request.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+
+                        <span> {{this.request.profileTO?.name}} {{this.request.profileTO?.lastName}}</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="5px">
+                        <button  mat-flat-button color="warn" (click)="deleteRequest(request)">
+                            <mat-icon>clear</mat-icon>
+                            {{'PADRAO.CANCELAR' | translate}}
                         </button>
                     </div>
                 </div>
@@ -43,7 +86,7 @@
         <mat-menu  #menuPerfil="matMenu">
             <div mat-menu-item >
                 <div fxLayout="row" [routerLink]="['', user?.userName]">
-                    <img *ngIf="user?.profile?.profileImage" class="imagem-perfil" [src]="user?.profile?.profileImage" alt="imagem de perfil"/>
+                    <img class="imagem-perfil" [src]="user?.profile?.profileImage ? user.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
 
                     <span> {{this.user?.userName}}</span>
                 </div>

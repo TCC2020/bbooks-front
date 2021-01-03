@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../../../models/book.model';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {map, switchMap, take} from 'rxjs/operators';
@@ -10,7 +10,6 @@ import {ReadingTrackingService} from '../../../services/reading-tracking.service
 import {
     BookStatus,
     BookStatusEnglish,
-    mapBookStatus,
     mapBookStatusEnglish
 } from '../../../models/enums/BookStatus.enum';
 import {BookAddDialogComponent} from '../../shared/book-add-dialog/book-add-dialog.component';
@@ -19,6 +18,15 @@ import {BookService} from '../../../services/book.service';
 import {TrackingViewComponent} from '../tracking-view/tracking-view.component';
 import {TrackingTO} from '../../../models/TrackingTO.model';
 import {TrackingService} from '../../../services/tracking.service';
+import {ReviewTO} from '../../../models/ReviewTO.model';
+import {AuthService} from '../../../services/auth.service';
+import {ReviewDialogComponent} from '../review-dialog/review-dialog.component';
+import {ReviewService} from '../../../services/review.service';
+import {ProfileService} from '../../../services/profile.service';
+import {TranslateService} from '@ngx-translate/core';
+import { ReferBookDialogComponent } from '../../shared/refer-book-dialog/refer-book-dialog.component';
+import {PageEvent} from '@angular/material/paginator';
+import {ReviewsPagination} from '../../../models/pagination/reviews.pagination';
 
 @Component({
     selector: 'app-book-view',
@@ -31,7 +39,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
     book: Book = new Book();
     stars: number[] = [1, 2, 3, 4, 5];
     rating = 1;
-    stringAuthors: string;
+    stringAuthors: string[];
     readingTracking: ReadingTrackingTO[] = [];
     trackings: TrackingTO[] = [];
 
@@ -39,9 +47,12 @@ export class BookViewComponent implements OnInit, OnDestroy {
     mapEnglish = mapBookStatusEnglish;
     statusEnglish = BookStatusEnglish;
     panelOpenState = true;
-    search;
-
     percentage: number;
+
+    reviews: Observable<ReviewTO[]>;
+    reviewPagination: ReviewsPagination;
+
+    pageEvent: PageEvent = new PageEvent();
 
 
     constructor(
@@ -50,7 +61,11 @@ export class BookViewComponent implements OnInit, OnDestroy {
         private readingTrackingService: ReadingTrackingService,
         private gBookService: GoogleBooksService,
         private bookService: BookService,
-        private trackingService: TrackingService
+        private trackingService: TrackingService,
+        public authService: AuthService,
+        private reviewService: ReviewService,
+        private profileService: ProfileService,
+        private translate: TranslateService
     ) {
         this.inscricao = this.route.data.subscribe((data: { book: Book }) => {
             this.book = data.book;
@@ -59,25 +74,47 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 this.getAllTracking();
             }
         });
+        this.pageEvent.pageSize = 10;
+        this.pageEvent.pageIndex = 0;
     }
 
     ngOnInit(): void {
         this.getBook();
+        this.getAllReviews();
     }
 
     getBook(): void {
-        this.bookService.getAllUserBooks().subscribe((userbooks) => {
-            this.gBookService.getById(this.book.id).subscribe(b => {
-                const book = this.bookService.convertBookToModel(b);
-                userbooks.books.forEach(userbook => {
-                    if (userbook.idBook === book.id) {
-                        book.status = userbook.status;
-                        book.idUserBook = userbook.id;
-                    }
+        if (this.book.api === 'google') {
+            this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                this.gBookService.getById(this.book.id).subscribe(b => {
+                    const book = this.bookService.convertBookToModel(b);
+                    userbooks.books.forEach(userbook => {
+                        if (userbook.idBookGoogle === book.id) {
+                            book.status = userbook.status;
+                            book.idUserBook = userbook.id;
+                            book.finishDate = userbook.finishDate;
+                        }
+                    });
+                    this.book = book;
                 });
-                this.book = book;
             });
-        });
+        } else {
+            this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                // tslint:disable-next-line:radix
+                this.bookService.getById(Number.parseInt(this.book.id)).subscribe(b => {
+                    userbooks.books.forEach(userbook => {
+                        if (userbook.idBook === b.id) {
+                            b.status = userbook.status;
+                            b.idUserBook = userbook.id;
+                            b.finishDate = userbook.finishDate;
+                            console.log(userbook);
+
+                        }
+                    });
+                    this.book = b;
+                });
+            });
+        }
     }
 
     // getAllReadingTracking() {
@@ -104,6 +141,15 @@ export class BookViewComponent implements OnInit, OnDestroy {
         }
     }
 
+    getByIdTrackingSpeed(id: string, tracking: TrackingTO) {
+        this.trackingService.getById(id).pipe(take(1)).subscribe(result => {
+                this.trackings[this.trackings.indexOf(tracking)].velocidadeLeitura = result.velocidadeLeitura;
+            },
+            error => {
+                console.log('error tracking all by idbook', error);
+            });
+    }
+
     orderByDate(readingTracking: ReadingTrackingTO[]) {
         if (readingTracking) {
             return readingTracking
@@ -126,21 +172,66 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.inscricao.unsubscribe();
+        this.reviewPagination = new ReviewsPagination();
     }
 
     verifyPercentageIsLess100() {
         return this.percentage <= 100;
     }
 
-    convertAuthorsToString(): string {
+    convertAuthorsToString(): string[] {
         const namesAuthors = this.book.authors.map(value => value.name);
-        return namesAuthors.toString();
+        return namesAuthors;
     }
 
     openDialogAddBook(book: Book) {
         const dialogRef = this.dialog.open(BookAddDialogComponent, {
             height: '450px',
             width: '400px',
+            data: {
+                book
+            }
+        });
+        dialogRef.afterClosed().subscribe(() => {
+            this.getBook();
+        });
+    }
+
+    openDialogReview(r: ReviewTO): void {
+        const review = new ReviewTO();
+        if (r) {
+            review.id = r.id;
+            review.title = r.title;
+            review.body = r.body;
+            review.profileTO = r.profileTO;
+        } else {
+            review.profileId = this.authService.getUser().profile.id;
+        }
+        if (this.book.api) {
+            review.idGoogleBook = this.book.id;
+        } else {
+            // tslint:disable-next-line:radix
+            review.bookId = Number.parseInt(this.book.id);
+        }
+        const dialogRef = this.dialog.open(ReviewDialogComponent, {
+            height: '450px',
+            width: '500px',
+            data: {
+                review,
+                book: this.book
+            }
+        });
+        dialogRef.afterClosed().pipe(take(1)).subscribe((result) => {
+            if (result) {
+                this.getAllReviews();
+            }
+        });
+    }
+
+    openDialogReferBook(book: Book) {
+        const dialogRef = this.dialog.open(ReferBookDialogComponent, {
+            height: '580px',
+            width: '680px',
             data: {
                 book
             }
@@ -172,8 +263,10 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 }
                 if (tracking) {
                     tracking = result;
+                    this.getByIdTrackingSpeed(track.id, track);
                 } else {
                     track.trackings.push(result);
+                    this.getByIdTrackingSpeed(track.id, track);
                 }
             }
             this.getBook();
@@ -205,7 +298,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     getStatus(readingTrackings: ReadingTrackingTO[]): string {
-        if (readingTrackings.length > 0) {
+        if (readingTrackings?.length > 0) {
             readingTrackings = this.orderByDate(readingTrackings);
             return readingTrackings[0].percentage.toString() === '100' ? 'concluido' : 'pending';
         } else {
@@ -241,6 +334,53 @@ export class BookViewComponent implements OnInit, OnDestroy {
             error => {
                 console.log(error);
             });
+    }
+
+    getAllReviews(): void {
+        if (this.book.api === 'google') {
+            this.getAllByGoogleBook();
+        } else {
+            this.getAllByBook();
+        }
+    }
+
+    deleteReview(r: ReviewTO): void {
+        this.reviewService.delete(r.id)
+            .pipe(take(1))
+            .subscribe(() => {
+                this.reviews = this.reviews.pipe(take(1));
+                this.translate.get('RESENHA.APAGAR_RENHA').subscribe(message => {
+                    alert(message);
+                });
+            });
+    }
+    changePage(event: PageEvent) {
+        this.pageEvent = event;
+        this.getAllReviews();
+    }
+
+    getAllByGoogleBook(): void {
+        this.reviewService.getAllByGoogleBook(
+            this.book.id,
+            this.pageEvent.pageSize,
+            this.pageEvent.pageIndex
+        )
+        .pipe(take(1))
+        .subscribe(reviewsPagination => {
+            this.reviewPagination = reviewsPagination;
+        });
+    }
+    getAllByBook(): void {
+        this.reviewService.getAllByBook(
+            // tslint:disable-next-line:radix
+            Number.parseInt(this.book.id),
+            this.pageEvent.pageSize,
+            this.pageEvent.pageIndex
+        )
+        .pipe(take(1))
+        .subscribe(reviewsPagination => {
+            this.reviewPagination = reviewsPagination;
+        });
     }
 
 }

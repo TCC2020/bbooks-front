@@ -12,7 +12,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 import {ReadingTrackingService} from '../../../services/reading-tracking.service';
-import {trackingMock} from '../../../mocks/tracking.model';
+import {readingTrackingMock} from '../../../mocks/tracking.model';
 
 describe('TrackingDialogComponent', () => {
     let component: TrackingDialogComponent;
@@ -50,7 +50,7 @@ describe('TrackingDialogComponent', () => {
                 },
                 {
                     provide: MAT_DIALOG_DATA,
-                    useValue: trackingMock
+                    useValue: readingTrackingMock
                 },
                 {
                     provide: MatDialogRef,

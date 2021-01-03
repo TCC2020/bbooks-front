@@ -19,4 +19,6 @@ export class Book {
     status: BookStatus;
     idUserBook: number;
     tags: Tag[];
+    api: string;
+    finishDate: Date;
 }

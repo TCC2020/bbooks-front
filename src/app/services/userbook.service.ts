@@ -30,7 +30,7 @@ export class UserbookService {
     }
 
     update(userBookTo: UserBookTO): Observable<any> {
-        return this.http.put(this.api, userBookTo);
+        return this.http.put(this.api + userBookTo.id, userBookTo);
     }
 
     getById(id: number): Observable<UserBookTO> {

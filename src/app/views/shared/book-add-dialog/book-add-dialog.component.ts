@@ -31,12 +31,14 @@ export class BookAddDialogComponent implements OnInit {
     tagsBook: Tag[];
     mapStatus = mapBookStatus;
     mapStatusEnglish = mapBookStatusEnglish;
+    status = BookStatus;
+    statusEnglish = BookStatusEnglish;
 
     public formBook: FormGroup;
     public Book: Book;
     public title: string;
     public buttonText: string;
-    private userBookTo = new UserBookTO();
+    public userBookTo = new UserBookTO();
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: { book: Book },
@@ -46,10 +48,11 @@ export class BookAddDialogComponent implements OnInit {
         private userbookService: UserbookService,
         private authService: AuthService,
         private tagService: TagService,
-        public translate: TranslateService
+        public translate: TranslateService,
     ) {
         this.Book = data.book;
         this.tagsBook = [];
+
         if (this.Book.idUserBook) {
             this.tagService.getAllByUserBook(this.Book.idUserBook).subscribe(tags => {
                 this.tagsBook = tags;
@@ -99,7 +102,12 @@ export class BookAddDialogComponent implements OnInit {
     private createForm(): void {
         this.formBook = this.formBuilder.group({
             statusBook: new FormControl(this.Book.status ? this.Book.status : null, Validators.required),
-            tags: this.formBuilder.array([])
+            tags: this.formBuilder.array([]),
+            finishDate: new FormControl(this.Book.finishDate ?
+                this.Book.finishDate.toString() :
+                null, this.Book.finishDate ?
+                Validators.required :
+                Validators.nullValidator),
         });
     }
 
@@ -133,13 +141,21 @@ export class BookAddDialogComponent implements OnInit {
 
     saveBook() {
         this.userBookTo.id = this.Book.idUserBook;
-        this.userBookTo.idBook = this.Book.id;
         this.userBookTo.profileId = this.authService.getUser().profile.id;
         this.userBookTo.status = this.getStatusToUserBook();
         this.userBookTo.tags = this.getSelectedTags();
         this.userBookTo.page = this.Book.numberPage;
-
-        if (this.tagsBook.length > 0) {
+        if (
+            this.formBook.get('statusBook').value.toUpperCase() === this.status.LIDO ||
+            this.formBook.get('statusBook').value === this.statusEnglish.LIDO
+        ) {
+            this.userBookTo.finishDate = this.formBook.get('finishDate').value;
+        }
+        this.Book.api === 'google' ?
+            this.userBookTo.idBookGoogle = this.Book.id :
+            // tslint:disable-next-line:radix
+            this.userBookTo.idBook = Number.parseInt(this.Book.id);
+        if (this.tagsBook.length > 0 || this.userBookTo.id) {
             this.userbookService.update(this.userBookTo).subscribe(
                 value => {
                     this.dialogRef.close(value);
