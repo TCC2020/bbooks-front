@@ -1,4 +1,4 @@
-name: ANgular CI
+name: Angular CI/CD PROD
 
 on:
   push:
