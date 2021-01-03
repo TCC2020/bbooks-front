@@ -1,0 +1,67 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="isMobile()">
+    <div class="arrowPost" routerLink="/{{user.userName}}">
+        <span class="material-icons" >keyboard_backspace</span>
+    </div>
+    <div>
+        <b>Criar postagens</b>
+    </div>
+    <div >
+        <button mat-button color="accent"><b>Publicar</b></button>
+    </div>
+
+</div>
+<h2 mat-dialog-title *ngIf="!isMobile()" align="center">Criar postagens</h2>
+<mat-divider></mat-divider>
+<div>
+    <div fxLayout="column" fxLayoutAlign="space-between start" class="flex" fxFlex.xs fxFlexOffset="1">
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexOffset="1"
+             fxLayoutAlign.xs="space-around start" fxLayoutGap.xs="10px" >
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <div>
+                    <img class="cardImageReview" src="{{this.user.profile.profileImage ? user.profile.profileImage:'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px" >
+                <div fxLayout="row" fxLayoutAlign="start start">
+                    <div class="commentReview">
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                            <div style="font-weight: 500; color: #1a1a1a">{{user.profile.name | titlecase}} {{user.profile.lastName | titlecase}}</div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" >
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Compartilhar com</mat-label>
+                                    <mat-select value="publico">
+                                        <mat-option value="publico">Público</mat-option>
+                                        <mat-option value="somenteEu">Somente eu</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<mat-divider *ngIf="isMobile()"></mat-divider>
+<div>
+<form [formGroup]="formFeed">
+       <textarea formControlName="post" placeholder="No que está pensando?"></textarea>
+</form>
+</div>
+<mat-divider></mat-divider>
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+    <button mat-button class="button-test-post">
+        <mat-icon style="color: #394A59">insert_photo</mat-icon>
+        Foto
+    </button>
+    <button mat-button class="button-test-post">
+        <mat-icon style="color: #ca4949">import_contacts</mat-icon>
+        Resenha
+    </button>
+</div>
+
+<div *ngIf="!isMobile()" class="publisherWeb"  fxLayout="column">
+    <button mat-raised-button color="accent" class="publisherWeb">Publicar</button>
+</div>
