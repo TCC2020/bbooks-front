@@ -13,6 +13,7 @@ import {RouterModule} from '@angular/router';
 import {NumbersOnlyInputDirective} from './directive/numbers-only-input.directive';
 import {LoaderComponent} from '../../loader/loader.component';
 import { ReferBookDialogComponent } from './refer-book-dialog/refer-book-dialog.component';
+import {PostDialogComponent} from './post-dialog/post-dialog.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ReferBookDialogComponent } from './refer-book-dialog/refer-book-dialog.
         BookAddDialogComponent,
         NumbersOnlyInputDirective,
         LoaderComponent,
-        ReferBookDialogComponent
+        ReferBookDialogComponent,
+        PostDialogComponent
     ],
     imports: [
         CommonModule,
