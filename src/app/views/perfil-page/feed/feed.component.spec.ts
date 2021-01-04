@@ -9,6 +9,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 import {userMock} from '../../../mocks/user.model.mock';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {SocialAuthService} from 'angularx-social-login';
+import {AuthService} from '../../../services/auth.service';
 
 describe('FeedComponent', () => {
     let component: FeedComponent;
@@ -16,8 +19,9 @@ describe('FeedComponent', () => {
     const routeMock = {
         data: of({user: userMock})
     };
-
-
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
+    };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [FeedComponent],
@@ -33,6 +37,12 @@ describe('FeedComponent', () => {
                     provide: ActivatedRoute,
                     useValue: routeMock
                 },
+                SocialAuthServiceConfigMock,
+                SocialAuthService,
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                }
             ]
         }).compileComponents();
     }));

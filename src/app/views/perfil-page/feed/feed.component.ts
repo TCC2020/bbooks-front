@@ -15,11 +15,8 @@ import {AuthService} from '../../../services/auth.service';
 export class FeedComponent implements OnInit {
     user: UserTO;
 
-    public formFeed: FormGroup;
-
     constructor(
         private route: ActivatedRoute,
-        private formBuilder: FormBuilder,
         public dialog: MatDialog,
         private router: Router,
         public authService: AuthService,
@@ -29,13 +26,6 @@ export class FeedComponent implements OnInit {
     ngOnInit(): void {
         this.route.data.pipe(take(1)).subscribe((data: { user: UserTO }) => {
             this.user = data.user;
-        });
-        this.createForm();
-    }
-
-    private createForm(): void {
-        this.formFeed = this.formBuilder.group({
-            post: new FormControl(null, Validators.required),
         });
     }
 
