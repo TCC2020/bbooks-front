@@ -36,7 +36,6 @@ import {SharedModule} from './views/shared/shared.module';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
 import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
 
-
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

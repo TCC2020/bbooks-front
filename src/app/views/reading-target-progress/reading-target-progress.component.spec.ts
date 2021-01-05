@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from 'src/app/material/material.module';
 
 import { ReadingTargetProgressComponent } from './reading-target-progress.component';
 
@@ -8,7 +9,8 @@ describe('ReadingTargetProgressComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReadingTargetProgressComponent ]
+      declarations: [ ReadingTargetProgressComponent ],
+      imports: [ MaterialModule ]
     })
     .compileComponents();
   }));
