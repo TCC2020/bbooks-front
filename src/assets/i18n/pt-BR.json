@@ -1,5 +1,8 @@
 {
   "PADRAO": {
+    "PHOTO": "Foto",
+    "ASK" : "Pergunte",
+    "PUBLICAR": "Publicar",
     "BUSCAR": "Buscar",
     "ENTRAR": "Entrar",
     "SENHA": "Senha",
@@ -213,6 +216,12 @@
     "TA001": "O último acompanhamento ainda não terminou",
     "RT006": "A página não pode ser zero",
     "BK001": "ISBN já existe"
+  },
+  "POST":{
+    "CRIAR_POSTAGEM": "Criar Postagem",
+    "COMPARTILHAR_COM": "Compartilhar com",
+    "TEXT_POST_INPUT" : "No que está pensando?",
+    "TEXT_POST_INPUT_ASK" : "Faça uma pergunta..."
   }
 }
 

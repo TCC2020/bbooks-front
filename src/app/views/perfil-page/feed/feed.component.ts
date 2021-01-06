@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs/operators';
 import {UserTO} from '../../../models/userTO.model';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {PostDialogComponent} from '../../shared/post-dialog/post-dialog.component';
 import {AuthService} from '../../../services/auth.service';
@@ -39,7 +38,7 @@ export class FeedComponent implements OnInit {
     }
     openPostDialog() {
         const dialogRef = this.dialog.open(PostDialogComponent, {
-            height: '400px',
+            height: '450px',
             width: '500px',
         });
         dialogRef.afterClosed()
