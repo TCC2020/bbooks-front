@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {UserTO} from '../../../models/userTO.model';
+import {TranslateService} from '@ngx-translate/core';
 
 export enum Menu {
     ASK = 0,
@@ -20,6 +21,8 @@ export class PostDialogComponent implements OnInit {
     public user: UserTO;
     public menu = Menu;
     public menuChoose: Menu;
+
+    public textInput = 'TEXT_POST_INPUT';
     constructor(
         private formBuilder: FormBuilder,
         private authService: AuthService
@@ -53,15 +56,18 @@ export class PostDialogComponent implements OnInit {
         }
     }
     resetAsks(): void {
+        this.textInput = 'TEXT_POST_INPUT_ASK';
         this.menuChoose = this.menu.ASK;
         this.asks.clear();
         this.addAsk();
         this.addAsk();
     }
     choosePhoto(): void {
+        this.textInput = 'TEXT_POST_INPUT';
         this.menuChoose = this.menu.PHOTO;
     }
     chooseReview(): void {
+        this.textInput = 'TEXT_POST_INPUT';
         this.menuChoose = this.menu.REVIEW;
     }
 
