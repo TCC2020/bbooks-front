@@ -64,6 +64,12 @@
     display: flex;
 }
 
+.informacoes-do-usuario {
+    flex-direction: row;
+    display: flex;
+    text-align: center;
+}
+
 .adicionar-amigos {
     margin-top: auto;
     margin-bottom: auto;
@@ -96,6 +102,7 @@
         margin-top: 10px;
         margin-bottom: 10px;
     }
+    
     .container-lista-amigos, 
     .container-amigo {
         padding: 0px;
@@ -106,9 +113,17 @@
         width: 100%;
     }
     
-    .container-imagem-perfil, .informacoes, .adicionar-amigos {
+    .adicionar-amigos {
         width: 100%;
         text-align: center;
+    }
+
+    .container-imagem-perfil {
+        width: 80px;
+    }
+
+    .informacoes {
+        width: auto;
     }
 
     .container-lista-amigos form mat-form-field {

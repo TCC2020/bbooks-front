@@ -1,6 +1,9 @@
 export const environment = {
     production: true,
-    api: 'https://bbooks-api.herokuapp.com/',
+    api: 'undefined',
     gauth: 'undefined',
-    apicep: 'undefined'
+    fbauth: 'undefined',
+    apicep: 'undefined',
+    feedApi: 'undefined',
+    competitionApi: 'undefined'
 }
