@@ -1,5 +1,8 @@
 {
   "PADRAO": {
+    "PHOTO": "Photo",
+    "ASK": "Ask",
+    "PUBLICAR": "Post",
     "BUSCAR": "Search",
     "ENTRAR": "Login",
     "SENHA": "Password",
@@ -214,5 +217,11 @@
     "TA001": "Last tracking is not finished yeat",
     "RT006": "Page can´t be zero",
     "BK001": "ISBN already exists"
+  },
+  "POST":{
+    "CRIAR_POSTAGEM": "Create Post",
+    "COMPARTILHAR_COM": "Share with",
+    "TEXT_POST_INPUT" : "What are you thinking?",
+    "TEXT_POST_INPUT_ASK" : "Ask a question..."
   }
 }

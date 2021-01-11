@@ -38,7 +38,7 @@ export class BookAddDialogComponent implements OnInit {
     public Book: Book;
     public title: string;
     public buttonText: string;
-    private userBookTo = new UserBookTO();
+    public userBookTo = new UserBookTO();
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: { book: Book },
@@ -150,8 +150,6 @@ export class BookAddDialogComponent implements OnInit {
             this.formBook.get('statusBook').value === this.statusEnglish.LIDO
         ) {
             this.userBookTo.finishDate = this.formBook.get('finishDate').value;
-        } else {
-            this.userBookTo.finishDate = this.Book.finishDate;
         }
         this.Book.api === 'google' ?
             this.userBookTo.idBookGoogle = this.Book.id :

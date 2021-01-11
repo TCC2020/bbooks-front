@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs/operators';
 import {UserTO} from '../../../models/userTO.model';
+import {MatDialog} from '@angular/material/dialog';
+import {PostDialogComponent} from '../../shared/post-dialog/post-dialog.component';
 import {AuthService} from '../../../services/auth.service';
 
 @Component({
@@ -13,7 +15,10 @@ export class FeedComponent implements OnInit {
     user: UserTO;
 
     constructor(
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        public dialog: MatDialog,
+        private router: Router,
+        public authService: AuthService,
     ) {
     }
 
@@ -23,5 +28,21 @@ export class FeedComponent implements OnInit {
         });
     }
 
-
+    openPost() {
+        const userAgent = window.navigator.userAgent.toLocaleLowerCase();
+        if (userAgent.includes('iphone') || userAgent.includes('android')) {
+            this.router.navigate([this.user.userName + '/create-post']);
+        } else {
+            this.openPostDialog();
+        }
+    }
+    openPostDialog() {
+        const dialogRef = this.dialog.open(PostDialogComponent, {
+            height: '450px',
+            width: '500px',
+        });
+        dialogRef.afterClosed()
+            .pipe().subscribe((res) => {
+        });
+    }
 }

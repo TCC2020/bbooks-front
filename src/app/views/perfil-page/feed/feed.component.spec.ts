@@ -9,6 +9,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 import {userMock} from '../../../mocks/user.model.mock';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {SocialAuthService} from 'angularx-social-login';
+import {AuthService} from '../../../services/auth.service';
+import {MatDialog} from '@angular/material/dialog';
 
 describe('FeedComponent', () => {
     let component: FeedComponent;
@@ -16,7 +20,15 @@ describe('FeedComponent', () => {
     const routeMock = {
         data: of({user: userMock})
     };
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
+    };
 
+    const mockMatDialog = {
+        open: jest.fn(() => {
+            return {afterClosed: jest.fn(() => of([]))};
+        })
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -33,6 +45,16 @@ describe('FeedComponent', () => {
                     provide: ActivatedRoute,
                     useValue: routeMock
                 },
+                SocialAuthServiceConfigMock,
+                SocialAuthService,
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                },
+                {
+                    provide: MatDialog,
+                    useValue: mockMatDialog
+                },
             ]
         }).compileComponents();
     }));
@@ -45,5 +67,11 @@ describe('FeedComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should openPost', () => {
+        const spy = jest.spyOn(mockMatDialog, 'open');
+        component.openPost();
+        expect(spy).toHaveBeenCalled();
     });
 });

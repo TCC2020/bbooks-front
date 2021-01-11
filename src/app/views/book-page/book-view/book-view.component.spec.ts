@@ -18,6 +18,10 @@ import {of} from 'rxjs';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {AuthService} from '../../../services/auth.service';
+import {MatDialog} from '@angular/material/dialog';
+import {reviewMock, reviewsMock} from '../../../mocks/review.model.mock';
+import {trackingMock} from '../../../mocks/tracking.model.mock';
+import {readingTrackingMock} from '../../../mocks/tracking.model';
 
 describe('BookViewComponent', () => {
     let component: BookViewComponent;
@@ -32,6 +36,11 @@ describe('BookViewComponent', () => {
     };
     const authServiceMock = {
         getUser: jest.fn(() => userMock)
+    };
+    const mockMatDialog = {
+        open: jest.fn(() => {
+            return {afterClosed: jest.fn(() => of([]))};
+        })
     };
 
     beforeEach(async(() => {
@@ -63,7 +72,11 @@ describe('BookViewComponent', () => {
                     useValue: authServiceMock
                 },
                 TranslateService,
-                TranslateStore
+                TranslateStore,
+                {
+                    provide: MatDialog,
+                    useValue: mockMatDialog
+                },
             ],
             declarations: [BookViewComponent]
         }).compileComponents();
@@ -89,4 +102,35 @@ describe('BookViewComponent', () => {
             expect(r).toEqual(result.toString());
         });
     });
+
+    it('should open openDialogAddBook ', () => {
+        const spy = jest.spyOn(mockMatDialog, 'open');
+        component.openDialogAddBook(bookMock);
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should open openDialogReview ', () => {
+        const spy = jest.spyOn(mockMatDialog, 'open');
+        component.openDialogReview(reviewMock);
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should open openDialogReferBook ', () => {
+        const spy = jest.spyOn(mockMatDialog, 'open');
+        component.openDialogReferBook(bookMock);
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should open openDialogTrackingView ', () => {
+        const spy = jest.spyOn(mockMatDialog, 'open');
+        component.openDialogTrackingView(trackingMock);
+        expect(spy).toHaveBeenCalled();
+    });
+
+    it('should open openDialogReadingTracking ', () => {
+        const spy = jest.spyOn(mockMatDialog, 'open');
+        component.openDialogReadingTracking(trackingMock, readingTrackingMock, true, trackingMock.id);
+        expect(spy).toHaveBeenCalled();
+    });
+
 });
