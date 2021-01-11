@@ -1,3 +1,4 @@
+import { UserBookTO } from './../../../models/userBookTO';
 import { ReadingTargetService } from './../../../services/reading-target.service';
 import { ReadingTargetTO } from './../../../models/readingTargetTO.model';
 import {Component, OnDestroy, OnInit} from '@angular/core';
@@ -58,7 +59,6 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
     public readingTargetTO = new ReadingTargetTO();
     readingTargets: Observable<ReadingTargetTO[]>;
-
 
     constructor(
         private route: ActivatedRoute,
@@ -248,11 +248,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     addToReadingTarget(book: Book): void {
-        this.readingTargetTO.profileId = this.authService.getUser().profile.id;
-        this.readingTargetTO.year = new Date().getFullYear();
-        this.readingTargetTO.targets = null;
-
-        this.readingTargetService.save(this.readingTargetTO).subscribe(
+        this.readingTargetService.addTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
             () => {
                 alert("Livro adicionado à Meta de Leitura");
             },
@@ -265,12 +261,21 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     removeFromReadingTarget(book: Book): void {
-        this.readingTargets = this.readingTargetService.getAllByProfileId(this.authService.getUser().profile.id);
-        console.log(this.readingTargets);
+        this.readingTargetService.removeTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
+            () => {
+                alert("Livro removido da Meta de Leitura");
+            },
+            error => {
+                console.log('ReadingTarget Error', error);
+            }
+        );
+
+        console.log(this.readingTargetTO);
+
     }
 
     isReadingTarget(): boolean {
-        return true;
+        return false;
     }
 
     public calculateDays(): string {

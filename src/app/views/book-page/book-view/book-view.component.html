@@ -86,7 +86,7 @@
                                     {{'ESTANTE.META_LEITURA_REMOVER' | translate}}
                             </button>
                         </div>
-                        <div>
+                        <div *ngIf="book.idUserBook">
                             <p style="text-align: right;">{{'ESTANTE.ENCERRAR_META_LEITURA' | translate}} {{calculateDays()}} {{'ESTANTE.DIAS_ENCERRAR_META' | translate}}</p>                        </div>
                         </div>
                 </div>

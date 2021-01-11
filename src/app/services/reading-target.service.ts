@@ -27,4 +27,12 @@ export class ReadingTargetService {
   getAllById(id: string): Observable<ReadingTargetTO[]> {
     return this.http.get<ReadingTargetTO[]>(this.api + id);
   }
+
+  addTarget(profileId: number, userBookId: number): Observable<ReadingTargetTO[]> {
+    return this.http.put<ReadingTargetTO[]>(this.api, {"profileId": profileId,  "userBookId": userBookId});
+  }
+
+  removeTarget(profileId: number, userBookId: number): Observable<void> {
+    return this.http.delete<void>(this.api + 'delete/profile/' + profileId + '/user-book/' + userBookId);
+  }
 }
