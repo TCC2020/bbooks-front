@@ -74,13 +74,13 @@
                                 {{'ESTANTE.INDICAR_LIVRO' | translate}}
                             </button>
                         </div>
-                        <div *ngIf="!isReadingTarget()" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
+                        <div *ngIf="!hasReadingTarget" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
                             <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
                                     (click)="addToReadingTarget(book)">
                                     {{'ESTANTE.META_LEITURA' | translate}}
                             </button>
                         </div>
-                        <div *ngIf="isReadingTarget()" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
+                        <div *ngIf="hasReadingTarget" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
                             <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
                                     (click)="removeFromReadingTarget(book)">
                                     {{'ESTANTE.META_LEITURA_REMOVER' | translate}}

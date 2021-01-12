@@ -60,6 +60,8 @@ export class BookViewComponent implements OnInit, OnDestroy {
     public readingTargetTO = new ReadingTargetTO();
     readingTargets: Observable<ReadingTargetTO[]>;
 
+    hasReadingTarget: boolean;
+
     constructor(
         private route: ActivatedRoute,
         public dialog: MatDialog,
@@ -102,6 +104,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                         }
                     });
                     this.book = book;
+                    this.verifyReadingTarget();
                 });
             });
         } else {
@@ -118,6 +121,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                         }
                     });
                     this.book = b;
+                    this.verifyReadingTarget();
                 });
             });
         }
@@ -247,35 +251,39 @@ export class BookViewComponent implements OnInit, OnDestroy {
         });
     }
 
-    addToReadingTarget(book: Book): void {
+    addToReadingTarget(): void {
         this.readingTargetService.addTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
             () => {
-                alert("Livro adicionado à Meta de Leitura");
+                alert('Livro adicionado à Meta de Leitura');
+                this.verifyReadingTarget();
             },
             error => {
                 console.log('ReadingTarget Error', error);
             }
         );
-
-        console.log(this.readingTargetTO);
     }
 
-    removeFromReadingTarget(book: Book): void {
+    removeFromReadingTarget(): void {
         this.readingTargetService.removeTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
             () => {
-                alert("Livro removido da Meta de Leitura");
+                alert('Livro removido da Meta de Leitura');
+                this.verifyReadingTarget();
             },
             error => {
                 console.log('ReadingTarget Error', error);
             }
         );
-
-        console.log(this.readingTargetTO);
-
     }
 
-    isReadingTarget(): boolean {
-        return false;
+    verifyReadingTarget(): void {
+        this.readingTargetService.getByUserBookId(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
+            (res) => {
+                res?.id ? this.hasReadingTarget = true : this.hasReadingTarget = false;
+            },
+            error => {
+                console.log('ReadingTarget Error', error);
+            }
+        );
     }
 
     public calculateDays(): string {

@@ -28,11 +28,17 @@ export class ReadingTargetService {
     return this.http.get<ReadingTargetTO[]>(this.api + id);
   }
 
-  addTarget(profileId: number, userBookId: number): Observable<ReadingTargetTO[]> {
-    return this.http.put<ReadingTargetTO[]>(this.api, {"profileId": profileId,  "userBookId": userBookId});
+  addTarget(profileId: number, userBookId: number): Observable<ReadingTargetTO> {
+    return this.http.put<ReadingTargetTO>(this.api, {profileId, userBookId});
   }
 
   removeTarget(profileId: number, userBookId: number): Observable<void> {
     return this.http.delete<void>(this.api + 'delete/profile/' + profileId + '/user-book/' + userBookId);
   }
+
+  getByUserBookId(profileId: number, userBookId: number): Observable<ReadingTargetTO> {
+    return this.http.get<ReadingTargetTO>(this.api + 'search/profile/' + profileId + '/user-book/' + userBookId);
+  }
 }
+
+
