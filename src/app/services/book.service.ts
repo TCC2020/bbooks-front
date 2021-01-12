@@ -222,8 +222,10 @@ export class BookService {
         return this.http.get<BookPagination>(this.api + 'search', {params});
     }
 
-    searchMergeBooks(bookSearch: BookSearchTO): Observable<BookSearchTO> {
-        return this.http.get<BookSearchTO>(this.api + 'searchByString');
+    searchMergeBooks(bookSearch: BookSearchTO, size: number): Observable<BookSearchTO> {
+        const params = new HttpParams()
+            .set('size', size.toString());
+        return this.http.post<BookSearchTO>(this.api + 'searchByString', bookSearch, {params});
     }
 
     getById(id: number): Observable<Book> {
