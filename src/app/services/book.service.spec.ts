@@ -8,12 +8,10 @@ import {UserbookService} from './userbook.service';
 import {GoogleBooksService} from './google-books.service';
 import {SocialLoginModule} from 'angularx-social-login';
 import {SocialAuthServiceConfigMock} from '../mocks/google.provide.mock';
-import {Author} from '../models/author.model';
-import {friendMock} from '../mocks/friend.model.mock';
 import {bookMock} from '../mocks/book.model.mock';
 import {of} from 'rxjs';
-import {readingsTrackingMock} from '../mocks/tracking.model';
 import {tagsMock} from '../mocks/tag.model.mock';
+import {BookSearchTO} from '../models/bookSearchTO.model';
 
 describe('BookService', () => {
     let service: BookService;
@@ -92,6 +90,27 @@ describe('BookService', () => {
             expect(typeof author === 'string').toBeFalsy();
             expect(author.name).toEqual(authors[i]);
         });
+        done();
+    });
+
+    it('searchMergeBooks: should call http GET',  done => {
+        const searchBook = new BookSearchTO();
+        searchBook.search = 'sagarana';
+        searchBook.page = 0;
+        service.searchMergeBooks(searchBook, 0)
+            .subscribe(() => {
+            });
+        const req = httpMock.expectOne(service.api + 'searchByString?size=0');
+        expect(req.request.method).toBe('POST');
+        done();
+    });
+
+    it('search: should call http GET',  done => {
+        service.search('sagarana', 10, 0)
+            .subscribe(() => {
+            });
+        const req = httpMock.expectOne(service.api + 'search?search=sagarana&page=0&size=10');
+        expect(req.request.method).toBe('GET');
         done();
     });
 });

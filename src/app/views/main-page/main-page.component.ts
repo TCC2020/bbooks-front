@@ -10,6 +10,8 @@ import {BookService} from '../../services/book.service';
 import {MediaChange, MediaObserver} from '@angular/flex-layout';
 import {Subscription} from 'rxjs';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import {BookSearchTO} from '../../models/bookSearchTO.model';
+import {map, take} from 'rxjs/operators';
 
 @Component({
     selector: 'app-main-page',
@@ -25,8 +27,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
     totalBooks = 0;
     pageEvent: PageEvent = new PageEvent();
     pageSize = 10;
-    typeSearch: any;
-
 
     constructor(
         public auth: AuthService,
@@ -55,47 +55,37 @@ export class MainPageComponent implements OnInit, OnDestroy {
         });
     }
 
-    searchBook(typeSearch) {
-        this.typeSearch = typeSearch;
-        if (this.typeSearch === 'google') {
-            this.searchControl.value.book?.split(' ').join('+');
-            this.gBooksService.searchByNamePagination(
-                this.searchControl.value.book.split(' ').join('+'),
-                this.pageEvent.pageSize,
-                this.pageEvent.pageIndex * this.pageEvent.pageSize
-            ).subscribe(books => {
-                this.totalBooks = books.totalItems;
+    searchBook(): void {
+        const searchBook = new BookSearchTO();
+        searchBook.search = this.searchControl.value.book.split(' ').join('+');
+        searchBook.page = this.pageEvent.pageIndex;
+        this.bookService.searchMergeBooks(searchBook,  this.pageEvent.pageSize)
+            .pipe(
+                map(sb => {
+                    sb.googleBooks.items ?
+                    sb.googleBooks.items = sb.googleBooks.items.map( i => this.bookService.convertBookToModel(i)) :
+                    sb.googleBooks.items = [];
+                    return sb;
+                }),
+                take(1)
+            )
+            .subscribe(res => {
+                this.totalBooks = res.googleBooks.totalItems + res.books.totalElements;
                 let booksConvert = [];
-                booksConvert = books.items;
+                booksConvert = res.books.content.concat(res.googleBooks.items);
                 booksConvert?.length > 0 ?
-                    this.resulSearch(booksConvert) :
-                    this.resetBooks();
-            });
-        } else {
-            this.bookService.search(
-                this.searchControl.value.book.split(' ').join('+'),
-                this.pageEvent.pageSize,
-                this.pageEvent.pageIndex
-            ).subscribe(booksPagination => {
-                this.totalBooks = booksPagination.totalElements;
-                const books = booksPagination.content.map(b => {
-                    b.api = 'bbooks';
-                    return b;
-                });
-                books?.length > 0 ?
-                    this.resulSearch(books) :
-                    this.resetBooks();
-            });
-        }
+                this.resulSearch(booksConvert) :
+                this.resetBooks();
+            },
+            error => console.log(error));
     }
     changePage(event: PageEvent) {
         this.pageEvent = event;
-        this.searchBook(this.typeSearch);
+        this.searchBook();
     }
 
     resulSearch(booksConvert): void {
-       const result =  booksConvert.map(value => {
-            const book = this.typeSearch === 'google' ? this.bookService.convertBookToModel(value) : value;
+       const result =  booksConvert.map(book => {
             if (this.user) {
                 this.bookService.getAllUserBooks().subscribe((userbooks) => {
                     userbooks.books.forEach(userbook => {
