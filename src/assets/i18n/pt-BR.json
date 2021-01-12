@@ -107,7 +107,12 @@
     "ADICIONAR_LIVRO": "Adicionar livro na Estante",
     "EDITAR_LIVRO": "Editar Livro",
     "INDICAR_LIVRO": "Indicar livro para um amigo",
-    "BOTAO_INDICAR": "Indicar"
+    "BOTAO_INDICAR": "Indicar",
+    "META_LEITURA": "Adicionar à meta de leitura",
+    "META_LEITURA_REMOVER": "Remover da meta de leitura",
+    "ENCERRAR_META_LEITURA": "A meta de leitura será encerrada em",
+    "DIAS_ENCERRAR_META": "dias."
+
   },
   "TAG": {
     "CRIAR_TAG": "Criar Tag",
