@@ -76,13 +76,13 @@
                         </div>
                         <div *ngIf="!hasReadingTarget" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
                             <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
-                                    (click)="addToReadingTarget(book)">
+                                    (click)="addToReadingTarget()">
                                     {{'ESTANTE.META_LEITURA' | translate}}
                             </button>
                         </div>
                         <div *ngIf="hasReadingTarget" style="padding-top: 10px;" fxLayout="row" fxLayoutAlign="end center">
                             <button type="button" *ngIf="book.idUserBook" mat-flat-button color="accent"
-                                    (click)="removeFromReadingTarget(book)">
+                                    (click)="removeFromReadingTarget()">
                                     {{'ESTANTE.META_LEITURA_REMOVER' | translate}}
                             </button>
                         </div>
