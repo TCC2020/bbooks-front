@@ -1,3 +1,6 @@
+import { UserBookTO } from './../../../models/userBookTO';
+import { ReadingTargetService } from './../../../services/reading-target.service';
+import { ReadingTargetTO } from './../../../models/readingTargetTO.model';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../../../models/book.model';
 import {Observable, Subscription} from 'rxjs';
@@ -54,6 +57,10 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
     pageEvent: PageEvent = new PageEvent();
 
+    public readingTargetTO = new ReadingTargetTO();
+    readingTargets: Observable<ReadingTargetTO[]>;
+
+    hasReadingTarget: boolean;
 
     constructor(
         private route: ActivatedRoute,
@@ -64,6 +71,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
         private trackingService: TrackingService,
         public authService: AuthService,
         private reviewService: ReviewService,
+        private readingTargetService: ReadingTargetService,
         private profileService: ProfileService,
         private translate: TranslateService
     ) {
@@ -96,6 +104,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                         }
                     });
                     this.book = book;
+                    this.verifyReadingTarget();
                 });
             });
         } else {
@@ -112,6 +121,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                         }
                     });
                     this.book = b;
+                    this.verifyReadingTarget();
                 });
             });
         }
@@ -240,6 +250,49 @@ export class BookViewComponent implements OnInit, OnDestroy {
             this.getBook();
         });
     }
+
+    addToReadingTarget(): void {
+        this.readingTargetService.addTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
+            () => {
+                alert('Livro adicionado à Meta de Leitura');
+                this.verifyReadingTarget();
+            },
+            error => {
+                console.log('ReadingTarget Error', error);
+            }
+        );
+    }
+
+    removeFromReadingTarget(): void {
+        this.readingTargetService.removeTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
+            () => {
+                alert('Livro removido da Meta de Leitura');
+                this.verifyReadingTarget();
+            },
+            error => {
+                console.log('ReadingTarget Error', error);
+            }
+        );
+    }
+
+    verifyReadingTarget(): void {
+        this.readingTargetService.getByUserBookId(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
+            (res) => {
+                res?.id ? this.hasReadingTarget = true : this.hasReadingTarget = false;
+            },
+            error => {
+                console.log('ReadingTarget Error', error);
+            }
+        );
+    }
+
+    public calculateDays(): string {
+        const currentDate = new Date();
+        const lastDayOfYear = new Date('12/31/' + currentDate.getFullYear());
+        const diffenceOfDates = Math.abs(lastDayOfYear.getTime() - currentDate.getTime());
+        const differenceInDays = Math.ceil(diffenceOfDates / (1000 * 3600 * 24));
+        return differenceInDays.toString();
+      }
 
     openDialogReadingTracking(track: TrackingTO, tracking: ReadingTrackingTO, editPag: boolean, trackingUpId: string) {
         const dialogRef = this.dialog.open(TrackingDialogComponent, {

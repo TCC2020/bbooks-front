@@ -12,20 +12,24 @@
                 <div fxLayout="row" fxLayoutAlign="start start">
                     <mat-card class="commentReview" (click)="openPost()">
                         <div fxLayout="row" fxLayoutAlign="space-between center" >
-                            <div>
-                                <b>No que esta pensando?</b>
+                            <div style="color:#5f5f5f;">
+                                {{'POST.TEXT_POST_INPUT'  | translate}}
                             </div>
                         </div>
                     </mat-card>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
                     <button mat-button class="button-test-post">
+                        <mat-icon style="color: #f28b66">assessment</mat-icon>
+                        {{'PADRAO.ASK' | translate}}
+                    </button>
+                    <button mat-button class="button-test-post">
                         <mat-icon style="color: #394A59">insert_photo</mat-icon>
-                        Foto
+                        {{'PADRAO.PHOTO' | translate}}
                     </button>
                     <button mat-button class="button-test-post">
                         <mat-icon style="color: #ca4949">import_contacts</mat-icon>
-                        Resenha
+                        {{'PADRAO.RESENHA' | translate}}
                     </button>
                 </div>
             </div>

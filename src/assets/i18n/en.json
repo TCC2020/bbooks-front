@@ -1,5 +1,8 @@
 {
   "PADRAO": {
+    "PHOTO": "Photo",
+    "ASK": "Ask",
+    "PUBLICAR": "Post",
     "BUSCAR": "Search",
     "ENTRAR": "Login",
     "SENHA": "Password",
@@ -104,7 +107,14 @@
     "ADICIONAR_LIVRO": "Add book on the Bookcase",
     "EDITAR_LIVRO": "Edit Book",
     "INDICAR_LIVRO": "Show book to a friend",
-    "BOTAO_INDICAR": "Indicate"
+    "BOTAO_INDICAR": "Indicate",
+    "META_LEITURA": "Add to reading target",
+    "META_LEITURA_REMOVER": "Remove from reading target",
+    "ENCERRAR_META_LEITURA": "The reading target will end in",
+    "DIAS_ENCERRAR_META": "days."
+
+    
+
 
 
   },
@@ -214,5 +224,11 @@
     "TA001": "Last tracking is not finished yeat",
     "RT006": "Page can´t be zero",
     "BK001": "ISBN already exists"
+  },
+  "POST":{
+    "CRIAR_POSTAGEM": "Create Post",
+    "COMPARTILHAR_COM": "Share with",
+    "TEXT_POST_INPUT" : "What are you thinking?",
+    "TEXT_POST_INPUT_ASK" : "Ask a question..."
   }
 }
