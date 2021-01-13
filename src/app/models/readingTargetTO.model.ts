@@ -1,3 +1,4 @@
+import { ReadingTargetProgressTO } from './ReadingTargetProgressTO.model';
 import { UserBookTO } from './userBookTO';
 
 export class ReadingTargetTO {
@@ -5,4 +6,5 @@ export class ReadingTargetTO {
     year: number;
     targets: UserBookTO[];
     profileId: number;
+    progress: ReadingTargetProgressTO;
 }

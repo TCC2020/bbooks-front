@@ -1,3 +1,4 @@
+import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
 import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -44,6 +45,10 @@ const routes: Routes = [
     },
     {
         path: 'andamento-meta-leitura', component: ReadingTargetProgressComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'metas-anteriores', component: PreviousGoalsComponent,
         canActivate: [AuthGuard],
     },
     {

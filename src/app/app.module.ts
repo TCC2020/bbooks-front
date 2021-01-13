@@ -35,6 +35,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import {SharedModule} from './views/shared/shared.module';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
 import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
+import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -55,7 +56,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         PageNotFoundComponent,
         UploadComponent,
         PesquisarAmigosComponent,
-        ReadingTargetProgressComponent
+        ReadingTargetProgressComponent,
+        PreviousGoalsComponent
     ],
     imports: [
         BrowserModule,
