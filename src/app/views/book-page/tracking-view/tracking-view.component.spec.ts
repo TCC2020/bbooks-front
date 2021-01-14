@@ -7,15 +7,18 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {MaterialModule} from '../../../material/material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {readingTrackingMock} from '../../../mocks/tracking.model';
 import {TrackingService} from '../../../services/tracking.service';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
+import {trackingMock} from '../../../mocks/tracking.model.mock';
+import {errorMock} from '../../../mocks/error.model.mock';
 
 describe('TrackingViewComponent', () => {
     let component: TrackingViewComponent;
     let fixture: ComponentFixture<TrackingViewComponent>;
+    let trackingServiceMock: TrackingService;
 
 
     const mockMatDialog = {
@@ -59,6 +62,8 @@ describe('TrackingViewComponent', () => {
                 TranslateStore
             ]
         }).compileComponents();
+
+        trackingServiceMock = TestBed.inject(TrackingService);
     }));
 
     beforeEach(() => {
@@ -69,5 +74,73 @@ describe('TrackingViewComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+
+    it('save: should save tracking', done => {
+        const spy = jest.spyOn(trackingServiceMock, 'save').mockReturnValue(of(readingTrackingMock));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.formTracking.value);
+        done();
+    });
+    it('save: should catch erro tracking with TA001', done => {
+        errorMock.error.message = 'TA001';
+        const spy = jest.spyOn(trackingServiceMock, 'save').mockReturnValue(throwError(errorMock));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.formTracking.value);
+        done();
+    });
+
+    it('save: should catch unknown error', done => {
+        errorMock.error.message = '';
+        const spy = jest.spyOn(trackingServiceMock, 'save').mockReturnValue(throwError(errorMock));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.formTracking.value);
+        done();
+    });
+
+    it('update: should update tracking', done => {
+        component.data.tracking = trackingMock;
+        component.data.tracking.id = trackingMock.id;
+        const spy = jest.spyOn(trackingServiceMock, 'update').mockReturnValue(of(readingTrackingMock));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(trackingMock);
+        done();
+    });
+    it('update: should catch error tracking with RT002', done => {
+        component.data.tracking = trackingMock;
+        component.data.tracking.id = trackingMock.id;
+        errorMock.error.message = 'RT002';
+        const spy = jest.spyOn(trackingServiceMock, 'update').mockReturnValue(throwError(errorMock));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(trackingMock);
+        done();
+    });
+
+    it('update: should catch error tracking with RT003', done => {
+        component.data.tracking = trackingMock;
+        component.data.tracking.id = trackingMock.id;
+        errorMock.error.message = 'RT003';
+        const spy = jest.spyOn(trackingServiceMock, 'update').mockReturnValue(throwError(errorMock));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(trackingMock);
+        done();
+    });
+
+    it('should catch unknown error', done => {
+        component.data.tracking = trackingMock;
+        component.data.tracking.id = trackingMock.id;
+        errorMock.error.message = '';
+        const spy = jest.spyOn(trackingServiceMock, 'update').mockReturnValue(throwError(errorMock));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(trackingMock);
+        done();
     });
 });
