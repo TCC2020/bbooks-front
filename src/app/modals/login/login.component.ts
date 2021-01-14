@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
     loginFinalize(userLogin): void {
         this.authService.login(userLogin).subscribe(res => {
                 this.authService.authenticate(res, this.loginControl.value.keepLogin);
-                this.router.navigateByUrl('/');
+                this.router.navigateByUrl('/feed');
             },
             (err) => {
                 let codMessage = '';
