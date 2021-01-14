@@ -1,16 +1,14 @@
-<br>
-<div>
-    <mat-card fxLayout="row" fxLayoutAlign="space-around center"
-         *ngIf="user?.id === this.authService.getUser().id">
-        <div>
 
+<div class="body">
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-card>
             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxLayoutGap.xs="10px">
                 <div>
-                    <img class="cardImageReview"
-                         src="{{user.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                    <img class="cardImageReview" src="{{user.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
                 </div>
-                <mat-card class="commentReview" (click)="openPost()">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-card class="commentReview" >
+                    <div fxLayout="row" fxLayoutAlign="space-between center" >
                         <div style="color:#5f5f5f;">
                             {{'POST.TEXT_POST_INPUT'  | translate}}
                         </div>
@@ -18,7 +16,7 @@
                 </mat-card>
             </div>
 
-            <div fxLayout="row" fxLayoutAlign="space-around center">
+            <div fxLayout="row" fxLayoutAlign="space-around center" >
                 <button mat-button class="button-test-post">
                     <mat-icon style="color: #f28b66">assessment</mat-icon>
                     {{'PADRAO.ASK' | translate}}
@@ -32,9 +30,8 @@
                     {{'PADRAO.RESENHA' | translate}}
                 </button>
             </div>
-        </div>
-
-    </mat-card>
+        </mat-card>
+    </div>
 
     <div fxLayout="column" fxLayoutAlign="space-around center"   >
         <div *ngFor="let i of [0,0,0,0]" >
@@ -61,3 +58,4 @@
         </div>
     </div>
 </div>
+

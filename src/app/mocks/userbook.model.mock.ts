@@ -11,7 +11,6 @@ userbookMock.status = BookStatus.LIDO;
 userbookMock.profileId = 33333333;
 userbookMock.tags = tagsMock;
 userbookMock.id = 323232323;
-
 export const userbooksMock = [];
 
 userbooksMock.push(userbooksMock);
