@@ -104,7 +104,6 @@ describe('TrackingViewComponent', () => {
 
     it('update: should update tracking', done => {
         component.data.tracking = trackingMock;
-        component.data.tracking.id = trackingMock.id;
         const spy = jest.spyOn(trackingServiceMock, 'update').mockReturnValue(of(readingTrackingMock));
         component.save();
         expect(spy).toHaveBeenCalled();
@@ -113,7 +112,6 @@ describe('TrackingViewComponent', () => {
     });
     it('update: should catch error tracking with RT002', done => {
         component.data.tracking = trackingMock;
-        component.data.tracking.id = trackingMock.id;
         errorMock.error.message = 'RT002';
         const spy = jest.spyOn(trackingServiceMock, 'update').mockReturnValue(throwError(errorMock));
         component.save();
@@ -124,7 +122,6 @@ describe('TrackingViewComponent', () => {
 
     it('update: should catch error tracking with RT003', done => {
         component.data.tracking = trackingMock;
-        component.data.tracking.id = trackingMock.id;
         errorMock.error.message = 'RT003';
         const spy = jest.spyOn(trackingServiceMock, 'update').mockReturnValue(throwError(errorMock));
         component.save();
@@ -135,7 +132,6 @@ describe('TrackingViewComponent', () => {
 
     it('should catch unknown error', done => {
         component.data.tracking = trackingMock;
-        component.data.tracking.id = trackingMock.id;
         errorMock.error.message = '';
         const spy = jest.spyOn(trackingServiceMock, 'update').mockReturnValue(throwError(errorMock));
         component.save();

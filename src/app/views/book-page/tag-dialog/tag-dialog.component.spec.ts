@@ -15,10 +15,17 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {of} from 'rxjs';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
+import {tagMock} from '../../../mocks/tag.model.mock';
+import {userMock} from '../../../mocks/user.model.mock';
 
 describe('TagDialogComponent', () => {
     let component: TagDialogComponent;
     let fixture: ComponentFixture<TagDialogComponent>;
+    let tagServiceMock: TagService;
+
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
+    };
 
     const mockMatDialog = {
         open: jest.fn(() => {
@@ -55,7 +62,10 @@ describe('TagDialogComponent', () => {
                 TranslateServiceMockForChild
             ],
             providers: [
-                AuthService,
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                },
                 TagService,
                 SocialAuthServiceConfigMock,
                 {
@@ -74,6 +84,7 @@ describe('TagDialogComponent', () => {
                 TranslateStore
             ]
         }).compileComponents();
+        tagServiceMock = TestBed.inject(TagService);
     }));
 
     beforeEach(() => {
@@ -106,8 +117,18 @@ describe('TagDialogComponent', () => {
     });
 
     it('should call save tag', () => {
-        const spy = jest.spyOn(component, 'save');
+        component.tag = null;
+        const spy = jest.spyOn(tagServiceMock, 'save').mockReturnValue(of(tagMock));
         component.save();
         expect(spy).toHaveBeenCalled();
+    });
+
+    it('should call update tag', () => {
+        component.tag = tagMockData;
+        const spy = jest.spyOn(tagServiceMock, 'update').mockReturnValue(of(tagMock));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.tag);
+
     });
 });
