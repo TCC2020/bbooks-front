@@ -45,7 +45,10 @@ import {PostDialogComponent} from './post-dialog/post-dialog.component';
     exports: [
         BookCardComponent,
         NumbersOnlyInputDirective,
-        LoaderComponent
+        LoaderComponent,
+        BookAddDialogComponent,
+        ReferBookDialogComponent,
+        PostDialogComponent
     ],
     providers: []
 })

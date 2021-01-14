@@ -127,17 +127,6 @@ export class BookViewComponent implements OnInit, OnDestroy {
         }
     }
 
-    // getAllReadingTracking() {
-    //     this.readingTrackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {
-    //             this.readingTracking = trackings
-    //                 .slice()
-    //                 .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
-    //             this.percentage = this.getPercentTotal();
-    //         },
-    //         error => {
-    //             console.log('error tracking all by idbook', error);
-    //         });
-    // }
     getAllTracking() {
         if (this.book?.idUserBook) {
             this.trackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {

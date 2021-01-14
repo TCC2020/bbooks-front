@@ -168,7 +168,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         this.auth.loginToken(this.userLogin).subscribe(res => {
                 localStorage.clear();
                 this.auth.authenticate(res, true);
-                this.router.navigate(['/']);
+                this.router.navigate(['/feed']);
             },
             (err) => {
                 alert(err.error.message);

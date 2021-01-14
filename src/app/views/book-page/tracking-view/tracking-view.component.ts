@@ -1,9 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ReadingTrackingTO} from '../../../models/ReadingTrackingTO.model';
 import {TranslateService} from '@ngx-translate/core';
-import {ReadingTrackingService} from '../../../services/reading-tracking.service';
 import {take} from 'rxjs/operators';
 import {TrackingTO} from '../../../models/TrackingTO.model';
 import {TrackingService} from '../../../services/tracking.service';
@@ -81,15 +80,5 @@ export class TrackingViewComponent implements OnInit {
                     }
                 });
         }
-
-    }
-
-    delete() {
-        // this.trackingService.delete(this.data.tracking.id).subscribe(() => {
-        //         this.dialogRef.close('delete');
-        //     },
-        //     error => {
-        //         console.log('error tracking delete', error);
-        //     });
     }
 }

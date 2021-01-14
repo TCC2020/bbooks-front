@@ -34,8 +34,12 @@ import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import {SharedModule} from './views/shared/shared.module';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
+<<<<<<< HEAD
 import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
 import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
+=======
+import {FeedPageModule} from './views/feed-page/feed-page.module';
+>>>>>>> e96584393819cf41042c018c07eb879f1afd4668
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -73,6 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatFormFieldModule,
         MatInputModule,
         SocialLoginModule,
+        FeedPageModule,
         BookModule,
         PerfilPageModule,
         SharedModule,
