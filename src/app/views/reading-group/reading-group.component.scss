@@ -1,0 +1,52 @@
+/*grupoid
+nome
+descrição
+data de criação
+privacidade*/
+
+div {
+    border: 1px solid black;
+    //padding: 10px;
+}
+
+.container-grupo {
+    width: 1200px;
+    margin: 15px auto 0;
+}
+
+.container-detalhes-cabecalho {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+.informacoes-grupo {
+    width: 60%;
+}
+
+.botao-convidar-grupo {
+    width: 40%;
+}
+
+.botao-convidar-grupo {
+    text-align: right;
+}
+
+.botao-convidar-grupo button{
+    margin: auto 0;
+}
+
+
+.container-corpo-grupo {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+.container-feed-grupo {
+    width: 60%;
+}
+
+.container-detalhes-grupo {
+    width: 40%;
+}

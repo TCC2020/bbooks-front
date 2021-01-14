@@ -91,6 +91,12 @@
                     <span> {{this.user?.userName}}</span>
                 </div>
             </div>
+
+            <div mat-menu-item  [routerLink]="['/grupo-leitura']">
+                <mat-icon>groups</mat-icon>
+                <span>Grupo de Leitura</span>
+            </div>
+
             <div mat-menu-item (click)="logout()">
                 <mat-icon>login</mat-icon>
                 <span>{{'NAV.SAIR' | translate}}</span>
