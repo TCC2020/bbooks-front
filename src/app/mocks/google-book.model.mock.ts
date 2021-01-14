@@ -10,4 +10,5 @@ export const gBookMock  = {
         description: 'teste',
         authors: []
     }
-}
+};
+
