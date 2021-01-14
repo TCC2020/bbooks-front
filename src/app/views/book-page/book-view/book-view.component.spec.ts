@@ -16,7 +16,7 @@ import {BookService} from '../../../services/book.service';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {RouterTestingModule} from '@angular/router/testing';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
-import {bookMock} from '../../../mocks/book.model.mock';
+import {bookMock, booksMock} from '../../../mocks/book.model.mock';
 import {ActivatedRoute} from '@angular/router';
 import {of, throwError} from 'rxjs';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
@@ -28,12 +28,18 @@ import {trackingMock} from '../../../mocks/tracking.model.mock';
 import {readingTrackingMock} from '../../../mocks/tracking.model';
 import { readingTargetMock } from 'src/app/mocks/reading-target.model.mock';
 import { BookStatus } from 'src/app/models/enums/BookStatus.enum';
+import {Book} from '../../../models/book.model';
+import {userbookMock, userbooksMock} from '../../../mocks/userbook.model.mock';
+import {gBookMock} from '../../../mocks/google-book.model.mock';
 
 describe('BookViewComponent', () => {
     let component: BookViewComponent;
     let fixture: ComponentFixture<BookViewComponent>;
     let httpReadingTarget: ReadingTargetService;
     let httpTrackingService: TrackingService;
+    let gBookServiceMock: GoogleBooksService;
+    let booksServiceMock: BookService;
+
 
     const routeMock = {
         data: of({book: bookMock})
@@ -91,7 +97,8 @@ describe('BookViewComponent', () => {
         }).compileComponents();
         httpReadingTarget = TestBed.inject(ReadingTargetService);
         httpTrackingService = TestBed.inject(TrackingService);
-
+        gBookServiceMock = TestBed.inject(GoogleBooksService);
+        booksServiceMock = TestBed.inject(BookService);
     }));
 
     beforeEach(() => {
@@ -235,5 +242,46 @@ describe('BookViewComponent', () => {
         component.book.idUserBook = 10;
         component.book.status = BookStatus.EMPRESTADO;
         expect(component.verifystatusBook()).toBeTruthy();
+    });
+
+
+    it('should getBook by google api', done => {
+        component.book = bookMock;
+        component.book.api = 'google';
+        gBookMock.id = 10;
+        // @ts-ignore
+        userbookMock.books = [];
+        // @ts-ignore
+        userbookMock.books = booksMock;
+        // @ts-ignore
+        userbookMock.books[0].idBookGoogle = 10;
+        const spyUserbooks = jest.spyOn(booksServiceMock, 'getAllUserBooks').mockReturnValue(of(userbookMock));
+        const spyGbook = jest.spyOn(gBookServiceMock, 'getById').mockReturnValue(of(gBookMock));
+
+        component.getBook();
+        expect(spyUserbooks).toHaveBeenCalled();
+        expect(spyGbook).toHaveBeenCalled();
+        expect(spyGbook).toHaveBeenCalledWith(bookMock.id);
+        done();
+    });
+
+
+    it('should getBook by bbooks api', done => {
+        bookMock.id = '10';
+        component.book = bookMock;
+        component.book.api = '';
+        // @ts-ignore
+        userbookMock.books = [];
+        // @ts-ignore
+        userbookMock.books = booksMock;
+        // @ts-ignore
+        userbookMock.books[0].idBook = '10';
+        const spyUserbooks = jest.spyOn(booksServiceMock, 'getAllUserBooks').mockReturnValue(of(userbookMock));
+        const spyGbook = jest.spyOn(booksServiceMock, 'getById').mockReturnValue(of(bookMock));
+
+        component.getBook();
+        expect(spyUserbooks).toHaveBeenCalled();
+        expect(spyGbook).toHaveBeenCalled();
+        done();
     });
 });
