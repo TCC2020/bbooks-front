@@ -1,87 +1,90 @@
-<mat-card class="container-conteudo">
-    <div fxLayout="column" fxLayoutAlign="space-around center" >
-        <div class="container-imagem-perfil">
-            <img class="imagem-perfil" [src]="user?.profile?.profileImage ? user.profile.profileImage: 'https://image.flaticon.com/icons/png/512/1361/1361728.png' " alt="imagem de perfil"/>
-        </div>
-        <h4><strong>{{user.profile.name}} {{user.profile.lastName}}</strong></h4>
-        <p>@{{user.userName}}</p>
-        <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px">
-            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="verfiyPerfilPageisUserLogged()" [routerLink]="['settings']">
-                <mat-icon>
-                    create
-                </mat-icon>
-                {{'PERFIL.EDITAR_PERFIL' | translate | titlecase}}
-            </button>
-            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === null" (click)="sendRequest()">
-                <mat-icon>
-                    group_add
-                </mat-icon>
-                {{'PADRAO.ADICIONAR' | translate | titlecase}}
-            </button>
-            <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'added'">
-                <mat-icon>
-                    people_alt
-                </mat-icon>
-                {{'PERFIL.friends' | translate | titlecase}}
-            </button>
-            <mat-menu #menuAmigos="matMenu">
-                <div mat-menu-item (click)="deleteFriend(user.profile.id)">
-                    <mat-icon color="warn">indeterminate_check_box</mat-icon>
-                    <span>{{'PADRAO.DESFAZER_AMIZADE' | translate}}</span>
-                </div>
-            </mat-menu>
-            <button mat-raised-button color="primary" [matMenuTriggerFor]="menuSent" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'sent'" >
-                <mat-icon>done</mat-icon>
-                {{'PADRAO.SOLICITACAO_ENVIADA' | translate}}
-            </button>
-            <mat-menu #menuSent="matMenu">
-                <div mat-menu-item (click)="deleteRequest(user.userName)" >
-                    <mat-icon color="warn">indeterminate_check_box</mat-icon>
-                    <span>{{'PADRAO.SOLICITACAO_CANCELAR' | translate}}</span>
-                </div>
-            </mat-menu>
-            <button mat-raised-button color="primary" [matMenuTriggerFor]="menuReceive" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'received'" >
-                <mat-icon>done</mat-icon>
-                {{'PADRAO.SOLICITACAO_RECEBIDA' | translate}}
-            </button>
-            <mat-menu #menuReceive="matMenu">
-                <div mat-menu-item (click)="aceptRequest(user.userName)">
-                    <mat-icon color="accent">done</mat-icon>
-                    <span>{{'PADRAO.CONFIRMAR' | translate}}</span>
-                </div>
-                <div mat-menu-item (click)="deleteRequest(user.userName)">
-                    <mat-icon color="warn">indeterminate_check_box</mat-icon>
-                    <span>{{'PADRAO.EXCLUIR' | translate}}</span>
-                </div>
-            </mat-menu>
+<div class="container-conteudo">
+    <div fxLayout="column" fxLayoutAlign="space-around center">
+        <mat-card fxLayout="column" fxLayoutAlign="space-around center" class="card-main">
+            <div class="container-imagem-perfil">
+                <img class="imagem-perfil" [src]="user?.profile?.profileImage ? user.profile.profileImage: 'https://image.flaticon.com/icons/png/512/1361/1361728.png' " alt="imagem de perfil"/>
+            </div>
+            <h4><strong>{{user.profile.name}} {{user.profile.lastName}}</strong></h4>
+            <p>@{{user.userName}}</p>
+            <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+                <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="verfiyPerfilPageisUserLogged()" [routerLink]="['settings']">
+                    <mat-icon>
+                        create
+                    </mat-icon>
+                    {{'PERFIL.EDITAR_PERFIL' | translate | titlecase}}
+                </button>
+                <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === null" (click)="sendRequest()">
+                    <mat-icon>
+                        group_add
+                    </mat-icon>
+                    {{'PADRAO.ADICIONAR' | translate | titlecase}}
+                </button>
+                <button fxFlex="px" mat-raised-button color="accent" class="iconTextWhite" [matMenuTriggerFor]="menuAmigos" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'added'">
+                    <mat-icon>
+                        people_alt
+                    </mat-icon>
+                    {{'PERFIL.friends' | translate | titlecase}}
+                </button>
+                <mat-menu #menuAmigos="matMenu">
+                    <div mat-menu-item (click)="deleteFriend(user.profile.id)">
+                        <mat-icon color="warn">indeterminate_check_box</mat-icon>
+                        <span>{{'PADRAO.DESFAZER_AMIZADE' | translate}}</span>
+                    </div>
+                </mat-menu>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="menuSent" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'sent'" >
+                    <mat-icon>done</mat-icon>
+                    {{'PADRAO.SOLICITACAO_ENVIADA' | translate}}
+                </button>
+                <mat-menu #menuSent="matMenu">
+                    <div mat-menu-item (click)="deleteRequest(user.userName)" >
+                        <mat-icon color="warn">indeterminate_check_box</mat-icon>
+                        <span>{{'PADRAO.SOLICITACAO_CANCELAR' | translate}}</span>
+                    </div>
+                </mat-menu>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="menuReceive" *ngIf="!verfiyPerfilPageisUserLogged() && user.profile.friendshipStatus === 'received'" >
+                    <mat-icon>done</mat-icon>
+                    {{'PADRAO.SOLICITACAO_RECEBIDA' | translate}}
+                </button>
+                <mat-menu #menuReceive="matMenu">
+                    <div mat-menu-item (click)="aceptRequest(user.userName)">
+                        <mat-icon color="accent">done</mat-icon>
+                        <span>{{'PADRAO.CONFIRMAR' | translate}}</span>
+                    </div>
+                    <div mat-menu-item (click)="deleteRequest(user.userName)">
+                        <mat-icon color="warn">indeterminate_check_box</mat-icon>
+                        <span>{{'PADRAO.EXCLUIR' | translate}}</span>
+                    </div>
+                </mat-menu>
 
 
-            <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">
-                <mat-icon>more_horiz</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" >
-                <div mat-menu-item *ngIf="!verfiyPerfilPageisUserLogged()">
-                    <mat-icon>indeterminate_check_box</mat-icon>
-                    <span>Bloquear</span>
-                </div>
-                <div mat-menu-item *ngIf="verfiyPerfilPageisUserLogged()">
-                    <mat-icon>link</mat-icon>
-                    <span>Copiar link para o perfil</span>
-                </div>
-            </mat-menu>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-            <nav mat-tab-nav-bar>
-                <a mat-tab-link *ngFor="let link of links"
-                   (click)="activeLink = link"
-                   [active]="activeLink == link" routerLink="{{link}}"
-                > {{'PERFIL.' + link | translate | titlecase}}</a>
-            </nav>
-        </div>
-        <div>
+                <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">
+                    <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" >
+                    <div mat-menu-item *ngIf="!verfiyPerfilPageisUserLogged()">
+                        <mat-icon>indeterminate_check_box</mat-icon>
+                        <span>Bloquear</span>
+                    </div>
+                    <div mat-menu-item *ngIf="verfiyPerfilPageisUserLogged()">
+                        <mat-icon>link</mat-icon>
+                        <span>Copiar link para o perfil</span>
+                    </div>
+                </mat-menu>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <nav mat-tab-nav-bar >
+                    <a mat-tab-link *ngFor="let link of links"
+                       (click)="activeLink = link"
+                       [active]="activeLink == link" routerLink="{{link}}"
+                    > {{'PERFIL.' + link | translate | titlecase}}</a>
+                </nav>
+            </div>
+        </mat-card>
+
+        <div style="max-width: 600px">
             <router-outlet></router-outlet>
         </div>
     </div>
 
-</mat-card>
+</div>
 

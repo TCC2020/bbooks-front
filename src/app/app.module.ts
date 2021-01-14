@@ -34,6 +34,7 @@ import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import {SharedModule} from './views/shared/shared.module';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
+import {FeedPageModule} from './views/feed-page/feed-page.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -69,6 +70,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatFormFieldModule,
         MatInputModule,
         SocialLoginModule,
+        FeedPageModule,
         BookModule,
         PerfilPageModule,
         SharedModule,
