@@ -127,8 +127,8 @@
             <mat-tab label="{{'PADRAO.RESENHA' | translate}}">
 <!--                <br>-->
 <!--                //<mat-progress-bar mode="indeterminate" *ngIf="!(reviews | async)"></mat-progress-bar>-->
-                <br>
                 <mat-paginator
+                        style="background-color: #f1f1f1;"
                         *ngIf="reviewPagination?.content?.length > 0"
                         [length]="reviewPagination?.totalElements"
                         [pageSize]="pageEvent.pageSize"

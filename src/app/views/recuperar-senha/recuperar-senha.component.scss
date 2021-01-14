@@ -12,6 +12,7 @@ form {
     margin: 50px auto 0px;
     box-sizing: border-box;
     text-align: center;
+    background-color: white;
 }
 
 button#enviarRecuperarSenha {
@@ -32,6 +33,7 @@ button#enviarRecuperarSenha:hover {
         border: none;
         width: 100%;
         margin: auto 0px;
+        height: 100%;
     }
     div {
         padding: 7px;

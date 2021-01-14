@@ -46,6 +46,11 @@ const routes: Routes = [
         component: PageNotFoundComponent
     },
     {
+        path: 'feed' ,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/feed-page/feed-page.module').then(m => m.FeedPageModule)
+    },
+    {
         path: '',
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/book-page/book.module').then(m => m.BookModule)
