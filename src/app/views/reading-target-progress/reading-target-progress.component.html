@@ -1,12 +1,12 @@
 <div class="container-geral">
     <div class="container-progresso">
-        <h2>Andamento da Meta de Leitura de {{currentDate}}</h2>
+        <h2>{{'PADRAO.ANDAMENTO_META' | translate}} - {{currentDate}}</h2>
         <div class="barra-de-progresso">
             <mat-progress-bar class="progresso-andamento-meta-leitura" mode="determinate" [value]="currentReadingTarget?.progress?.progress"></mat-progress-bar>
             <div class="porcentagem">{{currentReadingTarget?.progress?.progress | number:'1.1-2'}}%</div>
         </div>
         <p class="quantidade-lida">{{currentReadingTarget?.progress?.done}}/{{currentReadingTarget?.progress?.done + currentReadingTarget?.progress?.remaining}}</p>
-        <button type="button" mat-flat-button color="accent" routerLink="/metas-anteriores">Metas Anteriores</button>
+        <button type="button" mat-flat-button color="accent" routerLink="/metas-anteriores">{{'PADRAO.METAS_ANTEREIORS' | translate}}</button>
     </div>
     <mat-divider></mat-divider>
     <!--Começar o for dos livros-->
