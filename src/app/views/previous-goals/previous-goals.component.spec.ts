@@ -1,4 +1,14 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from 'src/app/material/material.module';
+import { SocialAuthServiceConfigMock } from 'src/app/mocks/google.provide.mock';
+import { userMock } from 'src/app/mocks/user.model.mock';
+import { AuthService } from 'src/app/services/auth.service';
+import { BookService } from 'src/app/services/book.service';
+import { GoogleBooksService } from 'src/app/services/google-books.service';
+import { ReadingTargetService } from 'src/app/services/reading-target.service';
 
 import { PreviousGoalsComponent } from './previous-goals.component';
 
@@ -6,9 +16,30 @@ describe('PreviousGoalsComponent', () => {
   let component: PreviousGoalsComponent;
   let fixture: ComponentFixture<PreviousGoalsComponent>;
 
+  const authServiceMock = {
+    getUser: jest.fn(() => userMock)
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreviousGoalsComponent ]
+      declarations: [ PreviousGoalsComponent ],
+       imports: [
+        MaterialModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+        BrowserDynamicTestingModule
+      ],
+      providers: [
+        ReadingTargetService,
+        BookService,
+        GoogleBooksService,
+        AuthService,
+        SocialAuthServiceConfigMock,
+        {
+          provide: AuthService,
+          useValue: authServiceMock
+       }
+      ]
     })
     .compileComponents();
   }));

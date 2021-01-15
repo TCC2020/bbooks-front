@@ -52,7 +52,7 @@ describe('FriendComponent', () => {
             ]
         })
             .compileComponents();
-            httpFriendsService = TestBed.inject(FriendsService);
+        httpFriendsService = TestBed.inject(FriendsService);
 
     }));
 
