@@ -34,6 +34,8 @@ import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import {SharedModule} from './views/shared/shared.module';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
+import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
+import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
 import {FeedPageModule} from './views/feed-page/feed-page.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -54,7 +56,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         PageNotFoundComponent,
         PageNotFoundComponent,
         UploadComponent,
-        PesquisarAmigosComponent
+        PesquisarAmigosComponent,
+        ReadingTargetProgressComponent,
+        PreviousGoalsComponent
     ],
     imports: [
         BrowserModule,

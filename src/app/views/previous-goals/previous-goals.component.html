@@ -1,0 +1,32 @@
+<div class="container-geral">
+    <div class="container-titulo-pagina">
+        <h2>Metas Anteriores</h2>
+    </div>
+
+    <div class="container-metas-anteriores">
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let previousGoal of previousGoals" (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{previousGoal?.year}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  100% Concluído
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+            <!--Começar o for dos livros-->
+              <div class="container-linha-livro" *ngFor="let userBook of previousGoal?.targets">
+                <div class="container-imagem-livro">
+                    <img [src]="userBook?.book?.image ? userBook.book.image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                </div>
+                <div class="container-informacoes-livro">
+                    <p>{{userBook?.book?.title}}</p>
+                    <p>Status: {{userBook?.status}}</p>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            </mat-expansion-panel>
+          </mat-accordion>
+    </div>
+</div>

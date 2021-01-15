@@ -1,3 +1,5 @@
+import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
+import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainPageComponent } from './views/main-page/main-page.component';
@@ -39,6 +41,14 @@ const routes: Routes = [
     },
     {
         path: 'pesquisar-amigos', component: PesquisarAmigosComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'andamento-meta-leitura', component: ReadingTargetProgressComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'metas-anteriores', component: PreviousGoalsComponent,
         canActivate: [AuthGuard],
     },
     {
