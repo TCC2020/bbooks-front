@@ -2,8 +2,10 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TranslateService, TranslateStore } from '@ngx-translate/core';
 import { MaterialModule } from 'src/app/material/material.module';
 import { SocialAuthServiceConfigMock } from 'src/app/mocks/google.provide.mock';
+import { TranslateServiceMockForChild } from 'src/app/mocks/translate.service.mock';
 import { userMock } from 'src/app/mocks/user.model.mock';
 import { AuthService } from 'src/app/services/auth.service';
 import { BookService } from 'src/app/services/book.service';
@@ -27,13 +29,16 @@ describe('PreviousGoalsComponent', () => {
         MaterialModule,
         HttpClientTestingModule,
         RouterTestingModule,
-        BrowserDynamicTestingModule
+        BrowserDynamicTestingModule,
+        TranslateServiceMockForChild
       ],
       providers: [
         ReadingTargetService,
         BookService,
         GoogleBooksService,
         AuthService,
+        TranslateService,
+        TranslateStore,
         SocialAuthServiceConfigMock,
         {
           provide: AuthService,
