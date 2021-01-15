@@ -74,7 +74,8 @@
     "GOOGLE": "Google",
     "FACEBOOK": "Facebook",
     "ESQUECER_SENHA": "Forgot Password?",
-    "CRIAR_CONTA": "Create new account"
+    "CRIAR_CONTA": "Create new account",
+    "OU": "OR"
   },
   "CADASTRO1": {
     "TITULO": "Fill out the form to register",
