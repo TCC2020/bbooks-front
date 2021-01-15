@@ -12,6 +12,8 @@ import { ReadingTargetService } from 'src/app/services/reading-target.service';
 
 import { ReadingTargetProgressComponent } from './reading-target-progress.component';
 import { userMock } from 'src/app/mocks/user.model.mock';
+import { TranslateServiceMockForChild } from 'src/app/mocks/translate.service.mock';
+import { TranslateService, TranslateStore } from '@ngx-translate/core';
 
 describe('ReadingTargetProgressComponent', () => {
   let component: ReadingTargetProgressComponent;
@@ -28,7 +30,8 @@ describe('ReadingTargetProgressComponent', () => {
         MaterialModule,
         HttpClientTestingModule,
         RouterTestingModule,
-        BrowserDynamicTestingModule
+        BrowserDynamicTestingModule,
+        TranslateServiceMockForChild
       ],
       providers: [
         ReadingTargetService,
@@ -36,6 +39,8 @@ describe('ReadingTargetProgressComponent', () => {
         GoogleBooksService,
         AuthService,
         SocialAuthService,
+        TranslateService,
+        TranslateStore,
         SocialAuthServiceConfigMock,
         {
           provide: AuthService,
