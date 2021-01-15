@@ -262,7 +262,7 @@
                                     <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center">
                                         <mat-progress-bar color="accent" mode="determinate" class="progresBarTracking"
                                                           [value]="this.getPercentTotal(tracking.trackings)"></mat-progress-bar>
-                                        <div style="position: absolute; color: white; padding-left: 10px;"> {{this.getPercentTotal(tracking.trackings) | number}}
+                                        <div style="position: absolute; color: white; padding-left: 10px;"> {{this.getPercentTotal(tracking.trackings) | number:'1.1-2'}}
                                             %
                                         </div>
                                         <button
