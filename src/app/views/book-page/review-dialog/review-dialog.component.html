@@ -18,7 +18,8 @@
 
                 <mat-form-field style="width: 100%">
                     <mat-label>{{'RESENHA.BODY' | translate}}</mat-label>
-                    <textarea matInput placeholder="{{'RESENHA.BODY_TEXT' | translate}}" formControlName="body"></textarea>
+                    <textarea matInput #reviewArea maxlength="1000" placeholder="{{'RESENHA.BODY_TEXT' | translate}}" formControlName="body"></textarea>
+                    <mat-hint align="end">{{reviewArea.value.length}} / 1000</mat-hint>
                 </mat-form-field>
         </form>
     </div>
