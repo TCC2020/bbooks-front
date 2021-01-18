@@ -1,0 +1,28 @@
+.body{
+  margin: 20px;
+}
+.buttonOferta{
+  position: relative;
+  right: 0;
+  margin: 20px;
+}
+.title{
+  color: #2b2b2b;
+  font-size: 18px;
+}
+.subtitle{
+  font-size: 14px;
+  color: #575962;
+
+}
+.buttonOfertaBody{
+  width: 30%;
+}
+@media screen and (max-width: 600px) {
+  .buttonOferta{
+    position: absolute;
+  }
+  .buttonOfertaBody{
+    width: 80%;
+  }
+}
