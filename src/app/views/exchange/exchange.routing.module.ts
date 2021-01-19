@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {MainExchangeComponent} from './main-exchange/main-exchange.component';
 import {MyOffersComponent} from './my-offers/my-offers.component';
+import {OffersComponent} from './offers/offers.component';
 
 const exchangeRouter = [
     {
@@ -14,7 +15,7 @@ const exchangeRouter = [
             },
             {
                 path: 'offers',
-                component: MyOffersComponent
+                component: OffersComponent
             }
         ]
     },
