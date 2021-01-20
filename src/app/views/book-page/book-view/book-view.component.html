@@ -29,19 +29,19 @@
                         </div>
                         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutAlign.xs="center center" class="totalStatus" fxLayoutGap="5px">
                             <mat-card>
-                                LENDO
+                                {{'STATUS.DETALHES_LENDO' | translate}}
                                 <p>10</p>
                             </mat-card>
                             <mat-card >
-                                RELENDO
+                                {{'STATUS.DETALHES_RELENDO' | translate}}
                                 <p>10</p>
                             </mat-card>
                             <mat-card>
-                                QUEREM LER
+                                {{'STATUS.DETALHES_QUEREM_LER' | translate}}
                                 <p>10</p>
                             </mat-card>
                             <mat-card>
-                                ABANDONOS
+                                {{'STATUS.DETALHES_ABANDONOS' | translate}}
                                 <p>10</p>
                             </mat-card>
 <!--                            <mat-card fxFlex="20">-->
@@ -92,7 +92,7 @@
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-around center">
                     <div>
-                        <p style="font-weight: 500; color: #1a1a1a; margin: auto 10px;">About this book:</p>
+                        <p style="font-weight: 500; color: #1a1a1a; margin: auto 10px;">{{'BOOK.SOBRE_LIVRO' | translate}}:</p>
                         <p class="description">{{book.description}}</p>
                         <div fxLayout="row" fxLayoutAlign="center center">
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutAlign.xs="center center" fxLayoutGap="5px" class="totalStatus">
@@ -262,7 +262,7 @@
                                     <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-between center">
                                         <mat-progress-bar color="accent" mode="determinate" class="progresBarTracking"
                                                           [value]="this.getPercentTotal(tracking.trackings)"></mat-progress-bar>
-                                        <div style="position: absolute; color: white; padding-left: 10px;"> {{this.getPercentTotal(tracking.trackings) | number}}
+                                        <div style="position: absolute; color: white; padding-left: 10px;"> {{this.getPercentTotal(tracking.trackings) | number:'1.1-2'}}
                                             %
                                         </div>
                                         <button

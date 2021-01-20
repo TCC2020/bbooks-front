@@ -63,11 +63,11 @@
                 <mat-menu #menu="matMenu" >
                     <div mat-menu-item *ngIf="!verfiyPerfilPageisUserLogged()">
                         <mat-icon>indeterminate_check_box</mat-icon>
-                        <span>Bloquear</span>
+                        <span>{{'PADRAO.BLOQUEAR' | translate}}</span>
                     </div>
                     <div mat-menu-item *ngIf="verfiyPerfilPageisUserLogged()">
                         <mat-icon>link</mat-icon>
-                        <span>Copiar link para o perfil</span>
+                        <span>{{'PADRAO.COPIAR_LINK' | translate}}</span>
                     </div>
                 </mat-menu>
             </div>

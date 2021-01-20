@@ -1,0 +1,23 @@
+<div class="container-geral">
+    <div class="container-progresso">
+        <h2>{{'PADRAO.ANDAMENTO_META' | translate}} - {{currentDate}}</h2>
+        <div class="barra-de-progresso">
+            <mat-progress-bar class="progresso-andamento-meta-leitura" mode="determinate" [value]="currentReadingTarget?.progress?.progress"></mat-progress-bar>
+            <div class="porcentagem">{{currentReadingTarget?.progress?.progress | number:'1.1-2'}}%</div>
+        </div>
+        <p class="quantidade-lida">{{currentReadingTarget?.progress?.done}}/{{currentReadingTarget?.progress?.done + currentReadingTarget?.progress?.remaining}}</p>
+        <button type="button" mat-flat-button color="accent" routerLink="/metas-anteriores">{{'PADRAO.METAS_ANTEREIORS' | translate}}</button>
+    </div>
+    <mat-divider></mat-divider>
+    <!--Começar o for dos livros-->
+    <div class="container-linha-livro" *ngFor="let userBook of currentReadingTarget?.targets">
+        <div class="container-imagem-livro">
+            <img [src]="userBook?.book?.image ? userBook.book.image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+        </div>
+        <div class="container-informacoes-livro">
+            <p>{{userBook?.book?.title}}</p>
+            <p>Status: {{userBook?.status}}</p>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+</div>

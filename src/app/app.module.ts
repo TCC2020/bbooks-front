@@ -35,6 +35,8 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import {SharedModule} from './views/shared/shared.module';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
 import { ReadingGroupComponent } from './views/reading-group/reading-group.component';
+import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
+import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
 import {FeedPageModule} from './views/feed-page/feed-page.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -56,7 +58,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         PageNotFoundComponent,
         UploadComponent,
         PesquisarAmigosComponent,
-        ReadingGroupComponent
+        ReadingGroupComponent,
+        ReadingTargetProgressComponent,
+        PreviousGoalsComponent
     ],
     imports: [
         BrowserModule,

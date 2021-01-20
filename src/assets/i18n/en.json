@@ -35,7 +35,6 @@
     "SOLICITACAO_CANCELAR": "Cancel request",
     "SOLICITACAO_RECEBIDA": "request received",
     "COMPLETO": "Completed",
-    "CONFIRMAR": "Confirm",
     "EXCLUIR": "Delete",
     "DESFAZER_AMIZADE": "Unfriend",
     "CONCLUIDO": "Completed",
@@ -44,7 +43,12 @@
     "VELOCIDADE_LEITURA": "Reading speed",
     "PAGINA_POR_DIA": "pages/day",
     "RESENHA": "Review",
-    "LIVRO_INDICADO": "The book was referred to your friend."
+    "LIVRO_INDICADO": "The book was referred to your friend.",
+    "COPIAR_LINK": "Copy link to profile",
+    "BLOQUEAR": "Block",
+    "METAS_ANTEREIORS": "Previous Goals",
+    "ANDAMENTO_META": "Reading Target Progress"
+
 
   },
   "RESENHA" : {
@@ -70,7 +74,8 @@
     "GOOGLE": "Google",
     "FACEBOOK": "Facebook",
     "ESQUECER_SENHA": "Forgot Password?",
-    "CRIAR_CONTA": "Create new account"
+    "CRIAR_CONTA": "Create new account",
+    "OU": "OR"
   },
   "CADASTRO1": {
     "TITULO": "Fill out the form to register",
@@ -137,7 +142,8 @@
     "AVALIACAO": "Evaluation",
     "OUTRAS_INFO": "OTHER INFORMATION",
     "CRIAR_LIVRO": "Create Book",
-    "ESCOLHER_FOTO_LIVRO": "Choose book photo"
+    "ESCOLHER_FOTO_LIVRO": "Choose book photo",
+    "SOBRE_LIVRO": "About this book"
   },
   "PERFIL": {
     "feed": "feed",
@@ -161,7 +167,11 @@
     "QUERO_LER": "Want to Read",
     "EMPRESTADO": "Borrowed",
     "RELENDO": "Rereading",
-    "INTERROMPIDO": "Interrupted"
+    "INTERROMPIDO": "Interrupted",
+    "DETALHES_LENDO": "READING",
+    "DETALHES_RELENDO": "REREADING",
+    "DETALHES_QUEREM_LER": "WANT TO READ",
+    "DETALHES_ABANDONOS": "ABANDONED"
   },
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Reading Tracking",
@@ -222,8 +232,7 @@
     "FR002": "Conflict while removing friend",
     "RT005": "Page smaller than last tracking",
     "TA001": "Last tracking is not finished yeat",
-    "RT006": "Page can´t be zero",
-    "BK001": "ISBN already exists"
+    "RT006": "Page can´t be zero"
   },
   "POST":{
     "CRIAR_POSTAGEM": "Create Post",

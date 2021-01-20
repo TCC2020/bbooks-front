@@ -35,7 +35,6 @@
     "SOLICITACAO_CANCELAR": "Cancelar solicitação",
     "SOLICITACAO_RECEBIDA": "Solicitação recebida",
     "COMPLETO": "Amizade desfeita",
-    "CONFIRMAR": "Confirmar",
     "EXCLUIR": "Excluir",
     "DESFAZER_AMIZADE": "Desfazer amizade",
     "CONCLUIDO": "Concluído",
@@ -44,7 +43,11 @@
     "VELOCIDADE_LEITURA" : "Velocidade de leitura",
     "PAGINA_POR_DIA": "páginas/dia",
     "RESENHA": "Resenha",
-    "LIVRO_INDICADO": "O livro foi indicado para seu amigo."
+    "LIVRO_INDICADO": "O livro foi indicado para seu amigo.",
+    "COPIAR_LINK": "Copiar link para o perfil",
+    "BLOQUEAR": "Bloquear",
+    "METAS_ANTEREIORS": "Metas Anteriores",
+    "ANDAMENTO_META": "Andamamento da Meta de Leitura"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",
@@ -70,7 +73,8 @@
     "GOOGLE": "Google",
     "FACEBOOK": "Facebook",
     "ESQUECER_SENHA": "Esqueceu sua senha?",
-    "CRIAR_CONTA": "Cria uma conta"
+    "CRIAR_CONTA": "Cria uma conta",
+    "OU": "OU"
   },
   "CADASTRO1": {
     "TITULO": "Preencha o formulário para se cadastrar",
@@ -133,7 +137,8 @@
     "AVALIACAO": "Avaliação",
     "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
     "CRIAR_LIVRO": "Criar livro",
-    "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro"
+    "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro",
+    "SOBRE_LIVRO": "Sobre este livro"
   },
   "PERFIL": {
     "feed": "feed",
@@ -157,7 +162,11 @@
     "QUERO_LER": "Quero Ler",
     "EMPRESTADO": "Emprestado",
     "RELENDO": "Relendo",
-    "INTERROMPIDO": "Interrompido"
+    "INTERROMPIDO": "Interrompido",
+    "DETALHES_LENDO": "LENDO",
+    "DETALHES_RELENDO": "RELENDO",
+    "DETALHES_QUEREM_LER": "QUEREM LER",
+    "DETALHES_ABANDONOS": "ABANDONOS"
   },
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Acompanhamento de Leitura",
@@ -216,11 +225,9 @@
     "TK001": "Token inválido",
     "FR001": "Pedido não encontrado",
     "FR002": "Conflito ao remover amigo",
-    "FR002": "Conflito ao remover amigo",
     "RT005": "Página menor que o último acompanhamento",
     "TA001": "O último acompanhamento ainda não terminou",
-    "RT006": "A página não pode ser zero",
-    "BK001": "ISBN já existe"
+    "RT006": "A página não pode ser zero"
   },
   "POST":{
     "CRIAR_POSTAGEM": "Criar Postagem",
@@ -229,4 +236,3 @@
     "TEXT_POST_INPUT_ASK" : "Faça uma pergunta..."
   }
 }
-
