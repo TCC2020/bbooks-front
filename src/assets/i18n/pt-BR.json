@@ -49,6 +49,18 @@
     "METAS_ANTEREIORS": "Metas Anteriores",
     "ANDAMENTO_META": "Andamamento da Meta de Leitura"
   },
+  "GRUPO_LEITURA" : {
+    "ADMINISTRADORES" : "Administradores",
+    "MEMBROS": "Membros",
+    "GRUPO": "Grupo",
+    "CONVIDAR": "Convidar",
+    "DATA_CRIACAO": "Data de Criação",
+    "DESCRICAO_GRUPO": "Descrição do Grupo",
+    "SOBRE": "Sobre",
+    "feed": "feed",
+    "about": "sobre",
+    "members": "membros"
+  },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",
     "TITULO": "Título para sua resenha",

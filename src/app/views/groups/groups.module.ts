@@ -13,7 +13,7 @@ import { MembersGroupComponent } from './members-group/members-group.component';
 
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     ReadingGroupComponent,
     FeedGroupComponent,
     AboutGroupComponent,

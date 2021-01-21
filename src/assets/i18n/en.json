@@ -48,8 +48,18 @@
     "BLOQUEAR": "Block",
     "METAS_ANTEREIORS": "Previous Goals",
     "ANDAMENTO_META": "Reading Target Progress"
-
-
+  },
+  "GRUPO_LEITURA" : {
+    "ADMINISTRADORES": "Administrators",
+    "MEMBROS": "Members",
+    "GRUPO": "Group",
+    "CONVIDAR": "Invite",
+    "DATA_CRIACAO": "Created Date",
+    "DESCRICAO_GRUPO": "Group Description",
+    "SOBRE": "About",
+    "feed": "feed",
+    "about": "about",
+    "members": "members"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -117,11 +127,6 @@
     "META_LEITURA_REMOVER": "Remove from reading target",
     "ENCERRAR_META_LEITURA": "The reading target will end in",
     "DIAS_ENCERRAR_META": "days."
-
-    
-
-
-
   },
   "TAG": {
     "CRIAR_TAG": "Create Tag",

@@ -3,10 +3,10 @@
         <div class="container-detalhes-cabecalho">
             <div class="informacoes-grupo">
                 <h1>Nome do Grupo</h1>
-                <p>Grupo Público - 30 membros</p>
+                <p>{{'GRUPO_LEITURA.GRUPO' | translate}} Público - 30 {{'GRUPO_LEITURA.MEMBROS' | translate}}</p>
             </div>
             <div class="botao-convidar-grupo">
-                <button>Convidar Amigo</button>
+                <button type="button" mat-raised-button color="primary"><span class="material-icons">add</span>{{'GRUPO_LEITURA.CONVIDAR' | translate}}</button>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
                 <a mat-tab-link *ngFor="let link of links"
                     (click)="activeLink = link"
                     [active]="activeLink == link" routerLink="{{link}}"
-                >{{link}}</a>
+                >{{'GRUPO_LEITURA.' + link | translate | titlecase}}</a>
             </nav>
             <div class="container-mat-tab">
                 <router-outlet></router-outlet>
