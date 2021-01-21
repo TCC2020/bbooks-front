@@ -1,0 +1,85 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="body"
+     fxLayout.xs="column" fxLayoutAlign.xs ="center start">
+    <div  fxFlex="12">
+        <b class="title">Minhas ofertas</b>
+    </div>
+    <div class="subtitle" fxLayout="row">
+        <div>
+            <span class="material-icons">home</span>
+            <span class="material-icons">keyboard_arrow_right</span>
+        </div>
+        <div>
+            Minhas ofertas
+        </div>
+        <div>
+            <span class="material-icons">keyboard_arrow_right</span>
+        </div>
+        <div>
+            Nova oferta
+        </div>
+
+    </div>
+    <button mat-raised-button color="accent" class="buttonOferta" routerLink="../" >
+        Voltar
+    </button>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-around center" >
+    <mat-vertical-stepper [linear]="isLinear" #stepper class="stepper">
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Qual a condição de uso do seu livro?</ng-template>
+                <mat-form-field appearance="fill" fxLayout="row" fxLayoutAlign="center center">
+                    <mat-label>Condição do livro</mat-label>
+                    <mat-select>
+                        <mat-option [value]="'Novo'">
+                            Novo
+                        </mat-option>
+                        <mat-option [value]="'usado'">
+                            Usado
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Insira fotos legais para sua oferta</ng-template>
+                <div fxLayout="row" fxLayoutAlign="center center"
+                    fxLayout.xs="column">
+                    <div class="card"  (click)="openDialogUpload(0)" >
+                        <div class="container">
+                            <img class="image" [src]="files[0] ? files[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                        </div>
+                    </div>
+                    <div class="card" (click)="openDialogUpload(1)">
+                        <div class="container">
+                            <img class="image" [src]="files[1] ? files[1] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                        </div>
+                    </div>
+                    <div class="card" (click)="openDialogUpload(2)">
+                        <div class="container">
+                            <img class="image" [src]="files[2] ? files[2] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Outras informações</ng-template>
+            <mat-form-field  fxLayout="row" fxLayoutAlign="center center">
+                <mat-label>Descrição</mat-label>
+                <input matInput  >
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Enviar</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+</div>
+

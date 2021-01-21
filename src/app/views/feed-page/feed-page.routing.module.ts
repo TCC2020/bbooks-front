@@ -4,7 +4,8 @@ import {NgModule} from '@angular/core';
 
 const feedRouter = [
     {
-        path: '', component: MainComponent,
+        path: '',
+        component: MainComponent,
     },
 ];
 

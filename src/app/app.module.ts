@@ -38,6 +38,11 @@ import { ReadingTargetProgressComponent } from './views/reading-target-progress/
 import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
 import {FeedPageModule} from './views/feed-page/feed-page.module';
 import { GroupsModule } from './views/groups/groups.module';
+import {ExchangeModule} from './views/exchange/exchange.module';
+import { MyOffersComponent } from './views/exchange/my-offers/my-offers.component';
+import { OffersComponent } from './views/exchange/offers/offers.component';
+import { OfferViewComponent } from './views/exchange/offer-view/offer-view.component';
+import { OfferNewComponent } from './views/exchange/offer-new/offer-new.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -77,6 +82,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         SocialLoginModule,
         FeedPageModule,
         BookModule,
+        ExchangeModule,
         PerfilPageModule,
         SharedModule,
         GroupsModule,

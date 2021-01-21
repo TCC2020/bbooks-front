@@ -14,7 +14,6 @@ import {AuthVerifyLogin} from './guards/auth-verify-login';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
 
-
 const routes: Routes = [
     {
         path: '', component: MainPageComponent,
@@ -54,6 +53,10 @@ const routes: Routes = [
     {
         path: 'pagenotfound',
         component: PageNotFoundComponent
+    },
+    {
+        path: '',
+        loadChildren: () => import('./views/exchange/exchange.module').then(m => m.ExchangeModule)
     },
     {
         path: 'feed' ,

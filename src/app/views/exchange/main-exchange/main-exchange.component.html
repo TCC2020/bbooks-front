@@ -1,0 +1,40 @@
+<article [class.content]="!deviceXs" [class.content-mob]="deviceXs" (scroll)="onScroll($event)">
+    <mat-toolbar class="navMenu" *ngIf="deviceXs">
+        <button *ngIf="deviceXs" type="button" mat-icon-button (click)="drawer.toggle()" >
+            <mat-icon>menu</mat-icon>
+        </button>
+        Trocas
+    </mat-toolbar>
+    <mat-drawer-container style="background-color: #f1f1f1">
+        <mat-drawer #drawer [mode]="deviceXs?'over':'side'" [opened]="deviceXs?false:true" position="start"
+                    fxFlex
+                    fxLayoutGap
+                    fxLayout="column" fxLayoutAlign="start space-between" [style.marginTop.px]="0"
+                    [style.top.px]="sideBarScroll()" class="sidenav">
+            <mat-nav-list >
+                <a mat-list-item routerLink="offers" fxLayout="row" fxLayoutAlign="start center"  >
+                    <span class="material-icons">search</span>
+                    Buscar ofertas
+                </a>
+                <a mat-list-item routerLink="my-offers" fxLayout="row" fxLayoutAlign="start center" >
+                    <span class="material-icons">bubble_chart</span>
+                    Minhas ofertas
+                </a>
+
+                <a mat-list-item href="#" fxLayout="row" fxLayoutAlign="start center" >
+                    <span class="material-icons">multiple_stop</span>
+                    Minhas trocas
+                </a>
+                <a mat-list-item href="#" fxLayout="row"fxLayoutAlign="start center" >
+                    <span class="material-icons">mail_outline</span>
+                    Mensagens
+                </a>
+            </mat-nav-list>
+
+        </mat-drawer>
+        <mat-drawer-content fxFlex>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</article>
+
