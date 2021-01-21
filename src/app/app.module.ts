@@ -34,10 +34,10 @@ import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import {SharedModule} from './views/shared/shared.module';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
-import { ReadingGroupComponent } from './views/reading-group/reading-group.component';
 import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
 import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
 import {FeedPageModule} from './views/feed-page/feed-page.module';
+import { GroupsModule } from './views/groups/groups.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -58,7 +58,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         PageNotFoundComponent,
         UploadComponent,
         PesquisarAmigosComponent,
-        ReadingGroupComponent,
         ReadingTargetProgressComponent,
         PreviousGoalsComponent
     ],
@@ -80,6 +79,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         BookModule,
         PerfilPageModule,
         SharedModule,
+        GroupsModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

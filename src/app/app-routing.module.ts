@@ -1,4 +1,3 @@
-import { ReadingGroupComponent } from './views/reading-group/reading-group.component';
 import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
 import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
 import { NgModule } from '@angular/core';
@@ -45,10 +44,6 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path: 'grupo-leitura', component: ReadingGroupComponent,
-        canActivate: [AuthGuard],
-    },
-    {
         path: 'andamento-meta-leitura', component: ReadingTargetProgressComponent,
         canActivate: [AuthGuard],
     },
@@ -64,6 +59,11 @@ const routes: Routes = [
         path: 'feed' ,
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/feed-page/feed-page.module').then(m => m.FeedPageModule)
+    },
+    {
+        path: 'reading-group' ,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/groups/groups.module').then(m => m.GroupsModule)
     },
     {
         path: '',
