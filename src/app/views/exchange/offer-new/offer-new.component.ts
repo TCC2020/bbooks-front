@@ -12,7 +12,6 @@ export class OfferNewComponent implements OnInit {
     isLinear = false;
     firstFormGroup: FormGroup;
     secondFormGroup: FormGroup;
-    srcResult;
     files = [];
     constructor(
         private formBuilder: FormBuilder,
@@ -37,7 +36,7 @@ export class OfferNewComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
                 this.readFile(position, result);
-                //this.formCadastro2.get('image').setValue(result.name);
+                // this.formCadastro2.get('image').setValue(result.name);
             }
         });
     }
