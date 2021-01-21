@@ -9,20 +9,130 @@
                 <button>Convidar Amigo</button>
             </div>
         </div>
-        <div>
-            <p>Menu</p>
-        </div>
     </div>
     <div class="container-corpo-grupo">
-        <div class="container-feed-grupo">
-            <p>Feed</p>
-        </div>
-        <div class="container-detalhes-grupo">
-            <h2>Sobre</h2>
-            <p>Descrição do grupo</p>
-            <h3>Público</h3>
-            <p>Descrição do tipo de privacidade</p>
+        <div class="container-tab-group">
+            <mat-tab-group>
+                <mat-tab label="Publicações">
+                    <div class="container-mat-tab">
+                        Feed
+                    </div>
+                </mat-tab>
+                <mat-tab label="Sobre">
+                    <div class="container-mat-tab">
+                        <h2>Sobre</h2>
+                        <h3>Descrição do Grupo</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis ante imperdiet, malesuada lacus eget, pretium turpis. Curabitur sit amet ultrices magna, eu convallis ipsum. Etiam nisi justo, volutpat eu sem eu, laoreet dignissim mauris. Integer magna libero, porta vitae vestibulum sit amet, porttitor nec mi. Vestibulum in libero luctus, finibus elit sit amet, rhoncus est. Integer vestibulum orci sit amet purus maximus ultrices a quis nisi. Mauris suscipit massa eget erat sagittis elementum. In sollicitudin semper lectus, eget vehicula ex dignissim vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus bibendum tellus eu lacus viverra faucibus. Vivamus dui justo, maximus eu dolor nec, tempus luctus erat. Phasellus lacinia quam et tempor vestibulum. Sed non commodo ante. Cras sollicitudin, diam at placerat feugiat, magna tellus mollis odio, in viverra lorem urna sit amet orci. Integer interdum tortor nec quam elementum posuere. Integer sit amet pharetra ex, sed fermentum nisi. </p>
+                        <h3><span class="material-icons">public</span>Público</h3>
+                        <h3>Data de Criação</h3>
+                        <p>10/01/2021</p>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Membros">
+                    <div class="container-mat-tab">
+                        <form class="form-inline mr-auto" fxLayout="row">
+                            <div class="container-pesquisar">
+                                <div>
+                                    <mat-form-field>
+                                        <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
+                                        <input class="barra-pesquisar" matInput matInput type="text">
+                                    </mat-form-field>
+                                </div>
+                                <div class="botao-pesquisar">
+                                    <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <p class="cargo">Administradores - 3</p>
+                        <!--começa card-->
+                        <div class="container-amigo">
+                            <div class="container-imagem">
+                                <div class="informacoes-do-usuario">
+                                    <div> 
+                                        <img class="imagem-perfil"
+                                        src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
+                                    </div>
+                                    <div class="informacoes">
+                                        <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
+                                        <div><span>fulano-silva</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </div>
+                        <!--começa card-->
+                        <div class="container-amigo">
+                            <div class="container-imagem">
+                                <div class="informacoes-do-usuario">
+                                    <div> 
+                                        <img class="imagem-perfil"
+                                        src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
+                                    </div>
+                                    <div class="informacoes">
+                                        <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
+                                        <div><span>fulano-silva</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </div>
+                        <!--começa card-->
+                        <div class="container-amigo">
+                            <div class="container-imagem">
+                                <div class="informacoes-do-usuario">
+                                    <div> 
+                                        <img class="imagem-perfil"
+                                        src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
+                                    </div>
+                                    <div class="informacoes">
+                                        <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
+                                        <div><span>fulano-silva</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </div>
+
+                        <p class="cargo">Integrantes - 2</p>
+                        <!--começa card-->
+                        <div class="container-amigo">
+                            <div class="container-imagem">
+                                <div class="informacoes-do-usuario">
+                                    <div> 
+                                        <img class="imagem-perfil"
+                                        src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
+                                    </div>
+                                    <div class="informacoes">
+                                        <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
+                                        <div><span>fulano-silva</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </div>
+                        <!--começa card-->
+                        <div class="container-amigo">
+                            <div class="container-imagem">
+                                <div class="informacoes-do-usuario">
+                                    <div> 
+                                        <img class="imagem-perfil"
+                                        src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
+                                    </div>
+                                    <div class="informacoes">
+                                        <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
+                                        <div><span>fulano-silva</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-divider></mat-divider>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
         </div>
     </div>
-
 </div>
+
+
+  
