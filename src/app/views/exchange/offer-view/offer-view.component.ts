@@ -42,4 +42,5 @@ export class OfferViewComponent implements OnInit {
   plusSlides(n) {
     this.showSlides(this.slideIndex += n);
   }
+
 }

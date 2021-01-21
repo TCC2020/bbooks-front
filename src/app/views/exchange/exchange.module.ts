@@ -9,6 +9,8 @@ import {MyOffersComponent} from './my-offers/my-offers.component';
 import {OffersComponent} from './offers/offers.component';
 import {OfferViewComponent} from './offer-view/offer-view.component';
 import {CarouselModule} from 'ngx-owl-carousel-o';
+import {OfferNewComponent} from './offer-new/offer-new.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import {CarouselModule} from 'ngx-owl-carousel-o';
         MainExchangeComponent,
         MyOffersComponent,
         OffersComponent,
-        OfferViewComponent
+        OfferViewComponent,
+        OfferNewComponent
     ],
     imports: [
         CommonModule,
@@ -24,7 +27,8 @@ import {CarouselModule} from 'ngx-owl-carousel-o';
         SharedModule,
         FlexLayoutModule,
         MaterialModule,
-        CarouselModule
+        CarouselModule,
+        ReactiveFormsModule
     ]
 })
 export class ExchangeModule {
