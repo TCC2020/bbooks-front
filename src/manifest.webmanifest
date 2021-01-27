@@ -2,7 +2,7 @@
   "name": "BBooks",
   "short_name": "BBooks",
   "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "background_color": "#394a59",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
