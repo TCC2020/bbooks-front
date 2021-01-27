@@ -9,7 +9,7 @@ import {Observable} from 'rxjs';
 })
 export class PostService {
 
-    api = environment.api + 'post/';
+    api = environment.feedApi + 'post/';
 
     constructor(
         private http: HttpClient,
