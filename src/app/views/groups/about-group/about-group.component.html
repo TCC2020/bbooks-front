@@ -1,9 +1,28 @@
-<div class="container-mat-tab">
-    <h2>{{'GRUPO_LEITURA.SOBRE' | translate}}</h2>
-    <h3>{{'GRUPO_LEITURA.DESCRICAO_GRUPO' | translate}}</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis ante imperdiet, malesuada lacus eget, pretium turpis. Curabitur sit amet ultrices magna, eu convallis ipsum. Etiam nisi justo, volutpat eu sem eu, laoreet dignissim mauris. Integer magna libero, porta vitae vestibulum sit amet, porttitor nec mi. Vestibulum in libero luctus, finibus elit sit amet, rhoncus est. Integer vestibulum orci sit amet purus maximus ultrices a quis nisi. Mauris suscipit massa eget erat sagittis elementum. In sollicitudin semper lectus, eget vehicula ex dignissim vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus bibendum tellus eu lacus viverra faucibus. Vivamus dui justo, maximus eu dolor nec, tempus luctus erat. Phasellus lacinia quam et tempor vestibulum. Sed non commodo ante. Cras sollicitudin, diam at placerat feugiat, magna tellus mollis odio, in viverra lorem urna sit amet orci. Integer interdum tortor nec quam elementum posuere. Integer sit amet pharetra ex, sed fermentum nisi. </p>
-    <h3><span class="material-icons">public</span>Público</h3>
-    <h3>{{'GRUPO_LEITURA.DATA_CRIACAO' | translate}}</h3>
-    <p>10/01/2021</p>
-</div>
-    
+<form>
+    <div class="container-mat-tab">
+        <h2>{{'GRUPO_LEITURA.SOBRE' | translate}}</h2>
+        <div class="reading-group-edit">
+            <h3>{{'GRUPO_LEITURA.DESCRICAO_GRUPO' | translate}}</h3>
+            <button class="botao-edit" *ngIf="isAdm()&& !isEditing" (click)="changeToEdit()"><span class="material-icons">edit</span></button>
+            <button class="botao-edit" *ngIf="isAdm() && isEditing" (click)="changeToEdit()"><span class="material-icons">save</span></button>
+        </div>
+        <p *ngIf="!isEditing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis ante imperdiet, malesuada lacus eget, pretium turpis. Curabitur sit amet ultrices magna, eu convallis ipsum. Etiam nisi justo, volutpat eu sem eu, laoreet dignissim mauris. Integer magna libero, porta vitae vestibulum sit amet, porttitor nec mi. Vestibulum in libero luctus, finibus elit sit amet, rhoncus est. Integer vestibulum orci sit amet purus maximus ultrices a quis nisi. Mauris suscipit massa eget erat sagittis elementum. In sollicitudin semper lectus, eget vehicula ex dignissim vel.</p>
+
+        <mat-form-field class="area-descricao" appearance="fill" *ngIf="isEditing">
+            <textarea matInput #description maxlength="1000">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis ante imperdiet, malesuada lacus eget, pretium turpis. Curabitur sit amet ultrices magna, eu convallis ipsum. Etiam nisi justo, volutpat eu sem eu, laoreet dignissim mauris. Integer magna libero, porta vitae vestibulum sit amet, porttitor nec mi. Vestibulum in libero luctus, finibus elit sit amet, rhoncus est. Integer vestibulum orci sit amet purus maximus ultrices a quis nisi. Mauris suscipit massa eget erat sagittis elementum. In sollicitudin semper lectus, eget vehicula ex dignissim vel.</textarea>
+            <mat-hint>{{description.value.length}} / 1000</mat-hint>
+        </mat-form-field>
+
+        <h3 *ngIf="!isEditing"><span class="material-icons">public</span>Público</h3>
+        <mat-form-field appearance="fill" *ngIf="isEditing">
+            <mat-label>Privacidade</mat-label>
+            <mat-select>
+                <mat-option value="one">Público</mat-option>
+                <mat-option value="two">Privado</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <h3>{{'GRUPO_LEITURA.DATA_CRIACAO' | translate}}</h3>
+        <p>10/01/2021</p>
+    </div>
+</form>

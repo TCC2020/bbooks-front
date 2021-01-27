@@ -10,6 +10,11 @@ export class MembersGroupComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+
+  isAdm(): boolean {
+    return true;
   }
 
 }

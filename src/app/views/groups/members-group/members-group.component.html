@@ -26,6 +26,25 @@
                     <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
                     <div><span>fulano-silva</span></div>
                 </div>
+                <div *ngIf="isAdm()">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>block</mat-icon>
+                            <span>Bloquer membro</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>person</mat-icon>
+                            <span>Remover administrador</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>remove_circle</mat-icon>
+                            <span>Remover membro</span>
+                        </button>
+                    </mat-menu>
+                </div>
             </div>
         </div>
         <mat-divider></mat-divider>
@@ -76,6 +95,24 @@
                     <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
                     <div><span>fulano-silva</span></div>
                 </div>
+                <div *ngIf="isAdm()">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>block</mat-icon>
+                            <span>Bloquer membro</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>admin_panel_settings</mat-icon>
+                            <span>Tornar administrador</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>remove_circle</mat-icon>
+                            <span>Remover membro</span>
+                        </button>
+                    </mat-menu>
             </div>
         </div>
         <mat-divider></mat-divider>

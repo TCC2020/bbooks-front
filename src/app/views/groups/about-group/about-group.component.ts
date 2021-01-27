@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutGroupComponent implements OnInit {
 
+  isEditing = false;
+  description: any;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  isAdm(): boolean {
+    return true;
+  }
+
+  changeToEdit(): void {
+    this.isEditing = !this.isEditing;
   }
 
 }

@@ -9,12 +9,16 @@
 	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
+.container-tab-group {
+    margin-bottom: 80px;
+}
+
 .container-cabecalho-grupo, .container-detalhes-cabecalho, .informacoes-grupo, .botao-convidar-grupo {
     padding: 10px;
 }
 
 .container-grupo {
-    width: 1200px;
+    width: 1000px;
     margin: 15px auto 0;
 }
 

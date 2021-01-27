@@ -96,6 +96,33 @@ mat-form-field, .barra-pesquisar {
     margin-top: 15px;
 }
 
+.reading-group-edit {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+.area-descricao {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.area-descricao textarea {
+    height: 150px;
+    line-height: 20px;
+}
+
+.botao-edit {
+    background-color: white;
+    border: 0px;
+}
+
+.botao-edit:active {
+    border-radius: 10px;
+    background-color: #cdcdcd;
+}
+
 
 @media screen and (max-width: 850px) {
     .container-grupo {
