@@ -47,9 +47,8 @@
     "COPIAR_LINK": "Copy link to profile",
     "BLOQUEAR": "Block",
     "METAS_ANTEREIORS": "Previous Goals",
-    "ANDAMENTO_META": "Reading Target Progress"
-
-
+    "ANDAMENTO_META": "Reading Target Progress",
+    "SESSAO_EXPIRADA": "Session expired"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",

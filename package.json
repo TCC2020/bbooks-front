@@ -39,6 +39,7 @@
     "@types/jest": "^26.0.10",
     "angularx-social-login": "^3.2.1",
     "animate.css": "^4.1.0",
+    "bn-ng-idle": "^1.0.1",
     "express": "^4.17.1",
     "force-ssl-heroku": "^1.0.2",
     "hammerjs": "^2.0.8",
