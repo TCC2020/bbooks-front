@@ -6,6 +6,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { TranslateServiceMockForChild } from 'src/app/mocks/translate.service.mock';
 
 import { ReadingGroupComponent } from './reading-group.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('ReadingGroupComponent', () => {
   let component: ReadingGroupComponent;
@@ -18,6 +19,7 @@ describe('ReadingGroupComponent', () => {
         MaterialModule,
         HttpClientTestingModule,
         TranslateServiceMockForChild,
+        RouterTestingModule,
         BrowserAnimationsModule
       ],
       providers: [
