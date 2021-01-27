@@ -47,19 +47,8 @@
     "COPIAR_LINK": "Copy link to profile",
     "BLOQUEAR": "Block",
     "METAS_ANTEREIORS": "Previous Goals",
-    "ANDAMENTO_META": "Reading Target Progress"
-  },
-  "GRUPO_LEITURA" : {
-    "ADMINISTRADORES": "Administrators",
-    "MEMBROS": "Members",
-    "GRUPO": "Group",
-    "CONVIDAR": "Invite",
-    "DATA_CRIACAO": "Created Date",
-    "DESCRICAO_GRUPO": "Group Description",
-    "SOBRE": "About",
-    "feed": "feed",
-    "about": "about",
-    "members": "members"
+    "ANDAMENTO_META": "Reading Target Progress",
+    "SESSAO_EXPIRADA": "Session expired"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",

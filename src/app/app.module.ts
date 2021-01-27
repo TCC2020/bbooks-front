@@ -43,6 +43,7 @@ import { MyOffersComponent } from './views/exchange/my-offers/my-offers.componen
 import { OffersComponent } from './views/exchange/offers/offers.component';
 import { OfferViewComponent } from './views/exchange/offer-view/offer-view.component';
 import { OfferNewComponent } from './views/exchange/offer-new/offer-new.component';
+import {BnNgIdleService} from 'bn-ng-idle';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -95,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         })
     ],
     providers: [
+        BnNgIdleService,
         AuthVerifyLogin,
         AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},
         {

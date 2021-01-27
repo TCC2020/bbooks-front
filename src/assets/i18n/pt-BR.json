@@ -47,7 +47,8 @@
     "COPIAR_LINK": "Copiar link para o perfil",
     "BLOQUEAR": "Bloquear",
     "METAS_ANTEREIORS": "Metas Anteriores",
-    "ANDAMENTO_META": "Andamamento da Meta de Leitura"
+    "ANDAMENTO_META": "Andamamento da Meta de Leitura",
+    "SESSAO_EXPIRADA": "Sessão expirada"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
