@@ -41,7 +41,7 @@ export class FeedComponent implements OnInit {
     openPost(post?: PostTO) {
         const userAgent = window.navigator.userAgent.toLocaleLowerCase();
         if (userAgent.includes('iphone') || userAgent.includes('android')) {
-            this.router.navigate([this.user.userName + '/create-post'], {state:{ post}});
+            this.router.navigate([this.user.userName + '/create-post'], {state: { post }});
         } else {
             this.openPostDialog(post);
         }

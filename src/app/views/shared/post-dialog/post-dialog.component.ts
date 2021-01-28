@@ -50,7 +50,7 @@ export class PostDialogComponent implements OnInit {
         if (!this.isMobile()) {
             this.dataDialog = this.injector.get(MAT_DIALOG_DATA);
         } else {
-            this.dataDialog = this.router.getCurrentNavigation().extras.state.post
+            this.dataDialog = this.router.getCurrentNavigation().extras.state.post;
         }
     }
 
@@ -160,7 +160,7 @@ export class PostDialogComponent implements OnInit {
         });
     }
 
-    redirectPage(post: PostTO): void{
+    redirectPage(post: PostTO): void {
         if (this.isMobile()) {
             this.router.navigate([`/${this.user.userName}`]);
         } else {
