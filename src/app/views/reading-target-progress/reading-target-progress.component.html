@@ -9,7 +9,7 @@
         <button *ngIf="currentReadingTarget?.targets.length > 1" type="button" mat-flat-button color="accent" routerLink="/metas-anteriores">{{'PADRAO.METAS_ANTEREIORS' | translate}}</button>
     </div>
     <!--Começar o for dos livros-->
-    <div *ngIf="currentReadingTarget?.targets.length == 0">
+    <div class="texto-meta-atual" *ngIf="currentReadingTarget?.targets.length == 0">
         <p>Você ainda não possui livro na sua Meta de Leitura.</p>
     </div>
     <div *ngIf="currentReadingTarget?.targets.length > 0">
