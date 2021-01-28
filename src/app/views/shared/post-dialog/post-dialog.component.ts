@@ -55,7 +55,6 @@ export class PostDialogComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.dataDialog);
         this.configTexts();
         this.user = this.authService.getUser();
         this.createForm();
