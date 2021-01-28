@@ -46,7 +46,6 @@
     >
         <mat-card fxLayout="row" fxLayoutAlign="space-around center" *ngFor="let post of posts"  >
             <div>
-
                 <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxLayoutGap.xs="10px">
                     <div>
                         <img class="cardImagePost"
@@ -62,17 +61,15 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding-left: 67%">
-                        <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf=" user.profile.id == authService.getUser().profile.id">
-                            <mat-icon>more_vert</mat-icon>
-                        </button>
-                    </div>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" style="position: absolute; right: 0" *ngIf=" user.profile.id == authService.getUser().profile.id">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
                     <mat-menu #menu="matMenu">
-                        <div mat-menu-item>
+                        <div mat-menu-item (click)="openPost(post)">
                             <mat-icon>create</mat-icon>
                             <span>{{'PADRAO.EDITAR' | translate}}</span>
                         </div>
-                        <div mat-menu-item >
+                        <div mat-menu-item (click)="delete(post)">
                             <mat-icon>delete</mat-icon>
                             <span>{{'PADRAO.REMOVER' | translate}}</span>
                         </div>
@@ -90,15 +87,15 @@
 
                     <button mat-button class="button-test-post">
                         <mat-icon>thumb_up</mat-icon>
-                        {{'PADRAO.ASK' | translate}}
+                        {{'POST.GOSTEI' | translate}}
                     </button>
                     <button mat-button class="button-test-post">
                         <mat-icon >message</mat-icon>
-                        {{'PADRAO.PHOTO' | translate}}
+                        {{'POST.COMENTAR' | translate}}
                     </button>
                     <button mat-button class="button-test-post">
                         <mat-icon>reply</mat-icon>
-                        {{'PADRAO.RESENHA' | translate}}
+                        {{'POST.COMPARTILHAR' | translate}}
                     </button>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-around center">
@@ -106,5 +103,6 @@
                 </div>
             </div>
         </mat-card>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
     </div>
 </div>

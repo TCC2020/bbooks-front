@@ -4,14 +4,14 @@
             <span class="material-icons">keyboard_backspace</span>
         </div>
         <div>
-            <b>{{'POST.CRIAR_POSTAGEM' | translate}}</b>
+            <b>{{title | translate}}</b>
         </div>
         <div>
-            <button mat-button color="accent" (click)="save()"><b>{{'PADRAO.PUBLICAR' | translate}}</b></button>
+            <button mat-button color="accent" (click)="save()"><b>{{buttonSave | translate}}</b></button>
         </div>
 
     </div>
-    <h2 mat-dialog-title *ngIf="!isMobile()" align="center">{{'POST.CRIAR_POSTAGEM' | translate}}</h2>
+    <h2 mat-dialog-title *ngIf="!isMobile()" align="center">{{title | translate}}</h2>
     <mat-divider></mat-divider>
     <form [formGroup]="formFeed">
     <div>
@@ -33,7 +33,7 @@
                             <div fxLayout="row" fxLayoutAlign="space-between center">
                                 <div>
                                     <mat-form-field appearance="outline">
-                                        <mat-label>Compartilhar com</mat-label>
+                                        <mat-label>{{title | translate}}</mat-label>
                                         <mat-select formControlName="privacy">
                                             <mat-option [value]="mapPostPrivacy.get(type)" *ngFor="let type  of mapTypePost">{{type}}</mat-option>
                                         </mat-select>
@@ -101,7 +101,7 @@
     </div>
     <br>
     <div *ngIf="!isMobile()" class="publisherWeb" fxLayout="column">
-        <button [disabled]="formFeed.invalid" mat-raised-button color="accent" class="publisherWeb" (click)="save()">{{'PADRAO.PUBLICAR' | translate}}</button>
+        <button [disabled]="formFeed.invalid" mat-raised-button color="accent" class="publisherWeb" (click)="save()">{{buttonSave | translate}}</button>
     </div>
     <br>
 </div>

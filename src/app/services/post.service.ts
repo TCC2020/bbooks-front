@@ -23,7 +23,9 @@ export class PostService {
     update(post: PostTO): Observable<PostTO> {
         return this.http.put<PostTO>(this.api + post.id, post);
     }
-
+    delete(id: number): Observable<any> {
+        return this.http.delete(this.api + id);
+    }
     getByProfileId(profileId: number, size: number, page: number): Observable<PostPagination> {
         const params = new HttpParams()
             .set('page', page.toString())

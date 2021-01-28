@@ -51,7 +51,9 @@
   max-height: 35px;
 }
 button-edit-post{
-  padding-left: 67%;
+  position: absolute;
+  right: 0;
+  margin: 20px;
 }
 @media screen and (max-width: 600px) {
   .commentReview{
