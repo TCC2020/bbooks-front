@@ -2,7 +2,7 @@ import {TypePost} from './enums/TypePost.enum';
 import {PostPrivacy} from './enums/PostPrivacy.enum';
 
 export class PostTO {
-    id: number;
+    id: string;
     profileId: number;
     description: string;
     image: string;
