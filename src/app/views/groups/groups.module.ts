@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { FeedGroupComponent } from './feed-group/feed-group.component';
 import { AboutGroupComponent } from './about-group/about-group.component';
 import { MembersGroupComponent } from './members-group/members-group.component';
+import {BookMonthComponent} from './book-month/book-month.component';
 
 
 
@@ -17,7 +18,8 @@ import { MembersGroupComponent } from './members-group/members-group.component';
     ReadingGroupComponent,
     FeedGroupComponent,
     AboutGroupComponent,
-    MembersGroupComponent
+    MembersGroupComponent,
+    BookMonthComponent
    ],
   imports: [
     CommonModule,

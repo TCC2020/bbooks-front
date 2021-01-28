@@ -60,7 +60,8 @@
     "SOBRE": "Sobre",
     "feed": "feed",
     "about": "sobre",
-    "members": "membros"
+    "members": "membros",
+    "book-of-month": "livro do mês"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",

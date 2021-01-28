@@ -4,6 +4,7 @@ import { AboutGroupComponent } from './about-group/about-group.component';
 import { FeedGroupComponent } from './feed-group/feed-group.component';
 import { MembersGroupComponent } from './members-group/members-group.component';
 import { ReadingGroupComponent } from './reading-group/reading-group.component';
+import {BookMonthComponent} from './book-month/book-month.component';
 
 const groupsRouter = [
     {
@@ -17,6 +18,9 @@ const groupsRouter = [
             },
             {
                 path: 'members', component: MembersGroupComponent
+            },
+            {
+                path: 'book-of-month', component: BookMonthComponent
             }
         ]
     }

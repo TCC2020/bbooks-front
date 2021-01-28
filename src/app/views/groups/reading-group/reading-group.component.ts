@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./reading-group.component.scss']
 })
 export class ReadingGroupComponent implements OnInit {
-links = ['feed', 'about', 'members'];
+links = ['feed', 'about', 'members', 'book-of-month'];
 activeLink = this.links[0];
 
 constructor(

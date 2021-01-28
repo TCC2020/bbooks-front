@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AboutGroupComponent implements OnInit {
 
   isEditing = false;
-  description: any;
+  description: number;
 
   constructor() { }
 
