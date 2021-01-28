@@ -34,10 +34,37 @@
 .button-test-post{
   color: #5f5f5f;
 }
-
+.text-date{
+  color: #5f5f5f;
+}
+.description{
+  width: 480px;
+  font-size: 18px;
+}
+.cardImagePost{
+  border-color:  rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  width: 35px;
+  max-width: 35px;
+  max-height: 35px;
+}
+button-edit-post{
+  position: absolute;
+  right: 0;
+  margin: 20px;
+}
 @media screen and (max-width: 600px) {
   .commentReview{
     width: 250px;
+  }
+  .description{
+    width: 340px;
+    font-size: 17px;
+  }
+  button-edit-post{
+    padding-left: 57%;
   }
 
 }
