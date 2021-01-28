@@ -13,6 +13,9 @@ import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {SocialAuthService} from 'angularx-social-login';
 import {AuthService} from '../../../services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {PostService} from '../../../services/post.service';
+import {postMock, postPagination, postsMock} from '../../../mocks/post.model.mock';
 
 describe('FeedComponent', () => {
     let component: FeedComponent;
@@ -30,6 +33,9 @@ describe('FeedComponent', () => {
         })
     };
 
+    let postServiceMock: PostService;
+
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [FeedComponent],
@@ -38,7 +44,8 @@ describe('FeedComponent', () => {
                 MaterialModule,
                 TranslateServiceMockForRoot,
                 HttpClientTestingModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                InfiniteScrollModule
             ],
             providers: [
                 {
@@ -55,8 +62,10 @@ describe('FeedComponent', () => {
                     provide: MatDialog,
                     useValue: mockMatDialog
                 },
+                PostService
             ]
         }).compileComponents();
+        postServiceMock = TestBed.inject(PostService);
     }));
 
     beforeEach(() => {
@@ -73,5 +82,27 @@ describe('FeedComponent', () => {
         const spy = jest.spyOn(mockMatDialog, 'open');
         component.openPost();
         expect(spy).toHaveBeenCalled();
+    });
+
+    it('getPosts: should getByProfileId', () => {
+        const spyComponent = jest.spyOn(component, 'getPosts');
+        const spyServicePost = jest.spyOn(postServiceMock, 'getByProfileId').mockReturnValue(of(postPagination));
+        component.getPosts();
+        expect(spyComponent).toHaveBeenCalled();
+        expect(spyServicePost).toHaveBeenCalled();
+    });
+
+    it('delete: should delete', () => {
+        const spyComponent = jest.spyOn(component, 'delete');
+        const spyServicePost = jest.spyOn(postServiceMock, 'delete').mockReturnValue(of(null));
+        component.delete(postMock);
+        expect(spyComponent).toHaveBeenCalled();
+        expect(spyServicePost).toHaveBeenCalled();
+    });
+
+    it('should call onScroll', () => {
+        const spyComponent = jest.spyOn(component, 'onScroll');
+        component.onScroll();
+        expect(spyComponent).toHaveBeenCalled();
     });
 });
