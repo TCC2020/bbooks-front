@@ -19,6 +19,7 @@ import {PerfilComponent} from './perfil/perfil.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRouteSnapshot} from '@angular/router';
 import {FriendResolve} from './guards/friend.resolve';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {FriendResolve} from './guards/friend.resolve';
         FlexLayoutModule,
         FormsModule,
         ReactiveFormsModule,
+        InfiniteScrollModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,

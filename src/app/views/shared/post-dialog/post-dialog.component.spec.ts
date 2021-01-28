@@ -9,10 +9,16 @@ import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {MaterialModule} from '../../../material/material.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {SocialAuthService} from 'angularx-social-login';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {userMock} from '../../../mocks/user.model.mock';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
+import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
+import {Injector} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {postMock} from '../../../mocks/post.model.mock';
+import {PostService} from '../../../services/post.service';
+import {TrackingService} from '../../../services/tracking.service';
 
 describe('PostDialogComponent', () => {
     let component: PostDialogComponent;
@@ -20,6 +26,15 @@ describe('PostDialogComponent', () => {
     const authServiceMock = {
         getUser: jest.fn(() => userMock)
     };
+    let postServiceMock: PostService;
+
+    const matDialogRefMock = {
+        close: jest.fn((response) => {
+            return response;
+        }),
+        beforeClosed: jest.fn(() => of([]))
+    };
+
     const menuChoose = Menu;
 
     beforeEach(async(() => {
@@ -33,7 +48,8 @@ describe('PostDialogComponent', () => {
                 MaterialModule,
                 ReactiveFormsModule,
                 HttpClientTestingModule,
-                TranslateServiceMockForRoot
+                TranslateServiceMockForRoot,
+                SweetAlert2Module
             ],
             declarations: [PostDialogComponent],
             providers: [
@@ -42,10 +58,13 @@ describe('PostDialogComponent', () => {
                 {
                     provide: AuthService,
                     useValue: authServiceMock
-                }
+                },
+                { provide: MatDialogRef, useValue: matDialogRefMock },
+                { provide: MAT_DIALOG_DATA, useValue: postMock },
+                Injector
             ]
-        })
-            .compileComponents();
+        }).compileComponents();
+        postServiceMock = TestBed.inject(PostService);
     }));
 
     beforeEach(() => {
@@ -91,5 +110,40 @@ describe('PostDialogComponent', () => {
         component.removeAsk(0);
         expect(component.asks.length).toEqual(0);
     });
+    it('save: should save post', () => {
+        component.dataDialog = null;
+        const spyComponent = jest.spyOn(component, 'save');
+        const spyPostServiceMock = jest.spyOn(postServiceMock, 'save').mockReturnValue(of(postMock));
+        component.save();
+        expect(spyComponent).toHaveBeenCalled();
+        expect(spyPostServiceMock).toHaveBeenCalled();
+    });
+
+    it('save: should catch error post', () => {
+        component.dataDialog = null;
+        const spyComponent = jest.spyOn(component, 'save');
+        const spyPostServiceMock = jest.spyOn(postServiceMock, 'save').mockReturnValue(throwError('error'));
+        component.save();
+        expect(spyComponent).toHaveBeenCalled();
+        expect(spyPostServiceMock).toHaveBeenCalled();
+    });
+
+    it('save: should update post', () => {
+        component.dataDialog = postMock;
+        const spyComponent = jest.spyOn(component, 'save');
+        const spyPostServiceMock = jest.spyOn(postServiceMock, 'update').mockReturnValue(of(postMock));
+        component.save();
+        expect(spyComponent).toHaveBeenCalled();
+        expect(spyPostServiceMock).toHaveBeenCalled();
+    });
+    it('save: should catch error update post', () => {
+        component.dataDialog = postMock;
+        const spyComponent = jest.spyOn(component, 'save');
+        const spyPostServiceMock = jest.spyOn(postServiceMock, 'update').mockReturnValue(throwError('error'));
+        component.save();
+        expect(spyComponent).toHaveBeenCalled();
+        expect(spyPostServiceMock).toHaveBeenCalled();
+    });
+
 });
 
