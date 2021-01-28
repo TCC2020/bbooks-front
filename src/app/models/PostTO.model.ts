@@ -9,4 +9,5 @@ export class PostTO {
     tipoPost: TypePost;
     comments: PostTO[];
     privacy: PostPrivacy;
+    creationDate: Date;
 }

@@ -101,7 +101,7 @@
     </div>
     <br>
     <div *ngIf="!isMobile()" class="publisherWeb" fxLayout="column">
-        <button mat-raised-button color="accent" class="publisherWeb" (click)="save()">{{'PADRAO.PUBLICAR' | translate}}</button>
+        <button [disabled]="formFeed.invalid" mat-raised-button color="accent" class="publisherWeb" (click)="save()">{{'PADRAO.PUBLICAR' | translate}}</button>
     </div>
     <br>
 </div>
