@@ -1,4 +1,4 @@
-<div style="background-color: white">
+<div class="container-post-dialog">
     <div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="isMobile()">
         <div class="arrowPost" routerLink="/{{user.userName}}">
             <span class="material-icons">keyboard_backspace</span>
@@ -28,7 +28,7 @@
                     <div fxLayout="row" fxLayoutAlign="start start">
                         <div class="commentReview">
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
-                                <div style="font-weight: 500; color: #1a1a1a">{{user.profile.name | titlecase}} {{user.profile.lastName | titlecase}}</div>
+                                <div class="profile-name-lastname">{{user.profile.name | titlecase}} {{user.profile.lastName | titlecase}}</div>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="space-between center">
                                 <div>
@@ -50,11 +50,11 @@
     <div>
 
             <textarea formControlName="description" placeholder="{{'POST.' + textInput | translate}}"></textarea>
-            <div style="padding: 0px 5px 0px;" *ngIf="menuChoose === menu.ASK">
+            <div class="div-menuChoose" *ngIf="menuChoose === menu.ASK">
                 <div formArrayName="asks" *ngFor="let item of asks.controls; let i = index;" fxLayout="row"
                      fxLayoutAlign="center">
                     <div>
-                        <mat-form-field [formGroupName]="i" appearance="outline" style="width: 300px">
+                        <mat-form-field [formGroupName]="i" appearance="outline" class="form-group-post-dialog">
                             <input placeholder="option {{i+1}}" matInput formControlName="name">
                             <!--                        <button matSuffix mat-icon-button aria-label="Clear" (click)="removeAsk(i)">-->
                             <!--                            <mat-icon>close</mat-icon>-->
@@ -62,19 +62,19 @@
                         </mat-form-field>
                     </div>
 
-                    <div style="padding-top:7px">
+                    <div class="div-remove-ask">
                         <button mat-icon-button aria-label="close" (click)="removeAsk(i)">
-                            <mat-icon style="color: #acacac">close</mat-icon>
+                            <mat-icon class="cor-mat-icon-post-dialog">close</mat-icon>
                         </button>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="center">
-                    <button mat-stroked-button color="accent" style="height: 50px; width: 300px" (click)="addAsk()">Add
+                    <button mat-stroked-button color="accent" class="button-another-option" (click)="addAsk()">Add
                         another option
                     </button>
-                    <div style="padding-top:7px">
+                    <div class="div-button-close">
                         <button mat-icon-button aria-label="close">
-                            <mat-icon style="color: #acacac">settings</mat-icon>
+                            <mat-icon class="cor-mat-icon-post-dialog">settings</mat-icon>
                         </button>
                     </div>
                 </div>
@@ -86,16 +86,16 @@
     <mat-divider></mat-divider>
     <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
         <button mat-button class="button-test-post" (click)="resetAsks()">
-            <mat-icon style="color: #f28b66">assessment</mat-icon>
+            <mat-icon class="assesment-post-dialog">assessment</mat-icon>
             {{'PADRAO.ASK' | translate}}
         </button>
         <button mat-button class="button-test-post" (click)="choosePhoto()">
-            <mat-icon style="color: #394A59">insert_photo</mat-icon>
+            <mat-icon class="insert-photo-post-dialog">insert_photo</mat-icon>
             {{'PADRAO.PHOTO' | translate}}
 
         </button>
         <button mat-button class="button-test-post" (click)="chooseReview()">
-            <mat-icon style="color: #ca4949">import_contacts</mat-icon>
+            <mat-icon class="import-contacts-post-dialog">import_contacts</mat-icon>
             {{'PADRAO.RESENHA' | translate}}
         </button>
     </div>

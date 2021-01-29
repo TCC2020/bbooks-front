@@ -37,8 +37,8 @@
         <div>
             <p style="margin-top: 15px; color: #777777">{{'LOGIN.OU' | translate}}</p>
         </div>
-        <button mat-button (click)="loginGoogle()"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> {{'LOGIN.GOOGLE' | translate}}</button>
-        <button mat-button (click)="loginFacebook()" style="background-color: white; color: #1877F2">
+        <button mat-button class="login-google" (click)="loginGoogle()"><i class="fab fa-google"></i> {{'LOGIN.GOOGLE' | translate}}</button>
+        <button mat-button class="login-facebook" (click)="loginFacebook()">
             <i style="color:#1877F2; font-size: 17px;" class="fab fa-facebook"></i>
             {{'LOGIN.FACEBOOK' | translate}}
         </button>
