@@ -70,6 +70,7 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
     "codelyzer": "^5.2.2",
+    "content-security-policy": "^0.3.4",
     "cucumber": "^6.0.5",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",

@@ -6,37 +6,42 @@ const csp = require('content-security-policy');
 
 const app = express();
 
-const cspPolicy = {
-    'default-src': csp.SRC_ANY,
-    'style-src': [  csp.SRC_SELF,
-        csp.SRC_USAFE_INLINE,
+const cspPolicy = `export const cspConfig = {
+    'default-src': ${csp.SRC_ANY},
+    'style-src': [  
+        ${csp.SRC_SELF},
+        ${csp.SRC_USAFE_INLINE},
         'https://fonts.googleapis.com/',
         'https://use.typekit.net'
     ],
-    'script-src': [ csp.SRC_SELF,
-        csp.SRC_USAFE_INLINE,
-        csp.SRC_UNSAFE_EVAL,
+    'script-src': [ 
+        ${csp.SRC_SELF},
+        ${csp.SRC_USAFE_INLINE},
+        ${csp.SRC_UNSAFE_EVAL},
         'https://fonts.googleapis.com/',
         'http://apis.google.com/',
         'http://connect.facebook.net/',
         '*.facebook.com'
     ],
-    'connect-src': [csp.SELF,
+    'connect-src': [ 
+        ${csp.SRC_SELF},
         'ws://localhost:*',
         'http://localhost:*',
-        'https://bbooks-users-api.herokuapp.com/',
-        'https://bbooks-feed-api.herokuapp.com/',
-        'https://bbooks-competition-api.herokuapp.com/',
+        '${process.env.USERS_API}',
+        '${process.env.FEED_API}',
+        '${process.env.COMPETITION_API}',
+        '${process.env.APICEP}',
         'https://www.googleapis.com',
         '*.facebook.com',
         'facebook.com'
         ],
-    'child-src': [csp.SRC_SELF,
+    'child-src': [
+        ${csp.SRC_SELF},
         'https://apis.google.com',
         'https://facebook.com',
         'https://www.googleapis.com/'
         ]
-};
+};`
 
 const globalCSP = csp.getCSP(cspPolicy);
 
