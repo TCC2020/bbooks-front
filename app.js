@@ -6,6 +6,7 @@ const csp = require('content-security-policy');
 const sts = require('strict-transport-security');
 const referrerPolicy = require('referrer-policy');
 const permissionsPolicy = require('permissions-policy');
+const helmet = require('helmet');
 
 const app = express();
 
@@ -39,17 +40,17 @@ const globalCSP = csp.getCSP(cspPolicy);
 
 const globalSTS = sts.getSTS({'max-age': 31536000, 'includeSubDomains': true});
 
-app.use(referrerPolicy({ policy: 'same-origin' }))
+app.use(referrerPolicy({ policy: 'same-origin' }));
 app.use(globalCSP);
 app.use(globalSTS);
-app.use(helmet());
+app.use(helmet.noSniff());
 app.use(helmet.frameguard());
-// app.use(permissionsPolicy({
-//     features: {
-//         fullscreen: ['self'],
-//         syncXhr: ['"none"']
-//     }
-// }));
+app.use(permissionsPolicy({
+    features: {
+        fullscreen: ['self'],
+        syncXhr: ['"none"']
+    }
+}));
 
 app.use(express.static(__dirname + '/dist/bbooks'));
 app.use(express.static(path.join(__dirname + 'node_modules')));
