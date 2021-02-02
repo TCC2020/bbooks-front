@@ -44,12 +44,12 @@ app.use(globalCSP);
 app.use(globalSTS);
 app.use(helmet());
 app.use(helmet.frameguard());
-app.use(permissionsPolicy({
-    features: {
-        fullscreen: ['self'],
-        syncXhr: ['"none"']
-    }
-}));
+// app.use(permissionsPolicy({
+//     features: {
+//         fullscreen: ['self'],
+//         syncXhr: ['"none"']
+//     }
+// }));
 
 app.use(express.static(__dirname + '/dist/bbooks'));
 app.use(express.static(path.join(__dirname + 'node_modules')));
