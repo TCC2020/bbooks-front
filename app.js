@@ -6,25 +6,25 @@ const csp = require('content-security-policy');
 
 const app = express();
 
-const cspPolicy = `export const cspConfig = {
-    'default-src': ${csp.SRC_ANY},
+const cspPolicy = {
+    'default-src': csp.SRC_ANY,
     'style-src': [  
-        ${csp.SRC_SELF},
-        ${csp.SRC_USAFE_INLINE},
+        csp.SRC_SELF,
+        csp.SRC_USAFE_INLINE,
         'https://fonts.googleapis.com/',
         'https://use.typekit.net'
     ],
     'script-src': [ 
-        ${csp.SRC_SELF},
-        ${csp.SRC_USAFE_INLINE},
-        ${csp.SRC_UNSAFE_EVAL},
+        csp.SRC_SELF,
+        csp.SRC_USAFE_INLINE,
+        csp.SRC_UNSAFE_EVAL,
         'https://fonts.googleapis.com/',
         'http://apis.google.com/',
         'http://connect.facebook.net/',
         '*.facebook.com'
     ],
     'connect-src': [ 
-        ${csp.SRC_SELF},
+        csp.SRC_SELF,
         'ws://localhost:*',
         'http://localhost:*',
         '${process.env.USERS_API}',
@@ -36,12 +36,12 @@ const cspPolicy = `export const cspConfig = {
         'facebook.com'
         ],
     'child-src': [
-        ${csp.SRC_SELF},
+        csp.SRC_SELF,
         'https://apis.google.com',
         'https://facebook.com',
         'https://www.googleapis.com/'
         ]
-};`
+};
 
 const globalCSP = csp.getCSP(cspPolicy);
 
