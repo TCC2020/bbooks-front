@@ -6,4 +6,4 @@ export const environment = {
     apicep: 'undefined',
     feedApi: 'undefined',
     competitionApi: 'undefined'
-}
+};

@@ -53,6 +53,7 @@
     "rxjs": "~6.5.4",
     "sweetalert2": "^10.13.3",
     "tslib": "^1.13.0",
+    "content-security-policy": "^0.3.4",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

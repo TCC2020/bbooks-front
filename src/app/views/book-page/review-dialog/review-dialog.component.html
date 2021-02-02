@@ -11,12 +11,12 @@
             <br>
         </div>
         <form [formGroup]="formReview">
-                <mat-form-field style="width: 100%" >
+                <mat-form-field class="mat-form-review-dialog">
                     <mat-label>{{'RESENHA.TITULO' | translate}}</mat-label>
                     <input matInput formControlName="title">
                 </mat-form-field>
 
-                <mat-form-field style="width: 100%">
+                <mat-form-field class="mat-form-review-dialog">
                     <mat-label>{{'RESENHA.BODY' | translate}}</mat-label>
                     <textarea matInput #reviewArea maxlength="1000" placeholder="{{'RESENHA.BODY_TEXT' | translate}}" formControlName="body"></textarea>
                     <mat-hint align="end">{{reviewArea.value.length}} / 1000</mat-hint>
