@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 var forceSsl = require('force-ssl-heroku');
 const csp = require('content-security-policy');
+const sts = require('strict-transport-security');
+const referrerPolicy = require('referrer-policy');
+const permissionsPolicy = require('permissions-policy');
 
 const app = express();
 
@@ -23,17 +26,8 @@ const cspPolicy = {
         'http://connect.facebook.net/',
         '*.facebook.com'
     ],
-    'connect-src': [ 
-        csp.SRC_SELF,
-        'ws://localhost:*',
-        'http://localhost:*',
-        process.env.USERS_API,
-        process.env.FEED_API,
-        process.env.COMPETITION_API,
-        process.env.APICEP,
-        'https://www.googleapis.com',
-        '*.facebook.com',
-        'facebook.com'
+    'connect-src': [
+        csp.SRC_ANY
         ],
     'child-src': [
         csp.SRC_SELF,
@@ -45,8 +39,20 @@ const cspPolicy = {
 
 const globalCSP = csp.getCSP(cspPolicy);
 
-app.use(globalCSP);
+const globalSTS = sts.getSTS({'max-age': 31536000, 'includeSubDomains': true});
 
+app.use(referrerPolicy({ policy: 'same-origin' }))
+app.use(globalCSP);
+app.use(globalSTS);
+app.use(helmet());
+app.use(helmet.frameguard());
+app.use(permissionsPolicy({
+    features: {
+        fullscreen: ['self'],
+        payment: [`${process.env.WEB_FRONT}`],
+        syncXhr: ['"none"']
+    }
+}));
 
 app.use(express.static(__dirname + '/dist/bbooks'));
 app.use(express.static(path.join(__dirname + 'node_modules')));
