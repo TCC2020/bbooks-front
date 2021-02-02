@@ -82,6 +82,8 @@ describe('FeedComponent', () => {
         const spy = jest.spyOn(mockMatDialog, 'open');
         component.openPost();
         expect(spy).toHaveBeenCalled();
+
+
     });
 
     it('getPosts: should getByProfileId', () => {
