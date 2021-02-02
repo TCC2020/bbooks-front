@@ -26,9 +26,7 @@ const cspPolicy = {
         'http://connect.facebook.net/',
         '*.facebook.com'
     ],
-    'connect-src': [
-        csp.SRC_ANY
-        ],
+    'connect-src': csp.SRC_ANY,
     'child-src': [
         csp.SRC_SELF,
         'https://apis.google.com',
@@ -49,7 +47,6 @@ app.use(helmet.frameguard());
 app.use(permissionsPolicy({
     features: {
         fullscreen: ['self'],
-        payment: [`${process.env.WEB_FRONT}`],
         syncXhr: ['"none"']
     }
 }));
