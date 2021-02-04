@@ -32,7 +32,8 @@ const cspPolicy = {
         csp.SRC_SELF,
         'https://apis.google.com',
         'https://facebook.com',
-        'https://www.googleapis.com/'
+        'https://www.googleapis.com/',
+        'https://accounts.google.com/'
         ]
 };
 
