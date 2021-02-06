@@ -29,8 +29,9 @@ import {readingTrackingMock} from '../../../mocks/tracking.model';
 import { readingTargetMock } from 'src/app/mocks/reading-target.model.mock';
 import { BookStatus } from 'src/app/models/enums/BookStatus.enum';
 import {Book} from '../../../models/book.model';
-import {userbookMock, userbooksMock} from '../../../mocks/userbook.model.mock';
+import {userbookMock, userBooksDataStatusMock, userbooksMock} from '../../../mocks/userbook.model.mock';
 import {gBookMock} from '../../../mocks/google-book.model.mock';
+import {UserbookService} from '../../../services/userbook.service';
 
 describe('BookViewComponent', () => {
     let component: BookViewComponent;
@@ -39,6 +40,8 @@ describe('BookViewComponent', () => {
     let httpTrackingService: TrackingService;
     let gBookServiceMock: GoogleBooksService;
     let booksServiceMock: BookService;
+    let userBookServiceMock: UserbookService;
+
 
 
     const routeMock = {
@@ -92,6 +95,7 @@ describe('BookViewComponent', () => {
                     provide: MatDialog,
                     useValue: mockMatDialog
                 },
+                UserbookService
             ],
             declarations: [BookViewComponent]
         }).compileComponents();
@@ -99,6 +103,7 @@ describe('BookViewComponent', () => {
         httpTrackingService = TestBed.inject(TrackingService);
         gBookServiceMock = TestBed.inject(GoogleBooksService);
         booksServiceMock = TestBed.inject(BookService);
+        userBookServiceMock = TestBed.inject(UserbookService);
     }));
 
     beforeEach(() => {
@@ -282,6 +287,42 @@ describe('BookViewComponent', () => {
         component.getBook();
         expect(spyUserbooks).toHaveBeenCalled();
         expect(spyGbook).toHaveBeenCalled();
+        done();
+    });
+
+    it('getDataStatusByBookId: should get DataStatus',  done => {
+        component.book.id = '10';
+        const spy = jest.spyOn(userBookServiceMock, 'getDataStatusByBooksBookId').mockReturnValue(of(userBooksDataStatusMock));
+        component.getDataStatusByBookId();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(bookMock.id);
+        done();
+    });
+
+    it('getDataStatusByBookId: should catch DataStatus error',  done => {
+        component.book.id = '10';
+        const spy = jest.spyOn(userBookServiceMock, 'getDataStatusByBooksBookId').mockReturnValue(throwError('error'));
+        component.getDataStatusByBookId();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(bookMock.idUserBook);
+        done();
+    });
+
+    it('getDataStatusByGoogleBook: should get DataStatus',  done => {
+        component.book.id = '10';
+        const spy = jest.spyOn(userBookServiceMock, 'getDataStatusByBooksGoogleBook').mockReturnValue(of(userBooksDataStatusMock));
+        component.getDataStatusByGoogleBook();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(bookMock.id);
+        done();
+    });
+
+    it('getDataStatusByGoogleBook: should catch DataStatus error',  done => {
+        component.book.id = '10';
+        const spy = jest.spyOn(userBookServiceMock, 'getDataStatusByBooksGoogleBook').mockReturnValue(throwError('error'));
+        component.getDataStatusByGoogleBook();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(bookMock.idUserBook);
         done();
     });
 });

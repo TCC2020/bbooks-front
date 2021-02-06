@@ -30,19 +30,19 @@
                         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutAlign.xs="center center" class="totalStatus" fxLayoutGap="5px">
                             <mat-card>
                                 {{'STATUS.DETALHES_LENDO' | translate}}
-                                <p>10</p>
+                                <p>{{userBooksDataStatusTO?.lendo}}</p>
                             </mat-card>
                             <mat-card >
                                 {{'STATUS.DETALHES_RELENDO' | translate}}
-                                <p>10</p>
+                                <p>{{userBooksDataStatusTO?.relendo}}</p>
                             </mat-card>
                             <mat-card>
                                 {{'STATUS.DETALHES_QUEREM_LER' | translate}}
-                                <p>10</p>
+                                <p>{{userBooksDataStatusTO?.queroLer}}</p>
                             </mat-card>
                             <mat-card>
-                                {{'STATUS.DETALHES_ABANDONOS' | translate}}
-                                <p>10</p>
+                                {{'STATUS.INTERROMPIDO' | translate}}
+                                <p>{{userBooksDataStatusTO?.interrompido}}</p>
                             </mat-card>
 <!--                            <mat-card fxFlex="20">-->
 <!--                                RESENHAS-->
