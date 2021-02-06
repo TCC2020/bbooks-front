@@ -31,6 +31,7 @@ import { BookStatus } from 'src/app/models/enums/BookStatus.enum';
 import {Book} from '../../../models/book.model';
 import {userbookMock, userbooksMock} from '../../../mocks/userbook.model.mock';
 import {gBookMock} from '../../../mocks/google-book.model.mock';
+import {UserbookService} from '../../../services/userbook.service';
 
 describe('BookViewComponent', () => {
     let component: BookViewComponent;
@@ -92,6 +93,7 @@ describe('BookViewComponent', () => {
                     provide: MatDialog,
                     useValue: mockMatDialog
                 },
+                UserbookService
             ],
             declarations: [BookViewComponent]
         }).compileComponents();
