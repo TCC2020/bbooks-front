@@ -10,6 +10,7 @@ import {userbookMock, userbooksMock} from '../mocks/userbook.model.mock';
 import {environment} from '../../environments/environment';
 import {BookStatus} from '../models/enums/BookStatus.enum';
 import {profileMock} from '../mocks/profile.model.mock';
+import {bookMock} from '../mocks/book.model.mock';
 
 describe('UserbookService', () => {
     let service: UserbookService;
@@ -123,6 +124,20 @@ describe('UserbookService', () => {
     it('getAllByProfile: should call http GET',  done => {
         service.getAllByProfile(profileMock.id).subscribe(() => {});
         const req = httpMock.expectOne(api + 'profile/' + profileMock.id);
+        expect(req.request.method).toBe('GET');
+        done();
+    });
+
+
+    it('getDataStatusByBooksBookId: should call http GET',  done => {
+        service.getDataStatusByBooksBookId(bookMock.id).subscribe(() => {});
+        const req = httpMock.expectOne(api + 'status-data?bookId=' + bookMock.id);
+        expect(req.request.method).toBe('GET');
+        done();
+    });
+    it('getDataStatusByBooksGoogleBook: should call http GET',  done => {
+        service.getDataStatusByBooksGoogleBook(bookMock.id).subscribe(() => {});
+        const req = httpMock.expectOne(api + 'status-data?googleBook=' + bookMock.id);
         expect(req.request.method).toBe('GET');
         done();
     });
