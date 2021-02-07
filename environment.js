@@ -8,7 +8,7 @@ const heroku = `export const environment = {
     apicep: '${process.env.APICEP}',
     feedApi: '${process.env.FEED_API}',
     competitionApi: '${process.env.COMPETITION_API}'
-}`
+};`
 
 fs.writeFile('src/environments/environment.prod.ts', heroku, (err, result) => {
     if (err) {

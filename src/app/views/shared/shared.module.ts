@@ -14,6 +14,7 @@ import {NumbersOnlyInputDirective} from './directive/numbers-only-input.directiv
 import {LoaderComponent} from '../../loader/loader.component';
 import { ReferBookDialogComponent } from './refer-book-dialog/refer-book-dialog.component';
 import {PostDialogComponent} from './post-dialog/post-dialog.component';
+import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {PostDialogComponent} from './post-dialog/post-dialog.component';
         RouterModule,
         FlexLayoutModule,
         HttpClientModule,
+        SweetAlert2Module,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,

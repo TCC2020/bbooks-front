@@ -1,6 +1,6 @@
 <div class="card">
     <div class="container">
-        <img [src]="book.image ? book.image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'" alt="Avatar" class="image" style="width:100%"
+        <img [src]="book.image ? book.image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'" alt="Avatar" class="image"
              [routerLink]="[routerlink + idTag, book.id]" [queryParams]="{api: book.api}">
         <div class="faixa" *ngIf="this.book.idUserBook">
             <mat-icon mat-icon-button [matMenuTriggerFor]="menu" *ngIf="book.status === bookStatus.LIDO" class="iconStatusLidos">turned_in</mat-icon>

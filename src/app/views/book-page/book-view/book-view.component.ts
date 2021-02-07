@@ -1,6 +1,5 @@
-import { UserBookTO } from './../../../models/userBookTO';
-import { ReadingTargetService } from './../../../services/reading-target.service';
-import { ReadingTargetTO } from './../../../models/readingTargetTO.model';
+import {ReadingTargetService} from './../../../services/reading-target.service';
+import {ReadingTargetTO} from './../../../models/readingTargetTO.model';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../../../models/book.model';
 import {Observable, Subscription} from 'rxjs';
@@ -27,9 +26,12 @@ import {ReviewDialogComponent} from '../review-dialog/review-dialog.component';
 import {ReviewService} from '../../../services/review.service';
 import {ProfileService} from '../../../services/profile.service';
 import {TranslateService} from '@ngx-translate/core';
-import { ReferBookDialogComponent } from '../../shared/refer-book-dialog/refer-book-dialog.component';
+import {ReferBookDialogComponent} from '../../shared/refer-book-dialog/refer-book-dialog.component';
 import {PageEvent} from '@angular/material/paginator';
 import {ReviewsPagination} from '../../../models/pagination/reviews.pagination';
+import {UserbookService} from '../../../services/userbook.service';
+import {UserBooksDataStatusTO} from '../../../models/UserBooksDataStatusTO.model';
+import {Util} from '../../shared/Utils/util';
 
 @Component({
     selector: 'app-book-view',
@@ -40,6 +42,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
     inscricao: Subscription;
     book: Book = new Book();
+    userBooksDataStatusTO: UserBooksDataStatusTO;
     stars: number[] = [1, 2, 3, 4, 5];
     rating = 1;
     stringAuthors: string[];
@@ -73,9 +76,12 @@ export class BookViewComponent implements OnInit, OnDestroy {
         private reviewService: ReviewService,
         private readingTargetService: ReadingTargetService,
         private profileService: ProfileService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private userBookService: UserbookService
     ) {
+        Util.loadingScreen();
         this.inscricao = this.route.data.subscribe((data: { book: Book }) => {
+            Util.stopLoading();
             this.book = data.book;
             this.stringAuthors = this.convertAuthorsToString();
             if (this.book?.idUserBook > 0) {
@@ -91,7 +97,33 @@ export class BookViewComponent implements OnInit, OnDestroy {
         this.getAllReviews();
     }
 
+    getDataStatusByGoogleBook(): void {
+        Util.loadingScreen();
+        this.userBookService.getDataStatusByBooksGoogleBook(this.book.id)
+            .pipe(take(1))
+            .subscribe(result => {
+                    Util.stopLoading();
+                    this.userBooksDataStatusTO = result;
+                },
+                error => {
+                    console.log('Error: getDataStatusByBooksGoogleBook', error);
+                });
+    }
+    getDataStatusByBookId(): void {
+        Util.loadingScreen();
+        this.userBookService.getDataStatusByBooksBookId(this.book.id)
+            .pipe(take(1))
+            .subscribe(result => {
+                    Util.stopLoading();
+                    this.userBooksDataStatusTO = result;
+                },
+                error => {
+                    console.log('Error: getDataStatusByBooksGoogleBook', error);
+                });
+    }
+
     getBook(): void {
+        Util.loadingScreen();
         if (this.book.api === 'google') {
             this.bookService.getAllUserBooks().subscribe((userbooks) => {
                 this.gBookService.getById(this.book.id).subscribe(b => {
@@ -104,6 +136,8 @@ export class BookViewComponent implements OnInit, OnDestroy {
                         }
                     });
                     this.book = book;
+                    Util.stopLoading();
+                    this.getDataStatusByGoogleBook();
                     this.verifyReadingTarget();
                 });
             });
@@ -116,11 +150,10 @@ export class BookViewComponent implements OnInit, OnDestroy {
                             b.status = userbook.status;
                             b.idUserBook = userbook.id;
                             b.finishDate = userbook.finishDate;
-                            console.log(userbook);
-
                         }
                     });
                     this.book = b;
+                    this.getDataStatusByBookId();
                     this.verifyReadingTarget();
                 });
             });
@@ -129,10 +162,12 @@ export class BookViewComponent implements OnInit, OnDestroy {
 
     getAllTracking() {
         if (this.book?.idUserBook) {
+            Util.loadingScreen();
             this.trackingService.getAllByUserBook(this.book.idUserBook).pipe(take(1)).subscribe(trackings => {
                     this.trackings = trackings
                         .slice()
                         .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime());
+                    Util.stopLoading();
                 },
                 error => {
                     console.log('error tracking all by idbook', error);
@@ -281,7 +316,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
         const diffenceOfDates = Math.abs(lastDayOfYear.getTime() - currentDate.getTime());
         const differenceInDays = Math.ceil(diffenceOfDates / (1000 * 3600 * 24));
         return differenceInDays.toString();
-      }
+    }
 
     openDialogReadingTracking(track: TrackingTO, tracking: ReadingTrackingTO, editPag: boolean, trackingUpId: string) {
         const dialogRef = this.dialog.open(TrackingDialogComponent, {
@@ -396,6 +431,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 });
             });
     }
+
     changePage(event: PageEvent) {
         this.pageEvent = event;
         this.getAllReviews();
@@ -407,11 +443,12 @@ export class BookViewComponent implements OnInit, OnDestroy {
             this.pageEvent.pageSize,
             this.pageEvent.pageIndex
         )
-        .pipe(take(1))
-        .subscribe(reviewsPagination => {
-            this.reviewPagination = reviewsPagination;
-        });
+            .pipe(take(1))
+            .subscribe(reviewsPagination => {
+                this.reviewPagination = reviewsPagination;
+            });
     }
+
     getAllByBook(): void {
         this.reviewService.getAllByBook(
             // tslint:disable-next-line:radix
@@ -419,10 +456,10 @@ export class BookViewComponent implements OnInit, OnDestroy {
             this.pageEvent.pageSize,
             this.pageEvent.pageIndex
         )
-        .pipe(take(1))
-        .subscribe(reviewsPagination => {
-            this.reviewPagination = reviewsPagination;
-        });
+            .pipe(take(1))
+            .subscribe(reviewsPagination => {
+                this.reviewPagination = reviewsPagination;
+            });
     }
 
 }

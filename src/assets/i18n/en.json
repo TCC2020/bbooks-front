@@ -48,7 +48,8 @@
     "BLOQUEAR": "Block",
     "METAS_ANTEREIORS": "Previous Goals",
     "ANDAMENTO_META": "Reading Target Progress",
-    "SESSAO_EXPIRADA": "Session expired"
+    "SESSAO_EXPIRADA": "Session expired",
+    "OCORREU_UM_ERRO": "Ops! An error has occurred."
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -165,7 +166,7 @@
     "DETALHES_LENDO": "READING",
     "DETALHES_RELENDO": "REREADING",
     "DETALHES_QUEREM_LER": "WANT TO READ",
-    "DETALHES_ABANDONOS": "ABANDONED"
+    "DETALHES_INTERROMPIDOS": "INTERRUPTED"
   },
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Reading Tracking",
@@ -230,8 +231,13 @@
   },
   "POST":{
     "CRIAR_POSTAGEM": "Create Post",
+    "EDITAR_POSTAGEM": "Edit Post",
     "COMPARTILHAR_COM": "Share with",
     "TEXT_POST_INPUT" : "What are you thinking?",
-    "TEXT_POST_INPUT_ASK" : "Ask a question..."
+    "TEXT_POST_INPUT_ASK" : "Ask a question...",
+    "POST_EXCLUIDO": "Deleted post",
+    "GOSTEI": "LIKE",
+    "COMENTAR": "Comment",
+    "COMPARTILHAR": "Share"
   }
 }
