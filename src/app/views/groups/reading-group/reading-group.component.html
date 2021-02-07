@@ -2,8 +2,8 @@
     <div class="container-cabecalho-grupo">
         <div class="container-detalhes-cabecalho">
             <div class="informacoes-grupo">
-                <h1>Nome do Grupo</h1>
-                <p>{{'GRUPO_LEITURA.GRUPO' | translate}} Público - 30 {{'GRUPO_LEITURA.MEMBROS' | translate}}</p>
+                <h1>{{groupTO?.name}}</h1>
+                <p>{{'GRUPO_LEITURA.GRUPO' | translate}} {{'PADRAO.' + mapPostPrivacy.get(groupTO.privacy) | translate}} - 30 {{'GRUPO_LEITURA.MEMBROS' | translate}}</p>
             </div>
             <div class="botao-convidar-grupo">
                 <button type="button" mat-raised-button color="primary"><span class="material-icons">add</span>{{'GRUPO_LEITURA.CONVIDAR' | translate}}</button>
@@ -14,9 +14,10 @@
         <div class="container-tab-group">
             <nav mat-tab-nav-bar >
                 <a mat-tab-link *ngFor="let link of links"
-                    (click)="activeLink = link"
-                    [active]="activeLink == link" routerLink="{{link}}"
-                >{{'GRUPO_LEITURA.' + link | translate | titlecase}}</a>
+                   routerLinkActive #rla="routerLinkActive"
+                   [routerLink]="link"
+                   [active]="rla.isActive"
+                >{{'GRUPO_LEITURA.' + link | translate | titlecase}} </a>
             </nav>
             <div class="container-mat-tab">
                 <router-outlet></router-outlet>

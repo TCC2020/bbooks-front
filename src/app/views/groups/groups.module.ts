@@ -13,7 +13,10 @@ import {MainGroupComponent} from './main-group/main-group.component';
 import {YourGroupComponent} from './your-group/your-group.component';
 import {CreateGroupComponent} from './create-group/create-group.component';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MainGuardGroup} from './guards/main-group.guard';
+import {MainGroupResolve} from './guards/main-group.resolve';
+import {AboutGroupResolve} from './guards/about-group.resolve';
 
 
 @NgModule({
@@ -29,6 +32,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     imports: [
         CommonModule,
         GroupsRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
         MaterialModule,
         TranslateModule.forChild({
             loader: {
@@ -40,6 +45,11 @@ import {ReactiveFormsModule} from '@angular/forms';
         FlexModule,
         FlexLayoutModule,
         ReactiveFormsModule,
+    ],
+    providers: [
+        MainGuardGroup,
+        MainGroupResolve,
+        AboutGroupResolve
     ]
 })
 export class GroupsModule {

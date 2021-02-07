@@ -1,28 +1,55 @@
-<form>
+<form [formGroup]="formGroup">
     <div class="container-mat-tab">
         <h2>{{'GRUPO_LEITURA.SOBRE' | translate}}</h2>
         <div class="reading-group-edit">
             <h3>{{'GRUPO_LEITURA.DESCRICAO_GRUPO' | translate}}</h3>
             <button class="botao-edit" *ngIf="isAdm()&& !isEditing" (click)="changeToEdit()"><span class="material-icons">edit</span></button>
-            <button class="botao-edit" *ngIf="isAdm() && isEditing" (click)="changeToEdit()"><span class="material-icons">save</span></button>
+            <button class="botao-edit" *ngIf="isAdm() && isEditing" (click)="update()"><span class="material-icons">save</span></button>
         </div>
-        <p *ngIf="!isEditing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis ante imperdiet, malesuada lacus eget, pretium turpis. Curabitur sit amet ultrices magna, eu convallis ipsum. Etiam nisi justo, volutpat eu sem eu, laoreet dignissim mauris. Integer magna libero, porta vitae vestibulum sit amet, porttitor nec mi. Vestibulum in libero luctus, finibus elit sit amet, rhoncus est. Integer vestibulum orci sit amet purus maximus ultrices a quis nisi. Mauris suscipit massa eget erat sagittis elementum. In sollicitudin semper lectus, eget vehicula ex dignissim vel.</p>
+        <p *ngIf="!isEditing">{{groupTO?.description}}</p>
 
         <mat-form-field class="area-descricao" appearance="fill" *ngIf="isEditing">
-            <textarea matInput #description maxlength="1000">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sagittis ante imperdiet, malesuada lacus eget, pretium turpis. Curabitur sit amet ultrices magna, eu convallis ipsum. Etiam nisi justo, volutpat eu sem eu, laoreet dignissim mauris. Integer magna libero, porta vitae vestibulum sit amet, porttitor nec mi. Vestibulum in libero luctus, finibus elit sit amet, rhoncus est. Integer vestibulum orci sit amet purus maximus ultrices a quis nisi. Mauris suscipit massa eget erat sagittis elementum. In sollicitudin semper lectus, eget vehicula ex dignissim vel.</textarea>
+            <textarea matInput #description maxlength="1000"  formControlName="description"></textarea>
             <mat-hint>{{description.value.length}} / 1000</mat-hint>
         </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px" *ngIf="!isEditing">
+            <span class="material-icons" *ngIf="groupTO?.privacy == 'public_all'">public</span>
+            <span class="material-icons" *ngIf="groupTO?.privacy != 'public_all'">lock</span>
+            <div>{{'PADRAO.' + mapPostPrivacyView.get(this.groupTO?.privacy) | translate | titlecase}}</div>
+        </div>
+        <mat-radio-group formControlName="privacy"  *ngIf="isEditing">
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button  [value]="mapPostPrivacy.get(privacy.public_all)">
 
-        <h3 *ngIf="!isEditing"><span class="material-icons">public</span>Público</h3>
-        <mat-form-field appearance="fill" *ngIf="isEditing">
-            <mat-label>Privacidade</mat-label>
-            <mat-select>
-                <mat-option value="one">Público</mat-option>
-                <mat-option value="two">Privado</mat-option>
-            </mat-select>
-        </mat-form-field>
-
+                    </mat-radio-button>
+                </div>
+                <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                        <b>{{'PADRAO.PUBLICO' | translate}} </b>
+                    </div>
+                    <div class="textColor">
+                        {{'GRUPO_LEITURA.PUBLICO_DESCRICAO' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button  [value]="mapPostPrivacy.get(privacy.private_group)">
+                    </mat-radio-button>
+                </div>
+                <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                        <b>{{'PADRAO.PRIVADO' | translate}}</b>
+                    </div>
+                    <div class="textColor">
+                        {{'GRUPO_LEITURA.PRIVADO_DESCRICAO' | translate}}
+                    </div>
+                </div>
+            </div>
+        </mat-radio-group>
         <h3>{{'GRUPO_LEITURA.DATA_CRIACAO' | translate}}</h3>
-        <p>10/01/2021</p>
+        <p>{{groupTO?.creationDate | date}}</p>
     </div>
 </form>
+

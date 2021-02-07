@@ -7,6 +7,10 @@ import { ReadingGroupComponent } from './reading-group/reading-group.component';
 import {MainGroupComponent} from './main-group/main-group.component';
 import {YourGroupComponent} from './your-group/your-group.component';
 import {CreateGroupComponent} from './create-group/create-group.component';
+import {MainGuard} from '../perfil-page/guards/main.guard';
+import {MainGroupResolve} from './guards/main-group.resolve';
+import {MainGuardGroup} from './guards/main-group.guard';
+import {AboutGroupResolve} from './guards/about-group.resolve';
 
 const groupsRouter = [
     {
@@ -24,13 +28,16 @@ const groupsRouter = [
         ]
     },
     {
-        path: '', component: ReadingGroupComponent,
+        path: 'group/:id', component: ReadingGroupComponent,
+        canActivate: [MainGuardGroup],
+        resolve: {groupTo: MainGroupResolve},
         children: [
             {
-                path: 'feed', component: FeedGroupComponent
+                path: 'about', component: AboutGroupComponent,
+                resolve: {groupTo: AboutGroupResolve},
             },
             {
-                path: 'about', component: AboutGroupComponent
+                path: 'feed', component: FeedGroupComponent
             },
             {
                 path: 'members', component: MembersGroupComponent

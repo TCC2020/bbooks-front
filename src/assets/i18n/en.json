@@ -53,6 +53,8 @@
     "GRUPOS_LEITURA": "Reading Groups",
     "PUBLICO": "Public",
     "PRIVADO": "Private",
+    "public": "public",
+    "private": "private",
     "PRIVACIDADE": "Privacy",
     "OBRIGATORIO": "required"
   },

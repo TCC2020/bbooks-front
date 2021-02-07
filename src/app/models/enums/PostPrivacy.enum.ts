@@ -14,3 +14,9 @@ export const mapPostPrivacy = new Map<PostPrivacy, string>([
     [PostPrivacy.private_group, 'private_group'],
 
 ]);
+
+export const mapPostPrivacyStrinView = new Map<string, string>([
+    ['public_all', 'public'],
+    ['friends_only', 'friends'],
+    ['private_group', 'private'],
+]);

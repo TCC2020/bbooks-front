@@ -20,7 +20,7 @@ export class GroupService {
         return this.http.post<GroupTO>(this.api, groupTO);
     }
     update(groupTO: GroupTO): Observable<GroupTO> {
-        return this.http.post<GroupTO>(this.api + groupTO.id, groupTO);
+        return this.http.put<GroupTO>(this.api + groupTO.id, groupTO);
     }
 
     getById(idGroup: number): Observable<GroupTO> {

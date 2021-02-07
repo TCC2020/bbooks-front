@@ -1,32 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserTO} from '../../../models/userTO.model';
+import {GroupTO} from '../../../models/GroupTO.model';
+import {Util} from '../../shared/Utils/util';
+import {take} from 'rxjs/operators';
+import {mapPostPrivacy, mapPostPrivacyStrinView} from '../../../models/enums/PostPrivacy.enum';
 
 @Component({
-  selector: 'app-reading-group',
-  templateUrl: './reading-group.component.html',
-  styleUrls: ['./reading-group.component.scss']
+    selector: 'app-reading-group',
+    templateUrl: './reading-group.component.html',
+    styleUrls: ['./reading-group.component.scss']
 })
 export class ReadingGroupComponent implements OnInit {
-links = ['feed', 'about', 'members'];
-activeLink = this.links[0];
-
-constructor(
-  private router: Router,
-) { }
-
-  ngOnInit(): void {
-  }
-
-
-  changeMenu(): void {
-    const result = this.links.find(l => this.router.url.toLowerCase().includes(l.toLowerCase()));
-    if (result) {
-        this.activeLink = result;
-        this.router.navigate([`reading-group/${result.toString()}`]);
-    } else {
-        this.activeLink = this.links[0];
-        this.router.navigate([`reading-group/${this.links[0].toString()}`]);
+    links = ['feed', 'about', 'members'];
+    groupTO: GroupTO;
+    public mapPostPrivacy = mapPostPrivacyStrinView;
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+    ) {
     }
-}
+
+    ngOnInit(): void {
+        Util.loadingScreen();
+        this.route.data.pipe(take(1)).subscribe((data: { groupTo: GroupTO }) => {
+            Util.stopLoading();
+            this.groupTO = data.groupTo;
+        });
+    }
+
 
 }

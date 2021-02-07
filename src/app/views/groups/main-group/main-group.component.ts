@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainGroupComponent implements OnInit {
   links = ['your-groups', 'create'];
-  activeLink = this.links[0];
 
   constructor() { }
 
