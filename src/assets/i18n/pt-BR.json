@@ -77,7 +77,8 @@
     "INPUT_DESCRICAO": "Descreva o assundo do grupo",
     "GRUPO_DESCRICAO": "Crie grupos para compartilhar leituras e trocas de experiências. ",
     "MSG_NAME_GROUP_E": "Nome do grupo é",
-    "MSG_PRIVACY_GROUP_E": "Privacidade é"
+    "MSG_PRIVACY_GROUP_E": "Privacidade é",
+    "GRUPO_CRIADO": "O grupo foi criado!"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",

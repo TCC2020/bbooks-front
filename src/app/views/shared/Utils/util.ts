@@ -67,7 +67,7 @@ export class Util {
     static showSuccessDialog(msg: string): Promise<SweetAlertResult> {
         // @ts-ignore
         return Swal.fire({
-            type: 'success',
+            icon: 'success',
             text: msg,
             showConfirmButton: true,
             confirmButtonText: 'Ok',
@@ -78,7 +78,8 @@ export class Util {
     static showErrorDialog(msg: string): Promise<SweetAlertResult> {
         // @ts-ignore
         return Swal.fire({
-            type: 'error',
+
+            icon: 'error',
             text: msg,
             showConfirmButton: true,
             confirmButtonText: 'ok',

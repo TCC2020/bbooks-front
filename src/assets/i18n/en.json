@@ -78,7 +78,9 @@
     "GRUPO_DESCRICAO": "Create groups to share readings and exchange experiences.",
     "SOBRE": "About",
     "MSG_NAME_GROUP_E": "Name group is",
-    "MSG_PRIVACY_GROUP_E": "Privacy é"
+    "MSG_PRIVACY_GROUP_E": "Privacy é",
+    "GRUPO_CRIADO": "The group was created!"
+
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",

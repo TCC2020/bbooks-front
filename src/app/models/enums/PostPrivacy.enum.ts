@@ -11,4 +11,6 @@ export function getArrayPostPrivacy() {
 export const mapPostPrivacy = new Map<PostPrivacy, string>([
     [PostPrivacy.public_all, 'public_all'],
     [PostPrivacy.friends_only, 'friends_only'],
+    [PostPrivacy.private_group, 'private_group'],
+
 ]);

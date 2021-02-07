@@ -36,7 +36,7 @@
         <mat-radio-group formControlName="privacy">
             <div fxLayout="row" fxLayoutAlign="start start">
                 <div div fxLayout="column" fxLayoutAlign>
-                    <mat-radio-button  [value]="privacy.public_all">
+                    <mat-radio-button  [value]="mapPostPrivacy.get(privacy.public_all)">
 
                     </mat-radio-button>
                 </div>
@@ -51,7 +51,7 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="start start">
                 <div div fxLayout="column" fxLayoutAlign>
-                    <mat-radio-button  [value]="privacy.private_group">
+                    <mat-radio-button  [value]="mapPostPrivacy.get(privacy.private_group)">
 
                     </mat-radio-button>
                 </div>
@@ -75,6 +75,7 @@
     </mat-card>
     <mat-card>
         <button
+        (click)="save()"
         [disabled]="this.formGroup.invalid"
         mat-raised-button color="accent"
         fxLayout="row" fxLayoutAlign="center"
