@@ -1,8 +1,7 @@
-import {BookStatus} from './BookStatus.enum';
-
 export enum PostPrivacy {
     public_all = 'public',
-    friends_only = 'friend'
+    friends_only = 'friend',
+    private_group = 'private'
 }
 
 export function getArrayPostPrivacy() {

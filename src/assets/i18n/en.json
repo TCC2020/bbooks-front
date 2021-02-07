@@ -50,7 +50,35 @@
     "ANDAMENTO_META": "Reading Target Progress",
     "SESSAO_EXPIRADA": "Session expired",
     "OCORREU_UM_ERRO": "Ops! An error has occurred.",
-    "GRUPOS_LEITURA": "Reading Groups"
+    "GRUPOS_LEITURA": "Reading Groups",
+    "PUBLICO": "Public",
+    "PRIVADO": "Private",
+    "PRIVACIDADE": "Privacy",
+    "OBRIGATORIO": "required"
+  },
+  "GRUPO_LEITURA" : {
+    "ADMINISTRADORES" : "Administradores",
+    "MEMBROS": "Membros",
+    "GRUPO": "Grupo",
+    "CONVIDAR": "Convidar",
+    "DATA_CRIACAO": "Data de Criação",
+    "DESCRICAO_GRUPO": "Descrição do Grupo",
+    "SOBRE": "Sobre",
+    "feed": "feed",
+    "about": "sobre",
+    "members": "membros",
+    "your-groups": "Groups",
+    "create": "Create",
+    "CRIAR_GRUPO": "Create Group",
+    "PRIVADO_DESCRICAO": "Only members can see who is in the group and what they post.",
+    "PUBLICO_DESCRICAO": "Anyone can see who's in the group and what they posted.",
+    "NIVEL_ESCOLHA": "Choose a privacy level:",
+    "INPUT_NAME": "Give the group a name",
+    "INPUT_DESCRICAO": "Describe the subject of the group",
+    "GRUPO_DESCRICAO": "Create groups to share readings and exchange experiences.",
+    "SOBRE": "About",
+    "MSG_NAME_GROUP_E": "Name group is",
+    "MSG_PRIVACY_GROUP_E": "Privacy é"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -240,10 +268,5 @@
     "GOSTEI": "LIKE",
     "COMENTAR": "Comment",
     "COMPARTILHAR": "Share"
-  },
-  "GRUPOS": {
-    "your-groups": "Groups",
-    "create": "Create",
-    "CRIAR_GRUPO": "Create Group"
   }
 }

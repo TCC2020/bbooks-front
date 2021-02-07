@@ -13,6 +13,7 @@ import {MainGroupComponent} from './main-group/main-group.component';
 import {YourGroupComponent} from './your-group/your-group.component';
 import {CreateGroupComponent} from './create-group/create-group.component';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
         }),
         FlexModule,
         FlexLayoutModule,
+        ReactiveFormsModule,
     ]
 })
 export class GroupsModule {
