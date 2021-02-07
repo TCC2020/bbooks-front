@@ -64,7 +64,7 @@ const routes: Routes = [
         loadChildren: () => import('./views/feed-page/feed-page.module').then(m => m.FeedPageModule)
     },
     {
-        path: 'reading-group' ,
+        path: '' ,
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/groups/groups.module').then(m => m.GroupsModule)
     },

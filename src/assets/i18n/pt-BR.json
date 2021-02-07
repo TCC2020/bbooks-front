@@ -49,7 +49,8 @@
     "METAS_ANTEREIORS": "Metas Anteriores",
     "ANDAMENTO_META": "Andamento da Meta de Leitura",
     "SESSAO_EXPIRADA": "Sessão expirada",
-    "OCORREU_UM_ERRO": "Ops! Ocorreu um erro."
+    "OCORREU_UM_ERRO": "Ops! Ocorreu um erro.",
+    "GRUPOS_LEITURA": "Grupos de leitura"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -253,5 +254,10 @@
     "GOSTEI": "Gostei",
     "COMENTAR": "Comentar",
     "COMPARTILHAR": "Compartilhar"
+  },
+  "GRUPOS": {
+    "your-groups": "Groups",
+    "create": "Criar",
+    "CRIAR_GRUPO": "Criar Grupo"
   }
 }

@@ -1,0 +1,70 @@
+<div class="box" *ngIf="false">
+<!--    <div>-->
+
+        <button mat-raised-button color="accent" class="create-group" fxLayout="row" >
+            {{'GRUPOS.CRIAR_GRUPO' | translate | titlecase}}
+        </button>
+<!--    </div>-->
+        <div fxLayout="row">
+            <span class="material-icons">add_a_photo</span>
+        </div>
+</div>
+<!--    </div>-->
+
+
+<form >
+    <mat-card>
+        <div fxLayout="row" fxLayoutAlign="center">
+            <span class="material-icons">add_a_photo</span>
+        </div>
+        <mat-form-field fxLayout="row" fxLayoutAlign="center">
+            <mat-label>De um nome para o grupo</mat-label>
+            <input matInput  formControlName="name">
+            <mat-error *ngIf="formGroup.get('name').hasError('required')">
+                nome para o grup <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </mat-card>
+    <br>
+    <mat-card>
+        <h2>Privacidade</h2>
+        <p>Escolha um nivel de privacidade</p>
+        <mat-radio-group formControlName="privacy">
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button  value="1">
+
+                    </mat-radio-button>
+                </div>
+                <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                            Publico
+                    </div>
+                    <div>
+                        Qualquer pessoa pode ver quem esta no grupo e o que publicaram.
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button  value="2">
+
+                    </mat-radio-button>
+                </div>
+                <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                        Privado
+                    </div>
+                    <div>
+                        Somente membros podem ver quem esta no grupo e o que publicam.
+                    </div>
+                </div>
+            </div>
+        </mat-radio-group>
+    </mat-card>
+    <mat-card>
+        <button mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="center" style="width: 100%">
+            {{'GRUPOS.CRIAR_GRUPO' | translate | titlecase}}
+        </button>
+    </mat-card>
+</form>

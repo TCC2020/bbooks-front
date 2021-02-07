@@ -49,7 +49,8 @@
     "METAS_ANTEREIORS": "Previous Goals",
     "ANDAMENTO_META": "Reading Target Progress",
     "SESSAO_EXPIRADA": "Session expired",
-    "OCORREU_UM_ERRO": "Ops! An error has occurred."
+    "OCORREU_UM_ERRO": "Ops! An error has occurred.",
+    "GRUPOS_LEITURA": "Reading Groups"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -239,5 +240,10 @@
     "GOSTEI": "LIKE",
     "COMENTAR": "Comment",
     "COMPARTILHAR": "Share"
+  },
+  "GRUPOS": {
+    "your-groups": "Groups",
+    "create": "Create",
+    "CRIAR_GRUPO": "Create Group"
   }
 }
