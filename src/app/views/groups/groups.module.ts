@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MainGuardGroup} from './guards/main-group.guard';
 import {MainGroupResolve} from './guards/main-group.resolve';
 import {AboutGroupResolve} from './guards/about-group.resolve';
+import {MembersGroupResolve} from './guards/members-group.resolve';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {AboutGroupResolve} from './guards/about-group.resolve';
     providers: [
         MainGuardGroup,
         MainGroupResolve,
-        AboutGroupResolve
+        AboutGroupResolve,
+        MembersGroupResolve
     ]
 })
 export class GroupsModule {

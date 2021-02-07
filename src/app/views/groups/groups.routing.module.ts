@@ -11,6 +11,7 @@ import {MainGuard} from '../perfil-page/guards/main.guard';
 import {MainGroupResolve} from './guards/main-group.resolve';
 import {MainGuardGroup} from './guards/main-group.guard';
 import {AboutGroupResolve} from './guards/about-group.resolve';
+import {MembersGroupResolve} from './guards/members-group.resolve';
 
 const groupsRouter = [
     {
@@ -40,7 +41,8 @@ const groupsRouter = [
                 path: 'feed', component: FeedGroupComponent
             },
             {
-                path: 'members', component: MembersGroupComponent
+                path: 'members', component: MembersGroupComponent,
+                resolve: {groupTo: MembersGroupResolve},
             }
         ]
     }

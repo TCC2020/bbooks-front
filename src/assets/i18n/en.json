@@ -56,7 +56,8 @@
     "public": "public",
     "private": "private",
     "PRIVACIDADE": "Privacy",
-    "OBRIGATORIO": "required"
+    "OBRIGATORIO": "required",
+    "ENTER_": "Enter"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",

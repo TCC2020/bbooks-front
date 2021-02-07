@@ -16,14 +16,14 @@
     <!--começa card-->
     <div class="container-amigo">
         <div class="container-imagem">
-            <div class="informacoes-do-usuario">
+            <div class="informacoes-do-usuario" *ngFor="let member of members">
                 <div>
                     <img class="imagem-perfil"
                     src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
                 </div>
                 <div class="informacoes">
-                    <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
-                    <div><span>fulano-silva</span></div>
+                    <div><span><a class="nome-usuario"></a>@{{member?.userTO?.userName}}</span></div>
+                    <div><span>{{member?.userTO?.profile?.name}} {{member?.userTO?.profile?.lastName}}</span></div>
                 </div>
                 <div *ngIf="isAdm()">
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
@@ -43,38 +43,6 @@
                             <span>Remover membro</span>
                         </button>
                     </mat-menu>
-                </div>
-            </div>
-        </div>
-        <mat-divider></mat-divider>
-    </div>
-    <!--começa card-->
-    <div class="container-amigo">
-        <div class="container-imagem">
-            <div class="informacoes-do-usuario">
-                <div>
-                    <img class="imagem-perfil"
-                    src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
-                </div>
-                <div class="informacoes">
-                    <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
-                    <div><span>fulano-silva</span></div>
-                </div>
-            </div>
-        </div>
-        <mat-divider></mat-divider>
-    </div>
-    <!--começa card-->
-    <div class="container-amigo">
-        <div class="container-imagem">
-            <div class="informacoes-do-usuario">
-                <div>
-                    <img class="imagem-perfil"
-                    src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
-                </div>
-                <div class="informacoes">
-                    <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>
-                    <div><span>fulano-silva</span></div>
                 </div>
             </div>
         </div>

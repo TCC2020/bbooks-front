@@ -6,7 +6,7 @@ import {GroupService} from '../../../services/group.service';
 
 
 @Injectable()
-export class AboutGroupResolve implements Resolve<GroupTO> {
+export class MembersGroupResolve implements Resolve<GroupTO> {
 
     constructor(
         private groupService: GroupService
