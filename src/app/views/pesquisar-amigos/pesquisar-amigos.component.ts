@@ -3,6 +3,7 @@ import {FormBuilder} from '@angular/forms';
 import {UserTO} from 'src/app/models/userTO.model';
 import {ProfileService} from 'src/app/services/profile.service';
 import {UserService} from 'src/app/services/user.service';
+import {GroupService} from '../../services/group.service';
 
 @Component({
     selector: 'app-pesquisar-amigos',
@@ -19,6 +20,7 @@ export class PesquisarAmigosComponent implements OnInit {
         private fb: FormBuilder,
         private userService: UserService,
         private profileService: ProfileService,
+        public groupService: GroupService
     ) {
         this.pesquisarUsuarios = this.fb.group({
             user: ['']

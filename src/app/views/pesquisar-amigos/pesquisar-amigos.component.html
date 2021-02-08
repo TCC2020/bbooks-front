@@ -1,37 +1,43 @@
-   <form [formGroup]="pesquisarUsuarios"  class="form-inline mr-auto" fxLayout="row">
-        <div class="container-pesquisar">
-            <div>
-                <mat-form-field style="margin: 25px;">
-                    <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
-                    <input matInput matInput type="text" #nome (keyup)="pesquisar(nome)">
-                </mat-form-field>
-                <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
-            </div>
+<form [formGroup]="pesquisarUsuarios" class="form-inline mr-auto" fxLayout="row">
+    <div class="container-pesquisar">
+        <div>
+            <mat-form-field style="margin: 25px;">
+                <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
+                <input matInput matInput type="text" #nome (keyup)="pesquisar(nome)">
+            </mat-form-field>
+            <button mat-raised-button color="accent" id="search-bt"
+                    type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
         </div>
-    </form>
+    </div>
+</form>
 <div class="container-da-lista">
     <div class="container-lista-amigos">
         <!--começa card-->
         <div class="container-amigo" *ngFor="let user of filterUsers">
             <div class="container-imagem">
                 <div class="informacoes-do-usuario">
-                    <div> 
+                    <div>
                         <img class="imagem-perfil"
-                        [src]="user?.profile?.profileImage ?
+                             [src]="user?.profile?.profileImage ?
                         user.profile.profileImage:
                         'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
                     </div>
                     <div class="informacoes">
-                        <div><span><a class="nome-usuario" [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span></div>
+                        <div><span><a class="nome-usuario"
+                                      [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span>
+                        </div>
                         <div><span>{{user?.userName}}</span></div>
                         <div><span>{{user?.profile?.city}}</span></div>
                     </div>
                 </div>
                 <div class="adicionar-amigos">
                     <span><mat-icon>person_add</mat-icon></span>
-               </div>
+                </div>
             </div>
             <mat-divider></mat-divider>
         </div>
     </div>
 </div>
+
+<!--começa card-->
+
