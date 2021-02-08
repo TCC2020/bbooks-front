@@ -1,40 +1,59 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AboutGroupComponent } from './about-group.component';
+import {AboutGroupComponent} from './about-group.component';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {MaterialModule} from '../../../material/material.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {GroupService} from '../../../services/group.service';
+import {ActivatedRoute} from '@angular/router';
+import {MockActivatedRoute} from '../../../mocks/ActivatedRoute.mock';
+import {of} from 'rxjs';
+import {userMock} from '../../../mocks/user.model.mock';
+import {groupMock} from '../../../mocks/group.mock';
 
 describe('AboutGroupComponent', () => {
-  let component: AboutGroupComponent;
-  let fixture: ComponentFixture<AboutGroupComponent>;
+    let component: AboutGroupComponent;
+    let fixture: ComponentFixture<AboutGroupComponent>;
+    const routeMock = {
+        snapshot: {},
+        parent: new MockActivatedRoute({
+            params: {id: 'teste'}
+        }),
+        data: of({groupTo: groupMock})
+    };
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [AboutGroupComponent],
+            imports: [
+                MaterialModule,
+                FormsModule,
+                HttpClientTestingModule,
+                TranslateServiceMockForChild,
+                ReactiveFormsModule,
+                FormsModule
+            ],
+            providers: [
+                TranslateService,
+                TranslateStore,
+                GroupService,
+                {
+                    provide: ActivatedRoute,
+                    useValue: routeMock
+                },
+            ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AboutGroupComponent ],
-      imports: [
-        MaterialModule,
-        FormsModule,
-        HttpClientTestingModule,
-        TranslateServiceMockForChild
-      ],
-      providers: [
-        TranslateService,
-        TranslateStore
-      ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AboutGroupComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AboutGroupComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
