@@ -23,10 +23,10 @@ export class GroupService {
         return this.http.put<GroupTO>(this.api + groupTO.id, groupTO);
     }
 
-    getById(idGroup: number): Observable<GroupTO> {
+    getById(idGroup: string): Observable<GroupTO> {
         return this.http.get<GroupTO>(this.api + idGroup);
     }
-    delete(idGroup: number): Observable<void> {
-        return this.http.get<void>(this.api + idGroup);
+    delete(idGroup: string): Observable<void> {
+        return this.http.delete<void>(this.api + idGroup);
     }
 }
