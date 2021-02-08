@@ -9,6 +9,7 @@ import {PostService} from '../../../services/post.service';
 import {PostTO} from '../../../models/PostTO.model';
 import {Util} from '../../shared/Utils/util';
 import {TranslateService} from '@ngx-translate/core';
+import {FeedService} from '../../../services/feed.service';
 
 @Component({
     selector: 'app-feed',
@@ -27,7 +28,8 @@ export class FeedComponent implements OnInit {
         private router: Router,
         public authService: AuthService,
         public postService: PostService,
-        public translate: TranslateService
+        public translate: TranslateService,
+        public feedService: FeedService
     ) {
     }
 
@@ -73,7 +75,7 @@ export class FeedComponent implements OnInit {
 
     getPosts(): void {
         this.loading = true;
-        this.postService.getByProfileId(this.user.profile.id, 5, this.page)
+        this.feedService.getPersonFeed(this.authService.getUser().profile.id, 5, this.page)
             .pipe(take(1))
             .subscribe(result => {
                 this.loading = false;

@@ -16,6 +16,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {PostService} from '../../../services/post.service';
 import {postMock, postPagination, postsMock} from '../../../mocks/post.model.mock';
+import {FeedService} from '../../../services/feed.service';
 
 describe('FeedComponent', () => {
     let component: FeedComponent;
@@ -34,7 +35,7 @@ describe('FeedComponent', () => {
     };
 
     let postServiceMock: PostService;
-
+    let feedServiceMock: FeedService;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -62,7 +63,8 @@ describe('FeedComponent', () => {
                     provide: MatDialog,
                     useValue: mockMatDialog
                 },
-                PostService
+                PostService,
+                FeedService
             ]
         }).compileComponents();
         postServiceMock = TestBed.inject(PostService);
