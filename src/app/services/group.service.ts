@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {GroupTO} from '../models/GroupTO.model';
 import {Observable} from 'rxjs';
+import {GroupPagination} from '../models/pagination/group.pagination';
 
 @Injectable({
     providedIn: 'root'
@@ -28,5 +29,12 @@ export class GroupService {
     }
     delete(idGroup: string): Observable<void> {
         return this.http.delete<void>(this.api + idGroup);
+    }
+    getByName(search: string, size: number, page: number): Observable<GroupPagination> {
+        const params = new HttpParams()
+            .set('name', search)
+            .set('page', page.toString())
+            .set('size', size.toString());
+        return this.http.get<GroupPagination>(this.api, {params});
     }
 }

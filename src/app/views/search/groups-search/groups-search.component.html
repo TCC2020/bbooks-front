@@ -1,1 +1,19 @@
-<p>groups-search works!</p>
+<div
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     [fromRoot]="true"
+     (scrolled)="onScroll()"
+>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="5px" *ngFor="let group of groups">
+        <mat-card  class="card-group">
+            <mat-card-title>{{group.name}}</mat-card-title>
+            <mat-card-content>
+                {{group.description}}
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+</div>
