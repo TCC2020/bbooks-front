@@ -76,8 +76,9 @@
             </div>
         </mat-menu>
     </div>
+
     <div *ngIf="isLogged">
-        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/pesquisar-amigos']">
+        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/search']">
             <mat-icon>search</mat-icon>
         </button>
         <button  mat-flat-button color="primary" style="width: 5vw;"  [matMenuTriggerFor]="menuPerfil">

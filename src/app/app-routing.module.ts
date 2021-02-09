@@ -12,7 +12,6 @@ import { LoginComponent } from './modals/login/login.component';
 import {AuthGuard} from './guards/auth-guard';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
-import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
 
 const routes: Routes = [
     {
@@ -39,10 +38,6 @@ const routes: Routes = [
         path: 'nova-senha/:token', component: NovaSenhaComponent,
     },
     {
-        path: 'pesquisar-amigos', component: PesquisarAmigosComponent,
-        canActivate: [AuthGuard],
-    },
-    {
         path: 'andamento-meta-leitura', component: ReadingTargetProgressComponent,
         canActivate: [AuthGuard],
     },
@@ -67,6 +62,11 @@ const routes: Routes = [
         path: '' ,
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/groups/groups.module').then(m => m.GroupsModule)
+    },
+    {
+        path: '' ,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/search/search.module').then(m => m.SearchModule)
     },
     {
         path: '',

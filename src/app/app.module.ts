@@ -33,13 +33,13 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import {SharedModule} from './views/shared/shared.module';
-import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
 import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
 import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
 import {FeedPageModule} from './views/feed-page/feed-page.module';
 import { GroupsModule } from './views/groups/groups.module';
 import {ExchangeModule} from './views/exchange/exchange.module';
 import {BnNgIdleService} from 'bn-ng-idle';
+import {SearchModule} from './views/search/search.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -59,7 +59,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         PageNotFoundComponent,
         PageNotFoundComponent,
         UploadComponent,
-        PesquisarAmigosComponent,
         ReadingTargetProgressComponent,
         PreviousGoalsComponent
     ],
@@ -83,6 +82,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         PerfilPageModule,
         SharedModule,
         GroupsModule,
+        SearchModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

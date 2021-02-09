@@ -8,10 +8,17 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from '../book-page/book.module';
 import {HttpClient} from '@angular/common/http';
+import {MainSearchComponent} from './main-search/main-search.component';
+import {GroupsSearchComponent} from './groups-search/groups-search.component';
+import {PesquisarAmigosComponent} from './pesquisar-amigos/pesquisar-amigos.component';
 
 
 @NgModule({
-    declarations: [],
+    declarations: [
+        MainSearchComponent,
+        GroupsSearchComponent,
+        PesquisarAmigosComponent
+    ],
     imports: [
         CommonModule,
         SearchRoutingModule,

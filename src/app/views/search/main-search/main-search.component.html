@@ -1,1 +1,17 @@
-<p>main-search works!</p>
+<div fxLayout="row" fxLayoutAlign="center center" style="background-color: white">
+    <form [formGroup]="formSearch">
+        <mat-form-field>
+            <mat-label>{{'PADRAO.BUSCAR' | translate}}</mat-label>
+            <input matInput formControlName="search" matInput type="text">
+        </mat-form-field>
+    </form>
+</div>
+<nav mat-tab-nav-bar mat-align-tabs="center" style="background-color: white">
+    <a mat-tab-link *ngFor="let link of links"
+       routerLinkActive #rla="routerLinkActive"
+       [queryParams]="{ search: this.formSearch.get('search').value }"
+       [routerLink]="link"
+       [active]="rla.isActive"
+    > {{'SEARCH.' + link | translate | titlecase}}</a>
+</nav>
+<router-outlet></router-outlet>

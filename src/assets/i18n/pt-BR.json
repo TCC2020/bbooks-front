@@ -273,5 +273,9 @@
     "GOSTEI": "Gostei",
     "COMENTAR": "Comentar",
     "COMPARTILHAR": "Compartilhar"
+  },
+  "SEARCH": {
+    "people": "pessoas",
+    "groups": "grupos"
   }
 }
