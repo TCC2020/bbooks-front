@@ -8,10 +8,14 @@ import {TranslateServiceMockForChild} from '../../../mocks/translate.service.moc
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {SocialLoginModule} from 'angularx-social-login';
 import {userMock} from '../../../mocks/user.model.mock';
+import {GroupMemberService} from '../../../services/group-member.service';
+import {GroupService} from '../../../services/group.service';
+import {of, throwError} from 'rxjs';
+import {groupMock} from '../../../mocks/group.mock';
 
 describe('CreateGroupComponent', () => {
     let component: CreateGroupComponent;
@@ -19,6 +23,8 @@ describe('CreateGroupComponent', () => {
     const authServiceMock = {
         getUser: jest.fn(() => userMock)
     };
+    let httpMock: HttpTestingController;
+    let groupServcieMock: GroupService;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -44,6 +50,9 @@ describe('CreateGroupComponent', () => {
                 }
             ]
         }).compileComponents();
+        httpMock = TestBed.inject(HttpTestingController);
+        groupServcieMock = TestBed.inject(GroupService);
+
     }));
 
     beforeEach(() => {
@@ -54,5 +63,25 @@ describe('CreateGroupComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('showCreateForm', () => {
+
+        component.showCreateForm();
+        expect(component.buttonActiveForm).toBeTruthy();
+    });
+
+    it('should save group', () => {
+        const spy = jest.spyOn(groupServcieMock, 'save').mockReturnValue(of(groupMock));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.formGroup.value);
+    });
+
+    it('should catch error save group', () => {
+        const spy = jest.spyOn(groupServcieMock, 'save').mockReturnValue(throwError('error'));
+        component.save();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.formGroup.value);
     });
 });

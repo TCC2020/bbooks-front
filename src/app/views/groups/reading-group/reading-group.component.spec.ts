@@ -1,4 +1,4 @@
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
@@ -10,11 +10,14 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {ActivatedRoute} from '@angular/router';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {MockActivatedRoute} from '../../../mocks/ActivatedRoute.mock';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {groupMock} from '../../../mocks/group.mock';
 import {GroupMemberService} from '../../../services/group-member.service';
 import {AuthService} from '../../../services/auth.service';
 import {userMock} from '../../../mocks/user.model.mock';
+import {GroupMembers, Id} from '../../../models/GroupMembers.model';
+import {groupMembersMock} from '../../../mocks/group-members.mock';
+import {Role} from '../../../models/enums/Role.enum';
 
 describe('ReadingGroupComponent', () => {
     let component: ReadingGroupComponent;
@@ -30,6 +33,8 @@ describe('ReadingGroupComponent', () => {
     const authServiceMock = {
         getUser: jest.fn(() => userMock)
     };
+    let groupMemberServiceMock: GroupMemberService;
+    let httpMock: HttpTestingController;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -55,8 +60,10 @@ describe('ReadingGroupComponent', () => {
                     useValue: authServiceMock
                 }
             ]
-        })
-            .compileComponents();
+        }).compileComponents();
+
+        httpMock = TestBed.inject(HttpTestingController);
+        groupMemberServiceMock = TestBed.inject(GroupMemberService);
     }));
 
     beforeEach(() => {
@@ -68,4 +75,36 @@ describe('ReadingGroupComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+    it('should enter group create', () => {
+        const member = new GroupMembers();
+        member.id = new Id();
+        member.id.user = authServiceMock.getUser().id;
+        member.id.groupRead = component.groupTO.id;
+
+        member.role = Role.member;
+        const spy = jest.spyOn(groupMemberServiceMock, 'enterGroup').mockReturnValue(of(null));
+
+        component.enterGroup();
+        expect(component).toBeTruthy();
+
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(member);
+    });
+
+    it('should enter group create', () => {
+        const member = new GroupMembers();
+        member.id = new Id();
+        member.id.user = authServiceMock.getUser().id;
+        member.id.groupRead = component.groupTO.id;
+
+        member.role = Role.member;
+        const spy = jest.spyOn(groupMemberServiceMock, 'enterGroup').mockReturnValue(throwError(`error`));
+
+        component.enterGroup();
+        expect(component).toBeTruthy();
+
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(member);
+    });
+
 });

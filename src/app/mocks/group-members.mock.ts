@@ -9,3 +9,9 @@ groupMembersMock.id.groupRead = 'sfjaowesifjsoiaefj';
 groupMembersMock.id.user = userMock.id.toString();
 groupMembersMock.role = Role.owner;
 groupMembersMock.status = MemberStatus.aceppted;
+
+export const groupMembersListMock = [];
+groupMembersListMock.push(groupMembersMock);
+groupMembersListMock.push(groupMembersMock);
+groupMembersListMock.push(groupMembersMock);
+groupMembersListMock.push(groupMembersMock);

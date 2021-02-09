@@ -6,6 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {GroupMemberService} from '../../../services/group-member.service';
 import {GroupMembers} from '../../../models/GroupMembers.model';
 import {UserService} from '../../../services/user.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-members-group',
@@ -19,7 +20,8 @@ export class MembersGroupComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private groupMemberService: GroupMemberService,
-        private userService: UserService
+        private userService: UserService,
+        private translate: TranslateService
     ) {
     }
 
@@ -28,11 +30,11 @@ export class MembersGroupComponent implements OnInit {
         this.route.data.pipe(take(1)).subscribe((data: { groupTo: GroupTO }) => {
             Util.stopLoading();
             this.groupTO = data.groupTo;
-            this.getMenbers();
+            this.getMembers();
         });
     }
 
-    getMenbers(): void {
+    getMembers(): void {
         Util.loadingScreen();
         this.groupMemberService.getGroupMembers(this.groupTO.id)
             .pipe(
@@ -42,6 +44,12 @@ export class MembersGroupComponent implements OnInit {
 
             this.members = result;
             this.getUserMember();
+        }, error => {
+            Util.stopLoading();
+            this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                Util.showErrorDialog(message);
+            });
+            console.log('Erro: members-group getMembers', error);
         });
     }
 
@@ -55,8 +63,11 @@ export class MembersGroupComponent implements OnInit {
             this.userService.getById(result.id.user)
                 .pipe(take(1))
                 .subscribe(user => {
-                    this.members[i].userTO = user;
-                });
+                        this.members[i].userTO = user;
+                    },
+                    error => {
+                            console.log('Erro: members-group getMembers' , error);
+                    });
         });
         Util.stopLoading();
     }

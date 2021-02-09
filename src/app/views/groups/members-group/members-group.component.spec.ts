@@ -11,11 +11,13 @@ import {GroupMemberService} from '../../../services/group-member.service';
 import {UserService} from '../../../services/user.service';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import {MockActivatedRoute} from '../../../mocks/ActivatedRoute.mock';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {groupMock} from '../../../mocks/group.mock';
 import {ActivatedRoute} from '@angular/router';
 import {SocialLoginModule} from 'angularx-social-login';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {GroupService} from '../../../services/group.service';
+import {groupMembersListMock, groupMembersMock} from '../../../mocks/group-members.mock';
 
 describe('MembersGroupComponent', () => {
     let component: MembersGroupComponent;
@@ -27,6 +29,8 @@ describe('MembersGroupComponent', () => {
         }),
         data: of({groupTo: groupMock})
     };
+
+    let groupMembersServiceMock: GroupMemberService;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [MembersGroupComponent],
@@ -51,6 +55,7 @@ describe('MembersGroupComponent', () => {
                 SocialAuthServiceConfigMock
             ]
         }).compileComponents();
+        groupMembersServiceMock = TestBed.inject(GroupMemberService);
     }));
 
     beforeEach(() => {
@@ -59,7 +64,23 @@ describe('MembersGroupComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it('should create member-group component', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should get members', () => {
+        const spy = jest.spyOn(groupMembersServiceMock, 'getGroupMembers').mockReturnValue(of(groupMembersListMock));
+        component.getMembers();
+        expect(component).toBeTruthy();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.groupTO.id);
+    });
+
+    it('should catch error get members', () => {
+        const spy = jest.spyOn(groupMembersServiceMock, 'getGroupMembers').mockReturnValue(throwError('error'));
+        component.getMembers();
+        expect(component).toBeTruthy();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.groupTO.id);
     });
 });

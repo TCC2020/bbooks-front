@@ -5,11 +5,11 @@ import {TranslateServiceMockForChild} from '../../../mocks/translate.service.moc
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {MaterialModule} from '../../../material/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {GroupService} from '../../../services/group.service';
 import {ActivatedRoute} from '@angular/router';
 import {MockActivatedRoute} from '../../../mocks/ActivatedRoute.mock';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {groupMock} from '../../../mocks/group.mock';
 
 describe('AboutGroupComponent', () => {
@@ -22,6 +22,8 @@ describe('AboutGroupComponent', () => {
         }),
         data: of({groupTo: groupMock})
     };
+    let httpMock: HttpTestingController;
+    let groupServcieMock: GroupService;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [AboutGroupComponent],
@@ -42,8 +44,10 @@ describe('AboutGroupComponent', () => {
                     useValue: routeMock
                 },
             ]
-        })
-            .compileComponents();
+        }).compileComponents();
+
+        httpMock = TestBed.inject(HttpTestingController);
+        groupServcieMock = TestBed.inject(GroupService);
     }));
 
     beforeEach(() => {
@@ -55,4 +59,23 @@ describe('AboutGroupComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+    it('changeToEdit', () => {
+        component.changeToEdit();
+        expect(component.isEditing).toBeTruthy();
+    });
+
+    it('should update group', () => {
+        const spy = jest.spyOn(groupServcieMock, 'update').mockReturnValue(of(groupMock));
+        component.update();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.formGroup.value);
+    });
+
+    it('should catch update group error', () => {
+        const spy = jest.spyOn(groupServcieMock, 'update').mockReturnValue(throwError('error'));
+        component.update();
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(component.formGroup.value);
+    });
+
 });
