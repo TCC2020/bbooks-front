@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ReactionsComponent} from './reactions.component';
+import {FormsModule} from '@angular/forms';
+import {MaterialModule} from '../../material/material.module';
 
 
 
@@ -9,7 +11,9 @@ import {ReactionsComponent} from './reactions.component';
       ReactionsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    MaterialModule
   ],
   exports: [
       ReactionsComponent
