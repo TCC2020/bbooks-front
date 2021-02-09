@@ -1,0 +1,10 @@
+<button mat-button [matMenuTriggerFor]="reacoes">
+    <mat-icon>{{ icon }}</mat-icon>
+    <span>{{ reaction }}</span>
+</button>
+<mat-menu #reacoes="matMenu" yPosition="above">
+    <button *ngFor="let reac of listReactions" mat-menu-item (click)="trocar(reac.reaction, reac.icon)">
+        <mat-icon>{{ reac.icon }}</mat-icon>
+        <span>{{ reac.reaction }}</span>
+    </button>
+</mat-menu>

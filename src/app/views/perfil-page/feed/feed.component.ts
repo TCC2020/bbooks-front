@@ -21,18 +21,6 @@ export class FeedComponent implements OnInit {
     posts: PostTO[] = [];
     loading = false;
 
-    reacao = 'Gostei';
-    icon = 'thumb_up';
-
-    listaReacoes = [
-        {reacao: 'Aaarg', icon: 'sentiment_neutral'},
-        {reacao: 'Triste', icon: 'sentiment_very_dissatisfied'},
-        {reacao: 'Surpreso', icon: 'mood_bad'},
-        {reacao: 'Hilário', icon: 'sentiment_very_satisfied'},
-        {reacao: 'Amei', icon: 'favorite'},
-        {reacao: 'Gostei', icon: 'thumb_up'}
-    ];
-
     constructor(
         private route: ActivatedRoute,
         public dialog: MatDialog,
@@ -111,10 +99,4 @@ export class FeedComponent implements OnInit {
                     });
             });
     }
-
-    trocar(reacao: string, icon: string) {
-        this.reacao = reacao;
-        this.icon = icon;
-    }
-
 }

@@ -85,16 +85,7 @@
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-around center">
 
-                    <button mat-button [matMenuTriggerFor]="reacoes">
-                        <mat-icon>{{ icon }}</mat-icon>
-                        <span>{{ reacao }}</span>
-                    </button>
-                    <mat-menu #reacoes="matMenu" yPosition="above">
-                        <button *ngFor="let reac of listaReacoes" mat-menu-item (click)="trocar(reac.reacao, reac.icon)">
-                            <mat-icon>{{ reac.icon }}</mat-icon>
-                            <span>{{ reac.reacao }}</span>
-                        </button>
-                    </mat-menu>
+                    <app-reactions></app-reactions>
                     <button mat-button class="button-test-post">
                         <mat-icon >message</mat-icon>
                         {{'POST.COMENTAR' | translate}}

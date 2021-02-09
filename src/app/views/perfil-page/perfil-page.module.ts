@@ -20,7 +20,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRouteSnapshot} from '@angular/router';
 import {FriendResolve} from './guards/friend.resolve';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
-
+import {ReactionsModule} from '../reactions/reactions.module';
 
 @NgModule({
     declarations: [
@@ -40,6 +40,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
         FormsModule,
         ReactiveFormsModule,
         InfiniteScrollModule,
+        ReactionsModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
