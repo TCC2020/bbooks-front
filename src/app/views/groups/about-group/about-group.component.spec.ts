@@ -10,7 +10,6 @@ import {GroupService} from '../../../services/group.service';
 import {ActivatedRoute} from '@angular/router';
 import {MockActivatedRoute} from '../../../mocks/ActivatedRoute.mock';
 import {of} from 'rxjs';
-import {userMock} from '../../../mocks/user.model.mock';
 import {groupMock} from '../../../mocks/group.mock';
 
 describe('AboutGroupComponent', () => {
