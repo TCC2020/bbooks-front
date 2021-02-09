@@ -3,7 +3,7 @@
     <span>{{ reaction }}</span>
 </button>
 <mat-menu #reacoes="matMenu" yPosition="above">
-    <button *ngFor="let reac of listReactions" mat-menu-item (click)="trocar(reac.reaction, reac.icon)">
+    <button *ngFor="let reac of listReactions" mat-menu-item (click)="changeReaction(reac.reaction, reac.icon)">
         <mat-icon>{{ reac.icon }}</mat-icon>
         <span>{{ reac.reaction }}</span>
     </button>

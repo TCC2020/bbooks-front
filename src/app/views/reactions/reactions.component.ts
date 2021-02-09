@@ -24,7 +24,7 @@ export class ReactionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  trocar(reaction: string, icon: string) {
+  changeReaction(reaction: string, icon: string) {
     this.reaction = reaction;
     this.icon = icon;
   }
