@@ -43,7 +43,7 @@ export class FeedComponent implements OnInit {
     openPost(post?: PostTO) {
         const userAgent = window.navigator.userAgent.toLocaleLowerCase();
         if (userAgent.includes('iphone') || userAgent.includes('android')) {
-            this.router.navigate([this.user.userName + '/create-post'], {state: { post }});
+            this.router.navigate([this.user.userName + '/create-post'], {state: {post}});
         } else {
             this.openPostDialog(post);
         }
@@ -75,15 +75,28 @@ export class FeedComponent implements OnInit {
 
     getPosts(): void {
         this.loading = true;
-        this.feedService.getPersonFeed(this.authService.getUser().profile.id, 5, this.page)
-            .pipe(take(1))
-            .subscribe(result => {
-                this.loading = false;
-                if (result.content.length > 0) {
-                    this.page++;
-                    this.posts = this.posts.concat(result.content);
-                }
-            });
+        if (this.user.id === this.authService.getUser().id) {
+            this.postService.getByProfileId(this.authService.getUser().profile.id, 5, this.page)
+                .pipe(take(1))
+                .subscribe(result => {
+                    this.loading = false;
+                    if (result.content.length > 0) {
+                        this.page++;
+                        this.posts = this.posts.concat(result.content);
+                    }
+                });
+        } else {
+            this.feedService.getPersonFeed(this.user.profile.id, 5, this.page)
+                .pipe(take(1))
+                .subscribe(result => {
+                    this.loading = false;
+                    if (result.content.length > 0) {
+                        this.page++;
+                        this.posts = this.posts.concat(result.content);
+                    }
+                });
+        }
+
     }
 
     delete(p: PostTO): void {
