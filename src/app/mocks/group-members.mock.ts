@@ -5,7 +5,7 @@ import {MemberStatus} from '../models/enums/MemberStatus.enum';
 
 export const groupMembersMock = new GroupMembers();
 groupMembersMock.id = new Id();
-groupMembersMock.id.group = 'sfjaowesifjsoiaefj';
+groupMembersMock.id.groupRead = 'sfjaowesifjsoiaefj';
 groupMembersMock.id.user = userMock.id.toString();
-groupMembersMock.cargo = Role.owner;
+groupMembersMock.role = Role.owner;
 groupMembersMock.status = MemberStatus.aceppted;

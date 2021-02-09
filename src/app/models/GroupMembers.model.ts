@@ -5,12 +5,12 @@ import {UserTO} from './userTO.model';
 export class GroupMembers {
     id: Id;
     date: Date;
-    cargo: Role;
+    role: Role;
     status: MemberStatus;
     userTO: UserTO;
 }
 
 export class Id {
     user: string;
-    group: string;
+    groupRead: string;
 }

@@ -42,9 +42,9 @@ export class ReadingGroupComponent implements OnInit {
         const member = new GroupMembers();
         member.id = new Id();
         member.id.user = this.authService.getUser().id;
-        member.id.group = this.groupTO.id;
+        member.id.groupRead = this.groupTO.id;
 
-        member.cargo = this.role.member;
+        member.role = this.role.member;
         Util.loadingScreen();
         this.groupMemberService.enterGroup(member)
             .pipe(take(1))
