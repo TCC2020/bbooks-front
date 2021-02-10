@@ -57,7 +57,8 @@
     "private": "privado",
     "PRIVACIDADE": "Privacidade",
     "OBRIGATORIO": "obrigatório",
-    "ENTER_": "Entrar"
+    "ENTER_": "Entrar",
+    "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -81,8 +82,7 @@
     "GRUPO_DESCRICAO": "Crie grupos para compartilhar leituras e trocas de experiências. ",
     "MSG_NAME_GROUP_E": "Nome do grupo é",
     "MSG_PRIVACY_GROUP_E": "Privacidade é",
-    "GRUPO_CRIADO": "O grupo foi criado!",
-    "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks"
+    "GRUPO_CRIADO": "O grupo foi criado!"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",

@@ -57,7 +57,8 @@
     "private": "private",
     "PRIVACIDADE": "Privacy",
     "OBRIGATORIO": "required",
-    "ENTER_": "Enter"
+    "ENTER_": "Enter",
+    "POLITICA_PRIVACIDADE": "Privacy Policy for Bbooks"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -81,8 +82,7 @@
     "SOBRE": "About",
     "MSG_NAME_GROUP_E": "Name group is",
     "MSG_PRIVACY_GROUP_E": "Privacy é",
-    "GRUPO_CRIADO": "The group was created!",
-    "POLITICA_PRIVACIDADE": "Privacy Policy for Bbooks"
+    "GRUPO_CRIADO": "The group was created!"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
