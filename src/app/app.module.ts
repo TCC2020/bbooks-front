@@ -122,6 +122,7 @@ export function HttpLoaderFactory(http: HttpClient) {
             } as SocialAuthServiceConfig
         }
     ],
+    exports: [],
 
     bootstrap: [AppComponent]
 })

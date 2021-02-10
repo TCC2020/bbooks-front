@@ -1,0 +1,66 @@
+<mat-card fxLayout="row" fxLayoutAlign="space-around center">
+    <div>
+        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxLayoutGap.xs="10px">
+            <div>
+                <img class="cardImagePost"
+                     src="{{user.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+            </div>
+            <div>
+                <div fxLayout="column" fxLayoutAlign="center start">
+                    <div>
+                        {{user.userName}}
+                    </div>
+                    <div class="text-date">
+                        {{post.creationDate | date}}
+                    </div>
+                </div>
+            </div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" style="position: absolute; right: 0"
+                    *ngIf=" user.profile.id == authService.getUser().profile.id">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <div mat-menu-item (click)="openPost(post)">
+                    <mat-icon>create</mat-icon>
+                    <span>{{'PADRAO.EDITAR' | translate}}</span>
+                </div>
+                <div mat-menu-item (click)="delete(post)">
+                    <mat-icon>delete</mat-icon>
+                    <span>{{'PADRAO.REMOVER' | translate}}</span>
+                </div>
+            </mat-menu>
+        </div>
+        <br>
+        <div fxLayout="row" fxLayoutAlign="start center" class="description">
+            {{post.description}}
+        </div>
+        <br>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <mat-divider></mat-divider>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <button mat-button [matMenuTriggerFor]="reacoes">
+                <mat-icon>{{ icon }}</mat-icon>
+                <span>{{ reaction }}</span>
+            </button>
+            <mat-menu #reacoes="matMenu" yPosition="above">
+                <button *ngFor="let reac of listReactions" mat-menu-item
+                        (click)="changeReaction(reac.reaction, reac.icon)">
+                    <mat-icon>{{ reac.icon }}</mat-icon>
+                    <span>{{ reac.reaction }}</span>
+                </button>
+            </mat-menu>
+            <button mat-button class="button-test-post">
+                <mat-icon>message</mat-icon>
+                {{'POST.COMENTAR' | translate}}
+            </button>
+            <button mat-button class="button-test-post">
+                <mat-icon>reply</mat-icon>
+                {{'POST.COMPARTILHAR' | translate}}
+            </button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</mat-card>
