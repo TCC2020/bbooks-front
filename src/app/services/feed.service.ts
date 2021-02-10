@@ -8,7 +8,7 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class FeedService {
-  api = environment.feedApi + 'feed';
+  api = environment.feedApi + 'feed/';
 
   constructor(
       private http: HttpClient
