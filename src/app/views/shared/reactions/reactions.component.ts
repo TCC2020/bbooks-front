@@ -76,7 +76,7 @@ export class ReactionsComponent implements OnInit {
             .pipe().subscribe((post) => {
             if (post) {
                 if (p) {
-                    this.feedPerfilManageService.updatePost(post);
+                    this.updateReduxOfTypePost(this.typePostControler, post);
                 }
             }
         });
@@ -87,7 +87,7 @@ export class ReactionsComponent implements OnInit {
         this.postService.delete(p.id)
             .pipe(take(1))
             .subscribe(() => {
-                this.feedPerfilManageService.deletePost(p);
+                this.deleteReduxOfTypePost(this.typePostControler, p);
                 Util.stopLoading();
                 this.translate.get('POST.POST_EXCLUIDO')
                     .pipe(take(1))
@@ -95,6 +95,30 @@ export class ReactionsComponent implements OnInit {
                         Util.showSuccessDialog(msg);
                     });
             });
+    }
+
+    updateReduxOfTypePost(typePostController: TypePostControler, postTo: PostTO) {
+        switch (typePostController) {
+            case TypePostControler.feed:
+                return;
+            case TypePostControler.feedPerfil:
+                this.feedPerfilManageService.updatePost(postTo);
+                return;
+            case TypePostControler.group:
+                return;
+        }
+    }
+
+    deleteReduxOfTypePost(typePostController: TypePostControler, postTo: PostTO) {
+        switch (typePostController) {
+            case TypePostControler.feed:
+                return;
+            case TypePostControler.feedPerfil:
+                this.feedPerfilManageService.deletePost(postTo);
+                return;
+            case TypePostControler.group:
+                return;
+        }
     }
 
 }

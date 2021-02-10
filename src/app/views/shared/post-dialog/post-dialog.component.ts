@@ -126,8 +126,8 @@ export class PostDialogComponent implements OnInit {
     }
 
     save(): void {
+        Util.loadingScreen();
         if (this.dataDialog) {
-            Util.loadingScreen();
             this.postService.update(this.formFeed.value)
                 .pipe(take(1))
                 .subscribe(post => {
