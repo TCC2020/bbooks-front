@@ -3,7 +3,8 @@ import {MemberStatus} from './enums/MemberStatus.enum';
 import {UserTO} from './userTO.model';
 
 export class GroupMembers {
-    id: Id;
+    userId: string;
+    groupId: string;
     date: Date;
     role: Role;
     status: MemberStatus;

@@ -77,9 +77,8 @@ describe('ReadingGroupComponent', () => {
     });
     it('should enter group create', () => {
         const member = new GroupMembers();
-        member.id = new Id();
-        member.id.user = authServiceMock.getUser().id;
-        member.id.groupRead = component.groupTO.id;
+        member.userId = authServiceMock.getUser().id;
+        member.groupId = component.groupTO.id;
 
         member.role = Role.member;
         const spy = jest.spyOn(groupMemberServiceMock, 'enterGroup').mockReturnValue(of(null));
@@ -93,9 +92,8 @@ describe('ReadingGroupComponent', () => {
 
     it('should enter group create', () => {
         const member = new GroupMembers();
-        member.id = new Id();
-        member.id.user = authServiceMock.getUser().id;
-        member.id.groupRead = component.groupTO.id;
+        member.userId = authServiceMock.getUser().id;
+        member.groupId = component.groupTO.id;
 
         member.role = Role.member;
         const spy = jest.spyOn(groupMemberServiceMock, 'enterGroup').mockReturnValue(throwError(`error`));

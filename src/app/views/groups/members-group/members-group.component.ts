@@ -60,7 +60,7 @@ export class MembersGroupComponent implements OnInit {
     getUserMember(): void {
         Util.loadingScreen();
         this.members.map((result, i) => {
-            this.userService.getById(result.id.user)
+            this.userService.getById(result.userId)
                 .pipe(take(1))
                 .subscribe(user => {
                         this.members[i].userTO = user;

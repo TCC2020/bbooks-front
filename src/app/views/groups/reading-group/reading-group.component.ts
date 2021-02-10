@@ -35,14 +35,14 @@ export class ReadingGroupComponent implements OnInit {
         this.route.data.pipe(take(1)).subscribe((data: { groupTo: GroupTO }) => {
             Util.stopLoading();
             this.groupTO = data.groupTo;
+            console.log(this.groupTO);
         });
     }
 
     enterGroup(): void {
         const member = new GroupMembers();
-        member.id = new Id();
-        member.id.user = this.authService.getUser().id;
-        member.id.groupRead = this.groupTO.id;
+        member.userId = this.authService.getUser().id;
+        member.groupId = this.groupTO.id;
 
         member.role = this.role.member;
         Util.loadingScreen();
