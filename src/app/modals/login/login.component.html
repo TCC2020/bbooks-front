@@ -21,42 +21,48 @@
                 <mat-label>{{'PADRAO.SENHA' | translate}}</mat-label>
                 <!--<input type="password" matInput formControlName="password">-->
                 <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  </button>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>
         </div>
 
-<!--        <div id="botaoLogar">-->
-<!--            <button mat-raised-button id="entrar" (click)="login()">Entrar</button>-->
-<!--        </div>-->
+        <!--        <div id="botaoLogar">-->
+        <!--            <button mat-raised-button id="entrar" (click)="login()">Entrar</button>-->
+        <!--        </div>-->
         <!--        <div id="botaoLogarGoogle">-->
         <!--          <button mat-raised-button (click)="loginGoogle()" id="entrarGoogle"><i style="color:#4285f4; font-size: 17px;" class="fab fa-google"></i> Continuar com o Google</button>-->
         <!--      </div>-->
-        <button type="button" mat-raised-button color="primary" (click)="login()">{{'PADRAO.ENTRAR' | translate}}</button>
+        <button type="button" mat-raised-button color="primary"
+                (click)="login()">{{'PADRAO.ENTRAR' | translate}}</button>
         <div>
             <p style="margin-top: 15px; color: #777777">{{'LOGIN.OU' | translate}}</p>
         </div>
-        <button mat-button class="login-google" (click)="loginGoogle()"><i class="fab fa-google"></i> {{'LOGIN.GOOGLE' | translate}}</button>
+        <button mat-button class="login-google" (click)="loginGoogle()"><i
+                class="fab fa-google"></i> {{'LOGIN.GOOGLE' | translate}}</button>
         <button mat-button class="login-facebook" (click)="loginFacebook()">
             <i style="color:#1877F2; font-size: 17px;" class="fab fa-facebook"></i>
             {{'LOGIN.FACEBOOK' | translate}}
         </button>
 
-      <mat-divider id="divisor"></mat-divider>
+        <mat-divider id="divisor"></mat-divider>
 
-      <div id="recuperarSenha" >
-      <a [routerLink]="['/recuperar-senha']" style="margin-top: 15px;">
-          {{'LOGIN.ESQUECER_SENHA' | translate}}
-      </a>
-    </div>
-    <div id="criarConta" >
-      <a [routerLink]="['/cadastro']" style="margin-top: 15px;">
-          {{'LOGIN.CRIAR_CONTA' | translate}}
-      </a>
-    </div>
+        <div id="recuperarSenha">
+            <a [routerLink]="['/recuperar-senha']" style="margin-top: 15px;">
+                {{'LOGIN.ESQUECER_SENHA' | translate}}
+            </a>
+        </div>
+        <div id="criarConta">
+            <a [routerLink]="['/cadastro']" style="margin-top: 15px;">
+                {{'LOGIN.CRIAR_CONTA' | translate}}
+            </a>
+        </div>
+        <div id="politicaPrivacidade">
+            <a href="https://www.freeprivacypolicy.com/live/3227bde6-87e0-40d6-bf72-17718f4bac6b" target="_blank">{{ 'PADRAO.POLITICA_PRIVACIDADE' | translate }}</a>
+        </div>
     </form>
-    
+
 </div>
 <!-- <mdb-card>
 
