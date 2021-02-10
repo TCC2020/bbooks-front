@@ -49,7 +49,8 @@
     "METAS_ANTEREIORS": "Metas Anteriores",
     "ANDAMENTO_META": "Andamento da Meta de Leitura",
     "SESSAO_EXPIRADA": "Sessão expirada",
-    "OCORREU_UM_ERRO": "Ops! Ocorreu um erro."
+    "OCORREU_UM_ERRO": "Ops! Ocorreu um erro.",
+    "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",

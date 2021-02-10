@@ -49,7 +49,8 @@
     "METAS_ANTEREIORS": "Previous Goals",
     "ANDAMENTO_META": "Reading Target Progress",
     "SESSAO_EXPIRADA": "Session expired",
-    "OCORREU_UM_ERRO": "Ops! An error has occurred."
+    "OCORREU_UM_ERRO": "Ops! An error has occurred.",
+    "POLITICA_PRIVACIDADE": "Privacy Policy for Bbooks"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
