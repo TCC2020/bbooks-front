@@ -21,7 +21,6 @@ import {ActivatedRouteSnapshot} from '@angular/router';
 import {FriendResolve} from './guards/friend.resolve';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
-
 @NgModule({
     declarations: [
         MainPageComponent,
