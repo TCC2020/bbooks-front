@@ -95,6 +95,10 @@
                 <mat-icon>donut_large</mat-icon>
                 <span>{{'PADRAO.ANDAMENTO_META' | translate}}</span>
             </div>
+            <div mat-menu-item  [routerLink]="[user?.userName + '/public-profile']">
+                <mat-icon>verified</mat-icon>
+                <span>Perfil Público</span>
+            </div>
             <div mat-menu-item (click)="logout()">
                 <mat-icon>login</mat-icon>
                 <span>{{'NAV.SAIR' | translate}}</span>
