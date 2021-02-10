@@ -43,6 +43,7 @@ import { OffersComponent } from './views/exchange/offers/offers.component';
 import { OfferViewComponent } from './views/exchange/offer-view/offer-view.component';
 import { OfferNewComponent } from './views/exchange/offer-new/offer-new.component';
 import {BnNgIdleService} from 'bn-ng-idle';
+import { PublicProfileComponent } from './views/public-profile/public-profile.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -64,7 +65,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         UploadComponent,
         PesquisarAmigosComponent,
         ReadingTargetProgressComponent,
-        PreviousGoalsComponent
+        PreviousGoalsComponent,
+        PublicProfileComponent
     ],
     imports: [
         BrowserModule,
