@@ -16,7 +16,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {PostService} from '../../../services/post.service';
 import {postMock, postPagination, postsMock} from '../../../mocks/post.model.mock';
-import {ReactionsModule} from '../../reactions/reactions.module';
+import {SharedModule} from '../../shared/shared.module';
 
 describe('FeedComponent', () => {
     let component: FeedComponent;
@@ -47,7 +47,7 @@ describe('FeedComponent', () => {
                 HttpClientTestingModule,
                 BrowserAnimationsModule,
                 InfiniteScrollModule,
-                ReactionsModule
+                SharedModule
             ],
             providers: [
                 {

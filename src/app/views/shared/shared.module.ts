@@ -15,6 +15,7 @@ import {LoaderComponent} from '../../loader/loader.component';
 import { ReferBookDialogComponent } from './refer-book-dialog/refer-book-dialog.component';
 import {PostDialogComponent} from './post-dialog/post-dialog.component';
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
+import {ReactionsComponent} from './reactions/reactions.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
         NumbersOnlyInputDirective,
         LoaderComponent,
         ReferBookDialogComponent,
-        PostDialogComponent
+        PostDialogComponent,
+        ReactionsComponent
     ],
     imports: [
         CommonModule,
@@ -50,7 +52,8 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
         LoaderComponent,
         BookAddDialogComponent,
         ReferBookDialogComponent,
-        PostDialogComponent
+        PostDialogComponent,
+        ReactionsComponent
     ],
     providers: []
 })
