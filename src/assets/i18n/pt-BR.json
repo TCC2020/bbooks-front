@@ -81,7 +81,8 @@
     "GRUPO_DESCRICAO": "Crie grupos para compartilhar leituras e trocas de experiências. ",
     "MSG_NAME_GROUP_E": "Nome do grupo é",
     "MSG_PRIVACY_GROUP_E": "Privacidade é",
-    "GRUPO_CRIADO": "O grupo foi criado!"
+    "GRUPO_CRIADO": "O grupo foi criado!",
+    "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",

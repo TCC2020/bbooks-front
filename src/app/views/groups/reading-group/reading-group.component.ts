@@ -35,7 +35,6 @@ export class ReadingGroupComponent implements OnInit {
         this.route.data.pipe(take(1)).subscribe((data: { groupTo: GroupTO }) => {
             Util.stopLoading();
             this.groupTO = data.groupTo;
-            console.log(this.groupTO);
         });
     }
 

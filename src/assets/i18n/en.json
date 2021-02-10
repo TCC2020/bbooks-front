@@ -66,7 +66,6 @@
     "CONVIDAR": "Convidar",
     "DATA_CRIACAO": "Data de Criação",
     "DESCRICAO_GRUPO": "Descrição do Grupo",
-    "SOBRE": "Sobre",
     "feed": "feed",
     "about": "sobre",
     "members": "membros",
@@ -82,8 +81,8 @@
     "SOBRE": "About",
     "MSG_NAME_GROUP_E": "Name group is",
     "MSG_PRIVACY_GROUP_E": "Privacy é",
-    "GRUPO_CRIADO": "The group was created!"
-
+    "GRUPO_CRIADO": "The group was created!",
+    "POLITICA_PRIVACIDADE": "Privacy Policy for Bbooks"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",

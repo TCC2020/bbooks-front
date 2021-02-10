@@ -84,19 +84,13 @@ export class FeedComponent implements OnInit {
             });
     }
 
-    delete(p: PostTO): void {
-        Util.loadingScreen();
-        const index = this.posts.indexOf(p);
-        this.postService.delete(p.id)
-            .pipe(take(1))
-            .subscribe(() => {
-                this.posts.splice(index, 1);
-                Util.stopLoading();
-                this.translate.get('POST.POST_EXCLUIDO')
-                    .pipe(take(1))
-                    .subscribe(msg => {
-                        Util.showSuccessDialog(msg);
-                    });
-            });
+    onListPostsChange(event) {
+        if (event.save) {
+            const index = this.posts.indexOf(event.p);
+            this.posts[index].description = event.post.description;
+        } else {
+            this.posts.splice(event.post, 1);
+        }
     }
+
 }
