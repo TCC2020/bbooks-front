@@ -20,6 +20,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRouteSnapshot} from '@angular/router';
 import {FriendResolve} from './guards/friend.resolve';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {StoreModule} from '@ngrx/store';
+import {reducer} from './store/reducers/feed.reducer';
 
 @NgModule({
     declarations: [
@@ -39,6 +41,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
         FormsModule,
         ReactiveFormsModule,
         InfiniteScrollModule,
+        StoreModule.forFeature('feed', reducer),
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,

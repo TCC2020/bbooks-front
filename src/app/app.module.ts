@@ -43,6 +43,8 @@ import { OffersComponent } from './views/exchange/offers/offers.component';
 import { OfferViewComponent } from './views/exchange/offer-view/offer-view.component';
 import { OfferNewComponent } from './views/exchange/offer-new/offer-new.component';
 import {BnNgIdleService} from 'bn-ng-idle';
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -85,6 +87,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         ExchangeModule,
         PerfilPageModule,
         SharedModule,
+        StoreModule.forRoot({}),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25, // Retains last 25 states
+            logOnly: environment.production, // Restrict extension to log-only mode
+        }),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

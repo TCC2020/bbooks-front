@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs/operators';
 import {UserTO} from '../../../models/userTO.model';
@@ -10,17 +10,22 @@ import {PostTO} from '../../../models/PostTO.model';
 import {Util} from '../../shared/Utils/util';
 import {TranslateService} from '@ngx-translate/core';
 import {FeedService} from '../../../services/feed.service';
+import {FeedPerfilManageService} from '../store/feed-perfil-manage.service';
+import {IFeedState, IFeedStateReducer} from '../store/state/feed.state.interface';
+import {Observable} from 'rxjs';
+import {TypePostControler} from '../../../models/enums/TypePost.enum';
 
 @Component({
     selector: 'app-feed',
     templateUrl: './feed.component.html',
     styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnDestroy {
     user: UserTO;
     page = 0;
-    posts: PostTO[] = [];
     loading = false;
+    feedRedux$: Observable<IFeedState>;
+    typePostControler = TypePostControler;
 
     constructor(
         private route: ActivatedRoute,
@@ -29,7 +34,8 @@ export class FeedComponent implements OnInit {
         public authService: AuthService,
         public postService: PostService,
         public translate: TranslateService,
-        public feedService: FeedService
+        public feedService: FeedService,
+        private feedPerfilManage: FeedPerfilManageService
     ) {
     }
 
@@ -38,6 +44,7 @@ export class FeedComponent implements OnInit {
             this.user = data.user;
             this.getPosts();
         });
+        this.feedRedux$ = this.feedPerfilManage.getFeed();
     }
 
     openPost(post?: PostTO) {
@@ -59,53 +66,58 @@ export class FeedComponent implements OnInit {
             .pipe().subscribe((res) => {
             if (res) {
                 if (post) {
-                    const index = this.posts.indexOf(post);
-                    this.posts[index].description = res.description;
-                } else {
-                    this.posts.unshift(res);
 
+                } else {
+                    this.feedPerfilManage.savePostOnRedux(res);
                 }
             }
         });
     }
 
     onScroll() {
-        this.getPosts();
+       this.getPosts();
+    }
+
+    onListPostsChange(event) {
+        // if (event.save) {
+        //     const index = this.posts.indexOf(event.p);
+        //     this.posts[index].description = event.post.description;
+        // } else {
+        //     this.posts.splice(event.post, 1);
+        // }
     }
 
     getPosts(): void {
-        this.loading = true;
         if (this.user.id === this.authService.getUser().id) {
+            this.loading = true;
             this.postService.getByProfileId(this.authService.getUser().profile.id, 5, this.page)
                 .pipe(take(1))
                 .subscribe(result => {
                     this.loading = false;
                     if (result.content.length > 0) {
-                        this.page++;
-                        this.posts = this.posts.concat(result.content);
+                        this.page = result.pageable.pageNumber + 1;
+                        this.feedPerfilManage.updatePage(this.page);
+                        this.feedPerfilManage.getPostOnRedux(result.content);
                     }
                 });
         } else {
+            this.loading = true;
             this.feedService.getPersonFeed(this.user.profile.id, 5, this.page)
                 .pipe(take(1))
                 .subscribe(result => {
                     this.loading = false;
                     if (result.content.length > 0) {
-                        this.page++;
-                        this.posts = this.posts.concat(result.content);
+                        this.page = result.pageable.pageNumber + 1;
+                        this.feedPerfilManage.updatePage(this.page );
+                        this.feedPerfilManage.getPostOnRedux(result.content);
                     }
                 });
         }
-
     }
 
-    onListPostsChange(event) {
-        if (event.save) {
-            const index = this.posts.indexOf(event.p);
-            this.posts[index].description = event.post.description;
-        } else {
-            this.posts.splice(event.post, 1);
-        }
+    ngOnDestroy(): void {
+        this.feedPerfilManage.clearRedux();
     }
+
 
 }

@@ -11,7 +11,7 @@
                         {{user.userName}}
                     </div>
                     <div class="text-date">
-                        {{post.creationDate | date}}
+                        {{post?.creationDate | date}}
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
         </div>
         <br>
         <div fxLayout="row" fxLayoutAlign="start center" class="description">
-            {{post.description}}
+            {{post?.description}}
         </div>
         <br>
         <div fxLayout="row" fxLayoutAlign="space-around center">

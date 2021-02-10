@@ -9,6 +9,10 @@ import {PostTO} from '../../../models/PostTO.model';
 import {PostDialogComponent} from '../post-dialog/post-dialog.component';
 import {Util} from '../Utils/util';
 import {take} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {AddPost} from '../../perfil-page/store/actions/feed.actions';
+import {FeedPerfilManageService} from '../../perfil-page/store/feed-perfil-manage.service';
+import {TypePostControler} from '../../../models/enums/TypePost.enum';
 
 @Component({
     selector: 'app-reactions',
@@ -19,7 +23,7 @@ export class ReactionsComponent implements OnInit {
 
     @Input() user: UserTO;
     @Input() post: PostTO;
-
+    @Input() typePostControler: TypePostControler;
     @Output() postOutput = new EventEmitter<any>();
 
     reaction = 'Gostei';
@@ -39,7 +43,8 @@ export class ReactionsComponent implements OnInit {
         private router: Router,
         public authService: AuthService,
         public postService: PostService,
-        public translate: TranslateService
+        public translate: TranslateService,
+        public feedPerfilManageService: FeedPerfilManageService
     ) {
     }
 
@@ -71,7 +76,7 @@ export class ReactionsComponent implements OnInit {
             .pipe().subscribe((post) => {
             if (post) {
                 if (p) {
-                    this.postOutput.emit({save: true, p, post});
+                    this.feedPerfilManageService.updatePost(post);
                 }
             }
         });
@@ -82,7 +87,7 @@ export class ReactionsComponent implements OnInit {
         this.postService.delete(p.id)
             .pipe(take(1))
             .subscribe(() => {
-                this.postOutput.emit({save: false, p});
+                this.feedPerfilManageService.deletePost(p);
                 Util.stopLoading();
                 this.translate.get('POST.POST_EXCLUIDO')
                     .pipe(take(1))

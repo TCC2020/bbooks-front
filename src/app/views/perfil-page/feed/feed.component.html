@@ -44,9 +44,12 @@
             [fromRoot]="true"
             (scrolled)="onScroll()"
     >
-        <app-reactions *ngFor="let post of posts"
-        [post]="post" [user]="user"
-                       (postOutput)="onListPostsChange($event)"
+        <app-reactions
+                *ngFor="let post of (feedRedux$ | async)?.posts"
+                [post]="post"
+                [user]="user "
+                [typePostControler]="typePostControler.feedPerfil"
+               (postOutput)="onListPostsChange($event)"
         ></app-reactions>
         <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
     </div>
