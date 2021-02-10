@@ -45,6 +45,7 @@ import { OfferNewComponent } from './views/exchange/offer-new/offer-new.componen
 import {BnNgIdleService} from 'bn-ng-idle';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { PostCreateComponent } from './views/shared/post-create/post-create.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
