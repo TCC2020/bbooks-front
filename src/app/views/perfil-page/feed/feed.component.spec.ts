@@ -96,14 +96,6 @@ describe('FeedComponent', () => {
         expect(spyServicePost).toHaveBeenCalled();
     });
 
-    it('delete: should delete', () => {
-        const spyComponent = jest.spyOn(component, 'delete');
-        const spyServicePost = jest.spyOn(postServiceMock, 'delete').mockReturnValue(of(null));
-        component.delete(postMock);
-        expect(spyComponent).toHaveBeenCalled();
-        expect(spyServicePost).toHaveBeenCalled();
-    });
-
     it('should call onScroll', () => {
         const spyComponent = jest.spyOn(component, 'onScroll');
         component.onScroll();

@@ -6,8 +6,8 @@
 //  //background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
 //  background-size: cover;
 //}
-.cardImageReview{
-  border-color:  rgba(0, 0, 0, 0.2);
+.cardImageReview {
+  border-color: rgba(0, 0, 0, 0.2);
   border-width: 1px;
   border-style: solid;
   border-radius: 4px;
@@ -16,7 +16,8 @@
   max-height: 50px;
 
 }
-.commentReview{
+
+.commentReview {
   border-radius: 50px;
   background-color: white;
   border-width: 1px;
@@ -27,22 +28,27 @@
   text-align: justify;
   width: 350px;
 }
-.commentReview:hover{
+
+.commentReview:hover {
   color: #1a1a1a;
   cursor: pointer;
 }
-.button-test-post{
+
+.button-test-post {
   color: #5f5f5f;
 }
-.text-date{
+
+.text-date {
   color: #5f5f5f;
 }
-.description{
+
+.description {
   width: 480px;
   font-size: 18px;
 }
-.cardImagePost{
-  border-color:  rgba(0, 0, 0, 0.2);
+
+.cardImagePost {
+  border-color: rgba(0, 0, 0, 0.2);
   border-width: 1px;
   border-style: solid;
   border-radius: 50%;
@@ -50,20 +56,22 @@
   max-width: 35px;
   max-height: 35px;
 }
-button-edit-post{
+
+button-edit-post {
   position: absolute;
   right: 0;
   margin: 20px;
 }
+
 @media screen and (max-width: 600px) {
-  .commentReview{
+  .commentReview {
     width: 250px;
   }
-  .description{
+  .description {
     width: 340px;
     font-size: 17px;
   }
-  button-edit-post{
+  button-edit-post {
     padding-left: 57%;
   }
 
