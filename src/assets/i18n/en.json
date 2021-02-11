@@ -50,7 +50,39 @@
     "ANDAMENTO_META": "Reading Target Progress",
     "SESSAO_EXPIRADA": "Session expired",
     "OCORREU_UM_ERRO": "Ops! An error has occurred.",
+    "GRUPOS_LEITURA": "Reading Groups",
+    "PUBLICO": "Public",
+    "PRIVADO": "Private",
+    "public": "public",
+    "private": "private",
+    "PRIVACIDADE": "Privacy",
+    "OBRIGATORIO": "required",
+    "ENTER_": "Enter",
     "POLITICA_PRIVACIDADE": "Privacy Policy for Bbooks"
+  },
+  "GRUPO_LEITURA" : {
+    "ADMINISTRADORES" : "Administradores",
+    "MEMBROS": "Members",
+    "GRUPO": "Group",
+    "CONVIDAR": "Invite",
+    "DATA_CRIACAO": "Creation date",
+    "DESCRICAO_GRUPO": "Description Group",
+    "feed": "feed",
+    "about": "sobre",
+    "members": "membros",
+    "your-groups": "Groups",
+    "create": "Create",
+    "CRIAR_GRUPO": "Create Group",
+    "PRIVADO_DESCRICAO": "Only members can see who is in the group and what they post.",
+    "PUBLICO_DESCRICAO": "Anyone can see who's in the group and what they posted.",
+    "NIVEL_ESCOLHA": "Choose a privacy level:",
+    "INPUT_NAME": "Give the group a name",
+    "INPUT_DESCRICAO": "Describe the subject of the group",
+    "GRUPO_DESCRICAO": "Create groups to share readings and exchange experiences.",
+    "SOBRE": "About",
+    "MSG_NAME_GROUP_E": "Name group is",
+    "MSG_PRIVACY_GROUP_E": "Privacy é",
+    "GRUPO_CRIADO": "The group was created!"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -118,11 +150,6 @@
     "META_LEITURA_REMOVER": "Remove from reading target",
     "ENCERRAR_META_LEITURA": "The reading target will end in",
     "DIAS_ENCERRAR_META": "days."
-
-    
-
-
-
   },
   "TAG": {
     "CRIAR_TAG": "Create Tag",
@@ -245,5 +272,9 @@
     "GOSTEI": "LIKE",
     "COMENTAR": "Comment",
     "COMPARTILHAR": "Share"
+  },
+  "SEARCH": {
+    "people": "people",
+    "groups": "groups"
   }
 }

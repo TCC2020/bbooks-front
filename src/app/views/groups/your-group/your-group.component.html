@@ -1,0 +1,30 @@
+<br>
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="5px" *ngFor="let group of groups">
+    <mat-card class="card-group" [routerLink]="['/group/' + group.id + '/feed']" >
+
+        <div>
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxLayoutGap.xs="10px">
+                <div>
+                    <span class="material-icons"> groups</span>
+                </div>
+                <div>
+                    <div fxLayout="column" fxLayoutAlign="center start">
+                        <div>
+                            <h2>{{group.name}}</h2>
+                        </div>
+                        <div class="description">
+                            <mat-card-content >
+                                {{group.description}}
+                            </mat-card-content>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </mat-card>
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>

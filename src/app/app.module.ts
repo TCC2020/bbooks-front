@@ -33,20 +33,15 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {PerfilPageModule} from './views/perfil-page/perfil-page.module';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import {SharedModule} from './views/shared/shared.module';
-import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
 import { ReadingTargetProgressComponent } from './views/reading-target-progress/reading-target-progress.component';
 import { PreviousGoalsComponent } from './views/previous-goals/previous-goals.component';
 import {FeedPageModule} from './views/feed-page/feed-page.module';
+import { GroupsModule } from './views/groups/groups.module';
 import {ExchangeModule} from './views/exchange/exchange.module';
-import { MyOffersComponent } from './views/exchange/my-offers/my-offers.component';
-import { OffersComponent } from './views/exchange/offers/offers.component';
-import { OfferViewComponent } from './views/exchange/offer-view/offer-view.component';
-import { OfferNewComponent } from './views/exchange/offer-new/offer-new.component';
 import {BnNgIdleService} from 'bn-ng-idle';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import { PostCreateComponent } from './views/shared/post-create/post-create.component';
-import { TextareaAutoresizeDirective } from './views/shared/directive/textarea-autoresize.directive';
+import {SearchModule} from './views/search/search.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -66,7 +61,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         PageNotFoundComponent,
         PageNotFoundComponent,
         UploadComponent,
-        PesquisarAmigosComponent,
         ReadingTargetProgressComponent,
         PreviousGoalsComponent
     ],
@@ -94,6 +88,8 @@ export function HttpLoaderFactory(http: HttpClient) {
             maxAge: 25, // Retains last 25 states
             logOnly: environment.production, // Restrict extension to log-only mode
         }),
+        GroupsModule,
+        SearchModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

@@ -38,8 +38,7 @@ export class ReadingTargetProgressComponent implements OnInit {
       (res) => {
         this.previousGoals = res;
         this.currentReadingTarget = this.previousGoals[0];
-        console.log(this.currentReadingTarget);
-        this.getBookToUserBook(this.currentReadingTarget.targets);
+        this.getBookToUserBook(this.currentReadingTarget?.targets);
       },
       error => {
           console.log('PreviousGoals Error', error);

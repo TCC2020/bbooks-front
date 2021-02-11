@@ -1,0 +1,161 @@
+.container-cabecalho-grupo, .container-tab-group {
+    margin: 10px auto 0;
+
+    background-color: white;
+    padding: 10px;
+	border-radius: 4px;
+	transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+	color: rgba(0, 0, 0, 0.87);
+	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.container-cabecalho-grupo, .container-detalhes-cabecalho, .informacoes-grupo, .botao-convidar-grupo {
+    padding: 10px;
+}
+
+.container-grupo {
+    width: 1200px;
+    margin: 15px auto 0;
+}
+
+.container-detalhes-cabecalho {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+.informacoes-grupo {
+    width: 60%;
+}
+
+.botao-convidar-grupo {
+    width: 40%;
+}
+
+.botao-convidar-grupo {
+    text-align: right;
+}
+
+.botao-convidar-grupo button{
+    margin: auto 0;
+}
+
+
+.container-corpo-grupo {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+.container-tab-group {
+    max-width: 500px;
+}
+
+.container-tab-group mat-tab-group {
+    margin: 0 auto;
+}
+
+.container-mat-tab {
+    padding: 15px;
+}
+
+// pesquisar
+.container-pesquisar {
+    width: 100%;
+}
+
+.informacoes-do-usuario {
+    flex-direction: row;
+    display: flex;
+}
+
+mat-form-field {
+    margin-top: 10px;
+}
+
+mat-form-field, .barra-pesquisar {
+    width: 100%;
+}
+
+.botao-pesquisar {
+    text-align: center;
+}
+
+.imagem-perfil {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+}
+
+.informacoes {
+    width: 440px;
+    padding: 10px;
+}
+
+.cargo {
+    margin-top: 15px;
+}
+
+.reading-group-edit {
+    flex-direction: row;
+    display: flex;
+    gap: 10px;
+}
+
+.area-descricao {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.area-descricao textarea {
+    height: 150px;
+    line-height: 20px;
+}
+
+.botao-edit {
+    background-color: white;
+    border: 0px;
+}
+
+.botao-edit:active {
+    border-radius: 10px;
+    background-color: #cdcdcd;
+}
+.textColor{
+    color: #858585;
+    word-break: break-word;
+}
+
+
+@media screen and (max-width: 850px) {
+    .container-grupo {
+        width: 100%;
+        margin: 0;
+    }
+
+
+    .container-tab-group {
+        max-width: 100%;
+        width: 100%;
+        margin: 10px 0 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .container-detalhes-cabecalho {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .informacoes-grupo, .botao-convidar-grupo {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+    .informacoes {
+        width: 100%;
+    }
+
+}

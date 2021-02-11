@@ -1,0 +1,8 @@
+<nav mat-tab-nav-bar mat-align-tabs="center" style="background-color: white" >
+    <a mat-tab-link *ngFor="let link of links"
+       routerLinkActive #rla="routerLinkActive"
+       [routerLink]="link"
+       [active]="rla.isActive"
+    > {{'GRUPO_LEITURA.' + link | translate | titlecase}}</a>
+</nav>
+<router-outlet></router-outlet>
