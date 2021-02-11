@@ -63,7 +63,7 @@ export class ReactionsComponent implements OnInit {
             id: new FormControl(),
             profileId: new FormControl(this.user.profile.id),
             description: new FormControl(null, Validators.required),
-            //asks: this.formBuilder.array([]),
+            asks: this.formBuilder.array([]),
             image: new FormControl(null),
             tipoPost: new FormControl('comentario'),
             privacy: new FormControl('public_all', Validators.required),

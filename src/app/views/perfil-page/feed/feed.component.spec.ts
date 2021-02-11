@@ -99,7 +99,6 @@ describe('FeedComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(FeedComponent);
         component = fixture.componentInstance;
-        //component.user = userMock;
         fixture.detectChanges();
     });
 
@@ -108,20 +107,22 @@ describe('FeedComponent', () => {
         expect(component).toBeTruthy();
     });
 
+
+    it('should call onScroll', () => {
+        const spyComponent = jest.spyOn(component, 'onScroll');
+        component.onScroll();
+        expect(spyComponent).toHaveBeenCalled();
+    });
+
     it('getPosts: should getByProfileId', () => {
         const spyComponent = jest.spyOn(component, 'getPosts');
+        component.user.id = 'userMock';
+
         const spyServicePost = jest.spyOn(postServiceMock, 'getByProfileId').mockReturnValue(of(postPagination));
         component.getPosts();
         expect(true).toBeTruthy();
         expect(spyComponent).toHaveBeenCalled();
         expect(spyServicePost).toHaveBeenCalled();
     });
-
-
-    //
-    // it('should call onScroll', () => {
-    //     const spyComponent = jest.spyOn(component, 'onScroll');
-    //     component.onScroll();
-    //     expect(spyComponent).toHaveBeenCalled();
-    // });
 });
+
