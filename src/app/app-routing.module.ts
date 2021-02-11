@@ -13,7 +13,7 @@ import {AuthGuard} from './guards/auth-guard';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
 import { PesquisarAmigosComponent } from './views/pesquisar-amigos/pesquisar-amigos.component';
-import {PublicProfileComponent} from './views/public-profile/public-profile.component';
+import {PublicProfileComponent} from './views/public-profile-page/public-profile/public-profile.component';
 
 const routes: Routes = [
     {
@@ -45,10 +45,6 @@ const routes: Routes = [
     },
     {
         path: 'andamento-meta-leitura', component: ReadingTargetProgressComponent,
-        canActivate: [AuthGuard],
-    },
-    {
-        path: 'perfil-publico', component: PublicProfileComponent,
         canActivate: [AuthGuard],
     },
     {
