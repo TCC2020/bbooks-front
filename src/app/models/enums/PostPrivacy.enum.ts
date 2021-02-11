@@ -1,8 +1,7 @@
-import {BookStatus} from './BookStatus.enum';
-
 export enum PostPrivacy {
     public_all = 'public',
-    friends_only = 'friend'
+    friends_only = 'friend',
+    private_group = 'private'
 }
 
 export function getArrayPostPrivacy() {
@@ -12,4 +11,12 @@ export function getArrayPostPrivacy() {
 export const mapPostPrivacy = new Map<PostPrivacy, string>([
     [PostPrivacy.public_all, 'public_all'],
     [PostPrivacy.friends_only, 'friends_only'],
+    [PostPrivacy.private_group, 'private_group'],
+
+]);
+
+export const mapPostPrivacyStrinView = new Map<string, string>([
+    ['public_all', 'public'],
+    ['friends_only', 'friends'],
+    ['private_group', 'private'],
 ]);

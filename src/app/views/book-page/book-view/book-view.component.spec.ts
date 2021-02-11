@@ -1,7 +1,6 @@
 import { trackingsMock } from './../../../mocks/tracking.model.mock';
 import { TrackingService } from './../../../services/tracking.service';
 import { ReadingTargetService } from './../../../services/reading-target.service';
-import { ReadingTrackingService } from './../../../services/reading-tracking.service';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BookViewComponent} from './book-view.component';
@@ -28,7 +27,6 @@ import {trackingMock} from '../../../mocks/tracking.model.mock';
 import {readingTrackingMock} from '../../../mocks/tracking.model';
 import { readingTargetMock } from 'src/app/mocks/reading-target.model.mock';
 import { BookStatus } from 'src/app/models/enums/BookStatus.enum';
-import {Book} from '../../../models/book.model';
 import {userbookMock, userBooksDataStatusMock, userbooksMock} from '../../../mocks/userbook.model.mock';
 import {gBookMock} from '../../../mocks/google-book.model.mock';
 import {UserbookService} from '../../../services/userbook.service';
