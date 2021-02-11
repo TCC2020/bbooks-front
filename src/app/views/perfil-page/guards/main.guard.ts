@@ -3,7 +3,6 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '
 import {Observable, of} from 'rxjs';
 import {UserService} from '../../../services/user.service';
 import {catchError, map, take} from 'rxjs/operators';
-import {error} from '@angular/compiler/src/util';
 import {AuthService} from '../../../services/auth.service';
 
 @Injectable({
