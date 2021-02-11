@@ -17,6 +17,8 @@ import {PostService} from '../../../services/post.service';
 import {FeedService} from '../../../services/feed.service';
 import {of} from 'rxjs';
 import {userMock} from '../../../mocks/user.model.mock';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+import {StoreModule} from '@ngrx/store';
 
 describe('PostCreateComponent', () => {
     let component: PostCreateComponent;
@@ -46,7 +48,8 @@ describe('PostCreateComponent', () => {
                 HttpClientTestingModule,
                 BrowserAnimationsModule,
                 InfiniteScrollModule,
-                SharedModule
+                BrowserDynamicTestingModule,
+                StoreModule.forRoot({}),
             ],
             providers: [
                 {
@@ -74,6 +77,7 @@ describe('PostCreateComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(PostCreateComponent);
         component = fixture.componentInstance;
+        component.user = userMock;
         fixture.detectChanges();
     });
 

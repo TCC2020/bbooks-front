@@ -1,6 +1,6 @@
 <div class="container-post-dialog">
     <div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="isMobile()">
-        <div class="arrowPost" routerLink="/{{user.userName}}">
+        <div class="arrowPost" (click)="redirectPage(null)">
             <span class="material-icons">keyboard_backspace</span>
         </div>
         <div>
@@ -48,7 +48,7 @@
     </div>
     <mat-divider *ngIf="isMobile()"></mat-divider>
     <div>
-
+             <textarea formControlName="description" placeholder="{{'POST.' + textInput | translate}}"></textarea>
              <div class="div-menuChoose" *ngIf="menuChoose === menu.ASK">
                 <div formArrayName="asks" *ngFor="let item of asks.controls; let i = index;" fxLayout="row"
                      fxLayoutAlign="center">

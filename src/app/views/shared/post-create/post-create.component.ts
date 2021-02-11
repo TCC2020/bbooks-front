@@ -8,6 +8,7 @@ import {PostService} from '../../../services/post.service';
 import {TypePostControler} from '../../../models/enums/TypePost.enum';
 import {FeedPerfilManageService} from '../../perfil-page/store/feed-perfil-manage.service';
 import {AuthService} from '../../../services/auth.service';
+import {FeedMainManagerService} from '../../feed-page/store/feed-main-manager.service';
 
 @Component({
     selector: 'app-post-create',
@@ -25,7 +26,7 @@ export class PostCreateComponent implements OnInit {
         public postService: PostService,
         private feedPerfilManageService: FeedPerfilManageService,
         public authService: AuthService,
-
+        public feedMainManagerService: FeedMainManagerService
     ) {
     }
 
@@ -69,6 +70,7 @@ export class PostCreateComponent implements OnInit {
     redirectRouterPost() {
         switch (this.typePostControler) {
             case TypePostControler.feed:
+                this.router.navigate(['feed/create-post'], {state: {}});
                 return;
             case TypePostControler.feedPerfil:
                 this.router.navigate([this.user.userName + '/create-post', {state: {}}]);

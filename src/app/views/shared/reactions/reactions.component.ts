@@ -14,6 +14,7 @@ import {AddPost} from '../../perfil-page/store/actions/feed.actions';
 import {FeedPerfilManageService} from '../../perfil-page/store/feed-perfil-manage.service';
 import {TypePost, TypePostControler} from '../../../models/enums/TypePost.enum';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FeedMainManagerService} from '../../feed-page/store/feed-main-manager.service';
 
 @Component({
     selector: 'app-reactions',
@@ -48,7 +49,8 @@ export class ReactionsComponent implements OnInit {
         public postService: PostService,
         public translate: TranslateService,
         public feedPerfilManageService: FeedPerfilManageService,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        public feedMainManagerService: FeedMainManagerService
     ) {
     }
 
@@ -61,11 +63,12 @@ export class ReactionsComponent implements OnInit {
             id: new FormControl(),
             profileId: new FormControl(this.user.profile.id),
             description: new FormControl(null, Validators.required),
-            asks: this.formBuilder.array([]),
+            //asks: this.formBuilder.array([]),
             image: new FormControl(null),
-            tipoPost: new FormControl(TypePost.comentario),
-            privacy: new FormControl(null, Validators.required),
-            creationDate: new FormControl(null)
+            tipoPost: new FormControl('comentario'),
+            privacy: new FormControl('public_all', Validators.required),
+            creationDate: new FormControl(null),
+            upperPostId: new FormControl(this.post.id)
         });
     }
 
@@ -118,6 +121,7 @@ export class ReactionsComponent implements OnInit {
     updateReduxOfTypePost(typePostController: TypePostControler, postTo: PostTO) {
         switch (typePostController) {
             case TypePostControler.feed:
+                this.feedMainManagerService.updatePost(postTo);
                 return;
             case TypePostControler.feedPerfil:
                 this.feedPerfilManageService.updatePost(postTo);
@@ -130,6 +134,7 @@ export class ReactionsComponent implements OnInit {
     deleteReduxOfTypePost(typePostController: TypePostControler, postTo: PostTO) {
         switch (typePostController) {
             case TypePostControler.feed:
+                this.feedMainManagerService.deletePost(postTo);
                 return;
             case TypePostControler.feedPerfil:
                 this.feedPerfilManageService.deletePost(postTo);
@@ -142,6 +147,7 @@ export class ReactionsComponent implements OnInit {
     redirectRouterPost(post?: PostTO) {
         switch (this.typePostControler) {
             case TypePostControler.feed:
+                this.router.navigate(['/create-post'], {state: {post}});
                 return;
             case TypePostControler.feedPerfil:
                 this.router.navigate([this.user.userName + '/create-post'], {state: {post}});

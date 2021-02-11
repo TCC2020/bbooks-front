@@ -16,6 +16,8 @@ import {SocialAuthService} from 'angularx-social-login';
 import {AuthService} from '../../../services/auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {userMock} from '../../../mocks/user.model.mock';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {StoreModule} from '@ngrx/store';
 
 describe('ReactionsComponent', () => {
     let component: ReactionsComponent;
@@ -46,6 +48,9 @@ describe('ReactionsComponent', () => {
                 HttpClientTestingModule,
                 BrowserAnimationsModule,
                 InfiniteScrollModule,
+                FormsModule,
+                ReactiveFormsModule,
+                StoreModule.forRoot({}),
             ],
             providers: [
                 {

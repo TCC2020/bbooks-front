@@ -163,7 +163,7 @@ export class PostDialogComponent implements OnInit {
 
     redirectPage(post: PostTO): void {
         if (this.isMobile()) {
-            this.router.navigate([`/${this.user.userName}`]);
+            window.history.back();
         } else {
             this.dialogRef.close(post);
         }
