@@ -55,6 +55,31 @@ button-edit-post{
   right: 0;
   margin: 20px;
 }
+
+textarea {
+  // letter-spacing: 1px;
+  resize: none;
+
+}
+textarea {
+  background-color: rgba(196, 201, 205, 0.3);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  width: 100%;
+  border-radius: 50px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border: none;
+  padding: 6px;
+  border-collapse:collapse;
+}
+textarea:focus, input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+textarea::placeholder {
+  color: #262626;
+}
 @media screen and (max-width: 600px) {
   .commentReview{
     width: 250px;

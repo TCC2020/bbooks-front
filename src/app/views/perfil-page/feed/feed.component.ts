@@ -47,44 +47,8 @@ export class FeedComponent implements OnInit, OnDestroy {
         this.feedRedux$ = this.feedPerfilManage.getFeed();
     }
 
-    openPost(post?: PostTO) {
-        const userAgent = window.navigator.userAgent.toLocaleLowerCase();
-        if (userAgent.includes('iphone') || userAgent.includes('android')) {
-            this.router.navigate([this.user.userName + '/create-post'], {state: {post}});
-        } else {
-            this.openPostDialog(post);
-        }
-    }
-
-    openPostDialog(post?: PostTO) {
-        const dialogRef = this.dialog.open(PostDialogComponent, {
-            height: '450px',
-            width: '500px',
-            data: post
-        });
-        dialogRef.afterClosed()
-            .pipe().subscribe((res) => {
-            if (res) {
-                if (post) {
-
-                } else {
-                    this.feedPerfilManage.savePostOnRedux(res);
-                }
-            }
-        });
-    }
-
     onScroll() {
        this.getPosts();
-    }
-
-    onListPostsChange(event) {
-        // if (event.save) {
-        //     const index = this.posts.indexOf(event.p);
-        //     this.posts[index].description = event.post.description;
-        // } else {
-        //     this.posts.splice(event.post, 1);
-        // }
     }
 
     getPosts(): void {

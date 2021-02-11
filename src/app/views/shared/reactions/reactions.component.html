@@ -62,5 +62,23 @@
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <mat-divider></mat-divider>
         </div>
+        <br>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" fxLayoutGap.xs="5px">
+            <div>
+                <img class="cardImagePost"
+                     src="{{user.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+            </div>
+
+            <form [formGroup]="formComment" fxFlex>
+                <textarea
+                        formControlName="description"
+                        autocomplete="off"
+                        placeholder="Escreva um comentario"
+                        #textarea [scrollTop]="textarea.scrollHeight"
+                        appTextareaAutoresize
+                        (keyup.enter)="onKeyEnter()"
+                ></textarea>
+            </form>
+        </div>
     </div>
 </mat-card>

@@ -12,7 +12,8 @@ import {take} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import {AddPost} from '../../perfil-page/store/actions/feed.actions';
 import {FeedPerfilManageService} from '../../perfil-page/store/feed-perfil-manage.service';
-import {TypePostControler} from '../../../models/enums/TypePost.enum';
+import {TypePost, TypePostControler} from '../../../models/enums/TypePost.enum';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-reactions',
@@ -38,17 +39,34 @@ export class ReactionsComponent implements OnInit {
         {reaction: 'Gostei', icon: 'thumb_up'}
     ];
 
+    public formComment: FormGroup;
+
     constructor(
         public dialog: MatDialog,
         private router: Router,
         public authService: AuthService,
         public postService: PostService,
         public translate: TranslateService,
-        public feedPerfilManageService: FeedPerfilManageService
+        public feedPerfilManageService: FeedPerfilManageService,
+        private formBuilder: FormBuilder
     ) {
     }
 
     ngOnInit(): void {
+        this.createForm();
+    }
+
+    private createForm(): void {
+        this.formComment = this.formBuilder.group({
+            id: new FormControl(),
+            profileId: new FormControl(this.user.profile.id),
+            description: new FormControl(null, Validators.required),
+            asks: this.formBuilder.array([]),
+            image: new FormControl(null),
+            tipoPost: new FormControl(TypePost.comentario),
+            privacy: new FormControl(null, Validators.required),
+            creationDate: new FormControl(null)
+        });
     }
 
     changeReaction(reaction: string, icon: string) {
@@ -60,7 +78,7 @@ export class ReactionsComponent implements OnInit {
     openPost(post?: PostTO) {
         const userAgent = window.navigator.userAgent.toLocaleLowerCase();
         if (userAgent.includes('iphone') || userAgent.includes('android')) {
-            this.router.navigate([this.user.userName + '/create-post'], {state: {post}});
+            this.redirectRouterPost(post);
         } else {
             this.openPostDialog(post);
         }
@@ -121,4 +139,23 @@ export class ReactionsComponent implements OnInit {
         }
     }
 
+    redirectRouterPost(post?: PostTO) {
+        switch (this.typePostControler) {
+            case TypePostControler.feed:
+                return;
+            case TypePostControler.feedPerfil:
+                this.router.navigate([this.user.userName + '/create-post'], {state: {post}});
+                return;
+            case TypePostControler.group:
+                return;
+        }
+    }
+
+    onKeyEnter(): void {
+        this.postService.save(this.formComment.value)
+            .pipe(take(1))
+            .subscribe(result => {
+                console.log(result);
+            });
+    }
 }

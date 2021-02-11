@@ -46,6 +46,7 @@ import {BnNgIdleService} from 'bn-ng-idle';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { PostCreateComponent } from './views/shared/post-create/post-create.component';
+import { TextareaAutoresizeDirective } from './views/shared/directive/textarea-autoresize.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');

@@ -50,7 +50,7 @@ export class PostDialogComponent implements OnInit {
         if (!this.isMobile()) {
             this.dataDialog = this.injector.get(MAT_DIALOG_DATA);
         } else {
-            this.dataDialog = this.router.getCurrentNavigation().extras.state.post;
+            this.dataDialog = this.router.getCurrentNavigation()?.extras?.state?.post;
         }
     }
 
@@ -76,6 +76,7 @@ export class PostDialogComponent implements OnInit {
             image: new FormControl(null),
             tipoPost: new FormControl(TypePost.post),
             privacy: new FormControl(this.dataDialog ? this.dataDialog.privacy : null, Validators.required),
+            creationDate: new FormControl(this.dataDialog ? this.dataDialog.creationDate : null)
         });
     }
 

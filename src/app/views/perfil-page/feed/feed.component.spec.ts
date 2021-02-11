@@ -81,15 +81,6 @@ describe('FeedComponent', () => {
     it('should create', () => {
         expect(component).toBeTruthy();
     });
-
-    it('should openPost', () => {
-        const spy = jest.spyOn(mockMatDialog, 'open');
-        component.openPost();
-        expect(spy).toHaveBeenCalled();
-
-
-    });
-
     it('getPosts: should getByProfileId', () => {
         const spyComponent = jest.spyOn(component, 'getPosts');
         const spyServicePost = jest.spyOn(postServiceMock, 'getByProfileId').mockReturnValue(of(postPagination));
