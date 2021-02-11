@@ -41,9 +41,7 @@ export class MembersGroupComponent implements OnInit {
                 take(1)
             ).subscribe(result => {
             Util.stopLoading();
-
             this.members = result;
-            this.getUserMember();
         }, error => {
             Util.stopLoading();
             this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
@@ -55,20 +53,5 @@ export class MembersGroupComponent implements OnInit {
 
     isAdm(): boolean {
         return true;
-    }
-
-    getUserMember(): void {
-        Util.loadingScreen();
-        this.members.map((result, i) => {
-            this.userService.getById(result.userId)
-                .pipe(take(1))
-                .subscribe(user => {
-                        this.members[i].userTO = user;
-                    },
-                    error => {
-                            console.log('Erro: members-group getMembers' , error);
-                    });
-        });
-        Util.stopLoading();
     }
 }

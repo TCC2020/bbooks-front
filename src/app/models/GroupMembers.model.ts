@@ -8,7 +8,7 @@ export class GroupMembers {
     date: Date;
     role: Role;
     status: MemberStatus;
-    userTO: UserTO;
+    user: UserTO;
 }
 
 export class Id {
