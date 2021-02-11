@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicProfileComponent implements OnInit {
 
+  links = ['feed', 'about'];
+
   constructor() { }
 
   ngOnInit(): void {

@@ -41,6 +41,7 @@ import {ExchangeModule} from './views/exchange/exchange.module';
 import {BnNgIdleService} from 'bn-ng-idle';
 import {PublicProfilePageModule} from './views/public-profile-page/public-profile-page.module';
 import {SearchModule} from './views/search/search.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -91,7 +92,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             },
-        })
+        }),
+        FontAwesomeModule
     ],
     providers: [
         BnNgIdleService,

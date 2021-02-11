@@ -6,15 +6,17 @@
                 <p>30 seguidores</p>
             </div>
             <div class="botao-convidar-grupo">
-                <button type="button" mat-raised-button color="primary"><span class="material-icons">queue</span>Seguir</button>
+                <button type="button" mat-raised-button color="primary"><span class="material-icons">queue</span>Seguir
+                </button>
             </div>
         </div>
     </div>
     <div class="container-corpo-grupo">
         <div class="container-tab-group">
-            <nav mat-tab-nav-bar >
-                <a mat-tab-link>Feed</a>
-                <a mat-tab-link>Sobre</a>
+            <nav mat-tab-nav-bar>
+                <a mat-tab-link *ngFor="let link of links"
+                   routerLinkActive #rla="routerLinkActive"
+                   [routerLink]="link">{{ link }}</a>
             </nav>
             <div class="container-mat-tab">
                 <router-outlet></router-outlet>
