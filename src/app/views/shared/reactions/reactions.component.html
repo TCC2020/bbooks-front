@@ -3,12 +3,12 @@
         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxLayoutGap.xs="10px">
             <div>
                 <img class="cardImagePost"
-                     src="{{user.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                     src="{{userPost.profile?.profileImage ? userPost?.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
             </div>
             <div>
                 <div fxLayout="column" fxLayoutAlign="center start">
                     <div>
-                        {{user.userName}}
+                        {{userPost.userName}}
                     </div>
                     <div class="text-date">
                         {{post?.creationDate | date}}
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <button mat-icon-button [matMenuTriggerFor]="menu" style="position: absolute; right: 0"
-                    *ngIf=" user.profile.id == authService.getUser().profile.id">
+                    *ngIf=" userPost?.profile.id == authService.getUser().profile.id">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -66,7 +66,7 @@
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" fxLayoutGap.xs="5px">
             <div>
                 <img class="cardImagePost"
-                     src="{{user.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                     src="{{userPost?.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
             </div>
 
             <form [formGroup]="formComment" fxFlex>

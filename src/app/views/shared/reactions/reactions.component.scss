@@ -26,6 +26,8 @@
   word-break: break-word;
   text-align: justify;
   width: 350px;
+  max-width:  350px;
+;
 }
 .commentReview:hover{
   color: #1a1a1a;
@@ -39,6 +41,7 @@
 }
 .description{
   width: 480px;
+  max-width: 480px;
   font-size: 18px;
 }
 .cardImagePost{

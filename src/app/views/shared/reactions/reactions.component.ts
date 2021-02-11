@@ -27,7 +27,7 @@ export class ReactionsComponent implements OnInit {
     @Input() post: PostTO;
     @Input() typePostControler: TypePostControler;
     @Output() postOutput = new EventEmitter<any>();
-
+    @Input() userPost: UserTO;
     reaction = 'Gostei';
     icon = 'thumb_up';
 
@@ -52,6 +52,7 @@ export class ReactionsComponent implements OnInit {
         private formBuilder: FormBuilder,
         public feedMainManagerService: FeedMainManagerService
     ) {
+
     }
 
     ngOnInit(): void {

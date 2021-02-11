@@ -18,6 +18,7 @@
                 *ngFor="let post of (feedRedux$ | async)?.posts"
                 [post]="post"
                 [user]="user "
+                [userPost]="user"
                 [typePostControler]="typePostControler.feedPerfil"
         ></app-reactions>
         <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>

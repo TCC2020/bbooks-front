@@ -1,5 +1,5 @@
 
-<div class="body">
+<div>
     <br>
     <div fxLayout="row" fxLayoutAlign="space-around center">
         <app-post-create
@@ -19,7 +19,8 @@
         <app-reactions
                 *ngFor="let post of (feedRedux$ | async)?.posts"
                 [post]="post"
-                [user]="user "
+                [user]="user"
+                [userPost]="post?.user"
                 [typePostControler]="typePostControler.feed"
         ></app-reactions>
         <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>

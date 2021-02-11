@@ -79,6 +79,7 @@ describe('ReactionsComponent', () => {
         component = fixture.componentInstance;
         component.user = userMock;
         component.post = postMock;
+        component.userPost = userMock;
         fixture.detectChanges();
     });
 
