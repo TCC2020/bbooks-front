@@ -26,6 +26,8 @@
   word-break: break-word;
   text-align: justify;
   width: 350px;
+  max-width:  350px;
+;
 }
 .commentReview:hover{
   color: #1a1a1a;
@@ -39,6 +41,7 @@
 }
 .description{
   width: 480px;
+  max-width: 480px;
   font-size: 18px;
 }
 .cardImagePost{
@@ -54,6 +57,31 @@ button-edit-post{
   position: absolute;
   right: 0;
   margin: 20px;
+}
+
+textarea {
+  // letter-spacing: 1px;
+  resize: none;
+
+}
+textarea {
+  background-color: rgba(196, 201, 205, 0.3);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  width: 100%;
+  border-radius: 50px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border: none;
+  padding: 6px;
+  border-collapse:collapse;
+}
+textarea:focus, input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+textarea::placeholder {
+  color: #262626;
 }
 @media screen and (max-width: 600px) {
   .commentReview{

@@ -39,6 +39,8 @@ import {FeedPageModule} from './views/feed-page/feed-page.module';
 import { GroupsModule } from './views/groups/groups.module';
 import {ExchangeModule} from './views/exchange/exchange.module';
 import {BnNgIdleService} from 'bn-ng-idle';
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {SearchModule} from './views/search/search.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -81,6 +83,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         ExchangeModule,
         PerfilPageModule,
         SharedModule,
+        StoreModule.forRoot({}),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25, // Retains last 25 states
+            logOnly: environment.production, // Restrict extension to log-only mode
+        }),
         GroupsModule,
         SearchModule,
         TranslateModule.forRoot({

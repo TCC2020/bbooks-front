@@ -9,6 +9,12 @@ import {PostTO} from '../../../models/PostTO.model';
 import {PostDialogComponent} from '../post-dialog/post-dialog.component';
 import {Util} from '../Utils/util';
 import {take} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {AddPost} from '../../perfil-page/store/actions/feed.actions';
+import {FeedPerfilManageService} from '../../perfil-page/store/feed-perfil-manage.service';
+import {TypePost, TypePostControler} from '../../../models/enums/TypePost.enum';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FeedMainManagerService} from '../../feed-page/store/feed-main-manager.service';
 
 @Component({
     selector: 'app-reactions',
@@ -19,9 +25,9 @@ export class ReactionsComponent implements OnInit {
 
     @Input() user: UserTO;
     @Input() post: PostTO;
-
+    @Input() typePostControler: TypePostControler;
     @Output() postOutput = new EventEmitter<any>();
-
+    @Input() userPost: UserTO;
     reaction = 'Gostei';
     icon = 'thumb_up';
 
@@ -34,16 +40,37 @@ export class ReactionsComponent implements OnInit {
         {reaction: 'Gostei', icon: 'thumb_up'}
     ];
 
+    public formComment: FormGroup;
+
     constructor(
         public dialog: MatDialog,
         private router: Router,
         public authService: AuthService,
         public postService: PostService,
-        public translate: TranslateService
+        public translate: TranslateService,
+        public feedPerfilManageService: FeedPerfilManageService,
+        private formBuilder: FormBuilder,
+        public feedMainManagerService: FeedMainManagerService
     ) {
+
     }
 
     ngOnInit(): void {
+        this.createForm();
+    }
+
+    private createForm(): void {
+        this.formComment = this.formBuilder.group({
+            id: new FormControl(),
+            profileId: new FormControl(this.user.profile.id),
+            description: new FormControl(null, Validators.required),
+            asks: this.formBuilder.array([]),
+            image: new FormControl(null),
+            tipoPost: new FormControl('comentario'),
+            privacy: new FormControl('public_all', Validators.required),
+            creationDate: new FormControl(null),
+            upperPostId: new FormControl(this.post.id)
+        });
     }
 
     changeReaction(reaction: string, icon: string) {
@@ -55,7 +82,7 @@ export class ReactionsComponent implements OnInit {
     openPost(post?: PostTO) {
         const userAgent = window.navigator.userAgent.toLocaleLowerCase();
         if (userAgent.includes('iphone') || userAgent.includes('android')) {
-            this.router.navigate([this.user.userName + '/create-post'], {state: {post}});
+            this.redirectRouterPost(post);
         } else {
             this.openPostDialog(post);
         }
@@ -71,7 +98,7 @@ export class ReactionsComponent implements OnInit {
             .pipe().subscribe((post) => {
             if (post) {
                 if (p) {
-                    this.postOutput.emit({save: true, p, post});
+                    this.updateReduxOfTypePost(this.typePostControler, post);
                 }
             }
         });
@@ -82,7 +109,7 @@ export class ReactionsComponent implements OnInit {
         this.postService.delete(p.id)
             .pipe(take(1))
             .subscribe(() => {
-                this.postOutput.emit({save: false, p});
+                this.deleteReduxOfTypePost(this.typePostControler, p);
                 Util.stopLoading();
                 this.translate.get('POST.POST_EXCLUIDO')
                     .pipe(take(1))
@@ -92,4 +119,50 @@ export class ReactionsComponent implements OnInit {
             });
     }
 
+    updateReduxOfTypePost(typePostController: TypePostControler, postTo: PostTO) {
+        switch (typePostController) {
+            case TypePostControler.feed:
+                this.feedMainManagerService.updatePost(postTo);
+                return;
+            case TypePostControler.feedPerfil:
+                this.feedPerfilManageService.updatePost(postTo);
+                return;
+            case TypePostControler.group:
+                return;
+        }
+    }
+
+    deleteReduxOfTypePost(typePostController: TypePostControler, postTo: PostTO) {
+        switch (typePostController) {
+            case TypePostControler.feed:
+                this.feedMainManagerService.deletePost(postTo);
+                return;
+            case TypePostControler.feedPerfil:
+                this.feedPerfilManageService.deletePost(postTo);
+                return;
+            case TypePostControler.group:
+                return;
+        }
+    }
+
+    redirectRouterPost(post?: PostTO) {
+        switch (this.typePostControler) {
+            case TypePostControler.feed:
+                this.router.navigate(['/create-post'], {state: {post}});
+                return;
+            case TypePostControler.feedPerfil:
+                this.router.navigate([this.user.userName + '/create-post'], {state: {post}});
+                return;
+            case TypePostControler.group:
+                return;
+        }
+    }
+
+    onKeyEnter(): void {
+        this.postService.save(this.formComment.value)
+            .pipe(take(1))
+            .subscribe(result => {
+                console.log(result);
+            });
+    }
 }
