@@ -95,6 +95,11 @@ textarea::placeholder {
   word-break: break-word;
 
 }
+
+#reacao-escolhida, #lista-reacoes {
+  margin: 0 5px 0 0;
+}
+
 @media screen and (max-width: 600px) {
   .commentView{
     max-width: 260px;

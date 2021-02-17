@@ -28,14 +28,16 @@ export class ReactionsComponent implements OnInit {
     @Output() postOutput = new EventEmitter<any>();
     @Input() userPost: UserTO;
     reaction = 'Gostei';
-    icon = 'thumb_up';
+    icon = 'fa-thumbs-up';
+
     listReactions = [
-        {reaction: 'Aaarg', icon: 'sentiment_neutral'},
-        {reaction: 'Triste', icon: 'sentiment_very_dissatisfied'},
-        {reaction: 'Surpreso', icon: 'mood_bad'},
-        {reaction: 'Hilário', icon: 'sentiment_very_satisfied'},
-        {reaction: 'Amei', icon: 'favorite'},
-        {reaction: 'Gostei', icon: 'thumb_up'}
+        {reaction: 'Aaarg', icon: 'fa-angry'},
+        {reaction: 'Triste', icon: 'fa-sad-tear'},
+        {reaction: 'Surpreso', icon: 'fa-surprise'},
+        {reaction: 'Hilário', icon: 'fa-laugh-squint'},
+        {reaction: 'Amei', icon: 'fa-heart'},
+        {reaction: 'Não Gostei', icon: 'fa-thumbs-down'},
+        {reaction: 'Gostei', icon: 'fa-thumbs-up'}
     ];
 
     public formComment: FormGroup;
