@@ -1,6 +1,7 @@
 import {TypePost} from './enums/TypePost.enum';
 import {PostPrivacy} from './enums/PostPrivacy.enum';
 import {UserTO} from './userTO.model';
+import {postsMock} from '../mocks/post.model.mock';
 
 export class PostTO {
     id: string;
@@ -8,8 +9,14 @@ export class PostTO {
     description: string;
     image: string;
     tipoPost: TypePost;
-    comments: PostTO[];
+    public comments: PostTO[];
     privacy: PostPrivacy;
     creationDate: Date;
     user: UserTO;
+    editMode: boolean;
+
+    public setComments(comments: PostTO[]) {
+        this.comments = [];
+        this.comments = comments;
+    }
 }

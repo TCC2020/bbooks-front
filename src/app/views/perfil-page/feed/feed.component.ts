@@ -3,17 +3,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {take} from 'rxjs/operators';
 import {UserTO} from '../../../models/userTO.model';
 import {MatDialog} from '@angular/material/dialog';
-import {PostDialogComponent} from '../../shared/post-dialog/post-dialog.component';
 import {AuthService} from '../../../services/auth.service';
 import {PostService} from '../../../services/post.service';
 import {PostTO} from '../../../models/PostTO.model';
-import {Util} from '../../shared/Utils/util';
 import {TranslateService} from '@ngx-translate/core';
 import {FeedService} from '../../../services/feed.service';
 import {FeedPerfilManageService} from '../store/feed-perfil-manage.service';
-import {IFeedState, IFeedStateReducer} from '../store/state/feed.state.interface';
+import {IFeedState} from '../store/state/feed.state.interface';
 import {Observable} from 'rxjs';
 import {TypePostControler} from '../../../models/enums/TypePost.enum';
+import {FeedGenericService} from '../../../services/feed-generic.service';
 
 @Component({
     selector: 'app-feed',
@@ -35,7 +34,8 @@ export class FeedComponent implements OnInit, OnDestroy {
         public postService: PostService,
         public translate: TranslateService,
         public feedService: FeedService,
-        private feedPerfilManage: FeedPerfilManageService
+        private feedPerfilManage: FeedPerfilManageService,
+        public feedGenericService: FeedGenericService
     ) {
     }
 
@@ -48,7 +48,7 @@ export class FeedComponent implements OnInit, OnDestroy {
     }
 
     onScroll() {
-       this.getPosts();
+        this.getPosts();
     }
 
     getPosts(): void {
@@ -62,6 +62,7 @@ export class FeedComponent implements OnInit, OnDestroy {
                         this.page = result.pageable.pageNumber + 1;
                         this.feedPerfilManage.updatePage(this.page);
                         this.feedPerfilManage.getPostOnRedux(result.content);
+                        this.getComments(result.content);
                     }
                 });
         } else {
@@ -72,8 +73,9 @@ export class FeedComponent implements OnInit, OnDestroy {
                     this.loading = false;
                     if (result.content.length > 0) {
                         this.page = result.pageable.pageNumber + 1;
-                        this.feedPerfilManage.updatePage(this.page );
+                        this.feedPerfilManage.updatePage(this.page);
                         this.feedPerfilManage.getPostOnRedux(result.content);
+                        this.getComments(result.content);
                     }
                 });
         }
@@ -81,6 +83,18 @@ export class FeedComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.feedPerfilManage.clearRedux();
+    }
+
+    getComments(content: PostTO[]): void {
+        content.forEach((p ) => {
+             this.postService.getComment(p.id, 5, 0)
+                .pipe(take(1))
+                .subscribe(result => {
+                    const post = this.feedGenericService.convertToNewPost(p);
+                    post.comments = result;
+                    this.feedPerfilManage.updatePost(post);
+                });
+        });
     }
 
 

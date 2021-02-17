@@ -42,6 +42,7 @@ export class MainComponent implements OnInit, OnDestroy {
         this.feedService.getFeed(5, this.page)
             .pipe(take(1))
             .subscribe(result => {
+                console.log('result', result);
                 this.loading = false;
                 if (result.content.length > 0) {
                     this.page = result.pageable.pageNumber + 1;
