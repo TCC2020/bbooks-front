@@ -13,7 +13,7 @@ export class Interceptor implements HttpInterceptor {
   constructor(private auth: AuthService, private loader: LoaderService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url.includes(environment.api)) {
+    if (req.url.includes(environment.api) || req.url.includes(environment.feedApi)) {
       if (!req.urlWithParams.includes('?async=true')) { this.loader.showLoader(); }
       const request = req.clone({
         setHeaders: {

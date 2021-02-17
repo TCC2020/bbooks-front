@@ -2,7 +2,6 @@ import {TestBed} from '@angular/core/testing';
 
 import {GoogleBooksService} from './google-books.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {tagMock} from '../mocks/tag.model.mock';
 import {bookMock} from '../mocks/book.model.mock';
 
 describe('GoogleBooksService', () => {

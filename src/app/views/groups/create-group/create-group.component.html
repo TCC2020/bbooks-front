@@ -1,0 +1,87 @@
+<div class="descriptionGroup" fxLayout="row" fxLayoutAlign="center center" *ngIf="!buttonActiveForm">
+        <div>
+            {{'GRUPO_LEITURA.GRUPO_DESCRICAO' | translate }}
+        </div>
+</div>
+<br>
+<div fxLayout="row" fxLayoutAlign="center center" *ngIf="!buttonActiveForm">
+    <button mat-raised-button color="accent" class="create-group" fxLayout="row" (click)="showCreateForm()" style="color: white">
+        {{'GRUPO_LEITURA.CRIAR_GRUPO' | translate | titlecase}}
+    </button>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center" *ngIf="buttonActiveForm">
+
+<form [formGroup]="formGroup">
+    <mat-card>
+        <div fxLayout="row" fxLayoutAlign="center">
+            <span class="material-icons">add_a_photo</span>
+        </div>
+        <div  fxLayout="row" fxLayoutAlign="center">
+            <mat-form-field   style="width: 60%">
+                <mat-label>{{'GRUPO_LEITURA.INPUT_NAME' | translate }}</mat-label>
+                <input matInput  formControlName="name">
+                <mat-error *ngIf="formGroup.get('name').hasError('required')">
+                    {{'GRUPO_LEITURA.MSG_NAME_GROUP_E' | translate }}
+                    <strong>{{'PADRAO.OBRIGATORIO' | translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </div >
+
+    </mat-card>
+    <br>
+    <mat-card>
+        <h2>{{'PADRAO.PRIVACIDADE' | translate}}</h2>
+        <p>{{'GRUPO_LEITURA.NIVEL_ESCOLHA' | translate}}</p>
+        <mat-radio-group formControlName="privacy">
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button  [value]="mapPostPrivacy.get(privacy.public_all)">
+
+                    </mat-radio-button>
+                </div>
+                <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                        <b>{{'PADRAO.PUBLICO' | translate}} </b>
+                    </div>
+                    <div class="textColor">
+                        {{'GRUPO_LEITURA.PUBLICO_DESCRICAO' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button  [value]="mapPostPrivacy.get(privacy.private_group)">
+
+                    </mat-radio-button>
+                </div>
+                <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                        <b>{{'PADRAO.PRIVADO' | translate}}</b>
+                    </div>
+                    <div class="textColor">
+                        {{'GRUPO_LEITURA.PRIVADO_DESCRICAO' | translate}}
+                    </div>
+                </div>
+            </div>
+        </mat-radio-group>
+    </mat-card>
+    <mat-card >
+        <h2>{{'GRUPO_LEITURA.SOBRE' | translate}}</h2>
+        <mat-form-field  style="width: 100%">
+            <mat-label>{{'GRUPO_LEITURA.INPUT_DESCRICAO' | translate}}</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+    </mat-card>
+    <mat-card>
+        <button
+        (click)="save()"
+        [disabled]="this.formGroup.invalid"
+        mat-raised-button color="accent"
+        fxLayout="row" fxLayoutAlign="center"
+        style="width: 100%; color: white">
+            {{'GRUPO_LEITURA.CRIAR_GRUPO' | translate | titlecase}}
+        </button>
+    </mat-card>
+</form>
+</div>

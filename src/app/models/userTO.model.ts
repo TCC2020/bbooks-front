@@ -1,7 +1,7 @@
 import {Profile} from './profileTO.model';
 
 export class UserTO {
-    id: number;
+    id: string;
     userName: string;
     email: string;
     password: string;

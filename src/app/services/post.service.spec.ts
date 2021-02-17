@@ -5,7 +5,6 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {FriendsService} from './friends.service';
 import {friendMock} from '../mocks/friend.model.mock';
 import {postMock} from '../mocks/post.model.mock';
-import {profileMock} from '../mocks/profile.model.mock';
 import {userMock} from '../mocks/user.model.mock';
 
 describe('PostService', () => {

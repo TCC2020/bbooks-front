@@ -16,7 +16,7 @@
         <mat-menu  #menuNofify="matMenu">
             
             <div class="container-lista-amigos">
-                <div class="titulo-notificacao">
+                <div class="titulo-notificacao" *ngIf="recommendations?.length > 0">
                     <span><b>{{'NAV.RECOMENDACOES' | translate}}</b></span>
                 </div>
                 <!--começa card-->
@@ -24,7 +24,7 @@
                     <div class="container-imagem" [routerLink]="['/book/undefined', (r?.book | async)?.id]" [queryParams]="routerRecommendation(r?.idBookGoogle)">
                         <div>
                             <img class="imagem-perfil-notificacao"
-                            [src]="(r?.profileTO | async)?.profileImage ? r.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+                            [src]="(r?.profileTO | async)?.profileImage ? (r?.profileTO | async)?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
                         </div>
                         <div class="informacoes">
 <!--                             <div><span><a class="nome-usuario" [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span></div>
@@ -76,9 +76,10 @@
             </div>
         </mat-menu>
     </div>
+
     <div *ngIf="isLogged">
-        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/pesquisar-amigos']">
-            <mat-icon>group_add</mat-icon>
+        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/search']">
+            <mat-icon>search</mat-icon>
         </button>
         <button  mat-flat-button color="primary" style="width: 5vw;"  [matMenuTriggerFor]="menuPerfil">
             <mat-icon>account_circle</mat-icon>
@@ -92,9 +93,9 @@
                 </div>
             </div>
 
-            <div mat-menu-item  [routerLink]="['/reading-group']">
+            <div mat-menu-item  [routerLink]="['/groups-search/your-groups']">
                 <mat-icon>groups</mat-icon>
-                <span>Grupo de Leitura</span>
+                <span>{{'PADRAO.GRUPOS_LEITURA' | translate}}</span>
             </div>
 
             <div mat-menu-item  [routerLink]="['/andamento-meta-leitura']">

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.idleService.startWatching(900)
+    this.idleService.startWatching(600)
         .subscribe((isUserInactive) => {
           if (isUserInactive) {
             if ( this.auth.getUser() !== null) {
