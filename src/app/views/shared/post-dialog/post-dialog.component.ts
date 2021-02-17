@@ -50,7 +50,7 @@ export class PostDialogComponent implements OnInit {
         if (!this.isMobile()) {
             this.dataDialog = this.injector.get(MAT_DIALOG_DATA);
         } else {
-            this.dataDialog = this.router.getCurrentNavigation().extras.state.post;
+            this.dataDialog = this.router.getCurrentNavigation()?.extras?.state?.post;
         }
     }
 
@@ -76,6 +76,7 @@ export class PostDialogComponent implements OnInit {
             image: new FormControl(null),
             tipoPost: new FormControl(TypePost.post),
             privacy: new FormControl(this.dataDialog ? this.dataDialog.privacy : null, Validators.required),
+            creationDate: new FormControl(this.dataDialog ? this.dataDialog.creationDate : null)
         });
     }
 
@@ -126,8 +127,8 @@ export class PostDialogComponent implements OnInit {
     }
 
     save(): void {
+        Util.loadingScreen();
         if (this.dataDialog) {
-            Util.loadingScreen();
             this.postService.update(this.formFeed.value)
                 .pipe(take(1))
                 .subscribe(post => {
@@ -162,7 +163,7 @@ export class PostDialogComponent implements OnInit {
 
     redirectPage(post: PostTO): void {
         if (this.isMobile()) {
-            this.router.navigate([`/${this.user.userName}`]);
+            window.history.back();
         } else {
             this.dialogRef.close(post);
         }

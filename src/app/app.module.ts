@@ -40,6 +40,8 @@ import { GroupsModule } from './views/groups/groups.module';
 import {ExchangeModule} from './views/exchange/exchange.module';
 import {BnNgIdleService} from 'bn-ng-idle';
 import {PublicProfilePageModule} from './views/public-profile-page/public-profile-page.module';
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {SearchModule} from './views/search/search.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -84,6 +86,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         PerfilPageModule,
         SharedModule,
         PublicProfilePageModule,
+        StoreModule.forRoot({}),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25, // Retains last 25 states
+            logOnly: environment.production, // Restrict extension to log-only mode
+        }),
         GroupsModule,
         SearchModule,
         TranslateModule.forRoot({

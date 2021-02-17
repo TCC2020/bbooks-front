@@ -10,6 +10,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {SocialAuthService} from 'angularx-social-login';
 import {userMock} from '../../../mocks/user.model.mock';
+import {TypePostControler} from '../../../models/enums/TypePost.enum';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {StoreModule} from '@ngrx/store';
+import {SharedModule} from '../../shared/shared.module';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 
 describe('MainComponent', () => {
     let component: MainComponent;
@@ -21,6 +27,7 @@ describe('MainComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
             declarations: [MainComponent],
             imports: [
                 RouterTestingModule,
@@ -28,6 +35,10 @@ describe('MainComponent', () => {
                 TranslateServiceMockForRoot,
                 HttpClientTestingModule,
                 BrowserAnimationsModule,
+                InfiniteScrollModule,
+                StoreModule.forRoot({}),
+                SharedModule,
+                BrowserDynamicTestingModule
             ],
             providers: [
                 {
@@ -44,6 +55,8 @@ describe('MainComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(MainComponent);
         component = fixture.componentInstance;
+        component.user = userMock;
+        component.typePostControler = TypePostControler;
         fixture.detectChanges();
     });
 

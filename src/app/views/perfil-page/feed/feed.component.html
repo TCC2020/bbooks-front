@@ -1,40 +1,10 @@
 <br>
 <div>
-    <mat-card fxLayout="row" fxLayoutAlign="space-around center"
-         *ngIf="user?.id === this.authService.getUser().id">
-        <div>
-
-            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxLayoutGap.xs="10px">
-                <div>
-                    <img class="cardImageReview"
-                         src="{{user.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
-                </div>
-                <mat-card class="commentReview" (click)="openPost()">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div style="color:#5f5f5f;">
-                            {{'POST.TEXT_POST_INPUT'  | translate}}
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-
-            <div fxLayout="row" fxLayoutAlign="space-around center">
-                <button mat-button class="button-test-post">
-                    <mat-icon style="color: #f28b66">assessment</mat-icon>
-                    {{'PADRAO.ASK' | translate}}
-                </button>
-                <button mat-button class="button-test-post">
-                    <mat-icon style="color: #394A59">insert_photo</mat-icon>
-                    {{'PADRAO.PHOTO' | translate}}
-                </button>
-                <button mat-button class="button-test-post">
-                    <mat-icon style="color: #ca4949">import_contacts</mat-icon>
-                    {{'PADRAO.RESENHA' | translate}}
-                </button>
-            </div>
-        </div>
-
-    </mat-card>
+    <app-post-create
+            *ngIf="user?.id === this.authService.getUser().id"
+            [user]="user"
+            [typePostControler]="typePostControler.feedPerfil"
+    ></app-post-create>
     <br>
 
     <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px"
@@ -44,9 +14,12 @@
             [fromRoot]="true"
             (scrolled)="onScroll()"
     >
-        <app-reactions *ngFor="let post of posts"
-        [post]="post" [user]="user"
-                       (postOutput)="onListPostsChange($event)"
+        <app-reactions
+                *ngFor="let post of (feedRedux$ | async)?.posts"
+                [post]="post"
+                [user]="user "
+                [userPost]="user"
+                [typePostControler]="typePostControler.feedPerfil"
         ></app-reactions>
         <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
     </div>

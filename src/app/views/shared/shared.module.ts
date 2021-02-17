@@ -16,6 +16,8 @@ import { ReferBookDialogComponent } from './refer-book-dialog/refer-book-dialog.
 import {PostDialogComponent} from './post-dialog/post-dialog.component';
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 import {ReactionsComponent} from './reactions/reactions.component';
+import {PostCreateComponent} from './post-create/post-create.component';
+import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.directive';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import {ReactionsComponent} from './reactions/reactions.component';
         LoaderComponent,
         ReferBookDialogComponent,
         PostDialogComponent,
-        ReactionsComponent
+        ReactionsComponent,
+        PostCreateComponent,
+        TextareaAutoresizeDirective
     ],
     imports: [
         CommonModule,
@@ -53,7 +57,9 @@ import {ReactionsComponent} from './reactions/reactions.component';
         BookAddDialogComponent,
         ReferBookDialogComponent,
         PostDialogComponent,
-        ReactionsComponent
+        ReactionsComponent,
+        PostCreateComponent,
+        TextareaAutoresizeDirective
     ],
     providers: []
 })

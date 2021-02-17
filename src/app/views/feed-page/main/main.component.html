@@ -1,61 +1,29 @@
 
-<div class="body">
+<div>
     <br>
     <div fxLayout="row" fxLayoutAlign="space-around center">
-        <mat-card>
-            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxLayoutGap.xs="10px">
-                <div>
-                    <img class="cardImageReview" src="{{user.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
-                </div>
-                <mat-card class="commentReview" >
-                    <div fxLayout="row" fxLayoutAlign="space-between center" >
-                        <div class="text-post-main-component">
-                            {{'POST.TEXT_POST_INPUT'  | translate}}
-                        </div>
-                    </div>
-                </mat-card>
-            </div>
-
-            <div fxLayout="row" fxLayoutAlign="space-around center" >
-                <button mat-button class="button-test-post">
-                    <mat-icon class="mat-icon-ask">assessment</mat-icon>
-                    {{'PADRAO.ASK' | translate}}
-                </button>
-                <button mat-button class="button-test-post">
-                    <mat-icon class="mat-icon-photo">insert_photo</mat-icon>
-                    {{'PADRAO.PHOTO' | translate}}
-                </button>
-                <button mat-button class="button-test-post">
-                    <mat-icon class="mat-icon-resenha">import_contacts</mat-icon>
-                    {{'PADRAO.RESENHA' | translate}}
-                </button>
-            </div>
-        </mat-card>
+        <app-post-create
+                [user]="user"
+                [typePostControler]="typePostControler.feed"
+        ></app-post-create>
     </div>
+    <br>
 
-    <div fxLayout="column" fxLayoutAlign="space-around center"   >
-        <div *ngFor="let i of [0,0,0,0]" >
-            <br>
-            <mat-card class="example-card"  >
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image" [style.background-image]="'url('+ user?.profile?.profileImage ? user.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png' + ')'"></div>
-                    <mat-card-title>{{this.user.profile.name}} {{this.user.profile.lastName}}</mat-card-title>
-                    <mat-card-subtitle>@{{this.user.userName}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-                <mat-card-content>
-                    <p>
-                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                        bred for hunting.
-                    </p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>LIKE</button>
-                    <button mat-button>SHARE</button>
-                </mat-card-actions>
-            </mat-card>
-        </div>
+    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px"
+         infiniteScroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="50"
+         [fromRoot]="true"
+         (scrolled)="onScroll()"
+    >
+        <app-reactions
+                *ngFor="let post of (feedRedux$ | async)?.posts"
+                [post]="post"
+                [user]="user"
+                [userPost]="post?.user"
+                [typePostControler]="typePostControler.feed"
+        ></app-reactions>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
     </div>
 </div>
 
