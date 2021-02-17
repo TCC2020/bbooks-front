@@ -3,8 +3,7 @@ import {Store} from '@ngrx/store';
 import {IFeedState, IFeedStateReducer} from './state/feed.state.interface';
 import {Observable} from 'rxjs';
 import {PostTO} from '../../../models/PostTO.model';
-import {AddPost, ClearRedux, DeleteComment, DeletePost, GetPosts, UpdatePage, UpdatePost} from './actions/feed.actions';
-import {take} from 'rxjs/operators';
+import {AddPost, ClearRedux, DeletePost, GetPosts, UpdatePage, UpdatePost} from './actions/feed.actions';
 import {FeedGenericService} from '../../../services/feed-generic.service';
 
 

@@ -186,7 +186,7 @@ export class ReactionsComponent implements OnInit {
     deleteCommentReduxOfTypePost(typePostController: TypePostControler, postTo: PostTO, comment: PostTO) {
         switch (typePostController) {
             case TypePostControler.feed:
-                this.feedMainManagerService.deletePost(postTo);
+                this.feedMainManagerService.deleteComment(postTo, comment);
                 return;
             case TypePostControler.feedPerfil:
                 this.feedPerfilManageService.deleteComment(postTo, comment);
@@ -199,7 +199,7 @@ export class ReactionsComponent implements OnInit {
     addCommentReduxOfTypePost(typePostController: TypePostControler, postTo: PostTO, comment: PostTO) {
         switch (typePostController) {
             case TypePostControler.feed:
-                this.feedMainManagerService.deletePost(postTo);
+                this.feedMainManagerService.addComment(postTo, comment);
                 return;
             case TypePostControler.feedPerfil:
                 this.feedPerfilManageService.addComment(postTo, comment);
@@ -212,7 +212,7 @@ export class ReactionsComponent implements OnInit {
     updateCommentReduxOfTypePost(typePostController: TypePostControler, postTo: PostTO, comment: PostTO) {
         switch (typePostController) {
             case TypePostControler.feed:
-                this.feedMainManagerService.deletePost(postTo);
+                this.feedMainManagerService.updateComment(postTo, comment);
                 return;
             case TypePostControler.feedPerfil:
                 this.feedPerfilManageService.updateComment(postTo, comment);

@@ -57,9 +57,12 @@ export class FeedComponent implements OnInit, OnDestroy {
             this.postService.getByProfileId(this.authService.getUser().profile.id, 5, this.page)
                 .pipe(take(1))
                 .subscribe(result => {
+                    if (result.content.length === 1) {
+                        result.content.shift();
+                    }
                     this.loading = false;
-                    if (result.content.length > 0) {
-                        this.page = result.pageable.pageNumber + 1;
+                    if (result?.content?.length > 0) {
+                        this.page = this.page + 1;
                         this.feedPerfilManage.updatePage(this.page);
                         this.feedPerfilManage.getPostOnRedux(result.content);
                         this.getComments(result.content);
@@ -70,9 +73,12 @@ export class FeedComponent implements OnInit, OnDestroy {
             this.feedService.getPersonFeed(this.user.profile.id, 5, this.page)
                 .pipe(take(1))
                 .subscribe(result => {
+                    if (result.content.length === 1) {
+                        result.content.shift();
+                    }
                     this.loading = false;
-                    if (result.content.length > 0) {
-                        this.page = result.pageable.pageNumber + 1;
+                    if (result?.content?.length > 0) {
+                        this.page = this.page + 1;
                         this.feedPerfilManage.updatePage(this.page);
                         this.feedPerfilManage.getPostOnRedux(result.content);
                         this.getComments(result.content);
@@ -86,8 +92,8 @@ export class FeedComponent implements OnInit, OnDestroy {
     }
 
     getComments(content: PostTO[]): void {
-        content.forEach((p ) => {
-             this.postService.getComment(p.id, 5, 0)
+        content.forEach((p) => {
+            this.postService.getComment(p.id, 5, 0)
                 .pipe(take(1))
                 .subscribe(result => {
                     const post = this.feedGenericService.convertToNewPost(p);
@@ -96,6 +102,4 @@ export class FeedComponent implements OnInit, OnDestroy {
                 });
         });
     }
-
-
 }

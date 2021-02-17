@@ -8,14 +8,15 @@
         ></app-post-create>
     </div>
     <br>
+    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px">
 
-    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px"
-         infiniteScroll
-         [infiniteScrollDistance]="2"
-         [infiniteScrollThrottle]="50"
-         [fromRoot]="true"
-         (scrolled)="onScroll()"
-    >
+<!--    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px"-->
+<!--         infiniteScroll-->
+<!--         [infiniteScrollDistance]="2"-->
+<!--         [infiniteScrollThrottle]="50"-->
+<!--         [fromRoot]="true"-->
+<!--         (scrolled)="onScroll()"-->
+<!--    >-->
         <app-reactions
                 *ngFor="let post of (feedRedux$ | async)?.posts"
                 [post]="post"
@@ -24,6 +25,7 @@
                 [typePostControler]="typePostControler.feed"
         ></app-reactions>
         <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<!--    </div>-->
     </div>
 </div>
 
