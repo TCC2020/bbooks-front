@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutPublicProfileComponent implements OnInit {
 
+  isEditing = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+  isAdm(): boolean {
+    return true;
+  }
+
+  changeToEdit(): void {
+    this.isEditing = !this.isEditing;
+  }
+
+  update() {
+    this.changeToEdit();
   }
 
 }

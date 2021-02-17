@@ -1,1 +1,62 @@
-<p>about-public-profile works!</p>
+<form xmlns="http://www.w3.org/1999/html">
+    <div class="container-mat-tab">
+        <h2>Sobre</h2>
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+                <span class="material-icons">queue</span>
+                <div>25.648 seguidores</div>
+            </div>
+        </div>
+        <div class="public-profile-edit">
+            <h3>Descrição do Perfil</h3>
+            <button class="botao-edit" *ngIf="isAdm()&& !isEditing" (click)="changeToEdit()"><span
+                    class="material-icons">edit</span></button>
+            <button class="botao-edit" *ngIf="isAdm() && isEditing" (click)="update()"><span
+                    class="material-icons">save</span></button>
+        </div>
+        <p *ngIf="!isEditing" style="word-break: break-word;">Página oficial de Maria</p>
+
+        <mat-form-field class="area-descricao" appearance="fill" *ngIf="isEditing">
+            <textarea matInput #description maxlength="1000" formControlName="description"></textarea>
+            <mat-hint>{{description.value.length}} / 1000</mat-hint>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px" *ngIf="!isEditing">
+            <span class="material-icons">public</span>
+            <div>Público</div>
+        </div>
+        <mat-radio-group *ngIf="isEditing">
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button value="Público">
+
+                    </mat-radio-button>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+                        <b>Público</b>
+                    </div>
+                    <div class="textColor">
+                        Descrição do tipo público
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button value="Privado">
+                    </mat-radio-button>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+                        <b>Privado</b>
+                    </div>
+                    <div class="textColor">
+                        Descrição do privado.
+                    </div>
+                </div>
+            </div>
+        </mat-radio-group>
+        <h3>Data de Criação</h3>
+        <p>17/02/2021</p>
+    </div>
+</form>
+
