@@ -4,6 +4,7 @@ import { AboutGroupComponent } from './about-group/about-group.component';
 import { FeedGroupComponent } from './feed-group/feed-group.component';
 import { MembersGroupComponent } from './members-group/members-group.component';
 import { ReadingGroupComponent } from './reading-group/reading-group.component';
+import {BookMonthComponent} from './book-month/book-month.component';
 import {MainGroupComponent} from './main-group/main-group.component';
 import {YourGroupComponent} from './your-group/your-group.component';
 import {CreateGroupComponent} from './create-group/create-group.component';
@@ -43,6 +44,9 @@ const groupsRouter = [
             {
                 path: 'members', component: MembersGroupComponent,
                 resolve: {groupTo: MembersGroupResolve},
+            },
+            {
+                path: 'book-of-month', component: BookMonthComponent
             }
         ]
     }

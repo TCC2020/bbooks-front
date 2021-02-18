@@ -18,6 +18,7 @@ import {MainGuardGroup} from './guards/main-group.guard';
 import {MainGroupResolve} from './guards/main-group.resolve';
 import {AboutGroupResolve} from './guards/about-group.resolve';
 import {MembersGroupResolve} from './guards/members-group.resolve';
+import { BookMonthComponent } from './book-month/book-month.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {MembersGroupResolve} from './guards/members-group.resolve';
         FeedGroupComponent,
         AboutGroupComponent,
         MembersGroupComponent,
+        BookMonthComponent,
         MainGroupComponent,
         YourGroupComponent,
         CreateGroupComponent

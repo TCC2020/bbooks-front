@@ -16,7 +16,8 @@ import {TranslateService} from '@ngx-translate/core';
     styleUrls: ['./reading-group.component.scss']
 })
 export class ReadingGroupComponent implements OnInit {
-    links = ['feed', 'about', 'members'];
+    links = ['feed', 'about', 'members', 'book-of-month'];
+    activeLink = this.links[0];
     groupTO: GroupTO;
     role = Role;
     public mapPostPrivacy = mapPostPrivacyStrinView;
