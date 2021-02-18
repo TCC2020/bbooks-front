@@ -13,6 +13,7 @@ import {MainGroupResolve} from './guards/main-group.resolve';
 import {MainGuardGroup} from './guards/main-group.guard';
 import {AboutGroupResolve} from './guards/about-group.resolve';
 import {MembersGroupResolve} from './guards/members-group.resolve';
+import {EventsGroupComponent} from './events-group/events-group.component';
 
 const groupsRouter = [
     {
@@ -47,6 +48,9 @@ const groupsRouter = [
             },
             {
                 path: 'book-of-month', component: BookMonthComponent
+            },
+            {
+                path: 'events', component: EventsGroupComponent
             }
         ]
     }

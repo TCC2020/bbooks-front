@@ -16,7 +16,7 @@ import {TranslateService} from '@ngx-translate/core';
     styleUrls: ['./reading-group.component.scss']
 })
 export class ReadingGroupComponent implements OnInit {
-    links = ['feed', 'about', 'members', 'book-of-month'];
+    links = ['feed', 'about', 'members', 'book-of-month', 'events'];
     activeLink = this.links[0];
     groupTO: GroupTO;
     role = Role;
