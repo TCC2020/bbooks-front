@@ -1,12 +1,12 @@
-import {Component, Inject, Injector, OnInit} from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../services/auth.service';
 import {UserTO} from '../../../models/userTO.model';
 import {PostService} from '../../../services/post.service';
 import {take} from 'rxjs/operators';
 import {TypePost} from '../../../models/enums/TypePost.enum';
-import {getArrayPostPrivacy, mapPostPrivacy} from '../../../models/enums/PostPrivacy.enum';
-import {Route, Router} from '@angular/router';
+import {getArrayPostPrivacy, mapPostPrivacy, PostPrivacy} from '../../../models/enums/PostPrivacy.enum';
+import {Router} from '@angular/router';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {PostTO} from '../../../models/PostTO.model';
 import {Util} from '../Utils/util';
@@ -75,7 +75,10 @@ export class PostDialogComponent implements OnInit {
             asks: this.formBuilder.array([]),
             image: new FormControl(null),
             tipoPost: new FormControl(TypePost.post),
-            privacy: new FormControl(this.dataDialog ? this.dataDialog.privacy : null, Validators.required),
+            privacy: new FormControl(
+                this.dataDialog ? this.dataDialog.privacy : mapPostPrivacy.get(PostPrivacy.public_all),
+                Validators.required
+            ),
             creationDate: new FormControl(this.dataDialog ? this.dataDialog.creationDate : null)
         });
     }

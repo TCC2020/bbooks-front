@@ -1,5 +1,6 @@
 import {FeedActionsType} from '../actions/feed.actions';
 import {IFeedState} from '../state/feed.state.interface';
+
 const initialState: IFeedState = {
     posts: [],
     loading: false,
@@ -14,7 +15,7 @@ export function reducer(
     let newFeedList = [];
     switch (action.type) {
         case FeedActionsType.addPost:
-            newFeedList = [ action.payload, ...state.posts];
+            newFeedList = [action.payload, ...state.posts];
             return {
                 ...state,
                 posts: newFeedList
@@ -53,6 +54,14 @@ export function reducer(
                 ...state,
                 page: 0,
                 posts: []
+            };
+        case FeedActionsType.deleteComment:
+            newFeedList = state.posts.map(p => {
+                return p.id !== action.payload.id ? p : action.payload;
+            });
+            return {
+                ...state,
+                posts: newFeedList
             };
         default:
             return state;

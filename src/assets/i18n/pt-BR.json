@@ -58,7 +58,9 @@
     "PRIVACIDADE": "Privacidade",
     "OBRIGATORIO": "obrigatório",
     "ENTER_": "Entrar",
-    "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks"
+    "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks",
+    "POST_PRIVADO": "Somente seus amigos poderam ver o que for publicado",
+    "POST_PUBLICO": "Qualquer pessoa poderá ver o que for publicado"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",

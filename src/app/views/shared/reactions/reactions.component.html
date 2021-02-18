@@ -63,7 +63,52 @@
             <mat-divider></mat-divider>
         </div>
         <br>
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" fxLayoutGap.xs="5px">
+
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" fxLayoutGap.xs="5px" *ngFor="let comment of comments">
+            <div>
+                <img class="cardImagePost"
+                     src="{{comment?.user?.profile?.profileImage ? comment.user.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+            </div>
+            <div class="commentView" *ngIf="!comment.editMode">
+                <div> <b>{{comment.user.profile.name}} {{comment.user.profile.lastName}}</b></div>
+                {{comment.description}}
+            </div>
+
+
+            <form [formGroup]="editForm" fxFlex *ngIf="comment.editMode">
+                <textarea
+                        formControlName="description"
+                        autocomplete="off"
+                        placeholder="Escreva um comentario"
+                        #textarea [scrollTop]="textarea.scrollHeight"
+                        appTextareaAutoresize
+                ></textarea>
+            </form>
+            <div>
+                <button
+                        (click)="saveComment(comment)"
+                        *ngIf="comment.editMode"
+                        [disabled]="editForm.invalid"
+                        mat-raised-button color="accent"
+                        class="publisherWeb" >{{'PADRAO.SALVAR' | translate}}
+                </button>
+            </div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" style="position: absolute; right: 0"
+                    *ngIf=" comment.user?.profile.id == authService.getUser().profile.id && !comment.editMode">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <div mat-menu-item (click)="editComment(comment)">
+                    <mat-icon>create</mat-icon>
+                    <span>{{'PADRAO.EDITAR' | translate}}</span>
+                </div>
+                <div mat-menu-item (click)="deleteComment(comment)">
+                    <mat-icon>delete</mat-icon>
+                    <span>{{'PADRAO.REMOVER' | translate}}</span>
+                </div>
+            </mat-menu>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" fxLayoutGap.xs="2px">
             <div>
                 <img class="cardImagePost"
                      src="{{userPost?.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
@@ -76,9 +121,18 @@
                         placeholder="Escreva um comentario"
                         #textarea [scrollTop]="textarea.scrollHeight"
                         appTextareaAutoresize
-                        (keyup.enter)="onKeyEnter()"
+                        (keyup.enter)="saveComment()"
                 ></textarea>
             </form>
+            <div >
+                <button
+                        *ngIf="isMobile()"
+                        (click)="saveComment()"
+                        [disabled]="formComment.invalid"
+                        mat-raised-button color="accent"
+                        class="publisherWeb" >{{'PADRAO.PUBLICAR' | translate}}
+                </button>
+            </div>
         </div>
     </div>
 </mat-card>
