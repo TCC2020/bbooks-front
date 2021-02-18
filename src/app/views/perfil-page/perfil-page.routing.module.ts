@@ -12,6 +12,7 @@ import {PerfilComponent} from './perfil/perfil.component';
 import {AuthGuard} from '../../guards/auth-guard';
 import {FriendResolve} from './guards/friend.resolve';
 import {PostDialogComponent} from '../shared/post-dialog/post-dialog.component';
+import {BooksMonthProfileComponent} from './books-month-profile/books-month-profile.component';
 
 
 const perfilRouter = [
@@ -32,6 +33,9 @@ const perfilRouter = [
             {
                 path: 'bookcase', component: BookcaseComponent,
                 resolve: {data: BookcaseResolve}
+            },
+            {
+                path: 'books-month', component: BooksMonthProfileComponent,
             },
         ]
 

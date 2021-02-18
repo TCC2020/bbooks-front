@@ -21,6 +21,8 @@ import {FriendResolve} from './guards/friend.resolve';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {StoreModule} from '@ngrx/store';
 import {reducer} from './store/reducers/feed.reducer';
+import {BooksComponent} from '../book-page/books/books.component';
+import {BooksMonthProfileComponent} from './books-month-profile/books-month-profile.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +30,8 @@ import {reducer} from './store/reducers/feed.reducer';
         FriendComponent,
         FeedComponent,
         BookcaseComponent,
-        PerfilComponent
+        PerfilComponent,
+        BooksMonthProfileComponent
     ],
     imports: [
         CommonModule,

@@ -72,7 +72,7 @@
                 </mat-menu>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between center">
-                <nav mat-tab-nav-bar >
+                <nav mat-tab-nav-bar class="barra-menu-main">
                     <a mat-tab-link *ngFor="let link of links"
                        (click)="activeLink = link"
                        [active]="activeLink == link" routerLink="{{link}}"
@@ -81,7 +81,7 @@
             </div>
         </mat-card>
 
-        <div style="max-width: 600px">
+        <div class="container-menus-main-page" style="max-width: 600px">
             <router-outlet></router-outlet>
         </div>
     </div>

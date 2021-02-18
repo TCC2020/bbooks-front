@@ -21,6 +21,7 @@
   border-radius: 50%;
   margin: auto;
 }
+
 @media screen and (max-width: 600px) {
   .container-conteudo {
     border: none;
@@ -34,10 +35,18 @@
   .input-edicao {
     width: 100%;
   }
-  .card-main{
+  .card-main {
     width: 100%;
   }
+  .barra-menu-main {
+    max-width: 350px;
+  }
+  .container-menus-main-page {
+    width: 100%;
+  }
+
 }
+
 .iconTextWhite {
   color: white;
 }

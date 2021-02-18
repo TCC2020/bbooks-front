@@ -14,7 +14,7 @@ import {TranslateService} from '@ngx-translate/core';
     styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit, OnChanges {
-    links = ['feed', 'bookcase', 'friends'];
+    links = ['feed', 'bookcase', 'friends', 'books-month'];
     activeLink = this.links[0];
     user: UserTO = new UserTO();
     friendTO: Friend = new Friend();
