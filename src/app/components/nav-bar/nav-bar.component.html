@@ -78,9 +78,13 @@
     </div>
 
     <div *ngIf="isLogged">
+        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/exchange']">
+            <mat-icon>compare_arrows</mat-icon>
+        </button>
         <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/search']">
             <mat-icon>search</mat-icon>
         </button>
+
         <button  mat-flat-button color="primary" style="width: 5vw;"  [matMenuTriggerFor]="menuPerfil">
             <mat-icon>account_circle</mat-icon>
         </button>
@@ -102,22 +106,20 @@
                 <mat-icon>donut_large</mat-icon>
                 <span>{{'PADRAO.ANDAMENTO_META' | translate}}</span>
             </div>
+
+            <div mat-menu-item   [matMenuTriggerFor]="languages">
+                <mat-icon>language</mat-icon>
+                <span>{{'PADRAO.IDIOMA' | translate}}</span>
+            </div>
+
+            <mat-menu #languages="matMenu">
+                    <button mat-menu-item (click)="switchLang('pt-BR')">{{'NAV.PORTUGUES' | translate}}</button>
+                    <button mat-menu-item (click)="switchLang('en')">{{'NAV.INGLES' | translate}}</button>
+            </mat-menu>
             <div mat-menu-item (click)="logout()">
                 <mat-icon>login</mat-icon>
                 <span>{{'NAV.SAIR' | translate}}</span>
             </div>
-
         </mat-menu>
     </div>
-
-
-    <button mat-button [matMenuTriggerFor]="afterMenu">
-        <span class="material-icons">
-            language
-        </span>
-    </button>
-    <mat-menu #afterMenu="matMenu" xPosition="after">
-        <button mat-menu-item (click)="switchLang('pt-BR')">{{'NAV.PORTUGUES' | translate}}</button>
-        <button mat-menu-item (click)="switchLang('en')">{{'NAV.INGLES' | translate}}</button>
-    </mat-menu>
 </mat-toolbar>
