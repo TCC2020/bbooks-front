@@ -297,6 +297,8 @@
     "CRIAR_OFERTA": "Create offer",
     "VISUALIZAR": "View",
     "N_POSSUI_OFERTA": "You do not have any offers registered.",
-    "CADASTRAR_NOVA_OFERTA": "Register new offer"
+    "CADASTRAR_NOVA_OFERTA": "Register new offer",
+    "EXLUIR_OFFER": "Do you really want to delete this offer?",
+    "OFFER_EXCLUIDA": "Offer deleted!"
   }
 }

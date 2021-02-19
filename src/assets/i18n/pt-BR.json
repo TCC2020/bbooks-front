@@ -299,6 +299,8 @@
     "CRIAR_OFERTA": "Criar oferta",
     "VISUALIZAR": "Visualizar",
     "N_POSSUI_OFERTA": "Você não possui nenhuma oferta cadastrada.",
-    "CADASTRAR_NOVA_OFERTA": "Cadastrar nova oferta"
+    "CADASTRAR_NOVA_OFERTA": "Cadastrar nova oferta",
+    "EXLUIR_OFFER": "Tem certeza de que deseja excluir esta oferta?",
+    "OFFER_EXCLUIDA": "Oferta excluída!"
   }
 }

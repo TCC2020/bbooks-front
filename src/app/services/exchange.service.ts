@@ -28,7 +28,7 @@ export class ExchangeService {
     getAllByUser(idUser: number): Observable<BookAdTO[]> {
         return this.http.get<BookAdTO[]>(this.api + 'user/' + idUser);
     }
-    delete(idBookAdTO: BookAdTO): Observable<void> {
+    delete(idBookAdTO: string): Observable<void> {
         return this.http.delete<void>(this.api + idBookAdTO);
     }
     getById(id: string): Observable<BookAdTO> {
