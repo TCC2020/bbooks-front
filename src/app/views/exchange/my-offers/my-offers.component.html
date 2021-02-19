@@ -2,7 +2,7 @@
 <div fxLayout="row" fxLayoutAlign="start center" class="body"
      fxLayout.xs="column" fxLayoutAlign.xs ="center start">
     <div  fxFlex="12">
-        <b class="title">Minhas ofertas</b>
+        <b class="title">{{'EXCHANGE.MINHAS_OFERTAS' | translate }}</b>
     </div>
     <div class="subtitle" fxLayout="row">
         <div>
@@ -10,21 +10,47 @@
             <span class="material-icons">keyboard_arrow_right</span>
         </div>
         <div>
-            Minhas ofertas
+            {{'EXCHANGE.MINHAS_OFERTAS' | translate }}
         </div>
     </div>
     <button mat-raised-button color="accent" class="buttonOferta" routerLink="create">
-        Nova oferta
+        {{'EXCHANGE.NOVA_OFERTA' | translate }}
     </button>
 </div>
-<div>
+<mat-progress-bar mode="indeterminate" *ngIf="!(booksAdsTo | async)"></mat-progress-bar>
+<div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutAlign.xs="center center" fxLayoutGap="10px" *ngIf="(booksAdsTo | async)">
+    <mat-card class="card" *ngFor="let bookAdsTo of (booksAdsTo | async)">
+        <mat-card-header>
+        </mat-card-header>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+            <img mat-card-image src="https://images-na.ssl-images-amazon.com/images/I/51vfT3lyolL._SX317_BO1,204,203,200_.jpg" class="image-card">
+        </div>
+        <mat-card-subtitle><b>Troco por dois livros</b></mat-card-subtitle>
+        <mat-card-subtitle>SP | São Paulo</mat-card-subtitle>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutAlign.xs="space-evenly center"  fxLayout.xs="column" fxLayoutGap.xs="10px">
+                    <button mat-raised-button color="accent" class="buttonsCard" (click)="edit(bookAdsTo.id)">
+                        {{'PADRAO.EDITAR' | translate }}
+                    </button>
+<!--                    <button mat-raised-button class="buttonsCard" style="background-color: #f28b66;">-->
+<!--                        {{'PADRAO.DESATIVAR' | translate }}-->
+<!--                    </button>-->
+                    <button mat-raised-button color="warn" class="buttonsCard">
+                        {{'PADRAO.EXCLUIR' | translate }}
+                    </button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<div *ngIf="(booksAdsTo | async)?.length < 0">
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-        Você não possui nenhuma oferta cadastrada.
+        {{'EXCHANGE.N_POSSUI_OFERTA' | translate }}
     </div>
     <br>
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
         <button mat-raised-button color="accent"  class="buttonOfertaBody" routerLink="create">
-            Cadastrar nova oferta
+            {{'EXCHANGE.CADASTRAR_NOVA_OFERTA' | translate }}
         </button>
     </div>
 </div>

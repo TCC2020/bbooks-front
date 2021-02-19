@@ -20,6 +20,10 @@ const exchangeRouter = [
                 component: OfferNewComponent
             },
             {
+                path: 'my-offers/edit/:id',
+                component: OfferNewComponent
+            },
+            {
                 path: 'offers',
                 component: OffersComponent
             },

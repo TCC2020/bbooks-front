@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="start center" class="body"
-     fxLayout.xs="column" fxLayoutAlign.xs ="center start">
-    <div  fxFlex="12">
-        <b class="title">Minhas ofertas</b>
+     fxLayout.xs="column" fxLayoutAlign.xs="center start">
+    <div fxFlex="12">
+        <b class="title">{{'EXCHANGE.MINHAS_OFERTAS' | translate }}</b>
     </div>
     <div class="subtitle" fxLayout="row">
         <div>
@@ -9,84 +9,129 @@
             <span class="material-icons">keyboard_arrow_right</span>
         </div>
         <div>
-            Minhas ofertas
+            {{'EXCHANGE.MINHAS_OFERTAS' | translate }}
         </div>
         <div>
             <span class="material-icons">keyboard_arrow_right</span>
         </div>
         <div>
-            Nova oferta
+            {{'EXCHANGE.NOVA_OFERTA' | translate }}
         </div>
 
     </div>
-    <button mat-raised-button color="accent" class="buttonOferta" routerLink="../" >
-        Voltar
+    <button mat-raised-button color="accent" class="buttonOferta" routerLink="../">
+        {{'PADRAO.VOLTAR' | translate }}
     </button>
 </div>
 
+<form [formGroup]="formNewOffer">
+    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px">
 
-<div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px">
-    <mat-card>
-        <div fxLayout="row">
-            <h2>Qual a condição de uso do seu livro?</h2>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="center">
-            <mat-form-field appearance="fill" fxLayout="row" fxLayoutAlign="center center">
-                <mat-label>Condição do livro</mat-label>
-                <mat-select>
-                    <mat-option [value]="'Novo'">
-                        Novo
-                    </mat-option>
-                    <mat-option [value]="'usado'">
-                        Usado
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </mat-card>
-    <mat-card>
-        <div fxLayout="row">
-            <h2>Insira fotos legais para sua oferta:</h2>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="center center"
-             fxLayout.xs="column">
-            <div class="card"  (click)="openDialogUpload(0)" >
-                <div class="container">
-                    <img class="image" [src]="files[0] ? files[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+        <mat-card>
+            <div fxLayout="row">
+                <app-book-card
+                        [book]="book"
+                >
+
+                </app-book-card>
+                <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+                    <div *ngIf="this.book.id">
+                        <b>ISBN: </b> {{book.isbn10}}
+                    </div>
+                    <div *ngIf="this.book.id">
+                        <b>{{'BOOK.IDIOMA' | translate}}</b>: {{book.language}}
+                    </div>
+                    <br>
+                    <button
+                            (click)="openDialogSearchBook()"
+                            mat-raised-button color="accent"
+                            fxLayout="row" fxLayoutAlign="center"
+                            style="width: 100%; color: white">
+                        {{'EXCHANGE.ESCOLHER_LIVRO' | translate }}
+                    </button>
                 </div>
             </div>
-            <div class="card" (click)="openDialogUpload(1)">
-                <div class="container">
-                    <img class="image" [src]="files[1] ? files[1] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+
+        </mat-card>
+        <mat-card>
+            <div fxLayout="row">
+                <h2>
+                    {{'EXCHANGE.QUAL_CONDICAO_LIVRO' | translate }}
+                </h2>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center">
+                <mat-form-field appearance="fill" fxLayout="row" fxLayoutAlign="center center"
+                               >
+                    <mat-label> {{'EXCHANGE.CONDICAO_LIVRO' | translate }}</mat-label>
+                    <mat-select  formControlName="condition">
+                        <mat-option [value]="bookCondition.not_used">
+                            {{'EXCHANGE.NOVO' | translate }}
+                        </mat-option>
+                        <mat-option [value]="bookCondition.used">
+                            {{'EXCHANGE.USADO' | translate }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-card>
+        <mat-card>
+            <div fxLayout="row">
+                <h2> {{'EXCHANGE.INSIRA_FOTOS' | translate }}</h2>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center"
+                 fxLayout.xs="column">
+                <div class="card" (click)="openDialogUpload(0)">
+                    <div class="container">
+                        <img class="image"
+                             [src]="files[0] ? files[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
+                </div>
+                <div class="card" (click)="openDialogUpload(1)">
+                    <div class="container">
+                        <img class="image"
+                             [src]="files[1] ? files[1] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
+                </div>
+                <div class="card" (click)="openDialogUpload(2)">
+                    <div class="container">
+                        <img class="image"
+                             [src]="files[2] ? files[2] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
                 </div>
             </div>
-            <div class="card" (click)="openDialogUpload(2)">
-                <div class="container">
-                    <img class="image" [src]="files[2] ? files[2] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
-                </div>
+        </mat-card>
+
+        <mat-card>
+            <div fxLayout="row">
+                <h2>{{'EXCHANGE.OUTRAS_INFOS' | translate }}</h2>
             </div>
-        </div>
-    </mat-card>
+            <div>
+                <mat-form-field style="width: 100%">
+                    <mat-label>{{'EXCHANGE.ESCREVA_DESCRICAO' | translate }}</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
+            </div>
 
-    <mat-card>
-        <div fxLayout="row">
-            <h2>Outras informações</h2>
-        </div>
-        <div>
-            <mat-form-field  style="width: 100%">
-                <mat-label>Descricao</mat-label>
-                <textarea matInput formControlName="description"></textarea>
-            </mat-form-field>
-        </div>
+            <button
+                    *ngIf="!this.bookAdTO"
+                    (click)="saveBookAd()"
+                    [disabled]="formNewOffer.invalid"
+                    mat-raised-button color="accent"
+                    fxLayout="row" fxLayoutAlign="center"
+                    style="width: 100%; color: white">
+                {{'EXCHANGE.CRIAR_OFERTA' | translate }}
+            </button>
+            <button
+                    *ngIf="this.bookAdTO"
+                    (click)="update()"
+                    [disabled]="formNewOffer.invalid"
+                    mat-raised-button color="accent"
+                    fxLayout="row" fxLayoutAlign="center"
+                    style="width: 100%; color: white">
+                {{'PADRAO.SALVAR' | translate }}
+            </button>
+        </mat-card>
 
-        <button
-
-                [disabled]="false"
-                mat-raised-button color="accent"
-                fxLayout="row" fxLayoutAlign="center"
-                style="width: 100%; color: white">
-           Criar oferta
-        </button>
-    </mat-card>
-</div>
-
+    </div>
+<!--    {{this.formNewOffer.value | json}}-->
+</form>

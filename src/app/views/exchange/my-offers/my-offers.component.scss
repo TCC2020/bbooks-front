@@ -18,11 +18,37 @@
 .buttonOfertaBody{
   width: 30%;
 }
+.card{
+  max-width: 200px;
+  width: 200px;
+  margin: 0.5em;
+}
+.image-card{
+  max-width: 150px;
+}
+.buttonsCard{
+  font-size: 11px;
+  width: 100%;
+  padding: 0;
+}
 @media screen and (max-width: 600px) {
   .buttonOferta{
     position: absolute;
   }
   .buttonOfertaBody{
     width: 80%;
+  }
+  .card{
+    max-width: 100%;
+    width: 100%;
+    margin: 0.5em;
+  }
+  .image-card{
+    max-width: 150px;
+  }
+  .buttonsCard{
+    width: 100%;
+    font-size: 11px;
+    padding: 0;
   }
 }

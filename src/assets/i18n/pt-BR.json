@@ -61,7 +61,9 @@
     "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks",
     "POST_PRIVADO": "Somente seus amigos poderam ver o que for publicado",
     "POST_PUBLICO": "Qualquer pessoa poderá ver o que for publicado",
-    "IDIOMA": "Idioma"
+    "IDIOMA": "Idioma",
+    "VOLTAR": "Voltar",
+    "DESATIVAR": "Desativar"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -282,5 +284,21 @@
   "SEARCH": {
     "people": "pessoas",
     "groups": "grupos"
+  },
+  "EXCHANGE": {
+    "MINHAS_OFERTAS": "Minhas ofertas",
+    "NOVA_OFERTA": "Nova oferta",
+    "ESCOLHER_LIVRO": "Escolher livro para oferta",
+    "QUAL_CONDICAO_LIVRO": "Qual a condição de uso do seu livro?",
+    "CONDICAO_LIVRO": "Condição do livro",
+    "NOVO": "Novo",
+    "USADO": "Usado",
+    "INSIRA_FOTOS": "Insira fotos legais para sua oferta:",
+    "OUTRAS_INFOS": "Outras informações",
+    "ESCREVA_DESCRICAO": "Escreva uma breve descrição sobre o livro",
+    "CRIAR_OFERTA": "Criar oferta",
+    "VISUALIZAR": "Visualizar",
+    "N_POSSUI_OFERTA": "Você não possui nenhuma oferta cadastrada.",
+    "CADASTRAR_NOVA_OFERTA": "Cadastrar nova oferta"
   }
 }

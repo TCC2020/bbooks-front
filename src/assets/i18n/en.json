@@ -61,7 +61,9 @@
     "POLITICA_PRIVACIDADE": "Privacy Policy for Bbooks",
     "POST_PRIVADO": "Only your friends can see what is published.",
     "POST_PUBLICO": "Anyone will be able to see what is published.",
-    "IDIOMA": "Language"
+    "IDIOMA": "Language",
+    "VOLTAR": "Back",
+    "DESATIVAR": "Disable"
 
   },
   "GRUPO_LEITURA" : {
@@ -280,5 +282,21 @@
   "SEARCH": {
     "people": "people",
     "groups": "groups"
+  },
+  "EXCHANGE": {
+    "MINHAS_OFERTAS": "My offers",
+    "NOVA_OFERTA": "New offer",
+    "ESCOLHER_LIVRO": "Choose book for offer",
+    "QUAL_CONDICAO_LIVRO": "What is the condition for using your book?",
+    "CONDICAO_LIVRO": "Condition of the book",
+    "NOVO": "New",
+    "USADO": "Used",
+    "INSIRA_FOTOS": "Insert cool photos for your offer:",
+    "OUTRAS_INFOS": "Other information",
+    "ESCREVA_DESCRICAO": "Write a brief description about the book",
+    "CRIAR_OFERTA": "Create offer",
+    "VISUALIZAR": "View",
+    "N_POSSUI_OFERTA": "You do not have any offers registered.",
+    "CADASTRAR_NOVA_OFERTA": "Register new offer"
   }
 }

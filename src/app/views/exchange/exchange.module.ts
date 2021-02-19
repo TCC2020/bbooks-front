@@ -11,6 +11,7 @@ import {OfferViewComponent} from './offer-view/offer-view.component';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {OfferNewComponent} from './offer-new/offer-new.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {ReactiveFormsModule} from '@angular/forms';
         FlexLayoutModule,
         MaterialModule,
         CarouselModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule
     ]
 })
 export class ExchangeModule {
