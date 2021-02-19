@@ -15,7 +15,7 @@
             <span class="material-icons">keyboard_arrow_right</span>
         </div>
         <div>
-            {{'EXCHANGE.NOVA_OFERTA' | translate }}
+            {{this.bookAdTO?.id ? ('PADRAO.EDITAR' | translate) : 'EXCHANGE.MINHAS_OFERTAS' | translate }}
         </div>
 
     </div>
@@ -28,7 +28,7 @@
     <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px">
 
         <mat-card>
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayoutAlign="center center">
                 <app-book-card
                         [book]="book"
                 >

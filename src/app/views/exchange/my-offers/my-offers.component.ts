@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {ExchangeService} from '../../../services/exchange.service';
 import {BookAdTO} from '../../../models/BookAdTO.model';
-import {Observable, of, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import {TranslateService} from '@ngx-translate/core';
 import {map, take} from 'rxjs/operators';
 import {Util} from '../../shared/Utils/util';
+import {BookAdsService} from '../../../services/book-ads.service';
 
 @Component({
     selector: 'app-my-offers',
@@ -18,7 +19,7 @@ export class MyOffersComponent implements OnInit {
     booksAdsTo: Observable<BookAdTO[]>;
 
     constructor(
-        public exchangeService: ExchangeService,
+        public bookAdsService: BookAdsService,
         public authService: AuthService,
         public router: Router,
         private translate: TranslateService,
@@ -27,7 +28,7 @@ export class MyOffersComponent implements OnInit {
 
     ngOnInit(): void {
         this.booksAdsTo =
-            this.exchangeService.getAllByUser(this.authService.getUser().id);
+            this.bookAdsService.getAllByUser(this.authService.getUser().id);
     }
 
     edit(id: string): void {
@@ -47,7 +48,7 @@ export class MyOffersComponent implements OnInit {
             }).then((result) => {
                 if (result.value) {
                     Util.loadingScreen();
-                    this.exchangeService.delete(id)
+                    this.bookAdsService.delete(id)
                         .pipe(take(1))
                         .subscribe(() => {
                                 Util.stopLoading();

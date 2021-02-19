@@ -28,11 +28,12 @@ const exchangeRouter = [
                 component: OffersComponent
             },
             {
-                path: 'offer/:idOffer',
+                path: 'offer/:id',
                 component: OfferViewComponent
-            }
+            },
+            { path: '', redirectTo: 'offers', pathMatch: 'full' },
         ]
-    },
+    }
 ];
 
 @NgModule({

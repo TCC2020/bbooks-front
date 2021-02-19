@@ -14,6 +14,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {BookAdTO} from '../../../models/BookAdTO.model';
 import {BookService} from '../../../services/book.service';
 import {GoogleBooksService} from '../../../services/google-books.service';
+import {BookAdsService} from '../../../services/book-ads.service';
 
 @Component({
     selector: 'app-offer-new',
@@ -31,7 +32,7 @@ export class OfferNewComponent implements OnInit {
         private formBuilder: FormBuilder,
         public dialog: MatDialog,
         public authService: AuthService,
-        public exchangeService: ExchangeService,
+        public bookAdsService: BookAdsService,
         public router: Router,
         public bookService: BookService,
         public gBookService: GoogleBooksService,
@@ -50,7 +51,7 @@ export class OfferNewComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
             Util.loadingScreen();
-            this.exchangeService.getById(id)
+            this.bookAdsService.getById(id)
                 .pipe(take(1))
                 .subscribe(res => {
                     Util.stopLoading();
@@ -134,7 +135,7 @@ export class OfferNewComponent implements OnInit {
 
     saveBookAd(): void {
         Util.loadingScreen();
-        this.exchangeService.create(this.formNewOffer.value)
+        this.bookAdsService.create(this.formNewOffer.value)
             .pipe(take(1))
             .subscribe(() => {
                 Util.stopLoading();
@@ -150,7 +151,7 @@ export class OfferNewComponent implements OnInit {
 
     update(): void {
         Util.loadingScreen();
-        this.exchangeService.update(this.formNewOffer.value)
+        this.bookAdsService.update(this.formNewOffer.value)
             .pipe(take(1))
             .subscribe(() => {
                 Util.stopLoading();

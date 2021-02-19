@@ -24,7 +24,7 @@
 
 .image-card{
   max-width: 250px ;
-
+  max-height: 350px;
 }
 .form-content {
   width: 60%;
@@ -107,10 +107,16 @@
 .column {
   float: left;
   width: 16.66%;
+  padding-left: 5px;
+
 }
 
 /* Add a transparency effect for thumnbail images */
 .demo {
+  border-radius: 4px;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  border-style: solid;
   opacity: 0.6;
 }
 

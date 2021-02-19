@@ -23,6 +23,9 @@
   width: 200px;
   margin: 0.5em;
 }
+.card:hover{
+  cursor: pointer;
+}
 .image-card{
   max-width: 150px;
 }

@@ -24,11 +24,11 @@
         <div class="container">
 
             <!-- Full-width images with number text -->
-            <div *ngFor="let item of [0,1,2]; let i = index">
+            <div *ngFor="let item of this.bookAdTO?.images; let i = index">
                 <div class="mySlides">
-                    <div class="numbertext">{{i}}/ 3</div>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <img src="https://images-na.ssl-images-amazon.com/images/I/51vfT3lyolL._SX317_BO1,204,203,200_.jpg"
+                    <div class="numbertext">{{i}}/ {{this.bookAdTO?.images?.length}}</div>
+                    <div fxLayout="row" fxLayoutAlign="center center" style="  height: 350px;">
+                        <img src="{{this.bookAdTO.images[i] ? this.bookAdTO.images[i] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}"
                              class="image-card">
 
                     </div>
@@ -48,9 +48,9 @@
             <!-- Thumbnail images -->
             <br>
             <div class="row" fxLayout="row" fxLayoutAlign="center center">
-                <div class="column" *ngFor="let item of [0,1,2]; let i = index">
+                <div class="column" *ngFor="let item of  this.bookAdTO?.images; let i = index">
                     <img class="demo cursor"
-                         src="https://images-na.ssl-images-amazon.com/images/I/51vfT3lyolL._SX317_BO1,204,203,200_.jpg"
+                         src="{{this.bookAdTO.images[i] ? this.bookAdTO.images[i] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}"
                          style="width:100%" (click)="currentSlide(i)" alt="">
                 </div>
             </div>

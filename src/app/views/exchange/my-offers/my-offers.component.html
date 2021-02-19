@@ -19,7 +19,7 @@
 </div>
 <mat-progress-bar mode="indeterminate" *ngIf="!(booksAdsTo | async)"></mat-progress-bar>
 <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutAlign.xs="center center" fxLayoutGap="10px" *ngIf="(booksAdsTo | async)">
-    <mat-card class="card" *ngFor="let bookAdsTo of (booksAdsTo | async)">
+    <mat-card class="card" *ngFor="let bookAdsTo of (booksAdsTo | async)" routerLink="/exchange/offer/{{bookAdsTo.id}}">
         <mat-card-header>
         </mat-card-header>
         <div fxLayout="row" fxLayoutAlign="space-evenly center" >
