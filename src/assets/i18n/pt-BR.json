@@ -64,7 +64,10 @@
     "IDIOMA": "Idioma",
     "VOLTAR": "Voltar",
     "DESATIVAR": "Desativar",
-    "DESCRICAO": "Descrição"
+    "DESCRICAO": "Descrição",
+    "TROCAR": "Trocar",
+    "WHATSAPP": "Consultar via whatsapp",
+    "LOCALIZACAO": "Localização"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -304,6 +307,7 @@
     "CADASTRAR_NOVA_OFERTA": "Cadastrar nova oferta",
     "EXLUIR_OFFER": "Tem certeza de que deseja excluir esta oferta?",
     "OFFER_EXCLUIDA": "Oferta excluída!",
-    "PESQUISAR_OFERTA": "Pesquise uma oferta"
+    "PESQUISAR_OFERTA": "Pesquise uma oferta",
+    "CONDICAO": "Condição"
   }
 }

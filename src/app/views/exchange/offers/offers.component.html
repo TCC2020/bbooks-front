@@ -62,7 +62,7 @@
     <mat-progress-bar mode="indeterminate" *ngIf="!(booksAds$ | async)"></mat-progress-bar>
 
     <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
-        <mat-card class="card" *ngFor="let bookAdsTo of ((booksAds$  | async) | filterAsync:  formSearch.get('search').value) ">
+        <mat-card class="card" *ngFor="let bookAdsTo of ((booksAds$  | async) | filterAsync:  formSearch.get('search').value) " routerLink="/exchange/offer/{{bookAdsTo.id}}">
             <mat-card-header>
             </mat-card-header>
             <div fxLayout="row" fxLayoutAlign="space-evenly center" >
@@ -74,7 +74,7 @@
             <mat-card-actions>
                 <div fxLayout="row" fxLayoutAlign="space-evenly center" >
                     <button mat-raised-button color="accent" style="width: 100%">
-                        Trocar
+                        {{'PADRAO.TROCAR' | translate}}
                     </button>
                 </div>
             </mat-card-actions>

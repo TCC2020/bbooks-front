@@ -6,7 +6,10 @@ import {BookAdTO} from '../../../models/BookAdTO.model';
 })
 export class FilterAsyncPipe implements PipeTransform {
 
-    transform( bookAdTo: BookAdTO[], filter: string): BookAdTO[] {
+    transform(bookAdTo: BookAdTO[], filter: string): BookAdTO[] {
+        if (!bookAdTo) {
+            return bookAdTo;
+        }
         return bookAdTo.filter(b => {
             if (filter === undefined || filter === null) {
                 return b;

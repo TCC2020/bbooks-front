@@ -68,10 +68,10 @@
                         <mat-card-subtitle><b>Postado por:</b> Pedro</mat-card-subtitle>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-card-subtitle><b>Localização:</b> SP | São Paulo</mat-card-subtitle>
+                        <mat-card-subtitle><b>{{'PADRAO.LOCALIZACAO' | translate}}:</b> SP | São Paulo</mat-card-subtitle>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-card-subtitle><b>Condição:</b></mat-card-subtitle>
+                        <mat-card-subtitle><b>{{'EXCHANGE.CONDICAO' | translate}}:</b></mat-card-subtitle>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <mat-card-subtitle>
@@ -87,11 +87,19 @@
                         <mat-divider></mat-divider>
                     </div>
                     <br>
-                    <div fxLayout="row" fxLayoutAlign="start center" style="color: #f28b66">
-                        <span class="material-icons">chat_bubble</span>
-                        <div>
+                    <!--                    <div fxLayout="row" fxLayoutAlign="start center" style="color: #f28b66">-->
+                    <!--                        <span class="material-icons">chat_bubble</span>-->
+                    <!--                        <div>-->
 
-                            Iniciar um chat </div>
+                    <!--                            Iniciar um chat </div>-->
+                    <!--                    </div>-->
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <a
+                            href="https://web.whatsapp.com/send?phone=+5511986476196&text=Encontrei+sua+oferta+no+http://localhost:4200/:+Troco+dois+livros+por+1,+podemos+conversar?"
+                            target="_blank"
+                            class="linkWhatsapp">
+                            <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}
+                        </a>
                     </div>
 
                 </mat-card-content>
@@ -100,13 +108,16 @@
                 <mat-divider></mat-divider>
                 <br>
                 <mat-card-actions>
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngIf="authService.getUser().id !== bookAdTO?.userId">
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center"
+                         *ngIf="authService.getUser().id !== bookAdTO?.userId">
                         <button mat-raised-button color="accent" style="width: 100%">
                             Trocar livro
                         </button>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngIf="authService.getUser().id === bookAdTO?.userId">
-                        <button mat-raised-button color="accent" style="width: 100%" routerLink="/exchange/my-offers/edit/{{bookAdTO?.id}}">
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center"
+                         *ngIf="authService.getUser().id === bookAdTO?.userId">
+                        <button mat-raised-button color="accent" style="width: 100%"
+                                routerLink="/exchange/my-offers/edit/{{bookAdTO?.id}}">
                             {{'PADRAO.EDITAR' | translate}}
                         </button>
                         <button mat-raised-button color="warn" style="width: 100%" (click)="delete(bookAdTO?.id)">
@@ -125,8 +136,8 @@
                 {{'PADRAO.DESCRICAO' | translate}}
             </mat-card-title>
         </mat-card-header>
-        <mat-divider ></mat-divider>
-        <mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-content style="word-wrap: break-word">
             {{bookAdTO?.description}}
         </mat-card-content>
     </mat-card>

@@ -128,6 +128,12 @@
   width: 40%;
   margin-left: 40px;
 }
+.linkWhatsapp{
+  color: #25D366;
+}
+.linkWhatsapp:hover {
+  cursor: pointer;
+}
 
 @media screen and (max-width: 600px) {
   .card{

@@ -23,11 +23,13 @@
   background-color: #dddddd;
 }
 .card{
-  max-width: 150px;
+  max-width: 200px;
+  width: 200px;
   margin: 0.5em;
+  height: 335px;
 }
 .image-card{
-  max-width: 100px;
+  max-width: 150px;
 }
 
 @media screen and (max-width: 600px) {
