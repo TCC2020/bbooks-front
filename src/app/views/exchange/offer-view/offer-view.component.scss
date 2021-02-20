@@ -124,10 +124,18 @@
 .demo:hover {
   opacity: 1;
 }
+.description{
+  width: 40%;
+  margin-left: 40px;
+}
 
 @media screen and (max-width: 600px) {
   .card{
     width: 100%;
+  }
+  .description{
+    width: 100%;
+    margin-left: 0px;
   }
 
   .body{

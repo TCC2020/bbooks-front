@@ -63,7 +63,8 @@
     "POST_PUBLICO": "Qualquer pessoa poderá ver o que for publicado",
     "IDIOMA": "Idioma",
     "VOLTAR": "Voltar",
-    "DESATIVAR": "Desativar"
+    "DESATIVAR": "Desativar",
+    "DESCRICAO": "Descrição"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -179,7 +180,8 @@
     "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
     "CRIAR_LIVRO": "Criar livro",
     "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro",
-    "SOBRE_LIVRO": "Sobre este livro"
+    "SOBRE_LIVRO": "Sobre este livro",
+    "PESQUISAR_BOOK": "Ache um livro"
   },
   "PERFIL": {
     "feed": "feed",
@@ -301,6 +303,7 @@
     "N_POSSUI_OFERTA": "Você não possui nenhuma oferta cadastrada.",
     "CADASTRAR_NOVA_OFERTA": "Cadastrar nova oferta",
     "EXLUIR_OFFER": "Tem certeza de que deseja excluir esta oferta?",
-    "OFFER_EXCLUIDA": "Oferta excluída!"
+    "OFFER_EXCLUIDA": "Oferta excluída!",
+    "PESQUISAR_OFERTA": "Pesquise uma oferta"
   }
 }

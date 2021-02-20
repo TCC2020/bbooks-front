@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Util} from '../../shared/Utils/util';
-import {take} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {BookService} from '../../../services/book.service';
 import {GoogleBooksService} from '../../../services/google-books.service';
 import {TranslateService} from '@ngx-translate/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BookAdsService} from '../../../services/book-ads.service';
 import {BookAdTO} from '../../../models/BookAdTO.model';
 import {Book} from '../../../models/book.model';
+import {AuthService} from '../../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-offer-view',
@@ -25,6 +27,8 @@ export class OfferViewComponent implements OnInit {
         private translate: TranslateService,
         private route: ActivatedRoute,
         public bookAdsService: BookAdsService,
+        public authService: AuthService,
+        public router: Router
     ) {
     }
 
@@ -42,7 +46,6 @@ export class OfferViewComponent implements OnInit {
                 .subscribe(res => {
                     Util.stopLoading();
                     this.bookAdTO = res;
-                    console.log(this.bookAdTO)
                     this.getBook();
                 }, error => {
                     Util.stopLoading();
@@ -102,12 +105,44 @@ export class OfferViewComponent implements OnInit {
     }
 
     currentSlide(n) {
-        console.log(n);
         this.showSlides(this.slideIndex = n);
     }
 
     plusSlides(n) {
         this.showSlides(this.slideIndex += n);
+    }
+    delete(id: string): void {
+        this.translate.get('EXCHANGE.EXLUIR_OFFER').subscribe(message => {
+            // @ts-ignore
+            Swal.fire({
+                icon: 'warning',
+                text: message,
+                showConfirmButton: true,
+                confirmButtonText: 'Yes',
+                showCancelButton: true,
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.value) {
+                    Util.loadingScreen();
+                    this.bookAdsService.delete(id)
+                        .pipe(take(1))
+                        .subscribe(() => {
+                                Util.stopLoading();
+                                this.translate.get('EXCHANGE.OFFER_EXCLUIDA').subscribe(msg => {
+                                    Util.showSuccessDialog(msg);
+                                });
+                                this.router.navigate(['/exchange/my-offers/']);
+                            },
+                            error => {
+                                Util.stopLoading();
+                                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                                    Util.showErrorDialog(msg);
+                                });
+                                console.log('error delete offer', error);
+                            });
+                }
+            });
+        });
     }
 
 }

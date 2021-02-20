@@ -12,6 +12,7 @@ import {CarouselModule} from 'ngx-owl-carousel-o';
 import {OfferNewComponent} from './offer-new/offer-new.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
+import {FilterAsyncPipe} from './pipes/filter-async.pipe';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {TranslateModule} from '@ngx-translate/core';
         MyOffersComponent,
         OffersComponent,
         OfferViewComponent,
-        OfferNewComponent
+        OfferNewComponent,
+        FilterAsyncPipe
     ],
     imports: [
         CommonModule,

@@ -28,7 +28,7 @@
                 <div class="mySlides">
                     <div class="numbertext">{{i}}/ {{this.bookAdTO?.images?.length}}</div>
                     <div fxLayout="row" fxLayoutAlign="center center" style="  height: 350px;">
-                        <img src="{{this.bookAdTO.images[i] ? this.bookAdTO.images[i] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}"
+                        <img src="{{this.bookAdTO?.images[i] ? this.bookAdTO?.images[i] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}"
                              class="image-card">
 
                     </div>
@@ -50,7 +50,7 @@
             <div class="row" fxLayout="row" fxLayoutAlign="center center">
                 <div class="column" *ngFor="let item of  this.bookAdTO?.images; let i = index">
                     <img class="demo cursor"
-                         src="{{this.bookAdTO.images[i] ? this.bookAdTO.images[i] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}"
+                         src="{{this.bookAdTO?.images[i] ? this.bookAdTO?.images[i] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}"
                          style="width:100%" (click)="currentSlide(i)" alt="">
                 </div>
             </div>
@@ -77,7 +77,7 @@
                         <mat-card-subtitle>
                             <div fxLayout="row" fxLayoutAlign="start center">
                                 <span class="material-icons" style="color: #394A59">label</span>
-                                Usado
+                                {{this.bookAdTO?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
                             </div>
 
                         </mat-card-subtitle>
@@ -100,13 +100,34 @@
                 <mat-divider></mat-divider>
                 <br>
                 <mat-card-actions>
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngIf="authService.getUser().id !== bookAdTO?.userId">
                         <button mat-raised-button color="accent" style="width: 100%">
                             Trocar livro
+                        </button>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngIf="authService.getUser().id === bookAdTO?.userId">
+                        <button mat-raised-button color="accent" style="width: 100%" routerLink="/exchange/my-offers/edit/{{bookAdTO?.id}}">
+                            {{'PADRAO.EDITAR' | translate}}
+                        </button>
+                        <button mat-raised-button color="warn" style="width: 100%" (click)="delete(bookAdTO?.id)">
+                            {{'PADRAO.EXCLUIR' | translate}}
                         </button>
                     </div>
                 </mat-card-actions>
             </mat-card>
         </div>
     </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="body" fxLayout.xs="column" fxLayoutAlign.xs="center center">
+    <mat-card class="description">
+        <mat-card-header>
+            <mat-card-title>
+                {{'PADRAO.DESCRICAO' | translate}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-divider ></mat-divider>
+        <mat-card-content>
+            {{bookAdTO?.description}}
+        </mat-card-content>
+    </mat-card>
 </div>

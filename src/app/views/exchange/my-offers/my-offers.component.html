@@ -19,7 +19,9 @@
 </div>
 <mat-progress-bar mode="indeterminate" *ngIf="!(booksAdsTo | async)"></mat-progress-bar>
 <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutAlign.xs="center center" fxLayoutGap="10px" *ngIf="(booksAdsTo | async)">
-    <mat-card class="card" *ngFor="let bookAdsTo of (booksAdsTo | async)" routerLink="/exchange/offer/{{bookAdsTo.id}}">
+    <mat-card class="card" *ngFor="let bookAdsTo of (booksAdsTo | async)">
+        <div class="clickCard" routerLink="/exchange/offer/{{bookAdsTo.id}}">
+
         <mat-card-header>
         </mat-card-header>
         <div fxLayout="row" fxLayoutAlign="space-evenly center" >
@@ -28,6 +30,7 @@
         <mat-card-subtitle><b>Troco por dois livros</b></mat-card-subtitle>
         <mat-card-subtitle>SP | São Paulo</mat-card-subtitle>
         <mat-divider></mat-divider>
+        </div>
         <mat-card-actions>
             <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutAlign.xs="space-evenly center"  fxLayout.xs="column" fxLayoutGap.xs="10px">
                     <button mat-raised-button color="accent" class="buttonsCard" (click)="edit(bookAdsTo.id)">

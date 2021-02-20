@@ -1,62 +1,83 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly start"
-    fxLayout.xs="column" fxLayoutAlign.xs="space-around center" class="body">
-    <div  fxFlex="25" class="bodyFilter">
-        <div fxLayout="row" fxLayoutAlign="start center"
-             fxLayout.xs="column" fxLayoutAlign.xs ="center start">
-            <div  fxFlex="60">
-                <b class="title">Ofertas</b>
-            </div>
-            <div class="subtitle" fxLayout="row">
-                <div>
-                    <span class="material-icons">search</span>
-                    <!--        </div>-->
-                    <!--        <div>-->
-                    <span class="material-icons">keyboard_arrow_right</span>
-                </div>
-                <div>
-                    ofertas
-                </div>
-            </div>
-        </div>
+<div fxLayout="row" fxLayoutAlign="start center" class="body"
+     fxLayout.xs="column" fxLayoutAlign.xs="center start">
+<!--    <div  fxFlex="25" class="bodyFilter">-->
 
-        <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-            <button mat-raised-button class="buttonFilter">
-                Filtrar
-            </button>
+        <div fxFlex="12">
+            <b class="title">Ofertas</b>
         </div>
-        <br>
-        <div fxLayout="row" fxLayoutAlign="start center" >
-            <b>Por categoria</b>
-        </div>
-        <section fxLayout="row" fxLayoutAlign="space-between center"  *ngFor="let i of statusList">
-            <mat-checkbox color="primary">
-                {{i}}
-            </mat-checkbox>
+        <div class="subtitle" fxLayout="row">
             <div>
-                (0)
+                <span class="material-icons">search</span>
+                <!--        </div>-->
+                <!--        <div>-->
+                <span class="material-icons">keyboard_arrow_right</span>
             </div>
-        </section>
-    </div>
-
-    <div>
-        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
-            <mat-card class="card" *ngFor="let t of [0,1,2,3,4,5,6,7,8,9,10]">
-                <mat-card-header>
-                </mat-card-header>
-                <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-                    <img mat-card-image src="https://images-na.ssl-images-amazon.com/images/I/51vfT3lyolL._SX317_BO1,204,203,200_.jpg" class="image-card">
-                </div>
-                <mat-card-subtitle><b>Troco por dois livros</b></mat-card-subtitle>
-                <mat-card-subtitle>SP | São Paulo</mat-card-subtitle>
-
-                <mat-card-actions>
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-                        <button mat-raised-button color="accent" style="width: 100%">
-                            Trocar
-                        </button>
-                    </div>
-                </mat-card-actions>
-            </mat-card>
+            <div>
+                ofertas
+            </div>
         </div>
+
+
+
+<!--    </div>-->
+</div>
+
+<div>
+<!--    <div fxLayout="row" fxLayoutAlign="space-evenly center" >-->
+<!--        <button mat-raised-button class="buttonFilter">-->
+<!--            Filtrar-->
+<!--        </button>-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div fxLayout="row" fxLayoutAlign="start center" >-->
+<!--        <b>Por categoria</b>-->
+<!--    </div>-->
+<!--    <section fxLayout="row" fxLayoutAlign="space-between center"  *ngFor="let i of statusList">-->
+<!--        <mat-checkbox color="primary">-->
+<!--            {{i}}-->
+<!--        </mat-checkbox>-->
+<!--        <div>-->
+<!--            (0)-->
+<!--        </div>-->
+<!--    </section>-->
+    <form [formGroup]="formSearch">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-form-field style="margin: 6px; width: 50%">
+                <mat-label>{{'EXCHANGE.PESQUISAR_OFERTA' | translate}}</mat-label>
+                <input matInput matInput type="text" id="user" formControlName="search" (keyup.enter)="searchBooksAds()">
+            </mat-form-field>
+            <div>
+                <button
+                        mat-raised-button
+                        color="accent"
+                        id="search-bt"
+                        type="submit"
+                        (click)="searchBooksAds()"
+                >
+                    {{'PADRAO.BUSCAR' | translate}}
+                </button>
+            </div>
+        </div>
+    </form>
+    <mat-progress-bar mode="indeterminate" *ngIf="!(booksAds$ | async)"></mat-progress-bar>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <mat-card class="card" *ngFor="let bookAdsTo of ((booksAds$  | async) | filterAsync:  formSearch.get('search').value) ">
+            <mat-card-header>
+            </mat-card-header>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+                <img mat-card-image src="https://images-na.ssl-images-amazon.com/images/I/51vfT3lyolL._SX317_BO1,204,203,200_.jpg" class="image-card">
+            </div>
+            <mat-card-subtitle><b>Troco por dois livros</b></mat-card-subtitle>
+            <mat-card-subtitle>SP | São Paulo</mat-card-subtitle>
+
+            <mat-card-actions>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+                    <button mat-raised-button color="accent" style="width: 100%">
+                        Trocar
+                    </button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
     </div>
 </div>

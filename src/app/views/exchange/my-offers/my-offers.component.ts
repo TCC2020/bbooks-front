@@ -69,7 +69,6 @@ export class MyOffersComponent implements OnInit {
                 }
             });
         });
-
     }
 
 }
