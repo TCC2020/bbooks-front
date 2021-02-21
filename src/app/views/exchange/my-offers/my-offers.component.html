@@ -2,7 +2,7 @@
 <div fxLayout="row" fxLayoutAlign="start center" class="body"
      fxLayout.xs="column" fxLayoutAlign.xs ="center start">
     <div  fxFlex="12">
-        <b class="title">{{'EXCHANGE.MINHAS_OFERTAS' | translate }}</b>
+        <b class="title">{{'EXCHANGE.MINHAS_TROCAS' | translate }}</b>
     </div>
     <div class="subtitle" fxLayout="row">
         <div>
@@ -10,7 +10,7 @@
             <span class="material-icons">keyboard_arrow_right</span>
         </div>
         <div>
-            {{'EXCHANGE.MINHAS_OFERTAS' | translate }}
+            {{'EXCHANGE.MINHAS_TROCAS' | translate }}
         </div>
     </div>
     <button mat-raised-button color="accent" class="buttonOferta" routerLink="create">
@@ -20,7 +20,7 @@
 <mat-progress-bar mode="indeterminate" *ngIf="!(booksAdsTo | async)"></mat-progress-bar>
 <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutAlign.xs="center center" fxLayoutGap="10px" *ngIf="(booksAdsTo | async)">
     <mat-card class="card" *ngFor="let bookAdsTo of (booksAdsTo | async)">
-        <div class="clickCard" routerLink="/exchange/offer/{{bookAdsTo.id}}">
+        <div class="clickCard" routerLink="/exchange/offers/{{bookAdsTo.id}}">
 
         <mat-card-header>
         </mat-card-header>

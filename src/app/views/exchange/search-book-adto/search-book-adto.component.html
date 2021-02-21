@@ -1,0 +1,59 @@
+<form [formGroup]="formSearch">
+    <div fxLayout="row">
+        <mat-form-field style="margin: 2px; width: 80%">
+            <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
+            <input matInput matInput type="text" id="user" formControlName="search">
+        </mat-form-field>
+        <div>
+            <button
+                    mat-raised-button
+                    color="accent"
+                    id="search-bt"
+                    type="submit"
+            >
+                {{'PADRAO.BUSCAR' | translate}}
+            </button>
+        </div>
+    </div>
+</form>
+<mat-progress-bar mode="indeterminate" *ngIf="!(booksAdsTo | async)"></mat-progress-bar>
+
+<div fxLayout="column" fxLayoutGap="10px">
+    <div *ngFor="let bookAds of ((booksAdsTo  | async) | filterAsync:  formSearch.get('search').value)" (click)="selectBookAd(bookAds)">
+        <div fxLayout="row" fxLayoutGap="10px"
+             [ngClass]="{
+                   'canotSelect': verifyBookAdIsSelected(bookAds.id),
+                   'selectBook': !verifyBookAdIsSelected(bookAds.id)
+             }">
+            <div>
+                <img class="image"
+                     [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+            </div>
+            <div fxLayout="column" class="textColor" style="width: 100%">
+                <div>
+                    {{bookAds?.description}}
+                </div>
+                <div>
+                    <b>{{'EXCHANGE.CONDICAO' | translate}}
+                        : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                </div>
+                <div
+                        fxLayout="row"
+                        fxLayout.xs="column"
+                        fxLayoutAlign="end center"
+                        style="width: 100%; color: #f28b66;"
+                        *ngIf="verifyBookAdIsSelected(bookAds.id)"
+                >
+                    <div style="margin: 10px;">
+                        {{'PADRAO.SELECIONADO' | translate}}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <mat-divider></mat-divider>
+    </div>
+</div>
+

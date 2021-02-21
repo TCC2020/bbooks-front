@@ -27,7 +27,7 @@ export class BookAdsService {
         return this.http.get<BookAdTO[]>(this.api);
     }
 
-    getAllByUser(idUser: number): Observable<BookAdTO[]> {
+    getAllByUser(idUser: string): Observable<BookAdTO[]> {
         return this.http.get<BookAdTO[]>(this.api + 'user/' + idUser);
     }
 

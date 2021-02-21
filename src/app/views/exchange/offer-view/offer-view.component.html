@@ -95,7 +95,7 @@
                     <!--                    </div>-->
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <a
-                            href="https://web.whatsapp.com/send?phone=+5511986476196&text=Encontrei+sua+oferta+no+http://localhost:4200/:+Troco+dois+livros+por+1,+podemos+conversar?"
+                            href="https://web.whatsapp.com/send?phone=+5511986476196&text=Olá+Andre,+encontrei+sua+oferta+*Troco+dois+livros+por+1*,+gostaria+de+mais+informações!"
                             target="_blank"
                             class="linkWhatsapp">
                             <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}
@@ -110,7 +110,7 @@
                 <mat-card-actions>
                     <div fxLayout="row" fxLayoutAlign="space-evenly center"
                          *ngIf="authService.getUser().id !== bookAdTO?.userId">
-                        <button mat-raised-button color="accent" style="width: 100%">
+                        <button mat-raised-button color="accent" style="width: 100%" routerLink="new">
                             Trocar livro
                         </button>
                     </div>

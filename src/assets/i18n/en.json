@@ -67,7 +67,12 @@
     "DESCRICAO": "Description",
     "TROCAR": "Exchange",
     "WHATSAPP": "Consult by Whatsapp",
-    "LOCALIZACAO": "Location"
+    "LOCALIZACAO": "Location",
+    "SELECIONADO": "Selected",
+    "OFERTA": "Offer",
+    "PROPOSTA": "Proposal",
+    "LIVRO": "book",
+    "POR": "for"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -288,7 +293,10 @@
     "groups": "groups"
   },
   "EXCHANGE": {
+    "TROCA_DE_LIVRO": "Book exchange",
     "MINHAS_OFERTAS": "My offers",
+    "MINHAS_TROCAS": "My Exchanges",
+    "BUSCAR_OFERTAS": "Search offers",
     "NOVA_OFERTA": "New offer",
     "ESCOLHER_LIVRO": "Choose book for offer",
     "QUAL_CONDICAO_LIVRO": "What is the condition for using your book?",
@@ -305,6 +313,20 @@
     "EXLUIR_OFFER": "Do you really want to delete this offer?",
     "OFFER_EXCLUIDA": "Offer deleted!",
     "PESQUISAR_OFERTA": "Search for a offer",
-    "CONDICAO": "Condition"
+    "CONDICAO": "Condition",
+    "ESCOLHER_OUTRO_AD": "Choose one more offer for exchange",
+    "ESCOLHER_SUAS_OFERTAS": "Choose your offers for exchange",
+    "ENVIAR_PROPOSTA": "Send proposal",
+    "SOLICITAR_TROCA_LIVRO": "You are requesting an exchange of",
+    "VOCE_NAO_PODE": "You cannot remove the first chosen offer",
+    "VOCE_SO_PODE": "You can only select three offers to make your proposal",
+    "received": "received",
+    "sent": "sent",
+    "TROCO": "I change",
+    "RECEBEU_PROPOSTA": "You received a proposal to exchange",
+    "ACEITAR_PROPOSTA": "Accept",
+    "RECUSAR_PROPOSTA": "Refuse",
+    "TROCADO": "Exchanged",
+    "RECUSADO": "Refused"
   }
 }

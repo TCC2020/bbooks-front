@@ -13,7 +13,6 @@ import {filter, map, take} from 'rxjs/operators';
 })
 export class OffersComponent implements OnInit {
     booksAds$: Observable<BookAdTO[]>;
-    statusList = getArrayStatus();
     formSearch: FormGroup;
 
     constructor(
@@ -28,33 +27,4 @@ export class OffersComponent implements OnInit {
         });
         this.booksAds$ = this.bookAdsService.getAll();
     }
-
-    searchBooksAds(): Observable<BookAdTO[]> {
-        // this.formSearch.get('search').valueChanges.pipe(
-        //     filter(formdata => formdata.search.length > 0),
-        //     switchMap( formdata => this.service.getNames(formdata.name)) ,
-        //     map(booksAds => {
-        //         return booksAds.filter(b => b.description.toLocaleLowerCase().includes(form.toLocaleLowerCase()));
-        //     })
-        // )
-
-        // if (search === undefined || search === null) {
-        //    return this.booksAds$;
-        // }
-        // console.log(search);
-        // this.booksAds$.pipe(
-        //     take(1),
-        //     map(booksAds => {
-        //         return booksAds.filter(b => b.description.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
-        //     })
-        // ).subscribe(res => {
-        //     console.log (res);
-        // })
-        return  this.booksAds$.pipe(
-            map(booksAds => {
-               return booksAds.filter(b => b.description.toLocaleLowerCase().includes('search'.toLocaleLowerCase()));
-            })
-        );
-    }
-
 }

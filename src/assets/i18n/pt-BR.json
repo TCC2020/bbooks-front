@@ -67,7 +67,12 @@
     "DESCRICAO": "Descrição",
     "TROCAR": "Trocar",
     "WHATSAPP": "Consultar via whatsapp",
-    "LOCALIZACAO": "Localização"
+    "LOCALIZACAO": "Localização",
+    "SELECIONADO": "Selecionado",
+    "OFERTA": "Oferta",
+    "PROPOSTA": "Proposta",
+    "LIVRO": "livro",
+    "POR": "por"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -291,7 +296,10 @@
     "groups": "grupos"
   },
   "EXCHANGE": {
+    "TROCA_DE_LIVRO": "Troca de livro",
     "MINHAS_OFERTAS": "Minhas ofertas",
+    "MINHAS_TROCAS": "Minhas trocas",
+    "BUSCAR_OFERTAS": "Buscar ofertas",
     "NOVA_OFERTA": "Nova oferta",
     "ESCOLHER_LIVRO": "Escolher livro para oferta",
     "QUAL_CONDICAO_LIVRO": "Qual a condição de uso do seu livro?",
@@ -308,6 +316,20 @@
     "EXLUIR_OFFER": "Tem certeza de que deseja excluir esta oferta?",
     "OFFER_EXCLUIDA": "Oferta excluída!",
     "PESQUISAR_OFERTA": "Pesquise uma oferta",
-    "CONDICAO": "Condição"
+    "CONDICAO": "Condição",
+    "ESCOLHER_OUTRO_AD": "Escolher mais uma oferta para troca",
+    "ESCOLHER_SUAS_OFERTAS": "Escolher suas ofertas para troca",
+    "ENVIAR_PROPOSTA": "Enviar proposta",
+    "SOLICITAR_TROCA_LIVRO": "Você esta solicitando uma troca de",
+    "VOCE_NAO_PODE": "Você não pode remover a primeira oferta escolhida",
+    "VOCE_SO_PODE": "Você só pode selecionar três ofertas para realizar sua proposta",
+    "received": "recebido",
+    "sent": "enviado",
+    "TROCO": "Troco",
+    "RECEBEU_PROPOSTA": "Você recebeu uma proposta para trocar ",
+    "ACEITAR_PROPOSTA": "Aceitar",
+    "RECUSAR_PROPOSTA": "Recusar",
+    "TROCADO": "Trocado",
+    "RECUSADO": "Recusado"
   }
 }
