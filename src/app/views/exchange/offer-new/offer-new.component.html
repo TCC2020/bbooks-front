@@ -51,6 +51,8 @@
                     </button>
                 </div>
             </div>
+            <mat-error *ngIf="!this.book.id"> {{'EXCHANGE.ESCOLHER_LIVRO_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}.</strong></mat-error>
+
 
         </mat-card>
         <mat-card>
@@ -124,7 +126,7 @@
             <button
                     *ngIf="this.bookAdTO"
                     (click)="update()"
-                    [disabled]="formNewOffer.invalid"
+                    [disabled]="formNewOffer.invalid && files.length !== 0 &&  this.book.id"
                     mat-raised-button color="accent"
                     fxLayout="row" fxLayoutAlign="center"
                     style="width: 100%; color: white">
@@ -133,5 +135,4 @@
         </mat-card>
 
     </div>
-<!--    {{this.formNewOffer.value | json}}-->
 </form>

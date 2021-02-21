@@ -65,7 +65,7 @@
             <mat-card-header>
             </mat-card-header>
             <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-                <img mat-card-image src="https://images-na.ssl-images-amazon.com/images/I/51vfT3lyolL._SX317_BO1,204,203,200_.jpg" class="image-card">
+                <img mat-card-image src="{{bookAdsTo?.images[1] ? this.bookAdsTo?.images[1] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}" class="image-card">
             </div>
             <mat-card-subtitle><b>Troco por dois livros</b></mat-card-subtitle>
             <mat-card-subtitle>SP | São Paulo</mat-card-subtitle>
@@ -79,4 +79,5 @@
             </mat-card-actions>
         </mat-card>
     </div>
+
 </div>

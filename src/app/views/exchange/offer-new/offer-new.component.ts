@@ -6,8 +6,7 @@ import {AuthService} from '../../../services/auth.service';
 import {Book} from '../../../models/book.model';
 import {SearchBookComponent} from '../../shared/search-book/search-book.component';
 import {BookCondition} from '../../../models/enums/BookCondition.enum';
-import {ExchangeService} from '../../../services/exchange.service';
-import {take} from 'rxjs/operators';
+import { take} from 'rxjs/operators';
 import {Util} from '../../shared/Utils/util';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
@@ -15,6 +14,9 @@ import {BookAdTO} from '../../../models/BookAdTO.model';
 import {BookService} from '../../../services/book.service';
 import {GoogleBooksService} from '../../../services/google-books.service';
 import {BookAdsService} from '../../../services/book-ads.service';
+import {CDNService} from '../../../services/cdn.service';
+import {flatMap} from 'rxjs/internal/operators';
+import {of} from 'rxjs';
 
 @Component({
     selector: 'app-offer-new',
@@ -28,6 +30,8 @@ export class OfferNewComponent implements OnInit {
     book: Book = new Book();
     bookCondition = BookCondition;
     bookAdTO: BookAdTO;
+    filesSend = [];
+
     constructor(
         private formBuilder: FormBuilder,
         public dialog: MatDialog,
@@ -37,7 +41,8 @@ export class OfferNewComponent implements OnInit {
         public bookService: BookService,
         public gBookService: GoogleBooksService,
         private translate: TranslateService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        public cdnService: CDNService
     ) {
     }
 
@@ -64,14 +69,15 @@ export class OfferNewComponent implements OnInit {
                 });
         }
     }
+
     getBook(): void {
         Util.loadingScreen();
         if (this.bookAdTO.idBookGoogle) {
-                this.gBookService.getById(this.bookAdTO.idBookGoogle).subscribe(b => {
-                    const book = this.bookService.convertBookToModel(b);
-                    this.book = book;
-                    Util.stopLoading();
-                });
+            this.gBookService.getById(this.bookAdTO.idBookGoogle).subscribe(b => {
+                const book = this.bookService.convertBookToModel(b);
+                this.book = book;
+                Util.stopLoading();
+            });
         } else {
             // tslint:disable-next-line:radix
             this.bookService.getById(Number.parseInt(this.bookAdTO.bookId)).subscribe(b => {
@@ -108,7 +114,6 @@ export class OfferNewComponent implements OnInit {
                     this.formNewOffer.get('bookId').setValue(this.book.id);
                     this.formNewOffer.get('idBookGoogle').setValue(null);
                 }
-                console.log(this.book);
             }
         });
     }
@@ -127,19 +132,67 @@ export class OfferNewComponent implements OnInit {
     }
 
     readFile(position: number, file: any) {
+        this.filesSend[position] = file;
         this.files[position] = file;
         const reader = new FileReader();
         reader.onload = (e) => this.files[position] = e.target.result;
         reader.readAsDataURL(this.files[position]);
+        console.log(this.files);
+        console.log(this.filesSend);
     }
 
     saveBookAd(): void {
         Util.loadingScreen();
         this.bookAdsService.create(this.formNewOffer.value)
             .pipe(take(1))
-            .subscribe(() => {
+            .subscribe((bookAd) => {
+                this.cdnService.uploadFeedApi(
+                    {file: this.filesSend[0], type: 'image'},
+                    {objectType: 'book_ad_id', bookAdId: bookAd.id}
+                )
+                    .pipe(
+                        take(1),
+                        flatMap(() => {
+                            if (this.filesSend[1]) {
+                                return this.cdnService.uploadFeedApi(
+                                    {file: this.filesSend[0], type: 'image'},
+                                    {objectType: 'book_ad_id', bookAdId: bookAd.id}
+                                    );
+                            }
+                            return of();
+                        }),
+                        flatMap(() => {
+                            if (this.filesSend[2]) {
+                                return this.cdnService.uploadFeedApi(
+                                    {file: this.filesSend[2], type: 'image'},
+                                    {objectType: 'book_ad_id', bookAdId: bookAd.id}
+                                );
+                            }
+                            return of();
+                        })
+                    )
+                    .subscribe(r => {
+                            console.log('deu bom');
+                            Util.stopLoading();
+                        },
+                        error => {
+                            console.log('deu ruim', error);
+                        });
+                // this.files.forEach(f => {
+                //     console.log('entrou no for');
+                //     this.cdnService.uploadFeedApi(
+                //         {file: f, type: 'image'}, {objectType: 'book_ad_id', bookAdId: bookAd.id}
+                //         )
+                //         .pipe(take(1))
+                //         .subscribe(r => {
+                //                 console.log('deu bom');
+                //             },
+                //             error => {
+                //                 console.log('deu ruim', error);
+                //             });
+                // });
                 Util.stopLoading();
-                this.router.navigateByUrl('/exchange/my-offers');
+                // this.router.navigateByUrl('/exchange/my-offers');
             }, error => {
                 Util.stopLoading();
                 this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
@@ -154,6 +207,24 @@ export class OfferNewComponent implements OnInit {
         this.bookAdsService.update(this.formNewOffer.value)
             .pipe(take(1))
             .subscribe(() => {
+                this.cdnService.uploadFeedApi({file: this.filesSend[0], type: 'image'}, {objectType: 'book_ad_id'})
+                    .pipe(take(1))
+                    .subscribe(r => {
+                            console.log('deu bom');
+                        },
+                        error => {
+                            console.log('deu ruim', error);
+                        });
+                // this.filesSend.forEach(f => {
+                //     this.cdnService.uploadFeedApi({file: f, type: 'image'}, {objectType: 'book_ad_id'})
+                //         .pipe(take(1))
+                //         .subscribe(r => {
+                //                 console.log('deu bom');
+                //             },
+                //             error => {
+                //                 console.log('deu ruim', error);
+                //             })
+                // });
                 Util.stopLoading();
                 this.router.navigateByUrl('/exchange/my-offers');
             }, error => {

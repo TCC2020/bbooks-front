@@ -327,6 +327,8 @@
     "ACEITAR_PROPOSTA": "Accept",
     "RECUSAR_PROPOSTA": "Refuse",
     "TROCADO": "Exchanged",
-    "RECUSADO": "Refused"
+    "RECUSADO": "Refused",
+    "ESCOLHER_LIVRO_E": "Choose one book is"
+
   }
 }
