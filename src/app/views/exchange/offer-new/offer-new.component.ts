@@ -155,11 +155,11 @@ export class OfferNewComponent implements OnInit {
                         flatMap(() => {
                             if (this.filesSend[1]) {
                                 return this.cdnService.uploadFeedApi(
-                                    {file: this.filesSend[0], type: 'image'},
+                                    {file: this.filesSend[1], type: 'image'},
                                     {objectType: 'book_ad_id', bookAdId: bookAd.id}
                                     );
                             }
-                            return of();
+                            return of({});
                         }),
                         flatMap(() => {
                             if (this.filesSend[2]) {
@@ -168,31 +168,20 @@ export class OfferNewComponent implements OnInit {
                                     {objectType: 'book_ad_id', bookAdId: bookAd.id}
                                 );
                             }
-                            return of();
+                            return of({});
                         })
                     )
                     .subscribe(r => {
-                            console.log('deu bom');
+                            this.router.navigateByUrl('/exchange/my-offers');
                             Util.stopLoading();
                         },
                         error => {
-                            console.log('deu ruim', error);
+                            Util.stopLoading();
+                            this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                                Util.showErrorDialog(message);
+                            });
+                            console.log('error save images BookAD', error);
                         });
-                // this.files.forEach(f => {
-                //     console.log('entrou no for');
-                //     this.cdnService.uploadFeedApi(
-                //         {file: f, type: 'image'}, {objectType: 'book_ad_id', bookAdId: bookAd.id}
-                //         )
-                //         .pipe(take(1))
-                //         .subscribe(r => {
-                //                 console.log('deu bom');
-                //             },
-                //             error => {
-                //                 console.log('deu ruim', error);
-                //             });
-                // });
-                Util.stopLoading();
-                // this.router.navigateByUrl('/exchange/my-offers');
             }, error => {
                 Util.stopLoading();
                 this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {

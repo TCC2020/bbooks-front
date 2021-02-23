@@ -101,6 +101,14 @@
                                 </b>
                             </div>
                             <div
+                                    *ngIf="exchange.status === exchangeStatus.canceled"
+                                    style="color: #f28b66;"
+                                    class="choseAnotherOfferButton">
+                                <b>
+                                    {{'EXCHANGE.CANCELADO' | translate }}
+                                </b>
+                            </div>
+                            <div
                                     *ngIf="exchange.status === exchangeStatus.refused"
                                     style="color: #d96666;"
                                     class="choseAnotherOfferButton">
