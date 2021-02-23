@@ -35,4 +35,8 @@ export class ExchangeService {
     refuse(idExchange: string): Observable<ExchangeT0> {
         return this.http.put<ExchangeT0>(this.api + '/refuse/' + idExchange, '');
     }
+
+    cancel(idExchange: string): Observable<ExchangeT0> {
+        return this.http.put<ExchangeT0>(this.api + '/cancel/' + idExchange, '');
+    }
 }

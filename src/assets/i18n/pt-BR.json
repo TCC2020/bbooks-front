@@ -327,10 +327,12 @@
     "sent": "enviado",
     "TROCO": "Troco",
     "RECEBEU_PROPOSTA": "Você recebeu uma proposta para trocar ",
+    "ENVIOU_PROPOSTA": "Você enviou uma proposta para trocar ",
     "ACEITAR_PROPOSTA": "Aceitar",
     "RECUSAR_PROPOSTA": "Recusar",
     "TROCADO": "Trocado",
     "RECUSADO": "Recusado",
-    "ESCOLHER_LIVRO_E": "Escolher um livro é"
+    "ESCOLHER_LIVRO_E": "Escolher um livro é",
+    "CANCELADO": "Cancelado"
   }
 }

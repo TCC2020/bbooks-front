@@ -324,11 +324,12 @@
     "sent": "sent",
     "TROCO": "I change",
     "RECEBEU_PROPOSTA": "You received a proposal to exchange",
+    "ENVIOU_PROPOSTA": "You sent a proposal to exchange",
     "ACEITAR_PROPOSTA": "Accept",
     "RECUSAR_PROPOSTA": "Refuse",
     "TROCADO": "Exchanged",
     "RECUSADO": "Refused",
-    "ESCOLHER_LIVRO_E": "Choose one book is"
-
+    "ESCOLHER_LIVRO_E": "Choose one book is",
+    "CANCELADO": "Canceled"
   }
 }
