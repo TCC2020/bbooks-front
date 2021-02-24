@@ -98,7 +98,7 @@
     </div>
     </form>
     <div *ngIf="image" fxLayout="row" fxLayoutAlign="center center">
-        <img [src]="image" class="imagePost">
+        <img [src]="image" class="imagePost" (click)="choosePhoto()">
     </div>
 
     <br>

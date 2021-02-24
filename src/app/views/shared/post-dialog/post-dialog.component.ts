@@ -80,7 +80,7 @@ export class PostDialogComponent implements OnInit {
             profileId: new FormControl(this.user.profile.id),
             description: new FormControl(this.dataDialog ? this.dataDialog.description : null, Validators.required),
             asks: this.formBuilder.array([]),
-            image: new FormControl(null),
+            image: new FormControl(this.dataDialog ? this.dataDialog.image : null),
             tipoPost: new FormControl(TypePost.post),
             privacy: new FormControl(
                 this.dataDialog ? this.dataDialog.privacy : mapPostPrivacy.get(PostPrivacy.public_all),
@@ -88,6 +88,7 @@ export class PostDialogComponent implements OnInit {
             ),
             creationDate: new FormControl(this.dataDialog ? this.dataDialog.creationDate : null)
         });
+        this.image = this.dataDialog ? this.dataDialog.image : null;
     }
 
     get asks(): FormArray {
@@ -106,8 +107,13 @@ export class PostDialogComponent implements OnInit {
     }
 
     resetAsks(): void {
-        this.textInput = 'TEXT_POST_INPUT_ASK';
-        this.menuChoose = this.menu.ASK;
+        if (this.menuChoose === this.menu.ASK) {
+            this.textInput = 'TEXT_POST_INPUT';
+            this.menuChoose = this.menu.PHOTO;
+        } else {
+            this.textInput = 'TEXT_POST_INPUT_ASK';
+            this.menuChoose = this.menu.ASK;
+        }
         this.asks.clear();
         this.addAsk();
         this.addAsk();
@@ -115,7 +121,7 @@ export class PostDialogComponent implements OnInit {
 
     choosePhoto(): void {
         this.textInput = 'TEXT_POST_INPUT';
-        this.menuChoose = this.menu.PHOTO;
+        // this.menuChoose = this.menu.PHOTO;
         this.openDialogUpload();
     }
 
@@ -144,8 +150,7 @@ export class PostDialogComponent implements OnInit {
                 .pipe(take(1))
                 .subscribe(post => {
                         Util.stopLoading();
-                        this.redirectPage(post);
-
+                        this.uploadPhotoPost(post);
                     },
                     error => {
                         this.showErrorDialog();
@@ -156,8 +161,7 @@ export class PostDialogComponent implements OnInit {
                 .pipe(take(1))
                 .subscribe(post => {
                         Util.stopLoading();
-                        this.uploadPhotoPost(post.id);
-                        this.redirectPage(post);
+                        this.uploadPhotoPost(post);
                     },
                     error => {
                         this.showErrorDialog();
@@ -167,18 +171,27 @@ export class PostDialogComponent implements OnInit {
 
     }
 
-    uploadPhotoPost(id: string): void {
-        Util.loadingScreen();
-        this.cdnService.uploadFeedApi(
-            {file: this.file, type: 'image'},
-            {objectType: 'post_image', postId: id}
-        )
-            .pipe(take(1))
-            .subscribe(() => {
-            }, error => {
-                Util.stopLoading();
-                console.log('error upload image post', error)
-            });
+    uploadPhotoPost(post: PostTO): void {
+        if (!this.file) {
+            this.redirectPage(post);
+        } else {
+            Util.loadingScreen();
+            this.cdnService.uploadFeedApi(
+                {file: this.file, type: 'image'},
+                {objectType: 'post_image', postId: post.id}
+            )
+                .pipe(take(1))
+                .subscribe(() => {
+                    Util.stopLoading();
+                    post.image = this.image;
+                    this.redirectPage(post);
+
+                }, error => {
+                    Util.stopLoading();
+                    console.log('error upload image post', error)
+                });
+        }
+
 
     }
 

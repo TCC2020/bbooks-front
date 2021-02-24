@@ -100,6 +100,11 @@ textarea::placeholder {
   margin: 0 5px 0 0;
 }
 
+.imagePost {
+  max-width: 100%;
+}
+
+
 @media screen and (max-width: 600px) {
   .commentView{
     max-width: 260px;
@@ -113,5 +118,8 @@ textarea::placeholder {
   }
   textarea{
     max-width: 210px;
+  }
+  .imagePost {
+    max-width: 90%;
   }
 }
