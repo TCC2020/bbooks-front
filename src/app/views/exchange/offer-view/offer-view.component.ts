@@ -10,6 +10,8 @@ import {BookAdTO} from '../../../models/BookAdTO.model';
 import {Book} from '../../../models/book.model';
 import {AuthService} from '../../../services/auth.service';
 import Swal from 'sweetalert2';
+import {UserService} from '../../../services/user.service';
+import {UserTO} from '../../../models/userTO.model';
 
 @Component({
     selector: 'app-offer-view',
@@ -20,7 +22,7 @@ export class OfferViewComponent implements OnInit {
     slideIndex = 0;
     bookAdTO: BookAdTO;
     book: Book = new Book();
-
+    userOffer: UserTO;
     constructor(
         public bookService: BookService,
         public gBookService: GoogleBooksService,
@@ -28,7 +30,8 @@ export class OfferViewComponent implements OnInit {
         private route: ActivatedRoute,
         public bookAdsService: BookAdsService,
         public authService: AuthService,
-        public router: Router
+        public router: Router,
+        public userService: UserService
     ) {
     }
 
@@ -47,16 +50,28 @@ export class OfferViewComponent implements OnInit {
                     Util.stopLoading();
                     this.bookAdTO = res;
                     this.getBook();
+                    this.getUserOffer();
                 }, error => {
                     Util.stopLoading();
                     console.log('error book id', error);
                 });
         }
     }
+    getUserOffer(): void {
+        Util.loadingScreen();
+        this.userService.getById(this.bookAdTO.userId)
+            .pipe(take(1))
+            .subscribe(user => {
+                Util.stopLoading();
+                this.userOffer = user;
+            });
+    }
     getBook() {
         Util.loadingScreen();
         if (this.bookAdTO.idBookGoogle) {
-            this.gBookService.getById(this.bookAdTO.idBookGoogle).subscribe(b => {
+            this.gBookService.getById(this.bookAdTO.idBookGoogle)
+                .pipe(take(1))
+                .subscribe(b => {
                 const book = this.bookService.convertBookToModel(b);
                 this.book = book;
                 this.bookAdTO.images.push(this.book.image);
@@ -65,7 +80,9 @@ export class OfferViewComponent implements OnInit {
             });
         } else {
             // tslint:disable-next-line:radix
-            this.bookService.getById(Number.parseInt(this.bookAdTO.bookId)).subscribe(b => {
+            this.bookService.getById(Number.parseInt(this.bookAdTO.bookId))
+                .pipe(take(1))
+                .subscribe(b => {
                 this.book = b;
                 Util.stopLoading();
             });

@@ -3,6 +3,7 @@ import {BookCondition} from './enums/BookCondition.enum';
 
 export class BookAdTO {
       id: string;
+      title: string;
       condition: BookCondition;
       description: string;
       images: string[];
@@ -10,5 +11,7 @@ export class BookAdTO {
       userId: string;
       idBookGoogle: string;
       bookId: string;
+      contact: string;
+      address: string;
       review: AdReviewTO;
 }

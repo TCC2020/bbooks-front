@@ -72,7 +72,9 @@
     "OFERTA": "Offer",
     "PROPOSTA": "Proposal",
     "LIVRO": "book",
-    "POR": "for"
+    "POR": "for",
+    "CONTATO": "Contact",
+    "ENDERECO": "Address"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -330,6 +332,13 @@
     "TROCADO": "Exchanged",
     "RECUSADO": "Refused",
     "ESCOLHER_LIVRO_E": "Choose one book is",
-    "CANCELADO": "Canceled"
+    "CANCELADO": "Canceled",
+    "ESCOLHER_UMA_FOTO": "You must upload at least one photo",
+    "TITULO_OFERTA": "Tittle for your offer",
+    "TITULO_OBRIGATORIO": "Tittle is",
+    "TITULO": "Tittle",
+    "CONTATO": "Contact is",
+    "TROCAR_LIVRO": "Exchange book",
+    "POSTADO_POR": "Posted by"
   }
 }

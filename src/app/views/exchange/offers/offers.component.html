@@ -67,8 +67,8 @@
             <div fxLayout="row" fxLayoutAlign="space-evenly center" >
                 <img mat-card-image src="{{bookAdsTo?.images[0] ? this.bookAdsTo?.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}" class="image-card">
             </div>
-            <mat-card-subtitle><b>Troco por dois livros</b></mat-card-subtitle>
-            <mat-card-subtitle>SP | São Paulo</mat-card-subtitle>
+            <mat-card-subtitle><b>{{bookAdsTo?.title}}</b></mat-card-subtitle>
+            <mat-card-subtitle>{{bookAdsTo?.address?.split(';')[0]}} | {{bookAdsTo?.address?.split(';')[1]}} |  {{bookAdsTo?.address?.split(';')[2]}}</mat-card-subtitle>
 
             <mat-card-actions>
                 <div fxLayout="row" fxLayoutAlign="space-evenly center" routerLink="/exchange/offers/{{bookAdsTo.id}}">

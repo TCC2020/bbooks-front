@@ -18,6 +18,7 @@ import {SendOfferRequestComponent} from './send-offer-request/send-offer-request
 import {MyExchangeComponent} from './my-exchange/my-exchange.component';
 import {ExchangeReceivedComponent} from './exchange-received/exchange-received.component';
 import {ExchangeSentComponent} from './exchange-sent/exchange-sent.component';
+import {NgxMatIntlTelInputModule} from 'ngx-mat-intl-tel-input';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {ExchangeSentComponent} from './exchange-sent/exchange-sent.component';
         MaterialModule,
         CarouselModule,
         ReactiveFormsModule,
-        TranslateModule
+        TranslateModule,
+        NgxMatIntlTelInputModule,
     ]
 })
 export class ExchangeModule {

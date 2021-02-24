@@ -72,7 +72,9 @@
     "OFERTA": "Oferta",
     "PROPOSTA": "Proposta",
     "LIVRO": "livro",
-    "POR": "por"
+    "POR": "por",
+    "CONTATO": "Contato",
+    "ENDERECO": "Endereço"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -333,6 +335,13 @@
     "TROCADO": "Trocado",
     "RECUSADO": "Recusado",
     "ESCOLHER_LIVRO_E": "Escolher um livro é",
-    "CANCELADO": "Cancelado"
+    "CANCELADO": "Cancelado",
+    "ESCOLHER_UMA_FOTO": "Você precisa enviar pelo menos uma foto",
+    "TITULO_OFERTA": "Título para sua oferta",
+    "TITULO_OBRIGATORIO": "Título é",
+    "TITULO": "Título",
+    "CONTATO": "Contato é",
+    "TROCAR_LIVRO": "Trocar livro",
+    "POSTADO_POR": "Postado por"
   }
 }

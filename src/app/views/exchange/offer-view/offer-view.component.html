@@ -61,14 +61,14 @@
             <mat-card class="card">
 
                 <mat-card-header>
-                    <mat-card-title><h1>Troco por livro do harry pother</h1></mat-card-title>
+                    <mat-card-title><h1>{{bookAdTO?.title}}</h1></mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-card-subtitle><b>Postado por:</b> Pedro</mat-card-subtitle>
+                        <mat-card-subtitle><b>{{'EXCHANGE.POSTADO_POR' | translate}}:</b> {{userOffer?.profile?.name}}</mat-card-subtitle>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-card-subtitle><b>{{'PADRAO.LOCALIZACAO' | translate}}:</b> SP | São Paulo</mat-card-subtitle>
+                        <mat-card-subtitle><b>{{'PADRAO.LOCALIZACAO' | translate}}:</b> {{bookAdTO?.address?.split(';')[0]}} | {{bookAdTO?.address?.split(';')[1]}} |  {{bookAdTO?.address?.split(';')[2]}}</mat-card-subtitle>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <mat-card-subtitle><b>{{'EXCHANGE.CONDICAO' | translate}}:</b></mat-card-subtitle>
@@ -95,7 +95,7 @@
                     <!--                    </div>-->
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <a
-                            href="https://web.whatsapp.com/send?phone=+5511986476196&text=Olá+Andre,+encontrei+sua+oferta+*Troco+dois+livros+por+1*,+gostaria+de+mais+informações!"
+                            href="https://web.whatsapp.com/send?phone={{bookAdTO?.contact}}&text=Olá+{{userOffer?.profile?.name}},+encontrei+sua+oferta+*{{bookAdTO?.title?.replace(' ', '+')}}*,+gostaria+de+mais+informações!"
                             target="_blank"
                             class="linkWhatsapp">
                             <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}
@@ -111,7 +111,7 @@
                     <div fxLayout="row" fxLayoutAlign="space-evenly center"
                          *ngIf="authService.getUser().id !== bookAdTO?.userId">
                         <button mat-raised-button color="accent" style="width: 100%" routerLink="new">
-                            Trocar livro
+                            {{'EXCHANGE.TROCAR_LIVRO' | translate }}
                         </button>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-evenly center"

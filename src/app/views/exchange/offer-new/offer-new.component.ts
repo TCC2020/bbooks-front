@@ -6,7 +6,7 @@ import {AuthService} from '../../../services/auth.service';
 import {Book} from '../../../models/book.model';
 import {SearchBookComponent} from '../../shared/search-book/search-book.component';
 import {BookCondition} from '../../../models/enums/BookCondition.enum';
-import { take} from 'rxjs/operators';
+import {map, startWith, take} from 'rxjs/operators';
 import {Util} from '../../shared/Utils/util';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
@@ -16,7 +16,11 @@ import {GoogleBooksService} from '../../../services/google-books.service';
 import {BookAdsService} from '../../../services/book-ads.service';
 import {CDNService} from '../../../services/cdn.service';
 import {flatMap} from 'rxjs/internal/operators';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {ConsultaCepService} from '../../../services/consulta-cep.service';
+import {City} from '../../../models/city.model';
+import {Country} from '../../../models/country.model';
+import {State} from '../../../models/state.model';
 
 @Component({
     selector: 'app-offer-new',
@@ -32,6 +36,12 @@ export class OfferNewComponent implements OnInit {
     bookAdTO: BookAdTO;
     filesSend = [];
 
+    public citys: City[];
+    public countrys: Country[];
+    public states: State[];
+    filteredOptionsCity: Observable<City[]>;
+
+
     constructor(
         private formBuilder: FormBuilder,
         public dialog: MatDialog,
@@ -42,14 +52,81 @@ export class OfferNewComponent implements OnInit {
         public gBookService: GoogleBooksService,
         private translate: TranslateService,
         private route: ActivatedRoute,
-        public cdnService: CDNService
+        public cdnService: CDNService,
+        private consultaCepService: ConsultaCepService,
     ) {
     }
 
     ngOnInit(): void {
         this.createForm();
         this.getOffer();
+        this.consultaCepService.getCountry()
+            .pipe(take(1))
+            .subscribe(result => {
+                this.countrys = result;
+            });
 
+    }
+
+    getStates(country: Country) {
+        Util.loadingScreen();
+        if (country.id.toString().includes('3469034')) {
+            this.consultaCepService.getStatesBr().subscribe(
+                res => {
+                    this.states = res;
+                    Util.stopLoading();
+                },
+                error => console.log('error states', error)
+            );
+        } else {
+            this.consultaCepService.getStates(country.id).subscribe(
+                res => {
+                    this.states = res;
+                    Util.stopLoading();
+                },
+                error => console.log('error states', error)
+            );
+        }
+    }
+
+    getCitys(state: State) {
+        Util.loadingScreen();
+        if (state.sigla) {
+            this.consultaCepService.getCitysBr(state.id).subscribe(
+                res => {
+                    this.citys = res;
+                    this.filteredOptionsCity = this.formNewOffer.get('city').valueChanges.pipe(
+                        startWith(''),
+                        map(value => this._filterCity(value))
+                    );
+                    Util.stopLoading();
+                },
+                error => console.log('error get citys', error)
+            );
+
+        } else {
+            this.consultaCepService.getCitys(state.id).subscribe(
+                res => {
+                    this.citys = res;
+                    this.filteredOptionsCity = this.formNewOffer.get('city').valueChanges.pipe(
+                        startWith(''),
+                        map(value => this._filterCity(value))
+                    );
+                    Util.stopLoading();
+                },
+                error => console.log('error get citys', error)
+            );
+        }
+
+    }
+
+    private _filterCity(value: string): City[] {
+        const filterValue = value.toLowerCase();
+        return this.citys.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+    }
+
+    verificaValidToTouched(campo: string) {
+        return this.formNewOffer.get(campo).invalid || this.formNewOffer.get(campo).touched;
     }
 
     getOffer(): void {
@@ -90,10 +167,16 @@ export class OfferNewComponent implements OnInit {
     private createForm(): void {
         this.formNewOffer = this.formBuilder.group({
             id: new FormControl(this.bookAdTO ? this.bookAdTO.id : null),
-            condition: new FormControl(this.bookAdTO ? this.bookAdTO.condition : null, Validators.required),
+            title: new FormControl(this.bookAdTO ? this.bookAdTO.title : null, Validators.required),
+            condition: new FormControl(this.bookAdTO ? this.bookAdTO.condition : BookCondition.not_used, Validators.required),
             description: new FormControl(this.bookAdTO ? this.bookAdTO.description : null, Validators.required),
             userId: new FormControl(this.authService.getUser().id),
+            address: new FormControl(this.bookAdTO ? this.bookAdTO.address : null),
+            contact: new FormControl(this.bookAdTO ? this.bookAdTO.contact : null, Validators.required),
             images: this.formBuilder.array([]),
+            country: new FormControl('', Validators.required),
+            city: new FormControl('', Validators.required),
+            state: new FormControl('', Validators.required),
             idBookGoogle: new FormControl(this.bookAdTO ? this.bookAdTO.idBookGoogle : null),
             bookId: new FormControl(this.bookAdTO ? this.bookAdTO.bookId : null)
         });
@@ -137,51 +220,15 @@ export class OfferNewComponent implements OnInit {
         const reader = new FileReader();
         reader.onload = (e) => this.files[position] = e.target.result;
         reader.readAsDataURL(this.files[position]);
-        console.log(this.files);
-        console.log(this.filesSend);
     }
 
     saveBookAd(): void {
         Util.loadingScreen();
+        this.setAddress();
         this.bookAdsService.create(this.formNewOffer.value)
             .pipe(take(1))
             .subscribe((bookAd) => {
-                this.cdnService.uploadFeedApi(
-                    {file: this.filesSend[0], type: 'image'},
-                    {objectType: 'book_ad_id', bookAdId: bookAd.id}
-                )
-                    .pipe(
-                        take(1),
-                        flatMap(() => {
-                            if (this.filesSend[1]) {
-                                return this.cdnService.uploadFeedApi(
-                                    {file: this.filesSend[1], type: 'image'},
-                                    {objectType: 'book_ad_id', bookAdId: bookAd.id}
-                                    );
-                            }
-                            return of({});
-                        }),
-                        flatMap(() => {
-                            if (this.filesSend[2]) {
-                                return this.cdnService.uploadFeedApi(
-                                    {file: this.filesSend[2], type: 'image'},
-                                    {objectType: 'book_ad_id', bookAdId: bookAd.id}
-                                );
-                            }
-                            return of({});
-                        })
-                    )
-                    .subscribe(r => {
-                            this.router.navigateByUrl('/exchange/my-offers');
-                            Util.stopLoading();
-                        },
-                        error => {
-                            Util.stopLoading();
-                            this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
-                                Util.showErrorDialog(message);
-                            });
-                            console.log('error save images BookAD', error);
-                        });
+                this.uploadImages(bookAd);
             }, error => {
                 Util.stopLoading();
                 this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
@@ -191,31 +238,21 @@ export class OfferNewComponent implements OnInit {
             });
     }
 
+    setAddress(): void {
+        const country = this.formNewOffer.get('country').value;
+        const state = this.formNewOffer.get('state').value;
+        const city = this.formNewOffer.get('city').value;
+        const address = country + ';' + state + ';' + city;
+        this.formNewOffer.get('address').setValue(address);
+    }
+
     update(): void {
         Util.loadingScreen();
+        this.setAddress();
         this.bookAdsService.update(this.formNewOffer.value)
             .pipe(take(1))
-            .subscribe(() => {
-                this.cdnService.uploadFeedApi({file: this.filesSend[0], type: 'image'}, {objectType: 'book_ad_id'})
-                    .pipe(take(1))
-                    .subscribe(r => {
-                            console.log('deu bom');
-                        },
-                        error => {
-                            console.log('deu ruim', error);
-                        });
-                // this.filesSend.forEach(f => {
-                //     this.cdnService.uploadFeedApi({file: f, type: 'image'}, {objectType: 'book_ad_id'})
-                //         .pipe(take(1))
-                //         .subscribe(r => {
-                //                 console.log('deu bom');
-                //             },
-                //             error => {
-                //                 console.log('deu ruim', error);
-                //             })
-                // });
-                Util.stopLoading();
-                this.router.navigateByUrl('/exchange/my-offers');
+            .subscribe(bookAdTo => {
+                this.uploadImages(bookAdTo);
             }, error => {
                 Util.stopLoading();
                 this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
@@ -223,5 +260,48 @@ export class OfferNewComponent implements OnInit {
                 });
                 console.log('error update BookAD', error);
             });
+    }
+
+    uploadImages(bookAd: BookAdTO): void {
+        Util.loadingScreen();
+        this.cdnService.uploadFeedApi(
+            {file: this.filesSend[0], type: 'image'},
+            {objectType: 'book_ad_id', bookAdId: bookAd.id}
+        )
+            .pipe(
+                take(1),
+                flatMap(() => {
+                    if (this.filesSend[1]) {
+                        return this.cdnService.uploadFeedApi(
+                            {file: this.filesSend[1], type: 'image'},
+                            {objectType: 'book_ad_id', bookAdId: bookAd.id}
+                        );
+                    }
+                    return of({});
+                }),
+                flatMap(() => {
+                    if (this.filesSend[2]) {
+                        return this.cdnService.uploadFeedApi(
+                            {file: this.filesSend[2], type: 'image'},
+                            {objectType: 'book_ad_id', bookAdId: bookAd.id}
+                        );
+                    }
+                    return of({});
+                })
+            ).subscribe(r => {
+                Util.stopLoading();
+                this.router.navigateByUrl('/exchange/my-offers');
+            },
+            error => {
+                Util.stopLoading();
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                    Util.showErrorDialog(message);
+                });
+                console.log('error save images BookAD', error);
+            });
+    }
+
+    bookIsSelected(): boolean {
+        return this.book.id ? true : false;
     }
 }
