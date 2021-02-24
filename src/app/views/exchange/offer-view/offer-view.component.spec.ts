@@ -33,7 +33,6 @@ describe('OfferViewComponent', () => {
                 HttpClientTestingModule,
                 BrowserAnimationsModule,
                 TranslateServiceMockForRoot,
-
             ],
             providers: [
                 BookService,
