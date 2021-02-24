@@ -96,3 +96,11 @@ publisherWeb {
   text-overflow: inherit;
   white-space: inherit;
 }
+.imagePost{
+  max-width: 400px;
+}
+@media screen and (max-width: 600px) {
+  .imagePost{
+    max-width: 300px;
+  }
+}

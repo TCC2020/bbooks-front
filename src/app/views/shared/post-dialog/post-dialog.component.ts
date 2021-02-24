@@ -7,10 +7,12 @@ import {take} from 'rxjs/operators';
 import {TypePost} from '../../../models/enums/TypePost.enum';
 import {getArrayPostPrivacy, mapPostPrivacy, PostPrivacy} from '../../../models/enums/PostPrivacy.enum';
 import {Router} from '@angular/router';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {PostTO} from '../../../models/PostTO.model';
 import {Util} from '../Utils/util';
 import {TranslateService} from '@ngx-translate/core';
+import {UploadComponent} from '../../upload/upload.component';
+import {CDNService} from '../../../services/cdn.service';
 
 export enum Menu {
     ASK = 0,
@@ -38,13 +40,18 @@ export class PostDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<PostDialogComponent>;
     public dataDialog: PostTO;
 
+    image: any;
+    file: any;
+
     constructor(
         private formBuilder: FormBuilder,
         private authService: AuthService,
         public postService: PostService,
         public router: Router,
         private injector: Injector,
-        public translate: TranslateService
+        public translate: TranslateService,
+        public dialog: MatDialog,
+        public cdnService: CDNService
     ) {
         this.dialogRef = this.injector.get(MatDialogRef, null);
         if (!this.isMobile()) {
@@ -109,6 +116,7 @@ export class PostDialogComponent implements OnInit {
     choosePhoto(): void {
         this.textInput = 'TEXT_POST_INPUT';
         this.menuChoose = this.menu.PHOTO;
+        this.openDialogUpload();
     }
 
     chooseReview(): void {
@@ -148,6 +156,7 @@ export class PostDialogComponent implements OnInit {
                 .pipe(take(1))
                 .subscribe(post => {
                         Util.stopLoading();
+                        this.uploadPhotoPost(post.id);
                         this.redirectPage(post);
                     },
                     error => {
@@ -157,11 +166,27 @@ export class PostDialogComponent implements OnInit {
         }
 
     }
+
+    uploadPhotoPost(id: string): void {
+        Util.loadingScreen();
+        this.cdnService.uploadFeedApi(
+            {file: this.file, type: 'image'},
+            {objectType: 'post_image', postId: id}
+        )
+            .pipe(take(1))
+            .subscribe(() => {
+            }, error => {
+                Util.stopLoading();
+                console.log('error upload image post', error)
+            });
+
+    }
+
     showErrorDialog(): void {
         this.translate.get('PADRAO.OCORREU_UM_ERRO')
-        .subscribe(msg => {
-            Util.showErrorDialog(msg);
-        });
+            .subscribe(msg => {
+                Util.showErrorDialog(msg);
+            });
     }
 
     redirectPage(post: PostTO): void {
@@ -170,5 +195,21 @@ export class PostDialogComponent implements OnInit {
         } else {
             this.dialogRef.close(post);
         }
+    }
+
+    openDialogUpload() {
+        const dialogRef = this.dialog.open(UploadComponent, {
+            height: '350px',
+            width: '400px',
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.file = result;
+                this.image = result;
+                const reader = new FileReader();
+                reader.onload = (e) => this.image = e.target.result;
+                reader.readAsDataURL(this.image);
+            }
+        });
     }
 }

@@ -1,5 +1,6 @@
 import {BookAdTO} from './BookAdTO.model';
 import {BookExchangeStatus} from './enums/BookExchangeStatus.enum';
+import {UserTO} from './userTO.model';
 
 export class ExchangeT0 {
     id: string;
@@ -8,6 +9,8 @@ export class ExchangeT0 {
     creationDate: Date;
     requesterId: string;
     receiverId: string;
+    receiver: UserTO;
+    requester: UserTO;
     requesterAds: BookAdTO[];
     receiverAds: BookAdTO[];
 }
