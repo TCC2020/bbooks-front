@@ -20,7 +20,8 @@ describe('ExchangeReceivedComponent', () => {
     };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ExchangeReceivedComponent], imports: [
+            declarations: [ExchangeReceivedComponent],
+            imports: [
                 MaterialModule,
                 RouterTestingModule,
                 FormsModule,

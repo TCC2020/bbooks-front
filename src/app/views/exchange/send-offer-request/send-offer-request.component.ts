@@ -11,7 +11,6 @@ import {ExchangeService} from '../../../services/exchange.service';
 import {ExchangeT0} from '../../../models/exchangeT0,model';
 import {BookExchangeStatus} from '../../../models/enums/BookExchangeStatus.enum';
 import {TranslateService} from '@ngx-translate/core';
-import {CDNService} from '../../../services/cdn.service';
 
 @Component({
     selector: 'app-send-offer-request',
