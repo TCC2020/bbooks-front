@@ -7,11 +7,17 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BookAdsService} from '../../../services/book-ads.service';
+import {AuthService} from '../../../services/auth.service';
+import {userMock} from '../../../mocks/user.model.mock';
+import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
 
 describe('MyOffersComponent', () => {
     let component: MyOffersComponent;
     let fixture: ComponentFixture<MyOffersComponent>;
-
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
+    };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [MyOffersComponent],
@@ -22,7 +28,16 @@ describe('MyOffersComponent', () => {
                 ReactiveFormsModule,
                 BrowserModule,
                 HttpClientTestingModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                TranslateServiceMockForRoot
+            ],
+            providers: [
+                BookAdsService,
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                },
+
             ]
         })
             .compileComponents();

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ExchangeService} from '../../../services/exchange.service';
 import {BookAdTO} from '../../../models/BookAdTO.model';
 import {Observable} from 'rxjs';
 import {AuthService} from '../../../services/auth.service';
