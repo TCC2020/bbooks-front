@@ -21,40 +21,40 @@
 </ng-template>
 <div fxLayout="column" fxLayoutGap="10px"  *ngIf="(booksAdsTo | async) as booksAdsTo; else loading">
     <div *ngFor="let bookAds of (booksAdsTo | filterAsync:  formSearch.get('search').value)" (click)="selectBookAd(bookAds)">
-        <div fxLayout="row" fxLayoutGap="10px"
-             [ngClass]="{
+        <div *ngIf="bookAds.isOpen">
+            <div fxLayout="row" fxLayoutGap="10px"
+                 [ngClass]="{
                    'canotSelect': verifyBookAdIsSelected(bookAds.id),
                    'selectBook': !verifyBookAdIsSelected(bookAds.id)
              }">
-            <div>
-                <img class="image"
-                     [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
-            </div>
-            <div fxLayout="column" class="textColor" style="width: 100%">
                 <div>
-                    {{bookAds?.description}}
+                    <img class="image"
+                         [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
                 </div>
-                <div>
-                    <b>{{'EXCHANGE.CONDICAO' | translate}}
-                        : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
-                </div>
-                <div
-                        fxLayout="row"
-                        fxLayout.xs="column"
-                        fxLayoutAlign="end center"
-                        style="width: 100%; color: #f28b66;"
-                        *ngIf="verifyBookAdIsSelected(bookAds.id)"
-                >
-                    <div style="margin: 10px;">
-                        {{'PADRAO.SELECIONADO' | translate}}
+                <div fxLayout="column" class="textColor" style="width: 100%">
+                    <div>
+                        {{bookAds?.description}}
+                    </div>
+                    <div>
+                        <b>{{'EXCHANGE.CONDICAO' | translate}}
+                            : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                    </div>
+                    <div
+                            fxLayout="row"
+                            fxLayout.xs="column"
+                            fxLayoutAlign="end center"
+                            style="width: 100%; color: #f28b66;"
+                            *ngIf="verifyBookAdIsSelected(bookAds.id)"
+                    >
+                        <div style="margin: 10px;">
+                            {{'PADRAO.SELECIONADO' | translate}}
+                        </div>
                     </div>
                 </div>
             </div>
-
-
+            <mat-divider></mat-divider>
         </div>
-
-        <mat-divider></mat-divider>
     </div>
+
 </div>
 

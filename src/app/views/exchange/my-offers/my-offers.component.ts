@@ -60,14 +60,27 @@ export class MyOffersComponent implements OnInit {
                             },
                             error => {
                                 Util.stopLoading();
-                                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
-                                    Util.showErrorDialog(msg);
-                                });
-                                console.log('error delete offer', error);
+                                this.verifyErrorOffer(error, 'error delete offer');
                             });
                 }
             });
         });
     }
 
+    verifyErrorOffer(error: any, locationError: string): void {
+        let codMessage = '';
+        if (error.error.message.includes('BAD003')) {
+            codMessage = 'BAD003';
+        }
+        if (codMessage) {
+            this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                Util.showErrorDialog(message);
+            });
+        } else {
+            this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                Util.showErrorDialog(msg);
+            });
+            console.log(locationError + ': ' , error);
+        }
+    }
 }

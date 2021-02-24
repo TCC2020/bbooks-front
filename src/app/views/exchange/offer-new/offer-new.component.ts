@@ -296,8 +296,7 @@ export class OfferNewComponent implements OnInit {
     getImagesChanges(): void {
         if (this.filesSend[0]) {
             this.bookAdTO.images[0] = null;
-            this.bookAdTO.images.splice(1, 1);
-
+            this.bookAdTO.images.splice(0, 0);
         }
         if (this.filesSend[1]) {
             this.bookAdTO.images[1] = null;

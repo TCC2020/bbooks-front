@@ -14,4 +14,5 @@ export class BookAdTO {
       contact: string;
       address: string;
       review: AdReviewTO;
+      isOpen: boolean;
 }

@@ -277,7 +277,8 @@
     "FR002": "Conflict while removing friend",
     "RT005": "Page smaller than last tracking",
     "TA001": "Last tracking is not finished yeat",
-    "RT006": "Page can´t be zero"
+    "RT006": "Page can´t be zero",
+    "BAD003": "Ops! You cannot delete this offer because it is related to an exchange."
   },
   "POST":{
     "CRIAR_POSTAGEM": "Create Post",

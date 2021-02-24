@@ -117,12 +117,17 @@
                     <div fxLayout="row" fxLayoutAlign="space-evenly center"
                          *ngIf="authService.getUser().id === bookAdTO?.userId">
                         <button mat-raised-button color="accent" style="width: 100%"
-                                routerLink="/exchange/my-offers/edit/{{bookAdTO?.id}}">
+                                routerLink="/exchange/my-offers/edit/{{bookAdTO?.id}}" *ngIf="bookAdTO.isOpen">
                             {{'PADRAO.EDITAR' | translate}}
                         </button>
-                        <button mat-raised-button color="warn" style="width: 100%" (click)="delete(bookAdTO?.id)">
+                        <button mat-raised-button color="warn" style="width: 100%" (click)="delete(bookAdTO?.id)" *ngIf="bookAdTO.isOpen">
                             {{'PADRAO.EXCLUIR' | translate}}
                         </button>
+                        <div style="color: #36bf7f;" *ngIf="!bookAdTO.isOpen">
+                            <b>
+                                {{'EXCHANGE.TROCADO' | translate }}
+                            </b>
+                        </div>
                     </div>
                 </mat-card-actions>
             </mat-card>

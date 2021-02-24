@@ -280,7 +280,8 @@
     "FR002": "Conflito ao remover amigo",
     "RT005": "Página menor que o último acompanhamento",
     "TA001": "O último acompanhamento ainda não terminou",
-    "RT006": "A página não pode ser zero"
+    "RT006": "A página não pode ser zero",
+    "BAD003": "Ops! Você não pode deletar esta oferta pois ela está relacionada a uma troca."
   },
   "POST":{
     "CRIAR_POSTAGEM": "Criar Postagem",

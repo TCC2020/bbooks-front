@@ -34,7 +34,7 @@
         <mat-divider></mat-divider>
         </div>
         <mat-card-actions>
-            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutAlign.xs="space-evenly center"  fxLayout.xs="column" fxLayoutGap.xs="10px">
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutAlign.xs="space-evenly center"  fxLayout.xs="column" fxLayoutGap.xs="10px"  *ngIf="bookAdsTo.isOpen">
                     <button mat-raised-button color="accent" class="buttonsCard" (click)="edit(bookAdsTo.id)">
                         {{'PADRAO.EDITAR' | translate }}
                     </button>
@@ -45,10 +45,15 @@
                         {{'PADRAO.EXCLUIR' | translate }}
                     </button>
             </div>
+            <div fxLayout="row" fxLayoutAlign="center center" style="color: #36bf7f;" *ngIf="!bookAdsTo.isOpen">
+                <b>
+                    {{'EXCHANGE.TROCADO' | translate }}
+                </b>
+            </div>
         </mat-card-actions>
     </mat-card>
 </div>
-<div *ngIf="(booksAdsTo | async)?.length < 0">
+<div *ngIf="(booksAdsTo | async)?.length <= 0">
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
         {{'EXCHANGE.N_POSSUI_OFERTA' | translate }}
     </div>
