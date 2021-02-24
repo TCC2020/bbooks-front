@@ -188,7 +188,7 @@ export class PostDialogComponent implements OnInit {
 
                 }, error => {
                     Util.stopLoading();
-                    console.log('error upload image post', error)
+                    console.log('error upload image post', error);
                 });
         }
 

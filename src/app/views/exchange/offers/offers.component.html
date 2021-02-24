@@ -58,10 +58,11 @@
             </div>
         </div>
     </form>
-    <mat-progress-bar mode="indeterminate" *ngIf="!(booksAds$ | async)"></mat-progress-bar>
-
-    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
-        <mat-card class="card" *ngFor="let bookAdsTo of ((booksAds$  | async) | filterAsync:  formSearch.get('search').value) " routerLink="/exchange/offers/{{bookAdsTo.id}}">
+    <ng-template #loading>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px"  *ngIf="(booksAds$ | async) as booksAds; else loading">
+        <mat-card class="card" *ngFor="let bookAdsTo of (booksAds | filterAsync:  formSearch.get('search').value) " routerLink="/exchange/offers/{{bookAdsTo.id}}">
             <mat-card-header>
             </mat-card-header>
             <div fxLayout="row" fxLayoutAlign="space-evenly center" >

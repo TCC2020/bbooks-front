@@ -16,10 +16,11 @@
         </div>
     </div>
 </form>
-<mat-progress-bar mode="indeterminate" *ngIf="!(booksAdsTo | async)"></mat-progress-bar>
-
-<div fxLayout="column" fxLayoutGap="10px">
-    <div *ngFor="let bookAds of ((booksAdsTo  | async) | filterAsync:  formSearch.get('search').value)" (click)="selectBookAd(bookAds)">
+<ng-template #loading>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<div fxLayout="column" fxLayoutGap="10px"  *ngIf="(booksAdsTo | async) as booksAdsTo; else loading">
+    <div *ngFor="let bookAds of (booksAdsTo | filterAsync:  formSearch.get('search').value)" (click)="selectBookAd(bookAds)">
         <div fxLayout="row" fxLayoutGap="10px"
              [ngClass]="{
                    'canotSelect': verifyBookAdIsSelected(bookAds.id),
