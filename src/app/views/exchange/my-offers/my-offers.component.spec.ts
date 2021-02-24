@@ -15,9 +15,7 @@ import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock
 describe('MyOffersComponent', () => {
     let component: MyOffersComponent;
     let fixture: ComponentFixture<MyOffersComponent>;
-    const authServiceMock = {
-        getUser: jest.fn(() => userMock)
-    };
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [MyOffersComponent],
@@ -30,14 +28,6 @@ describe('MyOffersComponent', () => {
                 HttpClientTestingModule,
                 BrowserAnimationsModule,
                 TranslateServiceMockForRoot
-            ],
-            providers: [
-                BookAdsService,
-                {
-                    provide: AuthService,
-                    useValue: authServiceMock
-                },
-
             ]
         })
             .compileComponents();
