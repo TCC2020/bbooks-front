@@ -60,6 +60,9 @@
 mat-card{
   width: 600px;
 }
+.contact {
+  width: 40%
+}
 
 @media screen and (max-width: 600px) {
   .buttonOferta{
@@ -76,5 +79,8 @@ mat-card{
   }
   mat-card{
     width: 90%
+  }
+  .contact {
+    width: 80%
   }
 }

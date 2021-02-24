@@ -10,7 +10,6 @@ import {AuthService} from 'src/app/services/auth.service';
 import {UserService} from '../../../services/user.service';
 import {UserTO} from '../../../models/userTO.model';
 import {ProfileService} from '../../../services/profile.service';
-import {FeedPerfilManageService} from '../store/feed-perfil-manage.service';
 
 @Component({
     selector: 'app-perfil',

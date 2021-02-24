@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {BookStatus, getArrayStatus} from '../../../models/enums/BookStatus.enum';
 import {BookAdsService} from '../../../services/book-ads.service';
 import {BookAdTO} from '../../../models/BookAdTO.model';
 import {Observable} from 'rxjs';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {filter, map, take} from 'rxjs/operators';
 
 @Component({
     selector: 'app-offers',

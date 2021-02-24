@@ -64,6 +64,8 @@ export class OfferNewComponent implements OnInit {
             .pipe(take(1))
             .subscribe(result => {
                 this.countrys = result;
+                const country = this.countrys.find(c => c.name.includes(this.formNewOffer.get('country').value));
+                this.getStates(country);
             });
 
     }
@@ -173,10 +175,10 @@ export class OfferNewComponent implements OnInit {
             userId: new FormControl(this.authService.getUser().id),
             address: new FormControl(this.bookAdTO ? this.bookAdTO.address : null),
             contact: new FormControl(this.bookAdTO ? this.bookAdTO.contact : null, Validators.required),
-            images: this.formBuilder.array([]),
-            country: new FormControl('', Validators.required),
-            city: new FormControl('', Validators.required),
-            state: new FormControl('', Validators.required),
+            images: new FormControl(null),
+            country: new FormControl(this.bookAdTO ? this.bookAdTO.address.split(';')[0] : '', Validators.required),
+            city: new FormControl(this.bookAdTO ? this.bookAdTO.address.split(';')[2] : '', Validators.required),
+            state: new FormControl(this.bookAdTO ? this.bookAdTO.address.split(';')[1] : '', Validators.required),
             idBookGoogle: new FormControl(this.bookAdTO ? this.bookAdTO.idBookGoogle : null),
             bookId: new FormControl(this.bookAdTO ? this.bookAdTO.bookId : null)
         });
@@ -249,6 +251,9 @@ export class OfferNewComponent implements OnInit {
     update(): void {
         Util.loadingScreen();
         this.setAddress();
+        this.getImagesChanges();
+        this.formNewOffer.get('images').setValue(this.bookAdTO.images);
+
         this.bookAdsService.update(this.formNewOffer.value)
             .pipe(take(1))
             .subscribe(bookAdTo => {
@@ -262,46 +267,92 @@ export class OfferNewComponent implements OnInit {
             });
     }
 
+    uploadImagesUpdate(bookAd: BookAdTO): Observable<any> {
+        let observableUpload;
+        if (this.filesSend[0]) {
+            observableUpload = this.uploadFile(0, bookAd.id);
+        }
+        if (this.filesSend[1]) {
+            if (observableUpload) {
+                observableUpload = observableUpload.pipe(
+                    flatMap(() => this.uploadFile(1, bookAd.id))
+                );
+            } else {
+                observableUpload = this.uploadFile(1, bookAd.id);
+            }
+        }
+        if (this.filesSend[2]) {
+            if (observableUpload) {
+                observableUpload = observableUpload.pipe(
+                    flatMap(() => this.uploadFile(2, bookAd.id))
+                );
+            } else {
+                observableUpload = this.uploadFile(2, bookAd.id);
+            }
+        }
+        return observableUpload;
+    }
+
+    getImagesChanges(): void {
+        if (this.filesSend[0]) {
+            this.bookAdTO.images[0] = null;
+            this.bookAdTO.images.splice(1, 1);
+
+        }
+        if (this.filesSend[1]) {
+            this.bookAdTO.images[1] = null;
+            this.bookAdTO.images.splice(1, 1);
+        }
+        if (this.filesSend[2]) {
+            this.bookAdTO.images[2] = null;
+            this.bookAdTO.images.splice(2, 1);
+        }
+    }
+
+    uploadFile(positionFile: number, id: string): Observable<any> {
+        return this.cdnService.uploadFeedApi(
+            {file: this.filesSend[positionFile], type: 'image'},
+            {objectType: 'book_ad_id', bookAdId: id}
+        );
+    }
+
     uploadImages(bookAd: BookAdTO): void {
-        Util.loadingScreen();
-        this.cdnService.uploadFeedApi(
-            {file: this.filesSend[0], type: 'image'},
-            {objectType: 'book_ad_id', bookAdId: bookAd.id}
-        )
-            .pipe(
-                take(1),
-                flatMap(() => {
-                    if (this.filesSend[1]) {
-                        return this.cdnService.uploadFeedApi(
-                            {file: this.filesSend[1], type: 'image'},
-                            {objectType: 'book_ad_id', bookAdId: bookAd.id}
-                        );
-                    }
-                    return of({});
-                }),
-                flatMap(() => {
-                    if (this.filesSend[2]) {
-                        return this.cdnService.uploadFeedApi(
-                            {file: this.filesSend[2], type: 'image'},
-                            {objectType: 'book_ad_id', bookAdId: bookAd.id}
-                        );
-                    }
-                    return of({});
-                })
-            ).subscribe(r => {
-                Util.stopLoading();
-                this.router.navigateByUrl('/exchange/my-offers');
-            },
-            error => {
-                Util.stopLoading();
-                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
-                    Util.showErrorDialog(message);
-                });
-                console.log('error save images BookAD', error);
-            });
+        const upload = this.uploadImagesUpdate(bookAd);
+        if (upload) {
+            Util.loadingScreen();
+            upload.pipe(take(1))
+                .subscribe(r => {
+                        Util.stopLoading();
+                        this.router.navigateByUrl('/exchange/my-offers');
+                    },
+                    error => {
+                        Util.stopLoading();
+                        this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                            Util.showErrorDialog(message);
+                        });
+                        console.log('error save images BookAD', error);
+                    });
+        } else {
+            Util.stopLoading();
+            this.router.navigateByUrl('/exchange/my-offers');
+        }
+
+
     }
 
     bookIsSelected(): boolean {
         return this.book.id ? true : false;
+    }
+
+    verifyFormUpdate(): boolean {
+        if (this.formNewOffer.invalid) {
+            return true;
+        }
+        if (this.bookAdTO.images.length !== 0) {
+            return false;
+        } else {
+            return this.files.length === 0;
+        }
+        return !this.bookIsSelected();
     }
 }

@@ -14,7 +14,8 @@ export class FilterAsyncPipe implements PipeTransform {
             if (filter === undefined || filter === null) {
                 return b;
             }
-            return b?.description?.toLocaleLowerCase().includes(filter.toLocaleLowerCase());
+            return b?.description?.toLocaleLowerCase().includes(filter.toLocaleLowerCase()) ||
+            b?.title?.toLocaleLowerCase().includes(filter.toLocaleLowerCase());
         });
     }
 

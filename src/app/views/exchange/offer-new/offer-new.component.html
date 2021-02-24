@@ -98,7 +98,7 @@
                 </h2>
             </div>
             <div fxLayout="row" fxLayoutAlign="center">
-                <mat-form-field>
+                <mat-form-field class="contact">
                     <ngx-mat-intl-tel-input
                             [preferredCountries]="['br', 'us']"
                             [enablePlaceholder]="true"
@@ -121,6 +121,7 @@
                     <mat-label>{{'PADRAO.PAIS' | translate}}</mat-label>
                     <mat-select formControlName="country">
                         <mat-option [value]="country.name" *ngFor="let country of countrys"
+                                    (change)="getStates(country)"
                                     (blur)="getStates(country)">{{country.name}}</mat-option>
                     </mat-select>
                     <mat-error *ngIf="verificaValidToTouched('country')">
@@ -168,23 +169,23 @@
                 <div class="card" (click)="openDialogUpload(0)">
                     <div class="container">
                         <img class="image"
-                             [src]="files[0] ? files[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                             [src]="files[0] ? files[0] : bookAdTO?.images[0] ?  bookAdTO.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
                     </div>
                 </div>
                 <div class="card" (click)="openDialogUpload(1)">
                     <div class="container">
                         <img class="image"
-                             [src]="files[1] ? files[1] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                             [src]="files[1] ? files[1] : bookAdTO?.images[1] ?  bookAdTO.images[1] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
                     </div>
                 </div>
                 <div class="card" (click)="openDialogUpload(2)">
                     <div class="container">
                         <img class="image"
-                             [src]="files[2] ? files[2] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                             [src]="files[2] ? files[2] : bookAdTO?.images[2] ?  bookAdTO.images[2]  : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
                     </div>
                 </div>
             </div>
-            <mat-error *ngIf="this.files.length === 0"> {{'EXCHANGE.ESCOLHER_UMA_FOTO' | translate }}</mat-error>
+            <mat-error *ngIf="bookAdTO?.images[0] ?  false :  files.length === 0 "> {{'EXCHANGE.ESCOLHER_UMA_FOTO' | translate }}.</mat-error>
         </mat-card>
 
         <mat-card>
@@ -201,7 +202,7 @@
             <button
                     *ngIf="!this.bookAdTO"
                     (click)="saveBookAd()"
-                    [disabled]="formNewOffer.invalid || files.length === 0 ||  !bookIsSelected()"
+                    [disabled]="formNewOffer.invalid ||  files.length  === 0 ||  !bookIsSelected()"
                     mat-raised-button color="accent"
                     fxLayout="row" fxLayoutAlign="center"
                     style="width: 100%; color: white">
@@ -210,7 +211,7 @@
             <button
                     *ngIf="this.bookAdTO"
                     (click)="update()"
-                    [disabled]="formNewOffer.invalid || files.length === 0 ||  this.book.id === 'undefined' || this.book.id === null"
+                    [disabled]="verifyFormUpdate()"
                     mat-raised-button color="accent"
                     fxLayout="row" fxLayoutAlign="center"
                     style="width: 100%; color: white">
