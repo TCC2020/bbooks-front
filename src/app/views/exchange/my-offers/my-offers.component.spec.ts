@@ -8,11 +8,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
+import {AuthService} from '../../../services/auth.service';
+import {userMock} from '../../../mocks/user.model.mock';
 
 describe('MyOffersComponent', () => {
     let component: MyOffersComponent;
     let fixture: ComponentFixture<MyOffersComponent>;
-
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
+    };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [MyOffersComponent],
@@ -25,6 +29,12 @@ describe('MyOffersComponent', () => {
                 HttpClientTestingModule,
                 BrowserAnimationsModule,
                 TranslateServiceMockForRoot
+            ],
+            providers: [
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                },
             ]
         })
             .compileComponents();

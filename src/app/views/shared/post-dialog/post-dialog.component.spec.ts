@@ -14,11 +14,12 @@ import {userMock} from '../../../mocks/user.model.mock';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
-import {Injector} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, Injector} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {postMock} from '../../../mocks/post.model.mock';
 import {PostService} from '../../../services/post.service';
 import {TrackingService} from '../../../services/tracking.service';
+import {UploadComponent} from '../../upload/upload.component';
 
 describe('PostDialogComponent', () => {
     let component: PostDialogComponent;
@@ -39,6 +40,7 @@ describe('PostDialogComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
             imports: [
                 BrowserAnimationsModule,
                 BrowserDynamicTestingModule,
@@ -51,7 +53,7 @@ describe('PostDialogComponent', () => {
                 TranslateServiceMockForRoot,
                 SweetAlert2Module
             ],
-            declarations: [PostDialogComponent],
+            declarations: [PostDialogComponent, UploadComponent],
             providers: [
                 SocialAuthServiceConfigMock,
                 SocialAuthService,
@@ -63,7 +65,8 @@ describe('PostDialogComponent', () => {
                 { provide: MAT_DIALOG_DATA, useValue: postMock },
                 Injector
             ]
-        }).compileComponents();
+        }).overrideModule(BrowserDynamicTestingModule, { set: { entryComponents: [UploadComponent] } })
+          .compileComponents();
         postServiceMock = TestBed.inject(PostService);
     }));
 
@@ -79,7 +82,6 @@ describe('PostDialogComponent', () => {
     it('should choosePhoto', () => {
         component.choosePhoto();
         expect(component.textInput).toEqual('TEXT_POST_INPUT');
-        expect(component.menuChoose).toEqual(menuChoose.PHOTO);
     });
     it('should chooseReview', () => {
         component.chooseReview();
