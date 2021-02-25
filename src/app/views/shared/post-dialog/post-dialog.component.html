@@ -97,6 +97,9 @@
             </div>
     </div>
     </form>
+    <div *ngIf="image" fxLayout="row" fxLayoutAlign="center center">
+        <img [src]="image" class="imagePost" (click)="choosePhoto()">
+    </div>
 
     <br>
     <mat-divider></mat-divider>

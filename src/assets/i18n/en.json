@@ -60,7 +60,21 @@
     "ENTER_": "Enter",
     "POLITICA_PRIVACIDADE": "Privacy Policy for Bbooks",
     "POST_PRIVADO": "Only your friends can see what is published.",
-    "POST_PUBLICO": "Anyone will be able to see what is published."
+    "POST_PUBLICO": "Anyone will be able to see what is published.",
+    "IDIOMA": "Language",
+    "VOLTAR": "Back",
+    "DESATIVAR": "Disable",
+    "DESCRICAO": "Description",
+    "TROCAR": "Exchange",
+    "WHATSAPP": "Consult by Whatsapp",
+    "LOCALIZACAO": "Location",
+    "SELECIONADO": "Selected",
+    "OFERTA": "Offer",
+    "PROPOSTA": "Proposal",
+    "LIVRO": "book",
+    "POR": "for",
+    "CONTATO": "Contact",
+    "ENDERECO": "Address"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -173,7 +187,8 @@
     "OUTRAS_INFO": "OTHER INFORMATION",
     "CRIAR_LIVRO": "Create Book",
     "ESCOLHER_FOTO_LIVRO": "Choose book photo",
-    "SOBRE_LIVRO": "About this book"
+    "SOBRE_LIVRO": "About this book",
+    "PESQUISAR_BOOK": "Find a book"
   },
   "PERFIL": {
     "feed": "feed",
@@ -262,7 +277,8 @@
     "FR002": "Conflict while removing friend",
     "RT005": "Page smaller than last tracking",
     "TA001": "Last tracking is not finished yeat",
-    "RT006": "Page can´t be zero"
+    "RT006": "Page can´t be zero",
+    "BAD003": "Ops! You cannot delete this offer because it is related to an exchange."
   },
   "POST":{
     "CRIAR_POSTAGEM": "Create Post",
@@ -278,5 +294,52 @@
   "SEARCH": {
     "people": "people",
     "groups": "groups"
+  },
+  "EXCHANGE": {
+    "TROCA_DE_LIVRO": "Book exchange",
+    "MINHAS_OFERTAS": "My offers",
+    "MINHAS_TROCAS": "My Exchanges",
+    "BUSCAR_OFERTAS": "Search offers",
+    "NOVA_OFERTA": "New offer",
+    "ESCOLHER_LIVRO": "Choose book for offer",
+    "QUAL_CONDICAO_LIVRO": "What is the condition for using your book?",
+    "CONDICAO_LIVRO": "Condition of the book",
+    "NOVO": "New",
+    "USADO": "Used",
+    "INSIRA_FOTOS": "Insert cool photos for your offer:",
+    "OUTRAS_INFOS": "Other information",
+    "ESCREVA_DESCRICAO": "Write a brief description about the book",
+    "CRIAR_OFERTA": "Create offer",
+    "VISUALIZAR": "View",
+    "N_POSSUI_OFERTA": "You do not have any offers registered.",
+    "CADASTRAR_NOVA_OFERTA": "Register new offer",
+    "EXLUIR_OFFER": "Do you really want to delete this offer?",
+    "OFFER_EXCLUIDA": "Offer deleted!",
+    "PESQUISAR_OFERTA": "Search for a offer",
+    "CONDICAO": "Condition",
+    "ESCOLHER_OUTRO_AD": "Choose one more offer for exchange",
+    "ESCOLHER_SUAS_OFERTAS": "Choose your offers for exchange",
+    "ENVIAR_PROPOSTA": "Send proposal",
+    "SOLICITAR_TROCA_LIVRO": "You are requesting an exchange of",
+    "VOCE_NAO_PODE": "You cannot remove the first chosen offer",
+    "VOCE_SO_PODE": "You can only select three offers to make your proposal",
+    "received": "received",
+    "sent": "sent",
+    "TROCO": "I change",
+    "RECEBEU_PROPOSTA": "You received a proposal to exchange",
+    "ENVIOU_PROPOSTA": "You sent a proposal to exchange",
+    "ACEITAR_PROPOSTA": "Accept",
+    "RECUSAR_PROPOSTA": "Refuse",
+    "TROCADO": "Exchanged",
+    "RECUSADO": "Refused",
+    "ESCOLHER_LIVRO_E": "Choose one book is",
+    "CANCELADO": "Canceled",
+    "ESCOLHER_UMA_FOTO": "You must upload at least one photo",
+    "TITULO_OFERTA": "Tittle for your offer",
+    "TITULO_OBRIGATORIO": "Tittle is",
+    "TITULO": "Tittle",
+    "CONTATO": "Contact is",
+    "TROCAR_LIVRO": "Exchange book",
+    "POSTADO_POR": "Posted by"
   }
 }

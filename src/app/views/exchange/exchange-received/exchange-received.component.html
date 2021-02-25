@@ -1,0 +1,135 @@
+<div class="body">
+    <ng-template #loading>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
+    <div fxLayout="column" fxLayoutGap="20px" *ngIf="(exchanges$ | async) as exchange; else loading">
+
+        <mat-accordion class="example-headers-align" multi  *ngFor="let exchange of exchange">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{exchange?.requester?.profile?.name}} {{exchange?.requester?.profile?.lastName}}
+
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{'EXCHANGE.TROCO' | translate}} {{exchange?.requesterAds.length}} {{'PADRAO.LIVRO' | translate}}(s)  {{'PADRAO.POR' | translate}}  {{exchange.receiverAds.length}} {{'PADRAO.LIVRO' | translate}}(s)
+                        <img class="cardImagePost"
+                             src="{{exchange.requester?.profile?.profileImage ? exchange?.requester?.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div>
+                    <b>{{'PADRAO.OFERTA' | translate}}</b>
+                </div>
+                <div *ngFor="let bookAds of exchange?.receiverAds ">
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <div>
+                            <img class="image"
+                                 [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                        </div>
+                        <div fxLayout="column" class="textColor" style="width: 100%">
+                            <div>
+                                {{bookAds.description}}
+                            </div>
+                            <div>
+                                <b>{{'EXCHANGE.CONDICAO' | translate}}
+                                    : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                            </div>
+                            <div
+                                    fxLayout="row"
+                                    fxLayout.xs="column"
+                                    fxLayoutAlign="end center"
+                                    style="width: 100%; color: #f28b66;"
+                            >
+                            </div>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div>
+                    <b>{{'PADRAO.PROPOSTA' | translate}} </b>
+                </div>
+
+
+                <div *ngFor="let bookAds of exchange?.requesterAds ">
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <div>
+                            <img class="image"
+                                 [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                        </div>
+                        <div fxLayout="column" class="textColor" style="width: 100%">
+                            <div>
+                                {{bookAds.description}}
+                            </div>
+                            <div>
+                                <b>{{'EXCHANGE.CONDICAO' | translate}}
+                                    : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                            </div>
+                            <div
+                                    fxLayout="row"
+                                    fxLayout.xs="column"
+                                    fxLayoutAlign="end center"
+                                    style="width: 100%; color: #f28b66;"
+                            >
+                            </div>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+                    <div class="fundoCard" fxLayout="column"  fxLayoutAlign="end end"  fxLayoutAlign.xs="center center">
+                        <div>
+                            {{'EXCHANGE.RECEBEU_PROPOSTA' | translate }} {{this.exchange.requesterAds.length}}  {{'PADRAO.LIVRO' | translate }}(s)  {{'PADRAO.POR' | translate }} {{this.exchange.receiverAds.length}}   {{'PADRAO.LIVRO' | translate }}(s)
+                        </div>
+                        <div  class="layoutButton">
+                            <button
+                                    *ngIf="exchange.status === exchangeStatus.pending"
+                                    mat-raised-button color="warn"
+                                    class="choseAnotherOfferButton"
+                                    (click)="refuse(exchange.id)"
+                            >
+                                {{'EXCHANGE.RECUSAR_PROPOSTA' | translate }}
+                            </button>
+                            <button
+                                    *ngIf="exchange.status === exchangeStatus.pending"
+                                    mat-raised-button color="accent"
+                                    class="choseAnotherOfferButton"
+                                    (click)="accept(exchange.id)"
+                            >
+                                {{'EXCHANGE.ACEITAR_PROPOSTA' | translate }}
+                            </button>
+                            <div
+                                    *ngIf="exchange.status === exchangeStatus.accepted"
+                                    style="color: #36bf7f;"
+                                    class="choseAnotherOfferButton">
+                                <b>
+                                    {{'EXCHANGE.TROCADO' | translate }}
+                                </b>
+                            </div>
+                            <div
+                                    *ngIf="exchange.status === exchangeStatus.canceled"
+                                    style="color: #f28b66;"
+                                    class="choseAnotherOfferButton">
+                                <b>
+                                    {{'EXCHANGE.CANCELADO' | translate }}
+                                </b>
+                            </div>
+                            <div
+                                    *ngIf="exchange.status === exchangeStatus.refused"
+                                    style="color: #d96666;"
+                                    class="choseAnotherOfferButton">
+                                <b>
+                                    {{'EXCHANGE.RECUSADO' | translate }}
+                                </b>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+
+</div>
+

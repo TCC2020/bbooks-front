@@ -1,0 +1,32 @@
+.image {
+  opacity: 1;
+  display: block;
+  width: 120px;
+  height: auto;
+  transition: .5s ease;
+  max-width: 120px;
+  backface-visibility: hidden;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+}
+.selectBook{
+  transition: .5s ease;
+
+}
+.selectBook:hover{
+  background-color: #e9e9e9;
+  cursor: pointer;
+}
+.canotSelect{
+  background-color: #fdf5f1;
+  border-color: #f28b66;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+}
+.textColor{
+  color: #858585;
+  word-break: break-word;
+}

@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="body"
+     fxLayout.xs="column" fxLayoutAlign.xs ="center start">
+    <div  fxFlex="12">
+        <b class="title">{{'EXCHANGE.MINHAS_OFERTAS' | translate }}</b>
+    </div>
+    <div class="subtitle" fxLayout="row">
+        <div>
+            <span class="material-icons">home</span>
+            <span class="material-icons">keyboard_arrow_right</span>
+        </div>
+        <div>
+            {{'EXCHANGE.MINHAS_OFERTAS' | translate }}
+        </div>
+    </div>
+<!--    <button mat-raised-button color="accent" class="buttonOferta" routerLink="create">-->
+<!--        {{'EXCHANGE.NOVA_OFERTA' | translate }}-->
+<!--    </button>-->
+</div>
+<nav mat-tab-nav-bar mat-align-tabs="center" style="background-color: white">
+    <a mat-tab-link *ngFor="let link of links"
+       routerLinkActive #rla="routerLinkActive"
+       [routerLink]="link"
+       [active]="rla.isActive"
+    > {{'EXCHANGE.' + link | translate | titlecase}}</a>
+</nav>
+<router-outlet></router-outlet>

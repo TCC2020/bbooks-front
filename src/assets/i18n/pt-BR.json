@@ -60,7 +60,21 @@
     "ENTER_": "Entrar",
     "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks",
     "POST_PRIVADO": "Somente seus amigos poderam ver o que for publicado",
-    "POST_PUBLICO": "Qualquer pessoa poderá ver o que for publicado"
+    "POST_PUBLICO": "Qualquer pessoa poderá ver o que for publicado",
+    "IDIOMA": "Idioma",
+    "VOLTAR": "Voltar",
+    "DESATIVAR": "Desativar",
+    "DESCRICAO": "Descrição",
+    "TROCAR": "Trocar",
+    "WHATSAPP": "Consultar via whatsapp",
+    "LOCALIZACAO": "Localização",
+    "SELECIONADO": "Selecionado",
+    "OFERTA": "Oferta",
+    "PROPOSTA": "Proposta",
+    "LIVRO": "livro",
+    "POR": "por",
+    "CONTATO": "Contato",
+    "ENDERECO": "Endereço"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -176,7 +190,8 @@
     "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
     "CRIAR_LIVRO": "Criar livro",
     "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro",
-    "SOBRE_LIVRO": "Sobre este livro"
+    "SOBRE_LIVRO": "Sobre este livro",
+    "PESQUISAR_BOOK": "Ache um livro"
   },
   "PERFIL": {
     "feed": "feed",
@@ -265,7 +280,8 @@
     "FR002": "Conflito ao remover amigo",
     "RT005": "Página menor que o último acompanhamento",
     "TA001": "O último acompanhamento ainda não terminou",
-    "RT006": "A página não pode ser zero"
+    "RT006": "A página não pode ser zero",
+    "BAD003": "Ops! Você não pode deletar esta oferta pois ela está relacionada a uma troca."
   },
   "POST":{
     "CRIAR_POSTAGEM": "Criar Postagem",
@@ -281,5 +297,52 @@
   "SEARCH": {
     "people": "pessoas",
     "groups": "grupos"
+  },
+  "EXCHANGE": {
+    "TROCA_DE_LIVRO": "Troca de livro",
+    "MINHAS_OFERTAS": "Minhas ofertas",
+    "MINHAS_TROCAS": "Minhas trocas",
+    "BUSCAR_OFERTAS": "Buscar ofertas",
+    "NOVA_OFERTA": "Nova oferta",
+    "ESCOLHER_LIVRO": "Escolher livro para oferta",
+    "QUAL_CONDICAO_LIVRO": "Qual a condição de uso do seu livro?",
+    "CONDICAO_LIVRO": "Condição do livro",
+    "NOVO": "Novo",
+    "USADO": "Usado",
+    "INSIRA_FOTOS": "Insira fotos legais para sua oferta:",
+    "OUTRAS_INFOS": "Outras informações",
+    "ESCREVA_DESCRICAO": "Escreva uma breve descrição sobre o livro",
+    "CRIAR_OFERTA": "Criar oferta",
+    "VISUALIZAR": "Visualizar",
+    "N_POSSUI_OFERTA": "Você não possui nenhuma oferta cadastrada.",
+    "CADASTRAR_NOVA_OFERTA": "Cadastrar nova oferta",
+    "EXLUIR_OFFER": "Tem certeza de que deseja excluir esta oferta?",
+    "OFFER_EXCLUIDA": "Oferta excluída!",
+    "PESQUISAR_OFERTA": "Pesquise uma oferta",
+    "CONDICAO": "Condição",
+    "ESCOLHER_OUTRO_AD": "Escolher mais uma oferta para troca",
+    "ESCOLHER_SUAS_OFERTAS": "Escolher suas ofertas para troca",
+    "ENVIAR_PROPOSTA": "Enviar proposta",
+    "SOLICITAR_TROCA_LIVRO": "Você esta solicitando uma troca de",
+    "VOCE_NAO_PODE": "Você não pode remover a primeira oferta escolhida",
+    "VOCE_SO_PODE": "Você só pode selecionar três ofertas para realizar sua proposta",
+    "received": "recebido",
+    "sent": "enviado",
+    "TROCO": "Troco",
+    "RECEBEU_PROPOSTA": "Você recebeu uma proposta para trocar ",
+    "ENVIOU_PROPOSTA": "Você enviou uma proposta para trocar ",
+    "ACEITAR_PROPOSTA": "Aceitar",
+    "RECUSAR_PROPOSTA": "Recusar",
+    "TROCADO": "Trocado",
+    "RECUSADO": "Recusado",
+    "ESCOLHER_LIVRO_E": "Escolher um livro é",
+    "CANCELADO": "Cancelado",
+    "ESCOLHER_UMA_FOTO": "Você precisa enviar pelo menos uma foto",
+    "TITULO_OFERTA": "Título para sua oferta",
+    "TITULO_OBRIGATORIO": "Título é",
+    "TITULO": "Título",
+    "CONTATO": "Contato é",
+    "TROCAR_LIVRO": "Trocar livro",
+    "POSTADO_POR": "Postado por"
   }
 }

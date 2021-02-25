@@ -25,4 +25,11 @@ mat-drawer {
   bottom: 0px;
   overflow-y: scroll;
 
+
+}
+.linkNav{
+  border-radius: 10px;
+}
+.activelink{
+  background-color: rgba(65, 85, 102, 0.15) !important;
 }
