@@ -13,8 +13,11 @@ import {AuthGuard} from './guards/auth-guard';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
 import {LiteraryCompetitionComponent} from './views/literary-competition-page/literary-competition/literary-competition.component';
+// tslint:disable-next-line:max-line-length
 import {MembersLiteraryCompetitionComponent} from './views/literary-competition-page/members-literary-competition/members-literary-competition.component';
+// tslint:disable-next-line:max-line-length
 import {AdministratorsLiteraryCompetitionComponent} from './views/literary-competition-page/administrators-literary-competition/administrators-literary-competition.component';
+// tslint:disable-next-line:max-line-length
 import {StoryLiteraryCompetitionComponent} from './views/literary-competition-page/story-literary-competition/story-literary-competition.component';
 
 const routes: Routes = [

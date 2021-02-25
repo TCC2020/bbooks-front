@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MembersLiteraryCompetitionComponent } from './members-literary-competition.component';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('MembersLiteraryCompetitionComponent', () => {
   let component: MembersLiteraryCompetitionComponent;
@@ -8,7 +9,10 @@ describe('MembersLiteraryCompetitionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MembersLiteraryCompetitionComponent ]
+      declarations: [ MembersLiteraryCompetitionComponent ],
+      imports: [
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));
