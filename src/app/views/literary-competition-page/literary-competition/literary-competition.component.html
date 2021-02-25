@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="ver-todos-membros">
-                <button type="button" mat-raised-button color="primary">Ver todos os administradores</button>
+                <button type="button" mat-raised-button color="primary" [routerLink]="['/administradores-competicao']">Ver todos os administradores</button>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@
                     <div class="nome-membro"><p>Nome do membro</p></div>
                 </div>
             </div>
-            <div class="ver-todos-membros" [routerLink]="['/membros-competicao']"><button type="button" mat-raised-button color="primary">Ver todos os membros</button></div>
+            <div class="ver-todos-membros"><button  [routerLink]="['/membros-competicao']" type="button" mat-raised-button color="primary">Ver todos os membros</button></div>
         </div>
     </div>
     <div class="container-cinza">

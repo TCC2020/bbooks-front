@@ -36,6 +36,21 @@
 
 .dados-membro {
   width: calc(100% - 100px);
+  margin: auto 0;
+}
+
+.container-pesquisar {
+  padding: 30px 30px 0;
+}
+
+.barra-pesquisar {
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .container-geral {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -48,5 +63,9 @@
   }
   .dados-membro {
     margin-bottom: 10px;
+  }
+
+  .container-geral {
+    width: 100%;
   }
 }
