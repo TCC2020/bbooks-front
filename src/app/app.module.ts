@@ -44,6 +44,12 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {SearchModule} from './views/search/search.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LiteraryCompetitionComponent } from './views/literary-competition-page/literary-competition/literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { MembersLiteraryCompetitionComponent } from './views/literary-competition-page/members-literary-competition/members-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { StoryLiteraryCompetitionComponent } from './views/literary-competition-page/story-literary-competition/story-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { AdministratorsLiteraryCompetitionComponent } from './views/literary-competition-page/administrators-literary-competition/administrators-literary-competition.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -65,7 +71,10 @@ export function HttpLoaderFactory(http: HttpClient) {
         UploadComponent,
         ReadingTargetProgressComponent,
         PreviousGoalsComponent,
-        LiteraryCompetitionComponent
+        LiteraryCompetitionComponent,
+        MembersLiteraryCompetitionComponent,
+        StoryLiteraryCompetitionComponent,
+        AdministratorsLiteraryCompetitionComponent
     ],
     imports: [
         BrowserModule,

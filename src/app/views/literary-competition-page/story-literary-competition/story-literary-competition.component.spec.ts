@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LiteraryCompetitionComponent } from './literary-competition.component';
+import { StoryLiteraryCompetitionComponent } from './story-literary-competition.component';
 import {RouterTestingModule} from '@angular/router/testing';
 
-describe('LiteraryCompetitionComponent', () => {
-  let component: LiteraryCompetitionComponent;
-  let fixture: ComponentFixture<LiteraryCompetitionComponent>;
+describe('StoryLiteraryCompetitionComponent', () => {
+  let component: StoryLiteraryCompetitionComponent;
+  let fixture: ComponentFixture<StoryLiteraryCompetitionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LiteraryCompetitionComponent ],
+      declarations: [ StoryLiteraryCompetitionComponent ],
       imports: [
         RouterTestingModule
       ]
@@ -18,7 +18,7 @@ describe('LiteraryCompetitionComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LiteraryCompetitionComponent);
+    fixture = TestBed.createComponent(StoryLiteraryCompetitionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
