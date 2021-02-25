@@ -2,8 +2,6 @@ import {TestBed} from '@angular/core/testing';
 
 import {PostService} from './post.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {FriendsService} from './friends.service';
-import {friendMock} from '../mocks/friend.model.mock';
 import {postMock} from '../mocks/post.model.mock';
 import {userMock} from '../mocks/user.model.mock';
 

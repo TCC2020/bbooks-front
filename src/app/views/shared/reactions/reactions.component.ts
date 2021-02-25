@@ -14,6 +14,7 @@ import {TypePostControler} from '../../../models/enums/TypePost.enum';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FeedMainManagerService} from '../../feed-page/store/feed-main-manager.service';
 import {FeedGenericService} from '../../../services/feed-generic.service';
+import {UploadComponent} from '../../upload/upload.component';
 
 @Component({
     selector: 'app-reactions',
@@ -27,6 +28,7 @@ export class ReactionsComponent implements OnInit {
     @Input() typePostControler: TypePostControler;
     @Output() postOutput = new EventEmitter<any>();
     @Input() userPost: UserTO;
+
     reaction = 'Gostei';
     icon = 'fa-thumbs-up';
 

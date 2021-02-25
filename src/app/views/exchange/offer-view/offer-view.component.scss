@@ -24,7 +24,7 @@
 
 .image-card{
   max-width: 250px ;
-
+  max-height: 350px;
 }
 .form-content {
   width: 60%;
@@ -107,10 +107,16 @@
 .column {
   float: left;
   width: 16.66%;
+  padding-left: 5px;
+
 }
 
 /* Add a transparency effect for thumnbail images */
 .demo {
+  border-radius: 4px;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  border-style: solid;
   opacity: 0.6;
 }
 
@@ -118,10 +124,24 @@
 .demo:hover {
   opacity: 1;
 }
+.description{
+  width: 40%;
+  margin-left: 40px;
+}
+.linkWhatsapp{
+  color: #25D366;
+}
+.linkWhatsapp:hover {
+  cursor: pointer;
+}
 
 @media screen and (max-width: 600px) {
   .card{
     width: 100%;
+  }
+  .description{
+    width: 100%;
+    margin-left: 0px;
   }
 
   .body{

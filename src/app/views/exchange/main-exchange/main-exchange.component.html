@@ -3,7 +3,7 @@
         <button *ngIf="deviceXs" type="button" mat-icon-button (click)="drawer.toggle()" >
             <mat-icon>menu</mat-icon>
         </button>
-        Trocas
+        {{'EXCHANGE.TROCA_DE_LIVRO' | translate}}
     </mat-toolbar>
     <mat-drawer-container style="background-color: #f1f1f1">
         <mat-drawer #drawer [mode]="deviceXs?'over':'side'" [opened]="deviceXs?false:true" position="start"
@@ -12,23 +12,23 @@
                     fxLayout="column" fxLayoutAlign="start space-between" [style.marginTop.px]="0"
                     [style.top.px]="sideBarScroll()" class="sidenav">
             <mat-nav-list >
-                <a mat-list-item routerLink="offers" fxLayout="row" fxLayoutAlign="start center"  >
+                <a mat-list-item routerLink="offers" class="linkNav" routerLinkActive="activelink" fxLayout="row" fxLayoutAlign="start center"  >
                     <span class="material-icons">search</span>
-                    Buscar ofertas
+                    {{'EXCHANGE.BUSCAR_OFERTAS' | translate}}
                 </a>
-                <a mat-list-item routerLink="my-offers" fxLayout="row" fxLayoutAlign="start center" >
+                <a mat-list-item routerLink="my-offers"  class="linkNav" fxLayout="row" routerLinkActive="activelink" fxLayoutAlign="start center" >
                     <span class="material-icons">bubble_chart</span>
-                    Minhas ofertas
+                    {{'EXCHANGE.MINHAS_OFERTAS' | translate}}
                 </a>
 
-                <a mat-list-item href="#" fxLayout="row" fxLayoutAlign="start center" >
+                <a mat-list-item href="#" fxLayout="row" fxLayoutAlign="start center" routerLink="my-exchanges" routerLinkActive="activelink">
                     <span class="material-icons">multiple_stop</span>
-                    Minhas trocas
+                    {{'EXCHANGE.MINHAS_TROCAS' | translate}}
                 </a>
-                <a mat-list-item href="#" fxLayout="row"fxLayoutAlign="start center" >
-                    <span class="material-icons">mail_outline</span>
-                    Mensagens
-                </a>
+<!--                <a mat-list-item href="#" fxLayout="row"fxLayoutAlign="start center" >-->
+<!--                    <span class="material-icons">mail_outline</span>-->
+<!--                    Mensagens-->
+<!--                </a>-->
             </mat-nav-list>
 
         </mat-drawer>

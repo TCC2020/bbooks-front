@@ -56,7 +56,8 @@ const routes: Routes = [
     },
     {
         path: '',
-        loadChildren: () => import('./views/exchange/exchange.module').then(m => m.ExchangeModule)
+        loadChildren: () => import('./views/exchange/exchange.module').then(m => m.ExchangeModule),
+        canActivate: [AuthGuard],
     },
     {
         path: 'feed' ,

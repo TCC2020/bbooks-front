@@ -18,6 +18,7 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 import {ReactionsComponent} from './reactions/reactions.component';
 import {PostCreateComponent} from './post-create/post-create.component';
 import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.directive';
+import {SearchBookComponent} from './search-book/search-book.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.direc
         PostDialogComponent,
         ReactionsComponent,
         PostCreateComponent,
-        TextareaAutoresizeDirective
+        TextareaAutoresizeDirective,
+        SearchBookComponent
     ],
     imports: [
         CommonModule,
@@ -59,7 +61,8 @@ import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.direc
         PostDialogComponent,
         ReactionsComponent,
         PostCreateComponent,
-        TextareaAutoresizeDirective
+        TextareaAutoresizeDirective,
+        SearchBookComponent
     ],
     providers: []
 })
