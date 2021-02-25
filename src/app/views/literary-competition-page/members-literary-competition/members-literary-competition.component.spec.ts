@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MembersLiteraryCompetitionComponent } from './members-literary-competition.component';
 import {RouterTestingModule} from '@angular/router/testing';
+import {MaterialModule} from '../../../material/material.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 describe('MembersLiteraryCompetitionComponent', () => {
   let component: MembersLiteraryCompetitionComponent;
@@ -11,7 +13,9 @@ describe('MembersLiteraryCompetitionComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ MembersLiteraryCompetitionComponent ],
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+          MaterialModule,
+          BrowserAnimationsModule
       ]
     })
     .compileComponents();
