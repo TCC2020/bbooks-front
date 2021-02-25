@@ -12,6 +12,7 @@ import { LoginComponent } from './modals/login/login.component';
 import {AuthGuard} from './guards/auth-guard';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
+import {LiteraryCompetitionComponent} from './views/literary-competition-page/literary-competition/literary-competition.component';
 
 const routes: Routes = [
     {
@@ -43,6 +44,10 @@ const routes: Routes = [
     },
     {
         path: 'metas-anteriores', component: PreviousGoalsComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'competicao-literaria', component: LiteraryCompetitionComponent,
         canActivate: [AuthGuard],
     },
     {

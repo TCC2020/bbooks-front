@@ -43,6 +43,7 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {SearchModule} from './views/search/search.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LiteraryCompetitionComponent } from './views/literary-competition-page/literary-competition/literary-competition.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -63,7 +64,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         PageNotFoundComponent,
         UploadComponent,
         ReadingTargetProgressComponent,
-        PreviousGoalsComponent
+        PreviousGoalsComponent,
+        LiteraryCompetitionComponent
     ],
     imports: [
         BrowserModule,
