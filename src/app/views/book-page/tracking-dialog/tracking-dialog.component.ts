@@ -5,6 +5,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {ReadingTrackingTO} from '../../../models/ReadingTrackingTO.model';
 import {ReadingTrackingService} from '../../../services/reading-tracking.service';
 import {take} from 'rxjs/operators';
+import {Util} from '../../shared/Utils/util';
 
 @Component({
     selector: 'app-tracking-dialog',
@@ -96,9 +97,12 @@ export class TrackingDialogComponent implements OnInit {
         }
         if (codMessage) {
             this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
-                alert(message);
+                Util.showErrorDialog(message);
             });
         } else {
+            this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                Util.showErrorDialog(msg);
+            });
             console.log(locationError + ': ' , error);
         }
     }

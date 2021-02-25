@@ -46,27 +46,29 @@ export class MyOffersComponent implements OnInit {
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.value) {
-                    Util.loadingScreen();
-                    this.bookAdsService.delete(id)
-                        .pipe(take(1))
-                        .subscribe(() => {
-                                Util.stopLoading();
-                                this.translate.get('EXCHANGE.OFFER_EXCLUIDA').subscribe(msg => {
-                                    Util.showSuccessDialog(msg);
-                                });
-                                this.booksAdsTo = this.booksAdsTo.pipe(
-                                    map(ba => ba.filter(i => i.id !== id))
-                                );
-                            },
-                            error => {
-                                Util.stopLoading();
-                                this.verifyErrorOffer(error, 'error delete offer');
-                            });
+                   this.deleteService(id);
                 }
             });
         });
     }
-
+    deleteService(id: string): void {
+        Util.loadingScreen();
+        this.bookAdsService.delete(id)
+            .pipe(take(1))
+            .subscribe(() => {
+                    Util.stopLoading();
+                    this.translate.get('EXCHANGE.OFFER_EXCLUIDA').subscribe(msg => {
+                        Util.showSuccessDialog(msg);
+                    });
+                    this.booksAdsTo = this.booksAdsTo.pipe(
+                        map(ba => ba.filter(i => i.id !== id))
+                    );
+                },
+                error => {
+                    Util.stopLoading();
+                    this.verifyErrorOffer(error, 'error delete offer');
+                });
+    }
     verifyErrorOffer(error: any, locationError: string): void {
         let codMessage = '';
         if (error.error.message.includes('BAD003')) {

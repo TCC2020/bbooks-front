@@ -10,6 +10,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
 import {AuthService} from '../../../services/auth.service';
 import {userMock} from '../../../mocks/user.model.mock';
+import {errorMock} from '../../../mocks/error.model.mock';
+import {bookAdMock, bookAdsMock} from '../../../mocks/book-ad.mock';
+import {BookAdsService} from '../../../services/book-ads.service';
+import {of, throwError} from 'rxjs';
 
 describe('MyOffersComponent', () => {
     let component: MyOffersComponent;
@@ -17,6 +21,7 @@ describe('MyOffersComponent', () => {
     const authServiceMock = {
         getUser: jest.fn(() => userMock)
     };
+    let bookAdsServiceMock;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [MyOffersComponent],
@@ -36,17 +41,41 @@ describe('MyOffersComponent', () => {
                     useValue: authServiceMock
                 },
             ]
-        })
-            .compileComponents();
+        }).compileComponents();
+        bookAdsServiceMock = TestBed.inject(BookAdsService);
+
     }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(MyOffersComponent);
         component = fixture.componentInstance;
+        component.booksAdsTo = of(bookAdsMock);
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should delete', () => {
+        const spy = jest.spyOn(bookAdsServiceMock, 'delete').mockReturnValue(of(null));
+        component.deleteService(bookAdMock.id);
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(bookAdMock.id);
+    });
+
+    it('should delete catch error', () => {
+        const spy = jest.spyOn(bookAdsServiceMock, 'delete').mockReturnValue(throwError(errorMock));
+        component.deleteService(bookAdMock.id);
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(bookAdMock.id);
+    });
+
+    it('should verify error BAD003', () => {
+        const spy = jest.spyOn(component, 'verifyErrorOffer');
+        errorMock.error.message = 'BAD003';
+        component.verifyErrorOffer(errorMock, '');
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(errorMock, '');
     });
 });

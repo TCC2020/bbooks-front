@@ -6,6 +6,7 @@ bookAdMock.id = 'dfasefasef';
 bookAdMock.address = 'sp;itaqua;sp';
 bookAdMock.title = 'quero um livro';
 bookAdMock.condition = BookCondition.not_used;
+bookAdMock.images = ['first', 'second'];
 
 
 export const bookAdsMock = [];
