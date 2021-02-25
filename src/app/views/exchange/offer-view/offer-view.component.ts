@@ -53,7 +53,10 @@ export class OfferViewComponent implements OnInit {
                     this.getUserOffer();
                 }, error => {
                     Util.stopLoading();
-                    console.log('error book id', error);
+                    this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                        Util.showErrorDialog(message);
+                    });
+                    console.log('error book ad id', error);
                 });
         }
     }

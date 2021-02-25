@@ -20,6 +20,9 @@ import {errorMock} from '../../../mocks/error.model.mock';
 import {bookMock, booksMock} from '../../../mocks/book.model.mock';
 import {gBookMock} from '../../../mocks/google-book.model.mock';
 import {userbookMock} from '../../../mocks/userbook.model.mock';
+import {MockActivatedRoute} from '../../../mocks/ActivatedRoute.mock';
+import {groupMock} from '../../../mocks/group.mock';
+import {ActivatedRoute} from '@angular/router';
 
 describe('OfferViewComponent', () => {
     let component: OfferViewComponent;
@@ -27,9 +30,22 @@ describe('OfferViewComponent', () => {
     const authServiceMock = {
         getUser: jest.fn(() => userMock)
     };
+
+    const routeMock = {
+        snapshot: {
+            paramMap: {
+                    get: jest.fn(() => 'sdfafafasfsadf')
+                }
+        },
+        parent: new MockActivatedRoute({
+            params: {id: 'teste'}
+        }),
+        data: of({groupTo: groupMock})
+    };
     let bookAdsServiceMock;
     let booksServiceMock: BookService;
     let gBookServiceMock: GoogleBooksService;
+    let userServiceMock: UserService;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -53,11 +69,16 @@ describe('OfferViewComponent', () => {
                     provide: AuthService,
                     useValue: authServiceMock
                 },
+                {
+                    provide: ActivatedRoute,
+                    useValue: routeMock
+                },
             ]
         }).compileComponents();
         bookAdsServiceMock = TestBed.inject(BookAdsService);
         gBookServiceMock = TestBed.inject(GoogleBooksService);
         booksServiceMock = TestBed.inject(BookService);
+        userServiceMock = TestBed.inject(UserService);
 
     }));
 
@@ -125,4 +146,28 @@ describe('OfferViewComponent', () => {
         expect(spyGbook).toHaveBeenCalled();
         done();
     });
+
+
+    it('should get offer', () => {
+        const spy = jest.spyOn(bookAdsServiceMock, 'getById').mockReturnValue(of(bookAdMock));
+        component.getOffer();
+        expect(spy).toHaveBeenCalled();
+        expect(component).toBeTruthy();
+    });
+
+    it('should get offer and catch error', () => {
+        const spy = jest.spyOn(bookAdsServiceMock, 'getById').mockReturnValue(of(throwError(errorMock)));
+        component.getOffer();
+        expect(spy).toHaveBeenCalled();
+        expect(component).toBeTruthy();
+    });
+
+    it('should get user offer', () => {
+        const spy = jest.spyOn(userServiceMock, 'getById').mockReturnValue(of(userMock));
+        component.getUserOffer();
+        expect(spy).toHaveBeenCalled();
+        expect(component).toBeTruthy();
+    });
+
+
 });
