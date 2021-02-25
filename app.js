@@ -36,7 +36,8 @@ const cspPolicy = {
         'https://accounts.google.com/'
     ],
     'img-src': [
-        csp.SRC_ANY
+        csp.SRC_SELF,
+        csp.SRC_DATA
     ]
 };
 
@@ -51,8 +52,7 @@ app.use(helmet.noSniff());
 app.use(helmet.frameguard());
 app.use(permissionsPolicy({
     features: {
-        fullscreen: ['self'],
-        syncXhr: ['"none"']
+        fullscreen: ['self']
     }
 }));
 
