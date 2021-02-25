@@ -36,7 +36,7 @@ const cspPolicy = {
         'https://accounts.google.com/'
     ],
     'img-src': [
-        csp.SRC_SELF,
+        csp.SRC_ANY,
         csp.SRC_DATA
     ]
 };
