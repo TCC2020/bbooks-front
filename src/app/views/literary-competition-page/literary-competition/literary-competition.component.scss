@@ -67,6 +67,20 @@
   padding: 10px 0;
 }
 
+.botoes-editar button {
+  margin: 0 10px 0 0;
+}
+
+.input-edicao {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.input-edicao textarea {
+  height: 160px;
+}
+
 @media screen and (max-width: 800px) {
   .container-membros {
     flex-wrap: wrap;
