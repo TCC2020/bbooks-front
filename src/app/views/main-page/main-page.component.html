@@ -1,5 +1,6 @@
+<div class="container-geral">
 <form [formGroup]="searchControl" class="form-inline mr-auto" (ngSubmit)="searchBook()">
-    <div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayout.xs="column">
+    <!--<div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayout.xs="column">
         <mat-form-field fxFlex="40" fxFlex.xs="100">
             <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
             <input matInput formControlName="book" matInput type="text" >
@@ -9,10 +10,19 @@
         </div>
 
 
+    </div>-->
+    <div class="container-pesquisar">
+        <mat-form-field class="barra-pesquisar" appearance="outline">
+            <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
+            <input matInput type="text" formControlName="book">
+            <button mat-button matSuffix mat-icon-button aria-label="Pesquisar" type="submit">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
     </div>
 </form>
 <mat-paginator
-        style="background-color: #f1f1f1"
+
         *ngIf="books?.length > 0"
         [length]="totalBooks"
                [pageSize]="pageSize"
@@ -31,4 +41,5 @@
                 [canEdit]="true">
         </app-book-card>
     </div>
+</div>
 </div>

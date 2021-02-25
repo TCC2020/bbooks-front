@@ -50,6 +50,10 @@ import { MembersLiteraryCompetitionComponent } from './views/literary-competitio
 import { StoryLiteraryCompetitionComponent } from './views/literary-competition-page/story-literary-competition/story-literary-competition.component';
 // tslint:disable-next-line:max-line-length
 import { AdministratorsLiteraryCompetitionComponent } from './views/literary-competition-page/administrators-literary-competition/administrators-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { CreateLiteraryCompetitionComponent } from './views/literary-competition-page/create-literary-competition/create-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { ListLiteraryCompetitionComponent } from './views/literary-competition-page/list-literary-competition/list-literary-competition.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -74,7 +78,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         LiteraryCompetitionComponent,
         MembersLiteraryCompetitionComponent,
         StoryLiteraryCompetitionComponent,
-        AdministratorsLiteraryCompetitionComponent
+        AdministratorsLiteraryCompetitionComponent,
+        CreateLiteraryCompetitionComponent,
+        ListLiteraryCompetitionComponent
     ],
     imports: [
         BrowserModule,

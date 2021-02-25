@@ -1,20 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MembersLiteraryCompetitionComponent } from './members-literary-competition.component';
-import {RouterTestingModule} from '@angular/router/testing';
+import { CreateLiteraryCompetitionComponent } from './create-literary-competition.component';
 import {MaterialModule} from '../../../material/material.module';
+import {RouterLink} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-describe('MembersLiteraryCompetitionComponent', () => {
-  let component: MembersLiteraryCompetitionComponent;
-  let fixture: ComponentFixture<MembersLiteraryCompetitionComponent>;
+describe('CreateLiteraryCompetitionComponent', () => {
+  let component: CreateLiteraryCompetitionComponent;
+  let fixture: ComponentFixture<CreateLiteraryCompetitionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MembersLiteraryCompetitionComponent ],
+      declarations: [ CreateLiteraryCompetitionComponent ],
       imports: [
-        RouterTestingModule,
           MaterialModule,
+          RouterTestingModule,
           BrowserAnimationsModule
       ]
     })
@@ -22,7 +23,7 @@ describe('MembersLiteraryCompetitionComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MembersLiteraryCompetitionComponent);
+    fixture = TestBed.createComponent(CreateLiteraryCompetitionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

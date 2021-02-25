@@ -1,0 +1,51 @@
+.container-geral {
+  width: 75%;
+  padding: 20px 50px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+.linha-input {
+
+
+}
+
+.linha-input h2, .linha-input mat-form-field {
+  font-size: 1rem;
+  margin: auto 0;
+}
+
+.linha-input h2 {
+  font-weight: bold;
+  margin: auto 0;
+  font-size: 1.2rem;
+}
+
+.linha-input mat-form-field {
+  width: 100%;
+}
+
+.container-datas {
+  flex-direction: row;
+  display: flex;
+  gap: 10px;
+}
+
+.container-datas mat-form-field {
+  width: auto;
+}
+
+textarea {
+  height: 160px;
+}
+
+@media screen and (max-width: 1000px) {
+  .container-geral {
+    width: calc(100% - 40px);
+    padding: 20px;
+  }
+
+  .container-datas {
+    display: block;
+  }
+}
