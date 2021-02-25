@@ -1,0 +1,65 @@
+<div class="container-geral">
+    <div class="container-pesquisar">
+        <mat-form-field class="barra-pesquisar" appearance="outline">
+            <mat-label>Pesquisar competição</mat-label>
+            <input matInput type="text">
+            <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="botao-criar-competicao">
+        <button type="button" mat-raised-button color="primary" [routerLink]="['/criar-competicao']">
+            <mat-icon>add</mat-icon>
+            Criar competição
+        </button>
+    </div>
+
+    <div class="container-competicoes">
+        <mat-card [routerLink]="['/competicao-literaria']">
+            <div>
+                <h2>Título</h2>
+            </div>
+            <div>
+                <p>Inscrições até <strong>24/02/2021</strong></p>
+                <p>Esta competição será encerrada em <strong>31/03/2021</strong></p>
+            </div>
+        </mat-card>
+        <mat-card [routerLink]="['/competicao-literaria']">
+            <div>
+                <h2>Título</h2>
+            </div>
+            <div>
+                <p>Inscrições até <strong>24/02/2021</strong></p>
+                <p>Esta competição será encerrada em <strong>31/03/2021</strong></p>
+            </div>
+        </mat-card>
+        <mat-card [routerLink]="['/competicao-literaria']">
+            <div>
+                <h2>Título</h2>
+            </div>
+            <div>
+                <p>Inscrições até <strong>24/02/2021</strong></p>
+                <p>Esta competição será encerrada em <strong>31/03/2021</strong></p>
+            </div>
+        </mat-card>
+        <mat-card [routerLink]="['/competicao-literaria']">
+            <div>
+                <h2>Título</h2>
+            </div>
+            <div>
+                <p>Inscrições até <strong>24/02/2021</strong></p>
+                <p>Esta competição será encerrada em <strong>31/03/2021</strong></p>
+            </div>
+        </mat-card>
+        <mat-card [routerLink]="['/competicao-literaria']">
+            <div>
+                <h2>Título</h2>
+            </div>
+            <div>
+                <p>Inscrições até <strong>24/02/2021</strong></p>
+                <p>Esta competição será encerrada em <strong>31/03/2021</strong></p>
+            </div>
+        </mat-card>
+    </div>
+</div>

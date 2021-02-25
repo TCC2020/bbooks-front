@@ -19,6 +19,10 @@ import {MembersLiteraryCompetitionComponent} from './views/literary-competition-
 import {AdministratorsLiteraryCompetitionComponent} from './views/literary-competition-page/administrators-literary-competition/administrators-literary-competition.component';
 // tslint:disable-next-line:max-line-length
 import {StoryLiteraryCompetitionComponent} from './views/literary-competition-page/story-literary-competition/story-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import {CreateLiteraryCompetitionComponent} from './views/literary-competition-page/create-literary-competition/create-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import {ListLiteraryCompetitionComponent} from './views/literary-competition-page/list-literary-competition/list-literary-competition.component';
 
 const routes: Routes = [
     {
@@ -66,6 +70,14 @@ const routes: Routes = [
     },
     {
         path: 'historia-membro', component: StoryLiteraryCompetitionComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'criar-competicao', component: CreateLiteraryCompetitionComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'competicoes', component: ListLiteraryCompetitionComponent,
         canActivate: [AuthGuard],
     },
     {
