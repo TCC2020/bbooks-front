@@ -1,0 +1,78 @@
+.geral {
+  width: calc(100% - 40px);
+}
+
+.container-conteudo {
+  width: 75%;
+  margin: 10px auto 0;
+}
+
+.container-cinza, .container-branco {
+  width: 100%;
+  padding: 30px 20px;
+}
+
+.container-branco {
+  background: #ffffff;
+}
+
+.container-cinza {
+  background: #e5e8ea;
+}
+
+.paragrafo-competicao {
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.titulo-competicao {
+  font-size: 1.75rem;
+}
+
+.membro {
+  width: 20%;
+  padding: 10px;
+}
+
+.foto-membro img, .nome-membro p {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.foto-membro img {
+  width: 100px;
+  height: auto;
+}
+
+.nome-membro p {
+  font-size: 1rem;
+}
+
+.foto-membro, .nome-membro {
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.container-membros {
+  flex-direction: row;
+  display: flex;
+  gap: 10px;
+}
+
+.ver-todos-membros {
+  text-align: center;
+  padding: 10px 0;
+}
+
+@media screen and (max-width: 800px) {
+  .container-membros {
+    flex-direction: row;
+    display: block;
+    gap: 0px;
+  }
+  .membro {
+    width: 100%;
+  }
+}

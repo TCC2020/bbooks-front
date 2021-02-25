@@ -102,6 +102,12 @@
                 <mat-icon>donut_large</mat-icon>
                 <span>{{'PADRAO.ANDAMENTO_META' | translate}}</span>
             </div>
+
+            <div mat-menu-item  [routerLink]="['/competicao-literaria']">
+                <mat-icon>emoji_events</mat-icon>
+                <span>Competição Literária</span>
+            </div>
+
             <div mat-menu-item (click)="logout()">
                 <mat-icon>login</mat-icon>
                 <span>{{'NAV.SAIR' | translate}}</span>
