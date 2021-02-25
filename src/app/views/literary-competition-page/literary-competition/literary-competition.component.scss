@@ -49,9 +49,8 @@
 }
 
 .foto-membro, .nome-membro {
-  margin: 0 auto;
+  margin: 0 auto 10px;
   width: 100%;
-  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -59,6 +58,8 @@
   flex-direction: row;
   display: flex;
   gap: 10px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .ver-todos-membros {
@@ -68,9 +69,16 @@
 
 @media screen and (max-width: 800px) {
   .container-membros {
-    flex-direction: row;
-    display: block;
-    gap: 0px;
+    flex-wrap: wrap;
+  }
+  .membro {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container-membros {
+    flex-wrap: wrap;
   }
   .membro {
     width: 100%;

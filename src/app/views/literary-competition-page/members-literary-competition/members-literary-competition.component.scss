@@ -1,0 +1,52 @@
+.container-geral {
+  width: 75%;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+}
+
+.container-membros {
+  width: calc(100% - 40px);
+  padding: 20px;
+}
+
+.container-membro {
+  border-bottom: 1px solid black;
+  flex-direction: row;
+  display: flex;
+  gap: 10px;
+  height: auto;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.foto-membro img {
+  width: 100px;
+  height: auto;
+}
+
+.foto-membro {
+  width: 100px;
+  padding: 10px;
+  height: 100%;
+}
+
+.dados-membro p {
+  font-size: 1rem;
+}
+
+.dados-membro {
+  width: calc(100% - 100px);
+}
+
+@media screen and (max-width: 400px) {
+  .container-membro {
+    flex-wrap: wrap;
+  }
+  .foto-membro, .dados-membro {
+    width: 100%;
+    text-align: center;
+  }
+  .dados-membro {
+    margin-bottom: 10px;
+  }
+}

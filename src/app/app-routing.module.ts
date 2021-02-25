@@ -13,6 +13,9 @@ import {AuthGuard} from './guards/auth-guard';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
 import {LiteraryCompetitionComponent} from './views/literary-competition-page/literary-competition/literary-competition.component';
+import {MembersLiteraryCompetitionComponent} from './views/literary-competition-page/members-literary-competition/members-literary-competition.component';
+import {AdministratorsLiteraryCompetitionComponent} from './views/literary-competition-page/administrators-literary-competition/administrators-literary-competition.component';
+import {StoryLiteraryCompetitionComponent} from './views/literary-competition-page/story-literary-competition/story-literary-competition.component';
 
 const routes: Routes = [
     {
@@ -48,6 +51,18 @@ const routes: Routes = [
     },
     {
         path: 'competicao-literaria', component: LiteraryCompetitionComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'membros-competicao', component: MembersLiteraryCompetitionComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'administradores-competicao', component: AdministratorsLiteraryCompetitionComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'historia-membro', component: StoryLiteraryCompetitionComponent,
         canActivate: [AuthGuard],
     },
     {
