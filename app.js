@@ -34,7 +34,10 @@ const cspPolicy = {
         'https://facebook.com',
         'https://www.googleapis.com/',
         'https://accounts.google.com/'
-        ]
+    ],
+    'img-src': [
+        csp.SRC_ANY
+    ]
 };
 
 const globalCSP = csp.getCSP(cspPolicy);
