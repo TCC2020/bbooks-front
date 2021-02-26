@@ -111,12 +111,18 @@ export class LoginComponent implements OnInit {
     }
 
     LoginFinalizeToken(userLogin): void {
+        Util.loadingScreen();
         this.authService.loginToken(userLogin).subscribe(res => {
+                Util.stopLoading();
                 this.authService.authenticate(res, this.loginControl.value.keepLogin);
-                this.router.navigateByUrl('/');
+                this.router.navigateByUrl('/feed');
             },
             (err) => {
-                alert(err.error.message);
+                Util.stopLoading();
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                    Util.showErrorDialog(message);
+                });
+                console.log('error login token', err);
             }
         );
     }
