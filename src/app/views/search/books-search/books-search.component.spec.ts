@@ -20,6 +20,7 @@ describe('BooksSearchComponent', () => {
         TestBed.configureTestingModule({
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
             imports: [
+                MaterialModule,
                 BrowserModule,
                 FormsModule,
                 ReactiveFormsModule,
