@@ -18,6 +18,7 @@ import {TagService} from '../../../services/tag.service';
 import {take} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
 import {zip} from 'rxjs';
+import {Util} from '../Utils/util';
 
 @Component({
     selector: 'app-book-add-dialog',
@@ -156,21 +157,26 @@ export class BookAddDialogComponent implements OnInit {
             // tslint:disable-next-line:radix
             this.userBookTo.idBook = Number.parseInt(this.Book.id);
         if (this.tagsBook.length > 0 || this.userBookTo.id) {
+            Util.loadingScreen();
             this.userbookService.update(this.userBookTo).subscribe(
                 value => {
+                    Util.stopLoading();
                     this.dialogRef.close(value);
                 },
                 error => {
+                    Util.stopLoading();
                     console.log('TagDialog Error', error);
                 }
             );
-
         } else {
+            Util.loadingScreen();
             this.userbookService.save(this.userBookTo).subscribe(
                 value => {
+                    Util.stopLoading();
                     this.dialogRef.close(value);
                 },
                 error => {
+                    Util.stopLoading();
                     console.log('TagDialog Error', error);
                 }
             );
