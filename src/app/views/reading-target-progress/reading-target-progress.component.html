@@ -1,15 +1,15 @@
 <div class="container-geral">
     <div class="container-progresso">
         <h2>{{'PADRAO.ANDAMENTO_META' | translate}} - {{currentDate}}</h2>
-        <div class="barra-de-progresso">
+        <div class="barra-de-progresso" *ngIf="currentReadingTarget">
             <mat-progress-bar class="progresso-andamento-meta-leitura" mode="determinate" [value]="currentReadingTarget?.progress?.progress"></mat-progress-bar>
             <div class="porcentagem">{{currentReadingTarget?.progress?.progress | number:'1.1-2'}}%</div>
         </div>
-        <p class="quantidade-lida">{{currentReadingTarget?.progress?.done}}/{{currentReadingTarget?.progress?.done + currentReadingTarget?.progress?.remaining}}</p>
-        <button *ngIf="currentReadingTarget?.targets.length > 1" type="button" mat-flat-button color="accent" routerLink="/metas-anteriores">{{'PADRAO.METAS_ANTEREIORS' | translate}}</button>
+        <p class="quantidade-lida" *ngIf="currentReadingTarget">{{currentReadingTarget?.progress?.done}}/{{currentReadingTarget?.progress?.done + currentReadingTarget?.progress?.remaining}}</p>
+        <button *ngIf="previousGoals?.length > 1" type="button" mat-flat-button color="accent" routerLink="/metas-anteriores">{{'PADRAO.METAS_ANTEREIORS' | translate}}</button>
     </div>
     <!--Começar o for dos livros-->
-    <div class="texto-meta-atual" *ngIf="currentReadingTarget?.targets.length == 0">
+    <div class="texto-meta-atual" *ngIf="!currentReadingTarget">
         <p>Você ainda não possui livro na sua Meta de Leitura.</p>
     </div>
     <div *ngIf="currentReadingTarget?.targets.length > 0">
