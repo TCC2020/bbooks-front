@@ -95,7 +95,7 @@
                     <!--                    </div>-->
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <a
-                            href="https://web.whatsapp.com/send?phone={{bookAdTO?.contact}}&text=Olá+{{userOffer?.profile?.name}},+encontrei+sua+oferta+*{{bookAdTO?.title?.replace(' ', '+')}}*,+gostaria+de+mais+informações!"
+                            href="https://{{isMobile() ? 'api.whatsapp.com' : 'web.whatsapp.com'}}/send?phone={{bookAdTO?.contact}}&text=Olá+{{userOffer?.profile?.name}},+encontrei+sua+oferta+*{{bookAdTO?.title?.replace(' ', '+')}}*,+gostaria+de+mais+informações!"
                             target="_blank"
                             class="linkWhatsapp">
                             <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}
