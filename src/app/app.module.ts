@@ -54,6 +54,7 @@ import { AdministratorsLiteraryCompetitionComponent } from './views/literary-com
 import { CreateLiteraryCompetitionComponent } from './views/literary-competition-page/create-literary-competition/create-literary-competition.component';
 // tslint:disable-next-line:max-line-length
 import { ListLiteraryCompetitionComponent } from './views/literary-competition-page/list-literary-competition/list-literary-competition.component';
+import { BooksSearchComponent } from './views/search/books-search/books-search.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
