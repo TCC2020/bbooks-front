@@ -293,7 +293,8 @@
   },
   "SEARCH": {
     "people": "people",
-    "groups": "groups"
+    "groups": "groups",
+    "books": "books"
   },
   "EXCHANGE": {
     "TROCA_DE_LIVRO": "Book exchange",

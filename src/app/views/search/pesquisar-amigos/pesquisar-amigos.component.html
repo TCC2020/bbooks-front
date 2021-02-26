@@ -1,15 +1,3 @@
-<form [formGroup]="pesquisarUsuarios" class="form-inline mr-auto" fxLayout="row">
-    <div class="container-pesquisar">
-        <div>
-            <mat-form-field style="margin: 25px;">
-                <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
-                <input matInput matInput type="text" #nome (keyup)="pesquisar(nome)">
-            </mat-form-field>
-            <button mat-raised-button color="accent" id="search-bt"
-                    type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
-        </div>
-    </div>
-</form>
 <div class="container-da-lista">
     <div class="container-lista-amigos">
         <!--começa card-->

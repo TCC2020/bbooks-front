@@ -3,9 +3,8 @@ import {FormBuilder} from '@angular/forms';
 import {UserTO} from 'src/app/models/userTO.model';
 import {ProfileService} from 'src/app/services/profile.service';
 import {UserService} from 'src/app/services/user.service';
-import {GroupService} from '../../../services/group.service';
 import {ActivatedRoute} from '@angular/router';
-import {map} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 
 @Component({
     selector: 'app-pesquisar-amigos',
@@ -14,21 +13,15 @@ import {map} from 'rxjs/operators';
 })
 export class PesquisarAmigosComponent implements OnInit {
 
-    pesquisarUsuarios;
     users: UserTO[];
-    filterUsers: UserTO[];
+    filterUsers: UserTO[] = [];
 
     constructor(
         private fb: FormBuilder,
         private userService: UserService,
         private profileService: ProfileService,
-        public groupService: GroupService,
         private route: ActivatedRoute
-
     ) {
-        this.pesquisarUsuarios = this.fb.group({
-            user: ['']
-        });
     }
 
     ngOnInit(): void {
@@ -37,32 +30,21 @@ export class PesquisarAmigosComponent implements OnInit {
                 map(params => params.search)
             )
             .subscribe(params => {
-                    console.log(params);
+                if (params) {
+                    this.userService.getAllUsers()
+                        .pipe(
+                            take(1),
+                            map(users => {
+                                return users.filter(user =>
+                                    user?.profile?.name.concat(user?.profile?.lastName).toLocaleLowerCase().replace(' ', '')
+                                        .includes(params.toLocaleLowerCase().replace(' ', '')));
+                            })
+                        ).subscribe(users => {
+                        this.filterUsers = users;
+                    });
+                } else {
+                    this.filterUsers = [];
                 }
-            );
-        this.getUsers();
+            });
     }
-
-    /*pesquisar(nome) {
-        this.filterUsers = this.users.filter(user => {
-            if(user) {
-                user.profile.name.concat(user.profile.lastName).toLocaleLowerCase().replace(' ', '')
-                .includes(nome.value.toLocaleLowerCase().replace(' ', ''));
-            }
-        })
-    }*/
-
-
-    pesquisar(nome) {
-        this.filterUsers = this.users.filter(user =>
-                user?.profile?.name.concat(user?.profile?.lastName).toLocaleLowerCase().replace(' ', '')
-                .includes(nome.value.toLocaleLowerCase().replace(' ', '')));
-    }
-
-    getUsers() {
-        this.userService.getAllUsers().subscribe(response => {
-            this.users = response;
-        });
-    }
-
 }

@@ -41,7 +41,6 @@ describe('PesquisarAmigosComponent', () => {
             ],
             providers: [
                 FormBuilder,
-                ConsultaCepService,
                 ProfileService,
                 SocialAuthServiceConfigMock,
                 {
