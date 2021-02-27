@@ -31,6 +31,8 @@ describe('AboutGroupComponent', () => {
     const authServiceMock = {
         getUser: jest.fn(() => userMock)
     };
+    let groupMemberServiceMock: GroupMemberService;
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [AboutGroupComponent],
@@ -60,6 +62,8 @@ describe('AboutGroupComponent', () => {
 
         httpMock = TestBed.inject(HttpTestingController);
         groupServcieMock = TestBed.inject(GroupService);
+        groupMemberServiceMock = TestBed.inject(GroupMemberService);
+
     }));
 
     beforeEach(() => {
