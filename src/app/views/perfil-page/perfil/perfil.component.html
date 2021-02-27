@@ -214,13 +214,13 @@
                         <mat-card-subtitle>{{'CONFIG_PERFIL.VER_ESTANTE' | translate}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
-                        <a routerLink="/book">
+                        <a routerLink="/mybooks">
                             <button mat-button class="botao-editar">{{'CONFIG_PERFIL.MSG_VEJA_LIVROS' | translate}}</button>
                         </a>
                     </mat-card-actions>
                 </mat-card>
 
-                <mat-card class="card">
+                <mat-card class="card" *ngIf="false">
                     <mat-card-header>
                         <mat-card-title>
                             <h2 name="h2-estatistica" id="h2-estatistica">{{'CONFIG_PERFIL.ESTATISTICA' | translate}}</h2>

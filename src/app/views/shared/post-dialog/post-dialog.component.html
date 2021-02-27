@@ -39,22 +39,12 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
-                                <div>
-                                    <button mat-icon-button [matMenuTriggerFor]="menuInfo">
-                                        <mat-icon>help_outline</mat-icon>
-                                    </button>
-                                    <mat-menu #menuInfo="matMenu" class="infoMenu">
-                                        <div mat-menu-item disabled class="infoMenuItem">
-                                            <mat-icon class="iconStatusLidos">public</mat-icon>
-                                            <span >{{'PADRAO.POST_PUBLICO' | translate}}</span>
-                                        </div>
-                                        <div mat-menu-item disabled class="infoMenuItem">
-                                            <mat-icon class="iconStatusLendo" >lock</mat-icon>
-                                            <span>{{'PADRAO.POST_PRIVADO' | translate}}</span>
-                                        </div>
-                                    </mat-menu>
+                                <div class="infoMenuItem" *ngIf="this.formFeed.get('privacy').value === 'public_all'">
+                                    <span >{{'PADRAO.POST_PUBLICO' | translate}}</span>
                                 </div>
-
+                                <div class="infoMenuItem" *ngIf="this.formFeed.get('privacy').value === 'friends_only'">
+                                    <span>{{'PADRAO.POST_PRIVADO' | translate}}</span>
+                                </div>
                             </div>
 
                         </div>

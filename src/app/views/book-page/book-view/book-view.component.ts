@@ -109,6 +109,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                     console.log('Error: getDataStatusByBooksGoogleBook', error);
                 });
     }
+
     getDataStatusByBookId(): void {
         Util.loadingScreen();
         this.userBookService.getDataStatusByBooksBookId(this.book.id)
@@ -122,40 +123,60 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 });
     }
 
-    getBook(): void {
+    getBook(userbookResult?): void {
         Util.loadingScreen();
         if (this.book.api === 'google') {
-            this.bookService.getAllUserBooks().subscribe((userbooks) => {
-                this.gBookService.getById(this.book.id).subscribe(b => {
-                    const book = this.bookService.convertBookToModel(b);
-                    userbooks.books.forEach(userbook => {
-                        if (userbook.idBookGoogle === book.id) {
-                            book.status = userbook.status;
-                            book.idUserBook = userbook.id;
-                            book.finishDate = userbook.finishDate;
-                        }
-                    });
+            this.gBookService.getById(this.book.id).subscribe(b => {
+                Util.stopLoading();
+                const book = this.bookService.convertBookToModel(b);
+                if (userbookResult) {
+                    book.status = userbookResult.status;
+                    book.idUserBook = userbookResult.id;
+                    book.finishDate = userbookResult.finishDate;
                     this.book = book;
-                    Util.stopLoading();
                     this.getDataStatusByGoogleBook();
                     this.verifyReadingTarget();
-                });
+                } else {
+                    this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                        userbooks.books.forEach(userbook => {
+                            if (userbook.idBookGoogle === book.id) {
+                                book.status = userbook.status;
+                                book.idUserBook = userbook.id;
+                                book.finishDate = userbook.finishDate;
+                            }
+                        });
+                        Util.stopLoading();
+                        this.book = book;
+                        this.getDataStatusByGoogleBook();
+                        this.verifyReadingTarget();
+                    });
+                }
             });
         } else {
-            this.bookService.getAllUserBooks().subscribe((userbooks) => {
-                // tslint:disable-next-line:radix
-                this.bookService.getById(Number.parseInt(this.book.id)).subscribe(b => {
-                    userbooks.books.forEach(userbook => {
-                        if (userbook.idBook === b.id) {
-                            b.status = userbook.status;
-                            b.idUserBook = userbook.id;
-                            b.finishDate = userbook.finishDate;
-                        }
-                    });
+            // tslint:disable-next-line:radix
+            this.bookService.getById(Number.parseInt(this.book.id)).subscribe(b => {
+
+                if (userbookResult) {
+                    b.status = userbookResult.status;
+                    b.idUserBook = userbookResult.id;
+                    b.finishDate = userbookResult.finishDate;
                     this.book = b;
-                    this.getDataStatusByBookId();
+                    this.getDataStatusByGoogleBook();
                     this.verifyReadingTarget();
-                });
+                } else {
+                    this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                        userbooks.books.forEach(userbook => {
+                            if (userbook.idBook === b.id) {
+                                b.status = userbook.status;
+                                b.idUserBook = userbook.id;
+                                b.finishDate = userbook.finishDate;
+                            }
+                        });
+                        this.book = b;
+                        this.getDataStatusByBookId();
+                        this.verifyReadingTarget();
+                    });
+                }
             });
         }
     }
@@ -226,8 +247,8 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 book
             }
         });
-        dialogRef.afterClosed().subscribe(() => {
-            this.getBook();
+        dialogRef.afterClosed().subscribe((result) => {
+            this.getBook(result);
         });
     }
 

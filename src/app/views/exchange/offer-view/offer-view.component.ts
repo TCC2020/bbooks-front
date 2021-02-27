@@ -181,4 +181,8 @@ export class OfferViewComponent implements OnInit {
             console.log(locationError + ': ' , error);
         }
     }
+    isMobile() {
+        const userAgent = window.navigator.userAgent.toLocaleLowerCase();
+        return userAgent.includes('iphone') || userAgent.includes('android');
+    }
 }

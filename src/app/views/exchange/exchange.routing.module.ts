@@ -10,6 +10,7 @@ import {MyExchangeComponent} from './my-exchange/my-exchange.component';
 import {ExchangeReceivedComponent} from './exchange-received/exchange-received.component';
 import {ExchangeSentComponent} from './exchange-sent/exchange-sent.component';
 
+
 const exchangeRouter = [
     {
         path: 'exchange',
