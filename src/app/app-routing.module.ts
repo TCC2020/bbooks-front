@@ -57,30 +57,6 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path: 'competicao-literaria', component: LiteraryCompetitionComponent,
-        canActivate: [AuthGuard],
-    },
-    {
-        path: 'membros-competicao', component: MembersLiteraryCompetitionComponent,
-        canActivate: [AuthGuard],
-    },
-    {
-        path: 'administradores-competicao', component: AdministratorsLiteraryCompetitionComponent,
-        canActivate: [AuthGuard],
-    },
-    {
-        path: 'historia-membro', component: StoryLiteraryCompetitionComponent,
-        canActivate: [AuthGuard],
-    },
-    {
-        path: 'criar-competicao', component: CreateLiteraryCompetitionComponent,
-        canActivate: [AuthGuard],
-    },
-    {
-        path: 'competicoes', component: ListLiteraryCompetitionComponent,
-        canActivate: [AuthGuard],
-    },
-    {
         path: 'pagenotfound',
         component: PageNotFoundComponent
     },
@@ -98,6 +74,11 @@ const routes: Routes = [
         path: '' ,
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/groups/groups.module').then(m => m.GroupsModule)
+    },
+    {
+        path: 'literary-competition' ,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/literary-competition-page/literary-competition.module').then(m => m.LiteraryCompetitionModule)
     },
     {
         path: '' ,

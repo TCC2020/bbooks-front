@@ -1,57 +1,91 @@
-<div class="container-geral">
-    <div class="linha-input">
-        <h2>Título</h2>
-        <mat-form-field appearance="outline">
-            <mat-label>Título</mat-label>
-            <input matInput>
-        </mat-form-field>
-    </div>
-    <div class="linha-input">
-        <h2>Descrição</h2>
-        <mat-form-field appearance="outline">
-            <mat-label>Descrição</mat-label>
-            <textarea matInput></textarea>
-        </mat-form-field>
-    </div>
-    <div class="linha-input">
-        <h2>Regras</h2>
-        <mat-form-field appearance="outline">
-            <mat-label>Regras</mat-label>
-            <textarea matInput></textarea>
-        </mat-form-field>
-    </div>
-    <div class="linha-input">
-        <h2>Datas</h2>
-        <div class="container-datas">
-            <div class="linha-data">
-                <h3>Início das Inscrições</h3>
-                <mat-form-field color="accent" appearance="outline">
-                    <input matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
+<form [formGroup]="formCreateLiterary">
+    <div class="container-geral">
+        <div class="linha-input">
+            <h2>Título</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>Título</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngIf="formCreateLiterary.get('title').hasError('required')">
+                    Título é <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="linha-input">
+            <h2>Regras</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>Regras</mat-label>
+                <textarea matInput formControlName="rules"></textarea>
+                <mat-error *ngIf="formCreateLiterary.get('rules').hasError('required')">
+                    Regras é <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="linha-input">
+            <h2>Datas</h2>
+            <div class="container-datas">
+                <div class="linha-data">
+                    <h3>Início das Inscrições</h3>
+                    <mat-form-field color="accent" appearance="outline">
+                        <input matInput [matDatepicker]="picker" formControlName="subscriptionDate">
+                        <mat-error *ngIf="formCreateLiterary.get('title').hasError('required')">
+                            Início das Inscrições é <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                        </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="linha-data">
+                    <h3>Fim das Inscrições</h3>
+                    <mat-form-field color="accent" appearance="outline">
+                        <input matInput [matDatepicker]="picker1" formControlName="subscriptionFinalDate">
+                        <mat-error *ngIf="formCreateLiterary.get('title').hasError('required')">
+                            Fim das Inscrições <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                        </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="linha-data">
+                    <h3>Fim da Competição</h3>
+                    <mat-form-field color="accent" appearance="outline">
+                        <input matInput [matDatepicker]="picker2" formControlName="finalDate">
+                        <mat-error *ngIf="formCreateLiterary.get('title').hasError('required')">
+                            Fim da competição <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                        </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
             </div>
-            <div class="linha-data">
-                <h3>Fim das Inscrições</h3>
-                <mat-form-field color="accent" appearance="outline">
-                    <input matInput [matDatepicker]="picker1">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-            </div>
-            <div class="linha-data">
-                <h3>Fim da Competição</h3>
-                <mat-form-field color="accent" appearance="outline">
-                    <input matInput [matDatepicker]="picker2">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                </mat-form-field>
+        </div>
+        <div>
+            <button type="button"
+                    mat-raised-button
+                    color="primary"
+                    *ngIf="!competitionTO"
+                    [disabled]="this.formCreateLiterary.invalid"
+                    (click)="createLiterary()">
+                Criar competiçaão
+            </button>
+            <div class="botoes-editar-do-create">
+                <button
+                        type="button"
+                        mat-raised-button
+                        color="primary"
+                        *ngIf="competitionTO"
+                        [disabled]="this.formCreateLiterary.invalid"
+                        (click)="editLiterary()">
+                    Editar
+                </button>
+                <button
+                        type="button"
+                        mat-raised-button
+                        *ngIf="competitionTO"
+                        [disabled]="this.formCreateLiterary.invalid"
+                        [routerLink]="['/literary-competition/' + competitionTO.id]">
+                    Cancelar
+                </button>
             </div>
         </div>
     </div>
-    <div>
-        <button type="button" mat-raised-button color="primary" [routerLink]="['/criar-competicao']">
-            Criar competição
-        </button>
-    </div>
-</div>
+</form>

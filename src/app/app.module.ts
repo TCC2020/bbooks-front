@@ -55,6 +55,7 @@ import { CreateLiteraryCompetitionComponent } from './views/literary-competition
 // tslint:disable-next-line:max-line-length
 import { ListLiteraryCompetitionComponent } from './views/literary-competition-page/list-literary-competition/list-literary-competition.component';
 import { BooksSearchComponent } from './views/search/books-search/books-search.component';
+import {LiteraryCompetitionModule} from './views/literary-competition-page/literary-competition.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -75,13 +76,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         PageNotFoundComponent,
         UploadComponent,
         ReadingTargetProgressComponent,
-        PreviousGoalsComponent,
-        LiteraryCompetitionComponent,
-        MembersLiteraryCompetitionComponent,
-        StoryLiteraryCompetitionComponent,
-        AdministratorsLiteraryCompetitionComponent,
-        CreateLiteraryCompetitionComponent,
-        ListLiteraryCompetitionComponent
+        PreviousGoalsComponent
     ],
     imports: [
         BrowserModule,
@@ -100,6 +95,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         FeedPageModule,
         BookModule,
         ExchangeModule,
+        LiteraryCompetitionModule,
         PerfilPageModule,
         SharedModule,
         StoreModule.forRoot({}),

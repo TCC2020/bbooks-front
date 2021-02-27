@@ -12,7 +12,7 @@ import {BookPagination} from '../models/pagination/book.pagination';
 })
 export class CompetitionService {
 
-  api: string = environment.api + 'competitions/';
+  api: string = environment.competitionApi + 'competitions/';
 
   constructor(private http: HttpClient) { }
 
@@ -26,7 +26,7 @@ export class CompetitionService {
   save(competition: CompetitionTO): Observable<CompetitionTO> {
     return this.http.post<CompetitionTO>(this.api, competition);
   }
-  update(competition: CompetitionTO, id: string): Observable<CompetitionTO> {
+  update(competition: CompetitionTO): Observable<CompetitionTO> {
     return this.http.put<CompetitionTO>(this.api + competition.id, competition);
   }
   delete(id: string): Observable<void> {
