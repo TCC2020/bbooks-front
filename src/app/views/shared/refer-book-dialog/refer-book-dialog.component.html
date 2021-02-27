@@ -1,10 +1,9 @@
 <form [formGroup]="pesquisarUsuarios"  class="form-inline mr-auto">
     <div class="container-pesquisar">
-        <mat-form-field style="margin: 25px;">
+        <mat-form-field style="margin: 25px;" appearance="outline">
             <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
-            <input matInput matInput type="text" id="user" formControlName="user"  #nome (keyup)="pesquisar(nome)">
+            <input matInput matInput type="text" id="user" formControlName="user"  #nome (keyup)="pesquisar(nome)" (blur)="pesquisar(nome)">
         </mat-form-field>
-        <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
     </div>
 </form>
 <div class="container-lista-amigos">
@@ -45,4 +44,7 @@
         </div>
         <mat-divider></mat-divider>
     </div>
+    <mat-card *ngIf="filterUsers?.length === 0" class="not-find">
+        {{'PADRAO.NOT_FRIEND' | translate}}
+    </mat-card>
 </div>

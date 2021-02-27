@@ -88,17 +88,17 @@ export class ReadingGroupComponent implements OnInit {
     }
 
     openDialogReferBook() {
-        const groupSend = new GroupInviteTO();
-        groupSend.group = this.groupTO;
-        groupSend.groupId = this.groupTO.id;
-        groupSend.inviter = this.authService.getUser().id;
+        const groupInviteTO = new GroupInviteTO();
+        groupInviteTO.group = this.groupTO;
+        groupInviteTO.groupId = this.groupTO.id;
+        groupInviteTO.inviter = this.authService.getUser().id;
 
         const dialogRef = this.dialog.open(ReferBookDialogComponent, {
             height: '580px',
             width: '680px',
             data: {
                 indicateMember: true,
-                groupInviteTO: groupSend
+                groupInviteTO
             }
         });
         dialogRef.afterClosed().subscribe(() => {

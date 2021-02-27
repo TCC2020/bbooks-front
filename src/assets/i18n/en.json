@@ -74,7 +74,8 @@
     "LIVRO": "book",
     "POR": "for",
     "CONTATO": "Contact",
-    "ENDERECO": "Address"
+    "ENDERECO": "Address",
+    "NOT_FRIEND": "Your friends list is empty."
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -98,7 +99,8 @@
     "SOBRE": "About",
     "MSG_NAME_GROUP_E": "Name group is",
     "MSG_PRIVACY_GROUP_E": "Privacy é",
-    "GRUPO_CRIADO": "The group was created!"
+    "GRUPO_CRIADO": "The group was created!",
+    "CONVITE_ENVIADO": "Invite was sent!"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -278,7 +280,8 @@
     "RT005": "Page smaller than last tracking",
     "TA001": "Last tracking is not finished yeat",
     "RT006": "Page can´t be zero",
-    "BAD003": "Ops! You cannot delete this offer because it is related to an exchange."
+    "BAD003": "Ops! You cannot delete this offer because it is related to an exchange.",
+    "GR006": "Invite already sent"
   },
   "POST":{
     "CRIAR_POSTAGEM": "Create Post",
