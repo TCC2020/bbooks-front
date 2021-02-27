@@ -14,6 +14,7 @@ import {groupMock} from '../../../mocks/group.mock';
 import {GroupMemberService} from '../../../services/group-member.service';
 import {userMock} from '../../../mocks/user.model.mock';
 import {AuthService} from '../../../services/auth.service';
+import {groupMembersListMock} from '../../../mocks/group-members.mock';
 
 describe('AboutGroupComponent', () => {
     let component: AboutGroupComponent;
@@ -31,7 +32,9 @@ describe('AboutGroupComponent', () => {
     const authServiceMock = {
         getUser: jest.fn(() => userMock)
     };
-    let groupMemberServiceMock: GroupMemberService;
+    const groupMemberServiceMock = {
+        getGroupMembers: jest.fn(() => groupMembersListMock)
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -56,13 +59,16 @@ describe('AboutGroupComponent', () => {
                 {
                     provide: AuthService,
                     useValue: authServiceMock
+                },
+                {
+                    provide: GroupMemberService,
+                    useValue: groupMemberServiceMock
                 }
             ]
         }).compileComponents();
 
         httpMock = TestBed.inject(HttpTestingController);
         groupServcieMock = TestBed.inject(GroupService);
-        groupMemberServiceMock = TestBed.inject(GroupMemberService);
 
     }));
 
@@ -70,6 +76,7 @@ describe('AboutGroupComponent', () => {
         fixture = TestBed.createComponent(AboutGroupComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+
     });
 
     it('should create', () => {

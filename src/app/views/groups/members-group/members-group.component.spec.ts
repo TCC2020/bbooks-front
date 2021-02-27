@@ -70,6 +70,7 @@ describe('MembersGroupComponent', () => {
         fixture = TestBed.createComponent(MembersGroupComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+
     });
 
     it('should create member-group component', () => {
