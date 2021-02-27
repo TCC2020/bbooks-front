@@ -8,7 +8,7 @@
     </div>
 </form>
 <div class="container-lista-amigos">
-    <form [formGroup]="formRecommendation">
+    <form [formGroup]="formRecommendation" *ngIf="!data.indicateMember">
         <mat-form-field class="example-full-width">
             <mat-label>{{'PESQUISAR_AMIGOS.COMENTARIO' | translate}}</mat-label>
             <textarea matInput formControlName="comment"></textarea>
@@ -33,9 +33,13 @@
                 </div>
             </div>
             <div class="adicionar-amigos">
-                <button type="button" mat-flat-button color="accent" 
+                <button *ngIf="!data.indicateMember" type="button" mat-flat-button color="accent"
                 (click)="referBook(user?.profile?.id)">
                     {{'ESTANTE.BOTAO_INDICAR' | translate}}
+                </button>
+                <button type="button" mat-flat-button color="accent" *ngIf="data.indicateMember"
+                        (click)="inviteToGroup(user?.id)">
+                    {{'GRUPO_LEITURA.CONVIDAR' | translate}}
                 </button>
            </div>
         </div>

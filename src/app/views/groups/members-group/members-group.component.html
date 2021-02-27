@@ -26,7 +26,7 @@
                     <div><span><a class="nome-usuario"></a>@{{member?.user?.userName}}</span></div>
                     <div><span>{{member?.user?.profile?.name}} {{member?.user?.profile?.lastName}}</span></div>
                 </div>
-                <div *ngIf="isAdm()">
+                <div *ngIf="isAdmin">
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_vert</mat-icon>
                     </button>

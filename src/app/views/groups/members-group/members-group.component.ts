@@ -7,6 +7,8 @@ import {GroupMemberService} from '../../../services/group-member.service';
 import {GroupMembers} from '../../../models/GroupMembers.model';
 import {UserService} from '../../../services/user.service';
 import {TranslateService} from '@ngx-translate/core';
+import {Role} from '../../../models/enums/Role.enum';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-members-group',
@@ -16,12 +18,14 @@ import {TranslateService} from '@ngx-translate/core';
 export class MembersGroupComponent implements OnInit {
     groupTO: GroupTO;
     members: GroupMembers[];
-
+    isAdmin = false;
+    isMember = false;
     constructor(
         private route: ActivatedRoute,
         private groupMemberService: GroupMemberService,
         private userService: UserService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private authService: AuthService
     ) {
     }
 
@@ -42,6 +46,13 @@ export class MembersGroupComponent implements OnInit {
             ).subscribe(result => {
             Util.stopLoading();
             this.members = result;
+            const member = result.find(m => m.user.id === this.authService.getUser().id);
+            if (member) {
+                if (member.role === Role.owner || member.role === Role.admin) {
+                    this.isAdmin = true;
+                }
+                this.isMember = true;
+            }
         }, error => {
             Util.stopLoading();
             this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
@@ -49,9 +60,5 @@ export class MembersGroupComponent implements OnInit {
             });
             console.log('Erro: members-group getMembers', error);
         });
-    }
-
-    isAdm(): boolean {
-        return true;
     }
 }
