@@ -9,7 +9,6 @@ import {GroupMembers} from '../../../models/GroupMembers.model';
 import {AuthService} from '../../../services/auth.service';
 import {Role} from '../../../models/enums/Role.enum';
 import {TranslateService} from '@ngx-translate/core';
-import {Book} from '../../../models/book.model';
 import {ReferBookDialogComponent} from '../../shared/refer-book-dialog/refer-book-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {GroupInviteTO} from '../../../models/GroupInviteTO.model';

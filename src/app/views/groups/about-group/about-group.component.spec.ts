@@ -11,6 +11,9 @@ import {ActivatedRoute} from '@angular/router';
 import {MockActivatedRoute} from '../../../mocks/ActivatedRoute.mock';
 import {of, throwError} from 'rxjs';
 import {groupMock} from '../../../mocks/group.mock';
+import {GroupMemberService} from '../../../services/group-member.service';
+import {userMock} from '../../../mocks/user.model.mock';
+import {AuthService} from '../../../services/auth.service';
 
 describe('AboutGroupComponent', () => {
     let component: AboutGroupComponent;
@@ -24,6 +27,10 @@ describe('AboutGroupComponent', () => {
     };
     let httpMock: HttpTestingController;
     let groupServcieMock: GroupService;
+
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
+    };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [AboutGroupComponent],
@@ -39,10 +46,15 @@ describe('AboutGroupComponent', () => {
                 TranslateService,
                 TranslateStore,
                 GroupService,
+                GroupMemberService,
                 {
                     provide: ActivatedRoute,
                     useValue: routeMock
                 },
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                }
             ]
         }).compileComponents();
 

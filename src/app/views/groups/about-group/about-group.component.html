@@ -3,8 +3,8 @@
         <h2>{{'GRUPO_LEITURA.SOBRE' | translate}}</h2>
         <div class="reading-group-edit">
             <h3>{{'GRUPO_LEITURA.DESCRICAO_GRUPO' | translate}}</h3>
-            <button class="botao-edit" *ngIf="isAdm()&& !isEditing" (click)="changeToEdit()"><span class="material-icons">edit</span></button>
-            <button class="botao-edit" *ngIf="isAdm() && isEditing" (click)="update()"><span class="material-icons">save</span></button>
+            <button class="botao-edit" *ngIf="isAdmin && !isEditing" (click)="changeToEdit()"><span class="material-icons">edit</span></button>
+            <button class="botao-edit" *ngIf="isAdmin && isEditing" (click)="update()"><span class="material-icons">save</span></button>
         </div>
         <p *ngIf="!isEditing" style="word-break: break-word;">{{groupTO?.description}}</p>
 

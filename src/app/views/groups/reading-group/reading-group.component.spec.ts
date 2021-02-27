@@ -16,7 +16,6 @@ import {GroupMemberService} from '../../../services/group-member.service';
 import {AuthService} from '../../../services/auth.service';
 import {userMock} from '../../../mocks/user.model.mock';
 import {GroupMembers, Id} from '../../../models/GroupMembers.model';
-import {groupMembersMock} from '../../../mocks/group-members.mock';
 import {Role} from '../../../models/enums/Role.enum';
 
 describe('ReadingGroupComponent', () => {

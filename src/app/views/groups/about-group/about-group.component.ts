@@ -7,6 +7,9 @@ import {GroupService} from '../../../services/group.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {mapPostPrivacy, mapPostPrivacyStrinView, PostPrivacy} from '../../../models/enums/PostPrivacy.enum';
 import {TranslateService} from '@ngx-translate/core';
+import {GroupMemberService} from '../../../services/group-member.service';
+import {Role} from '../../../models/enums/Role.enum';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-about-group',
@@ -19,6 +22,8 @@ export class AboutGroupComponent implements OnInit {
     description: any;
     groupTO: GroupTO;
     formGroup: FormGroup;
+    isAdmin = false;
+
     public mapPostPrivacy = mapPostPrivacy;
     public mapPostPrivacyView = mapPostPrivacyStrinView;
 
@@ -28,7 +33,10 @@ export class AboutGroupComponent implements OnInit {
         private route: ActivatedRoute,
         private groupService: GroupService,
         private formBuilder: FormBuilder,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private groupMemberService: GroupMemberService,
+        private authService: AuthService,
+
     ) {
 
     }
@@ -38,6 +46,7 @@ export class AboutGroupComponent implements OnInit {
         this.route.data.pipe(take(1)).subscribe((data: { groupTo: GroupTO }) => {
             Util.stopLoading();
             this.groupTO = data.groupTo;
+            this.verifyUserIsAdm();
             this.createForm();
         });
     }
@@ -51,10 +60,6 @@ export class AboutGroupComponent implements OnInit {
             userId: new FormControl(this.groupTO?.userId),
             creationDate:  new FormControl(this.groupTO?.creationDate),
         });
-    }
-
-    isAdm(): boolean {
-        return true;
     }
 
     changeToEdit(): void {
@@ -77,6 +82,28 @@ export class AboutGroupComponent implements OnInit {
                     });
                     console.log('erro update group service', error);
                 });
+    }
+
+    verifyUserIsAdm(): void {
+        Util.loadingScreen();
+        this.groupMemberService.getGroupMembers(this.groupTO.id)
+            .pipe(
+                take(1)
+            ).subscribe(result => {
+            Util.stopLoading();
+            const member = result.find(m => m.user.id === this.authService.getUser().id);
+            if (member) {
+                if (member.role === Role.owner || member.role === Role.admin) {
+                    this.isAdmin = true;
+                }
+            }
+        }, error => {
+            Util.stopLoading();
+            this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                Util.showErrorDialog(message);
+            });
+            console.log('Erro: members-group getMembers', error);
+        });
     }
 
 }

@@ -18,6 +18,8 @@ import {SocialLoginModule} from 'angularx-social-login';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {GroupService} from '../../../services/group.service';
 import {groupMembersListMock, groupMembersMock} from '../../../mocks/group-members.mock';
+import {AuthService} from '../../../services/auth.service';
+import {userMock} from '../../../mocks/user.model.mock';
 
 describe('MembersGroupComponent', () => {
     let component: MembersGroupComponent;
@@ -29,7 +31,9 @@ describe('MembersGroupComponent', () => {
         }),
         data: of({groupTo: groupMock})
     };
-
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
+    };
     let groupMembersServiceMock: GroupMemberService;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -51,6 +55,10 @@ describe('MembersGroupComponent', () => {
                 {
                     provide: ActivatedRoute,
                     useValue: routeMock
+                },
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
                 },
                 SocialAuthServiceConfigMock
             ]
