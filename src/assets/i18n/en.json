@@ -75,7 +75,10 @@
     "POR": "for",
     "CONTATO": "Contact",
     "ENDERECO": "Address",
-    "NOT_FRIEND": "Your friends list is empty."
+    "NOT_FRIEND": "Your friends list is empty.",
+    "CONVITE_GRUPOS": "Groups invites",
+    "SIM": "Yes",
+    "NAO": "No"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -100,7 +103,13 @@
     "MSG_NAME_GROUP_E": "Name group is",
     "MSG_PRIVACY_GROUP_E": "Privacy é",
     "GRUPO_CRIADO": "The group was created!",
-    "CONVITE_ENVIADO": "Invite was sent!"
+    "CONVITE_ENVIADO": "Invite was sent!",
+    "SAIR": "Exit group",
+    "EXCLUIR_GRUPO": "Delete group",
+    "VOCE_SAIU": "You left the group!",
+    "EXCLUIDO": "Group deleted!",
+    "VOCE_QUER_SAIR": "Are you sure you want to leave the group?",
+    "VOCE_QUER_DELETAR": "Are you sure you want to delete the group?"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -115,7 +124,10 @@
     "PORTUGUES": "Portuguese - Brazil",
     "INGLES": "English",
     "RECOMENDACOES": "Recommendation",
-    "INDICOU": "recommended you"
+    "INDICOU": "recommended you",
+    "CONVITE_GRUPO": "invited you to join the group",
+    "CONVITE_ACEITO": "Invitation accepted!",
+    "CONVITE_RECUSADO": "Invitation refused!"
   },
   "HOME": {
     "BUSCARTEXT": "Search for a book"

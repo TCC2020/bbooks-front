@@ -8,7 +8,6 @@ import {BookMonthComponent} from './book-month/book-month.component';
 import {MainGroupComponent} from './main-group/main-group.component';
 import {YourGroupComponent} from './your-group/your-group.component';
 import {CreateGroupComponent} from './create-group/create-group.component';
-import {MainGuard} from '../perfil-page/guards/main.guard';
 import {MainGroupResolve} from './guards/main-group.resolve';
 import {MainGuardGroup} from './guards/main-group.guard';
 import {AboutGroupResolve} from './guards/about-group.resolve';
@@ -26,7 +25,8 @@ const groupsRouter = [
             {
                 path: 'create',
                 component: CreateGroupComponent
-            }
+            },
+            { path: '', redirectTo: 'your-groups', pathMatch: 'full' },
         ]
     },
     {
@@ -47,7 +47,9 @@ const groupsRouter = [
             },
             {
                 path: 'book-of-month', component: BookMonthComponent
-            }
+            },
+            { path: '', redirectTo: 'feed', pathMatch: 'full' },
+
         ]
     }
 ];

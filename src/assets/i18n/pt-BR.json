@@ -75,7 +75,10 @@
     "POR": "por",
     "CONTATO": "Contato",
     "ENDERECO": "Endereço",
-    "NOT_FRIEND": "A sua lista de amigos está vazia."
+    "NOT_FRIEND": "A sua lista de amigos está vazia.",
+    "CONVITE_GRUPOS": "Convites de grupos",
+    "SIM": "Sim",
+    "NAO": "Não"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -101,7 +104,13 @@
     "MSG_NAME_GROUP_E": "Nome do grupo é",
     "MSG_PRIVACY_GROUP_E": "Privacidade é",
     "GRUPO_CRIADO": "O grupo foi criado!",
-    "CONVITE_ENVIADO": "Convite enviado!"
+    "CONVITE_ENVIADO": "Convite enviado!",
+    "SAIR": "Sair do grupo",
+    "EXCLUIR_GRUPO": "Excluir do grupo",
+    "VOCE_SAIU": "Você saiu do grupo!",
+    "EXCLUIDO": "Grupo excluído!",
+    "VOCE_QUER_SAIR": "Tem certeza de que deseja sair do grupo?",
+    "VOCE_QUER_DELETAR": "Tem certeza de que deseja deletar o grupo?"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",
@@ -115,9 +124,10 @@
     "PORTUGUES": "Português",
     "INGLES": "Inglês",
     "RECOMENDACOES": "Recomendações",
-    "INDICOU": "te recomendou"
-
-
+    "INDICOU": "te recomendou",
+    "CONVITE_GRUPO": "te convidou para entrar no grupo",
+    "CONVITE_ACEITO": "Convite aceito!",
+    "CONVITE_RECUSADO": "Convite recusado!"
   },
   "HOME": {
     "BUSCARTEXT": "Procure um livro"

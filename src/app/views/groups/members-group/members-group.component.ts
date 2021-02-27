@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Util} from '../../shared/Utils/util';
-import {map, take} from 'rxjs/operators';
+import {take} from 'rxjs/operators';
 import {GroupTO} from '../../../models/GroupTO.model';
 import {ActivatedRoute} from '@angular/router';
 import {GroupMemberService} from '../../../services/group-member.service';
