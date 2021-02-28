@@ -110,7 +110,13 @@
     "VOCE_SAIU": "Você saiu do grupo!",
     "EXCLUIDO": "Grupo excluído!",
     "VOCE_QUER_SAIR": "Tem certeza de que deseja sair do grupo?",
-    "VOCE_QUER_DELETAR": "Tem certeza de que deseja deletar o grupo?"
+    "VOCE_QUER_DELETAR": "Tem certeza de que deseja deletar o grupo?",
+    "REMOVER_ADM": "Remover administrador",
+    "ADD_ADM": "Adicionar como administrador",
+    "REMOVER_MEMBRO": "Remover membro",
+    "ADM_NOW": "Membro adicionado como administrador!",
+    "MEMBER_NOW": "Administrador adicionado como membro",
+    "MEMBRO_REMOVIDO": "Membro removido"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",

@@ -20,6 +20,9 @@ export class MembersGroupComponent implements OnInit {
     members: GroupMembers[];
     isAdmin = false;
     isMember = false;
+    memberGroup: GroupMembers;
+    role = Role;
+
     constructor(
         private route: ActivatedRoute,
         private groupMemberService: GroupMemberService,
@@ -47,6 +50,7 @@ export class MembersGroupComponent implements OnInit {
             Util.stopLoading();
             this.members = result;
             const member = result.find(m => m.user.id === this.authService.getUser().id);
+            this.memberGroup = member;
             if (member) {
                 if (member.role === Role.owner || member.role === Role.admin) {
                     this.isAdmin = true;
@@ -60,5 +64,46 @@ export class MembersGroupComponent implements OnInit {
             });
             console.log('Erro: members-group getMembers', error);
         });
+    }
+
+    updateMemberRole(groupMember: GroupMembers, role: Role): void {
+        groupMember.role = role;
+        groupMember.userId = groupMember.user.id;
+        this.groupMemberService.enterGroup(groupMember)
+            .pipe(take(1))
+            .subscribe(() => {
+                Util.stopLoading();
+                const textCode = role === Role.admin ? 'ADM_NOW' : 'MEMBER_NOW';
+                this.translate.get('GRUPO_LEITURA.' + textCode).subscribe(message => {
+                    Util.showSuccessDialog(message);
+                });
+            }, error => {
+                Util.stopLoading();
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                    Util.showErrorDialog(message);
+                });
+                console.log('error updateMemberRole', error);
+            });
+
+    }
+    removerMember(groupMember: GroupMembers, index: number): void {
+        Util.loadingScreen();
+        groupMember.userId = groupMember.user.id;
+        this.groupMemberService.exitGroup(groupMember)
+            .pipe(take(1))
+            .subscribe(() => {
+                    Util.stopLoading();
+                    this.members.splice(index, 1);
+                    this.translate.get('GRUPO_LEITURA.MEMBRO_REMOVIDO').subscribe(msg => {
+                        Util.showSuccessDialog(msg);
+                    });
+                },
+                error => {
+                    console.log('error remove member', error);
+                    this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                        Util.showErrorDialog(msg);
+                    });
+                    Util.stopLoading();
+                });
     }
 }

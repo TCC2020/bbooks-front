@@ -109,7 +109,14 @@
     "VOCE_SAIU": "You left the group!",
     "EXCLUIDO": "Group deleted!",
     "VOCE_QUER_SAIR": "Are you sure you want to leave the group?",
-    "VOCE_QUER_DELETAR": "Are you sure you want to delete the group?"
+    "VOCE_QUER_DELETAR": "Are you sure you want to delete the group?",
+    "REMOVER_ADM": "Remove administrator",
+    "ADD_ADM": "Add as administrator",
+    "REMOVER_MEMBRO": "Remove member",
+    "ADM_NOW": "Member added as an administrator!",
+    "MEMBER_NOW": "Added Administrator as a member",
+    "MEMBRO_REMOVIDO": "Removed member"
+
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",

@@ -17,7 +17,7 @@
     <!--começa card-->
     <div class="container-amigo">
         <div class="container-imagem">
-            <div class="informacoes-do-usuario" *ngFor="let member of members">
+            <div class="informacoes-do-usuario" *ngFor="let member of members; let i= index">
                 <div>
                     <img class="imagem-perfil"
                          src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
@@ -26,22 +26,26 @@
                     <div><span><a class="nome-usuario"></a>@{{member?.user?.userName}}</span></div>
                     <div><span>{{member?.user?.profile?.name}} {{member?.user?.profile?.lastName}}</span></div>
                 </div>
-                <div *ngIf="isAdmin">
+                <div *ngIf="isAdmin && memberGroup?.user?.id !== member.user.id && member.role !== role.owner">
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
-                            <mat-icon>block</mat-icon>
-                            <span>Bloquer membro</span>
-                        </button>
-                        <button mat-menu-item>
+<!--                        <button mat-menu-item>-->
+<!--                            <mat-icon>block</mat-icon>-->
+<!--                            <span>Bloquer membro</span>-->
+<!--                        </button>-->
+                        <button mat-menu-item *ngIf="member.role === role.admin" (click)="updateMemberRole(member, role.member)">
                             <mat-icon>person</mat-icon>
-                            <span>Remover administrador</span>
+                            <span>{{'GRUPO_LEITURA.REMOVER_ADM' | translate}}</span>
                         </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item *ngIf="member.role === role.member" (click)="updateMemberRole(member, role.admin)">
+                            <mat-icon>person</mat-icon>
+                            <span>{{'GRUPO_LEITURA.ADD_ADM' | translate}}</span>
+                        </button>
+                        <button mat-menu-item *ngIf="member.role === role.member || member.role === role.admin" (click)="removerMember(member, i)">
                             <mat-icon>remove_circle</mat-icon>
-                            <span>Remover membro</span>
+                            <span>{{'GRUPO_LEITURA.REMOVER_MEMBRO' | translate}}</span>
                         </button>
                     </mat-menu>
                 </div>
