@@ -15,6 +15,10 @@ import {GroupMemberService} from '../../../services/group-member.service';
 import {userMock} from '../../../mocks/user.model.mock';
 import {AuthService} from '../../../services/auth.service';
 import {groupMembersListMock} from '../../../mocks/group-members.mock';
+import {RouterTestingModule} from '@angular/router/testing';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('AboutGroupComponent', () => {
     let component: AboutGroupComponent;
@@ -33,11 +37,28 @@ describe('AboutGroupComponent', () => {
         getUser: jest.fn(() => userMock)
     };
     const groupMemberServiceMock = {
-        getGroupMembers: jest.fn(() => groupMembersListMock)
+        getGroupMembers: jest.fn(() => of(groupMembersListMock))
     };
+    let groupMembersServiceMock: GroupMemberService;
+
+    global  = Object.defineProperty(window, 'matchMedia', {
+        writable: true,
+        value: jest.fn().mockImplementation(query => ({
+            matches: false,
+            media: query,
+            onchange: null,
+            addListener: jest.fn(), // Deprecated
+            removeListener: jest.fn(), // Deprecated
+            addEventListener: jest.fn(),
+            removeEventListener: jest.fn(),
+            dispatchEvent: jest.fn(),
+        })),
+    });
+    global.window.scrollTo = () => {};
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
             declarations: [AboutGroupComponent],
             imports: [
                 MaterialModule,
@@ -45,7 +66,8 @@ describe('AboutGroupComponent', () => {
                 HttpClientTestingModule,
                 TranslateServiceMockForChild,
                 ReactiveFormsModule,
-                FormsModule
+                RouterTestingModule,
+                BrowserDynamicTestingModule
             ],
             providers: [
                 TranslateService,
@@ -69,6 +91,7 @@ describe('AboutGroupComponent', () => {
 
         httpMock = TestBed.inject(HttpTestingController);
         groupServcieMock = TestBed.inject(GroupService);
+        groupMembersServiceMock = TestBed.inject(GroupMemberService);
 
     }));
 
