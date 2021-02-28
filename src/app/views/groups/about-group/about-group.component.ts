@@ -168,7 +168,7 @@ export class AboutGroupComponent implements OnInit {
                     this.translate.get('GRUPO_LEITURA.EXCLUIDO').subscribe(msg => {
                         Util.showSuccessDialog(msg);
                     });
-                    // this.router.navigateByUrl('/groups-search');
+                    this.router.navigateByUrl('/groups-search');
                 },
                 error => {
                     console.log('error exit group member', error);

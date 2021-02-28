@@ -54,7 +54,7 @@
 
 </form>
 <div fxLayout="row" fxLayout.xs="column" fxFlexAlign="start center" fxLayoutAlign.xs="center center" fxLayoutGap="5px">
-    <div *ngIf="member?.role.toString() === 'member' || member?.role.toString() === 'owner'">
+    <div *ngIf="member?.role.toString() === 'member' || member?.role.toString() === 'admin'">
         <button type="button"
                 mat-raised-button
                 color="warn"
