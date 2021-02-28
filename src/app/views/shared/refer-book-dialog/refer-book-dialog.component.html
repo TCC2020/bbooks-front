@@ -1,14 +1,13 @@
 <form [formGroup]="pesquisarUsuarios"  class="form-inline mr-auto">
     <div class="container-pesquisar">
-        <mat-form-field style="margin: 25px;">
+        <mat-form-field style="margin: 25px;" appearance="outline">
             <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
-            <input matInput matInput type="text" id="user" formControlName="user"  #nome (keyup)="pesquisar(nome)">
+            <input matInput matInput type="text" id="user" formControlName="user"  #nome (keyup)="pesquisar(nome)" (blur)="pesquisar(nome)">
         </mat-form-field>
-        <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
     </div>
 </form>
 <div class="container-lista-amigos">
-    <form [formGroup]="formRecommendation">
+    <form [formGroup]="formRecommendation" *ngIf="!data.indicateMember">
         <mat-form-field class="example-full-width">
             <mat-label>{{'PESQUISAR_AMIGOS.COMENTARIO' | translate}}</mat-label>
             <textarea matInput formControlName="comment"></textarea>
@@ -33,12 +32,19 @@
                 </div>
             </div>
             <div class="adicionar-amigos">
-                <button type="button" mat-flat-button color="accent" 
+                <button *ngIf="!data.indicateMember" type="button" mat-flat-button color="accent"
                 (click)="referBook(user?.profile?.id)">
                     {{'ESTANTE.BOTAO_INDICAR' | translate}}
+                </button>
+                <button type="button" mat-flat-button color="accent" *ngIf="data.indicateMember"
+                        (click)="inviteToGroup(user?.id)">
+                    {{'GRUPO_LEITURA.CONVIDAR' | translate}}
                 </button>
            </div>
         </div>
         <mat-divider></mat-divider>
     </div>
+    <mat-card *ngIf="filterUsers?.length === 0" class="not-find">
+        {{'PADRAO.NOT_FRIEND' | translate}}
+    </mat-card>
 </div>

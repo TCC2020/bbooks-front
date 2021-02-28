@@ -7,7 +7,6 @@ import {BookMenuComponent} from './book-menu/book-menu.component';
 import {BookFormComponent} from './book-form/book-form.component';
 import {BookEstanteComponent} from './book-estante/book-estante.component';
 import {BookPageComponent} from './book-page.component';
-import {BookComponent} from '../../modals/book/book.component';
 import {MaterialModule} from '../../material/material.module';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {MatInputModule} from '@angular/material/input';
@@ -55,7 +54,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         })
     ],
     declarations: [
-        BookComponent,
         BookPageComponent,
         BookFormComponent,
         BookMenuComponent,

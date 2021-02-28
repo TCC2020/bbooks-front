@@ -180,7 +180,8 @@ export class OfferNewComponent implements OnInit {
             city: new FormControl(this.bookAdTO ? this.bookAdTO.address.split(';')[2] : '', Validators.required),
             state: new FormControl(this.bookAdTO ? this.bookAdTO.address.split(';')[1] : '', Validators.required),
             idBookGoogle: new FormControl(this.bookAdTO ? this.bookAdTO.idBookGoogle : null),
-            bookId: new FormControl(this.bookAdTO ? this.bookAdTO.bookId : null)
+            bookId: new FormControl(this.bookAdTO ? this.bookAdTO.bookId : null),
+            isOpen: new FormControl(true)
         });
     }
 
@@ -233,7 +234,7 @@ export class OfferNewComponent implements OnInit {
                 this.uploadImages(bookAd);
             }, error => {
                 Util.stopLoading();
-                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                this.translate.get('PADRAO.CONVITE_ACEITO').subscribe(message => {
                     Util.showErrorDialog(message);
                 });
                 console.log('error save BookAD', error);

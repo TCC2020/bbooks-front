@@ -74,7 +74,11 @@
     "LIVRO": "book",
     "POR": "for",
     "CONTATO": "Contact",
-    "ENDERECO": "Address"
+    "ENDERECO": "Address",
+    "NOT_FRIEND": "Your friends list is empty.",
+    "CONVITE_GRUPOS": "Groups invites",
+    "SIM": "Yes",
+    "NAO": "No"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -98,7 +102,21 @@
     "SOBRE": "About",
     "MSG_NAME_GROUP_E": "Name group is",
     "MSG_PRIVACY_GROUP_E": "Privacy é",
-    "GRUPO_CRIADO": "The group was created!"
+    "GRUPO_CRIADO": "The group was created!",
+    "CONVITE_ENVIADO": "Invite was sent!",
+    "SAIR": "Exit group",
+    "EXCLUIR_GRUPO": "Delete group",
+    "VOCE_SAIU": "You left the group!",
+    "EXCLUIDO": "Group deleted!",
+    "VOCE_QUER_SAIR": "Are you sure you want to leave the group?",
+    "VOCE_QUER_DELETAR": "Are you sure you want to delete the group?",
+    "REMOVER_ADM": "Remove administrator",
+    "ADD_ADM": "Add as administrator",
+    "REMOVER_MEMBRO": "Remove member",
+    "ADM_NOW": "Member added as an administrator!",
+    "MEMBER_NOW": "Added Administrator as a member",
+    "MEMBRO_REMOVIDO": "Removed member"
+
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -113,7 +131,10 @@
     "PORTUGUES": "Portuguese - Brazil",
     "INGLES": "English",
     "RECOMENDACOES": "Recommendation",
-    "INDICOU": "recommended you"
+    "INDICOU": "recommended you",
+    "CONVITE_GRUPO": "invited you to join the group",
+    "CONVITE_ACEITO": "Invitation accepted!",
+    "CONVITE_RECUSADO": "Invitation refused!"
   },
   "HOME": {
     "BUSCARTEXT": "Search for a book"
@@ -184,11 +205,12 @@
     "PAGINAS": "Pages",
     "IDIOMA": "Language",
     "AVALIACAO": "Evaluation",
-    "OUTRAS_INFO": "OTHER INFORMATION",
+    "OUTRAS_INFO": "Other information",
     "CRIAR_LIVRO": "Create Book",
     "ESCOLHER_FOTO_LIVRO": "Choose book photo",
     "SOBRE_LIVRO": "About this book",
-    "PESQUISAR_BOOK": "Find a book"
+    "PESQUISAR_BOOK": "Find a book",
+    "STATUS_GERAL": "Overall status"
   },
   "PERFIL": {
     "feed": "feed",
@@ -216,7 +238,9 @@
     "DETALHES_LENDO": "READING",
     "DETALHES_RELENDO": "REREADING",
     "DETALHES_QUEREM_LER": "WANT TO READ",
-    "DETALHES_INTERROMPIDOS": "INTERRUPTED"
+    "DETALHES_INTERROMPIDOS": "INTERRUPTED",
+    "DETALHES_LIDOS": "READ",
+    "DETALHES_EMPRESTADO": "BORROWED"
   },
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Reading Tracking",
@@ -278,7 +302,8 @@
     "RT005": "Page smaller than last tracking",
     "TA001": "Last tracking is not finished yeat",
     "RT006": "Page can´t be zero",
-    "BAD003": "Ops! You cannot delete this offer because it is related to an exchange."
+    "BAD003": "Ops! You cannot delete this offer because it is related to an exchange.",
+    "GR006": "Invite already sent"
   },
   "POST":{
     "CRIAR_POSTAGEM": "Create Post",

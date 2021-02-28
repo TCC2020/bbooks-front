@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Util} from '../../shared/Utils/util';
-import {map, take} from 'rxjs/operators';
+import {take} from 'rxjs/operators';
 import {GroupTO} from '../../../models/GroupTO.model';
 import {ActivatedRoute} from '@angular/router';
 import {GroupMemberService} from '../../../services/group-member.service';
 import {GroupMembers} from '../../../models/GroupMembers.model';
 import {UserService} from '../../../services/user.service';
 import {TranslateService} from '@ngx-translate/core';
+import {Role} from '../../../models/enums/Role.enum';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'app-members-group',
@@ -16,12 +18,17 @@ import {TranslateService} from '@ngx-translate/core';
 export class MembersGroupComponent implements OnInit {
     groupTO: GroupTO;
     members: GroupMembers[];
+    isAdmin = false;
+    isMember = false;
+    memberGroup: GroupMembers;
+    role = Role;
 
     constructor(
         private route: ActivatedRoute,
         private groupMemberService: GroupMemberService,
         private userService: UserService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private authService: AuthService
     ) {
     }
 
@@ -42,6 +49,14 @@ export class MembersGroupComponent implements OnInit {
             ).subscribe(result => {
             Util.stopLoading();
             this.members = result;
+            const member = result.find(m => m.user.id === this.authService.getUser().id);
+            this.memberGroup = member;
+            if (member) {
+                if (member.role === Role.owner || member.role === Role.admin) {
+                    this.isAdmin = true;
+                }
+                this.isMember = true;
+            }
         }, error => {
             Util.stopLoading();
             this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
@@ -51,7 +66,44 @@ export class MembersGroupComponent implements OnInit {
         });
     }
 
-    isAdm(): boolean {
-        return true;
+    updateMemberRole(groupMember: GroupMembers, role: Role): void {
+        groupMember.role = role;
+        groupMember.userId = groupMember.user.id;
+        this.groupMemberService.enterGroup(groupMember)
+            .pipe(take(1))
+            .subscribe(() => {
+                Util.stopLoading();
+                const textCode = role === Role.admin ? 'ADM_NOW' : 'MEMBER_NOW';
+                this.translate.get('GRUPO_LEITURA.' + textCode).subscribe(message => {
+                    Util.showSuccessDialog(message);
+                });
+            }, error => {
+                Util.stopLoading();
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                    Util.showErrorDialog(message);
+                });
+                console.log('error updateMemberRole', error);
+            });
+
+    }
+    removerMember(groupMember: GroupMembers, index: number): void {
+        Util.loadingScreen();
+        groupMember.userId = groupMember.user.id;
+        this.groupMemberService.exitGroup(groupMember)
+            .pipe(take(1))
+            .subscribe(() => {
+                    Util.stopLoading();
+                    this.members.splice(index, 1);
+                    this.translate.get('GRUPO_LEITURA.MEMBRO_REMOVIDO').subscribe(msg => {
+                        Util.showSuccessDialog(msg);
+                    });
+                },
+                error => {
+                    console.log('error remove member', error);
+                    this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                        Util.showErrorDialog(msg);
+                    });
+                    Util.stopLoading();
+                });
     }
 }

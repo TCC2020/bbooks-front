@@ -8,6 +8,7 @@ groupMembersMock.groupId = 'sfjaowesifjsoiaefj';
 groupMembersMock.userId = userMock.id.toString();
 groupMembersMock.role = Role.owner;
 groupMembersMock.status = MemberStatus.aceppted;
+groupMembersMock.user = userMock;
 
 export const groupMembersListMock = [];
 groupMembersListMock.push(groupMembersMock);

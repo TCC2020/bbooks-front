@@ -12,7 +12,6 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {SocialLoginModule} from 'angularx-social-login';
 import {userMock} from '../../../mocks/user.model.mock';
-import {GroupMemberService} from '../../../services/group-member.service';
 import {GroupService} from '../../../services/group.service';
 import {of, throwError} from 'rxjs';
 import {groupMock} from '../../../mocks/group.mock';
@@ -65,23 +64,23 @@ describe('CreateGroupComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('showCreateForm', () => {
-
-        component.showCreateForm();
-        expect(component.buttonActiveForm).toBeTruthy();
-    });
-
-    it('should save group', () => {
-        const spy = jest.spyOn(groupServcieMock, 'save').mockReturnValue(of(groupMock));
-        component.save();
-        expect(spy).toHaveBeenCalled();
-        expect(spy).toHaveBeenCalledWith(component.formGroup.value);
-    });
-
-    it('should catch error save group', () => {
-        const spy = jest.spyOn(groupServcieMock, 'save').mockReturnValue(throwError('error'));
-        component.save();
-        expect(spy).toHaveBeenCalled();
-        expect(spy).toHaveBeenCalledWith(component.formGroup.value);
-    });
+    // it('showCreateForm', () => {
+    //
+    //     component.showCreateForm();
+    //     expect(component.buttonActiveForm).toBeTruthy();
+    // });
+    //
+    // it('should save group', () => {
+    //     const spy = jest.spyOn(groupServcieMock, 'save').mockReturnValue(of(groupMock));
+    //     component.save();
+    //     expect(spy).toHaveBeenCalled();
+    //     expect(spy).toHaveBeenCalledWith(component.formGroup.value);
+    // });
+    //
+    // it('should catch error save group', () => {
+    //     const spy = jest.spyOn(groupServcieMock, 'save').mockReturnValue(throwError('error'));
+    //     component.save();
+    //     expect(spy).toHaveBeenCalled();
+    //     expect(spy).toHaveBeenCalledWith(component.formGroup.value);
+    // });
 });
