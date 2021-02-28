@@ -1,3 +1,132 @@
+.geral {
+  width: calc(100% - 40px);
+}
+
+.container-conteudo {
+  width: 75%;
+  margin: 10px auto 0;
+}
+
+.container-cinza, .container-branco {
+  width: 100%;
+  padding: 30px 20px;
+}
+
+.container-branco {
+  background: #ffffff;
+}
+
+.container-cinza {
+  background: #e5e8ea;
+}
+
+.paragrafo-competicao {
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.titulo-competicao {
+  font-size: 1.75rem;
+}
+
+.membro {
+  width: 20%;
+  padding: 10px;
+}
+
+.foto-membro img, .nome-membro p {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.foto-membro img {
+  width: 100px;
+  height: auto;
+}
+
+.nome-membro p {
+  font-size: 1rem;
+}
+
+.foto-membro, .nome-membro {
+  margin: 0 auto 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.container-membros {
+  flex-direction: row;
+  display: flex;
+  gap: 10px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ver-todos-membros {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.botoes-editar button {
+  margin: 0 10px 0 0;
+}
+
+.input-edicao {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.input-edicao textarea {
+  height: 160px;
+}
+
+@media screen and (max-width: 800px) {
+  .container-membros {
+    flex-wrap: wrap;
+  }
+  .membro {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container-membros {
+    flex-wrap: wrap;
+  }
+  .membro {
+    width: 100%;
+  }
+}
+
+.iconStatusLendo {
+  color: darkorange;
+}
+.iconStatusLidos{
+  color: #36BF7F;
+}
+.iconStatusQueroLer{
+  color: bisque;
+}
+.iconStatusEmprestado{
+  color: #394A59;
+}
+.iconStatusRelendo{
+  color: #9bdfbf;
+}
+.iconStatusInterrompido{
+  color: darkred;
+}
+
+.totalStatusCard{
+  width: 100px;
+  padding: 10px;
+
+}
+.otherInfoCard{
+  width: 150px;
+}
+////new layout
 .card {
   margin: 0.5em;
   border: 1px solid #dadce0;
@@ -69,6 +198,8 @@
   padding: 30px 40px 35px;
 }
 
+
+
 @media screen and (max-width: 600px) {
   .card {
     border: none;
@@ -98,6 +229,12 @@
   }
   .commentReview{
     width: 250px;
+  }
+  .totalStatusCard{
+    width: 100%;
+  }
+  .otherInfoCard{
+    width: 100%;
   }
 
 }

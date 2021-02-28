@@ -199,11 +199,13 @@
     "PAGINAS": "Páginas",
     "IDIOMA": "Idioma",
     "AVALIACAO": "Avaliação",
-    "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
+    "OUTRAS_INFO": "Outras informações",
     "CRIAR_LIVRO": "Criar livro",
     "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro",
     "SOBRE_LIVRO": "Sobre este livro",
-    "PESQUISAR_BOOK": "Ache um livro"
+    "PESQUISAR_BOOK": "Ache um livro",
+    "STATUS_GERAL": "Status geral"
+
   },
   "PERFIL": {
     "feed": "feed",
@@ -231,7 +233,9 @@
     "DETALHES_LENDO": "LENDO",
     "DETALHES_RELENDO": "RELENDO",
     "DETALHES_QUEREM_LER": "QUEREM LER",
-    "DETALHES_INTERROMPIDOS": "INTERROMPIDOS"
+    "DETALHES_INTERROMPIDOS": "INTERROMPIDOS",
+    "DETALHES_LIDOS": "LIDOS",
+    "DETALHES_EMPRESTADO": "EMPRESTADO"
   },
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Acompanhamento de Leitura",
