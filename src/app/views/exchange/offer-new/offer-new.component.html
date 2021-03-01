@@ -63,7 +63,7 @@
                 </h2>
             </div>
             <div fxLayout="row" fxLayoutAlign="center">
-                <mat-form-field id="nome" class="inputCadastrar">
+                <mat-form-field id="nome" class="inputCadastrar" appearance="outline">
                     <mat-label>{{'EXCHANGE.TITULO' | translate}}</mat-label>
                     <input matInput formControlName="title">
                     <mat-error *ngIf="formNewOffer.get('title').hasError('required')">
@@ -98,7 +98,7 @@
                 </h2>
             </div>
             <div fxLayout="row" fxLayoutAlign="center">
-                <mat-form-field class="contact">
+                <mat-form-field class="contact" appearance="outline">
                     <ngx-mat-intl-tel-input
                             [preferredCountries]="['br', 'us']"
                             [enablePlaceholder]="true"
@@ -117,7 +117,7 @@
                 </h2>
             </div>
             <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column" fxLayoutGap="10px">
-                <mat-form-field>
+                <mat-form-field appearance="outline">
                     <mat-label>{{'PADRAO.PAIS' | translate}}</mat-label>
                     <mat-select formControlName="country">
                         <mat-option [value]="country.name" *ngFor="let country of countrys"
@@ -129,7 +129,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="inputSegundaEtapa">
+                <mat-form-field class="inputSegundaEtapa" appearance="outline">
                     <mat-label>{{'PADRAO.ESTADO' | translate}}</mat-label>
                     <mat-select formControlName="state">
                         <mat-option [value]="state.name" *ngFor="let state of states"
@@ -141,7 +141,7 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field class="inputSegundaEtapa">
+                <mat-form-field class="inputSegundaEtapa" appearance="outline">
                     <input type="text"
                            placeholder="{{'PADRAO.CIDADE' | translate}}"
                            aria-label="Number"
@@ -193,7 +193,7 @@
                 <h2>{{'EXCHANGE.OUTRAS_INFOS' | translate }}</h2>
             </div>
             <div>
-                <mat-form-field style="width: 100%">
+                <mat-form-field style="width: 100%" appearance="outline">
                     <mat-label>{{'EXCHANGE.ESCREVA_DESCRICAO' | translate }}</mat-label>
                     <textarea matInput formControlName="description"></textarea>
                 </mat-form-field>

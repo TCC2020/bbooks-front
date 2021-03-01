@@ -3,7 +3,7 @@
 <!--    <div  fxFlex="25" class="bodyFilter">-->
 
         <div fxFlex="12">
-            <b class="title">Ofertas</b>
+            <b class="title">{{'EXCHANGE.OFERTAS' | translate }}</b>
         </div>
         <div class="subtitle" fxLayout="row">
             <div>
@@ -13,33 +13,12 @@
                 <span class="material-icons">keyboard_arrow_right</span>
             </div>
             <div>
-                ofertas
+                {{'EXCHANGE.OFERTAS' | translate }}
             </div>
         </div>
-
-
-
-<!--    </div>-->
 </div>
 
 <div>
-<!--    <div fxLayout="row" fxLayoutAlign="space-evenly center" >-->
-<!--        <button mat-raised-button class="buttonFilter">-->
-<!--            Filtrar-->
-<!--        </button>-->
-<!--    </div>-->
-<!--    <br>-->
-<!--    <div fxLayout="row" fxLayoutAlign="start center" >-->
-<!--        <b>Por categoria</b>-->
-<!--    </div>-->
-<!--    <section fxLayout="row" fxLayoutAlign="space-between center"  *ngFor="let i of statusList">-->
-<!--        <mat-checkbox color="primary">-->
-<!--            {{i}}-->
-<!--        </mat-checkbox>-->
-<!--        <div>-->
-<!--            (0)-->
-<!--        </div>-->
-<!--    </section>-->
     <form [formGroup]="formSearch">
         <div fxLayout="row" fxLayoutAlign="center center">
             <mat-form-field style="margin: 6px; width: 50%">

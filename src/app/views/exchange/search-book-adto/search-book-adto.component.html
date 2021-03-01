@@ -1,19 +1,9 @@
 <form [formGroup]="formSearch">
     <div fxLayout="row">
-        <mat-form-field style="margin: 2px; width: 80%">
+        <mat-form-field style="margin: 2px; width: 80%" appearance="outline">
             <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
             <input matInput matInput type="text" id="user" formControlName="search">
         </mat-form-field>
-        <div>
-            <button
-                    mat-raised-button
-                    color="accent"
-                    id="search-bt"
-                    type="submit"
-            >
-                {{'PADRAO.BUSCAR' | translate}}
-            </button>
-        </div>
     </div>
 </form>
 <ng-template #loading>
