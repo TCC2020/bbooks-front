@@ -97,7 +97,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
                         map(value => this._filterCity(value))
                     );
                 },
-                error => { console.log('error get citys', error);  Util.stopLoading();}
+                error => { console.log('error get citys', error);  Util.stopLoading(); }
             );
 
         } else {
