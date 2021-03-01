@@ -125,6 +125,7 @@ export class ReactionsComponent implements OnInit {
             .pipe().subscribe((post) => {
             if (post) {
                 if (p) {
+                    post.comments = p.comments;
                     this.updateReduxOfTypePost(this.typePostControler, post);
                 }
             }

@@ -8,6 +8,14 @@ import {TranslateServiceMockForChild} from '../../../mocks/translate.service.moc
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {userMock} from '../../../mocks/user.model.mock';
 import {AuthService} from '../../../services/auth.service';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterTestingModule} from '@angular/router/testing';
+import {FeedGroupManagerService} from '../store/feed-group-manager.service';
+import {FeedService} from '../../../services/feed.service';
+import {PostService} from '../../../services/post.service';
+import {FeedGenericService} from '../../../services/feed-generic.service';
+import {StoreModule} from '@ngrx/store';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 
 describe('FeedGroupComponent', () => {
     let component: FeedGroupComponent;
@@ -17,12 +25,16 @@ describe('FeedGroupComponent', () => {
     };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
             declarations: [FeedGroupComponent],
             imports: [
                 MaterialModule,
                 FormsModule,
                 HttpClientTestingModule,
-                TranslateServiceMockForChild
+                TranslateServiceMockForChild,
+                RouterTestingModule,
+                StoreModule.forRoot({}),
+                BrowserDynamicTestingModule
             ],
             providers: [
                 TranslateService,
@@ -31,6 +43,10 @@ describe('FeedGroupComponent', () => {
                     provide: AuthService,
                     useValue: authServiceMock
                 },
+                FeedGroupManagerService,
+                FeedService,
+                PostService,
+                FeedGenericService
             ]
         })
             .compileComponents();
