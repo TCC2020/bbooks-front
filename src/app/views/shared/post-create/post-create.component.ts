@@ -9,6 +9,7 @@ import {TypePostControler} from '../../../models/enums/TypePost.enum';
 import {FeedPerfilManageService} from '../../perfil-page/store/feed-perfil-manage.service';
 import {AuthService} from '../../../services/auth.service';
 import {FeedMainManagerService} from '../../feed-page/store/feed-main-manager.service';
+import {FeedGroupManagerService} from '../../groups/store/feed-group-manager.service';
 
 @Component({
     selector: 'app-post-create',
@@ -26,7 +27,8 @@ export class PostCreateComponent implements OnInit {
         public postService: PostService,
         private feedPerfilManageService: FeedPerfilManageService,
         public authService: AuthService,
-        public feedMainManagerService: FeedMainManagerService
+        public feedMainManagerService: FeedMainManagerService,
+        public feedGroupManagerService: FeedGroupManagerService
     ) {
     }
 
@@ -63,6 +65,7 @@ export class PostCreateComponent implements OnInit {
                 this.feedPerfilManageService.savePostOnRedux(postTo);
                 return;
             case TypePostControler.group:
+                this.feedGroupManagerService.savePostOnRedux(postTo);
                 return;
         }
     }
@@ -76,6 +79,7 @@ export class PostCreateComponent implements OnInit {
                 this.router.navigate([this.user.userName + '/create-post', {state: {}}]);
                 return;
             case TypePostControler.group:
+                this.router.navigate(['groups/create-post'], {state: {}});
                 return;
         }
     }

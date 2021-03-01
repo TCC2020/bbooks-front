@@ -3,30 +3,32 @@
         <div class="container-detalhes-cabecalho">
             <div class="informacoes-grupo">
                 <h1>{{groupTO?.name}}</h1>
-                <p>{{'GRUPO_LEITURA.GRUPO' | translate}} {{'PADRAO.' + mapPostPrivacy.get(groupTO.privacy) | translate}} - 30 {{'GRUPO_LEITURA.MEMBROS' | translate}}</p>
+                <p>{{'GRUPO_LEITURA.GRUPO' | translate}} {{'PADRAO.' + mapPostPrivacy.get(groupTO.privacy) | translate}}
+                    - 30 {{'GRUPO_LEITURA.MEMBROS' | translate}}</p>
             </div>
             <div class="botao-convidar-grupo" *ngIf="isAdmin">
-                <button type="button" mat-raised-button color="primary" (click)="openDialogReferBook()"><span class="material-icons">add</span>{{'GRUPO_LEITURA.CONVIDAR' | translate}}</button>
+                <button type="button" mat-raised-button color="primary" (click)="openDialogReferBook()"><span
+                        class="material-icons">add</span>{{'GRUPO_LEITURA.CONVIDAR' | translate}}</button>
             </div>
             <div class="botao-convidar-grupo" *ngIf="groupTO.privacy.toString() === 'public_all' && !this.isMember">
-                <button type="button" mat-raised-button color="primary"  (click)="enterGroup()"><span class="material-icons">add</span>{{'PADRAO.ENTER_' | translate}}</button>
+                <button type="button" mat-raised-button color="primary" (click)="enterGroup()"><span
+                        class="material-icons">add</span>{{'PADRAO.ENTER_' | translate}}</button>
             </div>
         </div>
     </div>
-    <div class="container-corpo-grupo">
-        <div class="container-tab-group">
-            <nav mat-tab-nav-bar >
-                <a mat-tab-link *ngFor="let link of links"
-                   routerLinkActive #rla="routerLinkActive"
-                   [routerLink]="link"
-                   [active]="rla.isActive"
-                >{{'GRUPO_LEITURA.' + link | translate | titlecase}} </a>
-            </nav>
-            <div class="container-mat-tab">
-                <router-outlet></router-outlet>
-            </div>
+    <div>
+        <nav mat-tab-nav-bar mat-align-tabs="center" style="background-color: white">
+            <a mat-tab-link *ngFor="let link of links"
+               routerLinkActive #rla="routerLinkActive"
+               [routerLink]="link"
+               [active]="rla.isActive"
+            >{{'GRUPO_LEITURA.' + link | translate | titlecase}} </a>
+        </nav>
+        <div>
+            <router-outlet></router-outlet>
         </div>
     </div>
+
 </div>
 
 

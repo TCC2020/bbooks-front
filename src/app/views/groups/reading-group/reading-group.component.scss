@@ -10,7 +10,7 @@
 }
 
 .container-tab-group {
-    margin-bottom: 80px;
+    //margin-bottom: 80px;
 }
 
 .container-cabecalho-grupo, .container-detalhes-cabecalho, .informacoes-grupo, .botao-convidar-grupo {
@@ -48,11 +48,11 @@
 .container-corpo-grupo {
     flex-direction: row;
     display: flex;
-    gap: 10px;
+    //gap: 10px;
 }
 
 .container-tab-group {
-    max-width: 500px;
+    max-width: 550px;
 }
 
 .container-tab-group mat-tab-group {
@@ -60,6 +60,8 @@
 }
 
 .container-mat-tab {
+    width: 100%;
+    background-color: white;
     padding: 15px;
 }
 

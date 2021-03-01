@@ -12,6 +12,8 @@ import {MainGroupResolve} from './guards/main-group.resolve';
 import {MainGuardGroup} from './guards/main-group.guard';
 import {AboutGroupResolve} from './guards/about-group.resolve';
 import {MembersGroupResolve} from './guards/members-group.resolve';
+import {PostDialogComponent} from '../shared/post-dialog/post-dialog.component';
+import {AuthGuard} from '../../guards/auth-guard';
 
 const groupsRouter = [
     {
@@ -51,6 +53,10 @@ const groupsRouter = [
             { path: '', redirectTo: 'feed', pathMatch: 'full' },
 
         ]
+    },
+    {
+        path: 'groups/create-post', component: PostDialogComponent,
+        canActivate: [AuthGuard]
     }
 ];
 

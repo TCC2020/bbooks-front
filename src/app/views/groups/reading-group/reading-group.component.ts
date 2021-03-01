@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GroupTO} from '../../../models/GroupTO.model';
 import {Util} from '../../shared/Utils/util';
@@ -18,7 +18,7 @@ import {GroupInviteTO} from '../../../models/GroupInviteTO.model';
     templateUrl: './reading-group.component.html',
     styleUrls: ['./reading-group.component.scss']
 })
-export class ReadingGroupComponent implements OnInit {
+export class ReadingGroupComponent implements OnInit, OnDestroy {
     links = ['feed', 'about', 'members', 'book-of-month'];
     groupTO: GroupTO;
     role = Role;
@@ -26,7 +26,7 @@ export class ReadingGroupComponent implements OnInit {
     isAdmin = false;
     isMember = false;
     constructor(
-        private router: Router,
+        public router: Router,
         private route: ActivatedRoute,
         private groupMemberService: GroupMemberService,
         private authService: AuthService,
@@ -103,5 +103,12 @@ export class ReadingGroupComponent implements OnInit {
         dialogRef.afterClosed().subscribe(() => {
 
         });
+    }
+    hasFeedRouter(): boolean {
+        return this.router.url.includes('feed');
+    }
+
+    ngOnDestroy(): void {
+        localStorage.setItem('groupId', '');
     }
 }

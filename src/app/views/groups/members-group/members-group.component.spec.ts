@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MembersGroupComponent} from './members-group.component';
 import {MaterialModule} from '../../../material/material.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
@@ -16,7 +16,6 @@ import {groupMock} from '../../../mocks/group.mock';
 import {ActivatedRoute} from '@angular/router';
 import {SocialLoginModule} from 'angularx-social-login';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
-import {GroupService} from '../../../services/group.service';
 import {groupMembersListMock, groupMembersMock} from '../../../mocks/group-members.mock';
 import {AuthService} from '../../../services/auth.service';
 import {userMock} from '../../../mocks/user.model.mock';
@@ -45,7 +44,9 @@ describe('MembersGroupComponent', () => {
                 BrowserAnimationsModule,
                 TranslateServiceMockForChild,
                 BrowserDynamicTestingModule,
-                SocialLoginModule
+                SocialLoginModule,
+                ReactiveFormsModule,
+                FormsModule
             ],
             providers: [
                 TranslateService,
@@ -60,7 +61,8 @@ describe('MembersGroupComponent', () => {
                     provide: AuthService,
                     useValue: authServiceMock
                 },
-                SocialAuthServiceConfigMock
+                SocialAuthServiceConfigMock,
+                GroupMemberService
             ]
         }).compileComponents();
         groupMembersServiceMock = TestBed.inject(GroupMemberService);

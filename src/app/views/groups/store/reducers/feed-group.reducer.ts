@@ -1,8 +1,7 @@
-import {IFeedMainState} from '../state/feed-main.state';
-import {FeedMainActionsType} from '../actions/feed-main.actions';
+import {IFeedGroupState} from '../state/feed-group.state';
+import {FeedGroupActionsType} from '../actions/feed-group.actions';
 
-
-const initialState: IFeedMainState = {
+const initialState: IFeedGroupState = {
     posts: [],
     loading: false,
     error: undefined,
@@ -12,17 +11,17 @@ const initialState: IFeedMainState = {
 export function reducer(
     state = initialState,
     action
-): IFeedMainState {
+): IFeedGroupState {
     let newFeedList = [];
     switch (action.type) {
-        case FeedMainActionsType.addPost:
+        case FeedGroupActionsType.addPost:
             newFeedList = [ action.payload, ...state.posts];
             return {
                 ...state,
                 posts: newFeedList
             };
 
-        case FeedMainActionsType.updatePost:
+        case FeedGroupActionsType.updatePost:
             newFeedList = state.posts.map(p => {
                 return p.id !== action.payload.id ? p : action.payload;
             });
@@ -30,7 +29,7 @@ export function reducer(
                 ...state,
                 posts: newFeedList
             };
-        case FeedMainActionsType.deletePost:
+        case FeedGroupActionsType.deletePost:
             newFeedList = state.posts.filter(p => {
                 return p.id !== action.payload.id;
             });
@@ -38,19 +37,19 @@ export function reducer(
                 ...state,
                 posts: newFeedList
             };
-        case FeedMainActionsType.getPosts:
+        case FeedGroupActionsType.getPosts:
             newFeedList = [...state.posts, ...action.payload];
             return {
                 ...state,
                 posts: newFeedList
             };
-        case FeedMainActionsType.updatePage:
+        case FeedGroupActionsType.updatePage:
             const pageResult = action.payload;
             return {
                 ...state,
                 page: pageResult
             };
-        case FeedMainActionsType.clearRedux:
+        case FeedGroupActionsType.clearRedux:
             return {
                 ...state,
                 page: 0,

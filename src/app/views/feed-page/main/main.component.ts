@@ -47,14 +47,10 @@ export class MainComponent implements OnInit, OnDestroy {
         this.feedService.getFeed(5, this.page)
             .pipe(take(1))
             .subscribe(result => {
-               // console.log('result', result);
                 this.loading = false;
-                // if (result.length > 0) {
-                    // this.page = result.pageNumber + 1;
                 this.feedMainManagerService.updatePage(this.page);
                 this.feedMainManagerService.getPostOnRedux(result);
                 this.getComments(result);
-                // }
             });
     }
 

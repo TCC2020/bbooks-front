@@ -9,6 +9,7 @@ import {UserService} from '../../../services/user.service';
 import {TranslateService} from '@ngx-translate/core';
 import {Role} from '../../../models/enums/Role.enum';
 import {AuthService} from '../../../services/auth.service';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-members-group',
@@ -22,17 +23,24 @@ export class MembersGroupComponent implements OnInit {
     isMember = false;
     memberGroup: GroupMembers;
     role = Role;
+    public formSearch: FormGroup;
+
 
     constructor(
         private route: ActivatedRoute,
         private groupMemberService: GroupMemberService,
         private userService: UserService,
         private translate: TranslateService,
-        private authService: AuthService
+        private authService: AuthService,
+        private formBuilder: FormBuilder
     ) {
+        this.formSearch = this.formBuilder.group({
+            search: new FormControl(null)
+        });
     }
 
     ngOnInit(): void {
+
         Util.loadingScreen();
         this.route.data.pipe(take(1)).subscribe((data: { groupTo: GroupTO }) => {
             Util.stopLoading();
@@ -86,6 +94,7 @@ export class MembersGroupComponent implements OnInit {
             });
 
     }
+
     removerMember(groupMember: GroupMembers, index: number): void {
         Util.loadingScreen();
         groupMember.userId = groupMember.user.id;
@@ -105,5 +114,18 @@ export class MembersGroupComponent implements OnInit {
                     });
                     Util.stopLoading();
                 });
+    }
+
+    filterMembers(): GroupMembers[] {
+        let search = this.formSearch.get('search').value;
+        if (search) {
+            search = search.toLowerCase();
+            return this.members.filter(m =>
+                m.user.profile.name.includes(search) ||
+                m.user.profile.lastName.toLowerCase().includes(search) ||
+                m.user.userName.toLowerCase().includes(search)
+            );
+        }
+        return this.members;
     }
 }

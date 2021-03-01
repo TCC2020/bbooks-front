@@ -19,6 +19,7 @@ import {MainGroupResolve} from './guards/main-group.resolve';
 import {AboutGroupResolve} from './guards/about-group.resolve';
 import {MembersGroupResolve} from './guards/members-group.resolve';
 import { BookMonthComponent } from './book-month/book-month.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { BookMonthComponent } from './book-month/book-month.component';
         FlexModule,
         FlexLayoutModule,
         ReactiveFormsModule,
+        SharedModule,
     ],
     providers: [
         MainGuardGroup,

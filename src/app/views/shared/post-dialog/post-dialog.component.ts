@@ -86,7 +86,9 @@ export class PostDialogComponent implements OnInit {
                 this.dataDialog ? this.dataDialog.privacy : mapPostPrivacy.get(PostPrivacy.public_all),
                 Validators.required
             ),
-            creationDate: new FormControl(this.dataDialog ? this.dataDialog.creationDate : null)
+            creationDate: new FormControl(this.dataDialog ? this.dataDialog.creationDate : null),
+            groupId:   new FormControl(this.dataDialog ? this.dataDialog.groupId : localStorage.getItem('groupId'))
+
         });
         this.image = this.dataDialog ? this.dataDialog.image : null;
     }
