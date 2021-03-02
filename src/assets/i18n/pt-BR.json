@@ -74,7 +74,11 @@
     "LIVRO": "livro",
     "POR": "por",
     "CONTATO": "Contato",
-    "ENDERECO": "Endereço"
+    "ENDERECO": "Endereço",
+    "NOT_FRIEND": "A sua lista de amigos está vazia.",
+    "CONVITE_GRUPOS": "Convites de grupos",
+    "SIM": "Sim",
+    "NAO": "Não"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -99,7 +103,20 @@
     "GRUPO_DESCRICAO": "Crie grupos para compartilhar leituras e trocas de experiências. ",
     "MSG_NAME_GROUP_E": "Nome do grupo é",
     "MSG_PRIVACY_GROUP_E": "Privacidade é",
-    "GRUPO_CRIADO": "O grupo foi criado!"
+    "GRUPO_CRIADO": "O grupo foi criado!",
+    "CONVITE_ENVIADO": "Convite enviado!",
+    "SAIR": "Sair do grupo",
+    "EXCLUIR_GRUPO": "Excluir do grupo",
+    "VOCE_SAIU": "Você saiu do grupo!",
+    "EXCLUIDO": "Grupo excluído!",
+    "VOCE_QUER_SAIR": "Tem certeza de que deseja sair do grupo?",
+    "VOCE_QUER_DELETAR": "Tem certeza de que deseja deletar o grupo?",
+    "REMOVER_ADM": "Remover administrador",
+    "ADD_ADM": "Adicionar como administrador",
+    "REMOVER_MEMBRO": "Remover membro",
+    "ADM_NOW": "Membro adicionado como administrador!",
+    "MEMBER_NOW": "Administrador adicionado como membro",
+    "MEMBRO_REMOVIDO": "Membro removido"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Escrever resenha",
@@ -113,9 +130,10 @@
     "PORTUGUES": "Português",
     "INGLES": "Inglês",
     "RECOMENDACOES": "Recomendações",
-    "INDICOU": "te recomendou"
-
-
+    "INDICOU": "te recomendou",
+    "CONVITE_GRUPO": "te convidou para entrar no grupo",
+    "CONVITE_ACEITO": "Convite aceito!",
+    "CONVITE_RECUSADO": "Convite recusado!"
   },
   "HOME": {
     "BUSCARTEXT": "Procure um livro"
@@ -187,11 +205,13 @@
     "PAGINAS": "Páginas",
     "IDIOMA": "Idioma",
     "AVALIACAO": "Avaliação",
-    "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
+    "OUTRAS_INFO": "Outras informações",
     "CRIAR_LIVRO": "Criar livro",
     "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro",
     "SOBRE_LIVRO": "Sobre este livro",
-    "PESQUISAR_BOOK": "Ache um livro"
+    "PESQUISAR_BOOK": "Ache um livro",
+    "STATUS_GERAL": "Status geral"
+
   },
   "PERFIL": {
     "feed": "feed",
@@ -219,7 +239,9 @@
     "DETALHES_LENDO": "LENDO",
     "DETALHES_RELENDO": "RELENDO",
     "DETALHES_QUEREM_LER": "QUEREM LER",
-    "DETALHES_INTERROMPIDOS": "INTERROMPIDOS"
+    "DETALHES_INTERROMPIDOS": "INTERROMPIDOS",
+    "DETALHES_LIDOS": "LIDOS",
+    "DETALHES_EMPRESTADO": "EMPRESTADO"
   },
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Acompanhamento de Leitura",
@@ -281,7 +303,8 @@
     "RT005": "Página menor que o último acompanhamento",
     "TA001": "O último acompanhamento ainda não terminou",
     "RT006": "A página não pode ser zero",
-    "BAD003": "Ops! Você não pode deletar esta oferta pois ela está relacionada a uma troca."
+    "BAD003": "Ops! Você não pode deletar esta oferta pois ela está relacionada a uma troca.",
+    "GR006": "Convite já foi enviado!"
   },
   "POST":{
     "CRIAR_POSTAGEM": "Criar Postagem",

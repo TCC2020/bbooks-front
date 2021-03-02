@@ -12,6 +12,7 @@ import {AuthService} from '../../../services/auth.service';
 import Swal from 'sweetalert2';
 import {UserService} from '../../../services/user.service';
 import {UserTO} from '../../../models/userTO.model';
+import {zip} from 'rxjs';
 
 @Component({
     selector: 'app-offer-view',
@@ -130,18 +131,22 @@ export class OfferViewComponent implements OnInit {
         this.showSlides(this.slideIndex += n);
     }
     delete(id: string): void {
-        this.translate.get('EXCHANGE.EXLUIR_OFFER').subscribe(message => {
+        zip(
+            this.translate.get('EXCHANGE.EXLUIR_OFFER'),
+            this.translate.get('PADRAO.NAO'),
+            this.translate.get('PADRAO.SIM')
+        ).subscribe(messages => {
             // @ts-ignore
             Swal.fire({
                 icon: 'warning',
-                text: message,
+                text: messages[0] ,
                 showConfirmButton: true,
-                confirmButtonText: 'Yes',
+                confirmButtonText: messages[2],
                 showCancelButton: true,
-                cancelButtonText: 'No'
+                cancelButtonText: messages[1]
             }).then((result) => {
                 if (result.value) {
-                   this.deleteService(id);
+                    this.deleteService(id);
                 }
             });
         });
