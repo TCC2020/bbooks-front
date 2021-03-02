@@ -16,7 +16,7 @@
             <p class="paragrafo-competicao">Fim da competição em <strong>{{ competitionTO?.finalDate | date:'dd/MM/yyyy' }}</strong></p>
         </div>
     </div>
-    <div class="container-cinza">
+    <!-- <div class="container-cinza">
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Administradores</h2>
             <div class="container-membros">
@@ -34,7 +34,7 @@
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Membros</h2>
             <div class="container-membros">
-                <div class="membro"  *ngFor="let member of members">
+                <div class="membro" *ngFor="let member of members">
                     <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
                     <div class="nome-membro"><p>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</p></div>
                 </div>
@@ -43,14 +43,31 @@
                 <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button" mat-raised-button color="primary">Ver todos os membros</button>
             </div>
         </div>
+    </div> -->
+    <div class="container-cinza">
+        <div class="container-conteudo">
+            <h2  class="titulo-competicao">Administradores</h2>
+            <div class="ver-todos-membros">
+                <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/' + competitionTO?.id + '/administrators']">Ver todos os administradores</button>
+            </div>
+        </div>
     </div>
+    <div class="container-branco">
+        <div class="container-conteudo">
+            <h2  class="titulo-competicao">Membros</h2>
+            <div class="ver-todos-membros">
+                <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button" mat-raised-button color="primary">Ver todos os membros</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container-cinza">
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Resultado</h2>
             <p class="paragrafo-competicao">{{ competitionTO?.winnerProfile ? competitionTO.winnerProfile : "Aguardando vencedor"}}</p>
         </div>
     </div>
-    <div class="container-branco" *ngIf="isUserAdministrator()">
+    <div class="container-branco" *ngIf="isAdmin">
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Editar Competição</h2>
             <div>

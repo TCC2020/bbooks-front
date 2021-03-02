@@ -52,7 +52,7 @@ export class AdministratorsLiteraryCompetitionComponent implements OnInit {
                     if (r.length === 0) {
                         this.getMembers();
                     } else {
-                        this.administrators = this.administrators.concat(result.content);
+                        this.administrators = this.administrators.concat(r);
                         this.getProfiles();
                     }
                 }
