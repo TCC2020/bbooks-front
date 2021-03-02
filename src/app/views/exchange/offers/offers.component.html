@@ -3,7 +3,7 @@
 <!--    <div  fxFlex="25" class="bodyFilter">-->
 
         <div fxFlex="12">
-            <b class="title">{{'EXCHANGE.OFERTAS' | translate }}</b>
+            <b class="title">{{'PADRAO.OFERTAS' | translate }}</b>
         </div>
         <div class="subtitle" fxLayout="row">
             <div>
@@ -13,7 +13,7 @@
                 <span class="material-icons">keyboard_arrow_right</span>
             </div>
             <div>
-                {{'EXCHANGE.OFERTAS' | translate }}
+                {{'PADRAO.OFERTAS' | translate }}
             </div>
         </div>
 </div>
@@ -21,20 +21,10 @@
 <div>
     <form [formGroup]="formSearch">
         <div fxLayout="row" fxLayoutAlign="center center">
-            <mat-form-field style="margin: 6px; width: 50%">
+            <mat-form-field style="margin: 6px; width: 50%" appearance="outline">
                 <mat-label>{{'EXCHANGE.PESQUISAR_OFERTA' | translate}}</mat-label>
                 <input matInput matInput type="text" id="user" formControlName="search">
             </mat-form-field>
-            <div>
-                <button
-                        mat-raised-button
-                        color="accent"
-                        id="search-bt"
-                        type="submit"
-                >
-                    {{'PADRAO.BUSCAR' | translate}}
-                </button>
-            </div>
         </div>
     </form>
     <ng-template #loading>

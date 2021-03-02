@@ -35,7 +35,7 @@ export class ReviewDialogComponent implements OnInit {
             id: new FormControl(this.data.review?.id ? this.data.review.id : ''),
             title: new FormControl(this.data.review?.title ? this.data.review.title : '', Validators.required),
             body: new FormControl(this.data.review?.body ? this.data.review.body : '', Validators.compose([
-                Validators.maxLength(300),
+                Validators.maxLength(1000),
                 Validators.required
             ])),
             bookId: new FormControl(this.data?.review.bookId),

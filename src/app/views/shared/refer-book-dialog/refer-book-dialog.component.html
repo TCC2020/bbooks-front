@@ -1,5 +1,5 @@
 <form [formGroup]="pesquisarUsuarios"  class="form-inline mr-auto">
-    <div class="container-pesquisar">
+    <div class="container-pesquisar" style="width: 100%">
         <mat-form-field style="margin: 25px;" appearance="outline">
             <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
             <input matInput matInput type="text" id="user" formControlName="user"  #nome (keyup)="pesquisar(nome)" (blur)="pesquisar(nome)">
