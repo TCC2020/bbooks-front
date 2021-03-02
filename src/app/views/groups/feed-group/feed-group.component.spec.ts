@@ -16,6 +16,7 @@ import {PostService} from '../../../services/post.service';
 import {FeedGenericService} from '../../../services/feed-generic.service';
 import {StoreModule} from '@ngrx/store';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
+import {GroupMemberService} from '../../../services/group-member.service';
 
 describe('FeedGroupComponent', () => {
     let component: FeedGroupComponent;
@@ -46,7 +47,8 @@ describe('FeedGroupComponent', () => {
                 FeedGroupManagerService,
                 FeedService,
                 PostService,
-                FeedGenericService
+                FeedGenericService,
+                GroupMemberService
             ]
         })
             .compileComponents();

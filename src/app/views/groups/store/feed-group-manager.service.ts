@@ -30,7 +30,7 @@ export class FeedGroupManagerService {
         public feedGenericService: FeedGenericService
     ) {
         this.feedState = this.store.select(
-            'feed'
+            'feedGroup'
         );
     }
 

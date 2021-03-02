@@ -18,7 +18,7 @@ import {GroupInviteTO} from '../../../models/GroupInviteTO.model';
     templateUrl: './reading-group.component.html',
     styleUrls: ['./reading-group.component.scss']
 })
-export class ReadingGroupComponent implements OnInit, OnDestroy {
+export class ReadingGroupComponent implements OnInit {
     links = ['feed', 'about', 'members', 'book-of-month'];
     groupTO: GroupTO;
     role = Role;
@@ -106,9 +106,5 @@ export class ReadingGroupComponent implements OnInit, OnDestroy {
     }
     hasFeedRouter(): boolean {
         return this.router.url.includes('feed');
-    }
-
-    ngOnDestroy(): void {
-        localStorage.setItem('groupId', '');
     }
 }

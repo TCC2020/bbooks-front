@@ -40,11 +40,12 @@ export class MembersGroupComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
         Util.loadingScreen();
         this.route.data.pipe(take(1)).subscribe((data: { groupTo: GroupTO }) => {
             Util.stopLoading();
             this.groupTO = data.groupTo;
+            localStorage.setItem('groupId', this.groupTO.id);
+
             this.getMembers();
         });
     }

@@ -14,6 +14,7 @@ import {AboutGroupResolve} from './guards/about-group.resolve';
 import {MembersGroupResolve} from './guards/members-group.resolve';
 import {PostDialogComponent} from '../shared/post-dialog/post-dialog.component';
 import {AuthGuard} from '../../guards/auth-guard';
+import {FeedGroupResolve} from './guards/feed-group.resolve';
 
 const groupsRouter = [
     {
@@ -41,7 +42,8 @@ const groupsRouter = [
                 resolve: {groupTo: AboutGroupResolve},
             },
             {
-                path: 'feed', component: FeedGroupComponent
+                path: 'feed', component: FeedGroupComponent,
+                resolve: {groupTo: FeedGroupResolve},
             },
             {
                 path: 'members', component: MembersGroupComponent,

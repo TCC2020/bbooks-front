@@ -7,5 +7,5 @@ export interface IFeedGroupState {
     page: number;
 }
 export interface IFeedGroupStateReducer {
-    feed: IFeedGroupState;
+    feedGroup: IFeedGroupState;
 }
