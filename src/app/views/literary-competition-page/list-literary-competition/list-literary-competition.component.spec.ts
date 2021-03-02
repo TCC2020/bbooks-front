@@ -1,35 +1,53 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ListLiteraryCompetitionComponent } from './list-literary-competition.component';
+import {ListLiteraryCompetitionComponent} from './list-literary-competition.component';
 import {RouterModule} from '@angular/router';
 import {MaterialModule} from '../../../material/material.module';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {AuthService} from '../../../services/auth.service';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {userMock} from '../../../mocks/user.model.mock';
 
 describe('ListLiteraryCompetitionComponent', () => {
-  let component: ListLiteraryCompetitionComponent;
-  let fixture: ComponentFixture<ListLiteraryCompetitionComponent>;
+    let component: ListLiteraryCompetitionComponent;
+    let fixture: ComponentFixture<ListLiteraryCompetitionComponent>;
+    let service: AuthService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ListLiteraryCompetitionComponent ],
-      imports: [
-          MaterialModule,
-          RouterTestingModule,
-          BrowserAnimationsModule
-      ]
-    })
-    .compileComponents();
-  }));
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
+    };
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ListLiteraryCompetitionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ListLiteraryCompetitionComponent],
+            imports: [
+                MaterialModule,
+                RouterTestingModule,
+                BrowserAnimationsModule,
+                InfiniteScrollModule,
+                HttpClientTestingModule
+            ],
+            providers: [
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                },
+                SocialAuthServiceConfigMock
+            ]
+        }).compileComponents();
+        service = TestBed.inject(AuthService);
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ListLiteraryCompetitionComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
