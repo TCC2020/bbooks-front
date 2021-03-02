@@ -13,7 +13,7 @@ import {CompetitionMemberPagination} from '../models/pagination/competition-memb
 })
 export class CompetitionMemberService {
 
-  api: string = environment.api + 'competitions/member/';
+  api: string = environment.competitionApi + 'competitions/member/';
 
   constructor(private http: HttpClient) { }
 
@@ -40,7 +40,6 @@ export class CompetitionMemberService {
   }
   getCompetitionByProfile(id: number, page: number, size: number): Observable<CompetitionPagination> {
     const params = new HttpParams()
-        .set('id', id.toString())
         .set('page', page.toString())
         .set('size', size.toString());
     return this.http.get<CompetitionPagination>(this.api + 'profile/' + id, {params});

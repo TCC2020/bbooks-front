@@ -20,29 +20,13 @@
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Administradores</h2>
             <div class="container-membros">
-                <div class="membro">
+                <div class="membro"  *ngFor="let administrator of administrators">
                     <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
+                    <div class="nome-membro"><p>{{ administrator?.profile?.name + ' ' + administrator?.profile?.lastName }}</p></div>
                 </div>
             </div>
             <div class="ver-todos-membros">
-                <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/5/administrators']">Ver todos os administradores</button>
+                <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/' + competitionTO?.id + '/administrators']">Ver todos os administradores</button>
             </div>
         </div>
     </div>
@@ -50,36 +34,20 @@
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Membros</h2>
             <div class="container-membros">
-                <div class="membro">
+                <div class="membro"  *ngFor="let member of members">
                     <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
+                    <div class="nome-membro"><p>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</p></div>
                 </div>
             </div>
             <div class="ver-todos-membros">
-                <button [routerLink]="['/literary-competition/6/members']" type="button" mat-raised-button color="primary">Ver todos os membros</button>
+                <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button" mat-raised-button color="primary">Ver todos os membros</button>
             </div>
         </div>
     </div>
     <div class="container-cinza">
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Resultado</h2>
-            <p class="paragrafo-competicao">Nome do Vencedor</p>
+            <p class="paragrafo-competicao">{{ competitionTO?.winnerProfile ? competitionTO.winnerProfile : "Aguardando vencedor"}}</p>
         </div>
     </div>
     <div class="container-branco" *ngIf="isUserAdministrator()">

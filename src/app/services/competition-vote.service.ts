@@ -11,7 +11,7 @@ import {CompetitionVotesSaveTO} from '../models/competitionVotesSaveTO.model';
 })
 export class CompetitionVoteService {
 
-  api: string = environment.api + 'competitions/votes/';
+  api: string = environment.competitionApi + 'competitions/votes/';
 
   constructor(private http: HttpClient) { }
 

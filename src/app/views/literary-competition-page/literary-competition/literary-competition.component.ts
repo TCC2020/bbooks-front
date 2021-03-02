@@ -4,6 +4,9 @@ import {ActivatedRoute} from '@angular/router';
 import {map, take} from 'rxjs/operators';
 import {CompetitionService} from '../../../services/competition.service';
 import {CompetitionTO} from '../../../models/competitionTO.model';
+import {CompetitionMemberService} from '../../../services/competition-member.service';
+import {ProfileService} from '../../../services/profile.service';
+import {CompetitionMemberTO} from '../../../models/competitionMemberTO.model';
 
 @Component({
     selector: 'app-literary-competition',
@@ -12,15 +15,16 @@ import {CompetitionTO} from '../../../models/competitionTO.model';
 })
 export class LiteraryCompetitionComponent implements OnInit {
 
-    isEditing = false;
-    dateStart = new FormControl(new Date('2021-02-14'));
-    dateEnd = new FormControl(new Date('2021-02-24'));
-    dateEndCompetition = new FormControl(new Date('2021-03-31'));
     competitionTO: CompetitionTO;
+    members: CompetitionMemberTO[] = [];
+    administrators: CompetitionMemberTO[] = [];
+    literaryCompetitionId: string;
 
     constructor(
         private route: ActivatedRoute,
-        private competitionService: CompetitionService
+        private competitionService: CompetitionService,
+        private competitionMemberService: CompetitionMemberService,
+        private profileService: ProfileService
     ) {
     }
 
@@ -31,6 +35,8 @@ export class LiteraryCompetitionComponent implements OnInit {
             )
             .subscribe(result => {
                     this.getById(result);
+                    this.literaryCompetitionId = result;
+                    this.getMembers();
                 }
             );
     }
@@ -38,10 +44,6 @@ export class LiteraryCompetitionComponent implements OnInit {
 
     isUserAdministrator(): boolean {
         return true;
-    }
-
-    edit(): void {
-        this.isEditing = !this.isEditing;
     }
 
     getById(id: string) {
@@ -52,6 +54,31 @@ export class LiteraryCompetitionComponent implements OnInit {
             }, error => {
                 console.log(error);
             });
+    }
+
+    getMembers() {
+        this.competitionMemberService.getMembers(this.literaryCompetitionId, 0, 5)
+            .pipe(take(1))
+            .subscribe(result => {
+                this.members.filter(i => i.role === 'member');
+                console.log(this.members);
+                if (result.content.length > 0) {
+                    this.members = this.members.filter(i => i.role === 'member').concat(result.content);
+                    this.getProfiles();
+                }
+            });
+    }
+
+    getProfiles() {
+        this.members.forEach((a, i) => {
+            if (!a.profile) {
+                this.profileService.getById(a.profileId)
+                    .pipe(take(1))
+                    .subscribe(result => {
+                        this.members[i].profile = result;
+                    });
+            }
+        });
     }
 
 }

@@ -1,5 +1,3 @@
-
-
 export class CompetitionVotesSaveTO {
     id: string;
     value: number;

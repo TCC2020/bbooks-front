@@ -1,17 +1,15 @@
 <div class="container-geral">
     <div class="informacoes-membro">
-        <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
+        <div class="foto-membro"><img
+                [src]="member?.profile?.profileImage ? member.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'">
+        </div>
         <div class="dados-membro">
-            <h2>Nome do membro</h2>
+            <h2>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</h2>
         </div>
     </div>
     <div class="historia-membro">
         <h2>História do usuário</h2>
-        <h3>Título da história</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nisl ante, accumsan sed porta sit amet, hendrerit quis nulla. Sed tincidunt consequat congue. Nulla condimentum massa vitae turpis congue, et egestas magna lacinia. Duis quis pharetra magna. Sed at mollis mi. Vivamus fringilla neque eu orci auctor, non sollicitudin sem ultricies. Suspendisse consectetur aliquam lectus. Integer dolor magna, mollis ut turpis eget, vehicula commodo lorem.</p>
-
-        <p>Proin tristique metus vitae dui dapibus, at commodo nibh interdum. Integer consectetur, mi at bibendum iaculis, erat tellus convallis leo, in sagittis diam augue eget massa. Mauris pellentesque in neque commodo luctus. Curabitur tristique convallis ipsum ut mattis. Morbi vitae diam massa. Nulla facilisi. Proin porta, sem nec porta rhoncus, mauris est iaculis ipsum, id volutpat augue nisi sed turpis. Nam sit amet odio arcu. Donec quis nisl lobortis, convallis tellus vel, cursus lectus. Nulla vel erat iaculis, sollicitudin metus sed, luctus dui. Proin eget iaculis lorem, a volutpat velit. Pellentesque ac sem eget quam dapibus venenatis ac eget ex. Suspendisse maximus nec metus vel varius. Sed tempus nulla diam, hendrerit rhoncus nibh efficitur eu. Donec porttitor non orci eu elementum.</p>
-
-            <p>Aenean faucibus laoreet sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Pellentesque varius, dolor sit amet hendrerit convallis, tortor augue finibus risus, eget auctor quam arcu id urna. Suspendisse euismod sodales ex, vel imperdiet ipsum vehicula sed. Aenean consectetur condimentum turpis sed vestibulum. Ut at pulvinar velit. Pellentesque ornare, dolor nec scelerisque venenatis, ex ligula rhoncus sem, sed sollicitudin tellus magna a nisl. Sed vel lorem eros. Etiam quam velit, consequat quis mauris sit amet, finibus pellentesque libero. Sed eget mauris ac massa gravida lacinia sit amet sit amet velit. Quisque molestie neque et neque dignissim iaculis. Aliquam finibus, erat nec blandit finibus, nulla felis lacinia orci, id posuere tellus sapien eu turpis. Integer finibus non nunc eget ultricies.</p>
+        <h3>{{ member?.title }}</h3>
+        <p>{{ member?.story }}</p>
     </div>
 </div>
