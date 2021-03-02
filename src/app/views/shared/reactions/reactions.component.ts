@@ -15,6 +15,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FeedMainManagerService} from '../../feed-page/store/feed-main-manager.service';
 import {FeedGenericService} from '../../../services/feed-generic.service';
 import {UploadComponent} from '../../upload/upload.component';
+import {FeedGroupManagerService} from '../../groups/store/feed-group-manager.service';
 
 @Component({
     selector: 'app-reactions',
@@ -58,7 +59,8 @@ export class ReactionsComponent implements OnInit {
         public feedPerfilManageService: FeedPerfilManageService,
         private formBuilder: FormBuilder,
         public feedMainManagerService: FeedMainManagerService,
-        public feedGenerec: FeedGenericService
+        public feedGenerec: FeedGenericService,
+        public feedGroupManagerService: FeedGroupManagerService
     ) {
 
     }
@@ -125,6 +127,7 @@ export class ReactionsComponent implements OnInit {
             .pipe().subscribe((post) => {
             if (post) {
                 if (p) {
+                    post.comments = p.comments;
                     this.updateReduxOfTypePost(this.typePostControler, post);
                 }
             }
@@ -170,6 +173,7 @@ export class ReactionsComponent implements OnInit {
                 this.feedPerfilManageService.updatePost(postTo);
                 return;
             case TypePostControler.group:
+                this.feedGroupManagerService.updatePost(postTo);
                 return;
         }
     }
@@ -183,6 +187,7 @@ export class ReactionsComponent implements OnInit {
                 this.feedPerfilManageService.deletePost(postTo);
                 return;
             case TypePostControler.group:
+                this.feedGroupManagerService.deletePost(postTo);
                 return;
         }
     }
@@ -196,6 +201,7 @@ export class ReactionsComponent implements OnInit {
                 this.feedPerfilManageService.deleteComment(postTo, comment);
                 return;
             case TypePostControler.group:
+                this.feedGroupManagerService.deleteComment(postTo, comment);
                 return;
         }
     }
@@ -209,6 +215,8 @@ export class ReactionsComponent implements OnInit {
                 this.feedPerfilManageService.addComment(postTo, comment);
                 return;
             case TypePostControler.group:
+                this.feedGroupManagerService.addComment(postTo, comment);
+
                 return;
         }
     }
@@ -222,6 +230,7 @@ export class ReactionsComponent implements OnInit {
                 this.feedPerfilManageService.updateComment(postTo, comment);
                 return;
             case TypePostControler.group:
+                this.feedGroupManagerService.updateComment(postTo, comment);
                 return;
         }
     }
@@ -235,6 +244,7 @@ export class ReactionsComponent implements OnInit {
                 this.router.navigate([this.user.userName + '/create-post'], {state: {post}});
                 return;
             case TypePostControler.group:
+                this.router.navigate(['groups/create-post'], {state: {post}});
                 return;
         }
     }

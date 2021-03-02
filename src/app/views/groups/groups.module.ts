@@ -19,6 +19,10 @@ import {MainGroupResolve} from './guards/main-group.resolve';
 import {AboutGroupResolve} from './guards/about-group.resolve';
 import {MembersGroupResolve} from './guards/members-group.resolve';
 import { BookMonthComponent } from './book-month/book-month.component';
+import {SharedModule} from '../shared/shared.module';
+import {FeedGroupResolve} from './guards/feed-group.resolve';
+import {StoreModule} from '@ngrx/store';
+import {reducer} from '../perfil-page/store/reducers/feed.reducer';
 
 
 @NgModule({
@@ -38,6 +42,7 @@ import { BookMonthComponent } from './book-month/book-month.component';
         ReactiveFormsModule,
         FormsModule,
         MaterialModule,
+        StoreModule.forFeature('feedGroup', reducer),
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
@@ -48,12 +53,14 @@ import { BookMonthComponent } from './book-month/book-month.component';
         FlexModule,
         FlexLayoutModule,
         ReactiveFormsModule,
+        SharedModule,
     ],
     providers: [
         MainGuardGroup,
         MainGroupResolve,
         AboutGroupResolve,
-        MembersGroupResolve
+        MembersGroupResolve,
+        FeedGroupResolve
     ]
 })
 export class GroupsModule {

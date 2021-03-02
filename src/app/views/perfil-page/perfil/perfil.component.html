@@ -60,7 +60,7 @@
                                 <h3 class="titulo-dados-usuario">{{'PADRAO.NOME' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.name}}</p>
                                 <!-- input para alteração -->
-                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao" appearance="outline">
                                     <mat-label>{{'PADRAO.NOME' | translate}}</mat-label>
                                     <input matInput type="text" formControlName="name"/>
                                 </mat-form-field>
@@ -72,7 +72,7 @@
                                 <p class="conteudo-dados-usuario"
                                    *ngIf="!modeBasicInfo">{{userTO?.profile?.lastName}}</p>
                                 <!-- input para alteração -->
-                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao" appearance="outline">
                                     <mat-label>{{'PADRAO.SOBRENOME' | translate}}</mat-label>
                                     <input matInput type="text" formControlName="lastName"/>
                                 </mat-form-field>
@@ -83,7 +83,7 @@
                                 <h3 class="titulo-dados-usuario">{{'PADRAO.EMAIL' | translate | uppercase}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.email}}</p>
                                 <!-- input para alteração -->
-                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao" appearance="outline">
                                     <mat-label>{{'PADRAO.EMAIL' | translate}}</mat-label>
                                     <input matInput type="email" formControlName="email"/>
                                 </mat-form-field>
@@ -94,7 +94,7 @@
                                 <h3 class="titulo-dados-usuario">{{'PADRAO.NOME_USUARIO' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.userName}}</p>
                                 <!-- input para alteração -->
-                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao" appearance="outline">
                                     <mat-label>{{'PADRAO.NOME_USUARIO' | translate}}</mat-label>
                                     <input matInput type="text" formControlName="userName"/>
                                 </mat-form-field>
@@ -106,7 +106,7 @@
                                 <p class="conteudo-dados-usuario"
                                    *ngIf="!modeBasicInfo">{{userTO?.profile?.birthDate}}</p>
                                 <!-- input para alteração -->
-                                <mat-form-field *ngIf="modeBasicInfo">
+                                <mat-form-field *ngIf="modeBasicInfo" appearance="outline">
                                     <input matInput type="date" formControlName="birthDate"/>
                                 </mat-form-field>
                                 <!--<input type="date" formControlName="birthDate" *ngIf="modeBasicInfo">-->
@@ -116,7 +116,7 @@
                                 <h3 class="titulo-dados-usuario">{{'PADRAO.PAIS' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.country}}</p>
                                 <!-- input para alteração -->
-                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao" appearance="outline">
                                     <mat-label>{{'PADRAO.PAIS' | translate}}</mat-label>
                                     <mat-select formControlName="country">
                                         <mat-option [value]="country.name" *ngFor="let country of countrys"
@@ -132,7 +132,7 @@
                                 <h3 class="titulo-dados-usuario">{{'PADRAO.ESTADO' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.state}}</p>
                                 <!-- input para alteração -->
-                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao" appearance="outline">
                                     <mat-label>{{'PADRAO.ESTADO' | translate}}</mat-label>
                                     <mat-select formControlName="state">
                                         <mat-option [value]="state.name" *ngFor="let state of states"
@@ -147,7 +147,7 @@
                                 <h3 class="titulo-dados-usuario">{{'PADRAO.CIDADE' | translate}}</h3>
                                 <p class="conteudo-dados-usuario" *ngIf="!modeBasicInfo">{{userTO?.profile?.city}}</p>
                                 <!-- input para alteração -->
-                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao">
+                                <mat-form-field *ngIf="modeBasicInfo" class="input-edicao" appearance="outline">
                                     <input type="text" placeholder="{{'PADRAO.CIDADE' | translate}}" aria-label="Number" matInput
                                            formControlName="city" [matAutocomplete]="autoCity"
                                            class="example-full-width"/>

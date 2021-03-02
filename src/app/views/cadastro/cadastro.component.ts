@@ -7,6 +7,7 @@ import {UserTO} from '../../models/userTO.model';
 import {AuthService} from '../../services/auth.service';
 import {take} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
+import {Util} from '../shared/Utils/util';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -79,12 +80,16 @@ export class CadastroComponent implements OnInit {
     cadastrar() {
         const username = this.cadastroControl.get('userName').value;
         this.cadastroControl.get('userName').setValue(username.toLowerCase());
+        Util.loadingScreen();
         this.cadastroService.cadastrar(this.cadastroControl.value).pipe(take(1)).subscribe((res: UserTO) => {
                 const userLogin = {
                     email: res.email,
                     token: res.token
                 };
+                Util.stopLoading();
+                Util.loadingScreen();
                 this.auth.loginToken(userLogin).pipe(take(1)).subscribe((loginTo: UserTO) => {
+                        Util.stopLoading();
                         this.auth.setUserRegister(loginTo);
                         this.router.navigateByUrl('continuar-cadastro');
                     },
@@ -93,6 +98,7 @@ export class CadastroComponent implements OnInit {
                     });
             },
             (err) => {
+                Util.stopLoading();
                 let codMessage = '';
                 // email
                 if (err.error.message.includes('US002')) {

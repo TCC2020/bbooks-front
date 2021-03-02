@@ -14,6 +14,7 @@ export class PostTO {
     creationDate: Date;
     user: UserTO;
     editMode: boolean;
+    groupId: string;
 
     public setComments(comments: PostTO[]) {
         this.comments = [];

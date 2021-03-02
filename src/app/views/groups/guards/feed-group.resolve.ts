@@ -6,10 +6,10 @@ import {GroupService} from '../../../services/group.service';
 
 
 @Injectable()
-export class MainGroupResolve implements Resolve<GroupTO> {
+export class FeedGroupResolve implements Resolve<GroupTO> {
 
     constructor(
-        private userService: GroupService
+        private groupService: GroupService
     ) {
     }
 
@@ -17,8 +17,7 @@ export class MainGroupResolve implements Resolve<GroupTO> {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<GroupTO> | Promise<GroupTO> | GroupTO {
-        const id = route.params.id;
-        localStorage.setItem('groupId', id);
-        return this.userService.getById(id);
+        const id = route.parent.params.id;
+        return this.groupService.getById(id);
     }
 }

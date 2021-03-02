@@ -1,0 +1,8 @@
+mat-form-field, .barra-pesquisar {
+  width: 600px;
+}
+@media screen and (max-width: 600px) {
+  mat-form-field, .barra-pesquisar {
+    width: 300px;
+  }
+}

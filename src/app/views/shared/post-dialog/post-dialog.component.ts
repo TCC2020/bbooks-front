@@ -86,9 +86,15 @@ export class PostDialogComponent implements OnInit {
                 this.dataDialog ? this.dataDialog.privacy : mapPostPrivacy.get(PostPrivacy.public_all),
                 Validators.required
             ),
-            creationDate: new FormControl(this.dataDialog ? this.dataDialog.creationDate : null)
+            creationDate: new FormControl(this.dataDialog ? this.dataDialog.creationDate : null),
+            groupId: new FormControl(this.getGroupId())
+
         });
         this.image = this.dataDialog ? this.dataDialog.image : null;
+    }
+
+    getGroupId(): string {
+        return this.router.url.includes('group') ? localStorage.getItem('groupId') : '';
     }
 
     get asks(): FormArray {
@@ -206,6 +212,7 @@ export class PostDialogComponent implements OnInit {
         if (this.isMobile()) {
             window.history.back();
         } else {
+            post.user = this.authService.getUser();
             this.dialogRef.close(post);
         }
     }

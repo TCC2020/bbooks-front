@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GroupTO} from '../../../models/GroupTO.model';
 import {Util} from '../../shared/Utils/util';
@@ -26,7 +26,7 @@ export class ReadingGroupComponent implements OnInit {
     isAdmin = false;
     isMember = false;
     constructor(
-        private router: Router,
+        public router: Router,
         private route: ActivatedRoute,
         private groupMemberService: GroupMemberService,
         private authService: AuthService,
@@ -103,5 +103,8 @@ export class ReadingGroupComponent implements OnInit {
         dialogRef.afterClosed().subscribe(() => {
 
         });
+    }
+    hasFeedRouter(): boolean {
+        return this.router.url.includes('feed');
     }
 }

@@ -2,22 +2,21 @@
     <form class="form-inline mr-auto" fxLayout="row">
         <div class="container-pesquisar">
             <div>
-                <mat-form-field>
+                <form [formGroup]="formSearch">
+                <mat-form-field appearance="outline">
                     <mat-label>{{'PESQUISAR_AMIGOS.PROCURAR' | translate}}</mat-label>
-                    <input class="barra-pesquisar" matInput matInput type="text">
+                    <input class="barra-pesquisar" matInput matInput formControlName="search" (blur)="filterMembers()" (keyup.enter)="filterMembers()">
                 </mat-form-field>
-            </div>
-            <div class="botao-pesquisar">
-                <button mat-raised-button color="accent" id="search-bt"
-                        type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
+                </form>
             </div>
         </div>
     </form>
-    <p class="cargo">{{'GRUPO_LEITURA.MEMBROS' | translate}} </p>
+
     <!--começa card-->
     <div class="container-amigo">
-        <div class="container-imagem">
-            <div class="informacoes-do-usuario" *ngFor="let member of members; let i= index">
+        <p class="cargo">{{'GRUPO_LEITURA.MEMBROS' | translate}} </p>
+        <div class="container-imagem" style="background-color: white">
+            <div class="informacoes-do-usuario" *ngFor="let member of filterMembers(); let i= index">
                 <div>
                     <img class="imagem-perfil"
                          src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
@@ -49,61 +48,8 @@
                         </button>
                     </mat-menu>
                 </div>
+                <mat-divider></mat-divider>
             </div>
         </div>
-        <mat-divider></mat-divider>
     </div>
-
-<!--    <p class="cargo">{{'GRUPO_LEITURA.MEMBROS' | translate}} - 2</p>-->
-<!--    &lt;!&ndash;começa card&ndash;&gt;-->
-<!--    <div class="container-amigo">-->
-<!--        <div class="container-imagem">-->
-<!--            <div class="informacoes-do-usuario">-->
-<!--                <div>-->
-<!--                    <img class="imagem-perfil"-->
-<!--                         src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>-->
-<!--                </div>-->
-<!--                <div class="informacoes">-->
-<!--                    <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>-->
-<!--                    <div><span>fulano-silva</span></div>-->
-<!--                </div>-->
-<!--                <div *ngIf="isAdm()">-->
-<!--                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">-->
-<!--                        <mat-icon>more_vert</mat-icon>-->
-<!--                    </button>-->
-<!--                    <mat-menu #menu="matMenu">-->
-<!--                        <button mat-menu-item>-->
-<!--                            <mat-icon>block</mat-icon>-->
-<!--                            <span>Bloquer membro</span>-->
-<!--                        </button>-->
-<!--                        <button mat-menu-item>-->
-<!--                            <mat-icon>admin_panel_settings</mat-icon>-->
-<!--                            <span>Tornar administrador</span>-->
-<!--                        </button>-->
-<!--                        <button mat-menu-item>-->
-<!--                            <mat-icon>remove_circle</mat-icon>-->
-<!--                            <span>Remover membro</span>-->
-<!--                        </button>-->
-<!--                    </mat-menu>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <mat-divider></mat-divider>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;começa card&ndash;&gt;-->
-<!--        <div class="container-amigo">-->
-<!--            <div class="container-imagem">-->
-<!--                <div class="informacoes-do-usuario">-->
-<!--                    <div>-->
-<!--                        <img class="imagem-perfil"-->
-<!--                             src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>-->
-<!--                    </div>-->
-<!--                    <div class="informacoes">-->
-<!--                        <div><span><a class="nome-usuario">Fulano da Silva</a></span></div>-->
-<!--                        <div><span>fulano-silva</span></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <mat-divider></mat-divider>-->
-<!--        </div>-->
-<!--    </div>-->
 </div>

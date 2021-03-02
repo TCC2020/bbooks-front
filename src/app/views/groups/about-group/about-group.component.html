@@ -50,27 +50,28 @@
         </mat-radio-group>
         <h3>{{'GRUPO_LEITURA.DATA_CRIACAO' | translate}}</h3>
         <p>{{groupTO?.creationDate | date}}</p>
+
+        <div fxLayout="row" fxLayout.xs="column" fxFlexAlign="start center" fxLayoutAlign.xs="center center" fxLayoutGap="5px">
+            <div *ngIf="member?.role.toString() === 'member' || member?.role.toString() === 'admin'">
+                <button type="button"
+                        mat-raised-button
+                        color="warn"
+                        (click)="exitDilaogConfirm('exit')">
+                    <span class="material-icons">exit_to_app</span>
+                    {{'GRUPO_LEITURA.SAIR' | translate}}
+                </button>
+            </div>
+
+            <div *ngIf="member?.role.toString() === 'owner'">
+                <button type="button"
+                        mat-raised-button
+                        color="warn"
+                        (click)="exitDilaogConfirm()">
+                    <span class="material-icons">exit_to_app</span>
+                    {{'GRUPO_LEITURA.EXCLUIR_GRUPO' | translate}}
+                </button>
+            </div>
+        </div>
     </div>
 
 </form>
-<div fxLayout="row" fxLayout.xs="column" fxFlexAlign="start center" fxLayoutAlign.xs="center center" fxLayoutGap="5px">
-    <div *ngIf="member?.role.toString() === 'member' || member?.role.toString() === 'admin'">
-        <button type="button"
-                mat-raised-button
-                color="warn"
-                (click)="exitDilaogConfirm('exit')">
-            <span class="material-icons">exit_to_app</span>
-            {{'GRUPO_LEITURA.SAIR' | translate}}
-        </button>
-    </div>
-
-    <div *ngIf="member?.role.toString() === 'owner'">
-        <button type="button"
-                mat-raised-button
-                color="warn"
-                (click)="exitDilaogConfirm()">
-            <span class="material-icons">exit_to_app</span>
-            {{'GRUPO_LEITURA.EXCLUIR_GRUPO' | translate}}
-        </button>
-    </div>
-</div>

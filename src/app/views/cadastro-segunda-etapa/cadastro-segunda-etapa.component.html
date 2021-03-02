@@ -8,7 +8,7 @@
     </div>
 
     <div id="paisEstadoCidade">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>{{'PADRAO.PAIS' | translate}}</mat-label>
             <mat-select formControlName="country">
                 <mat-option [value]="country.name" *ngFor="let country of countrys"  (blur)="getStates(country)">{{country.name}}</mat-option>
@@ -18,7 +18,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="inputSegundaEtapa">
+        <mat-form-field class="inputSegundaEtapa" appearance="outline">
             <mat-label>{{'PADRAO.ESTADO' | translate}}</mat-label>
             <mat-select  formControlName="state">
                 <mat-option [value]="state.name" *ngFor="let state of states" (blur)="getCitys(state)">{{state.name}}</mat-option>
@@ -28,7 +28,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="inputSegundaEtapa" >
+        <mat-form-field class="inputSegundaEtapa" appearance="outline">
             <input type="text"
                    placeholder="{{'PADRAO.CIDADE' | translate}}"
                    aria-label="Number"
@@ -48,7 +48,7 @@
     </div>
 
     <div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="10px">
-        <mat-form-field class="inputSegundaEtapa" *ngIf="!this.auth.getUserRegister()?.profile?.profileImage">
+        <mat-form-field class="inputSegundaEtapa" *ngIf="!this.auth.getUserRegister()?.profile?.profileImage" appearance="outline">
             <mat-label>{{'CADASTRO2.FOTO' | translate}}</mat-label>
             <input type="text" matInput id="fotoSegundaEtapa" formControlName="image">
             <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="openDialogUpload()">
@@ -59,7 +59,7 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="inputSegundaEtapa">
+        <mat-form-field class="inputSegundaEtapa" appearance="outline">
             <mat-label>{{'PADRAO.DATA_NASCIMENTO' | translate}}</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="birthDate">
             <mat-error *ngIf="verificaValidToTouched('birthDate')">

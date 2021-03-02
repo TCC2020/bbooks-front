@@ -52,13 +52,26 @@
   cursor: pointer;
 }
 .matcard {
-  width: 350px;
+  width: 500px;
   margin: 0px auto 0px;
-
+}
+mat-form-field, .barra-pesquisar {
+  width: 550px;
+}
+@media screen and (max-width: 600px) {
+  .matcard {
+    width: 300px;
+  }
+  mat-form-field, .barra-pesquisar {
+    width: 300px;
+  }
 }
 
 @media screen and (max-width: 400px) {
   .matcard {
+    width: 300px;
+  }
+  mat-form-field, .barra-pesquisar {
     width: 300px;
   }
 }
