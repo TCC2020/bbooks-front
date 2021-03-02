@@ -10,7 +10,7 @@
 <div fxLayout="column"
      fxLayoutAlign="space-around center"
      fxLayoutGap="20px"
-     *ngIf="groupTO.privacy.toString() === 'public_all' || isMember || isAdmin">
+     *ngIf="groupTO?.privacy?.toString() === 'public_all' || isMember || isAdmin">
     <app-reactions
             *ngFor="let post of (feedRedux$ | async)?.posts"
             [post]="post"

@@ -17,6 +17,9 @@ import {FeedGenericService} from '../../../services/feed-generic.service';
 import {StoreModule} from '@ngrx/store';
 import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 import {GroupMemberService} from '../../../services/group-member.service';
+import {PostPrivacy} from '../../../models/enums/PostPrivacy.enum';
+import {groupMock} from '../../../mocks/group.mock';
+import {GroupService} from '../../../services/group.service';
 
 describe('FeedGroupComponent', () => {
     let component: FeedGroupComponent;
@@ -24,6 +27,8 @@ describe('FeedGroupComponent', () => {
     const authServiceMock = {
         getUser: jest.fn(() => userMock)
     };
+    let groupServcieMock: GroupService;
+
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -52,11 +57,16 @@ describe('FeedGroupComponent', () => {
             ]
         })
             .compileComponents();
+        groupServcieMock = TestBed.inject(GroupService);
+
     }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FeedGroupComponent);
         component = fixture.componentInstance;
+        component.privacy = PostPrivacy;
+        component.groupTO = groupMock;
+        component.groupTO.privacy = PostPrivacy.public_all;
         fixture.detectChanges();
     });
 
