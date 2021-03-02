@@ -1,79 +1,32 @@
 <div class="geral">
-    <div class="container-branco">
-        <div class="container-conteudo">
-            <h2 class="titulo-competicao" *ngIf="!isEditing">Título</h2>
-            <p class="paragrafo-competicao" *ngIf="!isEditing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate erat sed velit varius pharetra. Nullam sagittis ullamcorper libero a pretium. Morbi vestibulum, neque quis sollicitudin elementum, metus mauris fringilla mi, eget elementum neque tellus sed neque. Praesent orci ligula, pharetra eget diam eget, rutrum sagittis turpis. Integer eu felis purus. Nam facilisis eleifend risus, vel faucibus dui commodo at. Nulla ut lacus facilisis, tincidunt lorem in, finibus nibh. Aenean tristique volutpat dui eu finibus. Nam dapibus, dolor et dictum finibus, nulla neque placerat sapien, vitae porttitor sem erat sed ipsum. Nam convallis massa orci. Aenean dapibus hendrerit libero eu convallis.</p>
-            <mat-form-field appearance="outline" *ngIf="isEditing" class="input-edicao">
-                <input matInput value="Título">
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="input-edicao" *ngIf="isEditing">
-                <textarea matInput>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate erat sed velit varius pharetra. Nullam sagittis ullamcorper libero a pretium. Morbi vestibulum, neque quis sollicitudin elementum, metus mauris fringilla mi, eget elementum neque tellus sed neque. Praesent orci ligula, pharetra eget diam eget, rutrum sagittis turpis. Integer eu felis purus. Nam facilisis eleifend risus, vel faucibus dui commodo at. Nulla ut lacus facilisis, tincidunt lorem in, finibus nibh. Aenean tristique volutpat dui eu finibus. Nam dapibus, dolor et dictum finibus, nulla neque placerat sapien, vitae porttitor sem erat sed ipsum. Nam convallis massa orci. Aenean dapibus hendrerit libero eu convallis.</textarea>
-            </mat-form-field>
-        </div>
-    </div>
     <div class="container-cinza">
         <div class="container-conteudo">
-            <h2  class="titulo-competicao">Regras</h2>
-            <p class="paragrafo-competicao" *ngIf="!isEditing">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate erat sed velit varius pharetra. Nullam sagittis ullamcorper libero a pretium. Morbi vestibulum, neque quis sollicitudin elementum, metus mauris fringilla mi, eget elementum neque tellus sed neque. Praesent orci ligula, pharetra eget diam eget, rutrum sagittis turpis. Integer eu felis purus. Nam facilisis eleifend risus, vel faucibus dui commodo at. Nulla ut lacus facilisis, tincidunt lorem in, finibus nibh. Aenean tristique volutpat dui eu finibus. Nam dapibus, dolor et dictum finibus, nulla neque placerat sapien, vitae porttitor sem erat sed ipsum. Nam convallis massa orci. Aenean dapibus hendrerit libero eu convallis.</p>
-            <mat-form-field appearance="outline" class="input-edicao" *ngIf="isEditing">
-                <textarea matInput>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate erat sed velit varius pharetra. Nullam sagittis ullamcorper libero a pretium. Morbi vestibulum, neque quis sollicitudin elementum, metus mauris fringilla mi, eget elementum neque tellus sed neque. Praesent orci ligula, pharetra eget diam eget, rutrum sagittis turpis. Integer eu felis purus. Nam facilisis eleifend risus, vel faucibus dui commodo at. Nulla ut lacus facilisis, tincidunt lorem in, finibus nibh. Aenean tristique volutpat dui eu finibus. Nam dapibus, dolor et dictum finibus, nulla neque placerat sapien, vitae porttitor sem erat sed ipsum. Nam convallis massa orci. Aenean dapibus hendrerit libero eu convallis.</textarea>
-            </mat-form-field>
+            <h2 class="titulo-competicao">{{ competitionTO?.title }}</h2>
+            <p class="paragrafo-competicao">{{ competitionTO?.rules }}</p>
         </div>
     </div>
     <div class="container-branco">
         <div class="container-conteudo">
             <h2 class="titulo-competicao">Datas</h2>
-            <p class="paragrafo-competicao">Competição criada em <strong>31/01/2021</strong></p>
-            <p class="paragrafo-competicao">Inscrições de <strong *ngIf="!isEditing">14/02/2021</strong>
-                <mat-form-field color="accent" appearance="outline" *ngIf="isEditing">
-                    <input matInput [value]="dateStart.value" [matDatepicker]="picker1">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-
-                até <strong *ngIf="!isEditing">24/02/2021</strong>
-                <mat-form-field color="accent" appearance="outline" *ngIf="isEditing">
-                    <input matInput [value]="dateEnd.value" [matDatepicker]="picker">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
+            <p class="paragrafo-competicao">Competição criada em <strong>{{ competitionTO?.creationDate | date:'dd/MM/yyyy' }}</strong></p>
+            <p class="paragrafo-competicao">
+                Inscrições de <strong>{{ competitionTO?.subscriptionDate | date:'dd/MM/yyyy' }}</strong>
+                até <strong>{{ competitionTO?.subscriptionFinalDate | date:'dd/MM/yyyy' }}</strong>
             </p>
-            <p class="paragrafo-competicao">Fim da competição em <strong *ngIf="!isEditing">31/03/2021</strong>
-                <mat-form-field color="accent" appearance="outline" *ngIf="isEditing">
-                    <input matInput [value]="dateEndCompetition.value" [matDatepicker]="picker2">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                </mat-form-field>
-            </p>
+            <p class="paragrafo-competicao">Fim da competição em <strong>{{ competitionTO?.finalDate | date:'dd/MM/yyyy' }}</strong></p>
         </div>
     </div>
-    <div class="container-cinza">
+    <!-- <div class="container-cinza">
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Administradores</h2>
             <div class="container-membros">
-                <div class="membro">
+                <div class="membro"  *ngFor="let administrator of administrators">
                     <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
+                    <div class="nome-membro"><p>{{ administrator?.profile?.name + ' ' + administrator?.profile?.lastName }}</p></div>
                 </div>
             </div>
             <div class="ver-todos-membros">
-                <button type="button" mat-raised-button color="primary" [routerLink]="['/administradores-competicao']">Ver todos os administradores</button>
+                <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/' + competitionTO?.id + '/administrators']">Ver todos os administradores</button>
             </div>
         </div>
     </div>
@@ -81,47 +34,44 @@
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Membros</h2>
             <div class="container-membros">
-                <div class="membro">
+                <div class="membro" *ngFor="let member of members">
                     <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
-                </div>
-                <div class="membro">
-                    <div class="foto-membro"><img src="https://image.flaticon.com/icons/png/512/1361/1361728.png"></div>
-                    <div class="nome-membro"><p>Nome do membro</p></div>
+                    <div class="nome-membro"><p>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</p></div>
                 </div>
             </div>
             <div class="ver-todos-membros">
-                <button [routerLink]="['/membros-competicao']" type="button" mat-raised-button color="primary">Ver todos os membros</button>
+                <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button" mat-raised-button color="primary">Ver todos os membros</button>
+            </div>
+        </div>
+    </div> -->
+    <div class="container-cinza">
+        <div class="container-conteudo">
+            <h2  class="titulo-competicao">Administradores</h2>
+            <div class="ver-todos-membros">
+                <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/' + competitionTO?.id + '/administrators']">Ver todos os administradores</button>
             </div>
         </div>
     </div>
+    <div class="container-branco">
+        <div class="container-conteudo">
+            <h2  class="titulo-competicao">Membros</h2>
+            <div class="ver-todos-membros">
+                <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button" mat-raised-button color="primary">Ver todos os membros</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container-cinza">
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Resultado</h2>
-            <p class="paragrafo-competicao">Nome do Vencedor</p>
+            <p class="paragrafo-competicao">{{ competitionTO?.winnerProfile ? competitionTO.winnerProfile : "Aguardando vencedor"}}</p>
         </div>
     </div>
-    <div class="container-branco" *ngIf="isUserAdministrator()">
+    <div class="container-branco" *ngIf="isAdmin">
         <div class="container-conteudo">
             <h2  class="titulo-competicao">Editar Competição</h2>
-            <div *ngIf="!isEditing">
-                <button type="button" mat-raised-button color="primary" (click)="edit()">Editar</button>
-            </div>
-            <div *ngIf="isEditing" class="botoes-editar">
-                <button type="button" mat-raised-button color="primary" (click)="edit()">Salvar</button>
-                <button type="button" mat-raised-button (click)="edit()">Cancelar</button>
+            <div>
+                <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/' + competitionTO?.id + '/edit']">Editar</button>
             </div>
         </div>
     </div>

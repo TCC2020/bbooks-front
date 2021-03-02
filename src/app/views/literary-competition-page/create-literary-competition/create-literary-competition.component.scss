@@ -39,6 +39,10 @@ textarea {
   height: 160px;
 }
 
+.botoes-editar-do-create button {
+  margin: 0 10px 0 0;
+}
+
 @media screen and (max-width: 1000px) {
   .container-geral {
     width: calc(100% - 40px);
