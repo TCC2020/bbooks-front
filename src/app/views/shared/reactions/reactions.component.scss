@@ -52,6 +52,9 @@
   max-width: 35px;
   max-height: 35px;
 }
+.cardImagePost:hover {
+  cursor: pointer;
+}
 button-edit-post{
   position: absolute;
   right: 0;
@@ -103,8 +106,13 @@ textarea::placeholder {
 .imagePost {
   max-width: 100%;
 }
+.mainPost{
+  max-width: 455px;
+}
 
-
+.linkPerfil{
+  cursor: pointer;
+}
 @media screen and (max-width: 600px) {
   .commentView{
     max-width: 260px;
@@ -121,5 +129,8 @@ textarea::placeholder {
   }
   .imagePost {
     max-width: 90%;
+  }
+  .mainPost{
+    max-width: 346px;
   }
 }

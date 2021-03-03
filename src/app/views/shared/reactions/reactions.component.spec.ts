@@ -18,6 +18,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {userMock} from '../../../mocks/user.model.mock';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StoreModule} from '@ngrx/store';
+import {GroupService} from '../../../services/group.service';
 
 describe('ReactionsComponent', () => {
     let component: ReactionsComponent;
@@ -67,7 +68,8 @@ describe('ReactionsComponent', () => {
                     provide: MatDialog,
                     useValue: mockMatDialog
                 },
-                PostService
+                PostService,
+                GroupService
             ]
         })
             .compileComponents();
