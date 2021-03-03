@@ -61,15 +61,23 @@
         <div class="container-conteudo">
             <h2 class="titulo-competicao">Membros</h2>
             <div class="ver-todos-membros">
-                <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button"
-                        mat-raised-button color="primary">Ver todos os membros
-                </button>
-                <button *ngIf="!isMember" (click)="addMember(competitionTO?.)" type="button"
-                        mat-raised-button color="primary">Clique para se inscrever
-                </button>
-                <button *ngIf="isMember" (click)="removeMember()" type="button"
-                        mat-raised-button color="primary">Cancelar inscrição
-                </button>
+                <div>
+                    <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button"
+                            mat-raised-button color="primary">Ver todos os membros
+                    </button>
+                </div>
+                <div>
+                    <button *ngIf="!isMember" (click)="addMember()" type="button"
+                            mat-raised-button color="primary">Clique para se inscrever
+                    </button>
+                    <button *ngIf="isMember" (click)="removeMember()" type="button"
+                            mat-raised-button color="primary">Cancelar inscrição
+                    </button>
+                    <button *ngIf="isMember"  type="button"
+                            mat-raised-button color="primary">Escrever história
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>

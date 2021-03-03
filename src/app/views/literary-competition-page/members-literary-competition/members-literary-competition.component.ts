@@ -6,6 +6,7 @@ import {CompetitionMemberService} from '../../../services/competition-member.ser
 import {ProfileService} from '../../../services/profile.service';
 import {Role} from '../../../models/enums/Role.enum';
 import {Util} from '../../shared/Utils/util';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-members-literary-competition',
@@ -20,11 +21,13 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
     members: CompetitionMemberTO[] = [];
     listMembers: CompetitionMemberTO[] = [];
     indexMember = 0;
+    searchMembers: FormGroup;
 
     constructor(
         private route: ActivatedRoute,
         private competitionMemberService: CompetitionMemberService,
-        private profileService: ProfileService
+        private profileService: ProfileService,
+        private fb: FormBuilder
     ) {
     }
 
@@ -38,6 +41,10 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
                 }
             );
         this.getMembers();
+        this.searchMembers = this.fb.group({
+                nameMembers: ['']
+            }
+        );
     }
 
     getMembers() {
@@ -76,6 +83,16 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
         });
     }
 
+    searchMember() {
+        const formSearch = this.searchMembers.get('nameMembers').value;
+        if (!formSearch) {
+            return this.members;
+        }
+        return this.members.filter(p =>
+            p?.profile?.name.concat(p?.profile?.lastName).toLocaleLowerCase().replace(' ', '')
+                .includes(formSearch.toLocaleLowerCase().replace(' ', ''))
+        );
+    }
 
     onScroll() {
         this.getMembers();

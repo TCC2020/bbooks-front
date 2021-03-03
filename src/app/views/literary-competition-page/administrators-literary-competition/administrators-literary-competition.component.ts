@@ -7,6 +7,7 @@ import {CompetitionMemberTO} from '../../../models/competitionMemberTO.model';
 import {ProfileService} from '../../../services/profile.service';
 import {Role} from '../../../models/enums/Role.enum';
 import {Util} from '../../shared/Utils/util';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-administrators-literary-competition',
@@ -20,12 +21,17 @@ export class AdministratorsLiteraryCompetitionComponent implements OnInit {
     literaryCompetitionId: string;
     page = 0;
     administrators: CompetitionMemberTO[] = [];
+    searchAdministrators: FormGroup;
 
     constructor(
         private route: ActivatedRoute,
         private profileService: ProfileService,
-        private competitionMemberService: CompetitionMemberService
+        private competitionMemberService: CompetitionMemberService,
+        private fb: FormBuilder
     ) {
+        this.searchAdministrators = this.fb.group({
+            nameAdministrator: ['']
+        });
     }
 
     ngOnInit(): void {
@@ -74,6 +80,17 @@ export class AdministratorsLiteraryCompetitionComponent implements OnInit {
                     });
             }
         });
+    }
+
+    searchAdministrator() {
+        const formSearch = this.searchAdministrators.get('nameAdministrator').value;
+        if (!formSearch) {
+            return this.administrators;
+        }
+        return this.administrators.filter(p =>
+            p?.profile?.name.concat(p?.profile?.lastName).toLocaleLowerCase().replace(' ', '')
+                .includes(formSearch.toLocaleLowerCase().replace(' ', ''))
+        );
     }
 
     onScroll() {

@@ -6,18 +6,22 @@
         (scrolled)="onScroll()"
 >
     <div class="container-geral">
-        <div class="container-pesquisar">
-            <mat-form-field class="barra-pesquisar" appearance="outline">
-                <mat-label>Pesquisar administrador</mat-label>
-                <input matInput type="text">
-                <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
-                    <mat-icon>search</mat-icon>
-                </button>
-            </mat-form-field>
-        </div>
+        <form [formGroup]="searchAdministrators">
+            <div class="container-pesquisar">
+                <mat-form-field class="barra-pesquisar" appearance="outline">
+                    <mat-label>Pesquisar administrador</mat-label>
+                    <input matInput formControlName="nameAdministrator" (keyup)="searchAdministrator()" (blur)="searchAdministrator()" type="text">
+                    <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </form>
         <div class="container-membros" *ngIf="administrators.length > 0">
-            <div class="container-membro" *ngFor="let administrator of administrators">
-                <div class="foto-membro"><img [src]="administrator?.profile?.profileImage ? administrator.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'"></div>
+            <div class="container-membro" *ngFor="let administrator of searchAdministrator()">
+                <div class="foto-membro"><img
+                        [src]="administrator?.profile?.profileImage ? administrator.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'">
+                </div>
                 <div class="dados-membro">
                     <p>{{ administrator?.profile?.name + ' ' + administrator?.profile?.lastName }}</p>
                     <p>{{ administrator?.role }}</p>

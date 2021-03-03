@@ -6,18 +6,22 @@
         (scrolled)="onScroll()"
 >
     <div class="container-geral">
-        <div class="container-pesquisar">
-            <mat-form-field class="barra-pesquisar" appearance="outline">
-                <mat-label>Pesquisar membro</mat-label>
-                <input matInput type="text">
-                <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
-                    <mat-icon>search</mat-icon>
-                </button>
-            </mat-form-field>
-        </div>
+        <form [formGroup]="searchMembers">
+            <div class="container-pesquisar">
+                <mat-form-field class="barra-pesquisar" appearance="outline">
+                    <mat-label>Pesquisar membro</mat-label>
+                    <input matInput formControlName="nameMembers" (keyup)="searchMember()" (blur)="searchMember()" type="text">
+                    <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </form>
         <div class="container-membros" *ngIf="members.length > 0">
-            <div class="container-membro" *ngFor="let member of members">
-                <div class="foto-membro"><img [src]="member?.profile?.profileImage ? member.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'"></div>
+            <div class="container-membro" *ngFor="let member of searchMember()">
+                <div class="foto-membro"><img
+                        [src]="member?.profile?.profileImage ? member.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'">
+                </div>
                 <div class="dados-membro">
                     <p>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</p>
                     <p>{{ member?.role }}</p>

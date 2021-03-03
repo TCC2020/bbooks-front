@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {map, take} from 'rxjs/operators';
 import {CompetitionService} from '../../../services/competition.service';
 import {CompetitionTO} from '../../../models/competitionTO.model';
@@ -11,6 +11,8 @@ import {Role} from '../../../models/enums/Role.enum';
 import {Util} from '../../shared/Utils/util';
 import {AuthService} from '../../../services/auth.service';
 import {Profile} from '../../../models/profileTO.model';
+import {CompetitionMemberSaveTO} from '../../../models/competitionMemberSaveTO.model';
+import {LiteraryMemberStatus} from '../../../models/enums/LiteraryMemberStatus.enum';
 
 @Component({
     selector: 'app-literary-competition',
@@ -27,13 +29,15 @@ export class LiteraryCompetitionComponent implements OnInit {
     isAdmin = false;
     isMember = false;
     profile: Profile;
+    member: CompetitionMemberTO;
 
     constructor(
         private route: ActivatedRoute,
         private competitionService: CompetitionService,
         private competitionMemberService: CompetitionMemberService,
         private profileService: ProfileService,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {
     }
 
@@ -48,6 +52,7 @@ export class LiteraryCompetitionComponent implements OnInit {
                 }
             );
         this.isUserAdministrator();
+        this.getProfile();
     }
 
 
@@ -62,10 +67,12 @@ export class LiteraryCompetitionComponent implements OnInit {
                     const r = result.content.find(i => i.profileId === this.authService.getUser().profile.id);
                     this.page++;
                     if (r) {
+                        this.member = r;
                         if (r.role === Role.owner || r.role === Role.admin) {
                             this.isAdmin = true;
+                        } else {
+                            this.isMember = true;
                         }
-                        this.isMember = true;
                     } else {
                         this.isUserAdministrator();
                     }
@@ -88,18 +95,49 @@ export class LiteraryCompetitionComponent implements OnInit {
     }
 
     addMember() {
-
+        Util.loadingScreen();
+        const competitionMemberSaveTO = new CompetitionMemberSaveTO();
+        competitionMemberSaveTO.competitionId = this.literaryCompetitionId;
+        competitionMemberSaveTO.profileId = this.profile.id;
+        competitionMemberSaveTO.role = Role.member;
+        competitionMemberSaveTO.story = null;
+        competitionMemberSaveTO.title = null;
+        competitionMemberSaveTO.status = LiteraryMemberStatus.accept;
+        this.competitionMemberService.saveMember(competitionMemberSaveTO)
+            .pipe(take(1))
+            .subscribe(() => {
+                Util.stopLoading();
+                this.isMember = true;
+            }, error => {
+                Util.stopLoading();
+                console.log(error);
+            });
     }
 
     removeMember() {
-
+        Util.loadingScreen();
+        this.competitionMemberService.exitMember(this.member.memberId)
+            .pipe(take(1))
+            .subscribe( () => {
+                Util.stopLoading();
+                this.isMember = false;
+            }, error => {
+                Util.stopLoading();
+                console.log(error);
+            });
     }
 
+
     getProfile() {
+        Util.loadingScreen();
         this.profileService.getById(this.authService.getUser().profile.id)
             .pipe(take(1))
             .subscribe(result => {
+                Util.stopLoading();
                 this.profile = result;
+            }, error => {
+                Util.stopLoading();
+                console.log(error);
             });
     }
 }
