@@ -18,7 +18,8 @@ export class FeedGenericService {
         post.description = p.description;
         post.privacy = p.privacy;
         post.image = p.image;
-        post.profileId = post.profileId;
+        post.profileId = p.profileId;
+        post.groupId = p.groupId;
         post.comments = [];
         if (p.comments) {
             post.comments = p.comments.map(result => result);

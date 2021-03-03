@@ -94,7 +94,8 @@ export class PostDialogComponent implements OnInit {
     }
 
     getGroupId(): string {
-        return this.router.url.includes('group') ? localStorage.getItem('groupId') : '';
+        return this.router.url.includes('group') ?
+            localStorage.getItem('groupId') : this.dataDialog ?  this.dataDialog?.groupId : '';
     }
 
     get asks(): FormArray {

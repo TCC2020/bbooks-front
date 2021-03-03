@@ -48,6 +48,7 @@ export class FeedGroupComponent implements OnInit, OnDestroy {
 
 
     ) {
+        this.feedGroupManagerService.clearRedux();
     }
 
     ngOnInit(): void {
@@ -61,7 +62,6 @@ export class FeedGroupComponent implements OnInit, OnDestroy {
             this.getPosts();
         });
         this.feedRedux$ = this.feedGroupManagerService.getFeed();
-
     }
 
     getPosts(): void {
@@ -70,7 +70,7 @@ export class FeedGroupComponent implements OnInit, OnDestroy {
             .pipe(take(1))
             .subscribe(result => {
                 this.loading = false;
-                // this.feedGroupManagerService.updatePage(this.page);
+                // result = result.map(r => { r.group = this.groupTO; return r; });
                 this.feedGroupManagerService.getPostOnRedux(result);
                 this.getComments(result);
             });

@@ -7,12 +7,23 @@
             </div>
             <div>
                 <div fxLayout="column" fxLayoutAlign="center start">
-                    <div class="linkPerfil" routerLink="/{{userPost?.userName}}">
-                        {{userPost.userName}}
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <div class="linkPerfil" routerLink="/{{userPost?.userName}}">
+                                {{userPost.userName}}
+                            </div>
+                            <div style="color: #7f7f7f" *ngIf="group?.id && !isGroupRouter()">
+                                <span class="material-icons">play_arrow</span>
+                            </div>
+                            <div  *ngIf="group?.id && !isGroupRouter()" class="linkPerfil" routerLink="/group/{{group?.id}}">
+                                {{group?.name}}
+                            </div>
+                        </div>
                     </div>
                     <div class="text-date">
                         {{post?.creationDate | date}}
                     </div>
+
                 </div>
             </div>
             <button mat-icon-button [matMenuTriggerFor]="menu" style="position: absolute; right: 0"
