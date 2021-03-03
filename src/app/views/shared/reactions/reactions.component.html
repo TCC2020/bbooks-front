@@ -1,13 +1,13 @@
 <mat-card fxLayout="row" fxLayoutAlign="space-around center">
-    <div>
+    <div class="mainPost">
         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxLayoutGap.xs="10px">
             <div>
-                <img class="cardImagePost"
+                <img class="cardImagePost" routerLink="/{{userPost?.userName}}"
                      src="{{userPost.profile?.profileImage ? userPost?.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
             </div>
             <div>
                 <div fxLayout="column" fxLayoutAlign="center start">
-                    <div>
+                    <div class="linkPerfil" routerLink="/{{userPost?.userName}}">
                         {{userPost.userName}}
                     </div>
                     <div class="text-date">
