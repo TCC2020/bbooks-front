@@ -10,6 +10,7 @@ import {CompetitionMemberTO} from '../../../models/competitionMemberTO.model';
 import {Role} from '../../../models/enums/Role.enum';
 import {Util} from '../../shared/Utils/util';
 import {AuthService} from '../../../services/auth.service';
+import {Profile} from '../../../models/profileTO.model';
 
 @Component({
     selector: 'app-literary-competition',
@@ -25,6 +26,7 @@ export class LiteraryCompetitionComponent implements OnInit {
     page = 0;
     isAdmin = false;
     isMember = false;
+    profile: Profile;
 
     constructor(
         private route: ActivatedRoute,
@@ -45,7 +47,6 @@ export class LiteraryCompetitionComponent implements OnInit {
                     this.literaryCompetitionId = result;
                 }
             );
-        // this.getMembers();
         this.isUserAdministrator();
     }
 
@@ -86,68 +87,19 @@ export class LiteraryCompetitionComponent implements OnInit {
             });
     }
 
-    /*getMembers() {
-        this.loading = true;
-        this.competitionMemberService.getMembers(this.literaryCompetitionId, 0, 30)
+    addMember() {
+
+    }
+
+    removeMember() {
+
+    }
+
+    getProfile() {
+        this.profileService.getById(this.authService.getUser().profile.id)
             .pipe(take(1))
             .subscribe(result => {
-                this.loading = false;
-                if (result.content.length > 0) {
-                    const qtdeMembers = this.members.length;
-                    const qtdeAdmin = this.administrators.length;
-                    result.content.forEach(m => {
-                        if (m.role === Role.member) {
-                            if (qtdeMembers < 5) {
-                                this.members.push(m);
-                            }
-                        }
-                        if (m.role === Role.admin || m.role === Role.owner) {
-                            if (qtdeAdmin < 5) {
-                                this.administrators.push(m);
-                            }
-                        }
-                    });
-                    if (this.members.length < 5 || this.administrators.length < 5) {
-                        this.getMembers();
-                    } else {
-                        this.getProfiles();
-                        this.getProfilesAdmin();
-                    }
-                }
+                this.profile = result;
             });
     }
-
-    getProfiles() {
-        Util.loadingScreen();
-        this.members.forEach((a, i) => {
-            if (!a.profile) {
-                this.profileService.getById(a.profileId)
-                    .pipe(take(1))
-                    .subscribe(result => {
-                        Util.stopLoading();
-                        this.members[i].profile = result;
-                    }, error => {
-                        console.log(error);
-                        Util.stopLoading();
-                    });
-            }
-        });
-    }
-
-    getProfilesAdmin() {
-        Util.loadingScreen();
-        this.administrators.forEach((a, i) => {
-            if (!a.profile) {
-                this.profileService.getById(a.profileId)
-                    .pipe(take(1))
-                    .subscribe(result => {
-                        Util.stopLoading();
-                        this.administrators[i].profile = result;
-                    }, error => {
-                        console.log(error);
-                        Util.stopLoading();
-                    });
-            }
-        });
-    }*/
 }

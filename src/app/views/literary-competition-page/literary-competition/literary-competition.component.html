@@ -8,12 +8,14 @@
     <div class="container-branco">
         <div class="container-conteudo">
             <h2 class="titulo-competicao">Datas</h2>
-            <p class="paragrafo-competicao">Competição criada em <strong>{{ competitionTO?.creationDate | date:'dd/MM/yyyy' }}</strong></p>
+            <p class="paragrafo-competicao">Competição criada em
+                <strong>{{ competitionTO?.creationDate | date:'dd/MM/yyyy' }}</strong></p>
             <p class="paragrafo-competicao">
                 Inscrições de <strong>{{ competitionTO?.subscriptionDate | date:'dd/MM/yyyy' }}</strong>
                 até <strong>{{ competitionTO?.subscriptionFinalDate | date:'dd/MM/yyyy' }}</strong>
             </p>
-            <p class="paragrafo-competicao">Fim da competição em <strong>{{ competitionTO?.finalDate | date:'dd/MM/yyyy' }}</strong></p>
+            <p class="paragrafo-competicao">Fim da competição em
+                <strong>{{ competitionTO?.finalDate | date:'dd/MM/yyyy' }}</strong></p>
         </div>
     </div>
     <!-- <div class="container-cinza">
@@ -46,32 +48,45 @@
     </div> -->
     <div class="container-cinza">
         <div class="container-conteudo">
-            <h2  class="titulo-competicao">Administradores</h2>
+            <h2 class="titulo-competicao">Administradores</h2>
             <div class="ver-todos-membros">
-                <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/' + competitionTO?.id + '/administrators']">Ver todos os administradores</button>
+                <button type="button" mat-raised-button color="primary"
+                        [routerLink]="['/literary-competition/' + competitionTO?.id + '/administrators']">Ver todos os
+                    administradores
+                </button>
             </div>
         </div>
     </div>
     <div class="container-branco">
         <div class="container-conteudo">
-            <h2  class="titulo-competicao">Membros</h2>
+            <h2 class="titulo-competicao">Membros</h2>
             <div class="ver-todos-membros">
-                <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button" mat-raised-button color="primary">Ver todos os membros</button>
+                <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button"
+                        mat-raised-button color="primary">Ver todos os membros
+                </button>
+                <button *ngIf="!isMember" (click)="addMember(competitionTO?.)" type="button"
+                        mat-raised-button color="primary">Clique para se inscrever
+                </button>
+                <button *ngIf="isMember" (click)="removeMember()" type="button"
+                        mat-raised-button color="primary">Cancelar inscrição
+                </button>
             </div>
         </div>
     </div>
 
     <div class="container-cinza">
         <div class="container-conteudo">
-            <h2  class="titulo-competicao">Resultado</h2>
+            <h2 class="titulo-competicao">Resultado</h2>
             <p class="paragrafo-competicao">{{ competitionTO?.winnerProfile ? competitionTO.winnerProfile : "Aguardando vencedor"}}</p>
         </div>
     </div>
     <div class="container-branco" *ngIf="isAdmin">
         <div class="container-conteudo">
-            <h2  class="titulo-competicao">Editar Competição</h2>
+            <h2 class="titulo-competicao">Editar Competição</h2>
             <div>
-                <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/' + competitionTO?.id + '/edit']">Editar</button>
+                <button type="button" mat-raised-button color="primary"
+                        [routerLink]="['/literary-competition/' + competitionTO?.id + '/edit']">Editar
+                </button>
             </div>
         </div>
     </div>
