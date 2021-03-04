@@ -61,7 +61,6 @@ export class LiteraryCompetitionComponent implements OnInit {
         this.competitionMemberService.getMembers(this.literaryCompetitionId, this.page, 10)
             .pipe(take(1))
             .subscribe(result => {
-                console.log(result);
                 Util.stopLoading();
                 if (result.content.length > 0) {
                     const r = result.content.find(i => i.profileId === this.authService.getUser().profile.id);

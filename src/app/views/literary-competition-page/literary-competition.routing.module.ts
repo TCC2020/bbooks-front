@@ -9,6 +9,8 @@ import {CreateLiteraryCompetitionComponent} from './create-literary-competition/
 import {ListLiteraryCompetitionComponent} from './list-literary-competition/list-literary-competition.component';
 import {MembersLiteraryCompetitionComponent} from './members-literary-competition/members-literary-competition.component';
 import {StoryLiteraryCompetitionComponent} from './story-literary-competition/story-literary-competition.component';
+import {CreateStoryComponent} from './create-story/create-story.component';
+import {RegistrationsComponent} from './registrations/registrations.component';
 
 const literaryCompetitionRouter = [
     {
@@ -22,6 +24,18 @@ const literaryCompetitionRouter = [
     {
         path: 'create',
         component: CreateLiteraryCompetitionComponent
+    },
+    {
+        path: 'create-story',
+        component: CreateStoryComponent
+    },
+    {
+        path: ':id/create-story',
+        component: CreateStoryComponent
+    },
+    {
+        path: ':id/registrations',
+        component: RegistrationsComponent
     },
     {
         path: ':id',

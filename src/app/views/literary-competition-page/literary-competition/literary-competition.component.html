@@ -67,13 +67,16 @@
                     </button>
                 </div>
                 <div>
-                    <button *ngIf="!isMember" (click)="addMember()" type="button"
+                    <button *ngIf="isAdmin" [routerLink]="['/literary-competition/' + competitionTO?.id + '/registrations']" type="button"
+                            mat-raised-button color="primary">Ver inscrições pendentes
+                    </button>
+                    <button *ngIf="!isMember  && !isAdmin" (click)="addMember()" type="button"
                             mat-raised-button color="primary">Clique para se inscrever
                     </button>
                     <button *ngIf="isMember" (click)="removeMember()" type="button"
                             mat-raised-button color="primary">Cancelar inscrição
                     </button>
-                    <button *ngIf="isMember"  type="button"
+                    <button *ngIf="isMember" [routerLink]="['/literary-competition/' + member.memberId + '/create-story']" type="button"
                             mat-raised-button color="primary">Escrever história
                     </button>
                 </div>
