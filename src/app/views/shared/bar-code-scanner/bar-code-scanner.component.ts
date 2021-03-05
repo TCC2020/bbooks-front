@@ -104,6 +104,7 @@ export class BarCodeScannerComponent implements OnInit {
 
 
     clearResult(): void {
+        this.formSearch.get('search').setValue('');
         this.qrResultString = null;
     }
 
