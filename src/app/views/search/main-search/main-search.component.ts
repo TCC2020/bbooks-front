@@ -42,8 +42,8 @@ export class MainSearchComponent implements OnInit {
 
     readCodeBar(): void {
         const dialogRef = this.dialog.open(BarCodeScannerComponent, {
-            height: '450px',
-            width: '500px',
+            height: '1000px',
+            width: '800px'
 
         });
         dialogRef.afterClosed().subscribe((result) => {

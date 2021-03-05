@@ -21,6 +21,7 @@ import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.direc
 import {SearchBookComponent} from './search-book/search-book.component';
 import {BarCodeScannerComponent} from './bar-code-scanner/bar-code-scanner.component';
 import {BarcodeScannerLivestreamModule} from 'ngx-barcode-scanner';
+import {ZXingScannerModule} from '@zxing/ngx-scanner';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import {BarcodeScannerLivestreamModule} from 'ngx-barcode-scanner';
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             },
-        })
+        }),
+        ZXingScannerModule
     ],
     exports: [
         BookCardComponent,

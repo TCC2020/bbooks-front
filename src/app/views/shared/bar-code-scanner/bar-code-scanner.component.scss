@@ -1,0 +1,39 @@
+.custom-dialog-container .mat-dialog-container {
+  /* add your styles */
+  padding: 0px !important;
+}
+.results {
+
+  position: sticky;
+  bottom: 0;
+  padding: 15px;
+  background: #02c3c3;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  small {
+    font-weight: bolder;
+    display: block;
+    font-size: 60%;
+    margin: -.6em 0 0 0;
+  }
+
+  button {
+    background: none;
+    border: none;
+    line-height: 1;
+    font-weight: bolder;
+    font-size: 120%;
+    float: right;
+    color: #fff;
+    $mg: 8px;
+    margin: (-$mg) (-$mg) (-$mg) $mg;
+  }
+}
+
+h2 {
+  padding: 0 16px;
+}
