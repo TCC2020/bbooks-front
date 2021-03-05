@@ -82,7 +82,10 @@
     "NAO": "No",
     "SENHA_ALTERADA": "Your password has been changed!",
     "BOOK_ADDED_TARGET": "Book added to the Reading target.",
-    "BOOK_REMOVED_TARGET": "Book removed from the Reading target."
+    "BOOK_REMOVED_TARGET": "Book removed from the Reading target.",
+    "BAR_CODE_ERRO": "You denied the camera permission, we can't scan anything without it.",
+    "WAIT_PERMISSIONS": "Waiting for permissions.",
+    "NOT_HAS_CAMERA": "If your device does not has cameras, no permissions will be asked."
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",

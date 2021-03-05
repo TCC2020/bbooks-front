@@ -76,13 +76,10 @@ export class BarCodeScannerComponent implements OnInit {
         BarcodeFormat.CODE_93,
         BarcodeFormat.DATA_MATRIX,
         BarcodeFormat.EAN_8,
-        BarcodeFormat.ITF,
         BarcodeFormat.MAXICODE,
         BarcodeFormat.PDF_417,
         BarcodeFormat.RSS_14,
-        BarcodeFormat.RSS_EXPANDED,
         BarcodeFormat.UPC_A,
-        BarcodeFormat.UPC_EAN_EXTENSION,
         BarcodeFormat.UPC_E,
     ];
 
