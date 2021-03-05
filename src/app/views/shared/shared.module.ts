@@ -20,7 +20,7 @@ import {PostCreateComponent} from './post-create/post-create.component';
 import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.directive';
 import {SearchBookComponent} from './search-book/search-book.component';
 import {BarCodeScannerComponent} from './bar-code-scanner/bar-code-scanner.component';
-import {BarcodeScannerLivestreamModule} from 'ngx-barcode-scanner';
+import {ZXingScannerModule} from '@zxing/ngx-scanner';
 
 
 @NgModule({
@@ -47,14 +47,14 @@ import {BarcodeScannerLivestreamModule} from 'ngx-barcode-scanner';
         FlexLayoutModule,
         HttpClientModule,
         SweetAlert2Module,
-        BarcodeScannerLivestreamModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             },
-        })
+        }),
+        ZXingScannerModule
     ],
     exports: [
         BookCardComponent,
