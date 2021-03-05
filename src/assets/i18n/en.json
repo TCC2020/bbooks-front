@@ -214,7 +214,13 @@
     "ESCOLHER_FOTO_LIVRO": "Choose book photo",
     "SOBRE_LIVRO": "About this book",
     "PESQUISAR_BOOK": "Find a book",
-    "STATUS_GERAL": "Overall status"
+    "STATUS_GERAL": "Overall status",
+    "BOOK_ADDED_TARGET": "Book added to reading target.",
+    "BOOK_REMOVED_TARGET": "Book removed from the reading target.",
+    "ANO_PUBLICACAO": "Year of publication",
+    "TITULO": "Tittle",
+    "AUTORES": "Authors",
+    "INSIRA_UM_LIVRO": "Insert a new book"
   },
   "PERFIL": {
     "feed": "feed",

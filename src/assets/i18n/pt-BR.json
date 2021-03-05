@@ -213,8 +213,12 @@
     "SOBRE_LIVRO": "Sobre este livro",
     "PESQUISAR_BOOK": "Ache um livro",
     "STATUS_GERAL": "Status geral",
-    "BOOK_ADDED_TARGET": "Livro adicionado à Meta de Leitura.",
-    "BOOK_REMOVED_TARGET": "Livro removido da Meta de Leitura."
+    "BOOK_ADDED_TARGET": "Livro adicionado à meta de leitura.",
+    "BOOK_REMOVED_TARGET": "Livro removido da meta de leitura.",
+    "ANO_PUBLICACAO": "Ano da publicação",
+    "TITULO": "Título",
+    "AUTORES": "Autores",
+    "INSIRA_UM_LIVRO": "Insira um novo livro"
   },
   "PERFIL": {
     "feed": "feed",
