@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BehaviorSubject} from 'rxjs';
 enum BarcodeFormat {
@@ -68,10 +68,22 @@ export class BarCodeScannerComponent implements OnInit {
     deviceSelected: string;
 
     formatsEnabled: BarcodeFormat[] = [
-        BarcodeFormat.CODE_128,
-        BarcodeFormat.DATA_MATRIX,
         BarcodeFormat.EAN_13,
+        BarcodeFormat.CODE_128,
         BarcodeFormat.QR_CODE,
+        BarcodeFormat.AZTEC,
+        BarcodeFormat.CODABAR,
+        BarcodeFormat.CODE_93,
+        BarcodeFormat.DATA_MATRIX,
+        BarcodeFormat.EAN_8,
+        BarcodeFormat.ITF,
+        BarcodeFormat.MAXICODE,
+        BarcodeFormat.PDF_417,
+        BarcodeFormat.RSS_14,
+        BarcodeFormat.RSS_EXPANDED,
+        BarcodeFormat.UPC_A,
+        BarcodeFormat.UPC_EAN_EXTENSION,
+        BarcodeFormat.UPC_E,
     ];
 
     hasDevices: boolean;
@@ -82,8 +94,6 @@ export class BarCodeScannerComponent implements OnInit {
     torchEnabled = false;
     torchAvailable$ = new BehaviorSubject<boolean>(false);
     tryHarder = false;
-
-    barcodeValue;
 
     constructor(
         private fb: FormBuilder
@@ -106,7 +116,6 @@ export class BarCodeScannerComponent implements OnInit {
     }
 
     onCodeResult(resultString: string) {
-        console.log('result');
         this.formSearch.get('search').setValue(resultString);
         this.qrResultString = resultString;
     }

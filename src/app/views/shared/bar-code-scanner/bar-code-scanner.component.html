@@ -1,20 +1,19 @@
+
 <zxing-scanner [torch]="torchEnabled" [device]="deviceCurrent" (deviceChange)="onDeviceChange($event)" (scanSuccess)="onCodeResult($event)"
                [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
                (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
 
 <section class="results">
     <div>
-        <small>Result</small>
+        <small>ISBN</small>
         <strong>{{ qrResultString }} oooi</strong>
     </div>
     <button mat-icon-button (click)="clearResult()">&times;</button>
 </section>
-<div>
-    <b>ISBN:</b> {{ qrResultString ? qrResultString : '' }}
-</div>
-
+<br>
 <button type="button" mat-flat-button color="accent" style="width: 100%"
         [disabled]="formSearch.invalid"
         mat-button [mat-dialog-close]="qrResultString">
     {{'PADRAO.BUSCAR' | translate}}
 </button>
+<br>
