@@ -19,6 +19,8 @@ import {ReactionsComponent} from './reactions/reactions.component';
 import {PostCreateComponent} from './post-create/post-create.component';
 import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.directive';
 import {SearchBookComponent} from './search-book/search-book.component';
+import {BarCodeScannerComponent} from './bar-code-scanner/bar-code-scanner.component';
+import {BarcodeScannerLivestreamModule} from 'ngx-barcode-scanner';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import {SearchBookComponent} from './search-book/search-book.component';
         ReactionsComponent,
         PostCreateComponent,
         TextareaAutoresizeDirective,
-        SearchBookComponent
+        SearchBookComponent,
+        BarCodeScannerComponent
     ],
     imports: [
         CommonModule,
@@ -44,6 +47,7 @@ import {SearchBookComponent} from './search-book/search-book.component';
         FlexLayoutModule,
         HttpClientModule,
         SweetAlert2Module,
+        BarcodeScannerLivestreamModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
@@ -62,7 +66,8 @@ import {SearchBookComponent} from './search-book/search-book.component';
         ReactionsComponent,
         PostCreateComponent,
         TextareaAutoresizeDirective,
-        SearchBookComponent
+        SearchBookComponent,
+        BarCodeScannerComponent,
     ],
     providers: []
 })
