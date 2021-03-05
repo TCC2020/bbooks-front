@@ -9,6 +9,7 @@ import {Friend} from '../../../models/friend.model';
 import {TranslateService} from '@ngx-translate/core';
 import {UserService} from '../../../services/user.service';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { Util } from '../../shared/Utils/util';
 
 @Component({
     selector: 'app-friend',
@@ -74,9 +75,11 @@ export class FriendComponent implements OnInit {
     sendRequest() {
         this.friendTO = new Friend();
         this.friendTO.id = this.user.profile.id;
+        Util.loadingScreen();
         this.friendsService.add(this.friendTO).subscribe(() => {
+                Util.stopLoading();
                 this.translate.get('PADRAO.SOLICITACAO_ENVIADA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                 });
                 this.user.profile.friendshipStatus = 'sent';
             },
@@ -89,9 +92,10 @@ export class FriendComponent implements OnInit {
         this.friendsService.getRequestByUserName(username).subscribe(request => {
             const acept = new Friend();
             acept.id = request.id;
+            Util.loadingScreen();
             this.friendsService.deleteRequest(acept).subscribe(() => {
                 this.translate.get('PADRAO.SOLICITACAO_N_ACEITA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                     this.getFriends();
                 });
             });
@@ -102,9 +106,10 @@ export class FriendComponent implements OnInit {
         this.friendsService.getRequestByUserName(username).subscribe(request => {
             const acept = new Friend();
             acept.id = request.id;
+            Util.loadingScreen();
             this.friendsService.acceptRequest(acept).subscribe(() => {
                 this.translate.get('PADRAO.SOLICITACAO_ACEITA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                     this.getFriends();
                 });
             });

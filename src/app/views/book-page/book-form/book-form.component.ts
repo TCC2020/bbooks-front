@@ -10,6 +10,8 @@ import {CDNService} from '../../../services/cdn.service';
 import {UploadComponent} from '../../upload/upload.component';
 import {MatDialog} from '@angular/material/dialog';
 import {TranslateService} from '@ngx-translate/core';
+import {Util} from '../../shared/Utils/util';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -27,6 +29,7 @@ export class BookFormComponent implements OnInit {
 
     maxSize = 3579139;
     file;
+    image;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -34,9 +37,8 @@ export class BookFormComponent implements OnInit {
         private authorService: AuthorService,
         private cdnService: CDNService,
         public dialog: MatDialog,
-        public translate: TranslateService
-
-        // public modalRef: MDBModalRef
+        public translate: TranslateService,
+        public router: Router
     ) {
         this.book.authors = [];
     }
@@ -73,6 +75,9 @@ export class BookFormComponent implements OnInit {
     }
 
     private initAuthors(): void {
+        if (this.book.authors.length === 0) {
+            this.authors.insert(0, this.createAuthorsForm(null, ''));
+        }
         this.book.authors.forEach((author, i) => {
             this.authors.push(this.createAuthorsForm(author.id, author.name));
             this.getAuthors(i);
@@ -147,6 +152,10 @@ export class BookFormComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
                 this.file = result;
+                this.image = this.file;
+                const reader = new FileReader();
+                reader.onload = (e) => this.image = e.target.result;
+                reader.readAsDataURL(this.image);
                 this.formBook.get('image').setValue(result.name);
             } else {
                 this.file = null;
@@ -154,14 +163,22 @@ export class BookFormComponent implements OnInit {
         });
     }
     saveBook() {
+        Util.loadingScreen();
         this.bookService.save(this.formBook.value)
             .subscribe(book => {
+                Util.loadingScreen();
                 this.cdnService.upload(
                     {file: this.file, type: 'image'},
                     {objectType: 'book_image', bookId: book.id}
                 ).subscribe(() => {
+                        Util.stopLoading();
+                        this.router.navigateByUrl('/book/' + book.id);
                     },
                     error => {
+                        Util.stopLoading();
+                        this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                            Util.showErrorDialog(message);
+                        });
                         console.log('error upload', error);
                     });
             },
@@ -172,9 +189,12 @@ export class BookFormComponent implements OnInit {
                 }
                 if (codMessage) {
                     this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
-                        alert(message);
+                         Util.showErrorDialog(message);
                     });
                 } else {
+                    this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                        Util.showErrorDialog(msg);
+                    });
                     console.log('error book form', error);
                 }});
     }

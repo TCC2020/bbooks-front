@@ -1,13 +1,16 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-    <div fxFlex="50">
-        <h2 mat-dialog-title>Insira um livro</h2>
+    <h1>Insira um livro</h1>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="card">
+
         <!-- Form -->
         <form [formGroup]="formBook">
-            <div>
-                <div class="image" fxLayout="row" fxLayoutAlign="space-around center">
-                    <img src="">
-                </div>
-                <mat-form-field appearance="outline">
+            <div fxLayout="row" fxLayoutAlign="space-around center" fxLayout.xs="column">
+                <img src="{{image ? image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}" class="image">
+            </div>
+            <div fxLayoutAlign="space-around center" fxLayout.xs="column">
+                <mat-form-field appearance="outline" class="inputsLayout" fxLayout.xs="column">
                     <mat-label>{{'BOOK.ESCOLHER_FOTO_LIVRO' | translate}}</mat-label>
                     <input matInput formControlName="image">
                     <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="openDialogUpload()">
@@ -16,93 +19,95 @@
                 </mat-form-field>
             </div>
             <!--Linha form-->
-            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
-                <mat-form-field fxFlex="30" appearance="outline">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                <mat-form-field fxFlex="30" appearance="outline" class="inputsLayout">
                     <mat-label>ISBN</mat-label>
-                    <input formControlName="isbn10" matInput placeholder="Ex. 10101010101">
+                    <input formControlName="isbn10" matInput placeholder="Ex. 9786555520538">
                 </mat-form-field>
-                <mat-form-field fxFlex appearance="outline">
+                <mat-form-field fxFlex appearance="outline" class="inputsLayout">
                     <mat-label>Título</mat-label>
                     <input formControlName="title" matInput placeholder="Ex. Sagarana">
                 </mat-form-field>
             </div>
             <!--        Linha form-->
-            <div fxLayout="row wrap" fxLayout.xs="column"  fxLayoutGap="10px" fxLayoutAlign="space-between center">
-<!--                <mat-form-field fxFlex>-->
-<!--                    <mat-label>País</mat-label>-->
-<!--                    <input formControlName="country" matInput placeholder="Ex. Brasil">-->
-<!--                </mat-form-field>-->
-                <mat-form-field fxFlex appearance="outline">
-                    <mat-label>Linguagem</mat-label>
-                    <input formControlName="language" matInput placeholder="Ex. Português">
-                </mat-form-field>
-                <mat-form-field fxFlex appearance="outline">
-                    <mat-label>Número de páginas</mat-label>
-                    <input formControlName="numberPage" matInput placeholder="Ex. 500">
-                </mat-form-field>
-                <mat-form-field fxFlex appearance="outline">
-                    <mat-label>Ano da puplicação</mat-label>
-                    <input formControlName="publishedDate" matInput placeholder="Ex. 2009">
-                </mat-form-field>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="inputsLayout">
+                <div class="inputsLayout">
+                    <mat-form-field appearance="outline" class="inputsLayout">
+                        <mat-label>Linguagem</mat-label>
+                        <input formControlName="language" matInput placeholder="Ex. Português">
+                    </mat-form-field>
+                </div>
+                <div class="inputsLayout">
+                    <mat-form-field appearance="outline" class="inputsLayout">
+                        <mat-label>Número de páginas</mat-label>
+                        <input type="number" formControlName="numberPage" matInput maxlength="5" placeholder="Ex. 500"
+                               appNumbersOnlyInput>
+                    </mat-form-field>
+                </div>
+                <div class="inputsLayout">
+                    <mat-form-field appearance="outline" class="inputsLayout">
+                        <mat-label>Ano da puplicação</mat-label>
+                        <input type="number" formControlName="publishedDate" matInput placeholder="Ex. 2009">
+                    </mat-form-field>
+                </div>
             </div>
             <!--linha form-->
-            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between center">
-                <mat-form-field fxFlex appearance="outline">
-                    <mat-label>Editora</mat-label>
-                    <input formControlName="publisher" matInput placeholder="Ex. Brasil">
-                </mat-form-field>
-<!--                <mat-form-field fxFlex>-->
-<!--                    <mat-label>Editora</mat-label>-->
-<!--                    <input formControlName="publisher" matInput placeholder="Ex. Brasil">-->
-<!--                </mat-form-field>-->
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="inputsLayout">
+                <div class="inputsLayout">
+                    <mat-form-field fxFlex appearance="outline">
+                        <mat-label>Editora</mat-label>
+                        <input formControlName="publisher" matInput placeholder="Ex. Brasil">
+                    </mat-form-field>
+                </div>
             </div>
-            <div fxLayout="row wrap" fxLayout.xs="column"fxLayoutGap="20px" fxLayoutAlign="start center">
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="20px" fxLayoutAlign="start center">
                 <h2 fxFlex="50" mat-dialog-title>Autores: </h2>
                 <button type="button" mat-flat-button color="accent" (click)="this.addAuthors()">
                     Adicionar
                 </button>
             </div>
             <!--        linha form-->
-            <div formArrayName="authors" *ngFor="let item of authors.controls; let i = index;" fxLayout="row wrap"
+            <div formArrayName="authors" *ngFor="let item of authors.controls; let i = index;" fxLayout="row"
                  fxLayout.xs="column"
-                 fxLayoutGap="30px" fxLayoutAlign="start center">
-                <mat-form-field  fxFlex="50" [formGroupName]="i">
-                    <input type="text" placeholder="Authors" matInput formControlName="name"
-                           [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option.name" (onSelectionChange)="selectOption(i,option)">
-                            {{option.name}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-                <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon"
-                        (click)="this.removeAuthors(1)">
-                    <mat-icon>close</mat-icon>
-                </button>
+                 class="inputsLayout" fxLayoutAlign="center center">
+                <div class="inputsLayout">
+                    <mat-form-field [formGroupName]="i" appearance="outline" class="inputsLayout">
+                        <input type="text" placeholder="Authors" matInput formControlName="name"
+                               [matAutocomplete]="auto">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option.name"
+                                        (onSelectionChange)="selectOption(i,option)">
+                                {{option.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-mini-fab color="warn" style="margin-bottom: 14px"
+                            (click)="this.removeAuthors(1)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
             </div>
 
             <!--        linha form-->
-            <div fxLayout="row wrap" fxLayout.xs="column"fxLayoutGap="20px" fxLayoutAlign="start center">
-                <mat-form-field fxFlex appearance="outline">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" class="inputsLayout">
+                <mat-form-field fxFlex appearance="outline" class="inputsLayout">
                     <mat-label>Descrição</mat-label>
-                    <textarea matInput
-                              formControlName="description"
-                              cdkTextareaAutosize
-                              #autosize="cdkTextareaAutosize"
-                              cdkAutosizeMinRows="1"
-                              cdkAutosizeMaxRows="5"></textarea>
+                    <textarea
+                      style="height: 150px"
+                      matInput
+                      formControlName="description">
+                    </textarea>
                 </mat-form-field>
             </div>
 
 
         </form>
-<!--        <div>{{this.formBook.value |json}}</div>-->
-<!--        <div>{{this.formBook.valid}}</div>-->
-
-        <button type="button" mat-raised-button color="primary" (click)="saveBook()"
-                        [disabled]="formBook.invalid">
-            Criar
+        <button type="button" mat-raised-button color="accent" (click)="saveBook()" style="width: 100%"
+                [disabled]="formBook.invalid">
+            {{'PADRAO.CRIAR' | translate}}
         </button>
-    </div>
+    </mat-card>
 </div>
 
