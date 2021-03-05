@@ -1,22 +1,22 @@
 <form [formGroup]="formCreateStory">
     <div class="container-geral">
         <div class="linha-input">
-            <h2>Título</h2>
+            <h2>{{ 'COMPETICAO_LITERARIA.TITULO' | translate }}</h2>
             <mat-form-field appearance="outline">
-                <mat-label>Título</mat-label>
+                <mat-label>{{ 'COMPETICAO_LITERARIA.TITULO' | translate }}</mat-label>
                 <input matInput formControlName="title">
                 <mat-error *ngIf="formCreateStory.get('title').hasError('required')">
-                    Título é <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                    {{ 'COMPETICAO_LITERARIA.TITULO_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
                 </mat-error>
             </mat-form-field>
         </div>
         <div class="linha-input">
-            <h2>História</h2>
+            <h2>{{ 'COMPETICAO_LITERARIA.HISTORIA' | translate }}</h2>
             <mat-form-field appearance="outline">
-                <mat-label>História</mat-label>
+                <mat-label>{{ 'COMPETICAO_LITERARIA.HISTORIA' | translate }}</mat-label>
                 <textarea matInput formControlName="story"></textarea>
                 <mat-error *ngIf="formCreateStory.get('story').hasError('required')">
-                    História é <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                    {{ 'COMPETICAO_LITERARIA.HISTORIA_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
                 </mat-error>
             </mat-form-field>
         </div>
@@ -26,13 +26,13 @@
                     color="primary"
                     [disabled]="this.formCreateStory.invalid"
                     (click)="createStory()">
-                Enviar história
+                {{ 'COMPETICAO_LITERARIA.ENVIAR_HISTORIA' | translate }}
             </button>
             <button type="button"
                     mat-raised-button
                     [disabled]="this.formCreateStory.invalid"
                     [routerLink]="['/literary-competition/' + competitionMemberTO?.competitionTO?.id]">
-                Voltar
+                {{ 'COMPETICAO_LITERARIA.VOLTAR' | translate }}
             </button>
             <!--<div class="botoes-editar-do-create">
                 <button

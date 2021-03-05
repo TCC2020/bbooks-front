@@ -7,14 +7,14 @@
     </div>
     <div class="container-branco">
         <div class="container-conteudo">
-            <h2 class="titulo-competicao">Datas</h2>
-            <p class="paragrafo-competicao">Competição criada em
+            <h2 class="titulo-competicao">{{ 'COMPETICAO_LITERARIA.DATAS' | translate }}</h2>
+            <p class="paragrafo-competicao">{{ 'COMPETICAO_LITERARIA.COMPETICAO_CRIADA_EM' | translate }}
                 <strong>{{ competitionTO?.creationDate | date:'dd/MM/yyyy' }}</strong></p>
             <p class="paragrafo-competicao">
-                Inscrições de <strong>{{ competitionTO?.subscriptionDate | date:'dd/MM/yyyy' }}</strong>
-                até <strong>{{ competitionTO?.subscriptionFinalDate | date:'dd/MM/yyyy' }}</strong>
+                {{ 'COMPETICAO_LITERARIA.INSCRICOES_DE' | translate }} <strong>{{ competitionTO?.subscriptionDate | date:'dd/MM/yyyy' }}</strong>
+                {{ 'COMPETICAO_LITERARIA.ATE' | translate }} <strong>{{ competitionTO?.subscriptionFinalDate | date:'dd/MM/yyyy' }}</strong>
             </p>
-            <p class="paragrafo-competicao">Fim da competição em
+            <p class="paragrafo-competicao">{{ 'COMPETICAO_LITERARIA.FIM_COMPETICAO_EM' | translate }}
                 <strong>{{ competitionTO?.finalDate | date:'dd/MM/yyyy' }}</strong></p>
         </div>
     </div>
@@ -48,18 +48,18 @@
     </div> -->
     <div class="container-cinza">
         <div class="container-conteudo">
-            <h2 class="titulo-competicao">Administradores</h2>
+            <h2 class="titulo-competicao">{{ 'COMPETICAO_LITERARIA.ADMINISTRADORES' | translate }}</h2>
             <div class="ver-todos-membros">
                 <div>
                     <button type="button" mat-raised-button color="primary"
                             [routerLink]="['/literary-competition/' + competitionTO?.id + '/administrators']">
-                        Ver todos os administradores
+                        {{ 'COMPETICAO_LITERARIA.VER_TODOS_ADMINISTRADORES' | translate }}
                     </button>
                 </div>
                 <div>
                     <button *ngIf="isAdmin" [routerLink]="['/literary-competition/' + competitionTO?.id + '/add-admin']"
                             type="button"
-                            mat-raised-button color="primary">Adicionar administrador
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.ADICIONAR_ADMINISTRADOR' | translate }}
                     </button>
                 </div>
             </div>
@@ -67,32 +67,32 @@
     </div>
     <div class="container-branco">
         <div class="container-conteudo">
-            <h2 class="titulo-competicao">Membros</h2>
+            <h2 class="titulo-competicao">{{ 'COMPETICAO_LITERARIA.PARTICIPANTES' | translate }}</h2>
             <div class="ver-todos-membros">
                 <div>
                     <button [routerLink]="['/literary-competition/' + competitionTO?.id + '/members']" type="button"
-                            mat-raised-button color="primary">Ver todos os membros
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.VER_TODOS_ADMINISTRADORES' | translate }}
                     </button>
                 </div>
                 <div>
                     <button *ngIf="isAdmin"
                             [routerLink]="['/literary-competition/' + competitionTO?.id + '/registrations']"
                             type="button"
-                            mat-raised-button color="primary">Ver inscrições pendentes
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.INSCRICOES_PENDENTES' | translate }}
                     </button>
                     <button *ngIf="!isMember  && !isAdmin" (click)="addMember()" type="button"
-                            mat-raised-button color="primary">Clique para se inscrever
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.CLIQUE_INSCREVER' | translate }}
                     </button>
                     <button *ngIf="isMember" (click)="removeMember()" type="button"
-                            mat-raised-button color="primary">Cancelar inscrição
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.CANCELAR_INSCRICAO' | translate }}
                     </button>
                     <button *ngIf="isMember && member?.status === 'accept'"
                             [routerLink]="['/literary-competition/' + member.memberId + '/create-story']" type="button"
-                            mat-raised-button color="primary">Escrever história
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.ESCREVER_HISTORIA' | translate }}
                     </button>
                     <button *ngIf="isMember && member?.status === 'pending'"
                             type="button" disabled
-                            mat-raised-button color="primary">Aguarde aprovação de inscrição
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.AGUARDE_APROVACAO' | translate }}
                     </button>
                 </div>
 
@@ -102,16 +102,16 @@
 
     <div class="container-cinza">
         <div class="container-conteudo">
-            <h2 class="titulo-competicao">Resultado</h2>
-            <p class="paragrafo-competicao">{{ competitionTO?.winnerProfile ? competitionTO.winnerProfile : "Aguardando vencedor"}}</p>
+            <h2 class="titulo-competicao">{{ 'COMPETICAO_LITERARIA.RESULTADO' | translate }}</h2>
+            <p class="paragrafo-competicao">{{ competitionTO?.winnerProfile ? competitionTO.winnerProfile : 'COMPETICAO_LITERARIA.AGUARDANDO_VENCEDOR' | translate }}</p>
         </div>
     </div>
     <div class="container-branco" *ngIf="isAdmin">
         <div class="container-conteudo">
-            <h2 class="titulo-competicao">Editar Competição</h2>
+            <h2 class="titulo-competicao">{{ 'COMPETICAO_LITERARIA.EDITAR_COMPETICAO' | translate }}</h2>
             <div>
                 <button type="button" mat-raised-button color="primary"
-                        [routerLink]="['/literary-competition/' + competitionTO?.id + '/edit']">Editar
+                        [routerLink]="['/literary-competition/' + competitionTO?.id + '/edit']">{{ 'COMPETICAO_LITERARIA.EDITAR' | translate }}
                 </button>
             </div>
         </div>

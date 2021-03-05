@@ -9,7 +9,7 @@
         <form [formGroup]="searchAdministrators">
             <div class="container-pesquisar">
                 <mat-form-field class="barra-pesquisar" appearance="outline">
-                    <mat-label>Pesquisar administrador</mat-label>
+                    <mat-label>{{ 'COMPETICAO_LITERARIA.PESQUISAR_ADMIN' | translate }}</mat-label>
                     <input matInput formControlName="nameAdministrator" (keyup)="searchAdministrator()" (blur)="searchAdministrator()" type="text">
                     <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
                         <mat-icon>search</mat-icon>

@@ -9,7 +9,7 @@
         <form [formGroup]="searchMembers">
             <div class="container-pesquisar">
                 <mat-form-field class="barra-pesquisar" appearance="outline">
-                    <mat-label>Pesquisar candidato</mat-label>
+                    <mat-label>{{ 'COMPETICAO_LITERARIA.PESQUISAR_CANDIDATO' | translate }}</mat-label>
                     <input matInput formControlName="nameMember" (keyup)="searchMember()" (blur)="searchMember()" type="text">
                     <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
                         <mat-icon>search</mat-icon>
@@ -25,10 +25,10 @@
                 <div class="dados-membro">
                     <p>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</p>
                     <button (click)="acceptMember(member?.memberId)" type="button"
-                            mat-raised-button color="primary">Aceitar
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.ACEITAR' | translate }}
                     </button>
                     <button (click)="recuseMember(member?.memberId)" type="button"
-                            mat-raised-button>Recusar
+                            mat-raised-button>{{ 'COMPETICAO_LITERARIA.RECUSAR' | translate }}
                     </button>
                 </div>
             </div>
