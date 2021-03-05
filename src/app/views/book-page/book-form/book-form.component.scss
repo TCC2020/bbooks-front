@@ -1,3 +1,32 @@
-.image{
 
+.inputsLayout{
+  gap: 13px;
+  width: 100%;
+}
+.image {
+  opacity: 1;
+  display: block;
+  width: 120px;
+  height: auto;
+  transition: .5s ease;
+  max-width: 120px;
+  backface-visibility: hidden;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  max-width: 150px;
+}
+@media screen and (max-width: 600px) {
+  .card {
+    border: none;
+    width: 95%;
+    margin: auto 1px;
+    padding: 0px;
+  }
+
+  .inputsLayout{
+    width: 100%;
+    padding: 5px;
+  }
 }

@@ -48,7 +48,7 @@
                 </div>
                 <!--começa card-->
                 <div class="container-amigo" *ngFor="let r of recommendations">
-                    <div class="container-imagem" [routerLink]="['/book/undefined', (r?.book | async)?.id]" [queryParams]="routerRecommendation(r?.idBookGoogle)">
+                    <div class="container-imagem" [routerLink]="['/books/', (r?.book | async)?.id]" [queryParams]="routerRecommendation(r?.idBookGoogle)">
                         <div>
                             <img class="imagem-perfil-notificacao"
                             [src]="(r?.profileTO | async)?.profileImage ? (r?.profileTO | async)?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>

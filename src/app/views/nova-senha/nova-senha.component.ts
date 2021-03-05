@@ -5,6 +5,8 @@ import {ProfileService} from 'src/app/services/profile.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserTO} from '../../models/userTO.model';
 import {MyErrorStateMatcher} from '../cadastro/cadastro.component';
+import { TranslateService } from '@ngx-translate/core';
+import { Util } from '../shared/Utils/util';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class NovaSenhaComponent implements OnInit {
         private profileService: ProfileService,
         private authService: AuthService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private translate: TranslateService
     ) {
     }
 
@@ -71,7 +74,9 @@ export class NovaSenhaComponent implements OnInit {
             password: this.newPassword.get('password').value
         };
         this.authService.resetPass(resetPass).subscribe(value => {
-            alert('Senha alterada');
+            this.translate.get('PADRAO.SENHA_ALTERADA').subscribe(message => {
+                Util.showErrorDialog(message);
+            });
             this.router.navigate(['/']);
         }, error => {
             console.log('error reset pass', error);

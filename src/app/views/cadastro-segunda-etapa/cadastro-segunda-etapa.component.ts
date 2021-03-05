@@ -186,7 +186,7 @@ export class CadastroSegundaEtapaComponent implements OnInit {
             },
             (err) => {
                 Util.stopLoading();
-                alert(err.error.message);
+                Util.showErrorDialog(err.error.message);
                 localStorage.clear();
             }
         );
