@@ -1,0 +1,40 @@
+<form [formGroup]="formSearch">
+    <div fxLayout="row" fxLayoutAlign="center center" style="background-color: white">
+        <mat-form-field appearance="outline" class="barra-pesquisar">
+            <mat-label>{{'PADRAO.BUSCAR' | translate}}</mat-label>
+            <input matInput formControlName="search" matInput type="text" (blur)="searchAdmins()">
+            <button mat-button matSuffix mat-icon-button aria-label="Pesquisar" type="submit" (click)="searchAdmins()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+</form>
+<div class="container-da-lista">
+    <div class="container-lista-amigos">
+        <div class="container-amigo" *ngFor="let user of filterUsers">
+            <div class="container-imagem">
+                <div class="informacoes-do-usuario">
+                    <div>
+                        <img class="imagem-perfil"
+                             [src]="user?.profile?.profileImage ?
+                        user.profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                    </div>
+                    <div class="informacoes">
+                        <div><span><a class="nome-usuario"
+                                      [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span>
+                        </div>
+                        <div><span>{{user?.userName}}</span></div>
+                        <div><span>{{user?.profile?.city}}</span></div>
+                    </div>
+                </div>
+                <div class="adicionar-amigos">
+                    <button (click)="addAdmin(user?.profile?.id)" type="button"
+                            mat-raised-button color="primary">Adicionar
+                    </button>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+</div>

@@ -50,10 +50,18 @@
         <div class="container-conteudo">
             <h2 class="titulo-competicao">Administradores</h2>
             <div class="ver-todos-membros">
-                <button type="button" mat-raised-button color="primary"
-                        [routerLink]="['/literary-competition/' + competitionTO?.id + '/administrators']">Ver todos os
-                    administradores
-                </button>
+                <div>
+                    <button type="button" mat-raised-button color="primary"
+                            [routerLink]="['/literary-competition/' + competitionTO?.id + '/administrators']">
+                        Ver todos os administradores
+                    </button>
+                </div>
+                <div>
+                    <button *ngIf="isAdmin" [routerLink]="['/literary-competition/' + competitionTO?.id + '/add-admin']"
+                            type="button"
+                            mat-raised-button color="primary">Adicionar administrador
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -67,7 +75,9 @@
                     </button>
                 </div>
                 <div>
-                    <button *ngIf="isAdmin" [routerLink]="['/literary-competition/' + competitionTO?.id + '/registrations']" type="button"
+                    <button *ngIf="isAdmin"
+                            [routerLink]="['/literary-competition/' + competitionTO?.id + '/registrations']"
+                            type="button"
                             mat-raised-button color="primary">Ver inscrições pendentes
                     </button>
                     <button *ngIf="!isMember  && !isAdmin" (click)="addMember()" type="button"
@@ -76,7 +86,8 @@
                     <button *ngIf="isMember" (click)="removeMember()" type="button"
                             mat-raised-button color="primary">Cancelar inscrição
                     </button>
-                    <button *ngIf="isMember" [routerLink]="['/literary-competition/' + member.memberId + '/create-story']" type="button"
+                    <button *ngIf="isMember"
+                            [routerLink]="['/literary-competition/' + member.memberId + '/create-story']" type="button"
                             mat-raised-button color="primary">Escrever história
                     </button>
                 </div>

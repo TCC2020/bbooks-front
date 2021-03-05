@@ -7,6 +7,7 @@ import {ProfileService} from '../../../services/profile.service';
 import {Role} from '../../../models/enums/Role.enum';
 import {Util} from '../../shared/Utils/util';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {LiteraryMemberStatus} from '../../../models/enums/LiteraryMemberStatus.enum';
 
 @Component({
     selector: 'app-members-literary-competition',
@@ -54,7 +55,7 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
             .subscribe(result => {
                 this.loading = false;
                 if (result.content.length > 0) {
-                    const r = result.content.filter(i => i.role === Role.member);
+                    const r = result.content.filter(i => i.role === Role.member && i.status === LiteraryMemberStatus.accept);
                     this.page++;
                     if (r.length === 0) {
                         this.getMembers();

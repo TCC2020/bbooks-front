@@ -15,6 +15,7 @@ import {LiteraryCompetitionRoutingModule} from './literary-competition.routing.m
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {CreateStoryComponent} from './create-story/create-story.component';
 import {RegistrationsComponent} from './registrations/registrations.component';
+import {AddAdministratorComponent} from './add-administrator/add-administrator.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {RegistrationsComponent} from './registrations/registrations.component';
         MembersLiteraryCompetitionComponent,
         StoryLiteraryCompetitionComponent,
         CreateStoryComponent,
-        RegistrationsComponent
+        RegistrationsComponent,
+        AddAdministratorComponent
     ],
     imports: [
         CommonModule,

@@ -11,6 +11,7 @@ import {MembersLiteraryCompetitionComponent} from './members-literary-competitio
 import {StoryLiteraryCompetitionComponent} from './story-literary-competition/story-literary-competition.component';
 import {CreateStoryComponent} from './create-story/create-story.component';
 import {RegistrationsComponent} from './registrations/registrations.component';
+import {AddAdministratorComponent} from './add-administrator/add-administrator.component';
 
 const literaryCompetitionRouter = [
     {
@@ -36,6 +37,10 @@ const literaryCompetitionRouter = [
     {
         path: ':id/registrations',
         component: RegistrationsComponent
+    },
+    {
+        path: ':id/add-admin',
+        component: AddAdministratorComponent
     },
     {
         path: ':id',

@@ -107,6 +107,7 @@ export class LiteraryCompetitionComponent implements OnInit {
             .subscribe(() => {
                 Util.stopLoading();
                 this.isMember = true;
+                window.location.reload();
             }, error => {
                 Util.stopLoading();
                 console.log(error);

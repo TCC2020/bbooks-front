@@ -1,8 +1,8 @@
 import {Role} from './enums/Role.enum';
-import {Status} from 'cucumber';
 import {Profile} from './profileTO.model';
 import {CompetitionTO} from './competitionTO.model';
 import {Observable} from 'rxjs';
+import {LiteraryMemberStatus} from './enums/LiteraryMemberStatus.enum';
 
 export class CompetitionMemberTO {
     memberId: string;
@@ -12,7 +12,7 @@ export class CompetitionMemberTO {
     profileAsinc: Observable<Profile>;
     profileId: number;
     role: Role;
-    status: Status;
+    status: LiteraryMemberStatus;
     competitionTO: CompetitionTO;
     meanVote: number;
 }
