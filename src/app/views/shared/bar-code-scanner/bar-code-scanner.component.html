@@ -1,0 +1,14 @@
+<barcode-scanner-livestream
+        type="code_128"
+        (valueChanges)="onValueChanges($event)"
+        (started)="(onStarted)"
+></barcode-scanner-livestream>
+<div>
+    <b>ISBN:</b> {{ barcodeValue ? barcodeValue : '' }}
+</div>
+
+<button type="button" mat-flat-button color="accent" style="width: 100%"
+        [disabled]="formSearch.invalid"
+        mat-button [mat-dialog-close]="barcodeValue">
+    {{'PADRAO.BUSCAR' | translate}}
+</button>

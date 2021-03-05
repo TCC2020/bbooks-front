@@ -12,6 +12,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {TranslateService} from '@ngx-translate/core';
 import {Util} from '../../shared/Utils/util';
 import {Router} from '@angular/router';
+import {BarCodeScannerComponent} from '../../shared/bar-code-scanner/bar-code-scanner.component';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class BookFormComponent implements OnInit {
 
     private createForm(): void {
         this.formBook = this.formBuilder.group({
-            image: new FormControl({value: null, disabled: true}),
+            image: new FormControl({value: null, disabled: true}, Validators.required),
             isbn10: new FormControl(null, Validators.required),
             title: new FormControl(null, Validators.required),
             publisher: new FormControl(null, Validators.required),
@@ -197,5 +198,18 @@ export class BookFormComponent implements OnInit {
                     });
                     console.log('error book form', error);
                 }});
+    }
+
+    readCodeBar(): void {
+        const dialogRef = this.dialog.open(BarCodeScannerComponent, {
+            height: '450px',
+            width: '500px',
+
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.formBook.get('isbn10').setValue(result);
+            }
+        });
     }
 }
