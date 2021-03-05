@@ -53,7 +53,6 @@ export class AddAdministratorComponent implements OnInit {
             .pipe(take(1))
             .subscribe(result => {
                 this.users = result;
-                console.log(this.users);
             });
     }
 

@@ -6,6 +6,7 @@ import {MaterialModule} from '../../../material/material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('MembersLiteraryCompetitionComponent', () => {
     let component: MembersLiteraryCompetitionComponent;
@@ -19,7 +20,9 @@ describe('MembersLiteraryCompetitionComponent', () => {
                 MaterialModule,
                 BrowserAnimationsModule,
                 InfiniteScrollModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                FormsModule,
+                ReactiveFormsModule
             ]
         })
             .compileComponents();

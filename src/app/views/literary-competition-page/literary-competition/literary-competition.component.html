@@ -86,9 +86,13 @@
                     <button *ngIf="isMember" (click)="removeMember()" type="button"
                             mat-raised-button color="primary">Cancelar inscrição
                     </button>
-                    <button *ngIf="isMember"
+                    <button *ngIf="isMember && member?.status === 'accept'"
                             [routerLink]="['/literary-competition/' + member.memberId + '/create-story']" type="button"
                             mat-raised-button color="primary">Escrever história
+                    </button>
+                    <button *ngIf="isMember && member?.status === 'pending'"
+                            type="button" disabled
+                            mat-raised-button color="primary">Aguarde aprovação de inscrição
                     </button>
                 </div>
 

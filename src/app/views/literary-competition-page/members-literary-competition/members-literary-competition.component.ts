@@ -56,6 +56,7 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
                 this.loading = false;
                 if (result.content.length > 0) {
                     const r = result.content.filter(i => i.role === Role.member && i.status === LiteraryMemberStatus.accept);
+                    console.log(r);
                     this.page++;
                     if (r.length === 0) {
                         this.getMembers();
