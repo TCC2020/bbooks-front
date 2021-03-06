@@ -6,6 +6,9 @@ import {MaterialModule} from '../../../material/material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('AdministratorsLiteraryCompetitionComponent', () => {
     let component: AdministratorsLiteraryCompetitionComponent;
@@ -19,7 +22,15 @@ describe('AdministratorsLiteraryCompetitionComponent', () => {
                 MaterialModule,
                 BrowserAnimationsModule,
                 InfiniteScrollModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                FormsModule,
+                ReactiveFormsModule,
+                TranslateModule,
+                TranslateServiceMockForChild
+            ],
+            providers: [
+                TranslateService,
+                TranslateStore
             ]
         }).compileComponents();
     }));

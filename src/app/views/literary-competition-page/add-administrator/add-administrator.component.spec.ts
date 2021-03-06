@@ -1,19 +1,22 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {LiteraryCompetitionComponent} from './literary-competition.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {MaterialModule} from '../../../material/material.module';
-import {HttpClientModule} from '@angular/common/http';
-import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
-import {AuthService} from '../../../services/auth.service';
-import {userMock} from '../../../mocks/user.model.mock';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {AddAdministratorComponent} from './add-administrator.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {MaterialModule} from '../../../material/material.module';
+import {RouterModule} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {AuthService} from '../../../services/auth.service';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {userMock} from '../../../mocks/user.model.mock';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-describe('LiteraryCompetitionComponent', () => {
-    let component: LiteraryCompetitionComponent;
-    let fixture: ComponentFixture<LiteraryCompetitionComponent>;
+describe('AddAdministratorComponent', () => {
+    let component: AddAdministratorComponent;
+    let fixture: ComponentFixture<AddAdministratorComponent>;
     let service: AuthService;
 
     const authServiceMock = {
@@ -22,17 +25,23 @@ describe('LiteraryCompetitionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [LiteraryCompetitionComponent],
+            declarations: [AddAdministratorComponent],
             imports: [
-                RouterTestingModule,
+                FormsModule,
+                ReactiveFormsModule,
+                TranslateModule,
                 MaterialModule,
+                RouterModule,
+                RouterTestingModule,
+                HttpClientModule,
                 HttpClientTestingModule,
                 TranslateModule,
-                TranslateServiceMockForChild
+                TranslateServiceMockForChild,
+                BrowserAnimationsModule
             ],
             providers: [
-                TranslateService,
                 TranslateStore,
+                TranslateService,
                 {
                     provide: AuthService,
                     useValue: authServiceMock
@@ -44,7 +53,7 @@ describe('LiteraryCompetitionComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(LiteraryCompetitionComponent);
+        fixture = TestBed.createComponent(AddAdministratorComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

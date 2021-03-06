@@ -2,8 +2,9 @@
     <form [formGroup]="searchMembers">
         <div class="container-pesquisar">
             <mat-form-field class="barra-pesquisar" appearance="outline">
-                <mat-label>{{ 'COMPETICAO_LITERARIA.PESQUISAR_MEMBRO' | translate }}</mat-label>
-                <input matInput formControlName="nameMembers" (blur)="searchMember()" type="text">
+                <mat-label>{{ 'COMPETICAO_LITERARIA.PESQUISAR_CANDIDATO' | translate }}</mat-label>
+                <input matInput formControlName="nameMember" (keyup)="searchMember()" (blur)="searchMember()"
+                       type="text">
                 <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
                     <mat-icon>search</mat-icon>
                 </button>
@@ -17,9 +18,11 @@
             </div>
             <div class="dados-membro">
                 <p>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</p>
-                <p>{{ member?.role }}</p>
-                <button type="button" mat-raised-button color="primary"
-                        [routerLink]="['/literary-competition/' + member?.memberId + '/story']">{{ 'COMPETICAO_LITERARIA.VER_HISTORIA' | translate }}
+                <button (click)="acceptMember(member?.memberId)" type="button"
+                        mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.ACEITAR' | translate }}
+                </button>
+                <button (click)="recuseMember(member?.memberId)" type="button"
+                        mat-raised-button>{{ 'COMPETICAO_LITERARIA.RECUSAR' | translate }}
                 </button>
             </div>
         </div>

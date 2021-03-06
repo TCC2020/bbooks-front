@@ -6,6 +6,8 @@ import {CompetitionMemberService} from '../../../services/competition-member.ser
 import {ProfileService} from '../../../services/profile.service';
 import {Role} from '../../../models/enums/Role.enum';
 import {Util} from '../../shared/Utils/util';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {LiteraryMemberStatus} from '../../../models/enums/LiteraryMemberStatus.enum';
 
 @Component({
     selector: 'app-members-literary-competition',
@@ -20,11 +22,13 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
     members: CompetitionMemberTO[] = [];
     listMembers: CompetitionMemberTO[] = [];
     indexMember = 0;
+    searchMembers: FormGroup;
 
     constructor(
         private route: ActivatedRoute,
         private competitionMemberService: CompetitionMemberService,
-        private profileService: ProfileService
+        private profileService: ProfileService,
+        private fb: FormBuilder
     ) {
     }
 
@@ -38,24 +42,17 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
                 }
             );
         this.getMembers();
+        this.searchMembers = this.fb.group({
+                nameMembers: ['']
+            }
+        );
     }
 
     getMembers() {
-        this.loading = true;
-        this.competitionMemberService.getMembers(this.literaryCompetitionId, this.page, 4)
+        this.competitionMemberService.getMembersByRoleAndStatus(this.literaryCompetitionId, Role.member, LiteraryMemberStatus.accept)
             .pipe(take(1))
             .subscribe(result => {
-                this.loading = false;
-                if (result.content.length > 0) {
-                    const r = result.content.filter(i => i.role === Role.member);
-                    this.page++;
-                    if (r.length === 0) {
-                        this.getMembers();
-                    } else {
-                        this.members = this.members.concat(r);
-                        this.getProfiles();
-                    }
-                }
+                this.members = result;
             });
     }
 
@@ -76,9 +73,19 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
         });
     }
 
-
-    onScroll() {
-        this.getMembers();
+    searchMember() {
+        const formSearch = this.searchMembers.get('nameMembers').value;
+        if (!formSearch) {
+            return this.members;
+        }
+        return this.members.filter(p =>
+            p?.profile?.name.concat(p?.profile?.lastName).toLocaleLowerCase().replace(' ', '')
+                .includes(formSearch.toLocaleLowerCase().replace(' ', ''))
+        );
     }
+
+    /*onScroll() {
+        this.getMembers();
+    }*/
 
 }

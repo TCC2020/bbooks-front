@@ -7,6 +7,8 @@ import {CompetitionMemberTO} from '../models/competitionMemberTO.model';
 import {CompetitionMemberSaveTO} from '../models/competitionMemberSaveTO.model';
 import {CompetitionPagination} from '../models/pagination/competition.pagination';
 import {CompetitionMemberPagination} from '../models/pagination/competition-member.pagination';
+import {Role} from '../models/enums/Role.enum';
+import {LiteraryMemberStatus} from '../models/enums/LiteraryMemberStatus.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +45,13 @@ export class CompetitionMemberService {
         .set('page', page.toString())
         .set('size', size.toString());
     return this.http.get<CompetitionPagination>(this.api + 'profile/' + id, {params});
+  }
+
+  getMembersByRoleAndStatus(id: string, role: string, status: LiteraryMemberStatus): Observable<CompetitionMemberTO[]> {
+    const params = new HttpParams()
+        .set('role', role.toString())
+        .set('status', status.toString());
+    return this.http.get<CompetitionMemberTO[]>(this.api + 'role/' + id, {params});
   }
 
 }

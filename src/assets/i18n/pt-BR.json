@@ -1,7 +1,7 @@
 {
   "PADRAO": {
     "PHOTO": "Foto",
-    "ASK" : "Pergunte",
+    "ASK": "Pergunte",
     "PUBLICAR": "Publicar",
     "BUSCAR": "Buscar",
     "ENTRAR": "Entrar",
@@ -40,7 +40,7 @@
     "CONCLUIDO": "Concluído",
     "PENDENTE": "Pendente",
     "COMENTARIO": "Comentário",
-    "VELOCIDADE_LEITURA" : "Velocidade de leitura",
+    "VELOCIDADE_LEITURA": "Velocidade de leitura",
     "PAGINA_POR_DIA": "páginas/dia",
     "RESENHA": "Resenha",
     "LIVRO_INDICADO": "O livro foi indicado para seu amigo.",
@@ -85,8 +85,8 @@
     "WAIT_PERMISSIONS": "Aguardando permissões.",
     "NOT_HAS_CAMERA": "Se o seu dispositivo não tiver câmeras, nenhuma permissão será solicitada"
   },
-  "GRUPO_LEITURA" : {
-    "ADMINISTRADORES" : "Administradores",
+  "GRUPO_LEITURA": {
+    "ADMINISTRADORES": "Administradores",
     "MEMBROS": "Membros",
     "GRUPO": "Grupo",
     "CONVIDAR": "Convidar",
@@ -123,10 +123,10 @@
     "MEMBER_NOW": "Administrador adicionado como membro",
     "MEMBRO_REMOVIDO": "Membro removido"
   },
-  "RESENHA" : {
-    "ESCREVER_RESENHA" : "Escrever resenha",
+  "RESENHA": {
+    "ESCREVER_RESENHA": "Escrever resenha",
     "TITULO": "Título para sua resenha",
-    "BODY" : "Escreva o que achou do livro",
+    "BODY": "Escreva o que achou do livro",
     "BODY_TEXT": "Este livro é maravilhoso",
     "APAGAR_RENHA": "Resenha excluída"
   },
@@ -191,7 +191,6 @@
     "META_LEITURA_REMOVER": "Remover da meta de leitura",
     "ENCERRAR_META_LEITURA": "A meta de leitura será encerrada em",
     "DIAS_ENCERRAR_META": "dias."
-
   },
   "TAG": {
     "CRIAR_TAG": "Criar Tag",
@@ -286,6 +285,55 @@
     "PROCURAR": "Procurar amigos",
     "COMENTARIO": "Comentário"
   },
+  "COMPETICAO_LITERARIA": {
+    "PESQUISAR_ADMIN": "Pesquisar administrador",
+    "TITULO": "Título",
+    "REGRAS": "Regras",
+    "TITULO_E": "Título é",
+    "REGRAS_E": "Regras é",
+    "DATAS": "Datas",
+    "HISTORIA": "História",
+    "HISTORIA_E": "História é",
+    "INICIO_INSCRICOES": "Início das Inscrições",
+    "INICIO_INSCRICOES_E": "Início das Inscrições é",
+    "FIM_INSCRICOES": "Fim das Inscrições",
+    "FIM_INSCRICOES_E": "Fim das Inscrições é",
+    "FIM_COMPEITICAO": "Fim da Competição",
+    "FIM_COMPEITICAO_E": "Fim da Competição é",
+    "CRIAR_COMPETICAO": "Criar competição",
+    "EDITAR": "Editar",
+    "CANCELAR": "Cancelar",
+    "ENVIAR_HISTORIA": "Enviar história",
+    "VOLTAR": "Voltar",
+    "PESQUISAR_COMPETICAO": "Pesquisar competição",
+    "CRIAR_COMPETIÇÃO": "Criar competição",
+    "INSCRICOES_ATE": "Inscrições até",
+    "COMPETICAO_SERA_ENCERRADA": "Esta competição será encerrada em",
+    "HISTORIA_USUARIO": "História do usuário",
+    "VOLTAR_LISTA_MEMBROS": "Voltar para lista de membros",
+    "PESQUISAR_MEMBRO": "Pesquisar membro",
+    "VER_HISTORIA": "Ver história",
+    "PESQUISAR_CANDIDATO": "Pesquisar candidato",
+    "ACEITAR": "Aceitar",
+    "RECUSAR": "Recusar",
+    "COMPETICAO_CRIADA_EM": "Competição criada em",
+    "INSCRICOES_DE": "Inscrições de",
+    "ATE": "até",
+    "FIM_COMPETICAO_EM": "Fim da competição em",
+    "ADMINISTRADORES": "Administradores",
+    "PARTICIPANTES": "Participantes",
+    "VER_TODOS_ADMINISTRADORES": "Ver todos administradores",
+    "ADICIONAR_ADMINISTRADOR": "Adicionar administrador",
+    "VER_TODOS_PARTICIPANTES": "Ver todos participantes",
+    "INSCRICOES_PENDENTES": "Ver inscrições pendentes",
+    "CLIQUE_INSCREVER": "Clique para se inscrever",
+    "CANCELAR_INSCRICAO": "Cancelar inscrição",
+    "ESCREVER_HISTORIA": "Escrever história",
+    "AGUARDE_APROVACAO": "Aguarde aprovação de inscrição",
+    "RESULTADO": "Resultado",
+    "AGUARDANDO_VENCEDOR": "Aguardando vencedor",
+    "EDITAR_COMPETICAO": "Editar Competição"
+  },
   "MESSAGE_ERROR": {
     "AU001": "Autor não encontrado",
     "AU002": "Autor já existe",
@@ -319,12 +367,12 @@
     "NEED_BE_IMAGE": "O arquivo precisa se uma imagem, favor tentar novamente!",
     "BIG_IMAGE": "A imagem é muito grande, favor escolher outro arquivo!"
   },
-  "POST":{
+  "POST": {
     "CRIAR_POSTAGEM": "Criar Postagem",
     "EDITAR_POSTAGEM": "Editar Postagem",
     "COMPARTILHAR_COM": "Compartilhar com",
-    "TEXT_POST_INPUT" : "No que está pensando?",
-    "TEXT_POST_INPUT_ASK" : "Faça uma pergunta...",
+    "TEXT_POST_INPUT": "No que está pensando?",
+    "TEXT_POST_INPUT_ASK": "Faça uma pergunta...",
     "POST_EXCLUIDO": "Postagem excluída",
     "GOSTEI": "Gostei",
     "COMENTAR": "Comentar",

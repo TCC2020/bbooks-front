@@ -8,8 +8,11 @@
         </div>
     </div>
     <div class="historia-membro">
-        <h2>História do usuário</h2>
+        <h2>{{ 'COMPETICAO_LITERARIA.HISTORIA_USUARIO' | translate }}</h2>
         <h3>{{ member?.title }}</h3>
         <p>{{ member?.story }}</p>
+        <button type="button" mat-raised-button
+                [routerLink]="['/literary-competition/' + member?.competitionTO.id + '/members']">{{ 'COMPETICAO_LITERARIA.VOLTAR_LISTA_MEMBROS' | translate }}
+        </button>
     </div>
 </div>

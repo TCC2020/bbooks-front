@@ -13,6 +13,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
 import {LiteraryCompetitionRoutingModule} from './literary-competition.routing.module';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {CreateStoryComponent} from './create-story/create-story.component';
+import {RegistrationsComponent} from './registrations/registrations.component';
+import {AddAdministratorComponent} from './add-administrator/add-administrator.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
         ListLiteraryCompetitionComponent,
         LiteraryCompetitionComponent,
         MembersLiteraryCompetitionComponent,
-        StoryLiteraryCompetitionComponent
+        StoryLiteraryCompetitionComponent,
+        CreateStoryComponent,
+        RegistrationsComponent,
+        AddAdministratorComponent
     ],
     imports: [
         CommonModule,

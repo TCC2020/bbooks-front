@@ -1,30 +1,34 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {MembersLiteraryCompetitionComponent} from './members-literary-competition.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {MaterialModule} from '../../../material/material.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {RegistrationsComponent} from './registrations.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from '../../../material/material.module';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
+import {RouterTestingModule} from '@angular/router/testing';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
-describe('MembersLiteraryCompetitionComponent', () => {
-    let component: MembersLiteraryCompetitionComponent;
-    let fixture: ComponentFixture<MembersLiteraryCompetitionComponent>;
+describe('RegistrationsComponent', () => {
+    let component: RegistrationsComponent;
+    let fixture: ComponentFixture<RegistrationsComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [MembersLiteraryCompetitionComponent],
+            declarations: [RegistrationsComponent],
             imports: [
-                RouterTestingModule,
-                MaterialModule,
-                BrowserAnimationsModule,
                 InfiniteScrollModule,
-                HttpClientTestingModule,
                 FormsModule,
                 ReactiveFormsModule,
+                MaterialModule,
+                HttpClientTestingModule,
+                HttpClientModule,
+                RouterModule,
+                RouterTestingModule,
+                BrowserAnimationsModule,
                 TranslateModule,
                 TranslateServiceMockForChild
             ],
@@ -37,7 +41,7 @@ describe('MembersLiteraryCompetitionComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MembersLiteraryCompetitionComponent);
+        fixture = TestBed.createComponent(RegistrationsComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

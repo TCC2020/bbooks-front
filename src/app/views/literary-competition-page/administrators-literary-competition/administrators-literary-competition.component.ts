@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {map, take} from 'rxjs/operators';
-import {CompetitionService} from '../../../services/competition.service';
 import {CompetitionMemberService} from '../../../services/competition-member.service';
 import {CompetitionMemberTO} from '../../../models/competitionMemberTO.model';
 import {ProfileService} from '../../../services/profile.service';
 import {Role} from '../../../models/enums/Role.enum';
 import {Util} from '../../shared/Utils/util';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {LiteraryMemberStatus} from '../../../models/enums/LiteraryMemberStatus.enum';
 
 @Component({
     selector: 'app-administrators-literary-competition',
@@ -20,12 +21,17 @@ export class AdministratorsLiteraryCompetitionComponent implements OnInit {
     literaryCompetitionId: string;
     page = 0;
     administrators: CompetitionMemberTO[] = [];
+    searchAdministrators: FormGroup;
 
     constructor(
         private route: ActivatedRoute,
         private profileService: ProfileService,
-        private competitionMemberService: CompetitionMemberService
+        private competitionMemberService: CompetitionMemberService,
+        private fb: FormBuilder
     ) {
+        this.searchAdministrators = this.fb.group({
+            nameAdministrator: ['']
+        });
     }
 
     ngOnInit(): void {
@@ -35,27 +41,25 @@ export class AdministratorsLiteraryCompetitionComponent implements OnInit {
             )
             .subscribe(result => {
                     this.literaryCompetitionId = result;
+                    this.getOwner();
                     this.getMembers();
                 }
             );
     }
 
-    getMembers() {
-        this.loading = true;
-        this.competitionMemberService.getMembers(this.literaryCompetitionId, this.page, 4)
+    getOwner() {
+        this.competitionMemberService.getMembersByRoleAndStatus(this.literaryCompetitionId, Role.owner, LiteraryMemberStatus.pending)
             .pipe(take(1))
             .subscribe(result => {
-                this.loading = false;
-                if (result.content.length > 0) {
-                    const r = result.content.filter(i => i.role === Role.owner || i.role === Role.admin);
-                    this.page++;
-                    if (r.length === 0) {
-                        this.getMembers();
-                    } else {
-                        this.administrators = this.administrators.concat(r);
-                        this.getProfiles();
-                    }
-                }
+                this.administrators = result;
+            });
+    }
+
+    getMembers() {
+        this.competitionMemberService.getMembersByRoleAndStatus(this.literaryCompetitionId, Role.admin, LiteraryMemberStatus.accept)
+            .pipe(take(1))
+            .subscribe(result => {
+                this.administrators = this.administrators.concat(result);
             });
     }
 
@@ -76,8 +80,19 @@ export class AdministratorsLiteraryCompetitionComponent implements OnInit {
         });
     }
 
-    onScroll() {
-        this.getMembers();
+    searchAdministrator() {
+        const formSearch = this.searchAdministrators.get('nameAdministrator').value;
+        if (!formSearch) {
+            return this.administrators;
+        }
+        return this.administrators.filter(p =>
+            p?.profile?.name.concat(p?.profile?.lastName).toLocaleLowerCase().replace(' ', '')
+                .includes(formSearch.toLocaleLowerCase().replace(' ', ''))
+        );
     }
+
+    /*onScroll() {
+        this.getMembers();
+    }*/
 
 }
