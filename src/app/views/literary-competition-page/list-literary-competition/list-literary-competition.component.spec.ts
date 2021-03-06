@@ -10,6 +10,8 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {AuthService} from '../../../services/auth.service';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {userMock} from '../../../mocks/user.model.mock';
+import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('ListLiteraryCompetitionComponent', () => {
     let component: ListLiteraryCompetitionComponent;
@@ -28,9 +30,13 @@ describe('ListLiteraryCompetitionComponent', () => {
                 RouterTestingModule,
                 BrowserAnimationsModule,
                 InfiniteScrollModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                TranslateModule,
+                TranslateServiceMockForChild
             ],
             providers: [
+                TranslateStore,
+                TranslateService,
                 {
                     provide: AuthService,
                     useValue: authServiceMock

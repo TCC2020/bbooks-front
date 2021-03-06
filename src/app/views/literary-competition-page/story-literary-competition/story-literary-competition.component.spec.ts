@@ -3,6 +3,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {StoryLiteraryCompetitionComponent} from './story-literary-competition.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('StoryLiteraryCompetitionComponent', () => {
     let component: StoryLiteraryCompetitionComponent;
@@ -13,7 +15,13 @@ describe('StoryLiteraryCompetitionComponent', () => {
             declarations: [StoryLiteraryCompetitionComponent],
             imports: [
                 RouterTestingModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                TranslateModule,
+                TranslateServiceMockForChild
+            ],
+            providers: [
+                TranslateStore,
+                TranslateService
             ]
         })
             .compileComponents();

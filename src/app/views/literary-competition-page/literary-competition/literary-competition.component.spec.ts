@@ -8,6 +8,8 @@ import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {AuthService} from '../../../services/auth.service';
 import {userMock} from '../../../mocks/user.model.mock';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('LiteraryCompetitionComponent', () => {
     let component: LiteraryCompetitionComponent;
@@ -24,9 +26,13 @@ describe('LiteraryCompetitionComponent', () => {
             imports: [
                 RouterTestingModule,
                 MaterialModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                TranslateModule,
+                TranslateServiceMockForChild
             ],
             providers: [
+                TranslateService,
+                TranslateStore,
                 {
                     provide: AuthService,
                     useValue: authServiceMock

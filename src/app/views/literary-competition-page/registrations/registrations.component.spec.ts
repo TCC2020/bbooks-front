@@ -9,6 +9,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('RegistrationsComponent', () => {
     let component: RegistrationsComponent;
@@ -26,7 +28,13 @@ describe('RegistrationsComponent', () => {
                 HttpClientModule,
                 RouterModule,
                 RouterTestingModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                TranslateModule,
+                TranslateServiceMockForChild
+            ],
+            providers: [
+                TranslateStore,
+                TranslateService
             ]
         })
             .compileComponents();
