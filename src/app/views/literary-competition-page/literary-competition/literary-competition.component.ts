@@ -30,6 +30,7 @@ export class LiteraryCompetitionComponent implements OnInit {
     isMember = false;
     profile: Profile;
     member: CompetitionMemberTO;
+    dataAtual = Date.now();
 
     constructor(
         private route: ActivatedRoute,
@@ -118,7 +119,7 @@ export class LiteraryCompetitionComponent implements OnInit {
         Util.loadingScreen();
         this.competitionMemberService.exitMember(this.member.memberId)
             .pipe(take(1))
-            .subscribe( () => {
+            .subscribe(() => {
                 Util.stopLoading();
                 this.isMember = false;
             }, error => {
@@ -139,5 +140,12 @@ export class LiteraryCompetitionComponent implements OnInit {
                 Util.stopLoading();
                 console.log(error);
             });
+    }
+
+    convertDate(date: Date): boolean {
+        if (this.dataAtual <= Date.parse(date.toString())) {
+            return true;
+        }
+        return false;
     }
 }
