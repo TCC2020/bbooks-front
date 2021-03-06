@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="start center" class="body"
      fxLayout.xs="column" fxLayoutAlign.xs="center start">
     <div fxFlex="12">
-        <b class="title">Oferta</b>
+        <b class="title">{{'PADRAO.OFERTA' | translate}}</b>
     </div>
     <div class="subtitle" fxLayout="row">
         <div>
@@ -11,7 +11,7 @@
             <span class="material-icons">keyboard_arrow_right</span>
         </div>
         <div>
-            Troco por livro do harry pother
+            {{bookAdTO?.title}}
         </div>
     </div>
 </div>
@@ -24,11 +24,11 @@
         <div class="container">
 
             <!-- Full-width images with number text -->
-            <div *ngFor="let item of [0,1,2]; let i = index">
+            <div *ngFor="let item of this.bookAdTO?.images; let i = index">
                 <div class="mySlides">
-                    <div class="numbertext">{{i}}/ 3</div>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <img src="https://images-na.ssl-images-amazon.com/images/I/51vfT3lyolL._SX317_BO1,204,203,200_.jpg"
+                    <div class="numbertext">{{i}}/ {{this.bookAdTO?.images?.length}}</div>
+                    <div fxLayout="row" fxLayoutAlign="center center" style="  height: 350px;">
+                        <img src="{{this.bookAdTO?.images[i] ? this.bookAdTO?.images[i] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}"
                              class="image-card">
 
                     </div>
@@ -48,9 +48,9 @@
             <!-- Thumbnail images -->
             <br>
             <div class="row" fxLayout="row" fxLayoutAlign="center center">
-                <div class="column" *ngFor="let item of [0,1,2]; let i = index">
+                <div class="column" *ngFor="let item of  this.bookAdTO?.images; let i = index">
                     <img class="demo cursor"
-                         src="https://images-na.ssl-images-amazon.com/images/I/51vfT3lyolL._SX317_BO1,204,203,200_.jpg"
+                         src="{{this.bookAdTO?.images[i] ? this.bookAdTO?.images[i] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}"
                          style="width:100%" (click)="currentSlide(i)" alt="">
                 </div>
             </div>
@@ -61,23 +61,23 @@
             <mat-card class="card">
 
                 <mat-card-header>
-                    <mat-card-title><h1>Troco por livro do harry pother</h1></mat-card-title>
+                    <mat-card-title><h1>{{bookAdTO?.title}}</h1></mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-card-subtitle><b>Postado por:</b> Pedro</mat-card-subtitle>
+                        <mat-card-subtitle><b>{{'EXCHANGE.POSTADO_POR' | translate}}:</b> {{userOffer?.profile?.name}}</mat-card-subtitle>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-card-subtitle><b>Localização:</b> SP | São Paulo</mat-card-subtitle>
+                        <mat-card-subtitle><b>{{'PADRAO.LOCALIZACAO' | translate}}:</b> {{bookAdTO?.address?.split(';')[0]}} | {{bookAdTO?.address?.split(';')[1]}} |  {{bookAdTO?.address?.split(';')[2]}}</mat-card-subtitle>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-card-subtitle><b>Condição:</b></mat-card-subtitle>
+                        <mat-card-subtitle><b>{{'EXCHANGE.CONDICAO' | translate}}:</b></mat-card-subtitle>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <mat-card-subtitle>
                             <div fxLayout="row" fxLayoutAlign="start center">
                                 <span class="material-icons" style="color: #394A59">label</span>
-                                Usado
+                                {{this.bookAdTO?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
                             </div>
 
                         </mat-card-subtitle>
@@ -87,11 +87,19 @@
                         <mat-divider></mat-divider>
                     </div>
                     <br>
-                    <div fxLayout="row" fxLayoutAlign="start center" style="color: #f28b66">
-                        <span class="material-icons">chat_bubble</span>
-                        <div>
+                    <!--                    <div fxLayout="row" fxLayoutAlign="start center" style="color: #f28b66">-->
+                    <!--                        <span class="material-icons">chat_bubble</span>-->
+                    <!--                        <div>-->
 
-                            Iniciar um chat </div>
+                    <!--                            Iniciar um chat </div>-->
+                    <!--                    </div>-->
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <a
+                            href="https://{{isMobile() ? 'api.whatsapp.com' : 'web.whatsapp.com'}}/send?phone={{bookAdTO?.contact}}&text=Olá+{{userOffer?.profile?.name}},+encontrei+sua+oferta+*{{bookAdTO?.title?.replace(' ', '+')}}*,+gostaria+de+mais+informações!"
+                            target="_blank"
+                            class="linkWhatsapp">
+                            <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}
+                        </a>
                     </div>
 
                 </mat-card-content>
@@ -100,13 +108,42 @@
                 <mat-divider></mat-divider>
                 <br>
                 <mat-card-actions>
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                        <button mat-raised-button color="accent" style="width: 100%">
-                            Trocar livro
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center"
+                         *ngIf="authService.getUser().id !== bookAdTO?.userId">
+                        <button mat-raised-button color="accent" style="width: 100%" routerLink="new">
+                            {{'EXCHANGE.TROCAR_LIVRO' | translate }}
                         </button>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center"
+                         *ngIf="authService.getUser().id === bookAdTO?.userId">
+                        <button mat-raised-button color="accent" style="width: 100%"
+                                routerLink="/exchange/my-offers/edit/{{bookAdTO?.id}}" *ngIf="bookAdTO.isOpen">
+                            {{'PADRAO.EDITAR' | translate}}
+                        </button>
+                        <button mat-raised-button color="warn" style="width: 100%" (click)="delete(bookAdTO?.id)" *ngIf="bookAdTO.isOpen">
+                            {{'PADRAO.EXCLUIR' | translate}}
+                        </button>
+                        <div style="color: #36bf7f;" *ngIf="!bookAdTO.isOpen">
+                            <b>
+                                {{'EXCHANGE.TROCADO' | translate }}
+                            </b>
+                        </div>
                     </div>
                 </mat-card-actions>
             </mat-card>
         </div>
     </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start center" class="body" fxLayout.xs="column" fxLayoutAlign.xs="center center">
+    <mat-card class="description">
+        <mat-card-header>
+            <mat-card-title>
+                {{'PADRAO.DESCRICAO' | translate}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content style="word-wrap: break-word">
+            {{bookAdTO?.description}}
+        </mat-card-content>
+    </mat-card>
 </div>

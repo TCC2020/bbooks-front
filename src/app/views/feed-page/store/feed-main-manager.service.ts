@@ -10,6 +10,7 @@ import {
     UpdatePageFeedMain,
     UpdatePostFeedMain
 } from './actions/feed-main.actions';
+import {FeedGenericService} from '../../../services/feed-generic.service';
 
 
 @Injectable({
@@ -19,7 +20,10 @@ export class FeedMainManagerService {
     feedState: Observable<IFeedMainState>;
 
     constructor(
-        private store: Store<IFeedMainStateReducer>
+        private store: Store<IFeedMainStateReducer>,
+        public feedGenericService: FeedGenericService
+
+
     ) {
         this.feedState = this.store.select(
             'feed'
@@ -49,5 +53,22 @@ export class FeedMainManagerService {
     }
     clearRedux() {
         this.store.dispatch(new ClearReduxFeedMain());
+    }
+
+    addComment(p: PostTO, comment: PostTO): void {
+        const post = this.feedGenericService.convertToNewPost(p);
+        post.comments = [...post.comments, comment];
+        this.store.dispatch(new UpdatePostFeedMain(post));
+    }
+    updateComment(p: PostTO, comment: PostTO): void {
+        const post = this.feedGenericService.convertToNewPost(p);
+        post.comments = p.comments.map(r => r.id !== comment.id ? r : comment);
+        this.store.dispatch(new UpdatePostFeedMain(post));
+    }
+
+    deleteComment(p: PostTO, comment: PostTO): void {
+        const post = this.feedGenericService.convertToNewPost(p);
+        post.comments = p.comments.filter(c => c.id !== comment.id);
+        this.store.dispatch(new UpdatePostFeedMain(post));
     }
 }

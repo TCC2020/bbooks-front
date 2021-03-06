@@ -1,7 +1,7 @@
 {
   "PADRAO": {
     "PHOTO": "Foto",
-    "ASK" : "Pergunte",
+    "ASK": "Pergunte",
     "PUBLICAR": "Publicar",
     "BUSCAR": "Buscar",
     "ENTRAR": "Entrar",
@@ -40,7 +40,7 @@
     "CONCLUIDO": "Concluído",
     "PENDENTE": "Pendente",
     "COMENTARIO": "Comentário",
-    "VELOCIDADE_LEITURA" : "Velocidade de leitura",
+    "VELOCIDADE_LEITURA": "Velocidade de leitura",
     "PAGINA_POR_DIA": "páginas/dia",
     "RESENHA": "Resenha",
     "LIVRO_INDICADO": "O livro foi indicado para seu amigo.",
@@ -58,10 +58,35 @@
     "PRIVACIDADE": "Privacidade",
     "OBRIGATORIO": "obrigatório",
     "ENTER_": "Entrar",
-    "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks"
+    "POLITICA_PRIVACIDADE": "Política de privacidade do BBooks",
+    "POST_PRIVADO": "Somente seus amigos poderam ver o que for publicado.",
+    "POST_PUBLICO": "Qualquer pessoa poderá ver o que for publicado.",
+    "IDIOMA": "Idioma",
+    "VOLTAR": "Voltar",
+    "DESATIVAR": "Desativar",
+    "DESCRICAO": "Descrição",
+    "TROCAR": "Trocar",
+    "WHATSAPP": "Consultar via whatsapp",
+    "LOCALIZACAO": "Localização",
+    "SELECIONADO": "Selecionado",
+    "OFERTA": "Oferta",
+    "OFERTAS": "Ofertas",
+    "PROPOSTA": "Proposta",
+    "LIVRO": "livro",
+    "POR": "por",
+    "CONTATO": "Contato",
+    "ENDERECO": "Endereço",
+    "NOT_FRIEND": "A sua lista de amigos está vazia.",
+    "CONVITE_GRUPOS": "Convites de grupos",
+    "SIM": "Sim",
+    "NAO": "Não",
+    "SENHA_ALTERADA": "Sua senha foi alterada!",
+    "BAR_CODE_ERRO": "Você negou a permissão da câmera, não podemos digitalizar nada sem ela.",
+    "WAIT_PERMISSIONS": "Aguardando permissões.",
+    "NOT_HAS_CAMERA": "Se o seu dispositivo não tiver câmeras, nenhuma permissão será solicitada"
   },
-  "GRUPO_LEITURA" : {
-    "ADMINISTRADORES" : "Administradores",
+  "GRUPO_LEITURA": {
+    "ADMINISTRADORES": "Administradores",
     "MEMBROS": "Membros",
     "GRUPO": "Grupo",
     "CONVIDAR": "Convidar",
@@ -71,6 +96,7 @@
     "feed": "feed",
     "about": "sobre",
     "members": "membros",
+    "book-of-month": "livro do mês",
     "your-groups": "Groups",
     "create": "Criar",
     "CRIAR_GRUPO": "Criar Grupo",
@@ -82,12 +108,25 @@
     "GRUPO_DESCRICAO": "Crie grupos para compartilhar leituras e trocas de experiências. ",
     "MSG_NAME_GROUP_E": "Nome do grupo é",
     "MSG_PRIVACY_GROUP_E": "Privacidade é",
-    "GRUPO_CRIADO": "O grupo foi criado!"
+    "GRUPO_CRIADO": "O grupo foi criado!",
+    "CONVITE_ENVIADO": "Convite enviado!",
+    "SAIR": "Sair do grupo",
+    "EXCLUIR_GRUPO": "Excluir do grupo",
+    "VOCE_SAIU": "Você saiu do grupo!",
+    "EXCLUIDO": "Grupo excluído!",
+    "VOCE_QUER_SAIR": "Tem certeza de que deseja sair do grupo?",
+    "VOCE_QUER_DELETAR": "Tem certeza de que deseja deletar o grupo?",
+    "REMOVER_ADM": "Remover administrador",
+    "ADD_ADM": "Adicionar como administrador",
+    "REMOVER_MEMBRO": "Remover membro",
+    "ADM_NOW": "Membro adicionado como administrador!",
+    "MEMBER_NOW": "Administrador adicionado como membro",
+    "MEMBRO_REMOVIDO": "Membro removido"
   },
-  "RESENHA" : {
-    "ESCREVER_RESENHA" : "Escrever resenha",
+  "RESENHA": {
+    "ESCREVER_RESENHA": "Escrever resenha",
     "TITULO": "Título para sua resenha",
-    "BODY" : "Escreva o que achou do livro",
+    "BODY": "Escreva o que achou do livro",
     "BODY_TEXT": "Este livro é maravilhoso",
     "APAGAR_RENHA": "Resenha excluída"
   },
@@ -96,9 +135,10 @@
     "PORTUGUES": "Português",
     "INGLES": "Inglês",
     "RECOMENDACOES": "Recomendações",
-    "INDICOU": "te recomendou"
-
-
+    "INDICOU": "te recomendou",
+    "CONVITE_GRUPO": "te convidou para entrar no grupo",
+    "CONVITE_ACEITO": "Convite aceito!",
+    "CONVITE_RECUSADO": "Convite recusado!"
   },
   "HOME": {
     "BUSCARTEXT": "Procure um livro"
@@ -151,7 +191,6 @@
     "META_LEITURA_REMOVER": "Remover da meta de leitura",
     "ENCERRAR_META_LEITURA": "A meta de leitura será encerrada em",
     "DIAS_ENCERRAR_META": "dias."
-
   },
   "TAG": {
     "CRIAR_TAG": "Criar Tag",
@@ -170,10 +209,18 @@
     "PAGINAS": "Páginas",
     "IDIOMA": "Idioma",
     "AVALIACAO": "Avaliação",
-    "OUTRAS_INFO": "OUTRAS INFORMAÇÕES",
+    "OUTRAS_INFO": "Outras informações",
     "CRIAR_LIVRO": "Criar livro",
     "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro",
-    "SOBRE_LIVRO": "Sobre este livro"
+    "SOBRE_LIVRO": "Sobre este livro",
+    "PESQUISAR_BOOK": "Ache um livro",
+    "STATUS_GERAL": "Status geral",
+    "BOOK_ADDED_TARGET": "Livro adicionado à meta de leitura.",
+    "BOOK_REMOVED_TARGET": "Livro removido da meta de leitura.",
+    "ANO_PUBLICACAO": "Ano da publicação",
+    "TITULO": "Título",
+    "AUTORES": "Autores",
+    "INSIRA_UM_LIVRO": "Insira um novo livro"
   },
   "PERFIL": {
     "feed": "feed",
@@ -201,7 +248,9 @@
     "DETALHES_LENDO": "LENDO",
     "DETALHES_RELENDO": "RELENDO",
     "DETALHES_QUEREM_LER": "QUEREM LER",
-    "DETALHES_INTERROMPIDOS": "INTERROMPIDOS"
+    "DETALHES_INTERROMPIDOS": "INTERROMPIDOS",
+    "DETALHES_LIDOS": "LIDOS",
+    "DETALHES_EMPRESTADO": "EMPRESTADO"
   },
   "ACOMP_LEITURA": {
     "ACOMP_LEITURA": "Acompanhamento de Leitura",
@@ -210,7 +259,8 @@
     "MSG_APG_E": "Número de páginas é",
     "MSG_COMENT": "Comentário tem que ter no máximo 50 caracteres.",
     "ACOMPANHAMENTO": "Acompanhamento",
-    "NEW": "Novo Acompanhamento"
+    "NEW": "Novo Acompanhamento",
+    "TRACKING_REMOVED": "Acompanhamento removido"
   },
   "CONFIG_PERFIL": {
     "DADOS_USER": "Dados do Usuário",
@@ -234,6 +284,55 @@
   "PESQUISAR_AMIGOS": {
     "PROCURAR": "Procurar amigos",
     "COMENTARIO": "Comentário"
+  },
+  "COMPETICAO_LITERARIA": {
+    "PESQUISAR_ADMIN": "Pesquisar administrador",
+    "TITULO": "Título",
+    "REGRAS": "Regras",
+    "TITULO_E": "Título é",
+    "REGRAS_E": "Regras é",
+    "DATAS": "Datas",
+    "HISTORIA": "História",
+    "HISTORIA_E": "História é",
+    "INICIO_INSCRICOES": "Início das Inscrições",
+    "INICIO_INSCRICOES_E": "Início das Inscrições é",
+    "FIM_INSCRICOES": "Fim das Inscrições",
+    "FIM_INSCRICOES_E": "Fim das Inscrições é",
+    "FIM_COMPEITICAO": "Fim da Competição",
+    "FIM_COMPEITICAO_E": "Fim da Competição é",
+    "CRIAR_COMPETICAO": "Criar competição",
+    "EDITAR": "Editar",
+    "CANCELAR": "Cancelar",
+    "ENVIAR_HISTORIA": "Enviar história",
+    "VOLTAR": "Voltar",
+    "PESQUISAR_COMPETICAO": "Pesquisar competição",
+    "CRIAR_COMPETIÇÃO": "Criar competição",
+    "INSCRICOES_ATE": "Inscrições até",
+    "COMPETICAO_SERA_ENCERRADA": "Esta competição será encerrada em",
+    "HISTORIA_USUARIO": "História do usuário",
+    "VOLTAR_LISTA_MEMBROS": "Voltar para lista de membros",
+    "PESQUISAR_MEMBRO": "Pesquisar membro",
+    "VER_HISTORIA": "Ver história",
+    "PESQUISAR_CANDIDATO": "Pesquisar candidato",
+    "ACEITAR": "Aceitar",
+    "RECUSAR": "Recusar",
+    "COMPETICAO_CRIADA_EM": "Competição criada em",
+    "INSCRICOES_DE": "Inscrições de",
+    "ATE": "até",
+    "FIM_COMPETICAO_EM": "Fim da competição em",
+    "ADMINISTRADORES": "Administradores",
+    "PARTICIPANTES": "Participantes",
+    "VER_TODOS_ADMINISTRADORES": "Ver todos administradores",
+    "ADICIONAR_ADMINISTRADOR": "Adicionar administrador",
+    "VER_TODOS_PARTICIPANTES": "Ver todos participantes",
+    "INSCRICOES_PENDENTES": "Ver inscrições pendentes",
+    "CLIQUE_INSCREVER": "Clique para se inscrever",
+    "CANCELAR_INSCRICAO": "Cancelar inscrição",
+    "ESCREVER_HISTORIA": "Escrever história",
+    "AGUARDE_APROVACAO": "Aguarde aprovação de inscrição",
+    "RESULTADO": "Resultado",
+    "AGUARDANDO_VENCEDOR": "Aguardando vencedor",
+    "EDITAR_COMPETICAO": "Editar Competição"
   },
   "MESSAGE_ERROR": {
     "AU001": "Autor não encontrado",
@@ -262,14 +361,18 @@
     "FR002": "Conflito ao remover amigo",
     "RT005": "Página menor que o último acompanhamento",
     "TA001": "O último acompanhamento ainda não terminou",
-    "RT006": "A página não pode ser zero"
+    "RT006": "A página não pode ser zero",
+    "BAD003": "Ops! Você não pode deletar esta oferta pois ela está relacionada a uma troca.",
+    "GR006": "Convite já foi enviado!",
+    "NEED_BE_IMAGE": "O arquivo precisa se uma imagem, favor tentar novamente!",
+    "BIG_IMAGE": "A imagem é muito grande, favor escolher outro arquivo!"
   },
-  "POST":{
+  "POST": {
     "CRIAR_POSTAGEM": "Criar Postagem",
     "EDITAR_POSTAGEM": "Editar Postagem",
     "COMPARTILHAR_COM": "Compartilhar com",
-    "TEXT_POST_INPUT" : "No que está pensando?",
-    "TEXT_POST_INPUT_ASK" : "Faça uma pergunta...",
+    "TEXT_POST_INPUT": "No que está pensando?",
+    "TEXT_POST_INPUT_ASK": "Faça uma pergunta...",
     "POST_EXCLUIDO": "Postagem excluída",
     "GOSTEI": "Gostei",
     "COMENTAR": "Comentar",
@@ -277,6 +380,54 @@
   },
   "SEARCH": {
     "people": "pessoas",
-    "groups": "grupos"
+    "groups": "grupos",
+    "books": "livros"
+  },
+  "EXCHANGE": {
+    "TROCA_DE_LIVRO": "Troca de livro",
+    "MINHAS_OFERTAS": "Minhas ofertas",
+    "MINHAS_TROCAS": "Minhas trocas",
+    "BUSCAR_OFERTAS": "Buscar ofertas",
+    "NOVA_OFERTA": "Nova oferta",
+    "ESCOLHER_LIVRO": "Escolher livro para oferta",
+    "QUAL_CONDICAO_LIVRO": "Qual a condição de uso do seu livro?",
+    "CONDICAO_LIVRO": "Condição do livro",
+    "NOVO": "Novo",
+    "USADO": "Usado",
+    "INSIRA_FOTOS": "Insira fotos legais para sua oferta:",
+    "OUTRAS_INFOS": "Outras informações",
+    "ESCREVA_DESCRICAO": "Escreva uma breve descrição sobre o livro",
+    "CRIAR_OFERTA": "Criar oferta",
+    "VISUALIZAR": "Visualizar",
+    "N_POSSUI_OFERTA": "Você não possui nenhuma oferta cadastrada.",
+    "CADASTRAR_NOVA_OFERTA": "Cadastrar nova oferta",
+    "EXLUIR_OFFER": "Tem certeza de que deseja excluir esta oferta?",
+    "OFFER_EXCLUIDA": "Oferta excluída!",
+    "PESQUISAR_OFERTA": "Pesquise uma oferta",
+    "CONDICAO": "Condição",
+    "ESCOLHER_OUTRO_AD": "Escolher mais uma oferta para troca",
+    "ESCOLHER_SUAS_OFERTAS": "Escolher suas ofertas para troca",
+    "ENVIAR_PROPOSTA": "Enviar proposta",
+    "SOLICITAR_TROCA_LIVRO": "Você esta solicitando uma troca de",
+    "VOCE_NAO_PODE": "Você não pode remover a primeira oferta escolhida",
+    "VOCE_SO_PODE": "Você só pode selecionar três ofertas para realizar sua proposta",
+    "received": "recebido",
+    "sent": "enviado",
+    "TROCO": "Troco",
+    "RECEBEU_PROPOSTA": "Você recebeu uma proposta para trocar ",
+    "ENVIOU_PROPOSTA": "Você enviou uma proposta para trocar ",
+    "ACEITAR_PROPOSTA": "Aceitar",
+    "RECUSAR_PROPOSTA": "Recusar",
+    "TROCADO": "Trocado",
+    "RECUSADO": "Recusado",
+    "ESCOLHER_LIVRO_E": "Escolher um livro é",
+    "CANCELADO": "Cancelado",
+    "ESCOLHER_UMA_FOTO": "Você precisa enviar pelo menos uma foto",
+    "TITULO_OFERTA": "Título para sua oferta",
+    "TITULO_OBRIGATORIO": "Título é",
+    "TITULO": "Título",
+    "CONTATO": "Contato é",
+    "TROCAR_LIVRO": "Trocar livro",
+    "POSTADO_POR": "Postado por"
   }
 }

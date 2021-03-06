@@ -51,7 +51,7 @@
     </div>
 
     <div id="nomeSobrenome">
-      <mat-form-field id="nome" class="inputCadastrar">
+      <mat-form-field id="nome" class="inputCadastrar" appearance="outline">
         <mat-label>{{'PADRAO.NOME' | translate}}</mat-label>
         <input matInput id="nomeCadastrar" formControlName="name">
         <mat-error *ngIf="cadastroControl.get('name').hasError('required')">
@@ -59,7 +59,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field id="sobrenome" class="inputCadastrar">
+      <mat-form-field id="sobrenome" class="inputCadastrar" appearance="outline">
         <mat-label>{{'PADRAO.SOBRENOME' | translate}}</mat-label>
         <input matInput id="sobrenomeCadastrar" formControlName="lastName">
         <mat-error *ngIf="cadastroControl.get('lastName').hasError('required')">
@@ -69,7 +69,7 @@
     </div>
   
     <div>
-      <mat-form-field class="inputCadastrar">
+      <mat-form-field class="inputCadastrar" appearance="outline">
         <mat-label>{{'PADRAO.EMAIL' | translate}}</mat-label>
         <input type="email" matInput id="emailCadastrar" formControlName="email">
         <!-- <mat-error *ngIf="cadastroControl.get('email').hasError('email') && !cadastroControl.get('email').hasError('required')">
@@ -86,7 +86,7 @@
     </div>
 
     <div>
-      <mat-form-field class="inputCadastrar">
+      <mat-form-field class="inputCadastrar" appearance="outline">
         <mat-label>{{'PADRAO.NOME_USUARIO' | translate}}</mat-label>
         <input matInput id="nomeUsuarioCadastrar" formControlName="userName" #username (input)="username.value = username.value.toLowerCase()" >
         <mat-error *ngIf="cadastroControl.get('userName').hasError('pattern') && !cadastroControl.get('userName').hasError('required')">
@@ -101,7 +101,7 @@
 
 
     <div id="senhaConfirmarSenha" >
-      <mat-form-field class="inputCadastraSenha">
+      <mat-form-field class="inputCadastraSenha" appearance="outline">
         <mat-label>{{'PADRAO.SENHA' | translate}}</mat-label>
         <input type="password"
         matInput 
@@ -125,7 +125,7 @@
         </mat-hint>
       </mat-form-field>
 
-      <mat-form-field class="inputCadastraSenha">
+      <mat-form-field class="inputCadastraSenha" appearance="outline">
         <mat-label>{{'PADRAO.CONFIRMAR_SENHA' | translate}}</mat-label>
         <input type="password"
          [type]="hide ? 'password' : 'text'"

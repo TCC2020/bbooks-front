@@ -32,4 +32,11 @@ export class PostService {
             .set('size', size.toString());
         return this.http.get<PostPagination>(this.api + 'profile/' + profileId , {params});
     }
+
+    getComment(postId: string, size: number, page: number): Observable<PostTO[]> {
+        const params = new HttpParams()
+            .set('page', page.toString())
+            .set('size', size.toString());
+        return this.http.get<PostTO[]>(this.api + 'comment/' + postId , {params});
+    }
 }

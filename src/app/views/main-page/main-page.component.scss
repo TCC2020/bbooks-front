@@ -29,3 +29,28 @@
   #card-footer {
     margin-bottom: 0;
   }
+
+.container-pesquisar {
+  padding: 30px 30px 0;
+  text-align: center;
+}
+
+.barra-pesquisar {
+  width: 70%;
+}
+
+.container-geral {
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  width: 75%;
+}
+
+@media screen and (max-width: 800px) {
+  .barra-pesquisar {
+    width: 100%;
+  }
+
+  .container-geral{
+    width: 100%;
+  }
+}

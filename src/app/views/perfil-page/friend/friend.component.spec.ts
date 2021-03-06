@@ -15,8 +15,8 @@ import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {SocialLoginModule} from 'angularx-social-login';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {UserService} from '../../../services/user.service';
-import { profile } from 'console';
 import { friendMock } from 'src/app/mocks/friend.model.mock';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('FriendComponent', () => {
     let component: FriendComponent;
@@ -37,7 +37,9 @@ describe('FriendComponent', () => {
                 HttpClientTestingModule,
                 BrowserAnimationsModule,
                 TranslateServiceMockForChild,
-                SocialLoginModule
+                SocialLoginModule,
+                ReactiveFormsModule,
+                FormsModule
             ],
             providers: [
                 {

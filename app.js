@@ -34,7 +34,11 @@ const cspPolicy = {
         'https://facebook.com',
         'https://www.googleapis.com/',
         'https://accounts.google.com/'
-        ]
+    ],
+    'img-src': [
+        csp.SRC_ANY,
+        csp.SRC_DATA
+    ]
 };
 
 const globalCSP = csp.getCSP(cspPolicy);
@@ -48,8 +52,7 @@ app.use(helmet.noSniff());
 app.use(helmet.frameguard());
 app.use(permissionsPolicy({
     features: {
-        fullscreen: ['self'],
-        syncXhr: ['"none"']
+        fullscreen: ['self']
     }
 }));
 

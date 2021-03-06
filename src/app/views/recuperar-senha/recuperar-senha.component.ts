@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from 'src/app/services/auth.service';
 import {take} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
+import { Util } from '../shared/Utils/util';
 
 @Component({
     selector: 'app-recuperar-senha',
@@ -35,7 +36,7 @@ export class RecuperarSenhaComponent implements OnInit {
         this.service.sendResetPassEmail(this.form.value).pipe(take(1)).subscribe(
             () => {
                 this.translate.get('PADRAO.EMAIL_ENVIADO').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                     this.showMessage = true;
                     this.form.disable();
                 });
@@ -47,7 +48,7 @@ export class RecuperarSenhaComponent implements OnInit {
                 }
                 if (codeMessage) {
                     this.translate.get('MESSAGE_ERROR.US001').subscribe(message => {
-                        alert(message);
+                        Util.showErrorDialog(message);
                     });
                 } else {
                     console.log('Error reset pass', error);

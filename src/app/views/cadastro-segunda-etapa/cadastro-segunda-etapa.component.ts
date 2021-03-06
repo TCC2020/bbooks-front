@@ -14,6 +14,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {UploadComponent} from '../upload/upload.component';
 import {DateAdapter} from '@angular/material/core';
 import {Profile} from '../../models/profileTO.model';
+import {Util} from '../shared/Utils/util';
 
 @Component({
     selector: 'app-cadastro-segunda-etapa',
@@ -69,43 +70,47 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     }
 
     getStates(country: Country) {
+        Util.loadingScreen();
         if (country.id.toString().includes('3469034')) {
             this.consultaCepService.getStatesBr().subscribe(
-                res => this.states = res,
-                error => console.log('error states', error)
+                res => { this.states = res; Util.stopLoading(); },
+                error => { console.log('error states', error); Util.stopLoading(); }
             );
         } else {
             this.consultaCepService.getStates(country.id).subscribe(
-                res => this.states = res,
-                error => console.log('error states', error)
+                res => { this.states = res; Util.stopLoading(); },
+                error => { console.log('error states', error); Util.stopLoading(); }
             );
         }
     }
 
 
     getCitys(state: State) {
+        Util.loadingScreen();
         if (state.sigla) {
             this.consultaCepService.getCitysBr(state.id).subscribe(
                 res => {
+                    Util.stopLoading();
                     this.citys = res;
                     this.filteredOptionsCity = this.formCadastro2.get('city').valueChanges.pipe(
                         startWith(''),
                         map(value => this._filterCity(value))
                     );
                 },
-                error => console.log('error get citys', error)
+                error => { console.log('error get citys', error);  Util.stopLoading(); }
             );
 
         } else {
             this.consultaCepService.getCitys(state.id).subscribe(
                 res => {
+                    Util.stopLoading();
                     this.citys = res;
                     this.filteredOptionsCity = this.formCadastro2.get('city').valueChanges.pipe(
                         startWith(''),
                         map(value => this._filterCity(value))
                     );
                 },
-                error => console.log('error get citys', error)
+                error => { console.log('error get citys', error);  Util.stopLoading(); }
             );
         }
 
@@ -130,10 +135,12 @@ export class CadastroSegundaEtapaComponent implements OnInit {
             this.getByIdToUpdateProfile();
         } else {
             if (this.file) {
+                Util.loadingScreen();
                 this.cdnService.upload({file: this.file, type: 'image'}, {objectType: 'profile_image'}).subscribe(() => {
                         this.getByIdToUpdateProfile();
                     },
                     error => {
+                        Util.stopLoading();
                         console.log('error upload', error);
                         localStorage.clear();
                     });
@@ -145,7 +152,9 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     }
 
     getByIdToUpdateProfile(): void {
+        Util.loadingScreen();
         this.profileService.getById(this.auth.getUserRegister().profile.id).pipe(take(1)).subscribe((profile: Profile) => {
+            Util.stopLoading();
             this.profileTo = profile;
             this.updateProfileTo();
             this.updateProfileToLogin();
@@ -153,11 +162,14 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     }
 
     updateProfileToLogin(): void {
+        Util.loadingScreen();
         this.profileService.update(this.profileTo).subscribe(
             () => {
+                Util.stopLoading();
                 this.login();
             },
             error => {
+                Util.stopLoading();
                 console.log('error update profile', error);
                 localStorage.clear();
             }
@@ -165,13 +177,16 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     }
 
     login(): void {
-        this.auth.loginToken(this.userLogin).subscribe(res => {
+        Util.loadingScreen();
+        this.auth.loginToken(this.userLogin).pipe(take(1)).subscribe(res => {
+                Util.stopLoading();
                 localStorage.clear();
                 this.auth.authenticate(res, true);
                 this.router.navigate(['/feed']);
             },
             (err) => {
-                alert(err.error.message);
+                Util.stopLoading();
+                Util.showErrorDialog(err.error.message);
                 localStorage.clear();
             }
         );

@@ -44,6 +44,20 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {SearchModule} from './views/search/search.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LiteraryCompetitionComponent } from './views/literary-competition-page/literary-competition/literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { MembersLiteraryCompetitionComponent } from './views/literary-competition-page/members-literary-competition/members-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { StoryLiteraryCompetitionComponent } from './views/literary-competition-page/story-literary-competition/story-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { AdministratorsLiteraryCompetitionComponent } from './views/literary-competition-page/administrators-literary-competition/administrators-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { CreateLiteraryCompetitionComponent } from './views/literary-competition-page/create-literary-competition/create-literary-competition.component';
+// tslint:disable-next-line:max-line-length
+import { ListLiteraryCompetitionComponent } from './views/literary-competition-page/list-literary-competition/list-literary-competition.component';
+import { BooksSearchComponent } from './views/search/books-search/books-search.component';
+import {LiteraryCompetitionModule} from './views/literary-competition-page/literary-competition.module';
+import { BarCodeScannerComponent } from './views/shared/bar-code-scanner/bar-code-scanner.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -83,6 +97,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         FeedPageModule,
         BookModule,
         ExchangeModule,
+        LiteraryCompetitionModule,
         PerfilPageModule,
         SharedModule,
         PublicProfilePageModule,

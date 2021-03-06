@@ -1,0 +1,38 @@
+<div
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50"
+        [fromRoot]="true"
+        (scrolled)="onScroll()"
+>
+    <div class="container-geral">
+        <div class="container-pesquisar">
+            <mat-form-field class="barra-pesquisar" appearance="outline">
+                <mat-label>{{ 'COMPETICAO_LITERARIA.PESQUISAR_COMPETICAO' | translate }}</mat-label>
+                <input matInput type="text">
+                <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="botao-criar-competicao">
+            <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/create']">
+                <mat-icon>add</mat-icon>
+                {{ 'COMPETICAO_LITERARIA.CRIAR_COMPETICAO' | translate }}
+            </button>
+        </div>
+
+        <div class="container-competicoes">
+            <mat-card *ngFor="let competition of competitions" [routerLink]="['/literary-competition/' + competition?.id]">
+                <div>
+                    <h2>{{ competition?.title }}</h2>
+                </div>
+                <div>
+                    <p>{{ 'COMPETICAO_LITERARIA.INSCRICOES_ATE' | translate }} <strong>{{ competition?.subscriptionFinalDate | date:'dd/MM/yyyy' }}</strong></p>
+                    <p>{{ 'COMPETICAO_LITERARIA.COMPETICAO_SERA_ENCERRADA' | translate }} <strong>{{ competition?.finalDate | date:'dd/MM/yyyy' }}</strong></p>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+</div>

@@ -1,0 +1,91 @@
+<form [formGroup]="formCreateLiterary">
+    <div class="container-geral">
+        <div class="linha-input">
+            <h2>{{ 'COMPETICAO_LITERARIA.TITULO' | translate }}</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'COMPETICAO_LITERARIA.TITULO' | translate }}</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngIf="formCreateLiterary.get('title').hasError('required')">
+                    {{ 'COMPETICAO_LITERARIA.TITULO_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="linha-input">
+            <h2>{{ 'COMPETICAO_LITERARIA.REGRAS' | translate }}</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'COMPETICAO_LITERARIA.REGRAS' | translate }}</mat-label>
+                <textarea matInput formControlName="rules"></textarea>
+                <mat-error *ngIf="formCreateLiterary.get('rules').hasError('required')">
+                    {{ 'COMPETICAO_LITERARIA.REGRAS_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="linha-input">
+            <h2>{{ 'COMPETICAO_LITERARIA.DATAS' | translate }}</h2>
+            <div class="container-datas">
+                <div class="linha-data">
+                    <h3>{{ 'COMPETICAO_LITERARIA.INICIO_INSCRICOES' | translate }}</h3>
+                    <mat-form-field color="accent" appearance="outline">
+                        <input matInput [matDatepicker]="picker" formControlName="subscriptionDate">
+                        <mat-error *ngIf="formCreateLiterary.get('title').hasError('required')">
+                            {{ 'COMPETICAO_LITERARIA.INICIO_INSCRICOES_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                        </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="linha-data">
+                    <h3>{{ 'COMPETICAO_LITERARIA.FIM_INSCRICOES' | translate }}</h3>
+                    <mat-form-field color="accent" appearance="outline">
+                        <input matInput [matDatepicker]="picker1" formControlName="subscriptionFinalDate">
+                        <mat-error *ngIf="formCreateLiterary.get('title').hasError('required')">
+                            {{ 'COMPETICAO_LITERARIA.FIM_INSCRICOES_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                        </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="linha-data">
+                    <h3>{{ 'COMPETICAO_LITERARIA.FIM_COMPEITICAO' | translate }}</h3>
+                    <mat-form-field color="accent" appearance="outline">
+                        <input matInput [matDatepicker]="picker2" formControlName="finalDate">
+                        <mat-error *ngIf="formCreateLiterary.get('title').hasError('required')">
+                            {{ 'COMPETICAO_LITERARIA.FIM_COMPEITICAO_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                        </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="button"
+                    mat-raised-button
+                    color="primary"
+                    *ngIf="!competitionTO"
+                    [disabled]="this.formCreateLiterary.invalid"
+                    (click)="createLiterary()">
+                {{ 'COMPETICAO_LITERARIA.CRIAR_COMPETICAO' | translate }}
+            </button>
+            <div class="botoes-editar-do-create">
+                <button
+                        type="button"
+                        mat-raised-button
+                        color="primary"
+                        *ngIf="competitionTO"
+                        [disabled]="this.formCreateLiterary.invalid"
+                        (click)="editLiterary()">
+                    {{ 'COMPETICAO_LITERARIA.EDITAR' | translate }}
+                </button>
+                <button
+                        type="button"
+                        mat-raised-button
+                        *ngIf="competitionTO"
+                        [disabled]="this.formCreateLiterary.invalid"
+                        [routerLink]="['/literary-competition/' + competitionTO.id]">
+                    {{ 'COMPETICAO_LITERARIA.CANCELAR' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

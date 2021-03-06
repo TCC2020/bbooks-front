@@ -7,6 +7,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {BookAdsService} from '../../../services/book-ads.service';
+import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
+import {FilterAsyncPipe} from '../pipes/filter-async.pipe';
 
 describe('OffersComponent', () => {
     let component: OffersComponent;
@@ -14,7 +17,7 @@ describe('OffersComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [OffersComponent],
+            declarations: [OffersComponent, FilterAsyncPipe],
             imports: [
                 MaterialModule,
                 RouterTestingModule,
@@ -22,7 +25,11 @@ describe('OffersComponent', () => {
                 ReactiveFormsModule,
                 BrowserModule,
                 HttpClientTestingModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                TranslateServiceMockForRoot
+            ],
+            providers: [
+                BookAdsService
             ]
         })
             .compileComponents();

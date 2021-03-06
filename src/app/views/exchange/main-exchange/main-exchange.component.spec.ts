@@ -7,6 +7,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
 
 describe('MainExchangeComponent', () => {
     let component: MainExchangeComponent;
@@ -22,7 +23,9 @@ describe('MainExchangeComponent', () => {
                 ReactiveFormsModule,
                 BrowserModule,
                 HttpClientTestingModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                TranslateServiceMockForRoot
+
             ]
         })
             .compileComponents();

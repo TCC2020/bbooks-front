@@ -27,7 +27,6 @@
   text-align: justify;
   width: 350px;
   max-width:  350px;
-;
 }
 .commentReview:hover{
   color: #1a1a1a;
@@ -52,6 +51,9 @@
   width: 35px;
   max-width: 35px;
   max-height: 35px;
+}
+.cardImagePost:hover {
+  cursor: pointer;
 }
 button-edit-post{
   position: absolute;
@@ -83,14 +85,37 @@ textarea:focus, input:focus, select:focus {
 textarea::placeholder {
   color: #262626;
 }
+.commentView{
+  background-color: rgba(196, 201, 205, 0.3);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  padding: 10px;
+  border-collapse:collapse;
+  margin-bottom: 10px;
+  max-width:  380px;
+  word-break: break-word;
+
+}
 
 #reacao-escolhida, #lista-reacoes {
   margin: 0 5px 0 0;
 }
 
+.imagePost {
+  max-width: 100%;
+}
+.mainPost{
+  max-width: 455px;
+}
+
+.linkPerfil{
+  cursor: pointer;
+}
 @media screen and (max-width: 600px) {
-  .commentReview{
-    width: 250px;
+  .commentView{
+    max-width: 260px;
   }
   .description{
     width: 340px;
@@ -99,5 +124,13 @@ textarea::placeholder {
   button-edit-post{
     padding-left: 57%;
   }
-
+  textarea{
+    max-width: 210px;
+  }
+  .imagePost {
+    max-width: 90%;
+  }
+  .mainPost{
+    max-width: 346px;
+  }
 }

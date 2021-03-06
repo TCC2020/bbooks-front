@@ -1,0 +1,42 @@
+<div fxLayout="row">
+    <h2>{{'BOOK.PESQUISAR_BOOK' | translate}}</h2>
+</div>
+<form [formGroup]="formSearch">
+    <div fxLayout="row">
+        <mat-form-field style="margin: 2px; width: 100%" appearance="outline">
+            <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
+            <input matInput matInput type="text" id="user" formControlName="search" (keyup.enter)="searchBooks()" (blur)="searchBooks()">
+        </mat-form-field>
+    </div>
+</form>
+<div fxLayout="column" fxLayoutGap="10px" >
+    <div *ngFor="let book of books" class="selectBook" (click)="getBook(book)">
+        <div fxLayout="row"  fxLayoutGap="10px">
+            <div>
+                <img class="image" [src]="book?.image ? book.image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+            </div>
+            <div fxLayout="column" class="textColor">
+                <div>
+                    {{book.title}}
+                </div>
+                <div>
+                    <b>ISBN: </b> {{book.isbn10}}
+                </div>
+                <div>
+                    <b>{{'BOOK.IDIOMA' | translate}}</b>: {{book.language}}
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center">
+        <mat-paginator
+                *ngIf="books?.length > 0"
+                [length]="totalBooks"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[10, 20, 30, 40]"
+                (page)="changePage($event)">
+        </mat-paginator>
+    </div>
+
+</div>

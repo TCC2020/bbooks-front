@@ -1,11 +1,11 @@
-<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center end" fxLayoutGap="20px"
-     fxLayoutAlign.xs="space-around center">
-    <mat-form-field fxFlex="30">
+<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px"
+     fxLayoutAlign.xs="space-around center" fxLayoutGap.xs="5px">
+    <mat-form-field appearance="outline">
         <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
-        <input matInput type="text" [(ngModel)]="search">
+        <input matInput type="text" class="barra-pesquisar" [(ngModel)]="search">
         <mat-icon matSuffix mat-icon-button>search</mat-icon>
     </mat-form-field>
-    <mat-form-field fxFlex="30" fxFlex.xs>
+    <mat-form-field  appearance="outline">
         <mat-chip-list #chipList aria-label="filter selection">
             <mat-chip
                     *ngFor="let element of filter"
@@ -32,7 +32,7 @@
     </mat-form-field>
 </div>
 
-<div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+<div fxLayout="row wrap" fxLayoutAlign="start start"   fxLayoutAlign.xs="space-around center">
     <app-book-card
             *ngFor="let book of filterBooks()"
             [idTag]="bookCase.id"

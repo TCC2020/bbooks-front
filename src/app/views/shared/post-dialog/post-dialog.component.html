@@ -39,7 +39,14 @@
                                         </mat-select>
                                     </mat-form-field>
                                 </div>
+                                <div class="infoMenuItem" *ngIf="this.formFeed.get('privacy').value === 'public_all'">
+                                    <span >{{'PADRAO.POST_PUBLICO' | translate}}</span>
+                                </div>
+                                <div class="infoMenuItem" *ngIf="this.formFeed.get('privacy').value === 'friends_only'">
+                                    <span>{{'PADRAO.POST_PRIVADO' | translate}}</span>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -80,6 +87,9 @@
             </div>
     </div>
     </form>
+    <div *ngIf="image" fxLayout="row" fxLayoutAlign="center center">
+        <img [src]="image" class="imagePost" (click)="choosePhoto()">
+    </div>
 
     <br>
     <mat-divider></mat-divider>

@@ -1,62 +1,53 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly start"
-    fxLayout.xs="column" fxLayoutAlign.xs="space-around center" class="body">
-    <div  fxFlex="25" class="bodyFilter">
-        <div fxLayout="row" fxLayoutAlign="start center"
-             fxLayout.xs="column" fxLayoutAlign.xs ="center start">
-            <div  fxFlex="60">
-                <b class="title">Ofertas</b>
-            </div>
-            <div class="subtitle" fxLayout="row">
-                <div>
-                    <span class="material-icons">search</span>
-                    <!--        </div>-->
-                    <!--        <div>-->
-                    <span class="material-icons">keyboard_arrow_right</span>
-                </div>
-                <div>
-                    ofertas
-                </div>
-            </div>
-        </div>
+<div fxLayout="row" fxLayoutAlign="start center" class="body"
+     fxLayout.xs="column" fxLayoutAlign.xs="center start">
+<!--    <div  fxFlex="25" class="bodyFilter">-->
 
-        <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-            <button mat-raised-button class="buttonFilter">
-                Filtrar
-            </button>
+        <div fxFlex="12">
+            <b class="title">{{'PADRAO.OFERTAS' | translate }}</b>
         </div>
-        <br>
-        <div fxLayout="row" fxLayoutAlign="start center" >
-            <b>Por categoria</b>
-        </div>
-        <section fxLayout="row" fxLayoutAlign="space-between center"  *ngFor="let i of statusList">
-            <mat-checkbox color="primary">
-                {{i}}
-            </mat-checkbox>
+        <div class="subtitle" fxLayout="row">
             <div>
-                (0)
+                <span class="material-icons">search</span>
+                <!--        </div>-->
+                <!--        <div>-->
+                <span class="material-icons">keyboard_arrow_right</span>
             </div>
-        </section>
-    </div>
-
-    <div>
-        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
-            <mat-card class="card" *ngFor="let t of [0,1,2,3,4,5,6,7,8,9,10]">
-                <mat-card-header>
-                </mat-card-header>
-                <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-                    <img mat-card-image src="https://images-na.ssl-images-amazon.com/images/I/51vfT3lyolL._SX317_BO1,204,203,200_.jpg" class="image-card">
-                </div>
-                <mat-card-subtitle><b>Troco por dois livros</b></mat-card-subtitle>
-                <mat-card-subtitle>SP | São Paulo</mat-card-subtitle>
-
-                <mat-card-actions>
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center" >
-                        <button mat-raised-button color="accent" style="width: 100%">
-                            Trocar
-                        </button>
-                    </div>
-                </mat-card-actions>
-            </mat-card>
+            <div>
+                {{'PADRAO.OFERTAS' | translate }}
+            </div>
         </div>
+</div>
+
+<div>
+    <form [formGroup]="formSearch">
+        <div fxLayout="row" fxLayoutAlign="center center">
+            <mat-form-field style="margin: 6px; width: 50%" appearance="outline">
+                <mat-label>{{'EXCHANGE.PESQUISAR_OFERTA' | translate}}</mat-label>
+                <input matInput matInput type="text" id="user" formControlName="search">
+            </mat-form-field>
+        </div>
+    </form>
+    <ng-template #loading>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px"  *ngIf="(booksAds$ | async) as booksAds; else loading">
+        <mat-card class="card" *ngFor="let bookAdsTo of (booksAds | filterAsync:  formSearch.get('search').value) " routerLink="/exchange/offers/{{bookAdsTo.id}}">
+            <mat-card-header>
+            </mat-card-header>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+                <img mat-card-image src="{{bookAdsTo?.images[0] ? this.bookAdsTo?.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'}}" class="image-card">
+            </div>
+            <mat-card-subtitle><b>{{bookAdsTo?.title}}</b></mat-card-subtitle>
+            <mat-card-subtitle>{{bookAdsTo?.address?.split(';')[0]}} | {{bookAdsTo?.address?.split(';')[1]}} |  {{bookAdsTo?.address?.split(';')[2]}}</mat-card-subtitle>
+
+            <mat-card-actions>
+                <div fxLayout="row" fxLayoutAlign="space-evenly center" routerLink="/exchange/offers/{{bookAdsTo.id}}">
+                    <button mat-raised-button color="accent" style="width: 100%">
+                        {{'PADRAO.TROCAR' | translate}}
+                    </button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
     </div>
+
 </div>

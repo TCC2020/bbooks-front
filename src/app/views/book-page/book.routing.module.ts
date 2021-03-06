@@ -19,6 +19,10 @@ const bookRoutes: Routes = [
                 resolve: {bookcases: BooksResolve }
             },
             {
+                path: 'books/:id', component: BookViewComponent,
+                resolve: {book: BookViewResolve}
+            },
+            {
                 path: 'book/:tag/:id', component: BookViewComponent,
                 resolve: {book: BookViewResolve}
             },

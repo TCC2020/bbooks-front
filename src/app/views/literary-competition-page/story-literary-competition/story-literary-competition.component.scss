@@ -1,0 +1,72 @@
+.container-geral {
+  width: 75%;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+}
+
+.informacoes-membro {
+  flex-direction: row;
+  display: flex;
+  width: calc(100% - 40px);
+  padding: 20px;
+}
+
+.foto-membro img {
+  width: 100%;
+  height: auto;
+}
+
+.foto-membro {
+  width: 150px;
+  padding: 10px;
+  height: 100%;
+}
+
+.dados-membro h2 {
+  font-size: 1.5rem;
+}
+
+.historia-membro p {
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.dados-membro {
+  width: calc(100% - 100px);
+  padding: 10px;
+  margin: auto 0;
+}
+
+.historia-membro {
+  padding: 10px 40px;
+}
+
+.historia-membro h2 {
+  font-size: 1.5rem;
+}
+
+.historia-membro h3 {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 800px) {
+  .informacoes-membro {
+    flex-wrap: wrap;
+  }
+  .foto-membro, .dados-membro {
+    width: 100%;
+    text-align: center;
+  }
+
+  .foto-membro img {
+    width: 150px;
+  }
+
+  .dados-membro {
+    margin-bottom: 10px;
+  }
+
+  .container-geral {
+    width: 100%;
+  }
+}

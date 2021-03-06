@@ -1,4 +1,18 @@
 import {Component, OnInit} from '@angular/core';
+import {Util} from '../../shared/Utils/util';
+import {map, take} from 'rxjs/operators';
+import {BookService} from '../../../services/book.service';
+import {GoogleBooksService} from '../../../services/google-books.service';
+import {TranslateService} from '@ngx-translate/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {BookAdsService} from '../../../services/book-ads.service';
+import {BookAdTO} from '../../../models/BookAdTO.model';
+import {Book} from '../../../models/book.model';
+import {AuthService} from '../../../services/auth.service';
+import Swal from 'sweetalert2';
+import {UserService} from '../../../services/user.service';
+import {UserTO} from '../../../models/userTO.model';
+import {zip} from 'rxjs';
 
 @Component({
     selector: 'app-offer-view',
@@ -7,12 +21,76 @@ import {Component, OnInit} from '@angular/core';
 })
 export class OfferViewComponent implements OnInit {
     slideIndex = 0;
-
-    constructor() {
+    bookAdTO: BookAdTO;
+    book: Book = new Book();
+    userOffer: UserTO;
+    constructor(
+        public bookService: BookService,
+        public gBookService: GoogleBooksService,
+        private translate: TranslateService,
+        private route: ActivatedRoute,
+        public bookAdsService: BookAdsService,
+        public authService: AuthService,
+        public router: Router,
+        public userService: UserService
+    ) {
     }
 
     ngOnInit(): void {
         this.showSlides(this.slideIndex);
+        this.getOffer();
+    }
+
+    getOffer(): void {
+        const id = this.route.snapshot.paramMap.get('id');
+        if (id) {
+            Util.loadingScreen();
+            this.bookAdsService.getById(id)
+                .pipe(take(1))
+                .subscribe(res => {
+                    Util.stopLoading();
+                    this.bookAdTO = res;
+                    this.getBook();
+                    this.getUserOffer();
+                }, error => {
+                    Util.stopLoading();
+                    this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                        Util.showErrorDialog(message);
+                    });
+                    console.log('error book ad id', error);
+                });
+        }
+    }
+    getUserOffer(): void {
+        Util.loadingScreen();
+        this.userService.getById(this.bookAdTO.userId)
+            .pipe(take(1))
+            .subscribe(user => {
+                Util.stopLoading();
+                this.userOffer = user;
+            });
+    }
+    getBook() {
+        Util.loadingScreen();
+        if (this.bookAdTO.idBookGoogle) {
+            this.gBookService.getById(this.bookAdTO.idBookGoogle)
+                .pipe(take(1))
+                .subscribe(b => {
+                const book = this.bookService.convertBookToModel(b);
+                this.book = book;
+                this.bookAdTO.images.push(this.book.image);
+                this.currentSlide(0);
+                Util.stopLoading();
+            });
+        } else {
+            // tslint:disable-next-line:radix
+            this.bookService.getById(Number.parseInt(this.bookAdTO.bookId))
+                .pipe(take(1))
+                .subscribe(b => {
+                this.book = b;
+                Util.stopLoading();
+            });
+        }
     }
 
     showSlides(n) {
@@ -52,5 +130,64 @@ export class OfferViewComponent implements OnInit {
     plusSlides(n) {
         this.showSlides(this.slideIndex += n);
     }
+    delete(id: string): void {
+        zip(
+            this.translate.get('EXCHANGE.EXLUIR_OFFER'),
+            this.translate.get('PADRAO.NAO'),
+            this.translate.get('PADRAO.SIM')
+        ).subscribe(messages => {
+            // @ts-ignore
+            Swal.fire({
+                icon: 'warning',
+                text: messages[0] ,
+                showConfirmButton: true,
+                confirmButtonText: messages[2],
+                showCancelButton: true,
+                cancelButtonText: messages[1]
+            }).then((result) => {
+                if (result.value) {
+                    this.deleteService(id);
+                }
+            });
+        });
+    }
 
+    deleteService(id: string): void {
+        Util.loadingScreen();
+        this.bookAdsService.delete(id)
+            .pipe(take(1))
+            .subscribe(() => {
+                    Util.stopLoading();
+                    this.translate.get('EXCHANGE.OFFER_EXCLUIDA').subscribe(msg => {
+                        Util.showSuccessDialog(msg);
+                    });
+                    this.router.navigate(['/exchange/my-offers/']);
+                },
+                error => {
+                    Util.stopLoading();
+                    this.verifyErrorOfferView(error, 'error delete offer on offer view');
+
+                });
+    }
+
+    verifyErrorOfferView(error: any, locationError: string): void {
+        let codMessage = '';
+        if (error.error.message.includes('BAD003')) {
+            codMessage = 'BAD003';
+        }
+        if (codMessage) {
+            this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                Util.showErrorDialog(message);
+            });
+        } else {
+            this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                Util.showErrorDialog(msg);
+            });
+            console.log(locationError + ': ' , error);
+        }
+    }
+    isMobile() {
+        const userAgent = window.navigator.userAgent.toLocaleLowerCase();
+        return userAgent.includes('iphone') || userAgent.includes('android');
+    }
 }

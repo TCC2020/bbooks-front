@@ -1,0 +1,58 @@
+<form [formGroup]="formCreateStory">
+    <div class="container-geral">
+        <div class="linha-input">
+            <h2>{{ 'COMPETICAO_LITERARIA.TITULO' | translate }}</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'COMPETICAO_LITERARIA.TITULO' | translate }}</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngIf="formCreateStory.get('title').hasError('required')">
+                    {{ 'COMPETICAO_LITERARIA.TITULO_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="linha-input">
+            <h2>{{ 'COMPETICAO_LITERARIA.HISTORIA' | translate }}</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'COMPETICAO_LITERARIA.HISTORIA' | translate }}</mat-label>
+                <textarea matInput formControlName="story"></textarea>
+                <mat-error *ngIf="formCreateStory.get('story').hasError('required')">
+                    {{ 'COMPETICAO_LITERARIA.HISTORIA_E' | translate }} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <button type="button"
+                    mat-raised-button
+                    color="primary"
+                    [disabled]="this.formCreateStory.invalid"
+                    (click)="createStory()">
+                {{ 'COMPETICAO_LITERARIA.ENVIAR_HISTORIA' | translate }}
+            </button>
+            <button type="button"
+                    mat-raised-button
+                    [disabled]="this.formCreateStory.invalid"
+                    [routerLink]="['/literary-competition/' + competitionMemberTO?.competitionTO?.id]">
+                {{ 'COMPETICAO_LITERARIA.VOLTAR' | translate }}
+            </button>
+            <!--<div class="botoes-editar-do-create">
+                <button
+                        type="button"
+                        mat-raised-button
+                        color="primary"
+                        *ngIf="competitionTO"
+                        [disabled]="this.formCreateStory.invalid"
+                        (click)="editStory()">
+                    Editar
+                </button>
+                <button
+                        type="button"
+                        mat-raised-button
+                        *ngIf="competitionTO"
+                        [disabled]="this.formCreateStory.invalid"
+                        [routerLink]="['/literary-competition/' + competitionTO.id]">
+                    Cancelar
+                </button>
+            </div>-->
+        </div>
+    </div>
+</form>

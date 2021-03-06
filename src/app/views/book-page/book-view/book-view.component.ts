@@ -109,6 +109,7 @@ export class BookViewComponent implements OnInit, OnDestroy {
                     console.log('Error: getDataStatusByBooksGoogleBook', error);
                 });
     }
+
     getDataStatusByBookId(): void {
         Util.loadingScreen();
         this.userBookService.getDataStatusByBooksBookId(this.book.id)
@@ -122,40 +123,60 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 });
     }
 
-    getBook(): void {
+    getBook(userbookResult?): void {
         Util.loadingScreen();
         if (this.book.api === 'google') {
-            this.bookService.getAllUserBooks().subscribe((userbooks) => {
-                this.gBookService.getById(this.book.id).subscribe(b => {
-                    const book = this.bookService.convertBookToModel(b);
-                    userbooks.books.forEach(userbook => {
-                        if (userbook.idBookGoogle === book.id) {
-                            book.status = userbook.status;
-                            book.idUserBook = userbook.id;
-                            book.finishDate = userbook.finishDate;
-                        }
-                    });
+            this.gBookService.getById(this.book.id).subscribe(b => {
+                Util.stopLoading();
+                const book = this.bookService.convertBookToModel(b);
+                if (userbookResult) {
+                    book.status = userbookResult.status;
+                    book.idUserBook = userbookResult.id;
+                    book.finishDate = userbookResult.finishDate;
                     this.book = book;
-                    Util.stopLoading();
                     this.getDataStatusByGoogleBook();
                     this.verifyReadingTarget();
-                });
+                } else {
+                    this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                        userbooks.books.forEach(userbook => {
+                            if (userbook.idBookGoogle === book.id) {
+                                book.status = userbook.status;
+                                book.idUserBook = userbook.id;
+                                book.finishDate = userbook.finishDate;
+                            }
+                        });
+                        Util.stopLoading();
+                        this.book = book;
+                        this.getDataStatusByGoogleBook();
+                        this.verifyReadingTarget();
+                    });
+                }
             });
         } else {
-            this.bookService.getAllUserBooks().subscribe((userbooks) => {
-                // tslint:disable-next-line:radix
-                this.bookService.getById(Number.parseInt(this.book.id)).subscribe(b => {
-                    userbooks.books.forEach(userbook => {
-                        if (userbook.idBook === b.id) {
-                            b.status = userbook.status;
-                            b.idUserBook = userbook.id;
-                            b.finishDate = userbook.finishDate;
-                        }
-                    });
+            // tslint:disable-next-line:radix
+            this.bookService.getById(Number.parseInt(this.book.id)).subscribe(b => {
+
+                if (userbookResult) {
+                    b.status = userbookResult.status;
+                    b.idUserBook = userbookResult.id;
+                    b.finishDate = userbookResult.finishDate;
                     this.book = b;
-                    this.getDataStatusByBookId();
+                    this.getDataStatusByGoogleBook();
                     this.verifyReadingTarget();
-                });
+                } else {
+                    this.bookService.getAllUserBooks().subscribe((userbooks) => {
+                        userbooks.books.forEach(userbook => {
+                            if (userbook.idBook === b.id) {
+                                b.status = userbook.status;
+                                b.idUserBook = userbook.id;
+                                b.finishDate = userbook.finishDate;
+                            }
+                        });
+                        this.book = b;
+                        this.getDataStatusByBookId();
+                        this.verifyReadingTarget();
+                    });
+                }
             });
         }
     }
@@ -226,8 +247,8 @@ export class BookViewComponent implements OnInit, OnDestroy {
                 book
             }
         });
-        dialogRef.afterClosed().subscribe(() => {
-            this.getBook();
+        dialogRef.afterClosed().subscribe((result) => {
+            this.getBook(result);
         });
     }
 
@@ -276,24 +297,39 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     addToReadingTarget(): void {
+        Util.loadingScreen();
         this.readingTargetService.addTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
             () => {
-                alert('Livro adicionado à Meta de Leitura');
+                Util.stopLoading();
+                this.translate.get('BOOK.BOOK_ADDED_TARGET').subscribe(message => {
+                    Util.showSuccessDialog(message);
+                });
                 this.verifyReadingTarget();
             },
             error => {
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                    Util.showErrorDialog(msg);
+                });
                 console.log('ReadingTarget Error', error);
             }
         );
     }
 
     removeFromReadingTarget(): void {
+        Util.loadingScreen();
         this.readingTargetService.removeTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
             () => {
-                alert('Livro removido da Meta de Leitura');
+                Util.stopLoading();
+                this.translate.get('BOOK.BOOK_REMOVED_TARGET').subscribe(message => {
+                    Util.showSuccessDialog(message);
+                });
                 this.verifyReadingTarget();
             },
             error => {
+                Util.stopLoading();
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                    Util.showErrorDialog(msg);
+                });
                 console.log('ReadingTarget Error', error);
             }
         );
@@ -404,11 +440,19 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     delete(id: string): void {
+        Util.loadingScreen();
         this.trackingService.delete(id).pipe(take(1)).subscribe(() => {
-                alert('tracking removed');
+                Util.stopLoading();
+                this.translate.get('ACOMP_LEITURA.TRACKING_REMOVED').subscribe(msg => {
+                    Util.showErrorDialog(msg);
+                });
                 this.getAllTracking();
             },
             error => {
+                Util.stopLoading();
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                    Util.showErrorDialog(msg);
+                });
                 console.log(error);
             });
     }
@@ -422,12 +466,14 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     deleteReview(r: ReviewTO): void {
+        Util.loadingScreen();
         this.reviewService.delete(r.id)
             .pipe(take(1))
             .subscribe(() => {
+                Util.stopLoading();
                 this.reviews = this.reviews.pipe(take(1));
                 this.translate.get('RESENHA.APAGAR_RENHA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                 });
             });
     }

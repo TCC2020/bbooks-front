@@ -11,6 +11,14 @@ import {OfferViewComponent} from './offer-view/offer-view.component';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {OfferNewComponent} from './offer-new/offer-new.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {TranslateModule} from '@ngx-translate/core';
+import {FilterAsyncPipe} from './pipes/filter-async.pipe';
+import {SearchBookAdtoComponent} from './search-book-adto/search-book-adto.component';
+import {SendOfferRequestComponent} from './send-offer-request/send-offer-request.component';
+import {MyExchangeComponent} from './my-exchange/my-exchange.component';
+import {ExchangeReceivedComponent} from './exchange-received/exchange-received.component';
+import {ExchangeSentComponent} from './exchange-sent/exchange-sent.component';
+import {NgxMatIntlTelInputModule} from 'ngx-mat-intl-tel-input';
 
 
 @NgModule({
@@ -19,7 +27,13 @@ import {ReactiveFormsModule} from '@angular/forms';
         MyOffersComponent,
         OffersComponent,
         OfferViewComponent,
-        OfferNewComponent
+        OfferNewComponent,
+        FilterAsyncPipe,
+        SearchBookAdtoComponent,
+        SendOfferRequestComponent,
+        MyExchangeComponent,
+        ExchangeReceivedComponent,
+        ExchangeSentComponent
     ],
     imports: [
         CommonModule,
@@ -28,7 +42,9 @@ import {ReactiveFormsModule} from '@angular/forms';
         FlexLayoutModule,
         MaterialModule,
         CarouselModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TranslateModule,
+        NgxMatIntlTelInputModule,
     ]
 })
 export class ExchangeModule {

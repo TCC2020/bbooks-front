@@ -18,6 +18,9 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 import {ReactionsComponent} from './reactions/reactions.component';
 import {PostCreateComponent} from './post-create/post-create.component';
 import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.directive';
+import {SearchBookComponent} from './search-book/search-book.component';
+import {BarCodeScannerComponent} from './bar-code-scanner/bar-code-scanner.component';
+import {ZXingScannerModule} from '@zxing/ngx-scanner';
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.direc
         PostDialogComponent,
         ReactionsComponent,
         PostCreateComponent,
-        TextareaAutoresizeDirective
+        TextareaAutoresizeDirective,
+        SearchBookComponent,
+        BarCodeScannerComponent
     ],
     imports: [
         CommonModule,
@@ -48,7 +53,8 @@ import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.direc
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             },
-        })
+        }),
+        ZXingScannerModule
     ],
     exports: [
         BookCardComponent,
@@ -59,7 +65,9 @@ import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.direc
         PostDialogComponent,
         ReactionsComponent,
         PostCreateComponent,
-        TextareaAutoresizeDirective
+        TextareaAutoresizeDirective,
+        SearchBookComponent,
+        BarCodeScannerComponent,
     ],
     providers: []
 })

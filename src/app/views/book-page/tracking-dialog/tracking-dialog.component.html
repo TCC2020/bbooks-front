@@ -4,11 +4,11 @@
 
         <form [formGroup]="formTracking" class="example-form">
             <div fxLayout="column" fxLayoutAlign="space-between center">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>{{'ACOMP_LEITURA.PAG_LIDAS' | translate}}</mat-label>
-                <input matInput  formControlName="numPag" maxlength="5" appNumbersOnlyInput >
+                <input type="number" matInput  formControlName="numPag" maxlength="5" appNumbersOnlyInput >
             </mat-form-field>
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>{{'ACOMP_LEITURA.DEIX_COMENTARIO' | translate}}</mat-label>
                 <textarea matInput formControlName="comentario"></textarea>
             </mat-form-field>

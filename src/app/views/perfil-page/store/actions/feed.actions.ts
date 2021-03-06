@@ -6,6 +6,9 @@ export enum FeedActionsType {
     deletePost = '[Posts] Delete Post',
     getPosts = '[Posts] Get list post pagination',
     updatePage = '[Page] Update page pagination',
+    addComment = '[Comment] Add Comment',
+    deleteComment = '[Comment] Delete Comment',
+    updateComment = '[Comment] Update Comment',
     clearRedux = '[Clear] Clear redux'
 }
 
@@ -35,4 +38,20 @@ export class ClearRedux {
     readonly type = FeedActionsType.clearRedux;
     constructor(public payload?) {}
 }
+
+export class DeleteComment {
+    readonly type = FeedActionsType.deleteComment;
+    constructor(public payload: PostTO) {}
+}
+
+export class AddComment {
+    readonly type = FeedActionsType.addComment;
+    constructor(public payload: PostTO) {}
+}
+
+export class UpdateComment {
+    readonly type = FeedActionsType.updateComment;
+    constructor(public payload: PostTO) {}
+}
+
 

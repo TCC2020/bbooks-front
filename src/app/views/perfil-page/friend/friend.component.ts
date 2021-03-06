@@ -8,6 +8,8 @@ import {AuthService} from '../../../services/auth.service';
 import {Friend} from '../../../models/friend.model';
 import {TranslateService} from '@ngx-translate/core';
 import {UserService} from '../../../services/user.service';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { Util } from '../../shared/Utils/util';
 
 @Component({
     selector: 'app-friend',
@@ -19,6 +21,7 @@ export class FriendComponent implements OnInit {
     user: UserTO = new UserTO();
     friendShip: Friendship;
     friendTO: Friend = new Friend();
+    public formSearch: FormGroup;
 
     constructor(
         private route: ActivatedRoute,
@@ -26,8 +29,12 @@ export class FriendComponent implements OnInit {
         private router: Router,
         public authService: AuthService,
         public translate: TranslateService,
-        private userService: UserService
+        private userService: UserService,
+        private formBuilder: FormBuilder
     ) {
+        this.formSearch = this.formBuilder.group({
+            search: new FormControl(null)
+        });
         this.route.data.pipe(take(1)).subscribe((data: { user: UserTO }) => {
             this.user = data.user;
         });
@@ -68,9 +75,11 @@ export class FriendComponent implements OnInit {
     sendRequest() {
         this.friendTO = new Friend();
         this.friendTO.id = this.user.profile.id;
+        Util.loadingScreen();
         this.friendsService.add(this.friendTO).subscribe(() => {
+                Util.stopLoading();
                 this.translate.get('PADRAO.SOLICITACAO_ENVIADA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                 });
                 this.user.profile.friendshipStatus = 'sent';
             },
@@ -83,9 +92,10 @@ export class FriendComponent implements OnInit {
         this.friendsService.getRequestByUserName(username).subscribe(request => {
             const acept = new Friend();
             acept.id = request.id;
+            Util.loadingScreen();
             this.friendsService.deleteRequest(acept).subscribe(() => {
                 this.translate.get('PADRAO.SOLICITACAO_N_ACEITA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                     this.getFriends();
                 });
             });
@@ -96,9 +106,10 @@ export class FriendComponent implements OnInit {
         this.friendsService.getRequestByUserName(username).subscribe(request => {
             const acept = new Friend();
             acept.id = request.id;
+            Util.loadingScreen();
             this.friendsService.acceptRequest(acept).subscribe(() => {
                 this.translate.get('PADRAO.SOLICITACAO_ACEITA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                     this.getFriends();
                 });
             });
@@ -112,6 +123,19 @@ export class FriendComponent implements OnInit {
             error => {
                 console.log(error);
             });
+    }
+
+    filterFriends(): UserTO[] {
+        let search = this.formSearch.get('search').value;
+        if (search) {
+            search = search.toLowerCase();
+            return this.friendShip?.friends.filter(m =>
+                m.profile.name.includes(search) ||
+                m.profile.lastName.toLowerCase().includes(search) ||
+                m.userName.toLowerCase().includes(search)
+            );
+        }
+        return this.friendShip?.friends;
     }
 
 }

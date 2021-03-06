@@ -11,13 +11,16 @@ import {HttpClient} from '@angular/common/http';
 import {MainSearchComponent} from './main-search/main-search.component';
 import {GroupsSearchComponent} from './groups-search/groups-search.component';
 import {PesquisarAmigosComponent} from './pesquisar-amigos/pesquisar-amigos.component';
+import {BooksSearchComponent} from './books-search/books-search.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
     declarations: [
         MainSearchComponent,
         GroupsSearchComponent,
-        PesquisarAmigosComponent
+        PesquisarAmigosComponent,
+        BooksSearchComponent
     ],
     imports: [
         CommonModule,
@@ -35,6 +38,7 @@ import {PesquisarAmigosComponent} from './pesquisar-amigos/pesquisar-amigos.comp
                 deps: [HttpClient]
             },
         }),
+        SharedModule,
     ]
 })
 export class SearchModule {

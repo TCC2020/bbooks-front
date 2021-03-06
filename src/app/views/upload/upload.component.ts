@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Util} from '../shared/Utils/util';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-upload',
@@ -14,7 +16,8 @@ export class UploadComponent implements OnInit {
     file;
 
     constructor(
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private translate: TranslateService
     ) {
     }
 
@@ -28,11 +31,18 @@ export class UploadComponent implements OnInit {
         if (event.target.files && event.target.files[0]) {
             const image = event.target.files[0];
             if (!this.checkfiles(image.name)) {
-                alert('O arquivo precisa se uma imagem, favor tentar novamente!');
+                this.translate.get('MESSAGE_ERROR.NEED_BE_IMAGE').subscribe(message => {
+                    Util.showErrorDialog(message);
+                });
             } else {
                 const reader = new FileReader();
                 if (image.size > this.maxSize) {
-                    alert('O arquivo é muito grande, favor formatar...');
+                    this.translate.get('MESSAGE_ERROR.BIG_IMAGE').subscribe(message => {
+                        Util.showErrorDialog(message);
+                    });
+                    this.file = '';
+                    this.formFile.get('file').setValue('');
+                    this.image = '';
                 } else {
                     reader.onload = (e) => this.image = e.target.result;
                     this.file = image;

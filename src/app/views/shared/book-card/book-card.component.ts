@@ -46,9 +46,17 @@ export class BookCardComponent implements OnInit {
     ngOnInit(): void {
         this.userBook = this.router.url.includes('mybooks');
         if (!this.userBook) {
-            this.routerlink = '/book/';
+            if (!this.idTag) {
+                this.routerlink = '/books/';
+            } else {
+                this.routerlink = '/book/' + this.idTag + '/';
+            }
         } else {
-            this.routerlink = '/mybooks/';
+            if (!this.idTag) {
+                this.routerlink = '/books/';
+            } else {
+                this.routerlink = '/mybooks/' + this.idTag + '/';
+            }
         }
     }
 
@@ -76,10 +84,11 @@ export class BookCardComponent implements OnInit {
             }
         });
         dialogRef.afterClosed().subscribe(() => {
-                this.getBook();
-                this.bookService.updateListCarrousel.emit(true);
+            this.getBook();
+            this.bookService.updateListCarrousel.emit(true);
         });
     }
+
     getBook(): void {
         if (this.book.api === 'google') {
             this.bookService.getAllUserBooks().subscribe((userbooks) => {
