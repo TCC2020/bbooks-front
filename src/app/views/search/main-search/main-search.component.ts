@@ -42,7 +42,7 @@ export class MainSearchComponent implements OnInit {
 
     readCodeBar(): void {
         const dialogRef = this.dialog.open(BarCodeScannerComponent, {
-            height: '550px',
+            height: '600px',
             width: '900px'
         });
         dialogRef.afterClosed().subscribe((result) => {
