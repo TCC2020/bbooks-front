@@ -1,0 +1,36 @@
+<div [hidden]="!hasDevices">
+    <zxing-scanner [torch]="torchEnabled" [device]="deviceCurrent" (deviceChange)="onDeviceChange($event)" (scanSuccess)="onCodeResult($event)"
+                   [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
+                   (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+
+    <section class="results" *ngIf="qrResultString">
+        <div>
+            <small>ISBN</small>
+            <strong>{{ qrResultString }}</strong>
+        </div>
+        <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+</div>
+
+<br>
+<ng-container *ngIf="hasPermission === undefined">
+
+    <h2>{{'PADRAO.WAIT_PERMISSIONS' | translate}}</h2>
+
+    <blockquote>
+        {{'PADRAO.NOT_HAS_CAMERA' | translate}}.
+    </blockquote>
+
+</ng-container>
+
+<ng-container *ngIf="hasPermission === false">
+
+    <h2>{{'PADRAO.BAR_CODE_ERRO' | translate}} 😪</h2>
+
+</ng-container>
+<button type="button" mat-flat-button color="accent" style="width: 100%"
+        [disabled]="formSearch.invalid"
+        mat-button [mat-dialog-close]="qrResultString">
+    {{'PADRAO.BUSCAR' | translate}}
+</button>
+<br>

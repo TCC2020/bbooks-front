@@ -79,7 +79,11 @@
     "NOT_FRIEND": "A sua lista de amigos está vazia.",
     "CONVITE_GRUPOS": "Convites de grupos",
     "SIM": "Sim",
-    "NAO": "Não"
+    "NAO": "Não",
+    "SENHA_ALTERADA": "Sua senha foi alterada!",
+    "BAR_CODE_ERRO": "Você negou a permissão da câmera, não podemos digitalizar nada sem ela.",
+    "WAIT_PERMISSIONS": "Aguardando permissões.",
+    "NOT_HAS_CAMERA": "Se o seu dispositivo não tiver câmeras, nenhuma permissão será solicitada"
   },
   "GRUPO_LEITURA": {
     "ADMINISTRADORES": "Administradores",
@@ -210,7 +214,13 @@
     "ESCOLHER_FOTO_LIVRO": "Escolher foto do livro",
     "SOBRE_LIVRO": "Sobre este livro",
     "PESQUISAR_BOOK": "Ache um livro",
-    "STATUS_GERAL": "Status geral"
+    "STATUS_GERAL": "Status geral",
+    "BOOK_ADDED_TARGET": "Livro adicionado à meta de leitura.",
+    "BOOK_REMOVED_TARGET": "Livro removido da meta de leitura.",
+    "ANO_PUBLICACAO": "Ano da publicação",
+    "TITULO": "Título",
+    "AUTORES": "Autores",
+    "INSIRA_UM_LIVRO": "Insira um novo livro"
   },
   "PERFIL": {
     "feed": "feed",
@@ -249,7 +259,8 @@
     "MSG_APG_E": "Número de páginas é",
     "MSG_COMENT": "Comentário tem que ter no máximo 50 caracteres.",
     "ACOMPANHAMENTO": "Acompanhamento",
-    "NEW": "Novo Acompanhamento"
+    "NEW": "Novo Acompanhamento",
+    "TRACKING_REMOVED": "Acompanhamento removido"
   },
   "CONFIG_PERFIL": {
     "DADOS_USER": "Dados do Usuário",
@@ -352,7 +363,9 @@
     "TA001": "O último acompanhamento ainda não terminou",
     "RT006": "A página não pode ser zero",
     "BAD003": "Ops! Você não pode deletar esta oferta pois ela está relacionada a uma troca.",
-    "GR006": "Convite já foi enviado!"
+    "GR006": "Convite já foi enviado!",
+    "NEED_BE_IMAGE": "O arquivo precisa se uma imagem, favor tentar novamente!",
+    "BIG_IMAGE": "A imagem é muito grande, favor escolher outro arquivo!"
   },
   "POST": {
     "CRIAR_POSTAGEM": "Criar Postagem",

@@ -297,24 +297,39 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     addToReadingTarget(): void {
+        Util.loadingScreen();
         this.readingTargetService.addTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
             () => {
-                alert('Livro adicionado à Meta de Leitura');
+                Util.stopLoading();
+                this.translate.get('BOOK.BOOK_ADDED_TARGET').subscribe(message => {
+                    Util.showSuccessDialog(message);
+                });
                 this.verifyReadingTarget();
             },
             error => {
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                    Util.showErrorDialog(msg);
+                });
                 console.log('ReadingTarget Error', error);
             }
         );
     }
 
     removeFromReadingTarget(): void {
+        Util.loadingScreen();
         this.readingTargetService.removeTarget(this.authService.getUser().profile.id, this.book.idUserBook).subscribe(
             () => {
-                alert('Livro removido da Meta de Leitura');
+                Util.stopLoading();
+                this.translate.get('BOOK.BOOK_REMOVED_TARGET').subscribe(message => {
+                    Util.showSuccessDialog(message);
+                });
                 this.verifyReadingTarget();
             },
             error => {
+                Util.stopLoading();
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                    Util.showErrorDialog(msg);
+                });
                 console.log('ReadingTarget Error', error);
             }
         );
@@ -425,11 +440,19 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     delete(id: string): void {
+        Util.loadingScreen();
         this.trackingService.delete(id).pipe(take(1)).subscribe(() => {
-                alert('tracking removed');
+                Util.stopLoading();
+                this.translate.get('ACOMP_LEITURA.TRACKING_REMOVED').subscribe(msg => {
+                    Util.showErrorDialog(msg);
+                });
                 this.getAllTracking();
             },
             error => {
+                Util.stopLoading();
+                this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                    Util.showErrorDialog(msg);
+                });
                 console.log(error);
             });
     }
@@ -443,12 +466,14 @@ export class BookViewComponent implements OnInit, OnDestroy {
     }
 
     deleteReview(r: ReviewTO): void {
+        Util.loadingScreen();
         this.reviewService.delete(r.id)
             .pipe(take(1))
             .subscribe(() => {
+                Util.stopLoading();
                 this.reviews = this.reviews.pipe(take(1));
                 this.translate.get('RESENHA.APAGAR_RENHA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                 });
             });
     }

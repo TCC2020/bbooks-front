@@ -16,6 +16,8 @@ import {FeedMainManagerService} from '../../feed-page/store/feed-main-manager.se
 import {FeedGenericService} from '../../../services/feed-generic.service';
 import {UploadComponent} from '../../upload/upload.component';
 import {FeedGroupManagerService} from '../../groups/store/feed-group-manager.service';
+import {GroupService} from '../../../services/group.service';
+import {GroupTO} from '../../../models/GroupTO.model';
 
 @Component({
     selector: 'app-reactions',
@@ -47,6 +49,7 @@ export class ReactionsComponent implements OnInit {
 
     public editForm: FormGroup;
 
+    group: GroupTO;
 
     comments: PostTO[] = [];
 
@@ -60,12 +63,13 @@ export class ReactionsComponent implements OnInit {
         private formBuilder: FormBuilder,
         public feedMainManagerService: FeedMainManagerService,
         public feedGenerec: FeedGenericService,
-        public feedGroupManagerService: FeedGroupManagerService
+        public feedGroupManagerService: FeedGroupManagerService,
+        public groupService: GroupService
     ) {
-
     }
 
     ngOnInit(): void {
+        this.getGroup();
         this.createForm();
         this.comments = this.post?.comments?.map(c => this.feedGenerec.convertToNewPost(c));
     }
@@ -290,5 +294,18 @@ export class ReactionsComponent implements OnInit {
             .subscribe(msg => {
                 Util.showErrorDialog(msg);
             });
+    }
+
+    getGroup(): void {
+        if (this.post.groupId) {
+            this.groupService.getById(this.post.groupId)
+                .pipe(take(1))
+                .subscribe(r => {
+                    this.group = r;
+                });
+        }
+    }
+    isGroupRouter(): boolean {
+        return this.router.url.includes('group');
     }
 }

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Route, Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
+import {BookAddDialogComponent} from '../../shared/book-add-dialog/book-add-dialog.component';
+import {BarCodeScannerComponent} from '../../shared/bar-code-scanner/bar-code-scanner.component';
 
 @Component({
     selector: 'app-main-search',
@@ -13,7 +16,8 @@ export class MainSearchComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private router: Router
+        private router: Router,
+        public dialog: MatDialog,
     ) {
     }
 
@@ -34,6 +38,19 @@ export class MainSearchComponent implements OnInit {
             subrouter = 'books';
         }
         this.router.navigate(['search/' + subrouter], {queryParams: {search: this.formSearch.get('search').value}});
+    }
+
+    readCodeBar(): void {
+        const dialogRef = this.dialog.open(BarCodeScannerComponent, {
+            height: '550px',
+            width: '900px'
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.formSearch.get('search').setValue(result);
+                this.router.navigate(['search/books'], {queryParams: {search: result}});
+            }
+        });
     }
 
     private createForm(): void {

@@ -75,7 +75,7 @@ export class ReferBookDialogComponent implements OnInit {
         this.bookRecommendationService.save(this.bookRecommendationTO).subscribe(
             () => {
                 this.translate.get('PADRAO.LIVRO_INDICADO').subscribe(text => {
-                    alert(text);
+                    Util.showSuccessDialog(text);
                 });
             },
             error => {

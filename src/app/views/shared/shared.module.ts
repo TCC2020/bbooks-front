@@ -19,6 +19,8 @@ import {ReactionsComponent} from './reactions/reactions.component';
 import {PostCreateComponent} from './post-create/post-create.component';
 import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.directive';
 import {SearchBookComponent} from './search-book/search-book.component';
+import {BarCodeScannerComponent} from './bar-code-scanner/bar-code-scanner.component';
+import {ZXingScannerModule} from '@zxing/ngx-scanner';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import {SearchBookComponent} from './search-book/search-book.component';
         ReactionsComponent,
         PostCreateComponent,
         TextareaAutoresizeDirective,
-        SearchBookComponent
+        SearchBookComponent,
+        BarCodeScannerComponent
     ],
     imports: [
         CommonModule,
@@ -50,7 +53,8 @@ import {SearchBookComponent} from './search-book/search-book.component';
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             },
-        })
+        }),
+        ZXingScannerModule
     ],
     exports: [
         BookCardComponent,
@@ -62,7 +66,8 @@ import {SearchBookComponent} from './search-book/search-book.component';
         ReactionsComponent,
         PostCreateComponent,
         TextareaAutoresizeDirective,
-        SearchBookComponent
+        SearchBookComponent,
+        BarCodeScannerComponent,
     ],
     providers: []
 })

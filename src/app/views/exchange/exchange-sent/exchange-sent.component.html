@@ -11,6 +11,31 @@
                     </mat-panel-title>
                     <mat-panel-description>
                         {{'EXCHANGE.TROCO' | translate}} {{exchange?.requesterAds.length}} {{'PADRAO.LIVRO' | translate}}(s)  {{'PADRAO.POR' | translate}}  {{exchange.receiverAds.length}} {{'PADRAO.LIVRO' | translate}}(s)
+
+                        <div
+                                *ngIf="exchange.status === exchangeStatus.accepted"
+                                style="color: #36bf7f;"
+                                class="choseAnotherOfferButton">
+                            <b>
+                                {{'EXCHANGE.TROCADO' | translate }}
+                            </b>
+                        </div>
+                        <div
+                                *ngIf="exchange.status === exchangeStatus.canceled"
+                                style="color: #f28b66;"
+                                class="choseAnotherOfferButton">
+                            <b>
+                                {{'EXCHANGE.CANCELADO' | translate }}
+                            </b>
+                        </div>
+                        <div
+                                *ngIf="exchange.status === exchangeStatus.refused"
+                                style="color: #d96666;"
+                                class="choseAnotherOfferButton">
+                            <b>
+                                {{'EXCHANGE.RECUSADO' | translate }}
+                            </b>
+                        </div>
                         <img class="cardImagePost"
                              src="{{exchange.receiver?.profile?.profileImage ? exchange?.receiver?.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
                     </mat-panel-description>
