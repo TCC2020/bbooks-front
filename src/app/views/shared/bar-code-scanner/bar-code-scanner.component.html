@@ -1,7 +1,17 @@
 <div [hidden]="!hasDevices">
-    <zxing-scanner [torch]="torchEnabled" [device]="deviceCurrent" (deviceChange)="onDeviceChange($event)" (scanSuccess)="onCodeResult($event)"
-                   [formats]="formatsEnabled" [tryHarder]="tryHarder" (permissionResponse)="onHasPermission($event)"
-                   (camerasFound)="onCamerasFound($event)" (torchCompatible)="onTorchCompatible($event)"></zxing-scanner>
+    <zxing-scanner
+            [enable]="true"
+            [torch]="torchEnabled"
+            [device]="deviceCurrent"
+            (deviceChange)="onDeviceChange($event)"
+            (scanSuccess)="onCodeResult($event)"
+            [formats]="formatsEnabled"
+            [tryHarder]="tryHarder"
+            (permissionResponse)="onHasPermission($event)"
+            (camerasFound)="onCamerasFound($event)"
+            (torchCompatible)="onTorchCompatible($event)"
+            (scanError)="errorCatch($event)">
+    </zxing-scanner>
 
     <section class="results" *ngIf="qrResultString">
         <div>
