@@ -91,21 +91,28 @@ export class LoginComponent implements OnInit {
                 this.router.navigateByUrl('/feed');
             },
             (err) => {
-                Util.stopLoading();
-                let codMessage = '';
-                if (err.error.message.includes('AT001')) {
-                    codMessage = 'AT001';
-                }
-                if (codMessage) {
-                    this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
-                        Util.showErrorDialog(message);
-                    });
+                if (err.error.message) {
+                    Util.stopLoading();
+                    let codMessage = '';
+                    if (err.error.message.includes('AT001')) {
+                        codMessage = 'AT001';
+                    }
+                    if (codMessage) {
+                        this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
+                            Util.showErrorDialog(message);
+                        });
+                    } else {
+                        this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                            Util.showErrorDialog(message);
+                        });
+                        console.log('error login', err);
+                    }
                 } else {
                     this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
                         Util.showErrorDialog(message);
                     });
-                    console.log('error login', err);
                 }
+
             }
         );
     }
@@ -131,6 +138,7 @@ export class LoginComponent implements OnInit {
         this.authService.signInWithGoogle();
         this.loginSocial();
     }
+
     loginFacebook(): void {
         this.authService.signInWithFacebook();
         this.loginSocial();
