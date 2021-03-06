@@ -50,7 +50,6 @@ export class BarCodeScannerComponent implements OnInit {
         this.formSearch = this.fb.group({
             search: new FormControl('', Validators.required)
         });
-        console.log('entrou', this.formatsEnabled)
     }
 
 
@@ -92,7 +91,7 @@ export class BarCodeScannerComponent implements OnInit {
         this.torchAvailable$.next(isCompatible || false);
     }
     errorCatch(error): void {
-        console.log(error)
+        console.log(error);
     }
 
     toggleTorch(): void {
