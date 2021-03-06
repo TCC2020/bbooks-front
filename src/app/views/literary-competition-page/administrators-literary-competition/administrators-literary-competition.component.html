@@ -1,33 +1,25 @@
-<div
-        infiniteScroll
-        [infiniteScrollDistance]="2"
-        [infiniteScrollThrottle]="50"
-        [fromRoot]="true"
-        (scrolled)="onScroll()"
->
-    <div class="container-geral">
-        <form [formGroup]="searchAdministrators">
-            <div class="container-pesquisar">
-                <mat-form-field class="barra-pesquisar" appearance="outline">
-                    <mat-label>{{ 'COMPETICAO_LITERARIA.PESQUISAR_ADMIN' | translate }}</mat-label>
-                    <input matInput formControlName="nameAdministrator" (keyup)="searchAdministrator()" (blur)="searchAdministrator()" type="text">
-                    <button mat-button matSuffix mat-icon-button aria-label="Pesquisar">
-                        <mat-icon>search</mat-icon>
-                    </button>
-                </mat-form-field>
+<div class="container-geral">
+    <form [formGroup]="searchAdministrators">
+        <div class="container-pesquisar">
+            <mat-form-field class="barra-pesquisar" appearance="outline">
+                <mat-label>{{ 'COMPETICAO_LITERARIA.PESQUISAR_ADMIN' | translate }}</mat-label>
+                <input matInput formControlName="nameAdministrator" type="text">
+                <button mat-button matSuffix mat-icon-button (click)="searchAdministrator()" aria-label="Pesquisar">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </form>
+    <div class="container-membros" *ngIf="administrators.length > 0">
+        <div class="container-membro" *ngFor="let administrator of searchAdministrator()">
+            <div class="foto-membro"><img
+                    [src]="administrator?.profile?.profileImage ? administrator.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'">
             </div>
-        </form>
-        <div class="container-membros" *ngIf="administrators.length > 0">
-            <div class="container-membro" *ngFor="let administrator of searchAdministrator()">
-                <div class="foto-membro"><img
-                        [src]="administrator?.profile?.profileImage ? administrator.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'">
-                </div>
-                <div class="dados-membro">
-                    <p>{{ administrator?.profile?.name + ' ' + administrator?.profile?.lastName }}</p>
-                    <p>{{ administrator?.role }}</p>
-                </div>
+            <div class="dados-membro">
+                <p>{{ administrator?.profile?.name + ' ' + administrator?.profile?.lastName }}</p>
+                <p>{{ administrator?.role }}</p>
             </div>
         </div>
     </div>
-    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
 </div>
+<mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>

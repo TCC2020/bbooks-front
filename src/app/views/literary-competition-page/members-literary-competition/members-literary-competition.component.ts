@@ -49,22 +49,10 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
     }
 
     getMembers() {
-        this.loading = true;
-        this.competitionMemberService.getMembers(this.literaryCompetitionId, this.page, 4)
+        this.competitionMemberService.getMembersByRoleAndStatus(this.literaryCompetitionId, Role.member, LiteraryMemberStatus.accept)
             .pipe(take(1))
             .subscribe(result => {
-                this.loading = false;
-                if (result.content.length > 0) {
-                    const r = result.content.filter(i => i.role === Role.member && i.status === LiteraryMemberStatus.accept);
-                    console.log(r);
-                    this.page++;
-                    if (r.length === 0) {
-                        this.getMembers();
-                    } else {
-                        this.members = this.members.concat(r);
-                        this.getProfiles();
-                    }
-                }
+                this.members = result;
             });
     }
 
@@ -96,8 +84,8 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
         );
     }
 
-    onScroll() {
+    /*onScroll() {
         this.getMembers();
-    }
+    }*/
 
 }

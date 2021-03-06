@@ -7,7 +7,6 @@ import {CompetitionMemberTO} from '../../../models/competitionMemberTO.model';
 import {Util} from '../../shared/Utils/util';
 import {ProfileService} from '../../../services/profile.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {MemberStatus} from '../../../models/enums/MemberStatus.enum';
 import {LiteraryMemberStatus} from '../../../models/enums/LiteraryMemberStatus.enum';
 import {CompetitionMemberSaveTO} from '../../../models/competitionMemberSaveTO.model';
 
@@ -48,23 +47,11 @@ export class RegistrationsComponent implements OnInit {
             );
     }
 
-
     getMembers() {
-        this.loading = true;
-        this.competitionMemberService.getMembers(this.literaryCompetitionId, this.page, 4)
+        this.competitionMemberService.getMembersByRoleAndStatus(this.literaryCompetitionId, Role.member, LiteraryMemberStatus.pending)
             .pipe(take(1))
             .subscribe(result => {
-                this.loading = false;
-                if (result.content.length > 0) {
-                    const r = result.content.filter(i => i.role === Role.member && i.status === LiteraryMemberStatus.pending);
-                    this.page++;
-                    if (r.length === 0) {
-                        this.getMembers();
-                    } else {
-                        this.members = this.members.concat(r);
-                        this.getProfiles();
-                    }
-                }
+                this.members = result;
             });
     }
 
@@ -94,11 +81,6 @@ export class RegistrationsComponent implements OnInit {
             p?.profile?.name.concat(p?.profile?.lastName).toLocaleLowerCase().replace(' ', '')
                 .includes(formSearch.toLocaleLowerCase().replace(' ', ''))
         );
-    }
-
-
-    onScroll() {
-        this.getMembers();
     }
 
     acceptMember(id: string) {
