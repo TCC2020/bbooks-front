@@ -19,6 +19,7 @@ import {MyExchangeComponent} from './my-exchange/my-exchange.component';
 import {ExchangeReceivedComponent} from './exchange-received/exchange-received.component';
 import {ExchangeSentComponent} from './exchange-sent/exchange-sent.component';
 import {NgxMatIntlTelInputModule} from 'ngx-mat-intl-tel-input';
+import {ExchangeViewComponent} from './exchange-view/exchange-view.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {NgxMatIntlTelInputModule} from 'ngx-mat-intl-tel-input';
         SendOfferRequestComponent,
         MyExchangeComponent,
         ExchangeReceivedComponent,
-        ExchangeSentComponent
+        ExchangeSentComponent,
+        ExchangeViewComponent
     ],
     imports: [
         CommonModule,
