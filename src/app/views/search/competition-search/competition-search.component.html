@@ -1,0 +1,23 @@
+<div
+        infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50"
+        [fromRoot]="true"
+        (scrolled)="onScroll()"
+>
+    <div class="container-geral">
+
+        <div class="container-competicoes">
+            <mat-card *ngFor="let competition of competitions" [routerLink]="['/literary-competition/' + competition?.id]">
+                <div>
+                    <h2>{{ competition?.title }}</h2>
+                </div>
+                <div>
+                    <p>{{ 'COMPETICAO_LITERARIA.INSCRICOES_ATE' | translate }} <strong>{{ competition?.subscriptionFinalDate | date:'dd/MM/yyyy' }}</strong></p>
+                    <p>{{ 'COMPETICAO_LITERARIA.COMPETICAO_SERA_ENCERRADA' | translate }} <strong>{{ competition?.finalDate | date:'dd/MM/yyyy' }}</strong></p>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+</div>
