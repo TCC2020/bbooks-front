@@ -5,6 +5,7 @@ import {GroupsSearchComponent} from './groups-search/groups-search.component';
 import {PesquisarAmigosComponent} from './pesquisar-amigos/pesquisar-amigos.component';
 import {MainPageComponent} from '../main-page/main-page.component';
 import {BooksSearchComponent} from './books-search/books-search.component';
+import {CompetitionSearchComponent} from './competition-search/competition-search.component';
 
 const searchRouter = [
     {
@@ -22,6 +23,10 @@ const searchRouter = [
             {
                 path: 'books',
                 component: BooksSearchComponent
+            },
+            {
+                path: 'competition',
+                component: CompetitionSearchComponent
             },
             { path: '', redirectTo: 'people', pathMatch: 'full' },
 
