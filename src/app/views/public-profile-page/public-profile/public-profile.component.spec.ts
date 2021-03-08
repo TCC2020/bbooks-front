@@ -7,6 +7,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from '../../../services/auth.service';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {userMock} from '../../../mocks/user.model.mock';
+import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('PublicProfileComponent', () => {
     let component: PublicProfileComponent;
@@ -24,9 +26,13 @@ describe('PublicProfileComponent', () => {
             imports: [
                 RouterTestingModule,
                 MaterialModule,
-                HttpClientModule
+                HttpClientModule,
+                TranslateModule,
+                TranslateServiceMockForChild
             ],
             providers: [
+                TranslateService,
+                TranslateStore,
                 {
                     provide: AuthService,
                     useValue: authServiceMock

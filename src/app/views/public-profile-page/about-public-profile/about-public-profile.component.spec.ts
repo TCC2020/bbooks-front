@@ -14,6 +14,8 @@ import {MockActivatedRoute} from '../../../mocks/ActivatedRoute.mock';
 import {groupMock} from '../../../mocks/group.mock';
 import {publicProfileMock} from '../../../mocks/public-profile.mock';
 import {PublicProfileService} from '../../../services/public-profile.service';
+import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('AboutPublicProfileComponent', () => {
     let component: AboutPublicProfileComponent;
@@ -28,7 +30,7 @@ describe('AboutPublicProfileComponent', () => {
     const routeMock = {
         snapshot: {},
         parent: new MockActivatedRoute({
-            params: {id: '337a3e65-5fee-458c-a18e-79458c5355a5'}
+            params: of({id: '337a3e65-5fee-458c-a18e-79458c5355a5'})
         }),
         data: of({publicProfileTo: publicProfileMock})
     };
@@ -40,9 +42,13 @@ describe('AboutPublicProfileComponent', () => {
                 RouterModule,
                 HttpClientModule,
                 HttpClientTestingModule,
-                RouterTestingModule
+                RouterTestingModule,
+                TranslateModule,
+                TranslateServiceMockForChild
             ],
             providers: [
+                TranslateService,
+                TranslateStore,
                 {
                     provide: ActivatedRoute,
                     useValue: routeMock

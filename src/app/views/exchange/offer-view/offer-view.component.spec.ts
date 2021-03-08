@@ -31,6 +31,19 @@ describe('OfferViewComponent', () => {
         getUser: jest.fn(() => userMock)
     };
 
+    const routeMock = {
+        snapshot: {
+            paramMap: {
+                get: jest.fn(() => 'sdfafafasfsadf')
+            }
+        },
+        parent: new MockActivatedRoute({
+            params: {id: 'teste'}
+        }),
+        data: of({groupTo: groupMock})
+    };
+
+
     let bookAdsServiceMock;
     let booksServiceMock: BookService;
     let gBookServiceMock: GoogleBooksService;
@@ -57,6 +70,10 @@ describe('OfferViewComponent', () => {
                 {
                     provide: AuthService,
                     useValue: authServiceMock
+                },
+                {
+                    provide: ActivatedRoute,
+                    useValue: routeMock
                 }
             ]
         }).compileComponents();

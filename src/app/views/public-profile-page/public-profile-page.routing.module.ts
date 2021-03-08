@@ -15,7 +15,8 @@ const publicProfileRouters = [
             },
             {
                 path: 'about', component: AboutPublicProfileComponent
-            }
+            },
+            { path: '', redirectTo: 'feed', pathMatch: 'full' },
         ]
     },
     {
