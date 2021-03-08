@@ -65,10 +65,9 @@ export class PublicProfileComponent implements OnInit {
         this.publicProfileService.getById(this.publicProfileId)
             .pipe(take(1))
             .subscribe(result => {
-                console.log(result.followers);
                 this.isFollower = false;
                 result.followers.forEach(f => {
-                    if( f.id === this.authService.getUser().profile.id) {
+                    if (f.id === this.authService.getUser().profile.id) {
                         this.isFollower = true;
                     }
                 });

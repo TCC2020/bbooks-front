@@ -1,7 +1,7 @@
 <div class="container-grupo" *ngIf="!publicProfileTO">
     <div class="criar-perfil-publico">
-        <button type="button" mat-raised-button color="primary" [routerLink]="['/public-profile/criar']">Criar Perfil
-            Público
+        <button type="button" mat-raised-button color="primary" [routerLink]="['/public-profile/criar']">
+            {{ 'PERFIL_PUBLICO.CRIAR_PERFIL' | translate }}
         </button>
     </div>
 </div>
@@ -10,14 +10,14 @@
         <div class="container-detalhes-cabecalho">
             <div class="informacoes-grupo">
                 <h1>{{ publicProfileTO?.name }}</h1>
-                <p>{{ publicProfileTO?.followers?.length }} seguidores</p>
+                <p>{{ publicProfileTO?.followers?.length }} {{ 'PERFIL_PUBLICO.SEGUIDORES' | translate }}</p>
             </div>
             <div class="botao-convidar-grupo">
                 <button type="button" mat-raised-button color="primary" *ngIf="!isOwner && !isFollower" (click)="followPublicProfile()"><span
-                        class="material-icons">queue</span>Seguir
+                        class="material-icons">queue</span>{{ 'PERFIL_PUBLICO.SEGUIR' | translate }}
                 </button>
                 <button type="button" mat-raised-button color="primary" *ngIf="!isOwner && isFollower" (click)="unfollowPublicProfile()"><span
-                        class="material-icons">library_add_check</span>Deixar de seguir
+                        class="material-icons">library_add_check</span>{{ 'PERFIL_PUBLICO.DEIXAR_SEGUIR' | translate }}
                 </button>
             </div>
         </div>

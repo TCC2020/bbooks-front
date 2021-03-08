@@ -48,6 +48,7 @@ export class CreatePublicProfileComponent implements OnInit {
         this.formCreatePublicProfile = this.formBuilder.group({
             id: new FormControl(this.userPublicProfileCreateTO ? this.userPublicProfileCreateTO.id : null),
             name: new FormControl(this.userPublicProfileCreateTO ? this.userPublicProfileCreateTO.name : null, Validators.required),
+            // tslint:disable-next-line:max-line-length
             description: new FormControl(this.userPublicProfileCreateTO ? this.userPublicProfileCreateTO.description : null, Validators.required)
         });
     }

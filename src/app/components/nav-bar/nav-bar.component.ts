@@ -31,7 +31,6 @@ export class NavBarComponent implements OnInit {
     requests: FriendRequest[];
     recommendations: BookRecommendationTO[];
     invitesGroup: GroupInviteTO[];
-    publicProfileTO: UserPublicProfileTO;
     publicProfileId = '';
 
     constructor(
@@ -234,11 +233,15 @@ export class NavBarComponent implements OnInit {
     }
 
     getPublicProfileByUser() {
+        this.publicProfileId = '';
         this.publicProfileService.getByUserId(this.auth.getUser().id)
             .pipe(take(1))
             .subscribe(result => {
-                this.publicProfileTO = result;
-                this.publicProfileId = result.id;
+                if (result) {
+                    this.publicProfileId = result.id;
+                } else {
+                    this.publicProfileId = '';
+                }
             });
     }
 }

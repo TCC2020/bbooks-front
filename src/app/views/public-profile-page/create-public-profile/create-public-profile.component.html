@@ -1,16 +1,16 @@
 <form [formGroup]="formCreatePublicProfile">
     <div class="container-geral">
         <div class="linha-input">
-            <h2>Nome do Perfil</h2>
+            <h2>{{ 'PERFIL_PUBLICO.NOME_PERFIL' | translate }}</h2>
             <mat-form-field appearance="outline">
-                <mat-label>Nome do Perfil</mat-label>
+                <mat-label>{{ 'PERFIL_PUBLICO.NOME_PERFIL' | translate }}</mat-label>
                 <input matInput formControlName="name">
             </mat-form-field>
         </div>
         <div class="linha-input">
-            <h2>Descrição</h2>
+            <h2>{{ 'PERFIL_PUBLICO.DESCRICAO_PERFIL' | translate }}</h2>
             <mat-form-field appearance="outline">
-                <mat-label>Descrição</mat-label>
+                <mat-label>{{ 'PERFIL_PUBLICO.DESCRICAO_PERFIL' | translate }}</mat-label>
                 <textarea matInput formControlName="description"></textarea>
             </mat-form-field>
         </div>
@@ -20,7 +20,7 @@
                     color="primary"
                     *ngIf="!userPublicProfileCreateTO"
                     (click)="createPublicProfile()">
-                Criar Perfil Público
+                {{ 'PERFIL_PUBLICO.CRIAR_PERFIL' | translate }}
             </button>
             <div class="botoes-editar-do-create">
                 <button
@@ -29,14 +29,14 @@
                         color="primary"
                         *ngIf="userPublicProfileCreateTO"
                         (click)="editPublicProfile()">
-                    Editar
+                    {{ 'PERFIL_PUBLICO.EDITAR' | translate }}
                 </button>
                 <button
                         type="button"
                         mat-raised-button
                         *ngIf="userPublicProfileCreateTO"
                         [routerLink]="['/perfil-publico/' + userPublicProfileCreateTO?.id]">
-                    Cancelar
+                    {{ 'PERFIL_PUBLICO.CANCELAR' | translate }}
                 </button>
             </div>
         </div>
