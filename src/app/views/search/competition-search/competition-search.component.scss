@@ -1,0 +1,52 @@
+.container-geral {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.botao-criar-competicao {
+  padding: 10px;
+}
+
+.container-competicoes {
+  padding: 10px;
+  flex-direction: row;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.container-competicoes mat-card {
+  width: calc(33% - 40px);
+}
+
+.container-competicoes mat-card:hover{
+  background-color: #cdcdcd;
+  cursor: pointer;
+}
+
+.container-pesquisar {
+  padding: 30px 10px 0;
+}
+
+.barra-pesquisar {
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .container-competicoes mat-card {
+    width: calc(50% - 40px);
+  }
+  .container-geral {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container-competicoes mat-card {
+    width: 100%;
+  }
+
+  .container-geral {
+    width: 100%;
+  }
+}

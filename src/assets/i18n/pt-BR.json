@@ -393,7 +393,8 @@
   "SEARCH": {
     "people": "pessoas",
     "groups": "grupos",
-    "books": "livros"
+    "books": "livros",
+    "competition": "competição"
   },
   "EXCHANGE": {
     "TROCA_DE_LIVRO": "Troca de livro",

@@ -396,7 +396,8 @@
   "SEARCH": {
     "people": "people",
     "groups": "groups",
-    "books": "books"
+    "books": "books",
+    "competition": "competition"
   },
   "EXCHANGE": {
     "TROCA_DE_LIVRO": "Book exchange",
