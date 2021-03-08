@@ -1,25 +1,28 @@
-<form [formGroup]="searchControl" class="form-inline mr-auto" (ngSubmit)="searchBook(typeSearch.value)">
-    <div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayout.xs="column">
+<div class="container-geral">
+<form [formGroup]="searchControl" class="form-inline mr-auto" (ngSubmit)="searchBook()">
+    <!--<div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayout.xs="column">
         <mat-form-field fxFlex="40" fxFlex.xs="100">
             <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
             <input matInput formControlName="book" matInput type="text" >
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" >
-            <mat-label>Choose an api</mat-label>
-            <mat-select #typeSearch  value="google">
-                <mat-option value="google">Google api</mat-option>
-                <mat-option value="bbooks">Bbooks api</mat-option>
-            </mat-select>
         </mat-form-field>
         <div>
             <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
         </div>
 
 
+    </div>-->
+    <div class="container-pesquisar">
+        <mat-form-field class="barra-pesquisar" appearance="outline">
+            <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
+            <input matInput type="text" formControlName="book">
+            <button mat-button matSuffix mat-icon-button aria-label="Pesquisar" type="submit">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
     </div>
 </form>
 <mat-paginator
+
         *ngIf="books?.length > 0"
         [length]="totalBooks"
                [pageSize]="pageSize"
@@ -38,4 +41,5 @@
                 [canEdit]="true">
         </app-book-card>
     </div>
+</div>
 </div>

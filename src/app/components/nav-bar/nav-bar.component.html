@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <span routerLink="">
+    <span routerLink="{{isLogged ? '/feed' : ''}}">
         <img class="iconbbooks"src="assets/images/logobboks.png">
     </span>
     <span class="example-spacer"></span>
@@ -10,21 +10,48 @@
         {{'PADRAO.ENTRAR' | translate}}
     </button>
     <div *ngIf="isLogged">
-        <button  mat-flat-button color="primary" style="width: 5vw;">
-            <mat-icon [matBadge]="requests?.length ? verifyRequests() : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
+        <button  mat-flat-button color="primary">
+            <mat-icon [matBadge]="requests?.length || invitesGroup?.length ? verifyRequests() : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
         </button>
         <mat-menu  #menuNofify="matMenu">
-            
             <div class="container-lista-amigos">
-                <div class="titulo-notificacao">
+                <div class="titulo-notificacao" *ngIf="invitesGroup?.length > 0">
+                    <span><b>{{'PADRAO.CONVITE_GRUPOS' | translate}}</b></span>
+                </div>
+                <!--começa card-->
+                <div class="container-amigo" *ngFor="let r of invitesGroup">
+                    <div class="container-imagem">
+                        <div>
+                            <img class="imagem-perfil-notificacao"
+                                 [src]="(r?.inviterUser | async)?.profile?.profileImage ? (r?.inviterUser | async)?.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+                        </div>
+                        <div class="informacoes">
+
+                            <p>{{(r?.inviterUser | async)?.profile?.name}} {{(r?.inviterUser | async)?.profile?.lastName}} {{'NAV.CONVITE_GRUPO' | translate}}: {{r.group.name}}</p>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px">
+                        <button  mat-flat-button color="warn" (click)="refuseInviteGroup(r.id)">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                        <button  mat-flat-button color="accent" (click)="acceptInviteGroup(r.id)">
+                            <mat-icon>done</mat-icon>
+                        </button>
+                    </div>
+                    <br>
+                    <mat-divider></mat-divider>
+                </div>
+            </div>
+            <div class="container-lista-amigos">
+                <div class="titulo-notificacao" *ngIf="recommendations?.length > 0">
                     <span><b>{{'NAV.RECOMENDACOES' | translate}}</b></span>
                 </div>
                 <!--começa card-->
                 <div class="container-amigo" *ngFor="let r of recommendations">
-                    <div class="container-imagem" [routerLink]="['/book/undefined', (r?.book | async)?.id]" [queryParams]="routerRecommendation(r?.idBookGoogle)">
+                    <div class="container-imagem" [routerLink]="['/books/', (r?.book | async)?.id]" [queryParams]="routerRecommendation(r?.idBookGoogle)">
                         <div>
                             <img class="imagem-perfil-notificacao"
-                            [src]="(r?.profileTO | async)?.profileImage ? r.profileTO.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
+                            [src]="(r?.profileTO | async)?.profileImage ? (r?.profileTO | async)?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
                         </div>
                         <div class="informacoes">
 <!--                             <div><span><a class="nome-usuario" [routerLink]="['', user.userName]">{{user?.profile?.name}} {{user?.profile?.lastName}}</a></span></div>
@@ -76,14 +103,19 @@
             </div>
         </mat-menu>
     </div>
+
     <div *ngIf="isLogged">
-        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/pesquisar-amigos']">
-            <mat-icon>group_add</mat-icon>
+        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/exchange']">
+            <mat-icon>compare_arrows</mat-icon>
         </button>
+        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/search']">
+            <mat-icon>search</mat-icon>
+        </button>
+
         <button  mat-flat-button color="primary" style="width: 5vw;"  [matMenuTriggerFor]="menuPerfil">
             <mat-icon>account_circle</mat-icon>
         </button>
-        <mat-menu  #menuPerfil="matMenu">
+        <mat-menu #menuPerfil="matMenu">
             <div mat-menu-item >
                 <div fxLayout="row" [routerLink]="['', user?.userName]">
                     <img class="imagem-perfil" [src]="user?.profile?.profileImage ? user.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'" alt="imagem de perfil"/>
@@ -91,21 +123,35 @@
                     <span> {{this.user?.userName}}</span>
                 </div>
             </div>
+
+            <div mat-menu-item [routerLink]="['/groups-search/your-groups']">
+                <mat-icon>groups</mat-icon>
+                <span>{{'PADRAO.GRUPOS_LEITURA' | translate}}</span>
+            </div>
+
+            <div mat-menu-item [routerLink]="['/andamento-meta-leitura']">
+                <mat-icon>donut_large</mat-icon>
+                <span>{{'PADRAO.ANDAMENTO_META' | translate}}</span>
+            </div>
+
+            <div mat-menu-item [routerLink]="['/literary-competition']">
+                <mat-icon>emoji_events</mat-icon>
+                <span>Competição Literária</span>
+            </div>
+
+            <div mat-menu-item [matMenuTriggerFor]="languages">
+                <mat-icon>language</mat-icon>
+                <span>{{'PADRAO.IDIOMA' | translate}}</span>
+            </div>
+
+            <mat-menu #languages="matMenu">
+                    <button mat-menu-item (click)="switchLang('pt-BR')">{{'NAV.PORTUGUES' | translate}}</button>
+                    <button mat-menu-item (click)="switchLang('en')">{{'NAV.INGLES' | translate}}</button>
+            </mat-menu>
             <div mat-menu-item (click)="logout()">
                 <mat-icon>login</mat-icon>
                 <span>{{'NAV.SAIR' | translate}}</span>
             </div>
-
         </mat-menu>
     </div>
-
-    <button mat-button [matMenuTriggerFor]="afterMenu">
-        <span class="material-icons">
-            language
-        </span>
-    </button>
-    <mat-menu #afterMenu="matMenu" xPosition="after">
-        <button mat-menu-item (click)="switchLang('pt-BR')">{{'NAV.PORTUGUES' | translate}}</button>
-        <button mat-menu-item (click)="switchLang('en')">{{'NAV.INGLES' | translate}}</button>
-    </mat-menu>
 </mat-toolbar>

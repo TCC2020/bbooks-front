@@ -1,0 +1,23 @@
+<form [formGroup]="formSearch">
+    <div fxLayout="row" fxLayoutAlign="center center" style="background-color: white">
+        <mat-form-field appearance="outline" class="barra-pesquisar">
+            <mat-label>{{'PADRAO.BUSCAR' | translate}}</mat-label>
+            <input matInput formControlName="search" matInput type="text" (blur)="redirect()">
+            <button mat-button matSuffix mat-icon-button aria-label="Pesquisar" type="submit" (click)="redirect()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-button matSuffix mat-icon-button aria-label="Pesquisar" type="submit" (click)="readCodeBar()">
+            <i class="fas fa-barcode fa-2x"></i>
+        </button>
+    </div>
+</form>
+<nav mat-tab-nav-bar mat-align-tabs="center" style="background-color: white">
+    <a mat-tab-link *ngFor="let link of links"
+       routerLinkActive #rla="routerLinkActive"
+       [queryParams]="{ search: this.formSearch.get('search').value }"
+       [routerLink]="link"
+       [active]="rla.isActive"
+    > {{'SEARCH.' + link | translate | titlecase}}</a>
+</nav>
+<router-outlet></router-outlet>

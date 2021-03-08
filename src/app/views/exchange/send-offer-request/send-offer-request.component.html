@@ -1,0 +1,153 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="body"
+     fxLayout.xs="column" fxLayoutAlign.xs="center start">
+    <div fxFlex="12">
+        <b class="title">{{'PADRAO.OFERTA' | translate}}</b>
+    </div>
+    <div class="subtitle" fxLayout="row">
+        <div>
+            <span class="material-icons">home</span>
+            <!--        </div>-->
+            <!--        <div>-->
+            <span class="material-icons">keyboard_arrow_right</span>
+        </div>
+        <div>
+<!--            Troco por livro do harry pother-->
+            {{'PADRAO.OFERTA' | translate}}
+        </div>
+    </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+    <mat-card class="fundoCard" fxLayout="column" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+                {{'PADRAO.OFERTA' | translate}}
+            </div>
+            <div>
+                <button
+                        *ngIf="bookAdSend.length < 3"
+                        (click)="openDialogSearchBookAd()"
+                        mat-raised-button color="primary"
+                        fxLayout="row" fxLayoutAlign="center"
+                        class="choseAnotherOfferButton">
+                    {{'EXCHANGE.ESCOLHER_OUTRO_AD' | translate }}
+                </button>
+                <div *ngIf="bookAdSend.length > 2" style="max-width: 200px">
+                    {{'EXCHANGE.VOCE_SO_PODE' | translate}}
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let bookAds of bookAdSend  ">
+            <div fxLayout="row" fxLayoutGap="10px">
+                <div>
+                    <img class="image"
+                         [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                </div>
+                <div fxLayout="column" class="textColor" style="width: 100%">
+                    <div>
+                        {{bookAds.description}}
+                    </div>
+                    <div>
+                        <b>{{'EXCHANGE.CONDICAO' | translate}}
+                            : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                    </div>
+                    <div
+                            fxLayout="row"
+                            fxLayout.xs="column"
+                            fxLayoutAlign="end center"
+                            style="width: 100%; color: #f28b66;"
+                    >
+                        <div style="margin: 10px;">
+                            <div *ngIf="bookAdSend[0].id === bookAds.id">
+                                {{'EXCHANGE.VOCE_NAO_PODE' | translate }}
+                            </div>
+                            <button
+                                    *ngIf="bookAdSend[0].id !== bookAds.id"
+                                    mat-raised-button color="warn"
+                                    class="buttonsCard"
+                                    (click)="removeBookAdSend(bookAds)">
+                                {{'PADRAO.REMOVER' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-card>
+</div>
+<br>
+<div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+    <mat-card class="fundoCard" fxLayout="column" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+                {{'PADRAO.PROPOSTA' | translate}}
+            </div>
+            <div>
+                <button
+                        *ngIf="myBookAdOffer.length < 3"
+                        (click)="openDialogMySearchBookAd()"
+                        mat-raised-button color="primary"
+                        fxLayout="row" fxLayoutAlign="center"
+                        class="choseAnotherOfferButton">
+                    {{'EXCHANGE.ESCOLHER_SUAS_OFERTAS' | translate }}
+                </button>
+                <div *ngIf="myBookAdOffer.length > 2" style="max-width: 200px">
+                    {{'EXCHANGE.VOCE_SO_PODE' | translate}}
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let bookAds of myBookAdOffer  ">
+            <div fxLayout="row" fxLayoutGap="10px">
+                <div>
+                    <img class="image"
+                         [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                </div>
+                <div fxLayout="column" class="textColor" style="width: 100%">
+                    <div>
+                        {{bookAds.description}}
+                    </div>
+                    <div>
+                        <b>{{'EXCHANGE.CONDICAO' | translate}}
+                            : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                    </div>
+                    <div
+                            fxLayout="row"
+                            fxLayout.xs="column"
+                            fxLayoutAlign="end center"
+                            style="width: 100%; color: #f28b66;"
+                    >
+                        <div style="margin: 10px;">
+                            <button
+                                    mat-raised-button color="warn"
+                                    class="buttonsCard"
+                                    (click)="removeMyBookAd(bookAds)">
+                                {{'PADRAO.REMOVER' | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-card>
+</div>
+<br>
+<div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column">
+    <mat-card class="fundoCard" fxLayout="column"  fxLayoutAlign="end end"  fxLayoutAlign.xs="center center">
+        <div >
+            {{'EXCHANGE.SOLICITAR_TROCA_LIVRO' | translate }} {{this.bookAdSend.length}}  {{'PADRAO.LIVRO' | translate }}(s)  {{'PADRAO.POR' | translate }} {{this.myBookAdOffer.length}}   {{'PADRAO.LIVRO' | translate }}(s)
+        </div>
+        <div>
+            <button
+                    [disabled]="myBookAdOffer.length  === 0"
+                    mat-raised-button color="accent"
+                    class="choseAnotherOfferButton"
+                    (click)="sendProposal()"
+            >
+                {{'EXCHANGE.ENVIAR_PROPOSTA' | translate }}
+            </button>
+        </div>
+
+    </mat-card>
+
+</div>

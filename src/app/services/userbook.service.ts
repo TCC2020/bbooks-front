@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {AuthGuard} from '../guards/auth-guard';
 import {Observable} from 'rxjs';
 import {UserBookTO} from '../models/userBookTO';
 import {Tag} from '../models/tag';
+import {UserBooksDataStatusTO} from '../models/UserBooksDataStatusTO.model';
 
 @Injectable({
     providedIn: 'root'
@@ -35,6 +36,17 @@ export class UserbookService {
 
     getById(id: number): Observable<UserBookTO> {
         return this.http.get<UserBookTO>(this.api + id);
+    }
+
+    getDataStatusByBooksBookId(bookId: string): Observable<UserBooksDataStatusTO> {
+        const params = new HttpParams()
+            .set('bookId', bookId);
+        return this.http.get<UserBooksDataStatusTO>(this.api + 'status-data', {params});
+    }
+    getDataStatusByBooksGoogleBook(googleBook: string): Observable<UserBooksDataStatusTO> {
+        const params = new HttpParams()
+            .set('googleBook', googleBook);
+        return this.http.get<UserBooksDataStatusTO>(this.api + 'status-data', {params});
     }
 
 }

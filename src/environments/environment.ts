@@ -7,7 +7,9 @@ export const environment = {
     api: 'http://localhost:8080/',
     gauth: '',
     fbauth: '',
-    apicep: ''
+    apicep: '',
+    feedApi: 'http://localhost:8081/',
+    competitionApi: 'http://localhost:8082/'
 };
 
 /*

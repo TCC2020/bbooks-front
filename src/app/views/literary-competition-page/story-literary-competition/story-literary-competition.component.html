@@ -1,0 +1,18 @@
+<div class="container-geral">
+    <div class="informacoes-membro">
+        <div class="foto-membro"><img
+                [src]="member?.profile?.profileImage ? member.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'">
+        </div>
+        <div class="dados-membro">
+            <h2>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</h2>
+        </div>
+    </div>
+    <div class="historia-membro">
+        <h2>{{ 'COMPETICAO_LITERARIA.HISTORIA_USUARIO' | translate }}</h2>
+        <h3>{{ member?.title }}</h3>
+        <p>{{ member?.story }}</p>
+        <button type="button" mat-raised-button
+                [routerLink]="['/literary-competition/' + member?.competitionTO.id + '/members']">{{ 'COMPETICAO_LITERARIA.VOLTAR_LISTA_MEMBROS' | translate }}
+        </button>
+    </div>
+</div>

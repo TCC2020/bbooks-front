@@ -1,0 +1,35 @@
+mat-drawer {
+  position: fixed;
+  background-color: white;
+}
+.sidenav{
+  // background-color:  white;
+  width:250px;
+  border-radius: 3px;
+  box-shadow: 1px 5px 5px rgba(128, 128, 128, 0.39);
+}
+.content {
+  position: absolute;
+  top: 65px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+}
+
+.content-mob {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+
+
+}
+.linkNav{
+  border-radius: 10px;
+}
+.activelink{
+  background-color: rgba(65, 85, 102, 0.15) !important;
+}

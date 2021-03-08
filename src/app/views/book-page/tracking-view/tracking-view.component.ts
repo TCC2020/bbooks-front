@@ -1,12 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ReadingTrackingTO} from '../../../models/ReadingTrackingTO.model';
 import {TranslateService} from '@ngx-translate/core';
-import {ReadingTrackingService} from '../../../services/reading-tracking.service';
 import {take} from 'rxjs/operators';
 import {TrackingTO} from '../../../models/TrackingTO.model';
 import {TrackingService} from '../../../services/tracking.service';
+import { Util } from '../../shared/Utils/util';
 
 @Component({
     selector: 'app-tracking-view',
@@ -44,10 +44,13 @@ export class TrackingViewComponent implements OnInit {
     save() {
         if (this.data.tracking?.id) {
             this.data.tracking.comentario = this.formTracking.get('comentario').value;
+            Util.loadingScreen();
             this.trackingService.update(this.data.tracking).pipe(take(1)).subscribe(tracking => {
+                    Util.stopLoading();
                     this.dialogRef.close(tracking);
                 },
                 error => {
+                    Util.stopLoading();
                     let codMessage = '';
                     if (error.error.message.includes('RT002')) {
                         codMessage = 'RT002';
@@ -57,39 +60,38 @@ export class TrackingViewComponent implements OnInit {
                     }
                     if (codMessage) {
                         this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
-                            alert(message);
+                            Util.showErrorDialog(message);
                         });
                     } else {
+                        this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                            Util.showErrorDialog(message);
+                        });
                         console.log(error);
                     }
                 });
         } else {
+            Util.loadingScreen();
             this.trackingService.save(this.formTracking.value).pipe(take(1)).subscribe(tracking => {
+                    Util.stopLoading();
                     this.dialogRef.close(tracking);
                 },
                 error => {
+                    Util.stopLoading();
                     let codMessage = '';
                     if (error.error.message.includes('TA001')) {
                         codMessage = 'TA001';
                     }
                     if (codMessage) {
                         this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
-                            alert(message);
+                            Util.showErrorDialog(message);
                         });
                     } else {
+                        this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                            Util.showErrorDialog(message);
+                        });
                         console.log(error);
                     }
                 });
         }
-
-    }
-
-    delete() {
-        // this.trackingService.delete(this.data.tracking.id).subscribe(() => {
-        //         this.dialogRef.close('delete');
-        //     },
-        //     error => {
-        //         console.log('error tracking delete', error);
-        //     });
     }
 }

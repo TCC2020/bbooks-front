@@ -22,6 +22,7 @@
     margin: 50px auto 0px;
     box-sizing: border-box;
     text-align: center;
+    background-color: white;
 }
 //button#entrar {
 //    color: #FFFFFF;
@@ -40,7 +41,7 @@
 //    color: #394A59;
 //}
 
-#recuperarSenha, #criarConta, #botaoLogarGoogle {
+#recuperarSenha, #criarConta, #botaoLogarGoogle, #politicaPrivacidade {
     margin-top: 10px;
 }
 
@@ -55,11 +56,22 @@
 //    opacity: 80%;
 //}
 
+.login-facebook {
+    background-color: white;
+    color: #1877F2;
+}
+
+.login-google i {
+    color:#4285f4;
+    font-size: 17px;
+}
+
 @media screen and (max-width: 600px){
     .form {
         border: none;
         width: 100%;
         margin: auto 0px;
+        height: 100%;
     }
     div {
         padding: 7px;

@@ -4,7 +4,7 @@
 
         <form [formGroup]="formTracking" class="example-form">
             <div fxLayout="column" fxLayoutAlign="space-between center">
-                <mat-form-field class="example-full-width">
+                <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>{{'ACOMP_LEITURA.DEIX_COMENTARIO' | translate}}</mat-label>
                     <textarea matInput formControlName="comentario"></textarea>
                 </mat-form-field>
@@ -14,9 +14,6 @@
     <p></p>
     <div fxLayout="row" fxLayoutAlign="space-evenly center" >
         <div fxLayoutGap="8px">
-<!--            <button mat-flat-button color="warn" (click)="delete()" *ngIf="data.tracking">-->
-<!--                {{'PADRAO.REMOVER' | translate}}-->
-<!--            </button>-->
             <button mat-flat-button color="accent" (click)="save()" *ngIf="data.tracking"
                     [disabled]="formTracking.invalid">
                 {{'PADRAO.EDITAR' | translate}}

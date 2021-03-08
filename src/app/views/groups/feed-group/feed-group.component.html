@@ -1,0 +1,26 @@
+<div fxLayout="row"
+     fxLayoutAlign="center center"
+     *ngIf="isMember || isAdmin">
+    <app-post-create
+            [user]="this.authService.getUser()"
+            [typePostControler]="typePostControler.group"
+    ></app-post-create>
+</div>
+<br>
+<ng-template #loading>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<div  *ngIf="(feedRedux$ | async) as feedRedux; else loading">
+    <div fxLayout="column"
+         fxLayoutAlign="space-around center"
+         fxLayoutGap="20px"
+         *ngIf="groupTO?.privacy?.toString() === 'public_all' || isMember || isAdmin">
+        <app-reactions
+                *ngFor="let post of feedRedux.posts"
+                [post]="post"
+                [user]="user"
+                [userPost]="post?.user"
+                [typePostControler]="typePostControler.feed"
+        ></app-reactions>
+    </div>
+</div>

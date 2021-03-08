@@ -15,7 +15,7 @@
 }
 
 .container-pesquisar mat-form-field {
-    width: 500px;
+    width: 100%;
 }
 
 .container-pesquisar button {
@@ -77,6 +77,13 @@
 
 .nome-usuario {
     color: black;
+}
+.not-find{
+    background-color: #fdf5f1;
+    border-color: #f28b66;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
 }
 
 @media screen and (max-width: 850px) {

@@ -12,6 +12,7 @@ import { TranslateServiceMockForRoot } from 'src/app/mocks/translate.service.moc
 import { ProfileService } from 'src/app/services/profile.service';
 import { SocialAuthServiceConfigMock } from 'src/app/mocks/google.provide.mock';
 import { AuthService } from 'src/app/services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 describe('NovaSenhaComponent', () => {
   let component: NovaSenhaComponent;
@@ -48,7 +49,8 @@ describe('NovaSenhaComponent', () => {
         {
           provide: AuthService,
           useValue: authServiceMock
-      }
+      },
+      TranslateService,
     ]
     })
     .compileComponents();

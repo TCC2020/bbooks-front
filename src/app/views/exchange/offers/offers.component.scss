@@ -1,0 +1,54 @@
+.body{
+  margin: 10px;
+}
+.bodyFilter{
+
+}
+.buttonOferta{
+  position: relative;
+  right: 0;
+  margin: 20px;
+}
+.title{
+  color: #2b2b2b;
+  font-size: 18px;
+}
+.subtitle{
+  font-size: 14px;
+  color: #575962;
+
+}
+.buttonFilter{
+  width: 100%;
+  background-color: #dddddd;
+}
+.card{
+  max-width: 200px;
+  width: 200px;
+  margin: 0.5em;
+  height: 335px;
+}
+.image-card{
+  max-width: 150px;
+}
+
+@media screen and (max-width: 600px) {
+  .buttonOferta{
+    position: absolute;
+  }
+  .buttonFilter{
+    width: 100%;
+  }
+  .bodyFilter{
+    width: 90%;
+  }
+  .card{
+    max-width: 100%;
+    width: 100%;
+    margin: 0.5em;
+  }
+  .image-card{
+    max-width: 150px;
+  }
+
+}

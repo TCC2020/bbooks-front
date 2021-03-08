@@ -1,0 +1,116 @@
+<div class="container-post-dialog">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="header" *ngIf="isMobile()">
+        <div class="arrowPost" (click)="redirectPage(null)">
+            <span class="material-icons">keyboard_backspace</span>
+        </div>
+        <div>
+            <b>{{title | translate}}</b>
+        </div>
+        <div>
+            <button mat-button color="accent" (click)="save()"><b>{{buttonSave | translate}}</b></button>
+        </div>
+
+    </div>
+    <h2 mat-dialog-title *ngIf="!isMobile()" align="center">{{title | translate}}</h2>
+    <mat-divider></mat-divider>
+    <form [formGroup]="formFeed">
+    <div>
+        <div fxLayout="column" fxLayoutAlign="space-between start" class="flex" fxFlex.xs fxFlexOffset="1">
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px" fxFlexOffset="1"
+                 fxLayoutAlign.xs="space-around start" fxLayoutGap.xs="10px">
+                <div fxLayout="column" fxLayoutAlign="start start">
+                    <div>
+                        <img class="cardImageReview"
+                             src="{{this.user.profile.profileImage ? user.profile.profileImage:'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start">
+                        <div class="commentReview">
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+                                <div class="profile-name-lastname">{{user.profile.name | titlecase}} {{user.profile.lastName | titlecase}}</div>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <div>
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>{{title | translate}}</mat-label>
+                                        <mat-select formControlName="privacy">
+                                            <mat-option [value]="mapPostPrivacy.get(type)" *ngFor="let type  of mapTypePost">{{type}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="infoMenuItem" *ngIf="this.formFeed.get('privacy').value === 'public_all'">
+                                    <span >{{'PADRAO.POST_PUBLICO' | translate}}</span>
+                                </div>
+                                <div class="infoMenuItem" *ngIf="this.formFeed.get('privacy').value === 'friends_only'">
+                                    <span>{{'PADRAO.POST_PRIVADO' | translate}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-divider *ngIf="isMobile()"></mat-divider>
+    <div>
+             <textarea formControlName="description" placeholder="{{'POST.' + textInput | translate}}"></textarea>
+             <div class="div-menuChoose" *ngIf="menuChoose === menu.ASK">
+                <div formArrayName="asks" *ngFor="let item of asks.controls; let i = index;" fxLayout="row"
+                     fxLayoutAlign="center">
+                    <div>
+                        <mat-form-field [formGroupName]="i" appearance="outline" class="form-group-post-dialog">
+                            <input placeholder="option {{i+1}}" matInput formControlName="name">
+                            <!--                        <button matSuffix mat-icon-button aria-label="Clear" (click)="removeAsk(i)">-->
+                            <!--                            <mat-icon>close</mat-icon>-->
+                            <!--                        </button>-->
+                        </mat-form-field>
+                    </div>
+
+                    <div class="div-remove-ask">
+                        <button mat-icon-button aria-label="close" (click)="removeAsk(i)">
+                            <mat-icon class="cor-mat-icon-post-dialog">close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="center">
+                    <button mat-stroked-button color="accent" class="button-another-option" (click)="addAsk()">Add
+                        another option
+                    </button>
+                    <div class="div-button-close">
+                        <button mat-icon-button aria-label="close">
+                            <mat-icon class="cor-mat-icon-post-dialog">settings</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+    <div *ngIf="image" fxLayout="row" fxLayoutAlign="center center">
+        <img [src]="image" class="imagePost" (click)="choosePhoto()">
+    </div>
+
+    <br>
+    <mat-divider></mat-divider>
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+        <button mat-button class="button-test-post" (click)="resetAsks()">
+            <mat-icon class="assesment-post-dialog">assessment</mat-icon>
+            {{'PADRAO.ASK' | translate}}
+        </button>
+        <button mat-button class="button-test-post" (click)="choosePhoto()">
+            <mat-icon class="insert-photo-post-dialog">insert_photo</mat-icon>
+            {{'PADRAO.PHOTO' | translate}}
+
+        </button>
+        <button mat-button class="button-test-post" (click)="chooseReview()">
+            <mat-icon class="import-contacts-post-dialog">import_contacts</mat-icon>
+            {{'PADRAO.RESENHA' | translate}}
+        </button>
+    </div>
+    <br>
+    <div *ngIf="!isMobile()" class="publisherWeb" fxLayout="column">
+        <button [disabled]="formFeed.invalid" mat-raised-button color="accent" class="publisherWeb" (click)="save()">{{buttonSave | translate}}</button>
+    </div>
+    <br>
+</div>

@@ -1,0 +1,77 @@
+<form [formGroup]="formGroup" *ngIf="formGroup">
+    <div class="container-mat-tab">
+        <h2>{{'GRUPO_LEITURA.SOBRE' | translate}}</h2>
+        <div class="reading-group-edit">
+            <h3>{{'GRUPO_LEITURA.DESCRICAO_GRUPO' | translate}}</h3>
+            <button class="botao-edit" *ngIf="isAdmin && !isEditing" (click)="changeToEdit()"><span class="material-icons">edit</span></button>
+            <button class="botao-edit" *ngIf="isAdmin && isEditing" (click)="update()"><span class="material-icons">save</span></button>
+        </div>
+        <p *ngIf="!isEditing" style="word-break: break-word;">{{groupTO?.description}}</p>
+
+        <mat-form-field class="area-descricao" appearance="fill" *ngIf="isEditing">
+            <textarea matInput #description maxlength="1000"  formControlName="description"></textarea>
+            <mat-hint>{{description.value.length}} / 1000</mat-hint>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="3px" *ngIf="!isEditing">
+            <span class="material-icons" *ngIf="groupTO?.privacy == 'public_all'">public</span>
+            <span class="material-icons" *ngIf="groupTO?.privacy != 'public_all'">lock</span>
+            <div>{{'PADRAO.' + mapPostPrivacyView.get(this.groupTO?.privacy) | translate | titlecase}}</div>
+        </div>
+        <mat-radio-group formControlName="privacy"  *ngIf="isEditing">
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button  [value]="mapPostPrivacy.get(privacy.public_all)">
+
+                    </mat-radio-button>
+                </div>
+                <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                        <b>{{'PADRAO.PUBLICO' | translate}} </b>
+                    </div>
+                    <div class="textColor">
+                        {{'GRUPO_LEITURA.PUBLICO_DESCRICAO' | translate}}
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div div fxLayout="column" fxLayoutAlign>
+                    <mat-radio-button  [value]="mapPostPrivacy.get(privacy.private_group)">
+                    </mat-radio-button>
+                </div>
+                <div  fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px" >
+                        <b>{{'PADRAO.PRIVADO' | translate}}</b>
+                    </div>
+                    <div class="textColor">
+                        {{'GRUPO_LEITURA.PRIVADO_DESCRICAO' | translate}}
+                    </div>
+                </div>
+            </div>
+        </mat-radio-group>
+        <h3>{{'GRUPO_LEITURA.DATA_CRIACAO' | translate}}</h3>
+        <p>{{groupTO?.creationDate | date}}</p>
+
+        <div fxLayout="row" fxLayout.xs="column" fxFlexAlign="start center" fxLayoutAlign.xs="center center" fxLayoutGap="5px">
+            <div *ngIf="member?.role.toString() === 'member' || member?.role.toString() === 'admin'">
+                <button type="button"
+                        mat-raised-button
+                        color="warn"
+                        (click)="exitDilaogConfirm('exit')">
+                    <span class="material-icons">exit_to_app</span>
+                    {{'GRUPO_LEITURA.SAIR' | translate}}
+                </button>
+            </div>
+
+            <div *ngIf="member?.role.toString() === 'owner'">
+                <button type="button"
+                        mat-raised-button
+                        color="warn"
+                        (click)="exitDilaogConfirm()">
+                    <span class="material-icons">exit_to_app</span>
+                    {{'GRUPO_LEITURA.EXCLUIR_GRUPO' | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+</form>

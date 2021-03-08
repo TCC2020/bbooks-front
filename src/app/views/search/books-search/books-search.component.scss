@@ -1,0 +1,56 @@
+.block-with-text {
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  max-height: 3.6em;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+}.block-with-text:before {
+   content: '...';
+   position: absolute;
+   right: 0;
+   bottom: 0;
+ }.block-with-text:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1.5em;
+    margin-top: 0.2em;
+    background: white;
+  }
+#search-bt {
+  color: white;
+}
+mat-card {
+  margin: 30px;
+}
+#card-footer {
+  margin-bottom: 0;
+}
+
+.container-pesquisar {
+  padding: 30px 30px 0;
+  text-align: center;
+}
+
+.barra-pesquisar {
+  width: 70%;
+}
+
+.container-geral {
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  width: 75%;
+}
+
+@media screen and (max-width: 800px) {
+  .barra-pesquisar {
+    width: 100%;
+  }
+
+  .container-geral{
+    width: 100%;
+  }
+}

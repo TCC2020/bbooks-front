@@ -11,6 +11,7 @@ import {BookcaseResolve} from './guards/bookcase.resolve';
 import {PerfilComponent} from './perfil/perfil.component';
 import {AuthGuard} from '../../guards/auth-guard';
 import {FriendResolve} from './guards/friend.resolve';
+import {PostDialogComponent} from '../shared/post-dialog/post-dialog.component';
 
 
 const perfilRouter = [
@@ -32,11 +33,16 @@ const perfilRouter = [
                 path: 'bookcase', component: BookcaseComponent,
                 resolve: {data: BookcaseResolve}
             },
+            { path: '', redirectTo: 'feed', pathMatch: 'full' },
         ]
 
     },
     {
         path: ':username/settings', component: PerfilComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: ':username/create-post', component: PostDialogComponent,
         canActivate: [AuthGuard]
     },
 ];

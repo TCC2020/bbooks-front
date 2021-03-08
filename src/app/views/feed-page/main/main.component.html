@@ -1,0 +1,31 @@
+
+<div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+        <app-post-create
+                [user]="user"
+                [typePostControler]="typePostControler.feed"
+        ></app-post-create>
+    </div>
+    <br>
+    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+
+<!--    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px"-->
+<!--         infiniteScroll-->
+<!--         [infiniteScrollDistance]="2"-->
+<!--         [infiniteScrollThrottle]="50"-->
+<!--         [fromRoot]="true"-->
+<!--         (scrolled)="onScroll()"-->
+<!--    >-->
+        <app-reactions
+                *ngFor="let post of (feedRedux$ | async)?.posts"
+                [post]="post"
+                [user]="user"
+                [userPost]="post?.user"
+                [typePostControler]="typePostControler.feed"
+        ></app-reactions>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<!--    </div>-->
+    </div>
+</div>
+

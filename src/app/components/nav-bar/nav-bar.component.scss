@@ -19,8 +19,7 @@
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  margin: auto;
-  margin-right: 10px;
+  margin: auto 10px auto 0px;
 }
 
 #search-bt {
@@ -40,6 +39,9 @@
 	margin-left: auto !important;
     margin-right: auto !important;
     margin: 1px solid black;
+}
+.mat-flat-button{
+  min-width: 56px;
 }
 
 .informacoes {

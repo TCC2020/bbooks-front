@@ -1,0 +1,222 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="body"
+     fxLayout.xs="column" fxLayoutAlign.xs="center start">
+    <div fxFlex="12">
+        <b class="title">{{'EXCHANGE.MINHAS_OFERTAS' | translate }}</b>
+    </div>
+    <div class="subtitle" fxLayout="row">
+        <div>
+            <span class="material-icons">home</span>
+            <span class="material-icons">keyboard_arrow_right</span>
+        </div>
+        <div>
+            {{'EXCHANGE.MINHAS_OFERTAS' | translate }}
+        </div>
+        <div>
+            <span class="material-icons">keyboard_arrow_right</span>
+        </div>
+        <div>
+            {{this.bookAdTO?.id ? ('PADRAO.EDITAR' | translate) : 'EXCHANGE.MINHAS_OFERTAS' | translate }}
+        </div>
+
+    </div>
+    <button mat-raised-button color="accent" class="buttonOferta" routerLink="../">
+        {{'PADRAO.VOLTAR' | translate }}
+    </button>
+</div>
+
+<form [formGroup]="formNewOffer">
+    <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px">
+
+        <mat-card>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <app-book-card
+                        [book]="book"
+                >
+
+                </app-book-card>
+                <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+                    <div *ngIf="this.book.id">
+                        <b>ISBN: </b> {{book.isbn10}}
+                    </div>
+                    <div *ngIf="this.book.id">
+                        <b>{{'BOOK.IDIOMA' | translate}}</b>: {{book.language}}
+                    </div>
+                    <br>
+                    <button
+                            (click)="openDialogSearchBook()"
+                            mat-raised-button color="accent"
+                            fxLayout="row" fxLayoutAlign="center"
+                            style="width: 100%; color: white">
+                        {{'EXCHANGE.ESCOLHER_LIVRO' | translate }}
+                    </button>
+                </div>
+            </div>
+            <mat-error *ngIf="!this.book.id"> {{'EXCHANGE.ESCOLHER_LIVRO_E' | translate }}
+                <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}.</strong></mat-error>
+
+
+        </mat-card>
+        <mat-card>
+            <div fxLayout="row">
+                <h2>
+                    {{'EXCHANGE.TITULO_OFERTA' | translate }}
+                </h2>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center">
+                <mat-form-field id="nome" class="inputCadastrar" appearance="outline">
+                    <mat-label>{{'EXCHANGE.TITULO' | translate}}</mat-label>
+                    <input matInput formControlName="title">
+                    <mat-error *ngIf="formNewOffer.get('title').hasError('required')">
+                        {{'EXCHANGE.TITULO_OBRIGATORIO' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row">
+                <h2>
+                    {{'EXCHANGE.QUAL_CONDICAO_LIVRO' | translate }}
+                </h2>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center">
+                <mat-form-field appearance="fill" fxLayout="row" fxLayoutAlign="center center"
+                >
+                    <mat-label> {{'EXCHANGE.CONDICAO_LIVRO' | translate }}</mat-label>
+                    <mat-select formControlName="condition">
+                        <mat-option [value]="bookCondition.not_used">
+                            {{'EXCHANGE.NOVO' | translate }}
+                        </mat-option>
+                        <mat-option [value]="bookCondition.used">
+                            {{'EXCHANGE.USADO' | translate }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-card>
+        <mat-card>
+            <div fxLayout="row">
+                <h2>
+                    {{'PADRAO.CONTATO' | translate }}
+                </h2>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center">
+                <mat-form-field class="contact" appearance="outline">
+                    <ngx-mat-intl-tel-input
+                            [preferredCountries]="['br', 'us']"
+                            [enablePlaceholder]="true"
+                            [enableSearch]="true"
+                            name="contact"
+                            formControlName="contact">
+                    </ngx-mat-intl-tel-input>
+                    <mat-error *ngIf="formNewOffer.get('contact').hasError('required')">
+                        {{'EXCHANGE.CONTATO' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row">
+                <h2>
+                    {{'PADRAO.ENDERECO' | translate }}
+                </h2>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column" fxLayoutGap="10px">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{'PADRAO.PAIS' | translate}}</mat-label>
+                    <mat-select formControlName="country">
+                        <mat-option [value]="country.name" *ngFor="let country of countrys"
+                                    (change)="getStates(country)"
+                                    (blur)="getStates(country)">{{country.name}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="verificaValidToTouched('country')">
+                        {{'CADASTRO2.MSG_PAIS_E' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="inputSegundaEtapa" appearance="outline">
+                    <mat-label>{{'PADRAO.ESTADO' | translate}}</mat-label>
+                    <mat-select formControlName="state">
+                        <mat-option [value]="state.name" *ngFor="let state of states"
+                                    (blur)="getCitys(state)">{{state.name}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="verificaValidToTouched('state')">
+                        {{'CADASTRO2.MSG_ESTADO_E' | translate}}
+                        <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="inputSegundaEtapa" appearance="outline">
+                    <input type="text"
+                           placeholder="{{'PADRAO.CIDADE' | translate}}"
+                           aria-label="Number"
+                           matInput
+                           formControlName="city"
+                           [matAutocomplete]="autoCity" class="example-full-width">
+                    <mat-autocomplete autoActiveFirstOption #autoCity="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptionsCity | async" [value]="option.name">
+                            {{option.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="verificaValidToTouched('city')">
+                        {{'CADASTRO2.MSG_CIDADE_E' | translate}}
+                        <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </mat-card>
+        <mat-card>
+            <div fxLayout="row">
+                <h2> {{'EXCHANGE.INSIRA_FOTOS' | translate }}</h2>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center"
+                 fxLayout.xs="column">
+                <div class="card" (click)="openDialogUpload(0)">
+                    <div class="container">
+                        <img class="image"
+                             [src]="files[0] ? files[0] : bookAdTO?.images[0] ?  bookAdTO.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
+                </div>
+                <div class="card" (click)="openDialogUpload(1)">
+                    <div class="container">
+                        <img class="image"
+                             [src]="files[1] ? files[1] : bookAdTO?.images[1] ?  bookAdTO.images[1] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
+                </div>
+                <div class="card" (click)="openDialogUpload(2)">
+                    <div class="container">
+                        <img class="image"
+                             [src]="files[2] ? files[2] : bookAdTO?.images[2] ?  bookAdTO.images[2]  : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
+                </div>
+            </div>
+            <mat-error *ngIf="bookAdTO?.images[0] ?  false :  files.length === 0 "> {{'EXCHANGE.ESCOLHER_UMA_FOTO' | translate }}.</mat-error>
+        </mat-card>
+
+        <mat-card>
+            <div fxLayout="row">
+                <h2>{{'EXCHANGE.OUTRAS_INFOS' | translate }}</h2>
+            </div>
+            <div>
+                <mat-form-field style="width: 100%" appearance="outline">
+                    <mat-label>{{'EXCHANGE.ESCREVA_DESCRICAO' | translate }}</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                </mat-form-field>
+            </div>
+
+            <button
+                    *ngIf="!this.bookAdTO"
+                    (click)="saveBookAd()"
+                    [disabled]="formNewOffer.invalid ||  files.length  === 0 ||  !bookIsSelected()"
+                    mat-raised-button color="accent"
+                    fxLayout="row" fxLayoutAlign="center"
+                    style="width: 100%; color: white">
+                {{'EXCHANGE.CRIAR_OFERTA' | translate }}
+            </button>
+            <button
+                    *ngIf="this.bookAdTO"
+                    (click)="update()"
+                    [disabled]="verifyFormUpdate()"
+                    mat-raised-button color="accent"
+                    fxLayout="row" fxLayoutAlign="center"
+                    style="width: 100%; color: white">
+                {{'PADRAO.SALVAR' | translate }}
+            </button>
+        </mat-card>
+    </div>
+</form>
