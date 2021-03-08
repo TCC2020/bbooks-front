@@ -1,0 +1,45 @@
+<form [formGroup]="formCreatePublicProfile">
+    <div class="container-geral">
+        <div class="linha-input">
+            <h2>Nome do Perfil</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>Nome do Perfil</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="linha-input">
+            <h2>Descrição</h2>
+            <mat-form-field appearance="outline">
+                <mat-label>Descrição</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+        </div>
+        <div>
+            <button type="button"
+                    mat-raised-button
+                    color="primary"
+                    (click)="createPublicProfile()">
+                Criar Perfil Público
+            </button>
+            <!--<div class="botoes-editar-do-create">
+                <button
+                        type="button"
+                        mat-raised-button
+                        color="primary"
+                        *ngIf="competitionTO"
+                        [disabled]="this.formCreateLiterary.invalid"
+                        (click)="editLiterary()">
+                    {{ 'COMPETICAO_LITERARIA.EDITAR' | translate }}
+                </button>
+                <button
+                        type="button"
+                        mat-raised-button
+                        *ngIf="competitionTO"
+                        [disabled]="this.formCreateLiterary.invalid"
+                        [routerLink]="['/literary-competition/' + competitionTO.id]">
+                    {{ 'COMPETICAO_LITERARIA.CANCELAR' | translate }}
+                </button>
+            </div>-->
+        </div>
+    </div>
+</form>

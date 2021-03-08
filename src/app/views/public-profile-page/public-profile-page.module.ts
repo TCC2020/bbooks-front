@@ -7,12 +7,15 @@ import {AboutPublicProfileComponent} from './about-public-profile/about-public-p
 import {PublicProfilePageRoutingModule} from './public-profile-page.routing.module';
 import {MaterialModule} from '../../material/material.module';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
+import {CreatePublicProfileComponent} from './create-public-profile/create-public-profile.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
         PublicProfileComponent,
         FeedPublicProfileComponent,
-        AboutPublicProfileComponent
+        AboutPublicProfileComponent,
+        CreatePublicProfileComponent
     ],
     imports: [
         CommonModule,
@@ -20,7 +23,9 @@ import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
         MaterialModule,
         FlexLayoutModule,
         FlexModule,
-        PublicProfilePageRoutingModule
+        PublicProfilePageRoutingModule,
+        FormsModule,
+        ReactiveFormsModule
     ]
 })
 export class PublicProfilePageModule {

@@ -3,19 +3,24 @@ import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {AboutPublicProfileComponent} from './about-public-profile/about-public-profile.component';
 import {FeedPublicProfileComponent} from './feed-public-profile/feed-public-profile.component';
+import {CreatePublicProfileComponent} from './create-public-profile/create-public-profile.component';
 
 const publicProfileRouters = [
     {
-        path: 'perfil-publico',
+        path: 'perfil-publico/:id',
         component: PublicProfileComponent,
         children: [
             {
-                path: 'about', component: AboutPublicProfileComponent
+                path: 'feed', component: FeedPublicProfileComponent
             },
             {
-                path: 'feed', component: FeedPublicProfileComponent
+                path: 'about', component: AboutPublicProfileComponent
             }
         ]
+    },
+    {
+        path: 'perfil-publico/criar-perfil-publico',
+        component: CreatePublicProfileComponent
     }
 ];
 
@@ -24,4 +29,5 @@ const publicProfileRouters = [
     imports: [RouterModule.forChild(publicProfileRouters)],
     exports: [RouterModule]
 })
-export class PublicProfilePageRoutingModule { }
+export class PublicProfilePageRoutingModule {
+}
