@@ -18,6 +18,8 @@ import {UploadComponent} from '../../upload/upload.component';
 import {FeedGroupManagerService} from '../../groups/store/feed-group-manager.service';
 import {GroupService} from '../../../services/group.service';
 import {GroupTO} from '../../../models/GroupTO.model';
+import {ReactionType} from '../../../models/enums/ReactionType.enum';
+import {ReactTO} from '../../../models/ReactTO.model';
 
 @Component({
     selector: 'app-reactions',
@@ -36,13 +38,13 @@ export class ReactionsComponent implements OnInit {
     icon = 'fa-thumbs-up';
 
     listReactions = [
-        {reaction: 'Aaarg', icon: 'fa-angry'},
-        {reaction: 'Triste', icon: 'fa-sad-tear'},
-        {reaction: 'Surpreso', icon: 'fa-surprise'},
-        {reaction: 'Hilário', icon: 'fa-laugh-squint'},
-        {reaction: 'Amei', icon: 'fa-heart'},
-        {reaction: 'Não Gostei', icon: 'fa-thumbs-down'},
-        {reaction: 'Gostei', icon: 'fa-thumbs-up'}
+        {reaction: 'Aaarg', icon: 'fa-angry', type: ReactionType.hated },
+        {reaction: 'Triste', icon: 'fa-sad-tear', type: ReactionType.sad},
+        {reaction: 'Surpreso', icon: 'fa-surprise', type: ReactionType.surprised},
+        {reaction: 'Hilário', icon: 'fa-laugh-squint', type: ReactionType.hilarius},
+        {reaction: 'Amei', icon: 'fa-heart', type: ReactionType.loved},
+        {reaction: 'Não Gostei', icon: 'fa-thumbs-down', type: ReactionType.dislike},
+        {reaction: 'Gostei', icon: 'fa-thumbs-up', type: ReactionType.like}
     ];
 
     public formComment: FormGroup;
@@ -72,6 +74,8 @@ export class ReactionsComponent implements OnInit {
         this.getGroup();
         this.createForm();
         this.comments = this.post?.comments?.map(c => this.feedGenerec.convertToNewPost(c));
+        // this.listReactions[0] = Object.assign(this.post.reactions.hated, this.listReactions[0]);
+        console.log(this.post);
     }
 
     private createForm(): void {
@@ -102,9 +106,10 @@ export class ReactionsComponent implements OnInit {
         });
     }
 
-    changeReaction(reaction: string, icon: string) {
+    changeReaction(reaction: string, icon: string, type: ReactionType) {
         this.reaction = reaction;
         this.icon = icon;
+        this.react(type);
     }
 
 
@@ -220,7 +225,6 @@ export class ReactionsComponent implements OnInit {
                 return;
             case TypePostControler.group:
                 this.feedGroupManagerService.addComment(postTo, comment);
-
                 return;
         }
     }
@@ -305,7 +309,21 @@ export class ReactionsComponent implements OnInit {
                 });
         }
     }
+
     isGroupRouter(): boolean {
         return this.router.url.includes('group');
+    }
+
+    react(type: ReactionType): void {
+        const react = new ReactTO();
+        react.postId = this.post.id;
+        react.reactionType = type;
+        this.postService.react(react)
+            .pipe(take(1))
+            .subscribe(result => {
+                console.log(result);
+            }, error => {
+                console.log('error', error);
+            });
     }
 }

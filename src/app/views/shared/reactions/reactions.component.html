@@ -58,10 +58,33 @@
                 <span>{{ reaction }}</span>
             </button>
             <mat-menu #reacoes="matMenu" yPosition="above">
-                <button *ngFor="let reac of listReactions" mat-menu-item
-                        (click)="changeReaction(reac.reaction, reac.icon)">
-                    <i id="lista-reacoes" class="far {{ reac.icon }} fa-lg"></i>
-                    <span>{{ reac.reaction }}</span>
+                <button mat-menu-item>
+                    <i style="margin: 0 5px 0 0;" class="far fa-thumbs-up fa-lg"></i>
+                    <span>{{ post.reactions.likes.type }}</span>
+                </button>
+                <button mat-menu-item>
+                    <i  class="far fa-thumbs-down fa-lg" style="margin: 0 5px 0 0;"></i>
+                    <span>{{ post.reactions.dislike.type }}</span>
+                </button>
+                <button mat-menu-item>
+                    <i  class="far fa-heart fa-lg" style="margin: 0 5px 0 0;"></i>
+                    <span>{{ post.reactions.loved.type }}</span>
+                </button>
+                <button mat-menu-item>
+                    <i  class="far fa-laugh-squint fa-lg" style="margin: 0 5px 0 0;"></i>
+                    <span>{{ post.reactions.hilarius.type }}</span>
+                </button>
+                <button mat-menu-item>
+                    <i  class="far fa-surprise fa-lg" style="margin: 0 5px 0 0;"></i>
+                    <span>{{ post.reactions.surprised.type }}</span>
+                </button>
+                <button mat-menu-item>
+                    <i  class="far fa-sad-tear fa-lg" style="margin: 0 5px 0 0;"></i>
+                    <span>{{ post.reactions.sad.type }}</span>
+                </button>
+                <button mat-menu-item>
+                    <i  class="far fa-angry fa-lg" style="margin: 0 5px 0 0;"></i>
+                    <span>{{ post.reactions.hated.type }}</span>
                 </button>
             </mat-menu>
             <button mat-button class="button-test-post">
