@@ -19,7 +19,11 @@ const publicProfileRouters = [
         ]
     },
     {
-        path: 'perfil-publico/criar-perfil-publico',
+        path: 'public-profile/criar',
+        component: CreatePublicProfileComponent
+    },
+    {
+        path: 'perfil-publico/:id/edit',
         component: CreatePublicProfileComponent
     }
 ];

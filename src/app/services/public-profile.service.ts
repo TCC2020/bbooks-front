@@ -36,7 +36,7 @@ export class PublicProfileService {
   }
 
   update(userPublicProfileUpdateTO: UserPublicProfileUpdateTO): Observable<UserPublicProfileTO> {
-    return this.http.put<UserPublicProfileTO>(this.api + userPublicProfileUpdateTO.id, userPublicProfileUpdateTO);
+    return this.http.put<UserPublicProfileTO>(this.api, userPublicProfileUpdateTO);
   }
 
   follow(publicProfileId: string): Observable<any> {

@@ -1,6 +1,6 @@
 <div class="container-grupo" *ngIf="!publicProfileTO">
     <div class="criar-perfil-publico">
-        <button type="button" mat-raised-button color="primary" [routerLink]="['criar-perfil-publico']">Criar Perfil
+        <button type="button" mat-raised-button color="primary" [routerLink]="['/public-profile/criar']">Criar Perfil
             Público
         </button>
     </div>
@@ -17,7 +17,7 @@
                         class="material-icons">queue</span>Seguir
                 </button>
                 <button type="button" mat-raised-button color="primary" *ngIf="!isOwner && isFollower" (click)="unfollowPublicProfile()"><span
-                        class="material-icons">queue</span>Deixar de seguir
+                        class="material-icons">library_add_check</span>Deixar de seguir
                 </button>
             </div>
         </div>

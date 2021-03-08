@@ -16,6 +16,8 @@ import {GoogleBooksService} from 'src/app/services/google-books.service';
 import {GroupMemberService} from '../../services/group-member.service';
 import {GroupInviteTO} from '../../models/GroupInviteTO.model';
 import {Util} from '../../views/shared/Utils/util';
+import {PublicProfileService} from '../../services/public-profile.service';
+import {UserPublicProfileTO} from '../../models/UserPublicProfileTO.model';
 
 @Component({
     selector: 'app-nav-bar',
@@ -29,6 +31,8 @@ export class NavBarComponent implements OnInit {
     requests: FriendRequest[];
     recommendations: BookRecommendationTO[];
     invitesGroup: GroupInviteTO[];
+    publicProfileTO: UserPublicProfileTO;
+    publicProfileId = '';
 
     constructor(
         public auth: AuthService,
@@ -40,7 +44,8 @@ export class NavBarComponent implements OnInit {
         private profileService: ProfileService,
         private bookService: BookService,
         private gBookService: GoogleBooksService,
-        public groupMembersService: GroupMemberService
+        public groupMembersService: GroupMemberService,
+        private publicProfileService: PublicProfileService
     ) {
         translate.addLangs(['pt-BR', 'en']);
         translate.setDefaultLang('pt-BR');
@@ -58,6 +63,7 @@ export class NavBarComponent implements OnInit {
         this.refreshRequest();
         this.getRecommendations();
         this.getInvitesGroup();
+        this.getPublicProfileByUser();
     }
 
     refreshRequest() {
@@ -224,6 +230,15 @@ export class NavBarComponent implements OnInit {
                     Util.showErrorDialog(message);
                 });
                 console.log('error refuse invite group', error);
+            });
+    }
+
+    getPublicProfileByUser() {
+        this.publicProfileService.getByUserId(this.auth.getUser().id)
+            .pipe(take(1))
+            .subscribe(result => {
+                this.publicProfileTO = result;
+                this.publicProfileId = result.id;
             });
     }
 }

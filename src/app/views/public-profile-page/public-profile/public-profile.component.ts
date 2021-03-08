@@ -51,7 +51,7 @@ export class PublicProfileComponent implements OnInit {
             });
     }
 
-    /*getPublicProfile() {
+    getPublicProfile() {
       this.publicProfileService.getByUserId(this.authService.getUser().id)
           .pipe(take(1))
           .subscribe(result => {
@@ -59,7 +59,7 @@ export class PublicProfileComponent implements OnInit {
           }, error => {
             console.log(error);
           });
-    }*/
+    }
 
     verifyIsFollower() {
         this.publicProfileService.getById(this.publicProfileId)

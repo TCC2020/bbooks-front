@@ -18,28 +18,27 @@
             <button type="button"
                     mat-raised-button
                     color="primary"
+                    *ngIf="!userPublicProfileCreateTO"
                     (click)="createPublicProfile()">
                 Criar Perfil Público
             </button>
-            <!--<div class="botoes-editar-do-create">
+            <div class="botoes-editar-do-create">
                 <button
                         type="button"
                         mat-raised-button
                         color="primary"
-                        *ngIf="competitionTO"
-                        [disabled]="this.formCreateLiterary.invalid"
-                        (click)="editLiterary()">
-                    {{ 'COMPETICAO_LITERARIA.EDITAR' | translate }}
+                        *ngIf="userPublicProfileCreateTO"
+                        (click)="editPublicProfile()">
+                    Editar
                 </button>
                 <button
                         type="button"
                         mat-raised-button
-                        *ngIf="competitionTO"
-                        [disabled]="this.formCreateLiterary.invalid"
-                        [routerLink]="['/literary-competition/' + competitionTO.id]">
-                    {{ 'COMPETICAO_LITERARIA.CANCELAR' | translate }}
+                        *ngIf="userPublicProfileCreateTO"
+                        [routerLink]="['/perfil-publico/' + userPublicProfileCreateTO?.id]">
+                    Cancelar
                 </button>
-            </div>-->
+            </div>
         </div>
     </div>
 </form>
