@@ -19,6 +19,7 @@ import {take} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
 import {zip} from 'rxjs';
 import {Util} from '../Utils/util';
+import {DateAdapter} from '@angular/material/core';
 
 @Component({
     selector: 'app-book-add-dialog',
@@ -49,7 +50,8 @@ export class BookAddDialogComponent implements OnInit {
         private userbookService: UserbookService,
         private authService: AuthService,
         private tagService: TagService,
-        public translate: TranslateService,
+        private adapter: DateAdapter<any>,
+        private translate: TranslateService
     ) {
         this.Book = data.book;
         this.tagsBook = [];
@@ -65,6 +67,12 @@ export class BookAddDialogComponent implements OnInit {
         this.updateLanguageStatus();
         dialogRef.beforeClosed().subscribe(() => {
             this.data.book.status = this.getStatusToUserBookClose();
+        });
+
+        const browserLang = this.translate.getBrowserLang().toString();
+        this.adapter.setLocale(browserLang);
+        this.authService.language.subscribe(lang => {
+            this.adapter.setLocale(lang);
         });
     }
 
