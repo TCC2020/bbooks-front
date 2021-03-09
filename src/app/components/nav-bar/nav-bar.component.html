@@ -154,4 +154,14 @@
             </div>
         </mat-menu>
     </div>
+
+    <button mat-button [matMenuTriggerFor]="afterMenu" *ngIf="!isLogged">
+        <span class="material-icons">
+            language
+        </span>
+    </button>
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item (click)="switchLang('pt-BR')">{{'NAV.PORTUGUES' | translate}}</button>
+        <button mat-menu-item (click)="switchLang('en')">{{'NAV.INGLES' | translate}}</button>
+    </mat-menu>
 </mat-toolbar>

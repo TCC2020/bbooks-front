@@ -12,6 +12,8 @@ import {
 } from './actions/feed-group.actions';
 import {FeedService} from '../../../services/feed.service';
 import {PostService} from '../../../services/post.service';
+import {PostReactionTO} from '../../../models/PostReactionTO.model';
+import {UpdatePostFeedMain} from '../../feed-page/store/actions/feed-main.actions';
 
 
 
@@ -74,5 +76,11 @@ export class FeedGroupManagerService {
         const post = this.feedGenericService.convertToNewPost(p);
         post.comments = p.comments.filter(c => c.id !== comment.id);
         this.store.dispatch(new UpdatePostFeedGroup(post));
+    }
+
+    updateReactions(postTo: PostTO, postReactionTO: PostReactionTO) {
+        const post = this.feedGenericService.convertToNewPost(postTo);
+        post.reactions = postReactionTO.reactions;
+        this.store.dispatch(new UpdatePostFeedMain(post));
     }
 }

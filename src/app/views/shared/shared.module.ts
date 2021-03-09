@@ -21,6 +21,7 @@ import {TextareaAutoresizeDirective} from './directive/textarea-autoresize.direc
 import {SearchBookComponent} from './search-book/search-book.component';
 import {BarCodeScannerComponent} from './bar-code-scanner/bar-code-scanner.component';
 import {ZXingScannerModule} from '@zxing/ngx-scanner';
+import {ViewAllReactionsComponent} from './view-all-reactions/view-all-reactions.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {ZXingScannerModule} from '@zxing/ngx-scanner';
         PostCreateComponent,
         TextareaAutoresizeDirective,
         SearchBookComponent,
-        BarCodeScannerComponent
+        BarCodeScannerComponent,
+        ViewAllReactionsComponent
     ],
     imports: [
         CommonModule,

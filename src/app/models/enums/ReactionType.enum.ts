@@ -7,3 +7,13 @@ export enum ReactionType {
     sad= 'sad',
     hated= 'hated'
 }
+
+export const reactionsTypes = [
+    ReactionType.like,
+    ReactionType.dislike,
+    ReactionType.loved,
+    ReactionType.hilarius,
+    ReactionType.surprised,
+    ReactionType.sad,
+    ReactionType.hated
+];

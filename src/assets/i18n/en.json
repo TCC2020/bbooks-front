@@ -229,7 +229,9 @@
     "feed": "feed",
     "bookcase": "bookcase",
     "friends": "friends",
-    "EDITAR_PERFIL": "edit profile"
+    "EDITAR_PERFIL": "edit profile",
+    "PERFIL": "Profile"
+
   },
   "PG_N_ENCONTRADA": {
     "PG_N_ENCONTRADA": "Page not found",

@@ -49,6 +49,18 @@
             <img [src]="post?.image" class="imagePost">
         </div>
         <br>
+        <div fxlayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+            <i class="far fa-thumbs-up fa-lg" *ngIf="post.reactions.likes.count > 0"></i>
+            <i class="far fa-thumbs-down fa-lg" *ngIf="post.reactions.dislike.count > 0"></i>
+            <i class="far fa-heart fa-lg" *ngIf="post.reactions.loved.count > 0"></i>
+            <i class="far fa-laugh-squint fa-lg" *ngIf="post.reactions.hilarius.count > 0"></i>
+            <i class="far fa-surprise fa-lg" *ngIf="post.reactions.surprised.count > 0"></i>
+            <i class="far fa-sad-tear fa-lg" *ngIf="post.reactions.sad.count > 0"></i>
+            <i class="far fa-angry fa-lg" *ngIf="post.reactions.hated.count > 0"></i>
+            <div class="totalReactions" (click)="openAllReactionsDialog()">
+                {{post.reactions.count}}
+            </div>
+        </div>
         <div fxLayout="row" fxLayoutAlign="space-around center">
             <mat-divider></mat-divider>
         </div>
@@ -58,31 +70,31 @@
                 <span>{{ reaction }}</span>
             </button>
             <mat-menu #reacoes="matMenu" yPosition="above">
-                <button mat-menu-item>
+                <button mat-menu-item (click)="changeReaction('fa-thumbs-up', post.reactions.likes.type)">
                     <i style="margin: 0 5px 0 0;" class="far fa-thumbs-up fa-lg"></i>
                     <span>{{ post.reactions.likes.type }}</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="changeReaction('fa-thumbs-down', post.reactions.dislike.type)">
                     <i  class="far fa-thumbs-down fa-lg" style="margin: 0 5px 0 0;"></i>
                     <span>{{ post.reactions.dislike.type }}</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="changeReaction('fa-heart', post.reactions.loved.type)">
                     <i  class="far fa-heart fa-lg" style="margin: 0 5px 0 0;"></i>
                     <span>{{ post.reactions.loved.type }}</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="changeReaction('fa-laugh-squint', post.reactions.hilarius.type)">
                     <i  class="far fa-laugh-squint fa-lg" style="margin: 0 5px 0 0;"></i>
                     <span>{{ post.reactions.hilarius.type }}</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="changeReaction('fa-surprise', post.reactions.surprised.type)">
                     <i  class="far fa-surprise fa-lg" style="margin: 0 5px 0 0;"></i>
                     <span>{{ post.reactions.surprised.type }}</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="changeReaction('fa-sad-tear', post.reactions.sad.type)">
                     <i  class="far fa-sad-tear fa-lg" style="margin: 0 5px 0 0;"></i>
                     <span>{{ post.reactions.sad.type }}</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="changeReaction('fa-angry', post.reactions.hated.type)">
                     <i  class="far fa-angry fa-lg" style="margin: 0 5px 0 0;"></i>
                     <span>{{ post.reactions.hated.type }}</span>
                 </button>

@@ -115,6 +115,16 @@ textarea::placeholder {
 .linkPerfil{
   cursor: pointer;
 }
+.totalReactions {
+  color: #414141;
+  margin: 0 0 0 6px;
+}
+
+.totalReactions:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
   .commentView{
     max-width: 260px;
@@ -135,4 +145,8 @@ textarea::placeholder {
   .mainPost{
     max-width: 346px;
   }
+  ::ng-deep.mat-dialog-container{
+    padding: 5px !important;
+  }
 }
+

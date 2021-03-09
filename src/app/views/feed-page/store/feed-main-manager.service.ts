@@ -11,6 +11,7 @@ import {
     UpdatePostFeedMain
 } from './actions/feed-main.actions';
 import {FeedGenericService} from '../../../services/feed-generic.service';
+import {PostReactionTO} from '../../../models/PostReactionTO.model';
 
 
 @Injectable({
@@ -63,6 +64,11 @@ export class FeedMainManagerService {
     updateComment(p: PostTO, comment: PostTO): void {
         const post = this.feedGenericService.convertToNewPost(p);
         post.comments = p.comments.map(r => r.id !== comment.id ? r : comment);
+        this.store.dispatch(new UpdatePostFeedMain(post));
+    }
+    updateReactions(p: PostTO, postReactionTO: PostReactionTO): void {
+        const post = this.feedGenericService.convertToNewPost(p);
+        post.reactions = postReactionTO.reactions;
         this.store.dispatch(new UpdatePostFeedMain(post));
     }
 

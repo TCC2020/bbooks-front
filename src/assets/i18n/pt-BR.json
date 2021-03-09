@@ -226,7 +226,8 @@
     "feed": "feed",
     "bookcase": "Estante Virtual",
     "friends": "Amigos",
-    "EDITAR_PERFIL": "editar perfil"
+    "EDITAR_PERFIL": "editar perfil",
+    "PERFIL": "Perfil"
   },
   "PG_N_ENCONTRADA": {
     "PG_N_ENCONTRADA": "Página não encontrada",

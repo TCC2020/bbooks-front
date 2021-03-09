@@ -20,6 +20,8 @@ import {GroupService} from '../../../services/group.service';
 import {GroupTO} from '../../../models/GroupTO.model';
 import {ReactionType} from '../../../models/enums/ReactionType.enum';
 import {ReactTO} from '../../../models/ReactTO.model';
+import {ViewAllReactionsComponent} from '../view-all-reactions/view-all-reactions.component';
+import {PostReactionTO} from '../../../models/PostReactionTO.model';
 
 @Component({
     selector: 'app-reactions',
@@ -34,7 +36,7 @@ export class ReactionsComponent implements OnInit {
     @Output() postOutput = new EventEmitter<any>();
     @Input() userPost: UserTO;
 
-    reaction = 'Gostei';
+    reaction = ReactionType.like;
     icon = 'fa-thumbs-up';
 
     listReactions = [
@@ -75,7 +77,6 @@ export class ReactionsComponent implements OnInit {
         this.createForm();
         this.comments = this.post?.comments?.map(c => this.feedGenerec.convertToNewPost(c));
         // this.listReactions[0] = Object.assign(this.post.reactions.hated, this.listReactions[0]);
-        console.log(this.post);
     }
 
     private createForm(): void {
@@ -106,10 +107,21 @@ export class ReactionsComponent implements OnInit {
         });
     }
 
-    changeReaction(reaction: string, icon: string, type: ReactionType) {
-        this.reaction = reaction;
+    changeReaction(icon: string, type: ReactionType) {
+        this.reaction = type;
         this.icon = icon;
-        this.react(type);
+        const react = new ReactTO();
+        react.postId = this.post.id;
+        react.reactionType = type;
+        Util.loadingScreen();
+        this.postService.react(react)
+            .pipe(take(1))
+            .subscribe(result => {
+                Util.stopLoading();
+                this.updateReactionsPostRedux(this.typePostControler, this.post, result);
+            }, error => {
+                console.log('error', error);
+            });
     }
 
 
@@ -242,6 +254,19 @@ export class ReactionsComponent implements OnInit {
                 return;
         }
     }
+    updateReactionsPostRedux(typePostController: TypePostControler, postTo: PostTO, postReactionTO: PostReactionTO) {
+        switch (typePostController) {
+            case TypePostControler.feed:
+                this.feedMainManagerService.updateReactions(postTo, postReactionTO);
+                return;
+            case TypePostControler.feedPerfil:
+                this.feedPerfilManageService.updateReactions(postTo, postReactionTO);
+                return;
+            case TypePostControler.group:
+                this.feedGroupManagerService.updateReactions(postTo, postReactionTO);
+                return;
+        }
+    }
 
     redirectRouterPost(post?: PostTO) {
         switch (this.typePostControler) {
@@ -314,16 +339,16 @@ export class ReactionsComponent implements OnInit {
         return this.router.url.includes('group');
     }
 
-    react(type: ReactionType): void {
-        const react = new ReactTO();
-        react.postId = this.post.id;
-        react.reactionType = type;
-        this.postService.react(react)
-            .pipe(take(1))
-            .subscribe(result => {
-                console.log(result);
-            }, error => {
-                console.log('error', error);
-            });
+
+    openAllReactionsDialog(): void {
+        const dialogRef = this.dialog.open(ViewAllReactionsComponent, {
+            height: '450px',
+            width: '500px',
+            data: this.post.reactions,
+        });
+        dialogRef.afterClosed()
+            .pipe().subscribe(() => {
+
+        });
     }
 }
