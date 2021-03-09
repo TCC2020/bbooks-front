@@ -383,6 +383,18 @@
     "COMENTAR": "Comment",
     "COMPARTILHAR": "Share"
   },
+  "PERFIL_PUBLICO": {
+    "SOBRE": "About",
+    "SEGUIDORES": "followers",
+    "DESCRICAO_PERFIL": "Profile Description",
+    "DATA_CRIACAO": "Created Date",
+    "EDITAR": "Edit",
+    "CANCELAR": "Cancel",
+    "CRIAR_PERFIL": "Create Public Profile",
+    "NOME_PERFIL": "Profile Name",
+    "SEGUIR": "Follow",
+    "DEIXAR_SEGUIR": "Unfollow"
+  },
   "SEARCH": {
     "people": "people",
     "groups": "groups",
