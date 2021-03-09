@@ -16,6 +16,8 @@ import {GroupMemberService} from '../../../services/group-member.service';
 import {of, throwError} from 'rxjs';
 import {groupMembersListMock} from '../../../mocks/group-members.mock';
 import {groupMock, groupsMock} from '../../../mocks/group.mock';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('YourGroupComponent', () => {
     let component: YourGroupComponent;
@@ -27,7 +29,8 @@ describe('YourGroupComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [YourGroupComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [YourGroupComponent, EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 ReactiveFormsModule,

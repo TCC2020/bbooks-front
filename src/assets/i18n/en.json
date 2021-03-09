@@ -85,7 +85,8 @@
     "BOOK_REMOVED_TARGET": "Book removed from the Reading target.",
     "BAR_CODE_ERRO": "You denied the camera permission, we can't scan anything without it.",
     "WAIT_PERMISSIONS": "Waiting for permissions.",
-    "NOT_HAS_CAMERA": "If your device does not has cameras, no permissions will be asked."
+    "NOT_HAS_CAMERA": "If your device does not has cameras, no permissions will be asked.",
+    "NOT_FIND_RESULT": "We didn't find any results."
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -122,8 +123,9 @@
     "REMOVER_MEMBRO": "Remove member",
     "ADM_NOW": "Member added as an administrator!",
     "MEMBER_NOW": "Added Administrator as a member",
-    "MEMBRO_REMOVIDO": "Removed member"
-
+    "MEMBRO_REMOVIDO": "Removed member",
+    "VC_NAO_TEM_GRUPO": "You haven't joined any groups yet!",
+    "GRUPO_EXISTS": "Group name already exists."
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -223,13 +225,16 @@
     "ANO_PUBLICACAO": "Year of publication",
     "TITULO": "Tittle",
     "AUTORES": "Authors",
-    "INSIRA_UM_LIVRO": "Insert a new book"
+    "INSIRA_UM_LIVRO": "Insert a new book",
+    "MSG_DONT_TARGET": "You don't have a book in your Reading Target yet."
   },
   "PERFIL": {
     "feed": "feed",
     "bookcase": "bookcase",
     "friends": "friends",
-    "EDITAR_PERFIL": "edit profile"
+    "EDITAR_PERFIL": "edit profile",
+    "PERFIL": "Profile"
+
   },
   "PG_N_ENCONTRADA": {
     "PG_N_ENCONTRADA": "Page not found",
@@ -444,6 +449,19 @@
     "TITULO": "Tittle",
     "CONTATO": "Contact is",
     "TROCAR_LIVRO": "Exchange book",
-    "POSTADO_POR": "Posted by"
+    "POSTADO_POR": "Posted by",
+    "NOT_SENT_EXCHANGE": "You have not yet added any exchange proposals.",
+    "NOT_RECEIVE_EXCHANGE": "You have not yet received any exchange offers."
+  },
+  "REACTIONS": {
+    "like": "like",
+    "dislike": "dislike",
+    "loved": "loved",
+    "hilarius": "hilarius",
+    "surprised": "surprised",
+    "sad": "sad",
+    "hated": "hated",
+    "TODOS": "All"
+
   }
 }

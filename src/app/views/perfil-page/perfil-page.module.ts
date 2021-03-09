@@ -40,7 +40,7 @@ import {reducer} from './store/reducers/feed.reducer';
         FormsModule,
         ReactiveFormsModule,
         InfiniteScrollModule,
-        StoreModule.forFeature('feed', reducer),
+        StoreModule.forFeature('feedProfile', reducer),
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,

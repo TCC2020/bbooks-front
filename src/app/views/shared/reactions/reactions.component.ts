@@ -14,10 +14,14 @@ import {TypePostControler} from '../../../models/enums/TypePost.enum';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FeedMainManagerService} from '../../feed-page/store/feed-main-manager.service';
 import {FeedGenericService} from '../../../services/feed-generic.service';
-import {UploadComponent} from '../../upload/upload.component';
 import {FeedGroupManagerService} from '../../groups/store/feed-group-manager.service';
 import {GroupService} from '../../../services/group.service';
 import {GroupTO} from '../../../models/GroupTO.model';
+import {ReactionType} from '../../../models/enums/ReactionType.enum';
+import {ReactTO} from '../../../models/ReactTO.model';
+import {ViewAllReactionsComponent} from '../view-all-reactions/view-all-reactions.component';
+import {PostReactionTO} from '../../../models/PostReactionTO.model';
+import {ActorAction} from '../../../models/ReactionsTO';
 
 @Component({
     selector: 'app-reactions',
@@ -32,17 +36,17 @@ export class ReactionsComponent implements OnInit {
     @Output() postOutput = new EventEmitter<any>();
     @Input() userPost: UserTO;
 
-    reaction = 'Gostei';
+    reaction = ReactionType.like;
     icon = 'fa-thumbs-up';
-
+    reactionsType = ReactionType;
     listReactions = [
-        {reaction: 'Aaarg', icon: 'fa-angry'},
-        {reaction: 'Triste', icon: 'fa-sad-tear'},
-        {reaction: 'Surpreso', icon: 'fa-surprise'},
-        {reaction: 'Hilário', icon: 'fa-laugh-squint'},
-        {reaction: 'Amei', icon: 'fa-heart'},
-        {reaction: 'Não Gostei', icon: 'fa-thumbs-down'},
-        {reaction: 'Gostei', icon: 'fa-thumbs-up'}
+        {reaction: 'Aaarg', icon: 'fa-angry', type: ReactionType.hated },
+        {reaction: 'Triste', icon: 'fa-sad-tear', type: ReactionType.sad},
+        {reaction: 'Surpreso', icon: 'fa-surprise', type: ReactionType.surprised},
+        {reaction: 'Hilário', icon: 'fa-laugh-squint', type: ReactionType.hilarius},
+        {reaction: 'Amei', icon: 'fa-heart', type: ReactionType.loved},
+        {reaction: 'Não Gostei', icon: 'fa-thumbs-down', type: ReactionType.dislike},
+        {reaction: 'Gostei', icon: 'fa-thumbs-up', type: ReactionType.like}
     ];
 
     public formComment: FormGroup;
@@ -72,6 +76,10 @@ export class ReactionsComponent implements OnInit {
         this.getGroup();
         this.createForm();
         this.comments = this.post?.comments?.map(c => this.feedGenerec.convertToNewPost(c));
+        this.reaction =
+            this.post?.reactions?.actorAction?.reactionType ?
+                this.post?.reactions?.actorAction?.reactionType : ReactionType.like;
+        // this.listReactions[0] = Object.assign(this.post.reactions.hated, this.listReactions[0]);
     }
 
     private createForm(): void {
@@ -102,9 +110,23 @@ export class ReactionsComponent implements OnInit {
         });
     }
 
-    changeReaction(reaction: string, icon: string) {
-        this.reaction = reaction;
+    changeReaction(icon: string, type: ReactionType) {
+        this.reaction = type;
         this.icon = icon;
+        const react = new ReactTO();
+        react.postId = this.post.id;
+        react.reactionType = type;
+        Util.loadingScreen();
+        this.postService.react(react)
+            .pipe(take(1))
+            .subscribe(result => {
+                Util.stopLoading();
+                result.reactions.actorAction = new ActorAction();
+                result.reactions.actorAction.reactionType = react.reactionType;
+                this.updateReactionsPostRedux(this.typePostControler, this.post, result);
+            }, error => {
+                console.log('error', error);
+            });
     }
 
 
@@ -220,7 +242,6 @@ export class ReactionsComponent implements OnInit {
                 return;
             case TypePostControler.group:
                 this.feedGroupManagerService.addComment(postTo, comment);
-
                 return;
         }
     }
@@ -238,11 +259,24 @@ export class ReactionsComponent implements OnInit {
                 return;
         }
     }
+    updateReactionsPostRedux(typePostController: TypePostControler, postTo: PostTO, postReactionTO: PostReactionTO) {
+        switch (typePostController) {
+            case TypePostControler.feed:
+                this.feedMainManagerService.updateReactions(postTo, postReactionTO);
+                return;
+            case TypePostControler.feedPerfil:
+                this.feedPerfilManageService.updateReactions(postTo, postReactionTO);
+                return;
+            case TypePostControler.group:
+                this.feedGroupManagerService.updateReactions(postTo, postReactionTO);
+                return;
+        }
+    }
 
     redirectRouterPost(post?: PostTO) {
         switch (this.typePostControler) {
             case TypePostControler.feed:
-                this.router.navigate(['/create-post'], {state: {post}});
+                this.router.navigate(['feed/create-post'], {state: {post}});
                 return;
             case TypePostControler.feedPerfil:
                 this.router.navigate([this.user.userName + '/create-post'], {state: {post}});
@@ -305,7 +339,21 @@ export class ReactionsComponent implements OnInit {
                 });
         }
     }
+
     isGroupRouter(): boolean {
         return this.router.url.includes('group');
+    }
+
+
+    openAllReactionsDialog(): void {
+        const dialogRef = this.dialog.open(ViewAllReactionsComponent, {
+            height: '450px',
+            width: '500px',
+            data: this.post.reactions,
+        });
+        dialogRef.afterClosed()
+            .pipe().subscribe(() => {
+
+        });
     }
 }

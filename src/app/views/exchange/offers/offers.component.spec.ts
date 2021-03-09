@@ -10,6 +10,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BookAdsService} from '../../../services/book-ads.service';
 import {TranslateServiceMockForRoot} from '../../../mocks/translate.service.mock';
 import {FilterAsyncPipe} from '../pipes/filter-async.pipe';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
 
 describe('OffersComponent', () => {
     let component: OffersComponent;
@@ -17,7 +19,9 @@ describe('OffersComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [OffersComponent, FilterAsyncPipe],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [OffersComponent, FilterAsyncPipe,
+                EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 RouterTestingModule,

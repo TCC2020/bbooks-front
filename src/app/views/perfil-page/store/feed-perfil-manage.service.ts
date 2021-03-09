@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {PostTO} from '../../../models/PostTO.model';
 import {AddPost, ClearRedux, DeletePost, GetPosts, UpdatePage, UpdatePost} from './actions/feed.actions';
 import {FeedGenericService} from '../../../services/feed-generic.service';
+import {PostReactionTO} from '../../../models/PostReactionTO.model';
+import {UpdatePostFeedMain} from '../../feed-page/store/actions/feed-main.actions';
 
 
 @Injectable({
@@ -18,7 +20,7 @@ export class FeedPerfilManageService {
         public feedGenericService: FeedGenericService
     ) {
         this.feedState = this.store.select(
-            'feed'
+            'feedProfile'
         );
     }
 
@@ -65,5 +67,11 @@ export class FeedPerfilManageService {
         const post = this.feedGenericService.convertToNewPost(p);
         post.comments = p.comments.filter(c => c.id !== comment.id);
         this.store.dispatch(new UpdatePost(post));
+    }
+
+    updateReactions(postTo: PostTO, postReactionTO: PostReactionTO) {
+        const post = this.feedGenericService.convertToNewPost(postTo);
+        post.reactions = postReactionTO.reactions;
+        this.store.dispatch(new UpdatePostFeedMain(post));
     }
 }

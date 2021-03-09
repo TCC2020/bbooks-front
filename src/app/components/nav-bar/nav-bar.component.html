@@ -1,10 +1,16 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" style="padding: 0 8px;">
     <span routerLink="{{isLogged ? '/feed' : ''}}">
         <img class="iconbbooks"src="assets/images/logobboks.png">
     </span>
     <span class="example-spacer"></span>
     <button *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;" routerLink="/book">
         <mat-icon>menu_book</mat-icon>
+    </button>
+    <button  *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;"  [routerLink]="['/literary-competition']">
+        <mat-icon>emoji_events</mat-icon>
+    </button>
+    <button *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/exchange']">
+        <mat-icon>compare_arrows</mat-icon>
     </button>
     <button *ngIf="!isLogged" mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/login']">
         {{'PADRAO.ENTRAR' | translate}}
@@ -105,9 +111,6 @@
     </div>
 
     <div *ngIf="isLogged">
-        <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/exchange']">
-            <mat-icon>compare_arrows</mat-icon>
-        </button>
         <button  mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/search']">
             <mat-icon>search</mat-icon>
         </button>
@@ -138,11 +141,6 @@
                 <span>Perfil Público</span>
             </div>
 
-            <div mat-menu-item [routerLink]="['/literary-competition']">
-                <mat-icon>emoji_events</mat-icon>
-                <span>Competição Literária</span>
-            </div>
-
             <div mat-menu-item [matMenuTriggerFor]="languages">
                 <mat-icon>language</mat-icon>
                 <span>{{'PADRAO.IDIOMA' | translate}}</span>
@@ -158,4 +156,14 @@
             </div>
         </mat-menu>
     </div>
+
+    <button mat-button [matMenuTriggerFor]="afterMenu" *ngIf="!isLogged">
+        <span class="material-icons">
+            language
+        </span>
+    </button>
+    <mat-menu #afterMenu="matMenu" xPosition="after">
+        <button mat-menu-item (click)="switchLang('pt-BR')">{{'NAV.PORTUGUES' | translate}}</button>
+        <button mat-menu-item (click)="switchLang('en')">{{'NAV.INGLES' | translate}}</button>
+    </mat-menu>
 </mat-toolbar>

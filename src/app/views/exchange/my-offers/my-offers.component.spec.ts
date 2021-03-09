@@ -14,6 +14,8 @@ import {errorMock} from '../../../mocks/error.model.mock';
 import {bookAdMock, bookAdsMock} from '../../../mocks/book-ad.mock';
 import {BookAdsService} from '../../../services/book-ads.service';
 import {of, throwError} from 'rxjs';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
 
 describe('MyOffersComponent', () => {
     let component: MyOffersComponent;
@@ -24,7 +26,8 @@ describe('MyOffersComponent', () => {
     let bookAdsServiceMock;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [MyOffersComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [MyOffersComponent, EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 RouterTestingModule,

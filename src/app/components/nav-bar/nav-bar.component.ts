@@ -32,7 +32,7 @@ export class NavBarComponent implements OnInit {
     recommendations: BookRecommendationTO[];
     invitesGroup: GroupInviteTO[];
     publicProfileId = '';
-
+    timer;
     constructor(
         public auth: AuthService,
         private router: Router,
@@ -66,9 +66,9 @@ export class NavBarComponent implements OnInit {
     }
 
     refreshRequest() {
-        setInterval(() => {
+        this.timer = setInterval(() => {
             this.getRequests();
-        }, 2000);
+        }, 3000);
     }
 
     getRequests() {
@@ -77,6 +77,12 @@ export class NavBarComponent implements OnInit {
                     this.requests = requests;
                 },
                 error => {
+                    this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                        Util.showErrorDialog(message);
+                    });
+                    clearInterval(this.timer);
+                    this.auth.logout();
+                    this.router.navigateByUrl('/login');
                     console.log('error getRequests', error);
                 });
         }

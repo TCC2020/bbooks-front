@@ -15,6 +15,8 @@ import {of, throwError} from 'rxjs';
 import {bookAdMock} from '../../../mocks/book-ad.mock';
 import {exchangeMock, exchangesMock} from '../../../mocks/exchange.mock';
 import {errorMock} from '../../../mocks/error.model.mock';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
 
 describe('ExchangeSentComponent', () => {
     let component: ExchangeSentComponent;
@@ -25,7 +27,8 @@ describe('ExchangeSentComponent', () => {
     let exchangeServiceMock: ExchangeService;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ExchangeSentComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [ExchangeSentComponent, EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 RouterTestingModule,

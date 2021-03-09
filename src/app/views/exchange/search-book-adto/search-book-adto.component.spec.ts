@@ -13,6 +13,8 @@ import {FilterAsyncPipe} from '../pipes/filter-async.pipe';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {of} from 'rxjs';
 import {bookMock} from '../../../mocks/book.model.mock';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
 
 describe('SearchBookAdtoComponent', () => {
     let component: SearchBookAdtoComponent;
@@ -37,7 +39,8 @@ describe('SearchBookAdtoComponent', () => {
     };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SearchBookAdtoComponent, FilterAsyncPipe],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [SearchBookAdtoComponent, FilterAsyncPipe, EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 RouterTestingModule,

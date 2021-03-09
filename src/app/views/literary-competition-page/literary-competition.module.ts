@@ -16,6 +16,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {CreateStoryComponent} from './create-story/create-story.component';
 import {RegistrationsComponent} from './registrations/registrations.component';
 import {AddAdministratorComponent} from './add-administrator/add-administrator.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {AddAdministratorComponent} from './add-administrator/add-administrator.c
         ReactiveFormsModule,
         TranslateModule,
         LiteraryCompetitionRoutingModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        SharedModule
     ]
 })
 export class LiteraryCompetitionModule {
