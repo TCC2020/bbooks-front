@@ -17,6 +17,7 @@ import {AuthService} from '../../../services/auth.service';
 import {userMock} from '../../../mocks/user.model.mock';
 import {GroupMembers, Id} from '../../../models/GroupMembers.model';
 import {Role} from '../../../models/enums/Role.enum';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('ReadingGroupComponent', () => {
     let component: ReadingGroupComponent;
@@ -43,7 +44,9 @@ describe('ReadingGroupComponent', () => {
                 HttpClientTestingModule,
                 TranslateServiceMockForChild,
                 RouterTestingModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                FormsModule,
+                ReactiveFormsModule
             ],
             providers: [
                 TranslateService,
