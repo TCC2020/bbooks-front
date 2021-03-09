@@ -34,14 +34,16 @@ describe('OfferViewComponent', () => {
     const routeMock = {
         snapshot: {
             paramMap: {
-                    get: jest.fn(() => 'sdfafafasfsadf')
-                }
+                get: jest.fn(() => 'sdfafafasfsadf')
+            }
         },
         parent: new MockActivatedRoute({
             params: {id: 'teste'}
         }),
         data: of({groupTo: groupMock})
     };
+
+
     let bookAdsServiceMock;
     let booksServiceMock: BookService;
     let gBookServiceMock: GoogleBooksService;
@@ -72,7 +74,7 @@ describe('OfferViewComponent', () => {
                 {
                     provide: ActivatedRoute,
                     useValue: routeMock
-                },
+                }
             ]
         }).compileComponents();
         bookAdsServiceMock = TestBed.inject(BookAdsService);
