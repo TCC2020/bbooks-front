@@ -18,13 +18,23 @@
             </div>
             <div class="dados-membro">
                 <p>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</p>
-                <button (click)="acceptMember(member?.memberId)" type="button"
-                        mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.ACEITAR' | translate }}
-                </button>
-                <button (click)="recuseMember(member?.memberId)" type="button"
-                        mat-raised-button>{{ 'COMPETICAO_LITERARIA.RECUSAR' | translate }}
-                </button>
+                <div *ngIf="member?.story" style="margin-bottom: 10px">
+                    <button (click)="acceptMember(member?.memberId)" type="button"
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.ACEITAR' | translate }}
+                    </button>
+                    <button (click)="recuseMember(member?.memberId)" type="button"
+                            mat-raised-button>{{ 'COMPETICAO_LITERARIA.RECUSAR' | translate }}
+                    </button>
+                </div>
+                <div *ngIf="member?.story">
+                    <button [routerLink]="['/literary-competition/' + member.memberId + '/story']"
+                            type="button"
+                            mat-raised-button color="primary">Ver história
+                    </button>
+                </div>
+                <p *ngIf="!member?.story">O usuário ainda não enviou a história.</p>
             </div>
+
         </div>
     </div>
 </div>

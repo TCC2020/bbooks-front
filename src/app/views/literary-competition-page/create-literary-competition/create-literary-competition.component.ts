@@ -18,6 +18,7 @@ export class CreateLiteraryCompetitionComponent implements OnInit {
 
     formCreateLiterary: FormGroup;
     competitionTO: CompetitionTO;
+    minDate = new Date();
 
     constructor(
         private formBuilder: FormBuilder,

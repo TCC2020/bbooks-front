@@ -142,10 +142,12 @@ export class LiteraryCompetitionComponent implements OnInit {
             });
     }
 
-    convertDate(date: Date): boolean {
-        if (this.dataAtual <= Date.parse(date.toString())) {
-            return true;
+    verifyDate(date: Date): boolean {
+        if (date) {
+            if (this.dataAtual <= Date.parse(date.toString())) {
+                return true;
+            }
+            return false;
         }
-        return false;
     }
 }
