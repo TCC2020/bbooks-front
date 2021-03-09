@@ -123,7 +123,9 @@
     "ADM_NOW": "Membro adicionado como administrador!",
     "MEMBER_NOW": "Administrador adicionado como membro",
     "MEMBRO_REMOVIDO": "Membro removido",
-    "VC_NAO_TEM_GRUPO": "Você ainda não participa de nenhum grupo!"
+    "VC_NAO_TEM_GRUPO": "Você ainda não participa de nenhum grupo!",
+    "GRUPO_EXISTS": "O nome do grupo já existe."
+
   },
   "RESENHA": {
     "ESCREVER_RESENHA": "Escrever resenha",
@@ -448,5 +450,14 @@
     "POSTADO_POR": "Postado por",
     "NOT_SENT_EXCHANGE": "Você ainda não enviou nenhuma proposta de troca.",
     "NOT_RECEIVE_EXCHANGE": "Você ainda não recebeu nenhuma proposta de troca."
+  },
+  "REACTIONS": {
+    "like": "Gostei",
+    "dislike": "Não gostei",
+    "loved": "Amei",
+    "hilarius": "Hilário",
+    "surprised": "Surpreso",
+    "sad": "Triste",
+    "hated": "Odiei"
   }
 }

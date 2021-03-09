@@ -124,7 +124,8 @@
     "ADM_NOW": "Member added as an administrator!",
     "MEMBER_NOW": "Added Administrator as a member",
     "MEMBRO_REMOVIDO": "Removed member",
-    "VC_NAO_TEM_GRUPO": "You haven't joined any groups yet!"
+    "VC_NAO_TEM_GRUPO": "You haven't joined any groups yet!",
+    "GRUPO_EXISTS": "Group name already exists."
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -451,6 +452,14 @@
     "POSTADO_POR": "Posted by",
     "NOT_SENT_EXCHANGE": "You have not yet added any exchange proposals.",
     "NOT_RECEIVE_EXCHANGE": "You have not yet received any exchange offers."
-
+  },
+  "REACTIONS": {
+    "like": "like",
+    "dislike": "dislike",
+    "loved": "loved",
+    "hilarius": "hilarius",
+    "surprised": "surprised",
+    "sad": "sad",
+    "hated": "hated"
   }
 }

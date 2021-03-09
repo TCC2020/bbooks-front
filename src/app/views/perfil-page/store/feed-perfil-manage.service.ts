@@ -20,7 +20,7 @@ export class FeedPerfilManageService {
         public feedGenericService: FeedGenericService
     ) {
         this.feedState = this.store.select(
-            'feed'
+            'feedProfile'
         );
     }
 

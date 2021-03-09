@@ -14,7 +14,6 @@ import {TypePostControler} from '../../../models/enums/TypePost.enum';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FeedMainManagerService} from '../../feed-page/store/feed-main-manager.service';
 import {FeedGenericService} from '../../../services/feed-generic.service';
-import {UploadComponent} from '../../upload/upload.component';
 import {FeedGroupManagerService} from '../../groups/store/feed-group-manager.service';
 import {GroupService} from '../../../services/group.service';
 import {GroupTO} from '../../../models/GroupTO.model';
@@ -22,6 +21,7 @@ import {ReactionType} from '../../../models/enums/ReactionType.enum';
 import {ReactTO} from '../../../models/ReactTO.model';
 import {ViewAllReactionsComponent} from '../view-all-reactions/view-all-reactions.component';
 import {PostReactionTO} from '../../../models/PostReactionTO.model';
+import {ActorAction} from '../../../models/ReactionsTO';
 
 @Component({
     selector: 'app-reactions',
@@ -38,7 +38,7 @@ export class ReactionsComponent implements OnInit {
 
     reaction = ReactionType.like;
     icon = 'fa-thumbs-up';
-
+    reactionsType = ReactionType;
     listReactions = [
         {reaction: 'Aaarg', icon: 'fa-angry', type: ReactionType.hated },
         {reaction: 'Triste', icon: 'fa-sad-tear', type: ReactionType.sad},
@@ -76,6 +76,9 @@ export class ReactionsComponent implements OnInit {
         this.getGroup();
         this.createForm();
         this.comments = this.post?.comments?.map(c => this.feedGenerec.convertToNewPost(c));
+        this.reaction =
+            this.post?.reactions?.actorAction?.reactionType ?
+                this.post?.reactions?.actorAction?.reactionType : ReactionType.like;
         // this.listReactions[0] = Object.assign(this.post.reactions.hated, this.listReactions[0]);
     }
 
@@ -118,6 +121,8 @@ export class ReactionsComponent implements OnInit {
             .pipe(take(1))
             .subscribe(result => {
                 Util.stopLoading();
+                result.reactions.actorAction = new ActorAction();
+                result.reactions.actorAction.reactionType = react.reactionType;
                 this.updateReactionsPostRedux(this.typePostControler, this.post, result);
             }, error => {
                 console.log('error', error);
@@ -271,7 +276,7 @@ export class ReactionsComponent implements OnInit {
     redirectRouterPost(post?: PostTO) {
         switch (this.typePostControler) {
             case TypePostControler.feed:
-                this.router.navigate(['/create-post'], {state: {post}});
+                this.router.navigate(['feed/create-post'], {state: {post}});
                 return;
             case TypePostControler.feedPerfil:
                 this.router.navigate([this.user.userName + '/create-post'], {state: {post}});

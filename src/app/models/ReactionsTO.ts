@@ -1,4 +1,5 @@
 import {ReactionsByType} from './ReactionsByType.model';
+import {ReactionType} from './enums/ReactionType.enum';
 
 export class ReactionsTO {
     count: number;
@@ -9,4 +10,8 @@ export class ReactionsTO {
     surprised: ReactionsByType;
     sad: ReactionsByType;
     hated: ReactionsByType;
+    actorAction: ActorAction;
+}
+export class ActorAction {
+    reactionType: ReactionType;
 }
