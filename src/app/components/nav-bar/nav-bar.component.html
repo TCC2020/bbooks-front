@@ -133,6 +133,10 @@
                 <mat-icon>donut_large</mat-icon>
                 <span>{{'PADRAO.ANDAMENTO_META' | translate}}</span>
             </div>
+            <div mat-menu-item  [routerLink]="['/perfil-publico/' + publicProfileId]">
+                <mat-icon>verified</mat-icon>
+                <span>Perfil Público</span>
+            </div>
 
             <div mat-menu-item [routerLink]="['/literary-competition']">
                 <mat-icon>emoji_events</mat-icon>

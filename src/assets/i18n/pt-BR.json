@@ -378,6 +378,18 @@
     "COMENTAR": "Comentar",
     "COMPARTILHAR": "Compartilhar"
   },
+  "PERFIL_PUBLICO": {
+    "SOBRE": "Sobre",
+    "SEGUIDORES": "seguidores",
+    "DESCRICAO_PERFIL": "Descrição do Perfil",
+    "DATA_CRIACAO": "Data de criação",
+    "EDITAR": "Editar",
+    "CANCELAR": "Cancelar",
+    "CRIAR_PERFIL": "Criar Perfil Público",
+    "NOME_PERFIL": "Nome do Perfil",
+    "SEGUIR": "Seguir",
+    "DEIXAR_SEGUIR": "Deixar de seguir"
+  },
   "SEARCH": {
     "people": "pessoas",
     "groups": "grupos",
