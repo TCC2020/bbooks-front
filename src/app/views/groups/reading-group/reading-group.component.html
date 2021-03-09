@@ -15,7 +15,7 @@
                                 class="material-icons">save</span></button>
                     </div>
                     <p>{{'GRUPO_LEITURA.GRUPO' | translate}} {{'PADRAO.' + mapPostPrivacy.get(groupTO.privacy) | translate}}
-                        - 30 {{'GRUPO_LEITURA.MEMBROS' | translate}}</p>
+                        - {{ members.length }} {{'GRUPO_LEITURA.MEMBROS' | translate}}</p>
 
                 </div>
                 <div class="botao-convidar-grupo" *ngIf="isAdmin">

@@ -29,6 +29,7 @@ export class ReadingGroupComponent implements OnInit {
     isMember = false;
     isEditing = false;
     formGroup: FormGroup;
+    members: GroupMembers[] = [];
 
     constructor(
         public router: Router,
@@ -50,6 +51,7 @@ export class ReadingGroupComponent implements OnInit {
             this.verifyUserIsAdm();
         });
         this.createForm();
+        this.getMembers();
     }
 
     createForm() {
@@ -138,6 +140,16 @@ export class ReadingGroupComponent implements OnInit {
             .pipe(take(1))
             .subscribe(result => {
                 Util.showSuccessDialog('Nome alterado com sucesso!');
+            }, error => {
+                console.log(error);
+            });
+    }
+
+    getMembers() {
+        this.groupMemberService.getGroupMembers(this.groupTO.id)
+            .pipe(take(1))
+            .subscribe(result => {
+                this.members = result;
             }, error => {
                 console.log(error);
             });
