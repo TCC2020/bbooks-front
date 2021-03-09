@@ -57,6 +57,7 @@ import { ListLiteraryCompetitionComponent } from './views/literary-competition-p
 import { BooksSearchComponent } from './views/search/books-search/books-search.component';
 import {LiteraryCompetitionModule} from './views/literary-competition-page/literary-competition.module';
 import { BarCodeScannerComponent } from './views/shared/bar-code-scanner/bar-code-scanner.component';
+import { VoteComponent } from './views/literary-competition-page/vote/vote.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');

@@ -91,7 +91,7 @@
                             mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.ESCREVER_HISTORIA' | translate }}
                     </button>
                     <button *ngIf="isMember && member?.story"
-                            [routerLink]="['/literary-competition/' + member.memberId + '/story']" type="button"
+                            (click)="openDialogSeeStory(member)" type="button"
                             mat-raised-button color="primary">Ver história
                     </button>
                 </div>

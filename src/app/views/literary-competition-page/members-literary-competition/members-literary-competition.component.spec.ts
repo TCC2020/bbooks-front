@@ -9,10 +9,17 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {AuthService} from '../../../services/auth.service';
+import {userMock} from '../../../mocks/user.model.mock';
 
 describe('MembersLiteraryCompetitionComponent', () => {
     let component: MembersLiteraryCompetitionComponent;
     let fixture: ComponentFixture<MembersLiteraryCompetitionComponent>;
+
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
+    };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -30,7 +37,12 @@ describe('MembersLiteraryCompetitionComponent', () => {
             ],
             providers: [
                 TranslateStore,
-                TranslateService
+                TranslateService,
+                SocialAuthServiceConfigMock,
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                }
             ]
         })
             .compileComponents();

@@ -19,7 +19,15 @@
                 <p>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</p>
                 <p>{{ member?.role }}</p>
                 <button type="button" mat-raised-button color="primary"
-                        [routerLink]="['/literary-competition/' + member?.memberId + '/story']">{{ 'COMPETICAO_LITERARIA.VER_HISTORIA' | translate }}
+                        (click)="openDialogSeeStory(member)">{{ 'COMPETICAO_LITERARIA.VER_HISTORIA' | translate }}
+                </button>
+                <button type="button" mat-raised-button color="primary"
+                        *ngIf="verifyDate(member?.competitionTO?.subscriptionFinalDate, member?.competitionTO?.finalDate) && !verifyUser(member?.profile?.id)"
+                        (click)="openDialogVote(member)">Votar
+                </button>
+                <button type="button" mat-raised-button color="primary"
+                        *ngIf="verifyDate(member?.competitionTO?.subscriptionFinalDate, member?.competitionTO?.finalDate) && !verifyUser(member?.profile?.id)"
+                        (click)="openDialogVote(member)">Alterar Voto
                 </button>
             </div>
         </div>
