@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {ReactionsTO} from '../../../models/ReactionsTO';
-import {reactionsTypes, ReactionType} from '../../../models/enums/ReactionType.enum';
+import {ReactionType} from '../../../models/enums/ReactionType.enum';
 
 
 @Component({
