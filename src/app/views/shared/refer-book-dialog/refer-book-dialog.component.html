@@ -14,6 +14,9 @@
         </mat-form-field>
     </form>
     <!--começa card-->
+    <app-empty-content-message *ngIf="filterUsers?.length === 0"
+                               message=" {{'PADRAO.NOT_FRIEND' | translate }}">
+    </app-empty-content-message>
     <div class="container-amigo" *ngFor="let user of filterUsers">
         <div class="container-imagem">
             <div>
@@ -44,7 +47,4 @@
         </div>
         <mat-divider></mat-divider>
     </div>
-    <mat-card *ngIf="filterUsers?.length === 0" class="not-find">
-        {{'PADRAO.NOT_FRIEND' | translate}}
-    </mat-card>
 </div>

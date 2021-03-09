@@ -22,6 +22,7 @@ import {SearchBookComponent} from './search-book/search-book.component';
 import {BarCodeScannerComponent} from './bar-code-scanner/bar-code-scanner.component';
 import {ZXingScannerModule} from '@zxing/ngx-scanner';
 import {ViewAllReactionsComponent} from './view-all-reactions/view-all-reactions.component';
+import {EmptyContentMessageComponent} from './empty-content-message/empty-content-message.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {ViewAllReactionsComponent} from './view-all-reactions/view-all-reactions
         TextareaAutoresizeDirective,
         SearchBookComponent,
         BarCodeScannerComponent,
-        ViewAllReactionsComponent
+        ViewAllReactionsComponent,
+        EmptyContentMessageComponent
     ],
     imports: [
         CommonModule,
@@ -70,6 +72,8 @@ import {ViewAllReactionsComponent} from './view-all-reactions/view-all-reactions
         TextareaAutoresizeDirective,
         SearchBookComponent,
         BarCodeScannerComponent,
+        ViewAllReactionsComponent,
+        EmptyContentMessageComponent
     ],
     providers: []
 })

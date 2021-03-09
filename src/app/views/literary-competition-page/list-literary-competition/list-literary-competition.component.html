@@ -15,6 +15,9 @@
                 </button>
             </mat-form-field>
         </div>
+        <app-empty-content-message *ngIf="!loading && competitions?.length === 0"
+                                   message=" {{'PADRAO.NOT_FIND_RESULT' | translate }}">
+        </app-empty-content-message>
         <div class="botao-criar-competicao">
             <button type="button" mat-raised-button color="primary" [routerLink]="['/literary-competition/create']">
                 <mat-icon>add</mat-icon>

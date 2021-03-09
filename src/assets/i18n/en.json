@@ -85,7 +85,8 @@
     "BOOK_REMOVED_TARGET": "Book removed from the Reading target.",
     "BAR_CODE_ERRO": "You denied the camera permission, we can't scan anything without it.",
     "WAIT_PERMISSIONS": "Waiting for permissions.",
-    "NOT_HAS_CAMERA": "If your device does not has cameras, no permissions will be asked."
+    "NOT_HAS_CAMERA": "If your device does not has cameras, no permissions will be asked.",
+    "NOT_FIND_RESULT": "We didn't find any results."
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -122,8 +123,8 @@
     "REMOVER_MEMBRO": "Remove member",
     "ADM_NOW": "Member added as an administrator!",
     "MEMBER_NOW": "Added Administrator as a member",
-    "MEMBRO_REMOVIDO": "Removed member"
-
+    "MEMBRO_REMOVIDO": "Removed member",
+    "VC_NAO_TEM_GRUPO": "You haven't joined any groups yet!"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
@@ -447,6 +448,9 @@
     "TITULO": "Tittle",
     "CONTATO": "Contact is",
     "TROCAR_LIVRO": "Exchange book",
-    "POSTADO_POR": "Posted by"
+    "POSTADO_POR": "Posted by",
+    "NOT_SENT_EXCHANGE": "You have not yet added any exchange proposals.",
+    "NOT_RECEIVE_EXCHANGE": "You have not yet received any exchange offers."
+
   }
 }
