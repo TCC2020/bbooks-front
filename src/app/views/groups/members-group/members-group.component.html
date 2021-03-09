@@ -19,7 +19,7 @@
             <div class="informacoes-do-usuario" *ngFor="let member of filterMembers(); let i= index">
                 <div>
                     <img class="imagem-perfil"
-                         src="https://image.flaticon.com/icons/png/512/1361/1361728.png"/>
+                         [src]="member?.user?.profile?.profileImage ? member.user.profile.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
                 </div>
                 <div class="informacoes">
                     <div><span><a class="nome-usuario"></a>@{{member?.user?.userName}}</span></div>
