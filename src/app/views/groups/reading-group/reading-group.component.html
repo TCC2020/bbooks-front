@@ -1,21 +1,34 @@
 <div class="container-grupo">
-    <div class="container-cabecalho-grupo">
-        <div class="container-detalhes-cabecalho">
-            <div class="informacoes-grupo">
-                <h1>{{groupTO?.name}}</h1>
-                <p>{{'GRUPO_LEITURA.GRUPO' | translate}} {{'PADRAO.' + mapPostPrivacy.get(groupTO.privacy) | translate}}
-                    - 30 {{'GRUPO_LEITURA.MEMBROS' | translate}}</p>
-            </div>
-            <div class="botao-convidar-grupo" *ngIf="isAdmin">
-                <button type="button" mat-raised-button color="primary" (click)="openDialogReferBook()"><span
-                        class="material-icons">add</span>{{'GRUPO_LEITURA.CONVIDAR' | translate}}</button>
-            </div>
-            <div class="botao-convidar-grupo" *ngIf="groupTO.privacy.toString() === 'public_all' && !this.isMember">
-                <button type="button" mat-raised-button color="primary" (click)="enterGroup()"><span
-                        class="material-icons">add</span>{{'PADRAO.ENTER_' | translate}}</button>
+    <form [formGroup]="formGroup">
+        <div class="container-cabecalho-grupo">
+            <div class="container-detalhes-cabecalho">
+                <div class="informacoes-grupo">
+                    <div class="alterar-titulo">
+                        <h1 *ngIf="!isEditing">{{groupTO?.name}}</h1>
+                        <mat-form-field appearance="outline" *ngIf="isEditing">
+                            <mat-label>Nome do Grupo</mat-label>
+                            <input matInput formControlName="name" matInput type="text">
+                        </mat-form-field>
+                        <button class="botao-edit" *ngIf="isAdmin && !isEditing" (click)="changeToEdit()"><span
+                                class="material-icons">edit</span></button>
+                        <button class="botao-edit" *ngIf="isAdmin && isEditing" (click)="update()"><span
+                                class="material-icons">save</span></button>
+                    </div>
+                    <p>{{'GRUPO_LEITURA.GRUPO' | translate}} {{'PADRAO.' + mapPostPrivacy.get(groupTO.privacy) | translate}}
+                        - 30 {{'GRUPO_LEITURA.MEMBROS' | translate}}</p>
+
+                </div>
+                <div class="botao-convidar-grupo" *ngIf="isAdmin">
+                    <button type="button" mat-raised-button color="primary" (click)="openDialogReferBook()"><span
+                            class="material-icons">add</span>{{'GRUPO_LEITURA.CONVIDAR' | translate}}</button>
+                </div>
+                <div class="botao-convidar-grupo" *ngIf="groupTO.privacy.toString() === 'public_all' && !this.isMember">
+                    <button type="button" mat-raised-button color="primary" (click)="enterGroup()"><span
+                            class="material-icons">add</span>{{'PADRAO.ENTER_' | translate}}</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
     <div>
         <nav mat-tab-nav-bar mat-align-tabs="center" style="background-color: white">
             <a mat-tab-link *ngFor="let link of links"

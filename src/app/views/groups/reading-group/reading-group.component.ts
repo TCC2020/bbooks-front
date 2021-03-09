@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {GroupTO} from '../../../models/GroupTO.model';
 import {Util} from '../../shared/Utils/util';
 import {take} from 'rxjs/operators';
-import {mapPostPrivacyStrinView} from '../../../models/enums/PostPrivacy.enum';
+import {mapPostPrivacyStrinView, PostPrivacy} from '../../../models/enums/PostPrivacy.enum';
 import {GroupMemberService} from '../../../services/group-member.service';
 import {GroupMembers} from '../../../models/GroupMembers.model';
 import {AuthService} from '../../../services/auth.service';
@@ -12,6 +12,8 @@ import {TranslateService} from '@ngx-translate/core';
 import {ReferBookDialogComponent} from '../../shared/refer-book-dialog/refer-book-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {GroupInviteTO} from '../../../models/GroupInviteTO.model';
+import {GroupService} from '../../../services/group.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-reading-group',
@@ -25,6 +27,9 @@ export class ReadingGroupComponent implements OnInit {
     public mapPostPrivacy = mapPostPrivacyStrinView;
     isAdmin = false;
     isMember = false;
+    isEditing = false;
+    formGroup: FormGroup;
+
     constructor(
         public router: Router,
         private route: ActivatedRoute,
@@ -32,6 +37,8 @@ export class ReadingGroupComponent implements OnInit {
         private authService: AuthService,
         private translate: TranslateService,
         public dialog: MatDialog,
+        private groupService: GroupService,
+        private formBuilder: FormBuilder
     ) {
     }
 
@@ -41,6 +48,18 @@ export class ReadingGroupComponent implements OnInit {
             Util.stopLoading();
             this.groupTO = data.groupTo;
             this.verifyUserIsAdm();
+        });
+        this.createForm();
+    }
+
+    createForm() {
+        this.formGroup = this.formBuilder.group({
+            id: new FormControl(this.groupTO ? this.groupTO.id : null),
+            userId: new FormControl(this.groupTO ? this.groupTO.userId : null),
+            name: new FormControl(this.groupTO ? this.groupTO.name : null, Validators.required),
+            description: new FormControl(this.groupTO ? this.groupTO.description : null),
+            privacy: new FormControl(this.groupTO ? this.groupTO.privacy : null),
+            creationDate: new FormControl(this.groupTO ? this.groupTO.creationDate : null)
         });
     }
 
@@ -104,7 +123,23 @@ export class ReadingGroupComponent implements OnInit {
 
         });
     }
+
     hasFeedRouter(): boolean {
         return this.router.url.includes('feed');
+    }
+
+    changeToEdit(): void {
+        this.isEditing = !this.isEditing;
+    }
+
+    update() {
+        this.changeToEdit();
+        this.groupService.update(this.formGroup.value)
+            .pipe(take(1))
+            .subscribe(result => {
+                Util.showSuccessDialog('Nome alterado com sucesso!');
+            }, error => {
+                console.log(error);
+            });
     }
 }
