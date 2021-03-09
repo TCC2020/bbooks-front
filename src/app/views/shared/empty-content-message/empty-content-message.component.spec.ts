@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {EmptyContentMessageComponent} from './empty-content-message.component';
+import {MaterialModule} from '../../../material/material.module';
 
 describe('EmptyContentMessageComponent', () => {
     let component: EmptyContentMessageComponent;
@@ -8,7 +9,10 @@ describe('EmptyContentMessageComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [EmptyContentMessageComponent]
+            declarations: [EmptyContentMessageComponent],
+            imports: [
+                MaterialModule
+            ]
         })
             .compileComponents();
     }));
