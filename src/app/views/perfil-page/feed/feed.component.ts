@@ -48,7 +48,7 @@ export class FeedComponent implements OnInit, OnDestroy {
         this.feedRedux$ = this.feedPerfilManage.getFeed();
         this.feedRedux$.subscribe(r => {
             console.log(r);
-        })
+        });
     }
 
     onScroll() {

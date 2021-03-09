@@ -10,7 +10,6 @@ import {reactionsTypes, ReactionType} from '../../../models/enums/ReactionType.e
   styleUrls: ['./view-all-reactions.component.scss']
 })
 export class ViewAllReactionsComponent implements OnInit {
-  //reactions = reactionsTypes;
   reaction = ReactionType;
   allUsers = [];
   constructor(
