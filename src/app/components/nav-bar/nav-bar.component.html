@@ -6,7 +6,7 @@
     <button *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;" routerLink="/book">
         <mat-icon>menu_book</mat-icon>
     </button>
-    <button  mat-flat-button color="primary" style="width: 5vw;"  [routerLink]="['/literary-competition']">
+    <button  *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;"  [routerLink]="['/literary-competition']">
         <mat-icon>emoji_events</mat-icon>
     </button>
     <button *ngIf="isLogged" mat-flat-button color="primary" style="width: 5vw;" [routerLink]="['/exchange']">

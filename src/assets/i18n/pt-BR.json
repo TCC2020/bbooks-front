@@ -220,7 +220,8 @@
     "ANO_PUBLICACAO": "Ano da publicação",
     "TITULO": "Título",
     "AUTORES": "Autores",
-    "INSIRA_UM_LIVRO": "Insira um novo livro"
+    "INSIRA_UM_LIVRO": "Insira um novo livro",
+    "MSG_DONT_TARGET": "Você ainda não possui livro na sua Meta de Leitura."
   },
   "PERFIL": {
     "feed": "feed",

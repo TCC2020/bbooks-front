@@ -223,7 +223,8 @@
     "ANO_PUBLICACAO": "Year of publication",
     "TITULO": "Tittle",
     "AUTORES": "Authors",
-    "INSIRA_UM_LIVRO": "Insert a new book"
+    "INSIRA_UM_LIVRO": "Insert a new book",
+    "MSG_DONT_TARGET": "You don't have a book in your Reading Target yet."
   },
   "PERFIL": {
     "feed": "feed",
