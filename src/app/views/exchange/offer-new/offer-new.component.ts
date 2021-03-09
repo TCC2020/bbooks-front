@@ -174,7 +174,7 @@ export class OfferNewComponent implements OnInit {
             description: new FormControl(this.bookAdTO ? this.bookAdTO.description : null, Validators.required),
             userId: new FormControl(this.authService.getUser().id),
             address: new FormControl(this.bookAdTO ? this.bookAdTO.address : null),
-            contact: new FormControl(this.bookAdTO ? this.bookAdTO.contact : null, Validators.required),
+            contact: new FormControl(this.bookAdTO ? this.bookAdTO.contact : null),
             images: new FormControl(null),
             country: new FormControl(this.bookAdTO ? this.bookAdTO.address.split(';')[0] : '', Validators.required),
             city: new FormControl(this.bookAdTO ? this.bookAdTO.address.split(';')[2] : '', Validators.required),
