@@ -17,15 +17,15 @@
         </div>
 
         <div fxLayout="row" fxLayoutAlign="space-around center">
-            <button mat-button class="button-test-post">
+            <button mat-button class="button-test-post" (click)="openPost()">
                 <mat-icon style="color: #f28b66">assessment</mat-icon>
                 {{'PADRAO.ASK' | translate}}
             </button>
-            <button mat-button class="button-test-post">
+            <button mat-button class="button-test-post" (click)="openPost()">
                 <mat-icon style="color: #394A59">insert_photo</mat-icon>
                 {{'PADRAO.PHOTO' | translate}}
             </button>
-            <button mat-button class="button-test-post">
+            <button mat-button class="button-test-post" (click)="openPost()">
                 <mat-icon style="color: #ca4949">import_contacts</mat-icon>
                 {{'PADRAO.RESENHA' | translate}}
             </button>

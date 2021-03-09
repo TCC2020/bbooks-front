@@ -40,7 +40,7 @@ export class ReactionsComponent implements OnInit {
     icon = 'fa-thumbs-up';
     reactionsType = ReactionType;
     listReactions = [
-        {reaction: 'Aaarg', icon: 'fa-angry', type: ReactionType.hated },
+        {reaction: 'Aaarg', icon: 'fa-angry', type: ReactionType.hated},
         {reaction: 'Triste', icon: 'fa-sad-tear', type: ReactionType.sad},
         {reaction: 'Surpreso', icon: 'fa-surprise', type: ReactionType.surprised},
         {reaction: 'Hilário', icon: 'fa-laugh-squint', type: ReactionType.hilarius},
@@ -76,10 +76,35 @@ export class ReactionsComponent implements OnInit {
         this.getGroup();
         this.createForm();
         this.comments = this.post?.comments?.map(c => this.feedGenerec.convertToNewPost(c));
-        this.reaction =
-            this.post?.reactions?.actorAction?.reactionType ?
-                this.post?.reactions?.actorAction?.reactionType : ReactionType.like;
-        // this.listReactions[0] = Object.assign(this.post.reactions.hated, this.listReactions[0]);
+        if (this.post?.reactions?.actorAction?.reactionType) {
+            this.reaction = this.post?.reactions?.actorAction?.reactionType;
+            switch (this.reaction) {
+                case ReactionType.like:
+                    this.icon = 'fa-thumbs-up';
+                    break;
+                case ReactionType.dislike:
+                    this.icon = 'fa-thumbs-down';
+                    break;
+                case ReactionType.loved:
+                    this.icon = 'fa-heart';
+                    break;
+                case ReactionType.hilarius:
+                    this.icon = 'fa-laugh-squint';
+                    break;
+                case ReactionType.surprised:
+                    this.icon = 'fa-surprise';
+                    break;
+                case ReactionType.sad:
+                    this.icon = 'fa-sad-tear';
+                    break;
+                case ReactionType.hated:
+                    this.icon = 'fa-angry';
+                    break;
+            }
+        } else {
+            this.reaction = ReactionType.like;
+            this.icon = 'fa-thumbs-up';
+        }
     }
 
     private createForm(): void {
@@ -259,6 +284,7 @@ export class ReactionsComponent implements OnInit {
                 return;
         }
     }
+
     updateReactionsPostRedux(typePostController: TypePostControler, postTo: PostTO, postReactionTO: PostReactionTO) {
         switch (typePostController) {
             case TypePostControler.feed:
