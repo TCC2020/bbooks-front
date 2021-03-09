@@ -7,6 +7,8 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {RouterTestingModule} from '@angular/router/testing';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('GroupsSearchComponent', () => {
     let component: GroupsSearchComponent;
@@ -14,7 +16,8 @@ describe('GroupsSearchComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [GroupsSearchComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [GroupsSearchComponent, EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 FormsModule,

@@ -8,6 +8,8 @@ import {TranslateServiceMockForChild} from '../../../mocks/translate.service.moc
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {RouterTestingModule} from '@angular/router/testing';
 import {CompetitionService} from '../../../services/competition.service';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 describe('CompetitionSearchComponent', () => {
     let component: CompetitionSearchComponent;
@@ -15,7 +17,8 @@ describe('CompetitionSearchComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [CompetitionSearchComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [CompetitionSearchComponent, EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 FormsModule,
