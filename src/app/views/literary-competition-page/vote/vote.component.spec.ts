@@ -1,18 +1,24 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {StoryLiteraryCompetitionComponent} from './story-literary-competition.component';
-import {RouterTestingModule} from '@angular/router/testing';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
-import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
-import {of} from 'rxjs';
+import {VoteComponent} from './vote.component';
+import {MaterialModule} from '../../../material/material.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {of} from 'rxjs';
 import {reviewMock} from '../../../mocks/review.model.mock';
 import {bookMock} from '../../../mocks/book.model.mock';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
+import {AuthService} from '../../../services/auth.service';
+import {userMock} from '../../../mocks/user.model.mock';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
-describe('StoryLiteraryCompetitionComponent', () => {
-    let component: StoryLiteraryCompetitionComponent;
-    let fixture: ComponentFixture<StoryLiteraryCompetitionComponent>;
+describe('VoteComponent', () => {
+    let component: VoteComponent;
+    let fixture: ComponentFixture<VoteComponent>;
 
     const mockMatDialog = {
         open: jest.fn(() => {
@@ -27,22 +33,28 @@ describe('StoryLiteraryCompetitionComponent', () => {
         }),
         beforeClosed: jest.fn(() => of([]))
     };
-    const data = {
+    const data = {};
 
+    const authServiceMock = {
+        getUser: jest.fn(() => userMock)
     };
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [StoryLiteraryCompetitionComponent],
+            declarations: [VoteComponent],
             imports: [
-                RouterTestingModule,
+                MaterialModule,
+                FormsModule,
+                ReactiveFormsModule,
                 HttpClientTestingModule,
+                HttpClientModule,
+                BrowserAnimationsModule,
                 TranslateModule,
                 TranslateServiceMockForChild
             ],
             providers: [
-                TranslateStore,
                 TranslateService,
+                TranslateStore,
                 {
                     provide: MatDialog,
                     useValue: mockMatDialog
@@ -55,13 +67,18 @@ describe('StoryLiteraryCompetitionComponent', () => {
                     provide: MatDialogRef,
                     useValue: matDialogRefMock
                 },
+                SocialAuthServiceConfigMock,
+                {
+                    provide: AuthService,
+                    useValue: authServiceMock
+                }
             ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(StoryLiteraryCompetitionComponent);
+        fixture = TestBed.createComponent(VoteComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
