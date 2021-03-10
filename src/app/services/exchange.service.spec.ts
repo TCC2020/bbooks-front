@@ -55,7 +55,7 @@ describe('ExchangeService', () => {
         service.accept(exchangeMock.id)
             .subscribe(() => {
             });
-        const req = httpMock.expectOne(service.api + '/accept/'  + exchangeMock.id);
+        const req = httpMock.expectOne(service.api + 'accept/'  + exchangeMock.id);
         expect(req.request.method).toBe('PUT');
         done();
     });
@@ -64,7 +64,7 @@ describe('ExchangeService', () => {
         service.refuse(exchangeMock.id)
             .subscribe(() => {
             });
-        const req = httpMock.expectOne(service.api + '/refuse/'  + exchangeMock.id);
+        const req = httpMock.expectOne(service.api + 'refuse/'  + exchangeMock.id);
         expect(req.request.method).toBe('PUT');
         done();
     });
@@ -73,7 +73,7 @@ describe('ExchangeService', () => {
         service.cancel(exchangeMock.id)
             .subscribe(() => {
             });
-        const req = httpMock.expectOne(service.api + '/cancel/'  + exchangeMock.id);
+        const req = httpMock.expectOne(service.api + 'cancel/'  + exchangeMock.id);
         expect(req.request.method).toBe('PUT');
         done();
     });
