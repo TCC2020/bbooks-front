@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BehaviorSubject} from 'rxjs';
 import {BarcodeFormat} from '@zxing/library';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 export default BarcodeFormat;
 
@@ -41,10 +42,13 @@ export class BarCodeScannerComponent implements OnInit {
     torchEnabled = false;
     torchAvailable$ = new BehaviorSubject<boolean>(false);
     tryHarder = false;
-
+    isExchange = false;
     constructor(
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        @Inject(MAT_DIALOG_DATA) public data: { isExchange: boolean },
+
     ) {
+        this.data?.isExchange ? this.isExchange = true : this.isExchange = false;
     }
     ngOnInit(): void {
         this.formSearch = this.fb.group({

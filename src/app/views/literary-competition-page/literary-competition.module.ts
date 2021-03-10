@@ -16,6 +16,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {CreateStoryComponent} from './create-story/create-story.component';
 import {RegistrationsComponent} from './registrations/registrations.component';
 import {AddAdministratorComponent} from './add-administrator/add-administrator.component';
+import {VoteComponent} from './vote/vote.component';
 import {SharedModule} from '../shared/shared.module';
 
 
@@ -29,7 +30,8 @@ import {SharedModule} from '../shared/shared.module';
         StoryLiteraryCompetitionComponent,
         CreateStoryComponent,
         RegistrationsComponent,
-        AddAdministratorComponent
+        AddAdministratorComponent,
+        VoteComponent
     ],
     imports: [
         CommonModule,

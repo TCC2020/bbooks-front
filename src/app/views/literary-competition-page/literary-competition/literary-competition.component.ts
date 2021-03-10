@@ -13,6 +13,8 @@ import {AuthService} from '../../../services/auth.service';
 import {Profile} from '../../../models/profileTO.model';
 import {CompetitionMemberSaveTO} from '../../../models/competitionMemberSaveTO.model';
 import {LiteraryMemberStatus} from '../../../models/enums/LiteraryMemberStatus.enum';
+import {StoryLiteraryCompetitionComponent} from '../story-literary-competition/story-literary-competition.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
     selector: 'app-literary-competition',
@@ -30,6 +32,7 @@ export class LiteraryCompetitionComponent implements OnInit {
     isMember = false;
     profile: Profile;
     member: CompetitionMemberTO;
+    dataAtual = Date.now();
 
     constructor(
         private route: ActivatedRoute,
@@ -37,7 +40,8 @@ export class LiteraryCompetitionComponent implements OnInit {
         private competitionMemberService: CompetitionMemberService,
         private profileService: ProfileService,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private dialog: MatDialog
     ) {
     }
 
@@ -118,7 +122,7 @@ export class LiteraryCompetitionComponent implements OnInit {
         Util.loadingScreen();
         this.competitionMemberService.exitMember(this.member.memberId)
             .pipe(take(1))
-            .subscribe( () => {
+            .subscribe(() => {
                 Util.stopLoading();
                 this.isMember = false;
             }, error => {
@@ -139,5 +143,34 @@ export class LiteraryCompetitionComponent implements OnInit {
                 Util.stopLoading();
                 console.log(error);
             });
+    }
+
+    verifyDate(date: Date): boolean {
+        if (date) {
+            if (this.dataAtual <= Date.parse(date.toString())) {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    verifyDateStart(date: Date): boolean {
+        if (date) {
+            if (this.dataAtual <= Date.parse(date.toString())) {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    openDialogSeeStory(member: CompetitionMemberTO) {
+        const dialogRef = this.dialog.open(StoryLiteraryCompetitionComponent, {
+            height: '450px',
+            width: '100%',
+            data: member
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            // this.getBook(result);
+        });
     }
 }

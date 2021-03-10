@@ -1,0 +1,25 @@
+<form [formGroup]="formVote">
+    <div>
+        <h2>{{ 'COMPETICAO_LITERARIA.ATRIBUI_NOTA' | translate }} {{ member?.profile?.name + ' ' + member?.profile?.lastName }}?</h2>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>{{ 'COMPETICAO_LITERARIA.NOTA' | translate }}</mat-label>
+                <input formControlName="value" [min]="1" [max]="10" type="number" matInput>
+                <mat-error *ngIf="formVote.controls['value'].hasError('max')">
+                    {{ 'COMPETICAO_LITERARIA.MAIOR_DEZ' | translate }}
+                </mat-error>
+                <mat-error *ngIf="formVote.controls['value'].hasError('min')">
+                    {{ 'COMPETICAO_LITERARIA.MENOR_UM' | translate }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <button type="button" mat-raised-button color="primary"
+                *ngIf="!competitionVoteReturnTO?.id" (click)="vote()">{{ 'COMPETICAO_LITERARIA.VOTAR' | translate }}
+        </button>
+        <button type="button" mat-raised-button color="primary"
+                *ngIf="competitionVoteReturnTO?.id" (click)="updateVote()">{{ 'COMPETICAO_LITERARIA.ALTERAR_VOTO' | translate }}
+        </button>
+        <button type="button" mat-raised-button (click)="dialogClose()">{{ 'COMPETICAO_LITERARIA.CANCELAR' | translate }}
+        </button>
+    </div>
+</form>

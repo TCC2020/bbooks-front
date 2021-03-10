@@ -1,17 +1,19 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ChatService} from '../../services/chat.service';
-import {take} from 'rxjs/operators';
+import {startWith, switchMap, take} from 'rxjs/operators';
 import {ChatTO} from '../../models/chatTO.model';
+import {interval, Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy, AfterViewInit {
 
     @ViewChild('lastChat') lastChat: ElementRef;
 
+    timeInterval: Subscription;
     chatTO: ChatTO;
 
     constructor(
@@ -20,7 +22,17 @@ export class ChatComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.getChat();
+        this.refresh();
 
+    }
+
+    ngOnDestroy() {
+        this.timeInterval.unsubscribe();
+    }
+
+    ngAfterViewInit() {
+        this.goToDown();
     }
 
     goToDown() {
@@ -37,7 +49,7 @@ export class ChatComponent implements OnInit {
     }
 
     verifyChat() {
-        if (!this.chatTO) {
+        if (!this.chatTO.chatId) {
             this.chatService.createChat('exchangeId')
                 .pipe(take(1))
                 .subscribe(result => {
@@ -52,5 +64,20 @@ export class ChatComponent implements OnInit {
             .subscribe(() => {
                 console.log('Mensagem enviada!');
             });
+    }
+
+    refresh() {
+        if (this.chatTO) {
+            this.timeInterval = interval(500)
+                .pipe(
+                    startWith(0),
+                    switchMap(() => this.chatService.getChat(this.chatTO.chatId))
+                ).subscribe(response => {
+                    console.log(response);
+                    this.chatTO = response;
+                }, error => {
+                    console.log(error);
+                });
+        }
     }
 }

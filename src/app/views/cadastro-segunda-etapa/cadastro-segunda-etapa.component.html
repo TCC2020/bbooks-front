@@ -61,7 +61,7 @@
 
         <mat-form-field class="inputSegundaEtapa" appearance="outline">
             <mat-label>{{'PADRAO.DATA_NASCIMENTO' | translate}}</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="birthDate">
+            <input matInput [matDatepicker]="picker" [max]="dataAtual" formControlName="birthDate">
             <mat-error *ngIf="verificaValidToTouched('birthDate')">
                 {{'CADASTRO2.MSG_DTA_NASC' | translate}} <strong>{{'CADASTRO1.OBRIGATORIO' | translate}}</strong>
             </mat-error>

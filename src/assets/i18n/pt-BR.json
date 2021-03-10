@@ -338,7 +338,18 @@
     "AGUARDE_APROVACAO": "Aguarde aprovação de inscrição",
     "RESULTADO": "Resultado",
     "AGUARDANDO_VENCEDOR": "Aguardando vencedor",
-    "EDITAR_COMPETICAO": "Editar Competição"
+    "EDITAR_COMPETICAO": "Editar Competição",
+    "ADICIONAR": "Adicionar",
+    "TEXTO_ANALISE": "Sua inscrição será aprovada após análise da sua história.",
+    "INSCRICAO_APROVADA": "Inscrição aprovada.",
+    "VOTAR": "Votar",
+    "AGUARDE_APROVAR": "Aguarde o fim das inscrições para aprovar as histórias.",
+    "USUARIO_NAO_ENVIOU": "O usuário ainda não enviou a história.",
+    "ALTERAR_VOTO": "Alterar voto",
+    "ATRIBUI_NOTA": "Qual nota você atribui para",
+    "NOTA": "Nota",
+    "MAIOR_DEZ": "Nota não pode ser maior que 10",
+    "MENOR_UM": "Nota não pode ser menor que 1"
   },
   "MESSAGE_ERROR": {
     "AU001": "Autor não encontrado",
@@ -438,9 +449,17 @@
     "ACEITAR_PROPOSTA": "Aceitar",
     "RECUSAR_PROPOSTA": "Recusar",
     "TROCADO": "Trocado",
+    "ACEITO": "Aceitado",
     "RECUSADO": "Recusado",
+    "INCIAR_CHAT": "Iniciar chat",
+    "TOKEN_SCANNED": "Token escaneado",
+    "NEXT": "PROSSEGUIR",
+    "LER_CODE": "Ler QR code",
+    "GERAR_QR_CODE": "Gerar QR code",
+    "CANCELAR_TROCA": "Cancelar troca",
     "ESCOLHER_LIVRO_E": "Escolher um livro é",
     "CANCELADO": "Cancelado",
+    "PENDENTE": "Pendente",
     "ESCOLHER_UMA_FOTO": "Você precisa enviar pelo menos uma foto",
     "TITULO_OFERTA": "Título para sua oferta",
     "TITULO_OBRIGATORIO": "Título é",
@@ -449,7 +468,17 @@
     "TROCAR_LIVRO": "Trocar livro",
     "POSTADO_POR": "Postado por",
     "NOT_SENT_EXCHANGE": "Você ainda não enviou nenhuma proposta de troca.",
-    "NOT_RECEIVE_EXCHANGE": "Você ainda não recebeu nenhuma proposta de troca."
+    "NOT_RECEIVE_EXCHANGE": "Você ainda não recebeu nenhuma proposta de troca.",
+    "TROCA_EFETUADA": "Troca efetuada com sucesso!",
+    "SUA_PROPOSTA_ENVIADA": "Sua proposta de troca enviada para",
+    "FOI_ACEITA": "foi aceita, combine um lugar para efetuar a troca:",
+    "VOCE_ACEITOU": "Você aceitou a proposta de troca enviada por",
+    "COMBINE_LUGAR_TROCA": ", combine um lugar para efetuar a troca:",
+    "GERE_QR_CODE": "Para realizar a troca, basta gerar o QR Code da troca e pedir que",
+    "ESCANEIE": "escaneie:",
+    "LEIA_QR_CODE": "Para realizar a troca, faça a leitura do QR Code gerado por",
+    "EXPIRA_EM": "Expira em",
+    "LIMPAR": "Limpar"
   },
   "REACTIONS": {
     "like": "Gostei",
@@ -460,5 +489,13 @@
     "sad": "Triste",
     "hated": "Odiei",
     "TODOS": "Todos"
+  },
+  "WHATS": {
+    "HELLO": "Olá",
+    "ACEITEI_SUA_OFERTA": "aceitei+sua+proposta",
+    "VI_ACEITOU": "vi+que+você+aceitou+minha+proposta",
+    "GOSTARIA_MAIS_INFO": "gostaria+de+combinar+um+lugar+para+efetuar+a+troca!",
+    "ENCOTREI_SUA_OFERTA": "encontrei+sua+oferta",
+    "MAIS_INFO": ",+gostaria+de+mais+informações!"
   }
 }

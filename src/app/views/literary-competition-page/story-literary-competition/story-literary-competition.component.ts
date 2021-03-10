@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {map, take} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
 import {CompetitionMemberService} from '../../../services/competition-member.service';
@@ -6,6 +6,7 @@ import {ProfileService} from '../../../services/profile.service';
 import {CompetitionTO} from '../../../models/competitionTO.model';
 import {CompetitionMemberTO} from '../../../models/competitionMemberTO.model';
 import {Util} from '../../shared/Utils/util';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
     selector: 'app-story-literary-competition',
@@ -16,27 +17,18 @@ export class StoryLiteraryCompetitionComponent implements OnInit {
 
     memberId: string;
     members: CompetitionMemberTO[] = [];
-    member: CompetitionMemberTO;
 
     constructor(
+        @Inject(MAT_DIALOG_DATA) public member: CompetitionMemberTO,
         private route: ActivatedRoute,
         private competitionMemberService: CompetitionMemberService,
-        private profileService: ProfileService
+        private profileService: ProfileService,
+        public dialogRef: MatDialogRef<StoryLiteraryCompetitionComponent>,
     ) {
     }
 
     ngOnInit(): void {
-        this.route.params
-            .pipe(
-                map(params => params.id)
-            )
-            .subscribe(result => {
-                    this.memberId = result;
-                    this.getMember();
-                }, error => {
-                    console.log(error);
-                }
-            );
+        this.getProfile();
     }
 
     getMember() {
@@ -52,7 +44,7 @@ export class StoryLiteraryCompetitionComponent implements OnInit {
 
     getProfile() {
         Util.loadingScreen();
-        this.competitionMemberService.getMember(this.memberId)
+        this.competitionMemberService.getMember(this.member.memberId)
             .pipe(take(1))
             .subscribe(result => {
                 Util.stopLoading();
@@ -71,5 +63,9 @@ export class StoryLiteraryCompetitionComponent implements OnInit {
                 console.log(error);
                 Util.stopLoading();
             });
+    }
+
+    dialogClose() {
+        this.dialogRef.close();
     }
 }

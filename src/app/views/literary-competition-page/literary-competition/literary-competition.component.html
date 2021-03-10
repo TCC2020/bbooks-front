@@ -80,22 +80,33 @@
                             type="button"
                             mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.INSCRICOES_PENDENTES' | translate }}
                     </button>
-                    <button *ngIf="!isMember  && !isAdmin" (click)="addMember()" type="button"
+                    <button *ngIf="!isMember  && !isAdmin && verifyDateStart(competitionTO?.subscriptionDate) && verifyDate(competitionTO?.subscriptionFinalDate)" (click)="addMember()" type="button"
                             mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.CLIQUE_INSCREVER' | translate }}
                     </button>
-                    <button *ngIf="isMember" (click)="removeMember()" type="button"
+                    <button *ngIf="isMember && verifyDate(competitionTO?.subscriptionFinalDate)" (click)="removeMember()" type="button"
                             mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.CANCELAR_INSCRICAO' | translate }}
                     </button>
-                    <button *ngIf="isMember && member?.status === 'accept'"
+                    <button *ngIf="isMember && verifyDate(competitionTO?.subscriptionFinalDate)"
                             [routerLink]="['/literary-competition/' + member.memberId + '/create-story']" type="button"
                             mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.ESCREVER_HISTORIA' | translate }}
                     </button>
-                    <button *ngIf="isMember && member?.status === 'pending'"
-                            type="button" disabled
-                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.AGUARDE_APROVACAO' | translate }}
+                    <button *ngIf="isMember && member?.story"
+                            (click)="openDialogSeeStory(member)" type="button"
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.VER_HISTORIA' | translate }}
                     </button>
                 </div>
-
+                <p *ngIf="isMember && member?.status === 'pending' && !member?.story"
+                        type="button" disabled
+                        mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.TEXTO_ANALISE' | translate }}
+                </p>
+                <p *ngIf="isMember && member?.status === 'pending' && member?.story"
+                        type="button" disabled
+                        mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.AGUARDE_APROVACAO' | translate }}
+                </p>
+                <p *ngIf="isMember && member?.status === 'accept' && member?.story"
+                   type="button" disabled
+                   mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.INSCRICAO_APROVADA' | translate }}
+                </p>
             </div>
         </div>
     </div>
@@ -106,7 +117,7 @@
             <p class="paragrafo-competicao">{{ competitionTO?.winnerProfile ? competitionTO.winnerProfile : 'COMPETICAO_LITERARIA.AGUARDANDO_VENCEDOR' | translate }}</p>
         </div>
     </div>
-    <div class="container-branco" *ngIf="isAdmin">
+    <div class="container-branco" *ngIf="isAdmin && verifyDate(competitionTO?.finalDate)">
         <div class="container-conteudo">
             <h2 class="titulo-competicao">{{ 'COMPETICAO_LITERARIA.EDITAR_COMPETICAO' | translate }}</h2>
             <div>
