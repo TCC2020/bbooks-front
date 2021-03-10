@@ -1,0 +1,57 @@
+<div class="container-geral">
+    <div class="container-messages">
+        <div class="user-sending">
+            <small>Antônio</small>
+            <p>Exemplo de texto enviando</p>
+            <small>09/03/2020 20:59</small>
+        </div>
+        <div class="user-sending">
+            <small>Antônio</small>
+            <p>Exemplo de texto enviando</p>
+            <small>09/03/2020 20:59</small>
+        </div>
+        <div class="user-receiving">
+            <small>Maria</small>
+            <p>Exemplo de texto recebendo</p>
+            <small>09/03/2020 21:00</small>
+        </div>
+        <div class="user-sending">
+            <small>Antônio</small>
+            <p>Exemplo de texto enviando</p>
+            <small>09/03/2020 21:00</small>
+        </div>
+        <div class="user-receiving">
+            <small>Maria</small>
+            <p>Exemplo de texto recebendo muito maior para testar a dinamicidade de tamanho.</p>
+            <small>09/03/2020 21:05</small>
+        </div>
+        <div class="user-receiving">
+            <small>Maria</small>
+            <p>Exemplo de texto recebendo muito maior para testar a dinamicidade de tamanho.</p>
+            <small>09/03/2020 21:05</small>
+        </div>
+        <div class="user-sending">
+            <small>Antônio</small>
+            <p>Exemplo de texto enviando</p>
+            <small>09/03/2020 21:00</small>
+        </div>
+        <div #lastChat class="user-sending">
+            <small>Antônio</small>
+            <p>Exemplo de texto enviando</p>
+            <small>09/03/2020 21:00</small>
+        </div>
+    </div>
+    <div class="send">
+        <mat-form-field appearance="outline">
+            <textarea matInput></textarea>
+            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>send</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div class="to-down" #goTo>
+        <button mat-button mat-icon-button (click)="goToDown()">
+            <i class="fas fa-chevron-circle-down"></i>
+        </button>
+    </div>
+</div>

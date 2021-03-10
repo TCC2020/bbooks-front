@@ -23,6 +23,7 @@ import {StoryLiteraryCompetitionComponent} from './views/literary-competition-pa
 import {CreateLiteraryCompetitionComponent} from './views/literary-competition-page/create-literary-competition/create-literary-competition.component';
 // tslint:disable-next-line:max-line-length
 import {ListLiteraryCompetitionComponent} from './views/literary-competition-page/list-literary-competition/list-literary-competition.component';
+import {ChatComponent} from './views/chat/chat.component';
 
 const routes: Routes = [
     {
@@ -55,6 +56,10 @@ const routes: Routes = [
     {
         path: 'metas-anteriores', component: PreviousGoalsComponent,
         canActivate: [AuthGuard],
+    },
+    {
+        path: 'chat',
+        component: ChatComponent
     },
     {
         path: 'pagenotfound',

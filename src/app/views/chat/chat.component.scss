@@ -1,0 +1,56 @@
+.container-geral {
+  width: calc(100% - 30px);
+  margin: 0 auto;
+  background-color: #FFFFFF;
+  padding: 15px 15px 0;
+  max-width: 800px;
+  height: calc(100vh - 75px);
+}
+
+.user-sending, .user-receiving {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  line-height: 1.5;
+  color: white;
+}
+
+.user-sending {
+  background-color: #274F73;
+  color: #FFFFFF;
+  margin-left: calc(20% - 20px);
+}
+
+.user-receiving {
+  background-color: #6A8AA6;
+  margin-right: calc(20% - 20px);
+}
+
+.container-messages {
+  overflow: scroll;
+  overflow-x: hidden;
+  height: calc(100% - 100px);
+}
+
+.send {
+  width: 100%;
+}
+
+.send mat-form-field {
+  width: 100%;
+  padding: 0px;
+}
+
+.send mat-form-field textarea{
+  line-height: 1.5;
+}
+
+.to-down button {
+  position: fixed;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  right: 20px;
+  bottom: 110px;
+}
