@@ -113,6 +113,8 @@ app.put('/chat', (req, res) => {
             chat.messages.push(mes);
             chat.save().then((saved) => res.json(saved));
         }
+        else
+            res.sendStatus(404);
 
     }).catch(err => res.send(err));
 });
@@ -122,6 +124,8 @@ app.post('/chat/get', (req, res) => {
         if (chat) {
             res.json(chat);
         }
+        else
+            res.sendStatus(404);
     }).catch(err => res.send(err));
 });
 
