@@ -62,6 +62,7 @@
     "ngx-mat-intl-tel-input": "^3.3.0",
     "ngx-material-file-input": "^2.1.1",
     "ngx-owl-carousel-o": "^3.1.1",
+    "ngx-qrcode2": "^9.0.0",
     "path-is-absolute": "^2.0.0",
     "permissions-policy": "^0.3.0",
     "referrer-policy": "^1.2.0",

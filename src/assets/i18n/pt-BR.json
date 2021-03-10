@@ -438,7 +438,14 @@
     "ACEITAR_PROPOSTA": "Aceitar",
     "RECUSAR_PROPOSTA": "Recusar",
     "TROCADO": "Trocado",
+    "ACEITO": "Aceitado",
     "RECUSADO": "Recusado",
+    "INCIAR_CHAT": "Iniciar chat",
+    "TOKEN_SCANNED": "Token escaneado",
+    "NEXT": "PROSSEGUIR",
+    "LER_CODE": "Ler QR code",
+    "GERAR_QR_CODE": "Gerar QR code",
+    "CANCELAR_TROCA": "Cancelar troca",
     "ESCOLHER_LIVRO_E": "Escolher um livro é",
     "CANCELADO": "Cancelado",
     "ESCOLHER_UMA_FOTO": "Você precisa enviar pelo menos uma foto",
@@ -449,7 +456,8 @@
     "TROCAR_LIVRO": "Trocar livro",
     "POSTADO_POR": "Postado por",
     "NOT_SENT_EXCHANGE": "Você ainda não enviou nenhuma proposta de troca.",
-    "NOT_RECEIVE_EXCHANGE": "Você ainda não recebeu nenhuma proposta de troca."
+    "NOT_RECEIVE_EXCHANGE": "Você ainda não recebeu nenhuma proposta de troca.",
+    "TROCA_EFETUADA": "Troca efetuada com sucesso!"
   },
   "REACTIONS": {
     "like": "Gostei",

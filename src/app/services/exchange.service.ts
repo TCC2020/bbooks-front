@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ExchangeT0} from '../models/exchangeT0,model';
+import {ExchangeTokenTO} from '../models/ExchangeTokenTO.model';
 
 @Injectable({
     providedIn: 'root'
@@ -28,14 +29,23 @@ export class ExchangeService {
     }
 
     accept(idExchange: string): Observable<ExchangeT0> {
-        return this.http.put<ExchangeT0>(this.api + '/accept/' + idExchange, '');
+        return this.http.put<ExchangeT0>(this.api + 'accept/' + idExchange, '');
     }
 
     refuse(idExchange: string): Observable<ExchangeT0> {
-        return this.http.put<ExchangeT0>(this.api + '/refuse/' + idExchange, '');
+        return this.http.put<ExchangeT0>(this.api + 'refuse/' + idExchange, '');
     }
 
     cancel(idExchange: string): Observable<ExchangeT0> {
-        return this.http.put<ExchangeT0>(this.api + '/cancel/' + idExchange, '');
+        return this.http.put<ExchangeT0>(this.api + 'cancel/' + idExchange, '');
+    }
+    getById(idExchange: string): Observable<ExchangeT0> {
+        return this.http.get<ExchangeT0>(this.api +  idExchange);
+    }
+    generateToken(idExchange: string): Observable<ExchangeTokenTO> {
+        return this.http.put<ExchangeTokenTO>(this.api + 'generate-token/' +  idExchange, '');
+    }
+    exchangeByToken(token: string): Observable<ExchangeTokenTO> {
+        return this.http.put<ExchangeTokenTO>(this.api + 'exchange-by-token/' +  token, '');
     }
 }

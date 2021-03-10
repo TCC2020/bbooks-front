@@ -440,7 +440,14 @@
     "ACEITAR_PROPOSTA": "Accept",
     "RECUSAR_PROPOSTA": "Refuse",
     "TROCADO": "Exchanged",
+    "ACEITO": "Accepted",
+    "CANCELAR_TROCA": "Cancel exchange",
     "RECUSADO": "Refused",
+    "INCIAR_CHAT": "Init chat",
+    "TOKEN_SCANNED": "Token scanned",
+    "NEXT": "Next",
+    "LER_CODE": "Read QR code",
+    "GERAR_QR_CODE": "Generate QR code",
     "ESCOLHER_LIVRO_E": "Choose one book is",
     "CANCELADO": "Canceled",
     "ESCOLHER_UMA_FOTO": "You must upload at least one photo",
@@ -451,7 +458,9 @@
     "TROCAR_LIVRO": "Exchange book",
     "POSTADO_POR": "Posted by",
     "NOT_SENT_EXCHANGE": "You have not yet added any exchange proposals.",
-    "NOT_RECEIVE_EXCHANGE": "You have not yet received any exchange offers."
+    "NOT_RECEIVE_EXCHANGE": "You have not yet received any exchange offers.",
+    "TROCA_EFETUADA": "Exchange successful!"
+
   },
   "REACTIONS": {
     "like": "like",

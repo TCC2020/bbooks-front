@@ -13,10 +13,16 @@
             (scanError)="errorCatch($event)">
     </zxing-scanner>
 
-    <section class="results" *ngIf="qrResultString">
+    <section class="results" *ngIf="qrResultString && !isExchange">
         <div>
             <small>ISBN</small>
             <strong>{{ qrResultString }}</strong>
+        </div>
+        <button mat-icon-button (click)="clearResult()">&times;</button>
+    </section>
+    <section class="results" *ngIf="qrResultString && isExchange">
+        <div>
+            <small>{{'EXCHANGE.TOKEN_SCANNED' | translate}}</small>
         </div>
         <button mat-icon-button (click)="clearResult()">&times;</button>
     </section>
@@ -39,8 +45,15 @@
 
 </ng-container>
 <button type="button" mat-flat-button color="accent" style="width: 100%"
-        [disabled]="formSearch.invalid"
+        [disabled]="formSearch.invalid" *ngIf="qrResultString && !isExchange"
         mat-button [mat-dialog-close]="qrResultString">
+
     {{'PADRAO.BUSCAR' | translate}}
+</button>
+<button type="button" mat-flat-button color="accent" style="width: 100%"
+        [disabled]="formSearch.invalid" *ngIf="qrResultString && isExchange"
+        mat-button [mat-dialog-close]="qrResultString">
+
+    {{'EXCHANGE.NEXT' | translate}}
 </button>
 <br>

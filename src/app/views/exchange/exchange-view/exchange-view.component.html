@@ -1,0 +1,230 @@
+<div *ngIf="exchange" fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutAlign.xs="space-around center">
+    <div>
+        <mat-card class="card">
+            <div
+                    *ngIf="exchange?.status === exchangeStatus.accepted"
+                    style="color: #36bf7f;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.ACEITO' | translate }}
+                </b>
+            </div>
+            <div
+                    *ngIf="exchange?.status === exchangeStatus.exchanged"
+                    style="color: #36bf7f;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.TROCADO' | translate }}
+                </b>
+            </div>
+            <div
+                    *ngIf="exchange?.status === exchangeStatus.canceled"
+                    style="color: #f28b66;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.CANCELADO' | translate }}
+                </b>
+            </div>
+            <div
+                    *ngIf="exchange?.status === exchangeStatus.refused"
+                    style="color: #d96666;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.RECUSADO' | translate }}
+                </b>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2px">
+                <div>
+                    {{exchange?.requester?.profile?.name}} {{exchange?.requester?.profile?.lastName}}
+                </div>
+                <div>
+                    <img class="cardImagePost"
+                         src="{{exchange?.requester?.profile?.profileImage ? exchange?.requester?.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                {{'EXCHANGE.TROCO' | translate}} {{exchange?.requesterAds.length}} {{'PADRAO.LIVRO' | translate}}
+                (s)  {{'PADRAO.POR' | translate}}  {{exchange?.receiverAds.length}} {{'PADRAO.LIVRO' | translate}}(s)
+            </div>
+            <br>
+            <mat-divider></mat-divider>
+            <br>
+            <div>
+                <b>{{'PADRAO.OFERTA' | translate}}</b>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutAlign.xs="space-around center"
+                 style="height: 220px">
+                <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.receiverAds ">
+                    <div>
+                        <img class="image"
+                             [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
+                    <div fxLayout="column" class="textColor" style="width: 100%">
+                        <div>
+                            {{bookAds?.description}}
+                        </div>
+                        <div>
+                            <b>{{'EXCHANGE.CONDICAO' | translate}}
+                                : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                        </div>
+                        <div
+                                fxLayout="row"
+                                fxLayout.xs="column"
+                                fxLayoutAlign="end center"
+                                style="width: 100%; color: #f28b66;"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <br>
+            <div>
+                <b>{{'PADRAO.PROPOSTA' | translate}} </b>
+            </div>
+            <br>
+
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutAlign.xs="space-around center"
+                 style="height: 220px">
+                <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.requesterAds">
+                    <div>
+                        <img class="image"
+                             [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
+                    <div fxLayout="column" class="textColor" style="width: 100%">
+                        <div>
+                            {{bookAds?.description}}
+                        </div>
+                        <div>
+                            <b>{{'EXCHANGE.CONDICAO' | translate}}
+                                : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                        </div>
+                        <div
+                                fxLayout="row"
+                                fxLayout.xs="column"
+                                fxLayoutAlign="end center"
+                                style="width: 100%; color: #f28b66;"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <div>
+        <mat-card class="card2">
+            <div class="fundoCard" fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+                <div *ngIf="exchange.status !== exchangeStatus.accepted">
+                    {{'EXCHANGE.RECEBEU_PROPOSTA' | translate }} {{this.exchange.requesterAds.length}}  {{'PADRAO.LIVRO' | translate }}
+                    (s)  {{'PADRAO.POR' | translate }} {{this.exchange.receiverAds.length}}   {{'PADRAO.LIVRO' | translate }}
+                    (s)
+                </div>
+                <div *ngIf="exchange?.status === exchangeStatus.accepted">
+                    Sua proposta de troca enviada para {{exchange?.receiver.userName}} foi aceita, combine um lugar para
+                    efetuar a troca:
+                </div>
+                <button
+                        *ngIf="exchange?.status === exchangeStatus.accepted"
+                        mat-raised-button color="accent"
+                        style="width: 100%; margin-top: 5px"
+                >
+                    {{'EXCHANGE.INCIAR_CHAT' | translate }}
+                </button>
+                <div *ngIf="exchange?.status === exchangeStatus.accepted && !isReceiver()">
+                    <div>
+                        Faça a leitura do QR Code gerado por {{exchange?.receiver.userName}} para efetuar a troca:
+                    </div>
+                    <button
+                            *ngIf="exchange?.status === exchangeStatus.accepted"
+                            (click)="readCodeBar()"
+                            mat-raised-button color="accent"
+                            style="width: 100%; margin-top: 5px"
+                    >
+                        {{'EXCHANGE.LER_CODE' | translate }}
+                    </button>
+                </div>
+                <div *ngIf="exchange?.status === exchangeStatus.accepted && isReceiver()">
+                    <div>
+                        Realize a troca via QR code, basta gerar o código da troca e pedir
+                        que {{exchange?.requester.userName}} escaneie:
+                    </div>
+                    <button
+                            *ngIf="exchange?.status === exchangeStatus.accepted"
+                            (click)="generateQRCode()"
+                            mat-raised-button color="accent"
+                            style="width: 100%; margin-top: 5px"
+                    >
+                        {{'EXCHANGE.GERAR_QR_CODE' | translate }}
+                    </button>
+                    <div *ngIf="urlLinkToken">
+                        Expira em: 0{{hour}}:{{timeLeft < 10 ? 0 : ''}}{{timeLeft}}
+                    </div>
+                    <div style="height: 300px; align-items: center" *ngIf="urlLinkToken">
+                        <ngx-qrcode
+                                [width]="300"
+                                qrc-element-type="url" [value]="urlLinkToken"></ngx-qrcode>
+                    </div>
+                </div>
+                <div class="layoutButton">
+                    <button
+                            *ngIf="exchange.status === exchangeStatus.pending"
+                            mat-raised-button color="warn"
+                            class="choseAnotherOfferButton"
+                            (click)="cancel(exchange.id)"
+                    >
+                        {{'PADRAO.CANCELAR' | translate }}
+                    </button>
+                    <button
+                            *ngIf="exchange?.status === exchangeStatus.pending"
+                            mat-raised-button color="warn"
+                            class="choseAnotherOfferButton"
+                            (click)="refuse(exchange.id)"
+                    >
+                        {{'EXCHANGE.RECUSAR_PROPOSTA' | translate }}
+                    </button>
+                    <button
+                            *ngIf="exchange?.status === exchangeStatus.pending"
+                            mat-raised-button color="accent"
+                            class="choseAnotherOfferButton"
+                            (click)="accept(exchange.id)"
+                    >
+                        {{'EXCHANGE.ACEITAR_PROPOSTA' | translate }}
+                    </button>
+                    <button
+                            *ngIf="exchange?.status === exchangeStatus.accepted"
+                            mat-raised-button color="warn"
+                            class="choseAnotherOfferButton"
+                            (click)="accept(exchange.id)"
+                    >
+                        {{'EXCHANGE.CANCELAR_TROCA' | translate }}
+                    </button>
+                    <div
+                            *ngIf="exchange?.status === exchangeStatus.exchanged"
+                            style="color: #36bf7f;"
+                            class="choseAnotherOfferButton">
+                        <b>
+                            {{'EXCHANGE.TROCADO' | translate }}
+                        </b>
+                    </div>
+                    <div
+                            *ngIf="exchange?.status === exchangeStatus.canceled"
+                            style="color: #f28b66;"
+                            class="choseAnotherOfferButton">
+                        <b>
+                            {{'EXCHANGE.CANCELADO' | translate }}
+                        </b>
+                    </div>
+                    <div
+                            *ngIf="exchange?.status === exchangeStatus.refused"
+                            style="color: #d96666;"
+                            class="choseAnotherOfferButton">
+                        <b>
+                            {{'EXCHANGE.RECUSADO' | translate }}
+                        </b>
+                    </div>
+                </div>
+
+            </div>
+        </mat-card>
+    </div>
+</div>

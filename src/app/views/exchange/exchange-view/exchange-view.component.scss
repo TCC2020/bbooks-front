@@ -62,15 +62,15 @@
 .card {
   max-width: 450px;
   width: 425px;
-  height: 610px;
+  height: 600px;
   margin: 7px;
 }
-.card:hover {
-  cursor: pointer;
-  transition: all .2s linear;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.card2 {
+  height: 500px;
+  max-width: 450px;
+  width: 425px;
+  margin: 7px;
 }
-
 @media screen and (max-width: 600px) {
 
   .buttonOferta {
@@ -79,10 +79,17 @@
   .buttonOfertaBody {
     width: 80%;
   }
+  .card2 {
+    max-width: 88%;
+    width: 88%;
+    margin: 0.5em;
+    height: 100%;
+  }
   .card {
     max-width: 88%;
     width: 88%;
     margin: 0.5em;
+    height: 100%;
   }
   .image-card {
     max-width: 150px;
@@ -103,8 +110,5 @@
   }
   .layoutButton {
     width: 100%;
-  }
-  .card {
-    height: 100%;
   }
 }

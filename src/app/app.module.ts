@@ -45,6 +45,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {SearchModule} from './views/search/search.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {LiteraryCompetitionModule} from './views/literary-competition-page/literary-competition.module';
+import {NgxQRCodeModule} from 'ngx-qrcode2';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -102,7 +103,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             },
         }),
-        FontAwesomeModule
+        FontAwesomeModule,
+        NgxQRCodeModule
     ],
     providers: [
         BnNgIdleService,
