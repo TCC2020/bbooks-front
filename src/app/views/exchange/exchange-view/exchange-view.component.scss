@@ -48,7 +48,7 @@
 .choseAnotherOfferButton {
   margin: 5px;
   right: 0;
-  position: absolute;
+  width: 100%;
 }
 .cardImagePost{
   border-color:  rgba(0, 0, 0, 0.2);
@@ -62,14 +62,17 @@
 .card {
   max-width: 450px;
   width: 425px;
-  height: 600px;
+  height: 100%;
   margin: 7px;
 }
 .card2 {
-  height: 500px;
+  height: 550px;
   max-width: 450px;
   width: 425px;
   margin: 7px;
+}
+.linkWhatsapp{
+  color: #25D366;
 }
 @media screen and (max-width: 600px) {
 

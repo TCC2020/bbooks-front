@@ -3,10 +3,18 @@
         <mat-card class="card">
             <div
                     *ngIf="exchange?.status === exchangeStatus.accepted"
-                    style="color: #36bf7f;"
+                    style="color: #576572;"
                     class="choseAnotherOfferButton">
                 <b>
                     {{'EXCHANGE.ACEITO' | translate }}
+                </b>
+            </div>
+            <div
+                    *ngIf="exchange.status === exchangeStatus.pending"
+                    style="color: #f28b66;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.PENDENTE' | translate }}
                 </b>
             </div>
             <div
@@ -19,7 +27,7 @@
             </div>
             <div
                     *ngIf="exchange?.status === exchangeStatus.canceled"
-                    style="color: #f28b66;"
+                    style="color: #d96666;"
                     class="choseAnotherOfferButton">
                 <b>
                     {{'EXCHANGE.CANCELADO' | translate }}
@@ -109,19 +117,75 @@
                     </div>
                 </div>
             </div>
+            <div *ngIf="exchange?.status === exchangeStatus.pending && isReceiver()">
+                {{'EXCHANGE.RECEBEU_PROPOSTA' | translate }} {{this.exchange.requesterAds.length}}  {{'PADRAO.LIVRO' | translate }}
+                (s)  {{'PADRAO.POR' | translate }} {{this.exchange.receiverAds.length}}   {{'PADRAO.LIVRO' | translate }}
+                (s)
+            </div>
+            <div *ngIf="exchange?.status === exchangeStatus.pending && !isReceiver()">
+                {{'EXCHANGE.ENVIOU_PROPOSTA' | translate }} {{this.exchange.requesterAds.length}}  {{'PADRAO.LIVRO' | translate }}(s)  {{'PADRAO.POR' | translate }} {{this.exchange.receiverAds.length}}   {{'PADRAO.LIVRO' | translate }}(s)
+            </div>
+            <div fxlayout="row" fxLayout.xs="column">
+                <button
+                        *ngIf="exchange.status === exchangeStatus.pending && !isReceiver()"
+                        mat-raised-button color="warn"
+                        class="choseAnotherOfferButton"
+                        (click)="cancel(exchange.id)"
+                >
+                    {{'PADRAO.CANCELAR' | translate }}
+                </button>
+                <button
+                        *ngIf="exchange?.status === exchangeStatus.pending && isReceiver()"
+                        mat-raised-button color="warn"
+                        class="choseAnotherOfferButton"
+                        (click)="refuse(exchange.id)"
+                >
+                    {{'EXCHANGE.RECUSAR_PROPOSTA' | translate }}
+                </button>
+                <button
+                        *ngIf="exchange?.status === exchangeStatus.pending && isReceiver()"
+                        mat-raised-button color="accent"
+                        class="choseAnotherOfferButton"
+                        (click)="accept(exchange.id)"
+                >
+                    {{'EXCHANGE.ACEITAR_PROPOSTA' | translate }}
+                </button>
+                <button
+                        *ngIf="exchange?.status === exchangeStatus.accepted"
+                        mat-raised-button color="warn"
+                        class="choseAnotherOfferButton"
+                        (click)="cancel(exchange.id)"
+                >
+                    {{'EXCHANGE.CANCELAR_TROCA' | translate }}
+                </button>
+            </div>
         </mat-card>
     </div>
-    <div>
+    <div *ngIf="exchange?.status === exchangeStatus.accepted">
         <mat-card class="card2">
             <div class="fundoCard" fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
-                <div *ngIf="exchange.status !== exchangeStatus.accepted">
-                    {{'EXCHANGE.RECEBEU_PROPOSTA' | translate }} {{this.exchange.requesterAds.length}}  {{'PADRAO.LIVRO' | translate }}
-                    (s)  {{'PADRAO.POR' | translate }} {{this.exchange.receiverAds.length}}   {{'PADRAO.LIVRO' | translate }}
-                    (s)
+
+                <div *ngIf="exchange?.status === exchangeStatus.accepted && !isReceiver()">
+                    {{'EXCHANGE.SUA_PROPOSTA_ENVIADA' | translate}} {{exchange?.receiver.userName}} {{'EXCHANGE.FOI_ACEITA' | translate}}
                 </div>
-                <div *ngIf="exchange?.status === exchangeStatus.accepted">
-                    Sua proposta de troca enviada para {{exchange?.receiver.userName}} foi aceita, combine um lugar para
-                    efetuar a troca:
+                <div *ngIf="exchange?.status === exchangeStatus.accepted && isReceiver()">
+                    {{'EXCHANGE.VOCE_ACEITOU' | translate}} {{exchange?.requester.userName}}{{'EXCHANGE.COMBINE_LUGAR_TROCA' | translate}}
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" *ngIf="isReceiver() && hasWhastsApp(exchange?.requesterAds)">
+                    <a
+                            href="https://{{isMobile() ? 'api.whatsapp.com' : 'web.whatsapp.com'}}/send?phone={{ hasWhastsApp(exchange?.requesterAds)}}&text={{'WHATS.HELLO' | translate}}+{{exchange?.requester?.profile?.name}},+{{'WHATS.ACEITEI_SUA_OFERTA' | translate}}+*{{'EXCHANGE.TROCO' | translate}}+{{exchange?.requesterAds.length}}+{{'PADRAO.LIVRO' | translate}}(s)+{{'PADRAO.POR' | translate}}+{{exchange?.receiverAds.length}}+{{'PADRAO.LIVRO' | translate}}(s)*,+{{'WHATS.GOSTARIA_MAIS_INFO' | translate}}"
+                            target="_blank"
+                            class="linkWhatsapp">
+                        <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}
+                    </a>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" *ngIf="!isReceiver() && hasWhastsApp(exchange?.receiverAds)">
+                    <a
+                            href="https://{{isMobile() ? 'api.whatsapp.com' : 'web.whatsapp.com'}}/send?phone={{ hasWhastsApp(exchange?.receiverAds)}}&text={{'WHATS.HELLO' | translate}}+{{exchange?.requester?.profile?.name}},+{{'WHATS.VI_ACEITOU' | translate}}+*{{'EXCHANGE.TROCO' | translate}}+{{exchange?.requesterAds.length}}+{{'PADRAO.LIVRO' | translate}}(s)+{{'PADRAO.POR' | translate}}+{{exchange?.receiverAds.length}}+{{'PADRAO.LIVRO' | translate}}(s)*,+{{'WHATS.GOSTARIA_MAIS_INFO' | translate}}"
+                            target="_blank"
+                            class="linkWhatsapp">
+                        <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}
+                    </a>
                 </div>
                 <button
                         *ngIf="exchange?.status === exchangeStatus.accepted"
@@ -132,7 +196,7 @@
                 </button>
                 <div *ngIf="exchange?.status === exchangeStatus.accepted && !isReceiver()">
                     <div>
-                        Faça a leitura do QR Code gerado por {{exchange?.receiver.userName}} para efetuar a troca:
+                        {{'EXCHANGE.LEIA_QR_CODE' | translate}} {{exchange?.receiver.userName}}:
                     </div>
                     <button
                             *ngIf="exchange?.status === exchangeStatus.accepted"
@@ -145,8 +209,7 @@
                 </div>
                 <div *ngIf="exchange?.status === exchangeStatus.accepted && isReceiver()">
                     <div>
-                        Realize a troca via QR code, basta gerar o código da troca e pedir
-                        que {{exchange?.requester.userName}} escaneie:
+                        {{'EXCHANGE.GERE_QR_CODE' | translate}} {{exchange?.requester.userName}} {{'EXCHANGE.ESCANEIE' | translate}}
                     </div>
                     <button
                             *ngIf="exchange?.status === exchangeStatus.accepted"
@@ -156,8 +219,16 @@
                     >
                         {{'EXCHANGE.GERAR_QR_CODE' | translate }}
                     </button>
+                    <button
+                            *ngIf="exchange?.status === exchangeStatus.accepted && isRunning"
+                            (click)="pauseTimer()"
+                            mat-raised-button color="primary"
+                            style="width: 100%; margin-top: 5px"
+                    >
+                        {{'EXCHANGE.LIMPAR' | translate }}
+                    </button>
                     <div *ngIf="urlLinkToken">
-                        Expira em: 0{{hour}}:{{timeLeft < 10 ? 0 : ''}}{{timeLeft}}
+                        {{'EXCHANGE.EXPIRA_EM' | translate}}: 0{{hour}}:{{timeLeft < 10 ? 0 : ''}}{{timeLeft}}
                     </div>
                     <div style="height: 300px; align-items: center" *ngIf="urlLinkToken">
                         <ngx-qrcode
@@ -165,65 +236,6 @@
                                 qrc-element-type="url" [value]="urlLinkToken"></ngx-qrcode>
                     </div>
                 </div>
-                <div class="layoutButton">
-                    <button
-                            *ngIf="exchange.status === exchangeStatus.pending"
-                            mat-raised-button color="warn"
-                            class="choseAnotherOfferButton"
-                            (click)="cancel(exchange.id)"
-                    >
-                        {{'PADRAO.CANCELAR' | translate }}
-                    </button>
-                    <button
-                            *ngIf="exchange?.status === exchangeStatus.pending"
-                            mat-raised-button color="warn"
-                            class="choseAnotherOfferButton"
-                            (click)="refuse(exchange.id)"
-                    >
-                        {{'EXCHANGE.RECUSAR_PROPOSTA' | translate }}
-                    </button>
-                    <button
-                            *ngIf="exchange?.status === exchangeStatus.pending"
-                            mat-raised-button color="accent"
-                            class="choseAnotherOfferButton"
-                            (click)="accept(exchange.id)"
-                    >
-                        {{'EXCHANGE.ACEITAR_PROPOSTA' | translate }}
-                    </button>
-                    <button
-                            *ngIf="exchange?.status === exchangeStatus.accepted"
-                            mat-raised-button color="warn"
-                            class="choseAnotherOfferButton"
-                            (click)="accept(exchange.id)"
-                    >
-                        {{'EXCHANGE.CANCELAR_TROCA' | translate }}
-                    </button>
-                    <div
-                            *ngIf="exchange?.status === exchangeStatus.exchanged"
-                            style="color: #36bf7f;"
-                            class="choseAnotherOfferButton">
-                        <b>
-                            {{'EXCHANGE.TROCADO' | translate }}
-                        </b>
-                    </div>
-                    <div
-                            *ngIf="exchange?.status === exchangeStatus.canceled"
-                            style="color: #f28b66;"
-                            class="choseAnotherOfferButton">
-                        <b>
-                            {{'EXCHANGE.CANCELADO' | translate }}
-                        </b>
-                    </div>
-                    <div
-                            *ngIf="exchange?.status === exchangeStatus.refused"
-                            style="color: #d96666;"
-                            class="choseAnotherOfferButton">
-                        <b>
-                            {{'EXCHANGE.RECUSADO' | translate }}
-                        </b>
-                    </div>
-                </div>
-
             </div>
         </mat-card>
     </div>

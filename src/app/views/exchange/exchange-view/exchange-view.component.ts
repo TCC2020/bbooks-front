@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ExchangeService} from '../../../services/exchange.service';
 import {AuthService} from '../../../services/auth.service';
 import {TranslateService} from '@ngx-translate/core';
@@ -9,19 +9,21 @@ import {ExchangeT0} from '../../../models/exchangeT0,model';
 import {BookExchangeStatus} from '../../../models/enums/BookExchangeStatus.enum';
 import {BarCodeScannerComponent} from '../../shared/bar-code-scanner/bar-code-scanner.component';
 import {MatDialog} from '@angular/material/dialog';
+import {BookAdTO} from '../../../models/BookAdTO.model';
 
 @Component({
     selector: 'app-exchange-view',
     templateUrl: './exchange-view.component.html',
     styleUrls: ['./exchange-view.component.scss']
 })
-export class ExchangeViewComponent implements OnInit {
+export class ExchangeViewComponent implements OnInit, OnDestroy {
     exchange: ExchangeT0;
     exchangeStatus = BookExchangeStatus;
     urlLinkToken = '';
     timeLeft = 59;
     hour = 4;
     interval;
+    isRunning = false;
 
     constructor(
         public exchangeService: ExchangeService,
@@ -61,7 +63,7 @@ export class ExchangeViewComponent implements OnInit {
         Util.loadingScreen();
         this.exchangeService.cancel(id)
             .pipe(take(1))
-            .subscribe(r => {
+            .subscribe(() => {
                 Util.stopLoading();
                 this.exchange.status = BookExchangeStatus.canceled;
             }, error => {
@@ -76,7 +78,7 @@ export class ExchangeViewComponent implements OnInit {
         Util.loadingScreen();
         this.exchangeService.accept(id)
             .pipe(take(1))
-            .subscribe(r => {
+            .subscribe(() => {
                 Util.stopLoading();
                 this.exchange.status = BookExchangeStatus.accepted;
             }, error => {
@@ -91,7 +93,7 @@ export class ExchangeViewComponent implements OnInit {
         Util.loadingScreen();
         this.exchangeService.refuse(id)
             .pipe(take(1))
-            .subscribe(r => {
+            .subscribe(() => {
                 Util.stopLoading();
                 this.exchange.status = BookExchangeStatus.refused;
             }, error => {
@@ -103,6 +105,7 @@ export class ExchangeViewComponent implements OnInit {
     }
 
     generateQRCode(): void {
+        this.pauseTimer();
         Util.loadingScreen();
         this.exchangeService.generateToken(this.exchange.id)
             .pipe(take(1))
@@ -121,10 +124,10 @@ export class ExchangeViewComponent implements OnInit {
 
 
     startTimer() {
+        this.isRunning = true;
         this.interval = setInterval(() => {
             if (this.hour === 0) {
                 this.pauseTimer();
-                this.urlLinkToken = '';
             }
             if (this.timeLeft > 0) {
                 this.timeLeft--;
@@ -155,6 +158,10 @@ export class ExchangeViewComponent implements OnInit {
 
     pauseTimer() {
         clearInterval(this.interval);
+        this.timeLeft = 59;
+        this.hour = 4;
+        this.isRunning = false;
+        this.urlLinkToken = '';
     }
 
     readCodeBar(): void {
@@ -186,5 +193,24 @@ export class ExchangeViewComponent implements OnInit {
 
     isReceiver(): boolean {
         return this.exchange.receiverId === this.authService.getUser().id ? true : false;
+    }
+
+    isMobile() {
+        const userAgent = window.navigator.userAgent.toLocaleLowerCase();
+        return userAgent.includes('iphone') || userAgent.includes('android');
+    }
+
+    hasWhastsApp(bookads: BookAdTO[]): string {
+        for (const ad of bookads) {
+            if (ad.contact) {
+                return ad.contact;
+                break;
+            }
+        }
+        return '';
+    }
+
+    ngOnDestroy(): void {
+        this.pauseTimer();
     }
 }

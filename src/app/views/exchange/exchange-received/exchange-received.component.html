@@ -9,10 +9,18 @@
         <mat-card  *ngFor="let exchange of exchange" class="card" [routerLink]="['/exchange/my-exchanges/received/', exchange.id]">
             <div
                     *ngIf="exchange.status === exchangeStatus.accepted"
-                    style="color: #36bf7f;"
+                    style="color: #576572;"
                     class="choseAnotherOfferButton">
                 <b>
                     {{'EXCHANGE.ACEITO' | translate }}
+                </b>
+            </div>
+            <div
+                    *ngIf="exchange.status === exchangeStatus.pending"
+                    style="color: #f28b66;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.PENDENTE' | translate }}
                 </b>
             </div>
             <div
@@ -25,7 +33,7 @@
             </div>
             <div
                     *ngIf="exchange.status === exchangeStatus.canceled"
-                    style="color: #f28b66;"
+                    style="color: #d96666;"
                     class="choseAnotherOfferButton">
                 <b>
                     {{'EXCHANGE.CANCELADO' | translate }}
@@ -58,7 +66,7 @@
             <div>
                 <b>{{'PADRAO.OFERTA' | translate}}</b>
             </div>
-            <div fxLayout="row wrap" fxLayoutAlign="start start"  fxLayoutAlign.xs="space-around center" style="height: 220px">
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="space-around center" style="height: 220px">
                 <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.receiverAds ">
                     <div>
                         <img class="image"
@@ -89,7 +97,7 @@
             </div>
             <br>
 
-            <div fxLayout="row wrap" fxLayoutAlign="start start"  fxLayoutAlign.xs="space-around center" style="height: 220px">
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutAlign.xs="space-around center" style="height: 220px">
                 <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.requesterAds">
                     <div>
                         <img class="image"
