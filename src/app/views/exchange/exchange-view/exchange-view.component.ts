@@ -138,14 +138,13 @@ export class ExchangeViewComponent implements OnInit {
                     if (r.status === this.exchangeStatus.exchanged) {
                         this.exchange.status = this.exchangeStatus.exchanged;
                         this.translate.get('EXCHANGE.TROCA_EFETUADA').subscribe(message => {
-                            Util.showErrorDialog(message);
+                            Util.showSuccessDialog(message);
                         });
                         this.pauseTimer();
-                    } else {
-                        console.log('nao foi lido o qr code');
                     }
                 }, error => {
                     Util.stopLoading();
+                    this.pauseTimer();
                     this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
                         Util.showErrorDialog(message);
                     });
@@ -173,7 +172,7 @@ export class ExchangeViewComponent implements OnInit {
                     .subscribe(() => {
                         this.exchange.status = this.exchangeStatus.exchanged;
                         this.translate.get('EXCHANGE.TROCA_EFETUADA').subscribe(message => {
-                            Util.showErrorDialog(message);
+                            Util.showSuccessDialog(message);
                         });
                     }, error => {
                         this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
