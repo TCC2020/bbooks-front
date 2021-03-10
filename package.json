@@ -58,6 +58,7 @@
     "heroku-ssl-redirect": "^0.1.1",
     "jest-preset-angular": "^8.2.1",
     "libphonenumber-js": "^1.7.38",
+    "mongoose": "^5.11.19",
     "ngx-infinite-scroll": "^10.0.1",
     "ngx-mat-intl-tel-input": "^3.3.0",
     "ngx-material-file-input": "^2.1.1",

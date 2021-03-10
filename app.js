@@ -6,6 +6,7 @@ const csp = require('content-security-policy');
 const sts = require('strict-transport-security');
 const referrerPolicy = require('referrer-policy');
 const permissionsPolicy = require('permissions-policy');
+const mongoose = require('mongoose');
 const helmet = require('helmet');
 
 const app = express();
@@ -64,8 +65,46 @@ app.use(bodyParser.json()); // support json encoded bodies
 
 app.use(forceSsl);
 
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb+srv://bbooksmongo:bbooksDataBaseTCC@cluster0.bilzk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    poolSize: 100
+}).then(() => {
+    console.log("Conectado com o mongo")
+}).catch((err) => {
+    console.log("Erro ao se conectar: " + err)
+})
+
+require('./schema/chat')
+const Chat = mongoose.model('chats');
+
 app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname, 'dist/bbooks/index.html'));
+});
+
+app.post('/chat', (req, res) => {
+    const newChat = new Chat({
+        "exchangeId": req.body.exchangeId
+        // "message": req.body.message,
+        // "data": req.body.data,
+        // "profileSender": req.body.profileSender
+    });
+    newChat.save().then((saved) => res.json(saved));
+
+});
+
+app.put('/chat', (req, res) => {
+    Chat.findOne({_id: req.body.id}).then((chat) => {
+        if(chat){
+            console.log(chat)
+            let mes = req.body.message
+            mes.data = new Date();
+            chat.messages.push(mes);
+            chat.save().then((saved) => res.json(saved));
+        }
+
+    });
 });
 
 // catch 404 and forward to error handler
