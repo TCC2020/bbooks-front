@@ -1,8 +1,8 @@
 <div fxLayout="row"
      fxLayoutAlign="center center"
-     *ngIf="this.authService.getUser()">
+     *ngIf="isOwner">
     <app-post-create
-            [user]="this.authService.getUser()"
+            [user]="user"
             [typePostControler]="typePostControler.feedPublicProfile"
     ></app-post-create>
 </div>

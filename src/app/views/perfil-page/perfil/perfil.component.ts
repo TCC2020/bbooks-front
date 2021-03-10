@@ -29,7 +29,7 @@ export class PerfilComponent implements OnInit {
     public countrys: Country[];
     public citys: City[];
     public states: State[];
-
+    image;
     filteredOptionsCity: Observable<City[]>;
 
     constructor(
@@ -173,11 +173,11 @@ export class PerfilComponent implements OnInit {
                 Util.loadingScreen();
                 this.cdnService.upload({file: result, type: 'image'}, {objectType: 'profile_image'}).subscribe(() => {
                         Util.stopLoading();
-                        let image = result;
+                        this.image = result;
                         const reader = new FileReader();
-                        reader.onload = (e) => image = e.target.result;
-                        reader.readAsDataURL(image);
-                        this.userTO.profile.profileImage = image;
+                        reader.onload = (e) => this.image = e.target.result;
+                        reader.readAsDataURL(this.image);
+                        this.userTO.profile.profileImage = this.image;
                     },
                     error => {
                         Util.stopLoading();

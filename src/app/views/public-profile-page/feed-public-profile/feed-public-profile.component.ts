@@ -13,6 +13,8 @@ import {map, take} from 'rxjs/operators';
 import {PostTO} from '../../../models/PostTO.model';
 import {ActivatedRoute} from '@angular/router';
 import {PostPagination} from '../../../models/pagination/post.pagination';
+import {PublicProfileService} from '../../../services/public-profile.service';
+import {UserPublicProfileTO} from '../../../models/UserPublicProfileTO.model';
 
 @Component({
     selector: 'app-feed-public-profile',
@@ -26,6 +28,8 @@ export class FeedPublicProfileComponent implements OnInit, OnDestroy {
     loading = false;
     publicProfileId: string;
     page = 0;
+    publicProfileTO: UserPublicProfileTO;
+    isOwner = false;
 
     constructor(
         public authService: AuthService,
@@ -34,7 +38,8 @@ export class FeedPublicProfileComponent implements OnInit, OnDestroy {
         public postService: PostService,
         public feedGenericService: FeedGenericService,
         public feedPublicProfilePageManagerService: FeedPublicProfilePageManagerService,
-        public route: ActivatedRoute
+        public route: ActivatedRoute,
+        private publicProfileService: PublicProfileService,
     ) {
         this.feedPublicProfilePageManagerService.clearRedux();
     }
@@ -48,6 +53,7 @@ export class FeedPublicProfileComponent implements OnInit, OnDestroy {
                     this.publicProfileId = result;
                     localStorage.setItem('pageId', result);
                     this.getPosts();
+                    this.getPublicProfileById(result);
                 }
             );
         this.user = this.authService.getUser();
@@ -100,6 +106,18 @@ export class FeedPublicProfileComponent implements OnInit, OnDestroy {
                     this.feedPublicProfilePageManagerService.updatePost(post);
                 });
         });
+    }
+    getPublicProfileById(idPublic: string) {
+        this.publicProfileService.getById(idPublic)
+            .pipe(take(1))
+            .subscribe(result => {
+                this.publicProfileTO = result;
+                if (this.publicProfileTO.user.id === this.authService.getUser().id) {
+                    this.isOwner = true;
+                }
+            }, error => {
+                console.log(error);
+            });
     }
 
 }
