@@ -80,7 +80,7 @@ mongoose.connect(process.env.MONGODB , {
 require('./schema/chat')
 const Chat = mongoose.model('chats');
 
-app.get('/', (req, res, next) => {
+app.get('*', (req, res, next) => {
     res.sendFile(path.join(__dirname, 'dist/bbooks/index.html'));
 });
 
