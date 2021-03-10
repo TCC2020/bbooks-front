@@ -9,7 +9,8 @@ export const environment = {
     fbauth: '',
     apicep: '',
     feedApi: 'http://localhost:8081/',
-    competitionApi: 'http://localhost:8082/'
+    competitionApi: 'http://localhost:8082/',
+    node: 'http://localhost:3030/'
 };
 
 /*

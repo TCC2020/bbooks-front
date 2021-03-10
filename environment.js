@@ -7,7 +7,8 @@ const heroku = `export const environment = {
     fbauth: '${process.env.FACEBOOKLOGIN}',
     apicep: '${process.env.APICEP}',
     feedApi: '${process.env.FEED_API}',
-    competitionApi: '${process.env.COMPETITION_API}'
+    competitionApi: '${process.env.COMPETITION_API}',
+    node: '${process.env.WEB_FRONT}'
 };`
 
 fs.writeFile('src/environments/environment.prod.ts', heroku, (err, result) => {
