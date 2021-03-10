@@ -9,6 +9,7 @@ import {SendOfferRequestComponent} from './send-offer-request/send-offer-request
 import {MyExchangeComponent} from './my-exchange/my-exchange.component';
 import {ExchangeReceivedComponent} from './exchange-received/exchange-received.component';
 import {ExchangeSentComponent} from './exchange-sent/exchange-sent.component';
+import {ExchangeViewComponent} from './exchange-view/exchange-view.component';
 
 
 const exchangeRouter = [
@@ -49,8 +50,16 @@ const exchangeRouter = [
                         component: ExchangeReceivedComponent
                     },
                     {
+                        path: 'received/:id',
+                        component: ExchangeViewComponent
+                    },
+                    {
                         path: 'sent',
                         component: ExchangeSentComponent
+                    },
+                    {
+                        path: 'sent/:id',
+                        component: ExchangeViewComponent
                     },
                     { path: '', redirectTo: 'received', pathMatch: 'full' },
                 ]

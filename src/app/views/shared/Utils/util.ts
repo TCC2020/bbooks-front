@@ -48,7 +48,7 @@ export class Util {
             showLoaderOnConfirm: false,
             showCancelButton: false,
             showCloseButton: false,
-            timer: 5000,
+            timer: 40000,
             width: 90,
             padding: '5m',
             backdrop: `

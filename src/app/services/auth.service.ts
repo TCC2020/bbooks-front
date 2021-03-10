@@ -75,10 +75,12 @@ export class AuthService {
 
     public setSessionToken(token) {
         sessionStorage.setItem('token', token);
+        localStorage.setItem('token', token);
     }
 
     public setSessionUser(user) {
         sessionStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(user));
     }
 
     public getToken(): string {
