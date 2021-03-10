@@ -1,0 +1,242 @@
+<div *ngIf="exchange" fxLayout="row wrap" fxLayoutAlign="center start">
+    <div class="layout">
+        <mat-card class="card">
+            <div
+                    *ngIf="exchange?.status === exchangeStatus.accepted"
+                    style="color: #576572;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.ACEITO' | translate }}
+                </b>
+            </div>
+            <div
+                    *ngIf="exchange.status === exchangeStatus.pending"
+                    style="color: #f28b66;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.PENDENTE' | translate }}
+                </b>
+            </div>
+            <div
+                    *ngIf="exchange?.status === exchangeStatus.exchanged"
+                    style="color: #36bf7f;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.TROCADO' | translate }}
+                </b>
+            </div>
+            <div
+                    *ngIf="exchange?.status === exchangeStatus.canceled"
+                    style="color: #d96666;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.CANCELADO' | translate }}
+                </b>
+            </div>
+            <div
+                    *ngIf="exchange?.status === exchangeStatus.refused"
+                    style="color: #d96666;"
+                    class="choseAnotherOfferButton">
+                <b>
+                    {{'EXCHANGE.RECUSADO' | translate }}
+                </b>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2px">
+                <div>
+                    {{exchange?.requester?.profile?.name}} {{exchange?.requester?.profile?.lastName}}
+                </div>
+                <div>
+                    <img class="cardImagePost"
+                         src="{{exchange?.requester?.profile?.profileImage ? exchange?.requester?.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                {{'EXCHANGE.TROCO' | translate}} {{exchange?.requesterAds.length}} {{'PADRAO.LIVRO' | translate}}
+                (s)  {{'PADRAO.POR' | translate}}  {{exchange?.receiverAds.length}} {{'PADRAO.LIVRO' | translate}}(s)
+            </div>
+            <br>
+            <mat-divider></mat-divider>
+            <br>
+            <div>
+                <b>{{'PADRAO.OFERTA' | translate}}</b>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column" fxLayoutAlign.xs="space-around center"
+                 style="min-height: 220px">
+                <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.receiverAds ">
+                    <div>
+                        <img class="image"
+                             [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
+                    <div fxLayout="column" class="textColor" style="width: 100%">
+                        <div>
+                            {{bookAds?.description}}
+                        </div>
+                        <div>
+                            <b>{{'EXCHANGE.CONDICAO' | translate}}
+                                : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                        </div>
+                        <div
+                                fxLayout="row"
+                                fxLayout.xs="column"
+                                fxLayoutAlign="end center"
+                                style="width: 100%; color: #f28b66;"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <br>
+            <div>
+                <b>{{'PADRAO.PROPOSTA' | translate}} </b>
+            </div>
+            <br>
+
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column" fxLayoutAlign.xs="space-around center"
+                 style="min-height: 220px">
+                <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.requesterAds">
+                    <div>
+                        <img class="image"
+                             [src]="bookAds?.images[0] ? bookAds.images[0] : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
+                    </div>
+                    <div fxLayout="column" class="textColor" style="width: 100%">
+                        <div>
+                            {{bookAds?.description}}
+                        </div>
+                        <div>
+                            <b>{{'EXCHANGE.CONDICAO' | translate}}
+                                : </b> {{bookAds?.condition != 'used' ? ('EXCHANGE.NOVO' | translate) : 'EXCHANGE.USADO' | translate}}
+                        </div>
+                        <div
+                                fxLayout="row"
+                                fxLayout.xs="column"
+                                fxLayoutAlign="end center"
+                                style="width: 100%; color: #f28b66;"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="exchange?.status === exchangeStatus.pending && isReceiver()">
+                {{'EXCHANGE.RECEBEU_PROPOSTA' | translate }} {{this.exchange.requesterAds.length}}  {{'PADRAO.LIVRO' | translate }}
+                (s)  {{'PADRAO.POR' | translate }} {{this.exchange.receiverAds.length}}   {{'PADRAO.LIVRO' | translate }}
+                (s)
+            </div>
+            <div *ngIf="exchange?.status === exchangeStatus.pending && !isReceiver()">
+                {{'EXCHANGE.ENVIOU_PROPOSTA' | translate }} {{this.exchange.requesterAds.length}}  {{'PADRAO.LIVRO' | translate }}(s)  {{'PADRAO.POR' | translate }} {{this.exchange.receiverAds.length}}   {{'PADRAO.LIVRO' | translate }}(s)
+            </div>
+            <div fxlayout="row" fxLayout.xs="column">
+                <button
+                        *ngIf="exchange.status === exchangeStatus.pending && !isReceiver()"
+                        mat-raised-button color="warn"
+                        class="choseAnotherOfferButton"
+                        (click)="cancel(exchange.id)"
+                >
+                    {{'PADRAO.CANCELAR' | translate }}
+                </button>
+                <button
+                        *ngIf="exchange?.status === exchangeStatus.pending && isReceiver()"
+                        mat-raised-button color="warn"
+                        class="choseAnotherOfferButton"
+                        (click)="refuse(exchange.id)"
+                >
+                    {{'EXCHANGE.RECUSAR_PROPOSTA' | translate }}
+                </button>
+                <button
+                        *ngIf="exchange?.status === exchangeStatus.pending && isReceiver()"
+                        mat-raised-button color="accent"
+                        class="choseAnotherOfferButton"
+                        (click)="accept(exchange.id)"
+                >
+                    {{'EXCHANGE.ACEITAR_PROPOSTA' | translate }}
+                </button>
+                <button
+                        *ngIf="exchange?.status === exchangeStatus.accepted"
+                        mat-raised-button color="warn"
+                        class="choseAnotherOfferButton"
+                        (click)="cancel(exchange.id)"
+                >
+                    {{'EXCHANGE.CANCELAR_TROCA' | translate }}
+                </button>
+            </div>
+        </mat-card>
+    </div>
+    <div *ngIf="exchange?.status === exchangeStatus.accepted">
+        <mat-card class="card2">
+            <div class="fundoCard" fxLayout="column" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+
+                <div *ngIf="exchange?.status === exchangeStatus.accepted && !isReceiver()">
+                    {{'EXCHANGE.SUA_PROPOSTA_ENVIADA' | translate}} {{exchange?.receiver.userName}} {{'EXCHANGE.FOI_ACEITA' | translate}}
+                </div>
+                <div *ngIf="exchange?.status === exchangeStatus.accepted && isReceiver()">
+                    {{'EXCHANGE.VOCE_ACEITOU' | translate}} {{exchange?.requester.userName}}{{'EXCHANGE.COMBINE_LUGAR_TROCA' | translate}}
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" *ngIf="isReceiver() && hasWhastsApp(exchange?.requesterAds)">
+                    <a
+                            href="https://{{isMobile() ? 'api.whatsapp.com' : 'web.whatsapp.com'}}/send?phone={{ hasWhastsApp(exchange?.requesterAds)}}&text={{'WHATS.HELLO' | translate}}+{{exchange?.requester?.profile?.name}},+{{'WHATS.ACEITEI_SUA_OFERTA' | translate}}+*{{'EXCHANGE.TROCO' | translate}}+{{exchange?.requesterAds.length}}+{{'PADRAO.LIVRO' | translate}}(s)+{{'PADRAO.POR' | translate}}+{{exchange?.receiverAds.length}}+{{'PADRAO.LIVRO' | translate}}(s)*,+{{'WHATS.GOSTARIA_MAIS_INFO' | translate}}"
+                            target="_blank"
+                            class="linkWhatsapp">
+                        <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}
+                    </a>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" *ngIf="!isReceiver() && hasWhastsApp(exchange?.receiverAds)">
+                    <a
+                            href="https://{{isMobile() ? 'api.whatsapp.com' : 'web.whatsapp.com'}}/send?phone={{ hasWhastsApp(exchange?.receiverAds)}}&text={{'WHATS.HELLO' | translate}}+{{exchange?.requester?.profile?.name}},+{{'WHATS.VI_ACEITOU' | translate}}+*{{'EXCHANGE.TROCO' | translate}}+{{exchange?.requesterAds.length}}+{{'PADRAO.LIVRO' | translate}}(s)+{{'PADRAO.POR' | translate}}+{{exchange?.receiverAds.length}}+{{'PADRAO.LIVRO' | translate}}(s)*,+{{'WHATS.GOSTARIA_MAIS_INFO' | translate}}"
+                            target="_blank"
+                            class="linkWhatsapp">
+                        <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}
+                    </a>
+                </div>
+                <button
+                        *ngIf="exchange?.status === exchangeStatus.accepted"
+                        mat-raised-button color="accent"
+                        style="width: 100%; margin-top: 5px"
+                >
+                    {{'EXCHANGE.INCIAR_CHAT' | translate }}
+                </button>
+                <div *ngIf="exchange?.status === exchangeStatus.accepted && !isReceiver()">
+                    <div>
+                        {{'EXCHANGE.LEIA_QR_CODE' | translate}} {{exchange?.receiver.userName}}:
+                    </div>
+                    <button
+                            *ngIf="exchange?.status === exchangeStatus.accepted"
+                            (click)="readCodeBar()"
+                            mat-raised-button color="accent"
+                            style="width: 100%; margin-top: 5px"
+                    >
+                        {{'EXCHANGE.LER_CODE' | translate }}
+                    </button>
+                </div>
+                <div *ngIf="exchange?.status === exchangeStatus.accepted && isReceiver()">
+                    <div>
+                        {{'EXCHANGE.GERE_QR_CODE' | translate}} {{exchange?.requester.userName}} {{'EXCHANGE.ESCANEIE' | translate}}
+                    </div>
+                    <button
+                            *ngIf="exchange?.status === exchangeStatus.accepted"
+                            (click)="generateQRCode()"
+                            mat-raised-button color="accent"
+                            style="width: 100%; margin-top: 5px"
+                    >
+                        {{'EXCHANGE.GERAR_QR_CODE' | translate }}
+                    </button>
+                    <button
+                            *ngIf="exchange?.status === exchangeStatus.accepted && isRunning"
+                            (click)="pauseTimer()"
+                            mat-raised-button color="primary"
+                            style="width: 100%; margin-top: 5px"
+                    >
+                        {{'EXCHANGE.LIMPAR' | translate }}
+                    </button>
+                    <div *ngIf="urlLinkToken">
+                        {{'EXCHANGE.EXPIRA_EM' | translate}}: 0{{hour}}:{{timeLeft < 10 ? 0 : ''}}{{timeLeft}}
+                    </div>
+                    <div *ngIf="urlLinkToken">
+                        <ngx-qrcode fxlayout="row" fxLayoutAlign="center center"
+                                [width]="300"
+                                qrc-element-type="url" [value]="urlLinkToken"></ngx-qrcode>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>

@@ -16,7 +16,6 @@ import {BookExchangeStatus} from '../../../models/enums/BookExchangeStatus.enum'
 export class ExchangeReceivedComponent implements OnInit {
     public exchanges$: Observable<ExchangeT0[]>;
     exchangeStatus = BookExchangeStatus;
-
     constructor(
         public exchangeService: ExchangeService,
         public authService: AuthService,

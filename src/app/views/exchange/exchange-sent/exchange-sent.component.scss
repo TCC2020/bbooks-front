@@ -6,20 +6,6 @@
   padding-bottom: 20px;
 }
 
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-  flex-basis: 0;
-}
-
-.example-headers-align .mat-expansion-panel-header-description {
-  justify-content: space-between;
-  align-items: center;
-}
-
-.example-headers-align .mat-form-field + .mat-form-field {
-  margin-left: 8px;
-}
-
 .image {
   opacity: 1;
   display: block;
@@ -55,13 +41,14 @@
   padding: 0;
 }
 
-.fundoCard {
-  width: 80%;
-}
+//.fundoCard {
+//  width: 80%;
+//}
 
 .choseAnotherOfferButton {
-  width: 250px;
   margin: 5px;
+  right: 0;
+  position: absolute;
 }
 .cardImagePost{
   border-color:  rgba(0, 0, 0, 0.2);
@@ -72,7 +59,17 @@
   max-width: 22px;
   max-height: 22px;
 }
-
+.card {
+  max-width: 450px;
+  width: 425px;
+  min-height: 610px;
+  margin: 7px;
+}
+.card:hover {
+  cursor: pointer;
+  transition: all .2s linear;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 @media screen and (max-width: 600px) {
 
@@ -106,5 +103,8 @@
   }
   .layoutButton {
     width: 100%;
+  }
+  .card {
+    height: 100%;
   }
 }
