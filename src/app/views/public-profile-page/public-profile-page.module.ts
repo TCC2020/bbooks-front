@@ -10,13 +10,17 @@ import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {CreatePublicProfileComponent} from './create-public-profile/create-public-profile.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
+import {StoreModule} from '@ngrx/store';
+import {reducer} from '../perfil-page/store/reducers/feed.reducer';
+import {SharedModule} from '../shared/shared.module';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 @NgModule({
     declarations: [
         PublicProfileComponent,
         FeedPublicProfileComponent,
         AboutPublicProfileComponent,
-        CreatePublicProfileComponent
+        CreatePublicProfileComponent,
     ],
     imports: [
         CommonModule,
@@ -27,7 +31,10 @@ import {TranslateModule} from '@ngx-translate/core';
         PublicProfilePageRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        TranslateModule
+        TranslateModule,
+        StoreModule.forFeature('PublicProfilePage', reducer),
+        SharedModule,
+        InfiniteScrollModule
     ]
 })
 export class PublicProfilePageModule {

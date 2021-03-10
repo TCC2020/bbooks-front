@@ -4,6 +4,8 @@ import {NgModule} from '@angular/core';
 import {AboutPublicProfileComponent} from './about-public-profile/about-public-profile.component';
 import {FeedPublicProfileComponent} from './feed-public-profile/feed-public-profile.component';
 import {CreatePublicProfileComponent} from './create-public-profile/create-public-profile.component';
+import {PostDialogComponent} from '../shared/post-dialog/post-dialog.component';
+import {AuthGuard} from '../../guards/auth-guard';
 
 const publicProfileRouters = [
     {
@@ -18,6 +20,10 @@ const publicProfileRouters = [
             },
             { path: '', redirectTo: 'feed', pathMatch: 'full' },
         ]
+    },
+    {
+        path: 'public-profile/create-post', component: PostDialogComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'public-profile/criar',

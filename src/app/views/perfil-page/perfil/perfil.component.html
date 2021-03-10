@@ -2,7 +2,7 @@
     <div class="conteudo">
         <div class="container-imagem-perfil">
             <img class="imagem-perfil"
-                 [src]="userTO?.profile?.profileImage ?
+                 [src]="this.image? this.image : userTO?.profile?.profileImage ?
                  userTO?.profile?.profileImage:
                  'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
             <button mat-icon-button class="middle" (click)="showDialogUpload()">

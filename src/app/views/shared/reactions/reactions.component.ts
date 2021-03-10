@@ -22,6 +22,9 @@ import {ReactTO} from '../../../models/ReactTO.model';
 import {ViewAllReactionsComponent} from '../view-all-reactions/view-all-reactions.component';
 import {PostReactionTO} from '../../../models/PostReactionTO.model';
 import {ActorAction} from '../../../models/ReactionsTO';
+import {
+    FeedPublicProfilePageManagerService
+} from '../../public-profile-page/store/feed-public-profile-manager.service';
 
 @Component({
     selector: 'app-reactions',
@@ -68,6 +71,7 @@ export class ReactionsComponent implements OnInit {
         public feedMainManagerService: FeedMainManagerService,
         public feedGenerec: FeedGenericService,
         public feedGroupManagerService: FeedGroupManagerService,
+        public feedPublicProfilePageManagerService: FeedPublicProfilePageManagerService,
         public groupService: GroupService
     ) {
     }
@@ -226,6 +230,9 @@ export class ReactionsComponent implements OnInit {
             case TypePostControler.group:
                 this.feedGroupManagerService.updatePost(postTo);
                 return;
+            case TypePostControler.feedPublicProfile:
+                this.feedPublicProfilePageManagerService.updatePost(postTo);
+                return;
         }
     }
 
@@ -239,6 +246,9 @@ export class ReactionsComponent implements OnInit {
                 return;
             case TypePostControler.group:
                 this.feedGroupManagerService.deletePost(postTo);
+                return;
+            case TypePostControler.feedPublicProfile:
+                this.feedPublicProfilePageManagerService.deletePost(postTo);
                 return;
         }
     }
@@ -254,6 +264,9 @@ export class ReactionsComponent implements OnInit {
             case TypePostControler.group:
                 this.feedGroupManagerService.deleteComment(postTo, comment);
                 return;
+            case TypePostControler.feedPublicProfile:
+                this.feedPublicProfilePageManagerService.deleteComment(postTo, comment);
+                return;
         }
     }
 
@@ -267,6 +280,9 @@ export class ReactionsComponent implements OnInit {
                 return;
             case TypePostControler.group:
                 this.feedGroupManagerService.addComment(postTo, comment);
+                return;
+            case TypePostControler.feedPublicProfile:
+                this.feedPublicProfilePageManagerService.addComment(postTo, comment);
                 return;
         }
     }
@@ -282,6 +298,9 @@ export class ReactionsComponent implements OnInit {
             case TypePostControler.group:
                 this.feedGroupManagerService.updateComment(postTo, comment);
                 return;
+            case TypePostControler.feedPublicProfile:
+                this.feedPublicProfilePageManagerService.updateComment(postTo, comment);
+                return;
         }
     }
 
@@ -296,6 +315,9 @@ export class ReactionsComponent implements OnInit {
             case TypePostControler.group:
                 this.feedGroupManagerService.updateReactions(postTo, postReactionTO);
                 return;
+            case TypePostControler.feedPublicProfile:
+                this.feedPublicProfilePageManagerService.updateReactions(postTo, postReactionTO);
+                return;
         }
     }
 
@@ -309,6 +331,9 @@ export class ReactionsComponent implements OnInit {
                 return;
             case TypePostControler.group:
                 this.router.navigate(['groups/create-post'], {state: {post}});
+                return;
+            case TypePostControler.feedPublicProfile:
+                this.router.navigate(['public-profile/create-post'], {state: {post}});
                 return;
         }
     }

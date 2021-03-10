@@ -19,6 +19,7 @@ export class PostTO {
     groupId: string;
     group: GroupTO;
     reactions: ReactionsTO;
+    pageId: string;
 
     public setComments(comments: PostTO[]) {
         this.comments = [];

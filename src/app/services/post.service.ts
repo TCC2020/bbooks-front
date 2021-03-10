@@ -45,4 +45,11 @@ export class PostService {
     react(react: ReactTO): Observable<PostReactionTO> {
         return this.http.put<PostReactionTO>(this.api + react.postId + '/react', react);
     }
+    getPageFeed(pageId: string, size?: number, page?: number): Observable<PostPagination> {
+        const params = new HttpParams()
+        .set('pageId', pageId)
+        .set('page', page.toString())
+        .set('size', size.toString());
+        return this.http.get<PostPagination>(this.api + 'page/' + pageId, {params});
+    }
 }

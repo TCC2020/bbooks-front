@@ -22,6 +22,7 @@ export class FeedGenericService {
         post.groupId = p.groupId;
         post.comments = [];
         post.reactions = p.reactions;
+        post.pageId = p.pageId;
         if (p.comments) {
             post.comments = p.comments.map(result => result);
         }
