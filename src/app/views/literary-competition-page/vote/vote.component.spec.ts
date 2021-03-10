@@ -13,6 +13,8 @@ import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {AuthService} from '../../../services/auth.service';
 import {userMock} from '../../../mocks/user.model.mock';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
+import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
 
 describe('VoteComponent', () => {
     let component: VoteComponent;
@@ -46,9 +48,13 @@ describe('VoteComponent', () => {
                 ReactiveFormsModule,
                 HttpClientTestingModule,
                 HttpClientModule,
-                BrowserAnimationsModule
+                BrowserAnimationsModule,
+                TranslateModule,
+                TranslateServiceMockForChild
             ],
             providers: [
+                TranslateService,
+                TranslateStore,
                 {
                     provide: MatDialog,
                     useValue: mockMatDialog
