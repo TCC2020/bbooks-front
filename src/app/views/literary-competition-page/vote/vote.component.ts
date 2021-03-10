@@ -20,6 +20,8 @@ export class VoteComponent implements OnInit {
 
     formVote: FormGroup;
     competitionVotesSaveTO: CompetitionVotesSaveTO;
+    isVoted: boolean;
+    competitionVoteReturnTO: CompetitionVoteReturnTO;
 
     constructor(
         @Inject(MAT_DIALOG_DATA) public member: CompetitionMemberTO,
@@ -33,13 +35,17 @@ export class VoteComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.verifyVoted();
         this.createForm();
         this.getProfile();
     }
 
     createForm() {
         this.formVote = this.formBuilder.group({
-            note: new FormControl(null, Validators.compose([
+            id: new FormControl(this.competitionVoteReturnTO?.id ? this.competitionVoteReturnTO.id : null),
+            memberId: new FormControl(this.competitionVoteReturnTO?.member?.memberId ? this.competitionVoteReturnTO.member.memberId : null),
+            profileId: new FormControl(this.competitionVoteReturnTO?.profile?.id ? this.competitionVoteReturnTO.profile.id : null),
+            value: new FormControl(this.competitionVoteReturnTO?.value ? this.competitionVoteReturnTO.value : null, Validators.compose([
                     Validators.max(10),
                     Validators.min(1)
                 ]
@@ -51,12 +57,12 @@ export class VoteComponent implements OnInit {
         const competitionVotesSaveTO = new CompetitionVotesSaveTO();
         competitionVotesSaveTO.memberId = this.member.memberId;
         competitionVotesSaveTO.profileId = this.authService.getUser().profile.id;
-        competitionVotesSaveTO.value = this.formVote.get('note').value;
-        console.log(competitionVotesSaveTO);
+        competitionVotesSaveTO.value = this.formVote.get('value').value;
         this.competitionVoteService.vote(competitionVotesSaveTO)
             .pipe(take(1))
             .subscribe(result => {
                 Util.showSuccessDialog('Seu voto foi registrado com sucesso!');
+                this.dialogClose();
             }, error => {
                 console.log(error);
             });
@@ -83,6 +89,30 @@ export class VoteComponent implements OnInit {
                 console.log(error);
                 Util.stopLoading();
             });
+    }
+
+    verifyVoted() {
+        this.competitionVoteService.getVoteByMemberAndProfile(this.member.memberId, this.authService.getUser().profile.id)
+            .pipe(take(1))
+            .subscribe(result => {
+                this.competitionVoteReturnTO = result;
+                this.createForm();
+            }, error => {
+                console.log(error);
+            });
+    }
+
+    updateVote() {
+        this.competitionVoteService.updateVote(this.competitionVoteReturnTO.id, this.formVote.value)
+            .pipe(take(1))
+            .subscribe(result => {
+                Util.showSuccessDialog('A nova nota foi atribuída com sucesso!');
+                this.dialogClose();
+            });
+    }
+
+    dialogClose() {
+        this.dialogRef.close();
     }
 
 }

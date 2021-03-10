@@ -147,5 +147,4 @@ export class MembersLiteraryCompetitionComponent implements OnInit {
         }
         return false;
     }
-
 }

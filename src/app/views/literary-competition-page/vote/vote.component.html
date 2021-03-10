@@ -1,20 +1,25 @@
 <form [formGroup]="formVote">
     <div>
-        <h2>Qual nota você atribui para a história de {{ member?.profile?.name }} {{ member?.profile?.lastName }}?</h2>
+        <h2>Qual nota você atribui para a história de {{ member?.profile?.name + ' ' + member?.profile?.lastName }}?</h2>
         <div>
             <mat-form-field appearance="outline">
-                <mat-label>Input</mat-label>
-                <input formControlName="note" [min]="1" [max]="10" type="number" matInput>
-                <mat-error *ngIf="formVote.controls['note'].hasError('max')">
+                <mat-label>Nota</mat-label>
+                <input formControlName="value" [min]="1" [max]="10" type="number" matInput>
+                <mat-error *ngIf="formVote.controls['value'].hasError('max')">
                     Nota não pode ser maior que 10
                 </mat-error>
-                <mat-error *ngIf="formVote.controls['note'].hasError('min')">
+                <mat-error *ngIf="formVote.controls['value'].hasError('min')">
                     Nota não pode ser menor que 1
                 </mat-error>
             </mat-form-field>
         </div>
         <button type="button" mat-raised-button color="primary"
-                (click)="vote()">Votar
+                *ngIf="!competitionVoteReturnTO?.id" (click)="vote()">Votar
+        </button>
+        <button type="button" mat-raised-button color="primary"
+                *ngIf="competitionVoteReturnTO?.id" (click)="updateVote()">Alterar voto
+        </button>
+        <button type="button" mat-raised-button (click)="dialogClose()">Cancelar
         </button>
     </div>
 </form>
