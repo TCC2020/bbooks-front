@@ -105,10 +105,8 @@ export class PostDialogComponent implements OnInit {
     getPageId(): string {
         const hasPage = this.router.url.includes('public-profile');
         if (hasPage) {
-            console.log('entrou')
             return localStorage.getItem('pageId');
         } else {
-            console.log('nao entrou')
             return this.dataDialog ? this.dataDialog?.pageId : '';
         }
     }
