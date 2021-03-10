@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 const Chat = Schema({
     exchangeId: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     messages: [
         {
