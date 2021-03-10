@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ExchangeT0} from '../models/exchangeT0,model';
+import {ChatTO} from '../models/chatTO.model';
 
 @Injectable({
     providedIn: 'root'
@@ -38,4 +39,8 @@ export class ExchangeService {
     cancel(idExchange: string): Observable<ExchangeT0> {
         return this.http.put<ExchangeT0>(this.api + '/cancel/' + idExchange, '');
     }
+
+    /*createChat(chatId: string): Observable<ExchangeT0> {
+        return this.http.put<ExchangeT0>(this.api + 'chat/' + chatId, '');
+    }*/
 }

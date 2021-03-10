@@ -44,7 +44,7 @@
     <div class="send">
         <mat-form-field appearance="outline">
             <textarea matInput></textarea>
-            <button mat-button matSuffix mat-icon-button aria-label="Clear">
+            <button mat-button matSuffix mat-icon-button (click)="sendMessage()">
                 <mat-icon>send</mat-icon>
             </button>
         </mat-form-field>

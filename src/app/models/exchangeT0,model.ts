@@ -13,4 +13,5 @@ export class ExchangeT0 {
     requester: UserTO;
     requesterAds: BookAdTO[];
     receiverAds: BookAdTO[];
+    chatId: string;
 }
