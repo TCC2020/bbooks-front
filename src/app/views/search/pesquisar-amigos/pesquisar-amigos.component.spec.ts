@@ -12,6 +12,8 @@ import {ConsultaCepService} from 'src/app/services/consulta-cep.service';
 import {ProfileService} from 'src/app/services/profile.service';
 
 import {PesquisarAmigosComponent} from './pesquisar-amigos.component';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
 
 describe('PesquisarAmigosComponent', () => {
     let component: PesquisarAmigosComponent;
@@ -27,7 +29,8 @@ describe('PesquisarAmigosComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PesquisarAmigosComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [PesquisarAmigosComponent, EmptyContentMessageComponent],
             imports: [
                 FormsModule,
                 ReactiveFormsModule,

@@ -15,6 +15,7 @@ import {UploadComponent} from '../upload/upload.component';
 import {DateAdapter} from '@angular/material/core';
 import {Profile} from '../../models/profileTO.model';
 import {Util} from '../shared/Utils/util';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-cadastro-segunda-etapa',
@@ -47,7 +48,10 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         private cdnService: CDNService,
         public dialog: MatDialog,
         private adapter: DateAdapter<any>,
+        private translate: TranslateService
     ) {
+        const browserLang = this.translate.getBrowserLang().toString();
+        this.adapter.setLocale(browserLang);
         this.auth.language.subscribe(lang => {
             this.adapter.setLocale(lang);
         });

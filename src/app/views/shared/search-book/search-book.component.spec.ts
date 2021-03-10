@@ -12,6 +12,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {of} from 'rxjs';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../empty-content-message/empty-content-message.component';
 
 describe('SearchBookComponent', () => {
     let component: SearchBookComponent;
@@ -31,7 +33,8 @@ describe('SearchBookComponent', () => {
     };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SearchBookComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [SearchBookComponent, EmptyContentMessageComponent ],
             imports: [
                 SocialLoginModule,
                 RouterTestingModule,

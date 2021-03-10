@@ -4,6 +4,7 @@ import {AuthService} from 'src/app/services/auth.service';
 import {take} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
 import { Util } from '../shared/Utils/util';
+import {environment} from '../../../environments/environment';
 
 @Component({
     selector: 'app-recuperar-senha',
@@ -24,7 +25,7 @@ export class RecuperarSenhaComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            url: ['http://bbooks-front.herokuapp.com/nova-senha/'],
+            url: [environment.api + '/nova-senha/'],
             email: ['', Validators.compose([
                 Validators.required,
                 Validators.email

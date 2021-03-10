@@ -14,11 +14,11 @@
 
 <form [formGroup]="formGroup">
     <mat-card>
-        <div fxLayout="row" fxLayoutAlign="center">
-            <span class="material-icons">add_a_photo</span>
-        </div>
+<!--        <div fxLayout="row" fxLayoutAlign="center">-->
+<!--            <span class="material-icons">add_a_photo</span>-->
+<!--        </div>-->
         <div  fxLayout="row" fxLayoutAlign="center">
-            <mat-form-field   style="width: 60%">
+            <mat-form-field   style="width: 100%" appearance="outline">
                 <mat-label>{{'GRUPO_LEITURA.INPUT_NAME' | translate }}</mat-label>
                 <input matInput  formControlName="name">
                 <mat-error *ngIf="formGroup.get('name').hasError('required')">
@@ -68,7 +68,7 @@
     </mat-card>
     <mat-card >
         <h2>{{'GRUPO_LEITURA.SOBRE' | translate}}</h2>
-        <mat-form-field  style="width: 100%">
+        <mat-form-field  style="width: 100%" appearance="outline">
             <mat-label>{{'GRUPO_LEITURA.INPUT_DESCRICAO' | translate}}</mat-label>
             <textarea matInput formControlName="description"></textarea>
         </mat-form-field>

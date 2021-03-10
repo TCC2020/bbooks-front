@@ -12,6 +12,8 @@ import {SocialAuthServiceConfigMock} from '../../../mocks/google.provide.mock';
 import {userMock} from '../../../mocks/user.model.mock';
 import {TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
 import {TranslateServiceMockForChild} from '../../../mocks/translate.service.mock';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
 
 describe('ListLiteraryCompetitionComponent', () => {
     let component: ListLiteraryCompetitionComponent;
@@ -24,7 +26,8 @@ describe('ListLiteraryCompetitionComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ListLiteraryCompetitionComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [ListLiteraryCompetitionComponent, EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 RouterTestingModule,

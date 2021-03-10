@@ -21,7 +21,16 @@
 	border-radius: 50%;
 	margin: auto;
 }
+.imagem-perfil:hover{
+	cursor: pointer;
+}
 
+.middle {
+	transition: .5s ease;
+	opacity: 1;
+	position: absolute;
+	//top: 80%;
+}
 .nome-usuario {
 	width: 100%;
 	text-align: center;

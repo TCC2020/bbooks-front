@@ -1,25 +1,25 @@
 <div class="container-geral">
     <div class="container-progresso">
         <h2>{{'PADRAO.ANDAMENTO_META' | translate}} - {{currentDate}}</h2>
-        <div class="barra-de-progresso" *ngIf="currentReadingTarget">
+        <div class="barra-de-progresso" *ngIf="currentReadingTarget?.targets?.length > 0">
             <mat-progress-bar class="progresso-andamento-meta-leitura" mode="determinate" [value]="currentReadingTarget?.progress?.progress"></mat-progress-bar>
             <div class="porcentagem">{{currentReadingTarget?.progress?.progress | number:'1.1-2'}}%</div>
         </div>
-        <p class="quantidade-lida" *ngIf="currentReadingTarget">{{currentReadingTarget?.progress?.done}}/{{currentReadingTarget?.progress?.done + currentReadingTarget?.progress?.remaining}}</p>
+        <p class="quantidade-lida" *ngIf="currentReadingTarget?.targets?.length > 0">{{currentReadingTarget?.progress?.done}}/{{currentReadingTarget?.progress?.done + currentReadingTarget?.progress?.remaining}}</p>
         <button *ngIf="previousGoals?.length > 1" type="button" mat-flat-button color="accent" routerLink="/metas-anteriores">{{'PADRAO.METAS_ANTEREIORS' | translate}}</button>
     </div>
     <!--Começar o for dos livros-->
-    <div class="texto-meta-atual" *ngIf="!currentReadingTarget">
-        <p>Você ainda não possui livro na sua Meta de Leitura.</p>
+    <div class="texto-meta-atual" *ngIf="!currentReadingTarget || currentReadingTarget.targets.length === 0">
+        <p>{{'BOOK.MSG_DONT_TARGET' | translate}}</p>
     </div>
-    <div *ngIf="currentReadingTarget?.targets.length > 0">
+    <div *ngIf="currentReadingTarget?.targets?.length > 0">
         <div class="container-linha-livro" *ngFor="let userBook of currentReadingTarget?.targets">
             <div class="container-imagem-livro">
                 <img [src]="userBook?.book?.image ? userBook.book.image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
             </div>
             <div class="container-informacoes-livro">
                 <p>{{userBook?.book?.title}}</p>
-                <p>Status: {{userBook?.status}}</p>
+                <p>Status: {{'STATUS.' + userBook?.status | translate}}</p>
             </div>
         </div>
     </div>

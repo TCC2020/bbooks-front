@@ -102,6 +102,17 @@ mat-form-field, .barra-pesquisar {
     margin-top: 15px;
 }
 
+.alterar-titulo {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.alterar-titulo button {
+    height: 50px;
+    margin: auto 0;
+}
+
 
 @media screen and (max-width: 850px) {
     .container-grupo {

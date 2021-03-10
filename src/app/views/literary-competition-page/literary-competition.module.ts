@@ -17,6 +17,7 @@ import {CreateStoryComponent} from './create-story/create-story.component';
 import {RegistrationsComponent} from './registrations/registrations.component';
 import {AddAdministratorComponent} from './add-administrator/add-administrator.component';
 import {VoteComponent} from './vote/vote.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {VoteComponent} from './vote/vote.component';
         ReactiveFormsModule,
         TranslateModule,
         LiteraryCompetitionRoutingModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        SharedModule
     ]
 })
 export class LiteraryCompetitionModule {

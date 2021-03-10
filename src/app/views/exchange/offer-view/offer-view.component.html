@@ -93,7 +93,7 @@
 
                     <!--                            Iniciar um chat </div>-->
                     <!--                    </div>-->
-                    <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxLayout="row" fxLayoutAlign="start center" *ngIf="bookAdTO.contact">
                         <a
                             href="https://{{isMobile() ? 'api.whatsapp.com' : 'web.whatsapp.com'}}/send?phone={{bookAdTO?.contact}}&text=Olá+{{userOffer?.profile?.name}},+encontrei+sua+oferta+*{{bookAdTO?.title?.replace(' ', '+')}}*,+gostaria+de+mais+informações!"
                             target="_blank"

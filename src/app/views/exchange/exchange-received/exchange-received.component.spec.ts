@@ -14,6 +14,8 @@ import {userMock} from '../../../mocks/user.model.mock';
 import {of, throwError} from 'rxjs';
 import {exchangeMock, exchangesMock} from '../../../mocks/exchange.mock';
 import {errorMock} from '../../../mocks/error.model.mock';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
 
 describe('ExchangeReceivedComponent', () => {
     let component: ExchangeReceivedComponent;
@@ -24,7 +26,8 @@ describe('ExchangeReceivedComponent', () => {
     let exchangeServiceMock: ExchangeService;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ExchangeReceivedComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [ExchangeReceivedComponent, EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 RouterTestingModule,

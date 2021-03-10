@@ -4,6 +4,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {PostTO} from '../models/PostTO.model';
 import {Observable} from 'rxjs';
 import {PostPagination} from '../models/pagination/post.pagination';
+import {ReactTO} from '../models/ReactTO.model';
+import {PostReactionTO} from '../models/PostReactionTO.model';
 
 @Injectable({
     providedIn: 'root'
@@ -38,5 +40,9 @@ export class PostService {
             .set('page', page.toString())
             .set('size', size.toString());
         return this.http.get<PostTO[]>(this.api + 'comment/' + postId , {params});
+    }
+
+    react(react: ReactTO): Observable<PostReactionTO> {
+        return this.http.put<PostReactionTO>(this.api + react.postId + '/react', react);
     }
 }

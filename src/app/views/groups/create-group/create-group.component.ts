@@ -59,10 +59,21 @@ export class CreateGroupComponent implements OnInit {
                 },
                 error => {
                     Util.stopLoading();
-                    this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
-                        Util.showErrorDialog(message);
-                    });
-                    console.log('Error Grupo save', error);
+                    let codMessage = '';
+                    if (error.error.message.includes('GR002')) {
+                        codMessage = 'GR002';
+                    }
+                    if (codMessage) {
+                        this.translate.get('GRUPO_LEITURA.GRUPO_EXISTS').subscribe(message => {
+                            Util.showErrorDialog(message);
+                        });
+                    } else {
+                        this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                            Util.showErrorDialog(message);
+                        });
+                        console.log('Error Grupo save', error);
+                    }
+
                 });
     }
 

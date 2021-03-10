@@ -1,0 +1,247 @@
+<mat-tab-group>
+    <mat-tab label="{{'REACTIONS.TODOS' | translate}}">
+        <div class="container-amigo" *ngFor="let profile of allUsers">
+            <div class="container-imagem">
+                <div style="width: 100%">
+                    <div class="informacoes-do-usuario">
+                        <div class="container-imagem-perfil">
+                            <img class="imagem-perfil"
+                                 [src]="profile.profileImage ?
+                        profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                        </div>
+                        <div class="informacoes">
+                            <div><span><a class="nome-usuario" [routerLink]="['', profile.username]">{{profile?.name}} {{profile?.lastName}}</a></span></div>
+                            <div><span>{{profile?.username}}</span></div>
+                        </div>
+                        <div class="adicionar-amigos" [routerLink]="['', profile.username]">
+                            <button type="button" mat-flat-button color="accent">
+                                {{'PERFIL.PERFIL' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="reactions.likes.count > 0">
+        <ng-template mat-tab-label>
+            <i class="far fa-thumbs-up fa-lg" style="margin: 0 5px 0 0;"></i>
+            {{'REACTIONS.' + reaction.like | translate}}
+        </ng-template>
+        <div class="container-amigo" *ngFor="let profile of reactions.likes.profiles">
+            <div class="container-imagem">
+                <div>
+                    <div class="informacoes-do-usuario">
+                        <div class="container-imagem-perfil">
+                            <img class="imagem-perfil"
+                                 [src]="profile.profileImage ?
+                        profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                        </div>
+                        <div class="informacoes">
+                            <div><span><a class="nome-usuario" [routerLink]="['', profile.username]">{{profile?.name}} {{profile?.lastName}}</a></span></div>
+                            <div><span>{{profile?.username}}</span></div>
+                        </div>
+                        <div class="adicionar-amigos" [routerLink]="['', profile.username]">
+                            <button type="button" mat-flat-button color="accent">
+                                {{'PERFIL.PERFIL' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="reactions.dislike.count > 0">
+        <ng-template mat-tab-label>
+            <i class="far fa-thumbs-down fa-lg" style="margin: 0 5px 0 0;"></i>
+            {{'REACTIONS.' + reaction.dislike | translate}}
+        </ng-template>
+        <div class="container-amigo" *ngFor="let profile of reactions.dislike.profiles">
+            <div class="container-imagem">
+                <div>
+                    <div class="informacoes-do-usuario">
+                        <div class="container-imagem-perfil">
+                            <img class="imagem-perfil"
+                                 [src]="profile.profileImage ?
+                        profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                        </div>
+                        <div class="informacoes">
+                            <div><span><a class="nome-usuario" [routerLink]="['', profile.username]">{{profile?.name}} {{profile?.lastName}}</a></span></div>
+                            <div><span>{{profile?.username}}</span></div>
+                        </div>
+                        <div class="adicionar-amigos" [routerLink]="['', profile.username]">
+                            <button type="button" mat-flat-button color="accent">
+                                {{'PERFIL.PERFIL' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="reactions.loved.count > 0">
+        <ng-template mat-tab-label>
+            <i class="far fa-heart fa-lg" style="margin: 0 5px 0 0;"></i>
+            {{'REACTIONS.' + reaction.loved | translate}}
+        </ng-template>
+        <div class="container-amigo" *ngFor="let profile of reactions.loved.profiles">
+            <div class="container-imagem">
+                <div>
+                    <div class="informacoes-do-usuario">
+                        <div class="container-imagem-perfil">
+                            <img class="imagem-perfil"
+                                 [src]="profile.profileImage ?
+                        profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                        </div>
+                        <div class="informacoes">
+                            <div><span><a class="nome-usuario" [routerLink]="['', profile.username]">{{profile?.name}} {{profile?.lastName}}</a></span></div>
+                            <div><span>{{profile?.username}}</span></div>
+                        </div>
+                        <div class="adicionar-amigos" [routerLink]="['', profile.username]">
+                            <button type="button" mat-flat-button color="accent">
+                                {{'PERFIL.PERFIL' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="reactions.hilarius.count > 0">
+        <ng-template mat-tab-label>
+            <i class="far fa-laugh-squint fa-lg" style="margin: 0 5px 0 0;"></i>
+            {{'REACTIONS.' + reaction.hilarius | translate}}
+        </ng-template>
+        <div class="container-amigo" *ngFor="let profile of reactions.hilarius.profiles">
+            <div class="container-imagem">
+                <div>
+                    <div class="informacoes-do-usuario">
+                        <div class="container-imagem-perfil">
+                            <img class="imagem-perfil"
+                                 [src]="profile.profileImage ?
+                        profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                        </div>
+                        <div class="informacoes">
+                            <div><span><a class="nome-usuario" [routerLink]="['', profile.username]">{{profile?.name}} {{profile?.lastName}}</a></span></div>
+                            <div><span>{{profile?.username}}</span></div>
+                        </div>
+                        <div class="adicionar-amigos" [routerLink]="['', profile.username]">
+                            <button type="button" mat-flat-button color="accent">
+                                {{'PERFIL.PERFIL' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="reactions.surprised.count > 0">
+        <ng-template mat-tab-label>
+            <i class="far fa-surprise fa-lg" style="margin: 0 5px 0 0;"></i>
+            {{'REACTIONS.' + reaction.surprised | translate}}
+        </ng-template>
+        <div class="container-amigo" *ngFor="let profile of reactions.surprised.profiles">
+            <div class="container-imagem">
+                <div>
+                    <div class="informacoes-do-usuario">
+                        <div class="container-imagem-perfil">
+                            <img class="imagem-perfil"
+                                 [src]="profile.profileImage ?
+                        profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                        </div>
+                        <div class="informacoes">
+                            <div><span><a class="nome-usuario" [routerLink]="['', profile.username]">{{profile?.name}} {{profile?.lastName}}</a></span></div>
+                            <div><span>{{profile?.username}}</span></div>
+                        </div>
+                        <div class="adicionar-amigos" [routerLink]="['', profile.username]">
+                            <button type="button" mat-flat-button color="accent">
+                                {{'PERFIL.PERFIL' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="reactions.sad.count > 0">
+        <ng-template mat-tab-label>
+            <i class="far fa-sad-tear fa-lg" style="margin: 0 5px 0 0;"></i>
+            {{'REACTIONS.' + reaction.sad | translate}}
+        </ng-template>
+        <div class="container-amigo" *ngFor="let profile of reactions.sad.profiles">
+            <div class="container-imagem">
+                <div>
+                    <div class="informacoes-do-usuario">
+                        <div class="container-imagem-perfil">
+                            <img class="imagem-perfil"
+                                 [src]="profile.profileImage ?
+                        profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                        </div>
+                        <div class="informacoes">
+                            <div><span><a class="nome-usuario" [routerLink]="['', profile.username]">{{profile?.name}} {{profile?.lastName}}</a></span></div>
+                            <div><span>{{profile?.username}}</span></div>
+                        </div>
+                        <div class="adicionar-amigos" [routerLink]="['', profile.username]">
+                            <button type="button" mat-flat-button color="accent">
+                                {{'PERFIL.PERFIL' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-tab>
+    <mat-tab *ngIf="reactions.hated.count > 0">
+        <ng-template mat-tab-label>
+            <i class="far fa-angry fa-lg" style="margin: 0 5px 0 0;"></i>
+            {{'REACTIONS.' + reaction.hated | translate}}
+        </ng-template>
+        <div class="container-amigo" *ngFor="let profile of reactions.hated.profiles">
+            <div class="container-imagem">
+                <div>
+                    <div class="informacoes-do-usuario">
+                        <div class="container-imagem-perfil">
+                            <img class="imagem-perfil"
+                                 [src]="profile.profileImage ?
+                        profile.profileImage:
+                        'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+                        </div>
+                        <div class="informacoes">
+                            <div><span><a class="nome-usuario" [routerLink]="['', profile.username]">{{profile?.name}} {{profile?.lastName}}</a></span></div>
+                            <div><span>{{profile?.username}}</span></div>
+                        </div>
+                        <div class="adicionar-amigos" [routerLink]="['', profile.username]">
+                            <button type="button" mat-flat-button color="accent">
+                                {{'PERFIL.PERFIL' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+

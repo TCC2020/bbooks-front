@@ -8,6 +8,7 @@ import {map, take} from 'rxjs/operators';
 import {Util} from '../../shared/Utils/util';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DateAdapter} from '@angular/material/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-create-literary-competition',
@@ -26,8 +27,11 @@ export class CreateLiteraryCompetitionComponent implements OnInit {
         private competitionService: CompetitionService,
         private router: Router,
         private route: ActivatedRoute,
-        private adapter: DateAdapter<any>
+        private adapter: DateAdapter<any>,
+        private translate: TranslateService
     ) {
+        const browserLang = this.translate.getBrowserLang().toString();
+        this.adapter.setLocale(browserLang);
         this.authService.language.subscribe(lang => {
             this.adapter.setLocale(lang);
         });

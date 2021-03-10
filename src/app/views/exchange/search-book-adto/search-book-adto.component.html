@@ -10,6 +10,9 @@
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>
 <div fxLayout="column" fxLayoutGap="10px"  *ngIf="(booksAdsTo | async) as booksAdsTo; else loading">
+    <app-empty-content-message *ngIf="(booksAdsTo | filterAsync:  formSearch.get('search').value).length === 0"
+                               message=" {{'PADRAO.NOT_FIND_RESULT' | translate }}">
+    </app-empty-content-message>
     <div *ngFor="let bookAds of (booksAdsTo | filterAsync:  formSearch.get('search').value)" (click)="selectBookAd(bookAds)">
         <div *ngIf="bookAds.isOpen">
             <div fxLayout="row" fxLayoutGap="10px"

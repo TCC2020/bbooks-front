@@ -83,7 +83,8 @@
     "SENHA_ALTERADA": "Sua senha foi alterada!",
     "BAR_CODE_ERRO": "Você negou a permissão da câmera, não podemos digitalizar nada sem ela.",
     "WAIT_PERMISSIONS": "Aguardando permissões.",
-    "NOT_HAS_CAMERA": "Se o seu dispositivo não tiver câmeras, nenhuma permissão será solicitada"
+    "NOT_HAS_CAMERA": "Se o seu dispositivo não tiver câmeras, nenhuma permissão será solicitada",
+    "NOT_FIND_RESULT": "Não encontramos nenhum resultado."
   },
   "GRUPO_LEITURA": {
     "ADMINISTRADORES": "Administradores",
@@ -121,7 +122,10 @@
     "REMOVER_MEMBRO": "Remover membro",
     "ADM_NOW": "Membro adicionado como administrador!",
     "MEMBER_NOW": "Administrador adicionado como membro",
-    "MEMBRO_REMOVIDO": "Membro removido"
+    "MEMBRO_REMOVIDO": "Membro removido",
+    "VC_NAO_TEM_GRUPO": "Você ainda não participa de nenhum grupo!",
+    "GRUPO_EXISTS": "O nome do grupo já existe."
+
   },
   "RESENHA": {
     "ESCREVER_RESENHA": "Escrever resenha",
@@ -220,13 +224,15 @@
     "ANO_PUBLICACAO": "Ano da publicação",
     "TITULO": "Título",
     "AUTORES": "Autores",
-    "INSIRA_UM_LIVRO": "Insira um novo livro"
+    "INSIRA_UM_LIVRO": "Insira um novo livro",
+    "MSG_DONT_TARGET": "Você ainda não possui livro na sua Meta de Leitura."
   },
   "PERFIL": {
     "feed": "feed",
     "bookcase": "Estante Virtual",
     "friends": "Amigos",
-    "EDITAR_PERFIL": "editar perfil"
+    "EDITAR_PERFIL": "editar perfil",
+    "PERFIL": "Perfil"
   },
   "PG_N_ENCONTRADA": {
     "PG_N_ENCONTRADA": "Página não encontrada",
@@ -441,6 +447,18 @@
     "TITULO": "Título",
     "CONTATO": "Contato é",
     "TROCAR_LIVRO": "Trocar livro",
-    "POSTADO_POR": "Postado por"
+    "POSTADO_POR": "Postado por",
+    "NOT_SENT_EXCHANGE": "Você ainda não enviou nenhuma proposta de troca.",
+    "NOT_RECEIVE_EXCHANGE": "Você ainda não recebeu nenhuma proposta de troca."
+  },
+  "REACTIONS": {
+    "like": "Gostei",
+    "dislike": "Não gostei",
+    "loved": "Amei",
+    "hilarius": "Hilário",
+    "surprised": "Surpreso",
+    "sad": "Triste",
+    "hated": "Odiei",
+    "TODOS": "Todos"
   }
 }
