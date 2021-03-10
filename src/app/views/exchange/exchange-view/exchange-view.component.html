@@ -1,5 +1,5 @@
-<div *ngIf="exchange" fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutAlign.xs="space-around center">
-    <div>
+<div *ngIf="exchange" fxLayout="row wrap" fxLayoutAlign="center start">
+    <div class="layout">
         <mat-card class="card">
             <div
                     *ngIf="exchange?.status === exchangeStatus.accepted"
@@ -60,8 +60,8 @@
             <div>
                 <b>{{'PADRAO.OFERTA' | translate}}</b>
             </div>
-            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutAlign.xs="space-around center"
-                 style="height: 220px">
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column" fxLayoutAlign.xs="space-around center"
+                 style="min-height: 220px">
                 <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.receiverAds ">
                     <div>
                         <img class="image"
@@ -92,8 +92,8 @@
             </div>
             <br>
 
-            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutAlign.xs="space-around center"
-                 style="height: 220px">
+            <div fxLayout="row" fxLayoutAlign="center center" fxLayout.xs="column" fxLayoutAlign.xs="space-around center"
+                 style="min-height: 220px">
                 <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.requesterAds">
                     <div>
                         <img class="image"
@@ -230,8 +230,8 @@
                     <div *ngIf="urlLinkToken">
                         {{'EXCHANGE.EXPIRA_EM' | translate}}: 0{{hour}}:{{timeLeft < 10 ? 0 : ''}}{{timeLeft}}
                     </div>
-                    <div style="height: 300px; align-items: center" *ngIf="urlLinkToken">
-                        <ngx-qrcode
+                    <div *ngIf="urlLinkToken">
+                        <ngx-qrcode fxlayout="row" fxLayoutAlign="center center"
                                 [width]="300"
                                 qrc-element-type="url" [value]="urlLinkToken"></ngx-qrcode>
                     </div>

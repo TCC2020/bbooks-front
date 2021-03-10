@@ -10,6 +10,7 @@
             <div
                     *ngIf="exchange.status === exchangeStatus.accepted"
                     style="color: #576572;"
+                    style="color: #576572;"
                     class="choseAnotherOfferButton">
                 <b>
                     {{'EXCHANGE.ACEITO' | translate }}
@@ -66,7 +67,7 @@
             <div>
                 <b>{{'PADRAO.OFERTA' | translate}}</b>
             </div>
-            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="space-around center" style="height: 220px">
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutAlign.xs="space-around center" style="min-height: 220px">
                 <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.receiverAds ">
                     <div>
                         <img class="image"
@@ -97,7 +98,7 @@
             </div>
             <br>
 
-            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutAlign.xs="space-around center" style="height: 220px">
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxLayoutAlign.xs="space-around center" style="min-height: 220px">
                 <div fxLayoutGap="20px" *ngFor="let bookAds of exchange?.requesterAds">
                     <div>
                         <img class="image"

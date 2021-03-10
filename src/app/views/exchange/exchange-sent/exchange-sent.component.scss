@@ -62,7 +62,7 @@
 .card {
   max-width: 450px;
   width: 425px;
-  height: 610px;
+  min-height: 610px;
   margin: 7px;
 }
 .card:hover {
