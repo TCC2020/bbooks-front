@@ -188,6 +188,7 @@
                     </a>
                 </div>
                 <button
+                        (click)="openChat()"
                         *ngIf="exchange?.status === exchangeStatus.accepted"
                         mat-raised-button color="accent"
                         style="width: 100%; margin-top: 5px"

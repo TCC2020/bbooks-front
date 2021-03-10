@@ -58,10 +58,6 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     {
-        path: 'chat',
-        component: ChatComponent
-    },
-    {
         path: 'pagenotfound',
         component: PageNotFoundComponent
     },

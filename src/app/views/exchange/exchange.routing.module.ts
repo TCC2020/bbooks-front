@@ -10,6 +10,7 @@ import {MyExchangeComponent} from './my-exchange/my-exchange.component';
 import {ExchangeReceivedComponent} from './exchange-received/exchange-received.component';
 import {ExchangeSentComponent} from './exchange-sent/exchange-sent.component';
 import {ExchangeViewComponent} from './exchange-view/exchange-view.component';
+import {ChatComponent} from '../chat/chat.component';
 
 
 const exchangeRouter = [
@@ -54,12 +55,20 @@ const exchangeRouter = [
                         component: ExchangeViewComponent
                     },
                     {
+                        path: 'received/:id/chat',
+                        component: ChatComponent
+                    },
+                    {
                         path: 'sent',
                         component: ExchangeSentComponent
                     },
                     {
                         path: 'sent/:id',
                         component: ExchangeViewComponent
+                    },
+                    {
+                        path: 'sent/:id/chat',
+                        component: ChatComponent
                     },
                     { path: '', redirectTo: 'received', pathMatch: 'full' },
                 ]

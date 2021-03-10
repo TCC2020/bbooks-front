@@ -10,6 +10,8 @@ import {BookExchangeStatus} from '../../../models/enums/BookExchangeStatus.enum'
 import {BarCodeScannerComponent} from '../../shared/bar-code-scanner/bar-code-scanner.component';
 import {MatDialog} from '@angular/material/dialog';
 import {BookAdTO} from '../../../models/BookAdTO.model';
+import {VoteComponent} from '../../literary-competition-page/vote/vote.component';
+import {ChatComponent} from '../../chat/chat.component';
 
 @Component({
     selector: 'app-exchange-view',
@@ -212,5 +214,16 @@ export class ExchangeViewComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.pauseTimer();
+    }
+
+    openChat() {
+        const dialogRef = this.dialog.open(ChatComponent, {
+            height: '100%',
+            width: '500px',
+            data: this.exchange.id
+        });
+        dialogRef.afterClosed().subscribe(() => {
+
+        });
     }
 }

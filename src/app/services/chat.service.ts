@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ChatTO} from '../models/chatTO.model';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  api = 'bbooks.front.herokuapp.com/chat/';
+  api: string = environment.node + 'chat/';
 
   constructor(
       private http: HttpClient

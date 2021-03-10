@@ -1,8 +1,11 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ChatService} from '../../services/chat.service';
 import {startWith, switchMap, take} from 'rxjs/operators';
 import {ChatTO} from '../../models/chatTO.model';
 import {interval, Subscription} from 'rxjs';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {CompetitionMemberTO} from '../../models/competitionMemberTO.model';
+import {ExchangeService} from '../../services/exchange.service';
 
 @Component({
     selector: 'app-chat',
@@ -15,15 +18,18 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewInit {
 
     timeInterval: Subscription;
     chatTO: ChatTO;
+    chatId: string;
 
     constructor(
-        private chatService: ChatService
+        @Inject(MAT_DIALOG_DATA) public exchangeId: string,
+        private chatService: ChatService,
+        public dialogRef: MatDialogRef<ChatComponent>,
+        private exchangeService: ExchangeService
     ) {
     }
 
     ngOnInit(): void {
-        this.getChat();
-        this.refresh();
+        this.getChatId();
 
     }
 
@@ -40,21 +46,37 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
 
-    getChat() {
-        this.chatService.getChat('chatId')
+    getChatId() {
+        this.exchangeService.getById(this.exchangeId)
             .pipe(take(1))
-            .subscribe(result => {
-                this.chatTO = result;
+            .subscribe(response => {
+                this.chatId = response.chatId;
+                console.log(this.chatId);
+                this.verifyChat();
             });
     }
 
+    getChat() {
+        if (this.chatId) {
+            this.chatService.getChat(this.chatId)
+                .pipe(take(1))
+                .subscribe(result => {
+                    console.log(result);
+                    this.chatTO = result;
+                });
+        }
+    }
+
     verifyChat() {
-        if (!this.chatTO.chatId) {
-            this.chatService.createChat('exchangeId')
+        if (!this.chatId) {
+            this.chatService.createChat(this.exchangeId)
                 .pipe(take(1))
                 .subscribe(result => {
                     this.chatTO = result;
+                    this.getChat();
                 });
+        } else {
+            this.getChat();
         }
     }
 
@@ -80,4 +102,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewInit {
                 });
         }
     }
+
+
 }
