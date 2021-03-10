@@ -77,7 +77,7 @@ export class PostDialogComponent implements OnInit {
     private createForm(): void {
         this.formFeed = this.formBuilder.group({
             id: new FormControl(this.dataDialog ? this.dataDialog.id : null),
-            profileId: new FormControl(this.user.profile.id),
+            profileId: new FormControl(this.hadProfileId()),
             description: new FormControl(this.dataDialog ? this.dataDialog.description : null, Validators.required),
             asks: this.formBuilder.array([]),
             image: new FormControl(this.dataDialog ? this.dataDialog.image : null),
@@ -87,15 +87,30 @@ export class PostDialogComponent implements OnInit {
                 Validators.required
             ),
             creationDate: new FormControl(this.dataDialog ? this.dataDialog.creationDate : null),
-            groupId: new FormControl(this.getGroupId())
-
+            groupId: new FormControl(this.getGroupId()),
+            pageId: new FormControl(this.getPageId())
         });
         this.image = this.dataDialog ? this.dataDialog.image : null;
     }
 
+    hadProfileId(): number {
+        return this.router.url.includes('public-profile') ? this.dataDialog?.profileId : this.user.profile.id;
+    }
+
     getGroupId(): string {
         return this.router.url.includes('group') ?
-            localStorage.getItem('groupId') : this.dataDialog ?  this.dataDialog?.groupId : '';
+            localStorage.getItem('groupId') : this.dataDialog ? this.dataDialog?.groupId : '';
+    }
+
+    getPageId(): string {
+        const hasPage = this.router.url.includes('public-profile');
+        if (hasPage) {
+            console.log('entrou')
+            return localStorage.getItem('pageId');
+        } else {
+            console.log('nao entrou')
+            return this.dataDialog ? this.dataDialog?.pageId : '';
+        }
     }
 
     get asks(): FormArray {

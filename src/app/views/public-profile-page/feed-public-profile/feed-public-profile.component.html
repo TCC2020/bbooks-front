@@ -1,1 +1,28 @@
-<p>feed</p>
+<div fxLayout="row"
+     fxLayoutAlign="center center"
+     *ngIf="this.authService.getUser()">
+    <app-post-create
+            [user]="this.authService.getUser()"
+            [typePostControler]="typePostControler.feedPublicProfile"
+    ></app-post-create>
+</div>
+<br>
+<!--<ng-template #loading>-->
+<!--    <mat-progress-bar mode="indeterminate"></mat-progress-bar>-->
+<!--</ng-template>-->
+<div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="20px"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     [fromRoot]="true"
+     (scrolled)="onScroll()"
+>
+    <app-reactions
+            *ngFor="let post of (feedRedux$ | async)?.posts"
+            [post]="post"
+            [user]="user "
+            [userPost]="user"
+            [typePostControler]="typePostControler.feedPublicProfile"
+    ></app-reactions>
+    <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+</div>

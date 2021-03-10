@@ -22,18 +22,16 @@
             </div>
         </div>
     </div>
-    <div class="container-corpo-grupo">
-        <div class="container-tab-group">
-            <nav mat-tab-nav-bar>
-                <a mat-tab-link *ngFor="let link of links"
-                   routerLinkActive #rla="routerLinkActive"
-                   [routerLink]="link"
-                   [active]="rla.isActive"
-                > {{ link }}</a>
-            </nav>
-            <div class="container-mat-tab">
-                <router-outlet></router-outlet>
-            </div>
+    <div>
+        <nav mat-tab-nav-bar style="background-color: white" mat-align-tabs="center">
+            <a mat-tab-link *ngFor="let link of links"
+               routerLinkActive #rla="routerLinkActive"
+               [routerLink]="link"
+               [active]="rla.isActive"
+            > {{ link }}</a>
+        </nav>
+        <div>
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>
