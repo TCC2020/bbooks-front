@@ -48,7 +48,8 @@ describe('BookAddDialogComponent', () => {
         }
     };
     const authServiceMock = {
-        getUser: jest.fn(() => userMock)
+        getUser: jest.fn(() => userMock),
+        language: of('pt')
     };
 
     const tagServiceMock = {
