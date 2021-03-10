@@ -340,7 +340,18 @@
     "AGUARDE_APROVACAO": "Wait for registration approval",
     "RESULTADO": "Result",
     "AGUARDANDO_VENCEDOR": "Awaiting winner",
-    "EDITAR_COMPETICAO": "Edit Competition"
+    "EDITAR_COMPETICAO": "Edit Competition",
+    "ADICIONAR": "Add",
+    "TEXTO_ANALISE": "Your application will be approved after reviewing your story.",
+    "INSCRICAO_APROVADA": "Subscription approved.",
+    "VOTAR": "Vote",
+    "AGUARDE_APROVAR": "Wait for the end of registration to approve the stories.",
+    "USUARIO_NAO_ENVIOU": "The user has not yet submitted the story.",
+    "ALTERAR_VOTO": "Change vote",
+    "ATRIBUI_NOTA": "What grade do you give to",
+    "NOTA": "Grade",
+    "MAIOR_DEZ": "Note cannot be greater than 10",
+    "MENOR_UM": "Note cannot be less than 1"
   },
   "MESSAGE_ERROR": {
     "AU001": "Author not found",

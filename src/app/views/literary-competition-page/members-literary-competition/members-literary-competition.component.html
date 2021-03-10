@@ -23,7 +23,7 @@
                 </button>
                 <button type="button" mat-raised-button color="primary"
                         *ngIf="verifyDate(member?.competitionTO?.subscriptionFinalDate, member?.competitionTO?.finalDate) && !verifyUser(member?.profile?.id)"
-                        (click)="openDialogVote(member)">Votar
+                        (click)="openDialogVote(member)">{{ 'COMPETICAO_LITERARIA.VOTAR' | translate }}
                 </button>
             </div>
         </div>

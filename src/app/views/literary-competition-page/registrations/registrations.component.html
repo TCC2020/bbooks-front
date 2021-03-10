@@ -19,20 +19,21 @@
             <div class="dados-membro">
                 <p>{{ member?.profile?.name + ' ' + member?.profile?.lastName }}</p>
                 <div *ngIf="member?.story" style="margin-bottom: 10px">
-                    <button (click)="acceptMember(member?.memberId)" type="button"
+                    <button (click)="acceptMember(member?.memberId)" *ngIf="verifyDate(member?.competitionTO?.subscriptionFinalDate)" type="button"
                             mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.ACEITAR' | translate }}
                     </button>
-                    <button (click)="recuseMember(member?.memberId)" type="button"
+                    <button (click)="recuseMember(member?.memberId)" *ngIf="verifyDate(member?.competitionTO?.subscriptionFinalDate)" type="button"
                             mat-raised-button>{{ 'COMPETICAO_LITERARIA.RECUSAR' | translate }}
                     </button>
+                    <p *ngIf="!verifyDate(member?.competitionTO?.subscriptionFinalDate)">{{ 'COMPETICAO_LITERARIA.AGUARDE_APROVAR' | translate }}</p>
                 </div>
                 <div *ngIf="member?.story">
                     <button [routerLink]="['/literary-competition/' + member.memberId + '/story']"
                             type="button"
-                            mat-raised-button color="primary">Ver história
+                            mat-raised-button color="primary">{{ 'COMPETICAO_LITERARIA.VER_HISTORIA' | translate }}
                     </button>
                 </div>
-                <p *ngIf="!member?.story">O usuário ainda não enviou a história.</p>
+                <p *ngIf="!member?.story">{{ 'COMPETICAO_LITERARIA.USUARIO_NAO_ENVIOU' | translate }}</p>
             </div>
 
         </div>

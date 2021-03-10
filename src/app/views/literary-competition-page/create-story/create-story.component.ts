@@ -63,7 +63,7 @@ export class CreateStoryComponent implements OnInit {
         this.competitionMemberService.updateMember(this.formCreateStory.value, this.memberId)
             .pipe(take(1))
             .subscribe( () => {
-                this.router.navigateByUrl('literary-competition/' + this.memberId + '/story');
+                this.router.navigateByUrl('literary-competition/' + this.competitionMemberTO.competitionTO.id);
             }, error => {
                 console.log(error);
             });

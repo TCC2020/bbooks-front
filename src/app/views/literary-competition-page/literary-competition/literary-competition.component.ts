@@ -154,6 +154,15 @@ export class LiteraryCompetitionComponent implements OnInit {
         }
     }
 
+    verifyDateStart(date: Date): boolean {
+        if (date) {
+            if (this.dataAtual <= Date.parse(date.toString())) {
+                return false;
+            }
+            return true;
+        }
+    }
+
     openDialogSeeStory(member: CompetitionMemberTO) {
         const dialogRef = this.dialog.open(StoryLiteraryCompetitionComponent, {
             height: '450px',
