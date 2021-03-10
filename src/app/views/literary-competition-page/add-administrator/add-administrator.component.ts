@@ -22,6 +22,7 @@ export class AddAdministratorComponent implements OnInit {
     users: UserTO[];
     filterUsers: UserTO[] = [];
     literaryCompetitionId: string;
+    isAdmin: boolean;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -62,7 +63,6 @@ export class AddAdministratorComponent implements OnInit {
         this.filterUsers = this.users.filter(user =>
             user?.profile?.name.concat(user?.profile?.lastName).toLocaleLowerCase().replace(' ', '')
                 .includes(formSearch.toLocaleLowerCase().replace(' ', '')));
-        console.log(this.filterUsers);
 
     }
 

@@ -338,7 +338,18 @@
     "AGUARDE_APROVACAO": "Aguarde aprovação de inscrição",
     "RESULTADO": "Resultado",
     "AGUARDANDO_VENCEDOR": "Aguardando vencedor",
-    "EDITAR_COMPETICAO": "Editar Competição"
+    "EDITAR_COMPETICAO": "Editar Competição",
+    "ADICIONAR": "Adicionar",
+    "TEXTO_ANALISE": "Sua inscrição será aprovada após análise da sua história.",
+    "INSCRICAO_APROVADA": "Inscrição aprovada.",
+    "VOTAR": "Votar",
+    "AGUARDE_APROVAR": "Aguarde o fim das inscrições para aprovar as histórias.",
+    "USUARIO_NAO_ENVIOU": "O usuário ainda não enviou a história.",
+    "ALTERAR_VOTO": "Alterar voto",
+    "ATRIBUI_NOTA": "Qual nota você atribui para",
+    "NOTA": "Nota",
+    "MAIOR_DEZ": "Nota não pode ser maior que 10",
+    "MENOR_UM": "Nota não pode ser menor que 1"
   },
   "MESSAGE_ERROR": {
     "AU001": "Autor não encontrado",

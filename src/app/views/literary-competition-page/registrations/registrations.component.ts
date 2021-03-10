@@ -22,6 +22,7 @@ export class RegistrationsComponent implements OnInit {
     page = 0;
     members: CompetitionMemberTO[] = [];
     searchMembers: FormGroup;
+    dataAtual = Date.now();
 
     constructor(
         private competitionMemberService: CompetitionMemberService,
@@ -139,5 +140,14 @@ export class RegistrationsComponent implements OnInit {
                 Util.stopLoading();
                 console.log(error);
             });
+    }
+
+    verifyDate(date: Date): boolean {
+        if (date) {
+            if (this.dataAtual <= Date.parse(date.toString())) {
+                return false;
+            }
+        }
+        return true;
     }
 }
