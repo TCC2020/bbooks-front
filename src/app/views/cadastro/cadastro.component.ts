@@ -110,9 +110,12 @@ export class CadastroComponent implements OnInit {
                 }
                 if (codMessage) {
                     this.translate.get('MESSAGE_ERROR.' + codMessage).subscribe(message => {
-                        Util.showSuccessDialog(message);
+                        Util.showErrorDialog(message);
                     });
                 } else {
+                    this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                        Util.showErrorDialog(message);
+                    });
                     console.log(err);
                 }
             }

@@ -4,6 +4,7 @@ import {UserPublicProfileTO} from '../../../models/UserPublicProfileTO.model';
 import {PublicProfileService} from '../../../services/public-profile.service';
 import {AuthService} from '../../../services/auth.service';
 import {ActivatedRoute} from '@angular/router';
+import {Util} from '../../shared/Utils/util';
 
 @Component({
     selector: 'app-public-profile',
@@ -17,7 +18,7 @@ export class PublicProfileComponent implements OnInit {
     publicProfileId: string;
     isOwner = false;
     isFollower = true;
-
+    loading = false;
     constructor(
         private publicProfileService: PublicProfileService,
         private authService: AuthService,
@@ -39,15 +40,19 @@ export class PublicProfileComponent implements OnInit {
     }
 
     getPublicProfileById(idPublic: string) {
+        Util.loadingScreen();
         this.publicProfileService.getById(idPublic)
             .pipe(take(1))
             .subscribe(result => {
+                this.loading = true;
+                Util.stopLoading();
                 this.publicProfileTO = result;
                 if (this.publicProfileTO.user.id === this.authService.getUser().id) {
                     this.isOwner = true;
                 }
             }, error => {
-                console.log(error);
+                Util.stopLoading();
+                this.loading = true;
             });
     }
 
