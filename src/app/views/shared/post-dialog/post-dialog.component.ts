@@ -94,7 +94,7 @@ export class PostDialogComponent implements OnInit {
     }
 
     hadProfileId(): number {
-        return this.router.url.includes('public-profile') ? this.dataDialog?.profileId : this.user.profile.id;
+        return this.router.url.includes('public-profile') || 'perfil-publico' ? 0 : this.user.profile.id;
     }
 
     getGroupId(): string {
@@ -103,12 +103,15 @@ export class PostDialogComponent implements OnInit {
     }
 
     getPageId(): string {
-        const hasPage = this.router.url.includes('public-profile');
+        const hasPage = this.router.url.includes('public-profile') || this.router.url.includes('perfil-publico');
         if (hasPage) {
             return localStorage.getItem('pageId');
         } else {
             return this.dataDialog ? this.dataDialog?.pageId : '';
         }
+    }
+    isPublicPageRoute(): boolean {
+        return this.router.url.includes('public-profile');
     }
 
     get asks(): FormArray {
