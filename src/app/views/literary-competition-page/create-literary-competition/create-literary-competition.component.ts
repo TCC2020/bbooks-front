@@ -71,6 +71,7 @@ export class CreateLiteraryCompetitionComponent implements OnInit {
         this.competitionService.save(this.formCreateLiterary.value)
             .pipe(take(1))
             .subscribe(() => {
+                    Util.stopLoading();
                     this.router.navigateByUrl('literary-competition');
                 },
                 error => {
