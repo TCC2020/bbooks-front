@@ -59,3 +59,38 @@
     padding: 0;
   }
 }
+
+@media screen and (max-width: 600px) {
+
+  .buttonOferta {
+    position: absolute;
+  }
+  .buttonOfertaBody {
+    width: 80%;
+  }
+  .card {
+    max-width: 88%;
+    width: 88%;
+    margin: 0.5em;
+  }
+  .image-card {
+    max-width: 150px;
+  }
+  .buttonsCard {
+    width: 100%;
+    font-size: 11px;
+    padding: 0;
+  }
+  .fundoCard {
+    width: 100%
+  }
+  .body {
+    margin: 10px;
+  }
+  .choseAnotherOfferButton {
+    width: 100%
+  }
+  .layoutButton {
+    width: 100%;
+  }
+}

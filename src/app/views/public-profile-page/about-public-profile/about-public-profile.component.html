@@ -1,0 +1,23 @@
+<form>
+    <div class="container-mat-tab" >
+        <h2>{{ 'PERFIL_PUBLICO.SOBRE' | translate }}</h2>
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="2px">
+            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+                <span class="material-icons">queue</span>
+                <div>{{ publicProfileTO?.followers?.length }} {{ 'PERFIL_PUBLICO.SEGUIDORES' | translate }}</div>
+            </div>
+        </div>
+        <div class="public-profile-edit">
+            <h3>{{ 'PERFIL_PUBLICO.DESCRICAO_PERFIL' | translate }}</h3>
+        </div>
+        <p *ngIf="!isEditing" style="word-break: break-word;">{{ publicProfileTO?.description }}</p>
+        <h3>{{ 'PERFIL_PUBLICO.DATA_CRIACAO' | translate }}</h3>
+        <p>{{ publicProfileTO?.createdAt | date:'dd/MM/yyyy' }}</p>
+        <div>
+            <button type="button" mat-raised-button color="primary" *ngIf="isOwner"
+                    [routerLink]="['/perfil-publico/' + publicProfileId + '/edit']">{{ 'PERFIL_PUBLICO.EDITAR' | translate }}
+            </button>
+        </div>
+    </div>
+</form>
+

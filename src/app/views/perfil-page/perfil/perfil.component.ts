@@ -10,6 +10,11 @@ import {AuthService} from 'src/app/services/auth.service';
 import {UserService} from '../../../services/user.service';
 import {UserTO} from '../../../models/userTO.model';
 import {ProfileService} from '../../../services/profile.service';
+import {CDNService} from '../../../services/cdn.service';
+import {Util} from '../../shared/Utils/util';
+import {MatDialog} from '@angular/material/dialog';
+import {UploadComponent} from '../../upload/upload.component';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-perfil',
@@ -24,7 +29,7 @@ export class PerfilComponent implements OnInit {
     public countrys: Country[];
     public citys: City[];
     public states: State[];
-
+    image;
     filteredOptionsCity: Observable<City[]>;
 
     constructor(
@@ -32,7 +37,10 @@ export class PerfilComponent implements OnInit {
         private consultaCepService: ConsultaCepService,
         private userService: UserService,
         private authService: AuthService,
-        private profileService: ProfileService
+        private profileService: ProfileService,
+        private cdnService: CDNService,
+        private matDialog: MatDialog,
+        public translate: TranslateService,
     ) {
 
     }
@@ -153,5 +161,33 @@ export class PerfilComponent implements OnInit {
                 console.log('error update', error);
             }
         );
+    }
+
+    showDialogUpload(): void {
+        const dialogRef = this.matDialog.open(UploadComponent, {
+            height: '350px',
+            width: '400px',
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                Util.loadingScreen();
+                this.cdnService.upload({file: result, type: 'image'}, {objectType: 'profile_image'}).subscribe(() => {
+                        Util.stopLoading();
+                        this.image = result;
+                        const reader = new FileReader();
+                        reader.onload = (e) => this.image = e.target.result;
+                        reader.readAsDataURL(this.image);
+                        this.userTO.profile.profileImage = this.image;
+                    },
+                    error => {
+                        Util.stopLoading();
+                        this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(msg => {
+                            Util.showErrorDialog(msg);
+                        });
+                        console.log('error upload', error);
+                    });
+            }
+        });
+
     }
 }

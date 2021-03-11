@@ -6,5 +6,6 @@ export enum TypePost {
 export enum TypePostControler {
     feedPerfil = 'feedPerfil',
     feed = 'feed',
-    group = 'group'
+    group = 'group',
+    feedPublicProfile = 'feedPublicProfile'
 }

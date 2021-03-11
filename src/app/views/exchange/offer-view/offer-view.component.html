@@ -18,7 +18,7 @@
 
 
 <div fxLayout="row" fxLayoutAlign="space-evenly start"
-     fxLayout.xs="column" fxLayoutAlign.xs="space-around center" class="body">
+     fxLayout.xs="column" fxLayoutAlign.xs="space-around center" class="body" *ngIf="bookAdTO">
     <div fxFlex="40">
         <!-- Container for the image gallery -->
         <div class="container">
@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-    <div fxFlex="50">
+    <div class="container-oferta">
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
             <mat-card class="card">
 
@@ -93,9 +93,9 @@
 
                     <!--                            Iniciar um chat </div>-->
                     <!--                    </div>-->
-                    <div fxLayout="row" fxLayoutAlign="start center">
+                    <div fxLayout="row" fxLayoutAlign="start center" *ngIf="bookAdTO.contact">
                         <a
-                            href="https://{{isMobile() ? 'api.whatsapp.com' : 'web.whatsapp.com'}}/send?phone={{bookAdTO?.contact}}&text=Olá+{{userOffer?.profile?.name}},+encontrei+sua+oferta+*{{bookAdTO?.title?.replace(' ', '+')}}*,+gostaria+de+mais+informações!"
+                            href="https://{{isMobile() ? 'api.whatsapp.com' : 'web.whatsapp.com'}}/send?phone={{bookAdTO?.contact}}&text={{'WHATS.HELLO' | translate}}+{{userOffer?.profile?.name}},+{{'WHATS.ENCOTREI_SUA_OFERTA' | translate}}+*{{bookAdTO?.title?.replace(' ', '+')}}*{{'WHATS.MAIS_INFO' | translate}}"
                             target="_blank"
                             class="linkWhatsapp">
                             <i class="fab fa-whatsapp"></i> {{'PADRAO.WHATSAPP' | translate}}

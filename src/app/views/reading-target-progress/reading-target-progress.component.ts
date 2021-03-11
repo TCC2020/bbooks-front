@@ -38,7 +38,6 @@ export class ReadingTargetProgressComponent implements OnInit {
       (res) => {
         this.previousGoals = res;
         this.currentReadingTarget = this.previousGoals[0];
-        console.log(this.previousGoals.length);
         if (this.currentReadingTarget?.targets?.length > 0) {
             this.getBookToUserBook(this.currentReadingTarget?.targets);
         }

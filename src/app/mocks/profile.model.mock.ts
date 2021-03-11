@@ -19,3 +19,7 @@ profileMock1.id = 10;
 profileMock1.city = 'Sao Paulo';
 profileMock1.lastName = 'nascimento';
 profileMock1.name = 'Rafael';
+
+export const profilesMock = [];
+profilesMock.push(profileMock);
+profilesMock.push(profileMock1);

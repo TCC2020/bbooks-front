@@ -39,24 +39,13 @@ import {FeedPageModule} from './views/feed-page/feed-page.module';
 import { GroupsModule } from './views/groups/groups.module';
 import {ExchangeModule} from './views/exchange/exchange.module';
 import {BnNgIdleService} from 'bn-ng-idle';
+import {PublicProfilePageModule} from './views/public-profile-page/public-profile-page.module';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {SearchModule} from './views/search/search.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LiteraryCompetitionComponent } from './views/literary-competition-page/literary-competition/literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import { MembersLiteraryCompetitionComponent } from './views/literary-competition-page/members-literary-competition/members-literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import { StoryLiteraryCompetitionComponent } from './views/literary-competition-page/story-literary-competition/story-literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import { AdministratorsLiteraryCompetitionComponent } from './views/literary-competition-page/administrators-literary-competition/administrators-literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import { CreateLiteraryCompetitionComponent } from './views/literary-competition-page/create-literary-competition/create-literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import { ListLiteraryCompetitionComponent } from './views/literary-competition-page/list-literary-competition/list-literary-competition.component';
-import { BooksSearchComponent } from './views/search/books-search/books-search.component';
 import {LiteraryCompetitionModule} from './views/literary-competition-page/literary-competition.module';
-import { BarCodeScannerComponent } from './views/shared/bar-code-scanner/bar-code-scanner.component';
+import {NgxQRCodeModule} from 'ngx-qrcode2';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -99,6 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         LiteraryCompetitionModule,
         PerfilPageModule,
         SharedModule,
+        PublicProfilePageModule,
         StoreModule.forRoot({}),
         StoreDevtoolsModule.instrument({
             maxAge: 25, // Retains last 25 states
@@ -113,7 +103,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             },
         }),
-        FontAwesomeModule
+        FontAwesomeModule,
+        NgxQRCodeModule
     ],
     providers: [
         BnNgIdleService,

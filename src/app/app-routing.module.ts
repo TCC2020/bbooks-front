@@ -83,6 +83,11 @@ const routes: Routes = [
     {
         path: '' ,
         canActivate: [AuthGuard],
+        loadChildren: () => import('./views/public-profile-page/public-profile-page.module').then(m => m.PublicProfilePageModule)
+    },
+    {
+        path: '' ,
+        canActivate: [AuthGuard],
         loadChildren: () => import('./views/search/search.module').then(m => m.SearchModule)
     },
     {

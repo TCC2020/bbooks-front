@@ -26,5 +26,8 @@
 
     </mat-card>
 </div>
-
+<app-empty-content-message
+        message="{{'GRUPO_LEITURA.VC_NAO_TEM_GRUPO' | translate}}"
+        *ngIf="groups?.length == 0">
+</app-empty-content-message>
 <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>

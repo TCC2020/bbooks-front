@@ -2,9 +2,12 @@
     <div class="conteudo">
         <div class="container-imagem-perfil">
             <img class="imagem-perfil"
-                 [src]="userTO?.profile?.profileImage ?
+                 [src]="this.image? this.image : userTO?.profile?.profileImage ?
                  userTO?.profile?.profileImage:
                  'https://image.flaticon.com/icons/png/512/1361/1361728.png'"/>
+            <button mat-icon-button class="middle" (click)="showDialogUpload()">
+                <mat-icon>create</mat-icon>
+            </button>
         </div>
         <h1 class="nome-usuario">{{userTO?.profile.name}} {{userTO?.profile.lastName}}</h1>
         <!--<p>{{basicInfo.value | json}}</p>-->

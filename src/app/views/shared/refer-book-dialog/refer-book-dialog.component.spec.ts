@@ -23,6 +23,8 @@ import {bookMock} from 'src/app/mocks/book.model.mock';
 import {By} from '@angular/platform-browser';
 import {GroupMemberService} from '../../../services/group-member.service';
 import {FriendsService} from '../../../services/friends.service';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../empty-content-message/empty-content-message.component';
 
 describe('ReferBookDialogComponent', () => {
     let component: ReferBookDialogComponent;
@@ -60,6 +62,7 @@ describe('ReferBookDialogComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
             imports: [
                 SocialLoginModule,
                 RouterTestingModule,
@@ -104,7 +107,7 @@ describe('ReferBookDialogComponent', () => {
                     useValue: matDialogRefMock
                 },
             ],
-            declarations: [ReferBookDialogComponent]
+            declarations: [ReferBookDialogComponent, EmptyContentMessageComponent]
         })
             .compileComponents();
     }));

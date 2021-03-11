@@ -3,6 +3,7 @@ import {PostPrivacy} from './enums/PostPrivacy.enum';
 import {UserTO} from './userTO.model';
 import {postsMock} from '../mocks/post.model.mock';
 import {GroupTO} from './GroupTO.model';
+import {ReactionsTO} from './ReactionsTO';
 
 export class PostTO {
     id: string;
@@ -17,6 +18,8 @@ export class PostTO {
     editMode: boolean;
     groupId: string;
     group: GroupTO;
+    reactions: ReactionsTO;
+    pageId: string;
 
     public setComments(comments: PostTO[]) {
         this.comments = [];

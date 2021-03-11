@@ -11,6 +11,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BookAdsService} from '../../../services/book-ads.service';
 import {AuthService} from '../../../services/auth.service';
 import {userMock} from '../../../mocks/user.model.mock';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../../shared/empty-content-message/empty-content-message.component';
 
 describe('MyExchangeComponent', () => {
     let component: MyExchangeComponent;
@@ -20,7 +22,8 @@ describe('MyExchangeComponent', () => {
     };
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [MyExchangeComponent],
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
+            declarations: [MyExchangeComponent, EmptyContentMessageComponent],
             imports: [
                 MaterialModule,
                 RouterTestingModule,

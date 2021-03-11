@@ -15,6 +15,7 @@ import {UploadComponent} from '../upload/upload.component';
 import {DateAdapter} from '@angular/material/core';
 import {Profile} from '../../models/profileTO.model';
 import {Util} from '../shared/Utils/util';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-cadastro-segunda-etapa',
@@ -27,6 +28,8 @@ export class CadastroSegundaEtapaComponent implements OnInit {
     public countrys: Country[];
     public states: State[];
     public profileTo: Profile;
+    dataAtual = new Date();
+
     userLogin = {
         email: this.auth.getUserRegister().email,
         token: this.auth.getUserRegister().token
@@ -45,7 +48,10 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         private cdnService: CDNService,
         public dialog: MatDialog,
         private adapter: DateAdapter<any>,
+        private translate: TranslateService
     ) {
+        const browserLang = this.translate.getBrowserLang().toString();
+        this.adapter.setLocale(browserLang);
         this.auth.language.subscribe(lang => {
             this.adapter.setLocale(lang);
         });
@@ -73,13 +79,25 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         Util.loadingScreen();
         if (country.id.toString().includes('3469034')) {
             this.consultaCepService.getStatesBr().subscribe(
-                res => { this.states = res; Util.stopLoading(); },
-                error => { console.log('error states', error); Util.stopLoading(); }
+                res => {
+                    this.states = res;
+                    Util.stopLoading();
+                },
+                error => {
+                    console.log('error states', error);
+                    Util.stopLoading();
+                }
             );
         } else {
             this.consultaCepService.getStates(country.id).subscribe(
-                res => { this.states = res; Util.stopLoading(); },
-                error => { console.log('error states', error); Util.stopLoading(); }
+                res => {
+                    this.states = res;
+                    Util.stopLoading();
+                },
+                error => {
+                    console.log('error states', error);
+                    Util.stopLoading();
+                }
             );
         }
     }
@@ -97,7 +115,10 @@ export class CadastroSegundaEtapaComponent implements OnInit {
                         map(value => this._filterCity(value))
                     );
                 },
-                error => { console.log('error get citys', error);  Util.stopLoading(); }
+                error => {
+                    console.log('error get citys', error);
+                    Util.stopLoading();
+                }
             );
 
         } else {
@@ -110,7 +131,10 @@ export class CadastroSegundaEtapaComponent implements OnInit {
                         map(value => this._filterCity(value))
                     );
                 },
-                error => { console.log('error get citys', error);  Util.stopLoading(); }
+                error => {
+                    console.log('error get citys', error);
+                    Util.stopLoading();
+                }
             );
         }
 
@@ -136,7 +160,10 @@ export class CadastroSegundaEtapaComponent implements OnInit {
         } else {
             if (this.file) {
                 Util.loadingScreen();
-                this.cdnService.upload({file: this.file, type: 'image'}, {objectType: 'profile_image'}).subscribe(() => {
+                this.cdnService.upload({
+                    file: this.file,
+                    type: 'image'
+                }, {objectType: 'profile_image'}).subscribe(() => {
                         this.getByIdToUpdateProfile();
                     },
                     error => {
