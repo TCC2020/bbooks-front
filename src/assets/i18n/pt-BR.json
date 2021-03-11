@@ -84,7 +84,8 @@
     "BAR_CODE_ERRO": "Você negou a permissão da câmera, não podemos digitalizar nada sem ela.",
     "WAIT_PERMISSIONS": "Aguardando permissões.",
     "NOT_HAS_CAMERA": "Se o seu dispositivo não tiver câmeras, nenhuma permissão será solicitada",
-    "NOT_FIND_RESULT": "Não encontramos nenhum resultado."
+    "NOT_FIND_RESULT": "Não encontramos nenhum resultado.",
+    "DATA_CONCLUSAO": "Data de conclusão"
   },
   "GRUPO_LEITURA": {
     "ADMINISTRADORES": "Administradores",

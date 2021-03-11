@@ -5,5 +5,6 @@ export const environment = {
     fbauth: 'undefined',
     apicep: 'undefined',
     feedApi: 'undefined',
-    competitionApi: 'undefined'
+    competitionApi: 'undefined',
+    webFront: 'undefined'
 };

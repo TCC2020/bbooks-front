@@ -86,7 +86,8 @@
     "BAR_CODE_ERRO": "You denied the camera permission, we can't scan anything without it.",
     "WAIT_PERMISSIONS": "Waiting for permissions.",
     "NOT_HAS_CAMERA": "If your device does not has cameras, no permissions will be asked.",
-    "NOT_FIND_RESULT": "We didn't find any results."
+    "NOT_FIND_RESULT": "We didn't find any results.",
+    "DATA_CONCLUSAO": "Date of the conclusion"
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
