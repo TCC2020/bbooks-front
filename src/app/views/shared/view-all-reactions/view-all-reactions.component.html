@@ -15,7 +15,7 @@
                             <div><span>{{profile?.username}}</span></div>
                         </div>
                         <div class="adicionar-amigos" [routerLink]="['', profile.username]">
-                            <button type="button" mat-flat-button color="accent">
+                            <button type="button" mat-flat-button color="accent" (click)="closeDialog()">
                                 {{'PERFIL.PERFIL' | translate}}
                             </button>
                         </div>

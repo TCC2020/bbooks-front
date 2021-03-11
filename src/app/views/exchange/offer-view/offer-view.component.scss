@@ -135,7 +135,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   .card{
     width: 100%;
   }
@@ -148,6 +148,9 @@
     margin: 15px;
   }
   .form-content {
+    width: 100%;
+  }
+  .container-oferta {
     width: 100%;
   }
 

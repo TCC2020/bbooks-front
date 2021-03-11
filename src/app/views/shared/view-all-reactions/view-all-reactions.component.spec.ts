@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ViewAllReactionsComponent} from './view-all-reactions.component';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ReactionsTO} from '../../../models/ReactionsTO';
 import {ReactionsByType} from '../../../models/ReactionsByType.model';
 import {MaterialModule} from '../../../material/material.module';
@@ -11,11 +11,27 @@ import {TranslateServiceMockForChild} from '../../../mocks/translate.service.moc
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {BaseProfileTO} from '../../../models/BaseProfileTO.model';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {of} from 'rxjs';
 
 describe('ViewAllReactionsComponent', () => {
     let component: ViewAllReactionsComponent;
     let fixture: ComponentFixture<ViewAllReactionsComponent>;
     const profile = new BaseProfileTO();
+
+    const mockMatDialog = {
+        open: jest.fn(() => {
+            return {
+                afterClosed: jest.fn(() => of([]))
+            };
+        })
+    };
+    const matDialogRefMock = {
+        close: jest.fn((response) => {
+            return response;
+        }),
+        beforeClosed: jest.fn(() => of([]))
+    };
+
     profile.id = 3;
     profile.username = 'tetse';
     profile.profileImage = '';
@@ -54,6 +70,14 @@ describe('ViewAllReactionsComponent', () => {
                 {
                     provide: MAT_DIALOG_DATA,
                     useValue: reactions
+                },
+                {
+                    provide: MatDialog,
+                    useValue: mockMatDialog
+                },
+                {
+                    provide: MatDialogRef,
+                    useValue: matDialogRefMock
                 },
                 TranslateService,
                 TranslateStore

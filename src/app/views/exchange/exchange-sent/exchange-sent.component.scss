@@ -9,8 +9,9 @@
 .image {
   opacity: 1;
   display: block;
-  width: 120px;
+  width: 100%;
   height: auto;
+  max-height: 215px;
   transition: .5s ease;
   max-width: 120px;
   backface-visibility: hidden;
