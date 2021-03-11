@@ -12,7 +12,7 @@ export class UploadComponent implements OnInit {
 
     public formFile: FormGroup;
     image: any;
-    maxSize = 3579139;
+    maxSize = 1000000;
     file;
 
     constructor(
