@@ -407,7 +407,8 @@
     "CRIAR_PERFIL": "Create Public Profile",
     "NOME_PERFIL": "Profile Name",
     "SEGUIR": "Follow",
-    "DEIXAR_SEGUIR": "Unfollow"
+    "DEIXAR_SEGUIR": "Unfollow",
+    "PERFIL_PUBLICO": "Public Profile"
   },
   "SEARCH": {
     "people": "people",
