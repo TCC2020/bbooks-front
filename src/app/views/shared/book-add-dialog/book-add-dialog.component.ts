@@ -15,7 +15,6 @@ import {UserBookTO} from '../../../models/userBookTO';
 import {AuthService} from '../../../services/auth.service';
 import {Tag} from '../../../models/tag';
 import {TagService} from '../../../services/tag.service';
-import {take} from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
 import {zip} from 'rxjs';
 import {Util} from '../Utils/util';
