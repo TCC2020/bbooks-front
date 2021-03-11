@@ -39,9 +39,10 @@
   color: #5f5f5f;
 }
 .description{
-  width: 480px;
-  max-width: 480px;
+  width: 450px;
+  max-width: 450px;
   font-size: 18px;
+  word-break: break-word;
 }
 .cardImagePost{
   border-color:  rgba(0, 0, 0, 0.2);
@@ -132,6 +133,7 @@ textarea::placeholder {
   .description{
     width: 340px;
     font-size: 17px;
+    word-break: break-word;
   }
   button-edit-post{
     padding-left: 57%;

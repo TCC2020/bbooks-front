@@ -35,6 +35,7 @@ export class BookAddDialogComponent implements OnInit {
     mapStatusEnglish = mapBookStatusEnglish;
     status = BookStatus;
     statusEnglish = BookStatusEnglish;
+    maxDate = new Date();
 
     public formBook: FormGroup;
     public Book: Book;

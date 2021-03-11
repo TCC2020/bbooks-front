@@ -48,6 +48,10 @@
 .choseAnotherOfferButton {
   margin: 5px;
   right: 0;
+  position: absolute;
+}
+.buttonLayout {
+  margin: 5px;
   width: 100%;
 }
 .cardImagePost{
@@ -115,7 +119,7 @@
   .body {
     margin: 10px;
   }
-  .choseAnotherOfferButton {
+  .buttonLayout {
     width: 100%
   }
   .layoutButton {
