@@ -129,7 +129,7 @@
                 <button
                         *ngIf="exchange.status === exchangeStatus.pending && !isReceiver()"
                         mat-raised-button color="warn"
-                        class="choseAnotherOfferButton"
+                        class="buttonLayout"
                         (click)="cancel(exchange.id)"
                 >
                     {{'PADRAO.CANCELAR' | translate }}
@@ -137,7 +137,7 @@
                 <button
                         *ngIf="exchange?.status === exchangeStatus.pending && isReceiver()"
                         mat-raised-button color="warn"
-                        class="choseAnotherOfferButton"
+                        class="buttonLayout"
                         (click)="refuse(exchange.id)"
                 >
                     {{'EXCHANGE.RECUSAR_PROPOSTA' | translate }}
@@ -145,7 +145,7 @@
                 <button
                         *ngIf="exchange?.status === exchangeStatus.pending && isReceiver()"
                         mat-raised-button color="accent"
-                        class="choseAnotherOfferButton"
+                        class="buttonLayout"
                         (click)="accept(exchange.id)"
                 >
                     {{'EXCHANGE.ACEITAR_PROPOSTA' | translate }}
@@ -153,7 +153,7 @@
                 <button
                         *ngIf="exchange?.status === exchangeStatus.accepted"
                         mat-raised-button color="warn"
-                        class="choseAnotherOfferButton"
+                        class="buttonLayout"
                         (click)="cancel(exchange.id)"
                 >
                     {{'EXCHANGE.CANCELAR_TROCA' | translate }}

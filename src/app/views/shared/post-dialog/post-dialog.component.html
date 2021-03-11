@@ -28,9 +28,10 @@
                     <div fxLayout="row" fxLayoutAlign="start start">
                         <div class="commentReview">
                             <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
-                                <div class="profile-name-lastname">{{user.profile.name | titlecase}} {{user.profile.lastName | titlecase}}</div>
+                                <div class="profile-name-lastname" *ngIf="!isPublicPageRoute()">{{user.profile.name | titlecase}} {{user.profile.lastName | titlecase}}</div>
+                                <div class="profile-name-lastname" *ngIf="isPublicPageRoute()">{{getNamePage().toString() | titlecase}} </div>
                             </div>
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="!isPublicPageRoute()">
                                 <div>
                                     <mat-form-field appearance="outline">
                                         <mat-label>{{title | translate}}</mat-label>

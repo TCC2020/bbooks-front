@@ -160,7 +160,7 @@
         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px" fxLayoutGap.xs="2px">
             <div>
                 <img class="cardImagePost"
-                     src="{{userPost?.profile?.profileImage ? user.profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
+                     src="{{this.authService.getUser().profile.profileImage ? this.authService.getUser().profile?.profileImage : 'https://image.flaticon.com/icons/png/512/1361/1361728.png'}}">
             </div>
 
             <form [formGroup]="formComment" fxFlex>

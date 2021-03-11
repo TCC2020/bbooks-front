@@ -115,6 +115,7 @@ export class FeedPublicProfileComponent implements OnInit, OnDestroy {
                 if (this.publicProfileTO.user.id === this.authService.getUser().id) {
                     this.isOwner = true;
                 }
+                localStorage.setItem('namePage', result.name);
             }, error => {
                 console.log(error);
             });

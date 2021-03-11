@@ -114,7 +114,7 @@ export class ReactionsComponent implements OnInit {
     private createForm(): void {
         this.formComment = this.formBuilder.group({
             id: new FormControl(),
-            profileId: new FormControl(this.user.profile.id),
+            profileId: new FormControl(this.authService.getUser().profile.id),
             description: new FormControl(null, Validators.required),
             asks: this.formBuilder.array([]),
             image: new FormControl(null),
