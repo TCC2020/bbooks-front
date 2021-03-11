@@ -25,7 +25,7 @@ export class RecuperarSenhaComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            url: [environment.api + '/nova-senha/'],
+            url: [environment.webFront + '/nova-senha/'],
             email: ['', Validators.compose([
                 Validators.required,
                 Validators.email
