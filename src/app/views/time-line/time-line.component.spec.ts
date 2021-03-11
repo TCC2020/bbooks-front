@@ -15,6 +15,7 @@ import {UserbookService} from '../../services/userbook.service';
 import {SocialAuthServiceConfigMock} from '../../mocks/google.provide.mock';
 import {SocialAuthService, SocialLoginModule} from 'angularx-social-login';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('TimeLineComponent', () => {
     let component: TimeLineComponent;
@@ -32,7 +33,8 @@ describe('TimeLineComponent', () => {
                 TranslateServiceMockForChild,
                 BrowserDynamicTestingModule,
                 SocialLoginModule,
-                HttpClientTestingModule
+                HttpClientTestingModule,
+                RouterTestingModule
             ],
             providers: [
                 {
