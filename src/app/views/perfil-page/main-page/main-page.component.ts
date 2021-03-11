@@ -7,6 +7,7 @@ import {FriendsService} from '../../../services/friends.service';
 import {Friend} from '../../../models/friend.model';
 import {UserService} from '../../../services/user.service';
 import {TranslateService} from '@ngx-translate/core';
+import {Util} from '../../shared/Utils/util';
 
 @Component({
     selector: 'app-main-page',
@@ -40,6 +41,7 @@ export class MainPageComponent implements OnInit, OnChanges {
         this.changeMenu();
         this.getUser();
     }
+
     getUser() {
         this.userService.getUserName(this.user.userName, this.authService.getToken()).subscribe((result) => {
             this.user = result;
@@ -70,7 +72,7 @@ export class MainPageComponent implements OnInit, OnChanges {
         this.friendTO.id = this.user.profile.id;
         this.friendsService.add(this.friendTO).subscribe(() => {
                 this.translate.get('PADRAO.SOLICITACAO_ENVIADA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                 });
                 this.user.profile.friendshipStatus = 'sent';
             },
@@ -85,7 +87,7 @@ export class MainPageComponent implements OnInit, OnChanges {
             acept.id = request.id;
             this.friendsService.deleteRequest(acept).subscribe(() => {
                 this.translate.get('PADRAO.SOLICITACAO_N_ACEITA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                     this.getUser();
                 });
             });
@@ -98,7 +100,7 @@ export class MainPageComponent implements OnInit, OnChanges {
             acept.id = request.id;
             this.friendsService.acceptRequest(acept).subscribe(() => {
                 this.translate.get('PADRAO.SOLICITACAO_ACEITA').subscribe(message => {
-                    alert(message);
+                    Util.showSuccessDialog(message);
                     this.getUser();
                 });
             });
