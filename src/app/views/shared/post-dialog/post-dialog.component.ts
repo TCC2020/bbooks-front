@@ -111,7 +111,10 @@ export class PostDialogComponent implements OnInit {
         }
     }
     isPublicPageRoute(): boolean {
-        return this.router.url.includes('public-profile');
+        return this.router.url.includes('public-profile') || this.router.url.includes('perfil-publico');
+    }
+    getNamePage(): string {
+        return localStorage.getItem('namePage');
     }
 
     get asks(): FormArray {
