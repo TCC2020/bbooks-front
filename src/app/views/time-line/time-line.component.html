@@ -1,0 +1,37 @@
+<div style="margin-top: 10px" *ngIf="!loading && this.entries.length === 0">
+    <app-empty-content-message message="{{'PADRAO.TIME_LINE' | translate}}">
+
+    </app-empty-content-message>
+</div>
+
+<div *ngIf="!loading && this.entries.length > 0">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <h2>
+            {{'PADRAO.TIME_LINE' | translate}}
+        </h2>
+    </div>
+    <mgl-timeline [toggle]="false" [alternate]="true" [focusOnOpen]="false" [side]="side" [mobileWidthThreshold]="mobileWidthThreshold">
+        <mgl-timeline-entry *ngFor="let entry of entries; let i = index" (expand)="onExpand($event, i)">
+            <mgl-timeline-entry-header>
+                <div>{{entry.header}}</div>
+            </mgl-timeline-entry-header>
+            <mgl-timeline-entry-content
+                    [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'"
+                    [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'">
+                <div *ngFor="let book of entry.content" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center">
+
+                    <app-book-card
+                            [idTag]=""
+                            [book]="book"
+                            [canEdit]="true">
+                    </app-book-card>
+                </div>
+            </mgl-timeline-entry-content>
+            <mgl-timeline-entry-dot [class]="'primary'" [size]="size"
+                                    [expandAnimationTiming]="dotAnimation ? '200ms ease' : '0ms'"
+                                    [collapseAnimationTiming]="dotAnimation ? '100ms ease' : '0ms'">
+            </mgl-timeline-entry-dot>
+        </mgl-timeline-entry>
+    </mgl-timeline>
+</div>
+

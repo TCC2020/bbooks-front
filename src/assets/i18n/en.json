@@ -87,7 +87,10 @@
     "WAIT_PERMISSIONS": "Waiting for permissions.",
     "NOT_HAS_CAMERA": "If your device does not has cameras, no permissions will be asked.",
     "NOT_FIND_RESULT": "We didn't find any results.",
-    "DATA_CONCLUSAO": "Date of the conclusion"
+    "DATA_CONCLUSAO": "Date of the conclusion",
+    "TIME_LINE": "Reading timeline",
+    "NAO_LEU": "You haven't finished any books yet."
+
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",

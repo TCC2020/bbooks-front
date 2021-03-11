@@ -22,6 +22,12 @@ export class UserbookService {
         return this.http.get(this.api + 'profile/' + profileId);
     }
 
+    getAllByProfileTimeLine(profileId: number): Observable<any> {
+        const params = new HttpParams()
+            .set('timeLine', 'true');
+        return this.http.get(this.api + 'profile/' + profileId, {params});
+    }
+
     changeStatus(userBookUpdateStatusTO): Observable<any> {
         return this.http.put(this.api + 'status', userBookUpdateStatusTO);
     }

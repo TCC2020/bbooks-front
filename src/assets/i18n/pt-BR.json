@@ -85,7 +85,9 @@
     "WAIT_PERMISSIONS": "Aguardando permissões.",
     "NOT_HAS_CAMERA": "Se o seu dispositivo não tiver câmeras, nenhuma permissão será solicitada",
     "NOT_FIND_RESULT": "Não encontramos nenhum resultado.",
-    "DATA_CONCLUSAO": "Data de conclusão"
+    "DATA_CONCLUSAO": "Data de conclusão",
+    "TIME_LINE": "Linha do tempo de leitura",
+    "NAO_LEU": "Você ainda não terminou nenhum livro."
   },
   "GRUPO_LEITURA": {
     "ADMINISTRADORES": "Administradores",
