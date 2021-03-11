@@ -94,7 +94,7 @@ export class PostDialogComponent implements OnInit {
     }
 
     hadProfileId(): number {
-        return this.router.url.includes('public-profile') || 'perfil-publico' ? 0 : this.user.profile.id;
+        return this.router.url.includes('public-profile') || this.router.url.includes('perfil-publico') ? 0 : this.user.profile.id;
     }
 
     getGroupId(): string {

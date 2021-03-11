@@ -34,8 +34,10 @@ export class RecuperarSenhaComponent implements OnInit {
     }
 
     sendResetPassRequest() {
+        Util.loadingScreen();
         this.service.sendResetPassEmail(this.form.value).pipe(take(1)).subscribe(
             () => {
+                Util.stopLoading();
                 this.translate.get('PADRAO.EMAIL_ENVIADO').subscribe(message => {
                     Util.showSuccessDialog(message);
                     this.showMessage = true;
@@ -43,6 +45,7 @@ export class RecuperarSenhaComponent implements OnInit {
                 });
             },
             error => {
+                Util.stopLoading();
                 let codeMessage = '';
                 if (error.error.message.includes('US001')) {
                     codeMessage = 'US001';
@@ -52,6 +55,9 @@ export class RecuperarSenhaComponent implements OnInit {
                         Util.showErrorDialog(message);
                     });
                 } else {
+                    this.translate.get('PADRAO.OCORREU_UM_ERRO').subscribe(message => {
+                        Util.showErrorDialog(message);
+                    });
                     console.log('Error reset pass', error);
                 }
                 this.showMessage = false;

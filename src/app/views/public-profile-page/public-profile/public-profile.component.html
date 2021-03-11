@@ -1,11 +1,11 @@
-<div class="container-grupo" *ngIf="!publicProfileTO">
-    <div class="criar-perfil-publico">
+<div class="container-grupo" *ngIf="loading && !publicProfileTO">
+    <div class="criar-perfil-publico"  style="margin-top: 20%">
         <button type="button" mat-raised-button color="primary" [routerLink]="['/public-profile/criar']">
             {{ 'PERFIL_PUBLICO.CRIAR_PERFIL' | translate }}
         </button>
     </div>
 </div>
-<div class="container-grupo" *ngIf="publicProfileTO">
+<div class="container-grupo" *ngIf="loading && publicProfileTO">
     <div class="container-cabecalho-grupo">
         <div class="container-detalhes-cabecalho">
             <div class="informacoes-grupo">
