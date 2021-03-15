@@ -55,6 +55,7 @@ export class PreviousGoalsComponent implements OnInit {
                 const b = this.bookService.convertBookToModel(book);
                 b.idUserBook = realation.id;
                 b.status = realation.status;
+                b.finishDate = realation.finishDate;
                 return b;
             })
         ).subscribe(
@@ -68,6 +69,7 @@ export class PreviousGoalsComponent implements OnInit {
             map(b => {
                 b.idUserBook = realation.id;
                 b.status = realation.status;
+                b.finishDate = realation.finishDate;
                 return b;
             })
         ).subscribe(

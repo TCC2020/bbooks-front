@@ -46,6 +46,8 @@ import {SearchModule} from './views/search/search.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {LiteraryCompetitionModule} from './views/literary-competition-page/literary-competition.module';
 import {NgxQRCodeModule} from 'ngx-qrcode2';
+import { TimeLineComponent } from './views/time-line/time-line.component';
+import {MglTimelineModule} from 'angular-mgl-timeline';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -66,7 +68,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         PageNotFoundComponent,
         UploadComponent,
         ReadingTargetProgressComponent,
-        PreviousGoalsComponent
+        PreviousGoalsComponent,
+        TimeLineComponent
     ],
     imports: [
         BrowserModule,
@@ -89,6 +92,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         PerfilPageModule,
         SharedModule,
         PublicProfilePageModule,
+        BrowserAnimationsModule,
+        MglTimelineModule,
         StoreModule.forRoot({}),
         StoreDevtoolsModule.instrument({
             maxAge: 25, // Retains last 25 states

@@ -12,17 +12,7 @@ import { LoginComponent } from './modals/login/login.component';
 import {AuthGuard} from './guards/auth-guard';
 import {AuthVerifyLogin} from './guards/auth-verify-login';
 import {PageNotFoundComponent} from './views/page-not-found/page-not-found.component';
-import {LiteraryCompetitionComponent} from './views/literary-competition-page/literary-competition/literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import {MembersLiteraryCompetitionComponent} from './views/literary-competition-page/members-literary-competition/members-literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import {AdministratorsLiteraryCompetitionComponent} from './views/literary-competition-page/administrators-literary-competition/administrators-literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import {StoryLiteraryCompetitionComponent} from './views/literary-competition-page/story-literary-competition/story-literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import {CreateLiteraryCompetitionComponent} from './views/literary-competition-page/create-literary-competition/create-literary-competition.component';
-// tslint:disable-next-line:max-line-length
-import {ListLiteraryCompetitionComponent} from './views/literary-competition-page/list-literary-competition/list-literary-competition.component';
+import {TimeLineComponent} from './views/time-line/time-line.component';
 
 const routes: Routes = [
     {
@@ -50,6 +40,10 @@ const routes: Routes = [
     },
     {
         path: 'andamento-meta-leitura', component: ReadingTargetProgressComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'time-line', component: TimeLineComponent,
         canActivate: [AuthGuard],
     },
     {

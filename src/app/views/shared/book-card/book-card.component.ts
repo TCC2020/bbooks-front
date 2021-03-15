@@ -99,6 +99,7 @@ export class BookCardComponent implements OnInit {
                             book.status = userbook.status;
                             book.idUserBook = userbook.id;
                             book.finishDate = userbook.finishDate;
+                            book.finishDate = userbook.finishDate;
                         }
                     });
                     this.book = book;

@@ -46,6 +46,7 @@ export class BookcaseResolve implements Resolve<any> {
                             const b = this.bookService.convertBookToModel(book);
                             b.idUserBook = realation.id;
                             b.status = realation.status;
+                            b.finishDate = realation.finishDate;
                             this.bookCase.books.push(b);
 
                         });
@@ -55,6 +56,7 @@ export class BookcaseResolve implements Resolve<any> {
                             .subscribe(b => {
                             b.idUserBook = realation.id;
                             b.status = realation.status;
+                            b.finishDate = realation.finishDate;
                             this.bookCase.books.push(b);
                         });
                     }
