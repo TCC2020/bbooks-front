@@ -1,14 +1,12 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {BookService} from '../../services/book.service';
-import {UserService} from '../../services/user.service';
 import {UserbookService} from '../../services/userbook.service';
 import {GoogleBooksService} from '../../services/google-books.service';
 import {AuthService} from '../../services/auth.service';
 import {map, take} from 'rxjs/operators';
-import {BookCase} from '../../models/bookCase.model';
 import {Util} from '../shared/Utils/util';
 import {Book} from '../../models/book.model';
-import {Observable, Subject, zip} from 'rxjs';
+import {zip} from 'rxjs';
 
 @Component({
     selector: 'app-time-line',
@@ -30,8 +28,6 @@ export class TimeLineComponent implements OnInit, AfterViewInit {
     entries = [];
     books = [];
     loading = true;
-    list: Subject<any> = new Subject();
-
     constructor(
         private bookService: BookService,
         private userBookService: UserbookService,
