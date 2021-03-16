@@ -15,6 +15,8 @@ import { GoogleBooksService } from 'src/app/services/google-books.service';
 import { userMock } from 'src/app/mocks/user.model.mock';
 import { SocialAuthServiceConfigMock } from 'src/app/mocks/google.provide.mock';
 import { of } from 'rxjs';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {EmptyContentMessageComponent} from '../../views/shared/empty-content-message/empty-content-message.component';
 
 describe('NavBarComponent', () => {
     let component: NavBarComponent;
@@ -28,6 +30,7 @@ describe('NavBarComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            schemas: [CUSTOM_ELEMENTS_SCHEMA],
             imports: [
                 SocialLoginModule,
                 RouterTestingModule,
@@ -49,7 +52,7 @@ describe('NavBarComponent', () => {
                     useValue: authServiceMock
                 }
             ],
-            declarations: [NavBarComponent]
+            declarations: [NavBarComponent, EmptyContentMessageComponent]
         }).compileComponents();
     }));
 

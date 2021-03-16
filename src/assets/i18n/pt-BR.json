@@ -145,7 +145,8 @@
     "INDICOU": "te recomendou",
     "CONVITE_GRUPO": "te convidou para entrar no grupo",
     "CONVITE_ACEITO": "Convite aceito!",
-    "CONVITE_RECUSADO": "Convite recusado!"
+    "CONVITE_RECUSADO": "Convite recusado!",
+    "NOT_NOTITIFCATION": "Você não tem nenhuma notificação."
   },
   "HOME": {
     "BUSCARTEXT": "Procure um livro"
