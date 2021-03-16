@@ -45,6 +45,43 @@
   width: 75%;
 }
 
+section {
+  width: 100%;
+  height: 400px;
+  background-color: #FFF;
+}
+
+section .container-bbooks h1 { /* Configuração do título da section/manchete */
+  font-size: 40px;
+  padding-top: 55px;
+}
+
+section .container-bbooks h2 { /*Configuração do subtítulo da section*/
+  font-size: 21px;
+  margin-top: 25px;
+  color: #7F8C8D;
+}
+
+#banner {
+  background-color: #00ACC8;
+  max-width: 100%;
+  height: 370px;
+}
+
+section .container-bbooks .banner h1 {
+  color: #FFF;
+  font-size: 30px;
+  margin-left: 210px;
+}
+
+section .container-bbooks .banner h2 {
+  color: #FFF;
+  font-size: 20px;
+  position: relative;
+  margin-top: 115px;
+  margin-left: -230px;
+}
+
 @media screen and (max-width: 800px) {
   .barra-pesquisar {
     width: 100%;

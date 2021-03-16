@@ -1,45 +1,67 @@
 <div class="container-geral">
-<form [formGroup]="searchControl" class="form-inline mr-auto" (ngSubmit)="searchBook()">
-    <!--<div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayout.xs="column">
-        <mat-form-field fxFlex="40" fxFlex.xs="100">
-            <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
-            <input matInput formControlName="book" matInput type="text" >
-        </mat-form-field>
-        <div>
-            <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
+    <!-- <div *ngIf="AuthService.getUser()"> -->
+        <form [formGroup]="searchControl" class="form-inline mr-auto" (ngSubmit)="searchBook()">
+            <!--<div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" fxLayout.xs="column">
+                <mat-form-field fxFlex="40" fxFlex.xs="100">
+                    <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
+                    <input matInput formControlName="book" matInput type="text" >
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button color="accent" id="search-bt" type="submit">{{'PADRAO.BUSCAR' | translate}}</button>
+                </div>
+
+
+            </div>-->
+            <div class="container-pesquisar">
+                <mat-form-field class="barra-pesquisar" appearance="outline">
+                    <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
+                    <input matInput type="text" formControlName="book">
+                    <button mat-button matSuffix mat-icon-button aria-label="Pesquisar" type="submit">
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </form>
+        <mat-paginator
+
+                *ngIf="books?.length > 0"
+                [length]="totalBooks"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="[10, 20, 30, 40]"
+                    (page)="changePage($event)">
+        </mat-paginator>
+
+        <div fxLayout="row wrap" fxFLex="100" fxLayoutAlign="center">
+            <div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center" *ngIf="books?.length > 0">
+                <app-book-card
+                        *ngFor="let book of books"
+                        [idTag]=""
+                        [book]="book"
+                        [deviceXs]="deviceXs"
+                        [logged]="this.user ? true : false"
+                        [canEdit]="true">
+                </app-book-card>
+            </div>
         </div>
+    <!-- </div> -->
 
+    <!-- <div *ngIf="!AuthService.getUser()"> -->
+        
+        <section>
+            <div class="container-bbooks">
+                <h1><center><strong>BBooks</strong></center></h1>
+                <h2><center>A rede social para aqueles que choram quando um personagem morre, quando a autora faz a maior revelação de todas e, principalmente, quando a ressaca literária ataca.</center></h2>
+            </div>
 
-    </div>-->
-    <div class="container-pesquisar">
-        <mat-form-field class="barra-pesquisar" appearance="outline">
-            <mat-label>{{'HOME.BUSCARTEXT' | translate}}</mat-label>
-            <input matInput type="text" formControlName="book">
-            <button mat-button matSuffix mat-icon-button aria-label="Pesquisar" type="submit">
-                <mat-icon>search</mat-icon>
-            </button>
-        </mat-form-field>
-    </div>
-</form>
-<mat-paginator
+            <div class="container-bbooks" id="banner">
+                <div class="row banner">
+                    <h1><b>Pronto para entrar nesse mundo literário?</b></h1>
+                    <h2>Não perca mais tempo e venha encontrar seus novos amigos leitores!</h2>
+                    <a href="#" class="btn btn-primary"><strong>CADASTRE-SE</strong></a>
+                </div>
+            </div>
 
-        *ngIf="books?.length > 0"
-        [length]="totalBooks"
-               [pageSize]="pageSize"
-               [pageSizeOptions]="[10, 20, 30, 40]"
-               (page)="changePage($event)">
-</mat-paginator>
+        </section>
 
-<div fxLayout="row wrap" fxFLex="100" fxLayoutAlign="center">
-    <div fxLayout="row wrap" fxFlex="80" fxLayoutAlign="center" *ngIf="books?.length > 0">
-        <app-book-card
-                *ngFor="let book of books"
-                [idTag]=""
-                [book]="book"
-                [deviceXs]="deviceXs"
-                [logged]="this.user ? true : false"
-                [canEdit]="true">
-        </app-book-card>
-    </div>
-</div>
+    <!-- </div> -->
 </div>
