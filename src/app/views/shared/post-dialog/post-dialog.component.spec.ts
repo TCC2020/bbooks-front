@@ -90,27 +90,27 @@ describe('PostDialogComponent', () => {
     });
 
     it('should resetAsks', () => {
-        component.resetAsks();
+        component.resetoptions();
         expect(component.textInput).toEqual('TEXT_POST_INPUT_ASK');
         expect(component.menuChoose).toEqual(menuChoose.ASK);
-        expect(component.asks.length).toEqual(2);
+        expect(component.options.length).toEqual(2);
     });
 
     it('should get asks form', () => {
-        expect(component.formFeed.get('asks')).toEqual(component.asks);
+        expect(component.formFeed.get('survey').get('options')).toEqual(component.options);
     });
 
     it('should addAsk', () => {
         component.addAsk();
         component.addAsk();
         component.addAsk();
-        expect(component.asks.length).toEqual(3);
+        expect(component.options.length).toEqual(3);
     });
 
     it('should removeAsk', () => {
         component.addAsk();
         component.removeAsk(0);
-        expect(component.asks.length).toEqual(0);
+        expect(component.options.length).toEqual(0);
     });
     it('save: should save post', () => {
         component.dataDialog = null;

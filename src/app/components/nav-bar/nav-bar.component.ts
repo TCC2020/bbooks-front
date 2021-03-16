@@ -17,7 +17,6 @@ import {GroupMemberService} from '../../services/group-member.service';
 import {GroupInviteTO} from '../../models/GroupInviteTO.model';
 import {Util} from '../../views/shared/Utils/util';
 import {PublicProfileService} from '../../services/public-profile.service';
-import {UserPublicProfileTO} from '../../models/UserPublicProfileTO.model';
 
 @Component({
     selector: 'app-nav-bar',
