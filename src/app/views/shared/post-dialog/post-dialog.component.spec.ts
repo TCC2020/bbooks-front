@@ -90,6 +90,7 @@ describe('PostDialogComponent', () => {
     });
 
     it('should resetAsks', () => {
+        component.options.clear();
         component.resetoptions();
         expect(component.textInput).toEqual('TEXT_POST_INPUT_ASK');
         expect(component.menuChoose).toEqual(menuChoose.ASK);
@@ -104,13 +105,13 @@ describe('PostDialogComponent', () => {
         component.addAsk();
         component.addAsk();
         component.addAsk();
-        expect(component.options.length).toEqual(3);
+        expect(component.options.length).toEqual(4);
     });
 
     it('should removeAsk', () => {
         component.addAsk();
         component.removeAsk(0);
-        expect(component.options.length).toEqual(0);
+        expect(component.options.length).toEqual(2);
     });
     it('save: should save post', () => {
         component.dataDialog = null;
