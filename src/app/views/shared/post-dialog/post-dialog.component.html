@@ -7,7 +7,7 @@
             <b>{{title | translate}}</b>
         </div>
         <div>
-            <button mat-button color="accent" (click)="save()"><b>{{buttonSave | translate}}</b></button>
+            <button mat-button color="accent" [disabled]="formFeed.invalid" (click)="save()"><b>{{buttonSave | translate}}</b></button>
         </div>
 
     </div>
@@ -57,12 +57,12 @@
     <mat-divider *ngIf="isMobile()"></mat-divider>
     <div>
              <textarea formControlName="description" placeholder="{{'POST.' + textInput | translate}}"></textarea>
-             <div class="div-menuChoose" *ngIf="menuChoose === menu.ASK">
-                <div formArrayName="asks" *ngFor="let item of asks.controls; let i = index;" fxLayout="row"
+             <div class="div-menuChoose" *ngIf="menuChoose === menu.ASK" formGroupName="survey">
+                <div formArrayName="options" *ngFor="let item of options.controls; let i = index;" fxLayout="row"
                      fxLayoutAlign="center">
                     <div>
                         <mat-form-field [formGroupName]="i" appearance="outline" class="form-group-post-dialog">
-                            <input placeholder="option {{i+1}}" matInput formControlName="name">
+                            <input placeholder="option {{i+1}}" matInput formControlName="option">
                             <!--                        <button matSuffix mat-icon-button aria-label="Clear" (click)="removeAsk(i)">-->
                             <!--                            <mat-icon>close</mat-icon>-->
                             <!--                        </button>-->
@@ -95,7 +95,7 @@
     <br>
     <mat-divider></mat-divider>
     <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
-        <button mat-button class="button-test-post" (click)="resetAsks()">
+        <button mat-button class="button-test-post" (click)="resetoptions()">
             <mat-icon class="assesment-post-dialog">assessment</mat-icon>
             {{'PADRAO.ASK' | translate}}
         </button>
@@ -114,4 +114,7 @@
         <button [disabled]="formFeed.invalid" mat-raised-button color="accent" class="publisherWeb" (click)="save()">{{buttonSave | translate}}</button>
     </div>
     <br>
+</div>
+<div>
+    {{formFeed.value | json}}
 </div>
