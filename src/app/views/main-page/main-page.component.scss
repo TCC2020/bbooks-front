@@ -1,34 +1,41 @@
 .block-with-text {
-    overflow: hidden;
-    position: relative; 
-    line-height: 1.2em;
-    max-height: 3.6em; 
-    text-align: justify;  
-    margin-right: -1em;
-    padding-right: 1em;
-  }.block-with-text:before {
-    content: '...';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }.block-with-text:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 1em;
-    height: 1.5em;
-    margin-top: 0.2em;
-    background: white;
-  }
-  #search-bt {
-    color: white;
-  }
-  mat-card {
-    margin: 30px;
-  }
-  #card-footer {
-    margin-bottom: 0;
-  }
+  overflow: hidden;
+  position: relative;
+  line-height: 1.2em;
+  max-height: 3.6em;
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+}
+
+.block-with-text:before {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.block-with-text:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1.5em;
+  margin-top: 0.2em;
+  background: white;
+}
+
+#search-bt {
+  color: white;
+}
+
+mat-card {
+  margin: 30px;
+}
+
+#card-footer {
+  margin-bottom: 0;
+}
 
 .container-pesquisar {
   padding: 30px 30px 0;
@@ -82,12 +89,73 @@ section .container-bbooks .banner h2 {
   margin-left: -230px;
 }
 
+.container-pagina-inicial {
+  flex-direction: row;
+  display: flex;
+  gap: 10px;
+}
+
+.primeiro {
+  width: 60%;
+  padding: 10px;
+}
+
+.segundo {
+  width: 40%;
+}
+
+.container-bbooks-descricao h2 {
+  color: #7F8C8D;
+}
+
+.container-bbooks-descricao, .container-cadastre-se {
+  padding: 40px;
+  height: auto;
+}
+
+.container-bbooks-descricao div {
+  margin: auto;
+}
+
+.paginacao-pagina-inicial {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}
+
+.livros-logado {
+  margin: 0 auto;
+}
+
+/*.container-livros {
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+
+  app-book-card {
+    width: 25%;
+    margin: 0 auto;
+  }
+}*/
+
+
+
 @media screen and (max-width: 800px) {
   .barra-pesquisar {
     width: 100%;
   }
 
-  .container-geral{
+  .container-geral {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container-pagina-inicial {
+    flex-wrap: wrap;
+
+    .primeiro, .segundo {
+      width: 100%;
+    }
   }
 }
