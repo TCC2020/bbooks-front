@@ -4,6 +4,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {GroupTO} from '../models/GroupTO.model';
 import {Observable} from 'rxjs';
 import {GroupPagination} from '../models/pagination/group.pagination';
+import {BookMonthTO} from '../models/BookMonthTO.model';
+import {Book} from '../models/book.model';
 
 @Injectable({
     providedIn: 'root'
@@ -36,5 +38,8 @@ export class GroupService {
             .set('page', page.toString())
             .set('size', size.toString());
         return this.http.get<GroupPagination>(this.api, {params});
+    }
+    getBookMonth(groupId: string): Observable<BookMonthTO[]> {
+        return this.http.get<BookMonthTO[]>(this.api + 'book/' + groupId);
     }
 }
