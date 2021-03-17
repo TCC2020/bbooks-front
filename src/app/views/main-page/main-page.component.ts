@@ -10,6 +10,7 @@ import {Subscription} from 'rxjs';
 import {PageEvent} from '@angular/material/paginator';
 import {BookSearchTO} from '../../models/bookSearchTO.model';
 import {map, take} from 'rxjs/operators';
+import {UserTO} from '../../models/userTO.model';
 
 @Component({
     selector: 'app-main-page',
@@ -25,6 +26,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     totalBooks = 0;
     pageEvent: PageEvent = new PageEvent();
     pageSize = 10;
+    logado: UserTO = this.auth.getUser();
 
     constructor(
         public auth: AuthService,
