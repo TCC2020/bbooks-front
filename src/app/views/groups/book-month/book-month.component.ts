@@ -58,7 +58,6 @@ export class BookMonthComponent implements OnInit {
                 this.bookMonthTO = result;
                 this.bookMonth = this.bookMonthTO[this.bookMonthTO.length - 1];
                 this.getBookCase();
-                console.log(this.bookMonth);
             }, error => {
                 console.log(error);
             });
@@ -85,19 +84,36 @@ export class BookMonthComponent implements OnInit {
             width: '400px',
         });
         dialogRef.afterClosed().subscribe((result) => {
+            Util.loadingScreen();
             const bookM: BookMonthTO = new BookMonthTO();
             bookM.groupId = this.groupId;
-            bookM.bookGoogleId = result.id;
+            bookM.bookGoogleId = result?.id;
             bookM.monthYear = new Date();
             bookM.bookid = null;
             this.groupService.postBookMonth(this.groupId, bookM)
                 .pipe(take(1))
                 .subscribe(() => {
+                    Util.stopLoading();
                     Util.showSuccessDialog('Livro adicionado');
+                    window.location.reload();
                 }, error => {
+                    Util.stopLoading();
                     console.log(error);
                 });
         });
     }
 
+    deleteBookMonth() {
+        Util.loadingScreen();
+        this.groupService.deleteBookMonth(this.groupId, this.bookMonth.id)
+            .pipe(take(1))
+            .subscribe(result => {
+                Util.stopLoading();
+                Util.showSuccessDialog('Livro excluído!');
+                window.location.reload();
+            }, error => {
+                Util.stopLoading();
+                console.log(error);
+            });
+    }
 }
