@@ -90,7 +90,6 @@
     "DATA_CONCLUSAO": "Date of the conclusion",
     "TIME_LINE": "Reading timeline",
     "NAO_LEU": "You haven't finished any books yet."
-
   },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
@@ -100,8 +99,9 @@
     "DATA_CRIACAO": "Creation date",
     "DESCRICAO_GRUPO": "Description Group",
     "feed": "feed",
-    "about": "sobre",
-    "members": "membros",
+    "about": "about",
+    "members": "members",
+    "book-of-month": "Book of month",
     "your-groups": "Groups",
     "create": "Create",
     "CRIAR_GRUPO": "Create Group",
@@ -129,7 +129,10 @@
     "MEMBER_NOW": "Added Administrator as a member",
     "MEMBRO_REMOVIDO": "Removed member",
     "VC_NAO_TEM_GRUPO": "You haven't joined any groups yet!",
-    "GRUPO_EXISTS": "Group name already exists."
+    "GRUPO_EXISTS": "Group name already exists.",
+    "ADICIONAR_LIVRO_MES": "Add book of the month",
+    "SEM_LIVRO_MES": "You do not have a book of the month yet.",
+    "LIVRO_MES": "Book of the month"
   },
   "RESENHA" : {
     "ESCREVER_RESENHA" : "Write review",
