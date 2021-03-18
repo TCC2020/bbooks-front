@@ -3,6 +3,7 @@
     <img class="imagem-livro-mes" [src]="book?.image ? book?.image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
     <p>{{ book?.title }}</p>
     <button type="button" mat-raised-button color="primary" (click)="addBookMonth()">{{ 'GRUPO_LEITURA.ADICIONAR_LIVRO_MES' | translate }}</button>
+    <button type="button" mat-raised-button (click)="deleteBookMonth()">Deletar livro do mês</button>
 </div>
 <div *ngIf="!bookMonth" class="container-livro-mes">
     <p>{{ 'GRUPO_LEITURA.SEM_LIVRO_MES' | translate }}</p>
