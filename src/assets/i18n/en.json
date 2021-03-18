@@ -91,6 +91,11 @@
     "TIME_LINE": "Reading timeline",
     "NAO_LEU": "You haven't finished any books yet."
   },
+  "PAGINA_INICIAL": {
+    "DESCRICAO": "The social network for those who cry when a character dies, when the author makes the biggest reveal of all and, especially, when she has a literary hangover.",
+    "PRONTO_ENTRAR": "Ready to enter this literary world?",
+    "NAO_PERCA": "Don't waste any more time and come and meet your new reader friends!"
+  },
   "GRUPO_LEITURA" : {
     "ADMINISTRADORES" : "Administradores",
     "MEMBROS": "Members",
