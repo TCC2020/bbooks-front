@@ -85,7 +85,14 @@
     "WAIT_PERMISSIONS": "Aguardando permissões.",
     "NOT_HAS_CAMERA": "Se o seu dispositivo não tiver câmeras, nenhuma permissão será solicitada",
     "NOT_FIND_RESULT": "Não encontramos nenhum resultado.",
-    "DATA_CONCLUSAO": "Data de conclusão"
+    "DATA_CONCLUSAO": "Data de conclusão",
+    "TIME_LINE": "Linha do tempo de leitura",
+    "NAO_LEU": "Você ainda não terminou nenhum livro."
+  },
+  "PAGINA_INICIAL": {
+    "DESCRICAO": "A rede social para aqueles que choram quando um personagem morre, quando a autora faz a maior revelação de todas e, principalmente, quando a ressaca literária ataca.",
+    "PRONTO_ENTRAR": "Pronto para entrar nesse mundo literário?",
+    "NAO_PERCA": "Não perca mais tempo e venha encontrar seus novos amigos leitores!"
   },
   "GRUPO_LEITURA": {
     "ADMINISTRADORES": "Administradores",
@@ -125,8 +132,10 @@
     "MEMBER_NOW": "Administrador adicionado como membro",
     "MEMBRO_REMOVIDO": "Membro removido",
     "VC_NAO_TEM_GRUPO": "Você ainda não participa de nenhum grupo!",
-    "GRUPO_EXISTS": "O nome do grupo já existe."
-
+    "GRUPO_EXISTS": "O nome do grupo já existe.",
+    "ADICIONAR_LIVRO_MES": "Adicionar livro do mês",
+    "SEM_LIVRO_MES": "Você ainda não possui livro do mês.",
+    "LIVRO_MES": "Livro do mês"
   },
   "RESENHA": {
     "ESCREVER_RESENHA": "Escrever resenha",
@@ -143,7 +152,8 @@
     "INDICOU": "te recomendou",
     "CONVITE_GRUPO": "te convidou para entrar no grupo",
     "CONVITE_ACEITO": "Convite aceito!",
-    "CONVITE_RECUSADO": "Convite recusado!"
+    "CONVITE_RECUSADO": "Convite recusado!",
+    "NOT_NOTITIFCATION": "Você não tem nenhuma notificação."
   },
   "HOME": {
     "BUSCARTEXT": "Procure um livro"

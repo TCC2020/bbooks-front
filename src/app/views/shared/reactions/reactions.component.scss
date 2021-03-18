@@ -125,7 +125,44 @@ textarea::placeholder {
   text-decoration: underline;
   cursor: pointer;
 }
-
+.options{
+  background-color: rgba(177, 228, 255, 0.3);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  width: 100%;
+  border-radius: 5px;
+  //border: none;
+  padding: 10px;
+  border-collapse:collapse;
+  border: 2px solid #4f6480;
+  margin-bottom: 10px;
+  max-width:  380px;
+  word-break: break-word;
+}
+.options:hover {
+  transition: all .2s linear;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.optionsDeselected{
+  background-color: rgba(196, 201, 205, 0.3);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  border-collapse:collapse;
+  margin-bottom: 10px;
+  max-width:  380px;
+  word-break: break-word;
+}
+.optionsDeselected:hover{
+  transition: all .2s linear;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.iconCheck{
+  cursor: pointer;
+}
 @media screen and (max-width: 600px) {
   .commentView{
     max-width: 260px;

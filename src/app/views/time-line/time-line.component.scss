@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/theming';
+
+@mixin mgl-timeline-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $typographyConfig: mat-typography-config();
+
+
+  mgl-timeline {
+    font-family: mat-font-family($typographyConfig);
+
+    & mgl-timeline-entry {
+
+      & .mgl-timeline-entry-card {
+        @include mat-elevation(4);
+        background-color: map-get($background, card) !important;
+        color: map-get($foreground, base);
+
+        & .mgl-timeline-entry-card-header {
+          background-color: map-get($background, app-bar) !important;
+        }
+      }
+
+      & mgl-timeline-entry-dot {
+        @include mat-elevation(2);
+
+        &.primary {
+          background-color: mat-color($primary);
+        }
+
+        &.accent {
+          background-color: mat-color($accent);
+        }
+      }
+    }
+  }
+}
+
+
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+html, body {
+  font-family: sans-serif;
+}
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$mgl-app-primary: mat-palette($mat-cyan);
+$mgl-app-accent:  mat-palette($mat-orange);
+
+// The warn palette is optional (defaults to red).
+$mgl-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$mgl-app-theme: mat-light-theme($mgl-app-primary, $mgl-app-accent, $mgl-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($mgl-app-theme);
+@include mgl-timeline-theme($mgl-app-theme);
