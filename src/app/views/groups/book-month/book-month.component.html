@@ -1,5 +1,10 @@
-<div class="container-livro-mes">
-    <h2>Livro do mês de {{ bookMonth?.month }}</h2>
+<div *ngIf="bookMonth" class="container-livro-mes">
+    <h2>{{ 'GRUPO_LEITURA.LIVRO_MES' | translate }} {{ bookMonth?.monthYear | date: 'MM' }}</h2>
     <img class="imagem-livro-mes" [src]="book?.image ? book?.image : 'https://adriaticaindustriale.it/wp-content/uploads/2020/02/not-found.png'">
     <p>{{ book?.title }}</p>
+    <button type="button" mat-raised-button color="primary" (click)="addBookMonth()">{{ 'GRUPO_LEITURA.ADICIONAR_LIVRO_MES' | translate }}</button>
+</div>
+<div *ngIf="!bookMonth" class="container-livro-mes">
+    <p>{{ 'GRUPO_LEITURA.SEM_LIVRO_MES' | translate }}</p>
+    <button type="button" mat-raised-button color="primary" (click)="addBookMonth()">{{ 'GRUPO_LEITURA.ADICIONAR_LIVRO_MES' | translate }}</button>
 </div>

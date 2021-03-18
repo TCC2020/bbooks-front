@@ -42,4 +42,7 @@ export class GroupService {
     getBookMonth(groupId: string): Observable<BookMonthTO[]> {
         return this.http.get<BookMonthTO[]>(this.api + 'book/' + groupId);
     }
+    postBookMonth(groupId: string, bookMonthTO: BookMonthTO): Observable<BookMonthTO> {
+        return this.http.post<BookMonthTO>(this.api + groupId + '/book', bookMonthTO);
+    }
 }

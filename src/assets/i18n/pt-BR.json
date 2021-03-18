@@ -127,8 +127,10 @@
     "MEMBER_NOW": "Administrador adicionado como membro",
     "MEMBRO_REMOVIDO": "Membro removido",
     "VC_NAO_TEM_GRUPO": "Você ainda não participa de nenhum grupo!",
-    "GRUPO_EXISTS": "O nome do grupo já existe."
-
+    "GRUPO_EXISTS": "O nome do grupo já existe.",
+    "ADICIONAR_LIVRO_MES": "Adicionar livro do mês",
+    "SEM_LIVRO_MES": "Você ainda não possui livro do mês.",
+    "LIVRO_MES": "Livro do mês"
   },
   "RESENHA": {
     "ESCREVER_RESENHA": "Escrever resenha",

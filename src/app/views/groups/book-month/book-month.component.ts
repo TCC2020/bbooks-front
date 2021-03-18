@@ -9,6 +9,10 @@ import {GoogleBooksService} from '../../../services/google-books.service';
 import {BookService} from '../../../services/book.service';
 import {BookCase} from '../../../models/bookCase.model';
 import {Book} from '../../../models/book.model';
+import {BookAddDialogComponent} from '../../shared/book-add-dialog/book-add-dialog.component';
+import {SearchBookComponent} from '../../shared/search-book/search-book.component';
+import {MatDialog} from '@angular/material/dialog';
+import {Util} from '../../shared/Utils/util';
 
 @Component({
     selector: 'app-book-month',
@@ -22,6 +26,7 @@ export class BookMonthComponent implements OnInit {
     bookMonth: BookMonthTO;
     bookCase: BookCase = new BookCase();
     book: Book;
+    currentDate = new Date();
 
     constructor(
         private groupService: GroupService,
@@ -29,7 +34,8 @@ export class BookMonthComponent implements OnInit {
         private userBookService: UserbookService,
         private user: AuthService,
         private gBooksService: GoogleBooksService,
-        private bookService: BookService
+        private bookService: BookService,
+        public dialog: MatDialog
     ) {
     }
 
@@ -59,31 +65,39 @@ export class BookMonthComponent implements OnInit {
     }
 
     getBookCase() {
-        this.userBookService.getAllByProfile(this.user.getUser().profile.id)
-            .pipe(take(1))
-            .subscribe(userBook => {
-                userBook.books.forEach(realation => {
-                    if (realation.idBookGoogle) {
-                        this.gBooksService.getById(realation.idBookGoogle).subscribe(book => {
-                            const b = this.bookService.convertBookToModel(book);
-                            b.idUserBook = realation.id;
-                            b.status = realation.status;
-                            b.finishDate = realation.finishDate;
-                            this.book = b;
+        if (this.bookMonth.bookGoogleId) {
+            this.gBooksService.getById(this.bookMonth.bookGoogleId).subscribe(book => {
+                const b = this.bookService.convertBookToModel(book);
+                this.book = b;
 
-                        });
-                    } else {
-                        const id = realation.idBook ? realation.idBook : realation.book.id;
-                        this.bookService.getById(id)
-                            .subscribe(b => {
-                                b.idUserBook = realation.id;
-                                b.status = realation.status;
-                                b.finishDate = realation.finishDate;
-                                this.book = b;
-                            });
-                    }
-                });
             });
+        } else {
+            this.bookService.getById(this.bookMonth.bookid)
+                .subscribe(b => {
+                    this.book = b;
+                });
+        }
+    }
+
+    addBookMonth() {
+        const dialogRef = this.dialog.open(SearchBookComponent, {
+            height: '450px',
+            width: '400px',
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            const bookM: BookMonthTO = new BookMonthTO();
+            bookM.groupId = this.groupId;
+            bookM.bookGoogleId = result.id;
+            bookM.monthYear = new Date();
+            bookM.bookid = null;
+            this.groupService.postBookMonth(this.groupId, bookM)
+                .pipe(take(1))
+                .subscribe(() => {
+                    Util.showSuccessDialog('Livro adicionado');
+                }, error => {
+                    console.log(error);
+                });
+        });
     }
 
 }

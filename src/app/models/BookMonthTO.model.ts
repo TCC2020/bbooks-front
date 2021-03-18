@@ -1,7 +1,7 @@
 export class BookMonthTO {
     id: string;
     groupId: string;
-    month: string;
+    monthYear: Date;
     bookid: number;
     bookGoogleId: string;
 }
