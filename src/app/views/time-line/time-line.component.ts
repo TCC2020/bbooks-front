@@ -6,7 +6,7 @@ import {AuthService} from '../../services/auth.service';
 import {map, take} from 'rxjs/operators';
 import {Util} from '../shared/Utils/util';
 import {Book} from '../../models/book.model';
-import {zip} from 'rxjs';
+import {of, zip} from 'rxjs';
 
 @Component({
     selector: 'app-time-line',
@@ -79,7 +79,7 @@ export class TimeLineComponent implements OnInit, AfterViewInit {
                         }
                         bookObservable.push(getById);
                     });
-                    return bookObservable;
+                    return bookObservable.length > 0 ? bookObservable : [of('')];
                 }),
             ).pipe(take(1))
             .subscribe(books => {

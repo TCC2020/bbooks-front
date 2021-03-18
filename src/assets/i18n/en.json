@@ -150,7 +150,8 @@
     "INDICOU": "recommended you",
     "CONVITE_GRUPO": "invited you to join the group",
     "CONVITE_ACEITO": "Invitation accepted!",
-    "CONVITE_RECUSADO": "Invitation refused!"
+    "CONVITE_RECUSADO": "Invitation refused!",
+    "NOT_NOTITIFCATION": "You have no notifications."
   },
   "HOME": {
     "BUSCARTEXT": "Search for a book"

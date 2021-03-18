@@ -65,6 +65,7 @@ export class PostDialogComponent implements OnInit {
         this.configTexts();
         this.user = this.authService.getUser();
         this.createForm();
+        this.initOptions();
     }
 
     configTexts(): void {
@@ -79,7 +80,11 @@ export class PostDialogComponent implements OnInit {
             id: new FormControl(this.dataDialog ? this.dataDialog.id : null),
             profileId: new FormControl(this.hadProfileId()),
             description: new FormControl(this.dataDialog ? this.dataDialog.description : null, Validators.required),
-            asks: this.formBuilder.array([]),
+            survey: new FormGroup({
+                id: new FormControl(''),
+                description: new FormControl('teste'),
+                options: this.formBuilder.array([]),
+            }),
             image: new FormControl(this.dataDialog ? this.dataDialog.image : null),
             tipoPost: new FormControl(TypePost.post),
             privacy: new FormControl(
@@ -110,29 +115,47 @@ export class PostDialogComponent implements OnInit {
             return this.dataDialog ? this.dataDialog?.pageId : '';
         }
     }
+
     isPublicPageRoute(): boolean {
         return this.router.url.includes('public-profile') || this.router.url.includes('perfil-publico');
     }
+
     getNamePage(): string {
         return localStorage.getItem('namePage');
     }
 
-    get asks(): FormArray {
-        return this.formFeed.get('asks') as FormArray;
+    get options(): FormArray {
+        return this.formFeed.get('survey').get('options') as FormArray;
     }
 
     public removeAsk(i: number): void {
-        this.asks.removeAt(i);
+        if (this.options.length > 2) {
+            this.options.removeAt(i);
+        }
     }
 
     public addAsk(): void {
-        if (this.asks.length < 4) {
-            this.asks.insert(0, this.createAskForm(null, ''));
+        if (this.options.length < 4) {
+            this.options.insert(0, this.createAskForm(null, ''));
             // this.getAuthors(this.authors.length - 1);
         }
     }
 
-    resetAsks(): void {
+    private initOptions(): void {
+        if (this.dataDialog) {
+            if (this.dataDialog.survey.options.length === 0) {
+                this.options.insert(0, this.createAskForm(null, ''));
+            }
+            this.dataDialog.survey.options.forEach((option, i) => {
+                this.options.push(this.createAskForm(option.id, option.option));
+            });
+            if (this.dataDialog.survey.options.length > 0) {
+                this.resetoptions();
+            }
+        }
+    }
+
+    resetoptions(): void {
         if (this.menuChoose === this.menu.ASK) {
             this.textInput = 'TEXT_POST_INPUT';
             this.menuChoose = this.menu.PHOTO;
@@ -140,9 +163,11 @@ export class PostDialogComponent implements OnInit {
             this.textInput = 'TEXT_POST_INPUT_ASK';
             this.menuChoose = this.menu.ASK;
         }
-        this.asks.clear();
-        this.addAsk();
-        this.addAsk();
+        if (this.options.length < 1) {
+            this.options.clear();
+            this.addAsk();
+            this.addAsk();
+        }
     }
 
     choosePhoto(): void {
@@ -156,10 +181,10 @@ export class PostDialogComponent implements OnInit {
         this.menuChoose = this.menu.REVIEW;
     }
 
-    private createAskForm(id: number, name: string): FormGroup {
+    private createAskForm(id: string, option: string): FormGroup {
         return new FormGroup({
                 id: new FormControl(id),
-                name: new FormControl(name, Validators.required),
+                option: new FormControl(option, Validators.required),
             }
         );
     }

@@ -45,6 +45,41 @@
         <div fxLayout="row" fxLayoutAlign="start center" class="description">
             {{post?.description}}
         </div>
+        <div  *ngIf="post?.survey?.options?.length > 0">
+            <br>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row" fxLayoutAlign="center center" class="description">
+                    <div class="iconCheck">
+                        <span class="material-icons" style="color: #36BF7F; margin-bottom: 10px; margin-right: 5px">check_circle</span>
+                    </div>
+                    <div  class="options" fxLayout="row" fxLayoutAlign="space-between center">
+                        <div>
+                            {{post.survey.options[0].option}}
+
+                        </div>
+                        <div>
+                            20%
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div *ngFor="let option of post.survey.options"   class="description">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <div class="iconCheck">
+                        <span class="material-icons" style="color: #414141; margin-bottom: 10px; margin-right: 5px">radio_button_unchecked</span>
+                    </div>
+                    <div  class="optionsDeselected" fxLayout="row" fxLayoutAlign="space-between center">
+                        <div>
+                            {{option.option}}
+                        </div>
+                        <div>
+                            20%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div fxLayout="row" fxLayoutAlign="center center" >
             <img [src]="post?.image" class="imagePost">
         </div>

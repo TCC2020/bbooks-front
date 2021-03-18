@@ -4,6 +4,7 @@ import {UserTO} from './userTO.model';
 import {postsMock} from '../mocks/post.model.mock';
 import {GroupTO} from './GroupTO.model';
 import {ReactionsTO} from './ReactionsTO';
+import {SurveyTO} from './surveyTO.model';
 
 export class PostTO {
     id: string;
@@ -20,6 +21,7 @@ export class PostTO {
     group: GroupTO;
     reactions: ReactionsTO;
     pageId: string;
+    survey: SurveyTO;
 
     public setComments(comments: PostTO[]) {
         this.comments = [];

@@ -20,6 +20,9 @@
             <mat-icon [matBadge]="requests?.length || invitesGroup?.length ? verifyRequests() : ''" matBadgeColor="warn" [matMenuTriggerFor]="menuNofify">add_alert</mat-icon>
         </button>
         <mat-menu  #menuNofify="matMenu">
+            <div *ngIf="requests?.length === 0 && invitesGroup?.length === 0 && recommendations?.length === 0">
+                <app-empty-content-message message="{{'NAV.NOT_NOTITIFCATION' | translate}}"></app-empty-content-message>
+            </div>
             <div class="container-lista-amigos">
                 <div class="titulo-notificacao" *ngIf="invitesGroup?.length > 0">
                     <span><b>{{'PADRAO.CONVITE_GRUPOS' | translate}}</b></span>
