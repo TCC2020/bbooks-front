@@ -50,7 +50,7 @@
     "angular-mgl-timeline": "^0.3.3",
     "angularx-social-login": "^3.2.1",
     "animate.css": "^4.1.0",
-    "axios": "^0.21.1",
+    "axios": "^1.6.0",
     "bn-ng-idle": "^1.0.1",
     "content-security-policy": "^0.3.4",
     "express": "^4.17.1",
